@@ -54,3 +54,121 @@ Migrating to DeviseTokenAuthCreateAdmins (20231012150243)
   [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
   [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3186571706819592315)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/auth" for 127.0.0.1 at 2023-10-12 18:08:44 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/auth"):
+  
+Started POST "/auth" for 127.0.0.1 at 2023-10-12 18:08:50 +0300
+  
+NoMethodError (undefined method `protect_from_forgery' for ApplicationController:Class
+
+        protect_from_forgery unless: -> { request.format.json? }
+        ^^^^^^^^^^^^^^^^^^^^):
+  
+app/controllers/application_controller.rb:3:in `<class:ApplicationController>'
+app/controllers/application_controller.rb:1:in `<main>'
+Started POST "/auth" for 127.0.0.1 at 2023-10-12 22:51:31 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (2.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+Filter chain halted as :validate_sign_up_params rendered or redirected
+Completed 422 Unprocessable Entity in 102ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 10437)
+
+
+Started POST "/auth?e-mail=attila.zsigmon2002@gmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2023-10-12 22:52:19 +0300
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"e-mail"=>"attila.zsigmon2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+[31mUnpermitted parameter: :e-mail. Context: { controller: DeviseTokenAuth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007f2e894235b0>, params: {"e-mail"=>"attila.zsigmon2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"devise_token_auth/registrations", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :e-mail. Context: { controller: DeviseTokenAuth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007f2e894235b0>, params: {"e-mail"=>"attila.zsigmon2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"devise_token_auth/registrations", "action"=>"create"} }[0m
+[31mUnpermitted parameter: :e-mail. Context: { controller: DeviseTokenAuth::RegistrationsController, action: create, request: #<ActionDispatch::Request:0x00007f2e894235b0>, params: {"e-mail"=>"attila.zsigmon2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "controller"=>"devise_token_auth/registrations", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" IS NULL AND "users"."provider" = $1 LIMIT $2[0m  [["provider", "email"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 644ms (Views: 0.5ms | ActiveRecord: 12.7ms | Allocations: 20171)
+
+
+Started POST "/auth?email=attila.zsigmon2002@gmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2023-10-12 22:52:38 +0300
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"attila.zsigmon2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmon2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (2.6ms)[0m  [1m[32mINSERT INTO "users" ("provider", "uid", "encrypted_password", "reset_password_token", "reset_password_sent_at", "allow_password_change", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "name", "nickname", "image", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["provider", "email"], ["uid", "attila.zsigmon2002@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["allow_password_change", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", nil], ["unconfirmed_email", nil], ["name", nil], ["nickname", nil], ["image", nil], ["email", "attila.zsigmon2002@gmail.com"], ["tokens", "[FILTERED]"], ["created_at", "2023-10-12 19:52:39.263981"], ["updated_at", "2023-10-12 19:52:39.263981"]]
+  [1m[36mTRANSACTION (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (3.3ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "[FILTERED]"], ["updated_at", "2023-10-12 19:52:39.444946"], ["id", 1]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 754ms (Views: 1.0ms | ActiveRecord: 17.1ms | Allocations: 9992)
+
+
+Started POST "/auth/sign_in" for 127.0.0.1 at 2023-10-12 22:53:42 +0300
+Processing by DeviseTokenAuth::SessionsController#create as */*
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 442)
+
+
+Started POST "/auth?email=attila.zsigmond2002@gmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2023-10-12 22:54:24 +0300
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"attila.zsigmond2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmond2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mUser Create (3.3ms)[0m  [1m[32mINSERT INTO "users" ("provider", "uid", "encrypted_password", "reset_password_token", "reset_password_sent_at", "allow_password_change", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "name", "nickname", "image", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["provider", "email"], ["uid", "attila.zsigmond2002@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["allow_password_change", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", nil], ["unconfirmed_email", nil], ["name", nil], ["nickname", nil], ["image", nil], ["email", "attila.zsigmond2002@gmail.com"], ["tokens", "[FILTERED]"], ["created_at", "2023-10-12 19:54:24.726866"], ["updated_at", "2023-10-12 19:54:24.726866"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Update (1.1ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "[FILTERED]"], ["updated_at", "2023-10-12 19:54:24.861509"], ["id", 2]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 658ms (Views: 0.5ms | ActiveRecord: 11.0ms | Allocations: 8982)
+
+
+Started POST "/auth?email=attila.zsigmond2002@gmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2023-10-12 22:54:29 +0300
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"attila.zsigmond2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (1.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER($1) AND "users"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmond2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 540ms (Views: 0.6ms | ActiveRecord: 1.8ms | Allocations: 4218)
+
+
+Started POST "/auth/sign_in?email=attila.zsigmond2002@gmail.com&password=[FILTERED]" for 127.0.0.1 at 2023-10-12 22:56:35 +0300
+Processing by DeviseTokenAuth::SessionsController#create as */*
+  Parameters: {"email"=>"attila.zsigmond2002@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 AND "users"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmond2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[37mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Update (1.5ms)[0m  [1m[33mUPDATE "users" SET "tokens" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["tokens", "[FILTERED]"], ["updated_at", "2023-10-12 19:56:36.464223"], ["id", 2]]
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Completed 200 OK in 723ms (Views: 0.7ms | ActiveRecord: 8.8ms | Allocations: 8833)
+
+
+Started GET "/auth/validate_token" for 127.0.0.1 at 2023-10-12 23:00:01 +0300
+Processing by DeviseTokenAuth::TokenValidationsController#validate_token as */*
+Completed 401 Unauthorized in 10ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 396)
+
+
+Started POST "/admin?email=attila.zsigmond2002@gmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2023-10-12 23:02:09 +0300
+Processing by DeviseTokenAuth::RegistrationsController#create as */*
+  Parameters: {"email"=>"attila.zsigmond2002@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdmin Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "admins" WHERE LOWER("admins"."email") = LOWER($1) AND "admins"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmond2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mAdmin Create (1.6ms)[0m  [1m[32mINSERT INTO "admins" ("provider", "uid", "encrypted_password", "reset_password_token", "reset_password_sent_at", "allow_password_change", "remember_created_at", "confirmation_token", "confirmed_at", "confirmation_sent_at", "unconfirmed_email", "name", "nickname", "image", "email", "tokens", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18) RETURNING "id"[0m  [["provider", "email"], ["uid", "attila.zsigmond2002@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["allow_password_change", "[FILTERED]"], ["remember_created_at", nil], ["confirmation_token", "[FILTERED]"], ["confirmed_at", nil], ["confirmation_sent_at", nil], ["unconfirmed_email", nil], ["name", nil], ["nickname", nil], ["image", nil], ["email", "attila.zsigmond2002@gmail.com"], ["tokens", "[FILTERED]"], ["created_at", "2023-10-12 20:02:09.973340"], ["updated_at", "2023-10-12 20:02:09.973340"]]
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdmin Update (1.0ms)[0m  [1m[33mUPDATE "admins" SET "tokens" = $1, "updated_at" = $2 WHERE "admins"."id" = $3[0m  [["tokens", "[FILTERED]"], ["updated_at", "2023-10-12 20:02:10.107559"], ["id", 1]]
+  [1m[36mTRANSACTION (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAdmin Load (0.8ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 800ms (Views: 0.8ms | ActiveRecord: 19.8ms | Allocations: 14646)
+
+
+Started POST "/admin/sign_in?email=attila.zsigmond2002@gmail.com&password=[FILTERED]" for 127.0.0.1 at 2023-10-12 23:02:25 +0300
+Processing by DeviseTokenAuth::SessionsController#create as */*
+  Parameters: {"email"=>"attila.zsigmond2002@gmail.com", "password"=>"[FILTERED]"}
+  [1m[36mAdmin Load (0.7ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."email" = $1 AND "admins"."provider" = $2 LIMIT $3[0m  [["email", "attila.zsigmond2002@gmail.com"], ["provider", "email"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mAdmin Load (0.9ms)[0m  [1m[37mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2 FOR UPDATE[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mAdmin Update (0.7ms)[0m  [1m[33mUPDATE "admins" SET "tokens" = $1, "updated_at" = $2 WHERE "admins"."id" = $3[0m  [["tokens", "[FILTERED]"], ["updated_at", "2023-10-12 20:02:26.314213"], ["id", 1]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mAdmin Load (1.1ms)[0m  [1m[34mSELECT "admins".* FROM "admins" WHERE "admins"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 765ms (Views: 0.4ms | ActiveRecord: 7.7ms | Allocations: 6849)
+
+

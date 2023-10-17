@@ -1,9 +1,13 @@
+<template>
+  <div>
+    <h1> Ez a kezdololdal </h1>
+  </div>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped>
+
+</style>

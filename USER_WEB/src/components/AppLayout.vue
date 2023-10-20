@@ -3,11 +3,17 @@
     <v-app-bar>
       <v-app-bar-nav-icon @click.stop="isNavOpen = !isNavOpen"></v-app-bar-nav-icon>
       <v-app-bar-title>
-        <RouterLink :to="{ name: 'home' }"> Bus4U </RouterLink>
+        <RouterLink :to="{ name: 'home' }">
+          <LogoWide :fill="$vuetify.theme.current.colors.primary" class="logo"/>
+        </RouterLink>
       </v-app-bar-title>
-      <template #append>
+      <template #append v-if="!user.client">
         <v-btn icon="mdi-login" :to="{ name: 'login' }"></v-btn>
         <v-btn icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
+      </template>
+      <template #append v-else>
+        <v-btn icon="mdi-account-circle-outline"></v-btn>
+        <v-btn icon="mdi-logout" @click="user.signOut"></v-btn>
       </template>
     </v-app-bar>
 
@@ -32,12 +38,19 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { userStore } from '@/stores/userStore';
+import LogoWide from './LogoWide.vue';
 
+const user = userStore()
 const isNavOpen = ref(false)
 </script>
 
 <style scoped>
 .content {
   padding: 15px;
+}
+.logo {
+  height: 42px;
+  vertical-align: middle;
 }
 </style>

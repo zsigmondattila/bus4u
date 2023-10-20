@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <v-sheet class="sheet">
-      <div class="logo">
-        <h1> Bus4U </h1>
+      <div class="logo-container">
+        <LogoWide :fill="$vuetify.theme.current.colors.primary" class="logo"/>
       </div>
       <Login v-if="isLogin"/>
       <Register v-else />
@@ -13,6 +13,7 @@
 <script setup>
 import Login from '@/components/Login.vue';
 import Register from '@/components/Register.vue';
+import LogoWide from '../components/LogoWide.vue';
 
 const props = defineProps(['isLogin'])
 </script>
@@ -30,10 +31,13 @@ const props = defineProps(['isLogin'])
   height: fit-content;
   min-width: 100%;
 }
-.logo {
+.logo-container {
   display: flex;
   justify-content: center;
   padding: 25px;
+}
+.logo {
+  width: 300px;
 }
 
 @media screen and (min-width: 640px) {

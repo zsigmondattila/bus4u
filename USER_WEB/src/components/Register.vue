@@ -3,7 +3,6 @@
     <div class="inputs">
       <v-text-field label="First Name" v-model="form.firstname" color="primary" :rules="name"></v-text-field>
       <v-text-field label="Last Name" v-model="form.lastname" color="primary" :rules="name"></v-text-field>
-      <v-text-field label="Username" type="username" v-model="form.username" color="primary" :rules="eightChars"></v-text-field>
       <v-text-field label="Email" type="email" v-model="form.email" color="primary" :rules="email"></v-text-field>
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="eightChars"></v-text-field>
       <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
@@ -15,13 +14,14 @@
 </template>
 
 <script setup>
+import axios from 'axios';
+import router from '@/router';
 import { reactive } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const form = reactive({
   firstname: '',
   lastname: '',
-  username: '',
   email: '',
   password: '',
   password_confirmation: ''
@@ -50,7 +50,13 @@ const confirmation = [
 
 async function onSubmit(event) {
   let response = await event;
-  if(response.valid) console.log(form);
+  if(response.valid) {
+    axios.post('/auth', form).then((rsp) => console.log(rsp.headers)).catch((e) => console.log(e));
+    // axios.post('/auth', form).then((rsp) => {
+    //   user.signIn(rsp.json(), rsp.headers)
+    //   router.replace({ name: 'home'})
+    // }).catch((e) => console.log(e.message));
+  } else console.log('Validation failed');
 }
 </script>
 

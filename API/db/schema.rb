@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_10_12_150243) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "azure"
+  enable_extension "pg_cron"
+  enable_extension "pgaadauth"
   enable_extension "plpgsql"
 
   create_table "admins", force: :cascade do |t|

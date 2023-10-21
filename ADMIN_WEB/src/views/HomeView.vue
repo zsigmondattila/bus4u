@@ -1,9 +1,15 @@
+<template>
+  <AppLayout>
+    <div>
+      <h1> Ez a kezdololdal </h1>
+    </div>
+  </AppLayout>
+</template>
+
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+import AppLayout from '../components/AppLayout.vue';
 </script>
 
-<template>
-  <main>
-    <TheWelcome />
-  </main>
-</template>
+<style scoped>
+
+</style>

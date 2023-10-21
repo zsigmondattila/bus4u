@@ -12,7 +12,9 @@ module API
     config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
-    #
+    config.hosts << "bus4u.fast-table.com"
+    config.hosts << "127.0.0.1"
+    config.hosts << "4.231.249.253"
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

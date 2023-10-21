@@ -29,10 +29,13 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
       # t.datetime :locked_at
 
       ## User Info
-      t.string :name
-      t.string :nickname
-      t.string :image
       t.string :email
+      t.string :firstname
+      t.string :lastname
+      t.string :nickname
+      t.string :role 
+      t.string :phone_number 
+      t.string :address
 
       ## Tokens
       t.json :tokens

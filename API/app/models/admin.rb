@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin < ActiveRecord::Base
+  before_create :generate_uid
+
   extend Devise::Models
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -9,4 +11,11 @@ class Admin < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   belongs_to :company, foreign_key: "company_uid"
+
+  private
+
+  def generate_uid
+    charset = ('0'..'9').to_a + ('A'..'Z').to_a
+    self.admin_uid = "ADM_" + (1..5).map { charset.sample }.join
+  end
 end

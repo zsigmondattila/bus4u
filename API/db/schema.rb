@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_22_155344) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_155344) do
     t.string "role"
     t.string "phone_number"
     t.string "address"
+    t.string "company_uid"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -71,7 +72,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_155344) do
     t.string "email"
     t.string "phone_number"
     t.string "tax_number"
+    t.string "city"
     t.string "office_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_stations", primary_key: "company_station_uid", id: :string, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_155344) do
     t.string "name"
     t.decimal "longitude"
     t.decimal "latitude"
+    t.string "city"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

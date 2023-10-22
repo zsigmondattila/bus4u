@@ -36,6 +36,7 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
       t.string :role 
       t.string :phone_number 
       t.string :address
+      t.string :company_uid
 
       ## Tokens
       t.json :tokens

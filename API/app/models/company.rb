@@ -5,6 +5,8 @@ class Company < ApplicationRecord
     has_many :buses, foreign_key: "company_uid"
     has_many :prices, foreign_key: "company_uid"
     has_many :tickets, foreign_key: "company_uid"
+    has_many :stations_companies
+    has_many :stations, through: :stations_companies
 
     private
 

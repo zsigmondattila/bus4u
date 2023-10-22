@@ -5,6 +5,7 @@ class CreateStations < ActiveRecord::Migration[7.0]
       t.string :name
       t.decimal :longitude
       t.decimal :latitude
+      t.string :city
       t.string :address
 
       t.timestamps

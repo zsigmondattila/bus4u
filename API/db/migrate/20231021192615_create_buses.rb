@@ -1,6 +1,6 @@
 class CreateBuses < ActiveRecord::Migration[7.0]
   def change
-    create_table :buses do |t|
+    create_table :buses, id: false do |t|
       t.string :bus_uid, primary_key: true
       t.string :company_uid
       t.string :string
@@ -14,6 +14,5 @@ class CreateBuses < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_foreign_key :buses, :companies, column: :company_uid
   end
 end

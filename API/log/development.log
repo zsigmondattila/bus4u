@@ -1213,3 +1213,220 @@ Migrating to CreateCompanyStations (20231022191053)
   [1m[36mActiveRecord::InternalMetadata Load (92.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
   [1m[35m (99.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (97.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mStation Load (119.7ms)[0m  [1m[34mSELECT "stations".* FROM "stations"[0m
+  [1m[36mAdmin Load (263.2ms)[0m  [1m[34mSELECT "admins".* FROM "admins"[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (205.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (204.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (117.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCompanyStations (20231022191053)
+  [1m[36mTRANSACTION (100.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (153.3ms)[0m  [1m[35mDROP TABLE "company_stations"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (198.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022191053"]]
+  [1m[36mTRANSACTION (200.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePrices (20231022155344)
+  [1m[36mTRANSACTION (172.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.2ms)[0m  [1m[35mDROP TABLE "prices"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (198.9ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155344"]]
+  [1m[36mTRANSACTION (203.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoughtTickets (20231022155234)
+  [1m[36mTRANSACTION (199.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.7ms)[0m  [1m[35mDROP TABLE "bought_tickets"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (118.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155234"]]
+  [1m[36mTRANSACTION (116.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTickets (20231022155206)
+  [1m[36mTRANSACTION (162.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.7ms)[0m  [1m[35mDROP TABLE "tickets"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155206"]]
+  [1m[36mTRANSACTION (203.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRouteStations (20231022155131)
+  [1m[36mTRANSACTION (197.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.5ms)[0m  [1m[35mDROP TABLE "route_stations"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155131"]]
+  [1m[36mTRANSACTION (201.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20231022155105)
+  [1m[36mTRANSACTION (200.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (203.9ms)[0m  [1m[35mDROP TABLE "routes"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (197.8ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155105"]]
+  [1m[36mTRANSACTION (111.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStations (20231022155044)
+  [1m[36mTRANSACTION (188.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.1ms)[0m  [1m[35mDROP TABLE "stations"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155044"]]
+  [1m[36mTRANSACTION (203.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBuses (20231022155022)
+  [1m[36mTRANSACTION (199.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.1ms)[0m  [1m[35mDROP TABLE "buses"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (199.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155022"]]
+  [1m[36mTRANSACTION (203.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompanies (20231022154945)
+  [1m[36mTRANSACTION (199.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.2ms)[0m  [1m[35mDROP TABLE "companies"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (202.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022154945"]]
+  [1m[36mTRANSACTION (199.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseTokenAuthCreateAdmins (20231012150243)
+  [1m[36mTRANSACTION (199.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (204.2ms)[0m  [1m[35mDROP INDEX  "index_admins_on_confirmation_token"[0m
+  [1m[35m (204.7ms)[0m  [1m[35mDROP INDEX  "index_admins_on_reset_password_token"[0m
+  [1m[35m (204.0ms)[0m  [1m[35mDROP INDEX  "index_admins_on_admin_uid_and_provider"[0m
+  [1m[35m (204.1ms)[0m  [1m[35mDROP INDEX  "index_admins_on_email"[0m
+  [1m[35m (200.8ms)[0m  [1m[35mDROP TABLE "admins"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (200.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231012150243"]]
+  [1m[36mTRANSACTION (203.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseTokenAuthCreateUsers (20231012145933)
+  [1m[36mTRANSACTION (200.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (204.6ms)[0m  [1m[35mDROP INDEX  "index_users_on_confirmation_token"[0m
+  [1m[35m (204.4ms)[0m  [1m[35mDROP INDEX  "index_users_on_reset_password_token"[0m
+  [1m[35m (212.0ms)[0m  [1m[35mDROP INDEX  "index_users_on_user_uid_and_provider"[0m
+  [1m[35m (204.0ms)[0m  [1m[35mDROP INDEX  "index_users_on_email"[0m
+  [1m[35m (202.4ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (201.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231012145933"]]
+  [1m[36mTRANSACTION (202.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (109.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (98.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (205.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (205.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (109.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (22.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
+  [1m[35m (99.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (186.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseTokenAuthCreateUsers (20231012145933)
+  [1m[36mTRANSACTION (196.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (204.2ms)[0m  [1m[35mCREATE TABLE "users" ("provider" character varying DEFAULT 'email' NOT NULL, "user_uid" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "allow_password_change" boolean DEFAULT FALSE, "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "firstname" character varying, "lastname" character varying, "email" character varying, "phone_number" character varying, "language" character varying, "tokens" json, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (203.0ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (200.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_user_uid_and_provider" ON "users" ("user_uid", "provider")[0m
+  [1m[35m (206.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35m (196.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_confirmation_token" ON "users" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (189.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231012145933"]]
+  [1m[36mTRANSACTION (171.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseTokenAuthCreateAdmins (20231012150243)
+  [1m[36mTRANSACTION (199.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (206.5ms)[0m  [1m[35mCREATE TABLE "admins" ("provider" character varying DEFAULT 'email' NOT NULL, "admin_uid" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp(6), "allow_password_change" boolean DEFAULT FALSE, "remember_created_at" timestamp(6), "confirmation_token" character varying, "confirmed_at" timestamp(6), "confirmation_sent_at" timestamp(6), "unconfirmed_email" character varying, "email" character varying, "firstname" character varying, "lastname" character varying, "nickname" character varying, "role" character varying, "phone_number" character varying, "address" character varying, "company_uid" character varying, "tokens" json, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (202.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email")[0m
+  [1m[35m (200.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_admin_uid_and_provider" ON "admins" ("admin_uid", "provider")[0m
+  [1m[35m (203.6ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_reset_password_token" ON "admins" ("reset_password_token")[0m
+  [1m[35m (200.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_confirmation_token" ON "admins" ("confirmation_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (200.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231012150243"]]
+  [1m[36mTRANSACTION (202.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompanies (20231022154945)
+  [1m[36mTRANSACTION (198.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.1ms)[0m  [1m[35mCREATE TABLE "companies" ("company_uid" character varying NOT NULL PRIMARY KEY, "name" character varying, "email" character varying, "phone_number" character varying, "tax_number" character varying, "city" character varying, "office_address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022154945"]]
+  [1m[36mTRANSACTION (203.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBuses (20231022155022)
+  [1m[36mTRANSACTION (104.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (296.3ms)[0m  [1m[35mCREATE TABLE "buses" ("bus_uid" character varying NOT NULL PRIMARY KEY, "company_uid" character varying, "string" character varying, "license_plate" character varying, "brand" character varying, "manufacturing_year" integer, "capacity" integer, "road_tax" timestamp(6), "insurance" timestamp(6), "technical_exam" timestamp(6), "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (199.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155022"]]
+  [1m[36mTRANSACTION (200.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateStations (20231022155044)
+  [1m[36mTRANSACTION (128.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (138.2ms)[0m  [1m[35mCREATE TABLE "stations" ("station_uid" character varying NOT NULL PRIMARY KEY, "name" character varying, "longitude" decimal, "latitude" decimal, "city" character varying, "address" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (233.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155044"]]
+  [1m[36mTRANSACTION (201.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20231022155105)
+  [1m[36mTRANSACTION (199.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (199.7ms)[0m  [1m[35mCREATE TABLE "routes" ("route_uid" character varying, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155105"]]
+  [1m[36mTRANSACTION (200.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRouteStations (20231022155131)
+  [1m[36mTRANSACTION (198.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (200.5ms)[0m  [1m[35mCREATE TABLE "route_stations" ("route_station_uid" character varying NOT NULL PRIMARY KEY, "station_uid" character varying, "route_uid" character varying, "departure_time" timestamp(6), "sequence" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (202.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155131"]]
+  [1m[36mTRANSACTION (198.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTickets (20231022155206)
+  [1m[36mTRANSACTION (201.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (131.8ms)[0m  [1m[35mCREATE TABLE "tickets" ("ticket_uid" character varying NOT NULL PRIMARY KEY, "company_uid" character varying, "type" character varying, "price_uid" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (167.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155206"]]
+  [1m[36mTRANSACTION (203.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoughtTickets (20231022155234)
+  [1m[36mTRANSACTION (196.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (200.9ms)[0m  [1m[35mCREATE TABLE "bought_tickets" ("bought_ticket_uid" character varying NOT NULL PRIMARY KEY, "ticket_uid" character varying, "user_uid" character varying, "date_of_purchase" timestamp(6), "expiration_date" timestamp(6), "is_vaild" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (203.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155234"]]
+  [1m[36mTRANSACTION (186.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePrices (20231022155344)
+  [1m[36mTRANSACTION (211.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.2ms)[0m  [1m[35mCREATE TABLE "prices" ("price_uid" character varying NOT NULL PRIMARY KEY, "company_uid" character varying, "route_uid" character varying, "from_station_uid" character varying, "to_station_uid" character varying, "ticket_price" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (200.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155344"]]
+  [1m[36mTRANSACTION (202.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompanyStations (20231022191053)
+  [1m[36mTRANSACTION (164.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (232.5ms)[0m  [1m[35mCREATE TABLE "company_stations" ("company_station_uid" character varying NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022191053"]]
+  [1m[36mTRANSACTION (202.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (210.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (103.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (108.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (200.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (200.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (99.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (204.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (104.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCompanyStations (20231022191053)
+  [1m[36mTRANSACTION (96.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (89.9ms)[0m  [1m[35mDROP TABLE "company_stations"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (187.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022191053"]]
+  [1m[36mTRANSACTION (96.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePrices (20231022155344)
+  [1m[36mTRANSACTION (95.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (90.9ms)[0m  [1m[35mDROP TABLE "prices"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (188.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155344"]]
+  [1m[36mTRANSACTION (97.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoughtTickets (20231022155234)
+  [1m[36mTRANSACTION (90.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (105.6ms)[0m  [1m[35mDROP TABLE "bought_tickets"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (203.0ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155234"]]
+  [1m[36mTRANSACTION (205.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTickets (20231022155206)
+  [1m[36mTRANSACTION (99.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (91.3ms)[0m  [1m[35mDROP TABLE "tickets"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (203.9ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155206"]]
+  [1m[36mTRANSACTION (202.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRouteStations (20231022155131)
+  [1m[36mTRANSACTION (97.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (88.4ms)[0m  [1m[35mDROP TABLE "route_stations"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (212.5ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155131"]]
+  [1m[36mTRANSACTION (201.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRoutes (20231022155105)
+  [1m[36mTRANSACTION (95.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (106.4ms)[0m  [1m[35mDROP TABLE "routes"[0m
+  [1m[36mActiveRecord::SchemaMigration Delete All (195.1ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20231022155105"]]
+  [1m[36mTRANSACTION (101.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (107.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (96.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (202.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateRoutes (20231022155105)
+  [1m[36mTRANSACTION (103.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (191.4ms)[0m  [1m[35mCREATE TABLE "routes" ("route_uid" character varying, "name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (189.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155105"]]
+  [1m[36mTRANSACTION (200.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRouteStations (20231022155131)
+  [1m[36mTRANSACTION (200.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.7ms)[0m  [1m[35mCREATE TABLE "route_stations" ("route_station_uid" character varying NOT NULL PRIMARY KEY, "station_uid" character varying, "route_uid" character varying, "departure_time" timestamp(6), "sequence" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155131"]]
+  [1m[36mTRANSACTION (173.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTickets (20231022155206)
+  [1m[36mTRANSACTION (200.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.6ms)[0m  [1m[35mCREATE TABLE "tickets" ("ticket_uid" character varying NOT NULL PRIMARY KEY, "company_uid" character varying, "type" character varying, "price_uid" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (199.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155206"]]
+  [1m[36mTRANSACTION (204.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateBoughtTickets (20231022155234)
+  [1m[36mTRANSACTION (198.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (201.6ms)[0m  [1m[35mCREATE TABLE "bought_tickets" ("bought_ticket_uid" character varying NOT NULL PRIMARY KEY, "ticket_uid" character varying, "user_uid" character varying, "date_of_purchase" timestamp(6), "expiration_date" timestamp(6), "is_vaild" boolean, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (201.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155234"]]
+  [1m[36mTRANSACTION (201.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePrices (20231022155344)
+  [1m[36mTRANSACTION (200.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.0ms)[0m  [1m[35mCREATE TABLE "prices" ("price_uid" character varying NOT NULL PRIMARY KEY, "route_uid" character varying, "from_station_uid" character varying, "to_station_uid" character varying, "ticket_price" decimal, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (200.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022155344"]]
+  [1m[36mTRANSACTION (201.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCompanyStations (20231022191053)
+  [1m[36mTRANSACTION (198.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (202.7ms)[0m  [1m[35mCREATE TABLE "company_stations" ("company_station_uid" character varying NOT NULL PRIMARY KEY, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (200.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20231022191053"]]
+  [1m[36mTRANSACTION (201.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (112.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (106.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(328290156475937670)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m

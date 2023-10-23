@@ -2,7 +2,9 @@ class Route < ApplicationRecord
     before_create :generate_uid
     
     has_many :route_stations, foreign_key: "route_uid"
+    has_many :stations, through: :route_stations
     has_many :prices, foreign_key: "route_uid"
+    belongs_to :city, foreign_key: "city_uid"
 
     private
 

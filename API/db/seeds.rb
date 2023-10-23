@@ -98,12 +98,12 @@ Station.create(name: "Gyergyó Maros hotel", latitude: 46.7209535, longitude: 25
 Route.create(name: "Szászfalu-Gyergyó");
 
 route = Route.find_by(name: "Szászfalu-Gyergyó");
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 1)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:05"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 2)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:12"), station: Station.find_by(name: "Alfalu központ"), sequence: 3)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 1)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:05"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 2)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:12"), station: Station.find_by(name: "Alfalu központ"), sequence: 3)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
 
 #CREATING TICKETS
 

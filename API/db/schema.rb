@@ -67,8 +67,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "cities", force: :cascade do |t|
-    t.string "city_uid"
+  create_table "cities", primary_key: "city_uid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
     t.datetime "created_at", null: false
@@ -112,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
 
   create_table "routes", primary_key: "route_uid", id: :string, force: :cascade do |t|
     t.string "name"
+    t.string "city_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -53,41 +53,46 @@ Admin.create(company_uid: vandor.company_uid, email: "ninjanarch@yahoo.com", fir
 Admin.create(company_uid: vandor.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
 Admin.create(company_uid: balint.company_uid, email: "office@balinttrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "hompoth.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "csatabela@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "magdi92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "orsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "ninjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: balint.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "hompoth.krisztiian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "csatabellla@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "magdi982@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "o1rsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "ninbjjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: balint.company_uid, email: "karolyka_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
 Admin.create(company_uid: panorama.company_uid, email: "office@panoramatrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "hompoth.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "csatabela@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "magdi92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "orsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "ninjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: panorama.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "hompothh.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "csatabelus@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "magdika92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "orsosspista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "ninjanarch11@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: panorama.company_uid, email: "karoly@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
 Admin.create(company_uid: transloc.company_uid, email: "office@transloctrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "hompoth.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "csatabela@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "magdi92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "orsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "ninjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: transloc.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "hompoth.krisztian2@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "csatabela2@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "magdi922@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "orsospista112@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "ninjanarc2h@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: transloc.company_uid, email: "2@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
 #CREATING USERS
 User.create(email: "attila.zsigmond2002@gmail.com", firstname: "Attila", lastname: "Zsigmond", provider: "email", phone_number:"0752358475", language: "hu")
 User.create(email: "portik.szabolcs@gmail.com", firstname: "Szabolcs", lastname: "Portik", provider: "email", phone_number:"0732766587", language: "hu")
 User.create(email: "bodobalint01@gmail.com", firstname: "Bálint", lastname: "Bodó", provider: "email", phone_number:"0752358475", language: "hu")
 
+#CREATING CITIES
+ciumani = City.create(name: "Ciumani", zip_code: "537050");
+joseni = City.create(name: "Joseni", zip_code: "537050");
+gheorgheni = City.create(name: "Gheorgheni", zip_code: "537050");
+
 #CREATING STATIONS
-Station.create(name: "Csomafalva központ", latitude: 46.6791797, longitude: 25.515264, city: "Ciumani", address: "Str. Principala nr. 89")
-Station.create(name: "Csomafalva szászfalu", latitude: 46.6729104, longitude: 25.4547497, city: "Ciumani", address: "Str. Tötés nr. 18")
-Station.create(name: "Alfalu központ", latitude: 6.7002046, longitude: 25.493437, city: "Joseni", address: "Str. Ciumani nr. 88")
-Station.create(name: "Alfalu lengyár", latitude: 46.70528, longitude: 25.5151177, city: "Joseni", address: "Str. Gheorgheni nr. 3")
-Station.create(name: "Gyergyó állomás", latitude: 46.7164726, longitude: 25.5679183, city: "Gheorgheni", address: "Str. Garii nr. 16")
-Station.create(name: "Gyergyó Maros hotel", latitude: 46.7209535, longitude: 25.5823401, city: "Gheorgheni", address: "Bul. Fratiei nr. 65")
+Station.create(name: "Csomafalva központ", latitude: 46.6791797, longitude: 25.515264, city: ciumani, address: "Str. Principala nr. 89")
+Station.create(name: "Csomafalva szászfalu", latitude: 46.6729104, longitude: 25.4547497, city: ciumani, address: "Str. Tötés nr. 18")
+Station.create(name: "Alfalu központ", latitude: 6.7002046, longitude: 25.493437, city: joseni, address: "Str. Ciumani nr. 88")
+Station.create(name: "Alfalu lengyár", latitude: 46.70528, longitude: 25.5151177, city: joseni, address: "Str. Gheorgheni nr. 3")
+Station.create(name: "Gyergyó állomás", latitude: 46.7164726, longitude: 25.5679183, city: gheorgheni, address: "Str. Garii nr. 16")
+Station.create(name: "Gyergyó Maros hotel", latitude: 46.7209535, longitude: 25.5823401, city: gheorgheni, address: "Bul. Fratiei nr. 65")
 
 #CREATE A ROUTE
 Route.create(name: "Szászfalu-Gyergyó");
@@ -95,7 +100,7 @@ Route.create(name: "Szászfalu-Gyergyó");
 route = Route.find_by(name: "Szászfalu-Gyergyó");
 RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 1)
 RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:05"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 2)
-RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:12"), station: Station.findby(name: "Alfalu központ"), sequence: 3)
+RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:12"), station: Station.find_by(name: "Alfalu központ"), sequence: 3)
 RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
 RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
 RouteStation.create(route: route, company_uid: vandor, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)

@@ -5,6 +5,7 @@ class Station < ApplicationRecord
     has_many :routes, through: :route_stations
     has_many :stations_companies
     has_many :companies, through: :stations_companies
+    belongs_to :city, foreign_key: "city_uid"
 
     private
 

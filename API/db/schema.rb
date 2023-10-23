@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "city_uid"
+    t.string "name"
+    t.string "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", primary_key: "company_uid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -94,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
 
   create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
     t.string "station_uid"
+    t.string "company_uid"
     t.string "route_uid"
     t.datetime "departure_time"
     t.integer "sequence"
@@ -101,8 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "routes", id: false, force: :cascade do |t|
-    t.string "route_uid"
+  create_table "routes", primary_key: "route_uid", id: :string, force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,7 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_22_191053) do
     t.string "name"
     t.decimal "longitude"
     t.decimal "latitude"
-    t.string "city"
+    t.string "city_uid"
     t.string "address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

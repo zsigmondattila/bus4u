@@ -104,6 +104,11 @@ RouteStation.create(route: route, company: vandor, departure_time: Time.parse("0
 RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
 RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
 RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:34"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 7)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:42"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 8)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:50"), station: Station.find_by(name: "Alfalu központ"), sequence: 9)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("06:57"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 10)
+RouteStation.create(route: route, company: vandor, departure_time: Time.parse("07:03"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 11)
 
 #CREATING TICKETS
 

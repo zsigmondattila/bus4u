@@ -4923,3 +4923,183 @@ Processing by V1::ApplicationController#get_routes_by_city_and_station as */*
 Completed 200 OK in 432ms (Views: 5.1ms | ActiveRecord: 327.7ms | Allocations: 2477)
 
 
+Started GET "/v1/get_cities" for 127.0.0.1 at 2023-10-23 21:16:08 +0300
+Processing by V1::ApplicationController#get_cities as */*
+  [1m[36mCity Load (113.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/controllers/v1/application_controller.rb:5:in `get_cities'
+Completed 200 OK in 576ms (Views: 110.5ms | ActiveRecord: 459.3ms | Allocations: 4337)
+
+
+Started GET "/v1/get_routes_by_city_and_station?city=Ciumani&station=Csomafalva%20k%C3%B6zpont" for 127.0.0.1 at 2023-10-23 21:16:23 +0300
+Processing by V1::ApplicationController#get_routes_by_city_and_station as */*
+  Parameters: {"city"=>"Ciumani", "station"=>"Csomafalva központ"}
+  [1m[36mCity Load (114.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Ciumani"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:19:in `get_routes_by_city_and_station'
+  [1m[36mStation Load (123.4ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva központ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:20:in `get_routes_by_city_and_station'
+  [1m[35mSQL (124.3ms)[0m  [1m[34mSELECT "routes"."route_uid" AS t0_r0, "routes"."name" AS t0_r1, "routes"."city_uid" AS t0_r2, "routes"."created_at" AS t0_r3, "routes"."updated_at" AS t0_r4, "stations"."station_uid" AS t1_r0, "stations"."name" AS t1_r1, "stations"."longitude" AS t1_r2, "stations"."latitude" AS t1_r3, "stations"."city_uid" AS t1_r4, "stations"."address" AS t1_r5, "stations"."created_at" AS t1_r6, "stations"."updated_at" AS t1_r7 FROM "routes" LEFT OUTER JOIN "route_stations" ON "route_stations"."route_uid" = "routes"."route_uid" LEFT OUTER JOIN "stations" ON "stations"."station_uid" = "route_stations"."station_uid" WHERE "routes"."city_uid" = $1 AND "stations"."station_uid" = $2[0m  [["city_uid", "CTY_THCDG"], ["station_uid", "STT_TMSWQ"]]
+  ↳ app/controllers/v1/application_controller.rb:24:in `get_routes_by_city_and_station'
+Completed 200 OK in 986ms (Views: 8.9ms | ActiveRecord: 825.2ms | Allocations: 12919)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route" for 127.0.0.1 at 2023-10-24 16:45:10 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (114.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  [1m[36mRouteStation Exists? (115.2ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" IS NULL AND "route_stations"."station_uid" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:34:in `get_departure_times_for_station_in_route'
+Completed 404 Not Found in 649ms (Views: 1.0ms | ActiveRecord: 589.3ms | Allocations: 10667)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route" for 127.0.0.1 at 2023-10-24 16:48:53 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>nil}
+  [1m[36mRoute Load (121.0ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (118.3ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+Completed 404 Not Found in 1014ms (Views: 4.8ms | ActiveRecord: 619.4ms | Allocations: 7192)
+
+
+  [1m[36mRoute Load (115.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes"[0m
+  [1m[36mStation Load (141.1ms)[0m  [1m[34mSELECT "stations".* FROM "stations"[0m
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Gyergy%C3%B3%20Maros%20hotel" for 127.0.0.1 at 2023-10-24 16:49:44 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Gyergyó Maros hotel"}
+  [1m[36mRoute Load (117.7ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (118.9ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó Maros hotel"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (132.7ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (126.2ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 1573ms (Views: 0.5ms | ActiveRecord: 987.1ms | Allocations: 12791)
+
+
+Started GET "/v1/get_cities" for 127.0.0.1 at 2023-10-24 16:50:32 +0300
+Processing by V1::ApplicationController#get_cities as */*
+  [1m[36mCity Load (136.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/controllers/v1/application_controller.rb:6:in `get_cities'
+Completed 200 OK in 646ms (Views: 139.5ms | ActiveRecord: 502.4ms | Allocations: 5306)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Gyergy%C3%B3%20Maros%20hotel" for 127.0.0.1 at 2023-10-24 16:51:57 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Gyergyó Maros hotel"}
+  [1m[36mRoute Load (116.5ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (140.6ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó Maros hotel"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (318.7ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (107.8ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 1632ms (Views: 0.3ms | ActiveRecord: 1454.5ms | Allocations: 13191)
+
+
+  [1m[36mRouteStation Load (148.9ms)[0m  [1m[34mSELECT "route_stations".* FROM "route_stations"[0m
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Gyergy%C3%B3%20Maros%20hotel" for 127.0.0.1 at 2023-10-24 16:53:15 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Gyergyó Maros hotel"}
+  [1m[36mRoute Load (142.1ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (117.9ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó Maros hotel"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (117.0ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (139.7ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_GJWT0"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 1481ms (Views: 0.6ms | ActiveRecord: 1303.7ms | Allocations: 13099)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Gyergy%C3%B3%20Maros%20hote" for 127.0.0.1 at 2023-10-24 16:53:59 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Gyergyó Maros hote"}
+  [1m[36mRoute Load (126.8ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (121.9ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó Maros hote"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+Completed 404 Not Found in 380ms (Views: 0.3ms | ActiveRecord: 248.7ms | Allocations: 1108)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Csomafalva%20k%C3%B6zpont" for 127.0.0.1 at 2023-10-24 16:54:12 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Csomafalva központ"}
+  [1m[36mRoute Load (120.3ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (114.5ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva központ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (126.6ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (115.3ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 613ms (Views: 0.2ms | ActiveRecord: 476.7ms | Allocations: 2131)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Csomafalva%20k%C3%B6zpont" for 127.0.0.1 at 2023-10-24 16:55:57 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (126.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Csomafalva központ"}
+  [1m[36mRoute Load (114.8ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (123.8ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva központ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (119.7ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (117.9ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 1808ms (Views: 0.7ms | ActiveRecord: 1373.9ms | Allocations: 20472)
+
+
+  [1m[36mActiveRecord::SchemaMigration Pluck (115.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mCompany Load (97.6ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."name" = $1 LIMIT $2[0m  [["name", "VANDOR TRANS TOURS SRL"], ["LIMIT", 1]]
+  [1m[36mRoute Load (104.1ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  [1m[36mStation Load (111.2ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó állomás"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (93.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRouteStation Create (106.4ms)[0m  [1m[32mINSERT INTO "route_stations" ("route_station_uid", "station_uid", "company_uid", "route_uid", "departure_time", "sequence", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "route_station_uid"[0m  [["route_station_uid", "RST_7DTA4"], ["station_uid", "STT_VR2HP"], ["company_uid", "CPY_GCGOA"], ["route_uid", "ROU_V0X2Z"], ["departure_time", "2023-10-24 03:34:00"], ["sequence", 7], ["created_at", "2023-10-24 13:59:05.399202"], ["updated_at", "2023-10-24 13:59:05.399202"]]
+  [1m[36mTRANSACTION (111.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStation Load (106.3ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Alfalu lengyár"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (104.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRouteStation Create (103.9ms)[0m  [1m[32mINSERT INTO "route_stations" ("route_station_uid", "station_uid", "company_uid", "route_uid", "departure_time", "sequence", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "route_station_uid"[0m  [["route_station_uid", "RST_4XK65"], ["station_uid", "STT_HMGXD"], ["company_uid", "CPY_GCGOA"], ["route_uid", "ROU_V0X2Z"], ["departure_time", "2023-10-24 03:42:00"], ["sequence", 8], ["created_at", "2023-10-24 13:59:05.838144"], ["updated_at", "2023-10-24 13:59:05.838144"]]
+  [1m[36mTRANSACTION (92.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStation Load (103.8ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Alfalu központ"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (93.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRouteStation Create (112.8ms)[0m  [1m[32mINSERT INTO "route_stations" ("route_station_uid", "station_uid", "company_uid", "route_uid", "departure_time", "sequence", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "route_station_uid"[0m  [["route_station_uid", "RST_KR5HA"], ["station_uid", "STT_5YUU8"], ["company_uid", "CPY_GCGOA"], ["route_uid", "ROU_V0X2Z"], ["departure_time", "2023-10-24 03:50:00"], ["sequence", 9], ["created_at", "2023-10-24 13:59:06.257162"], ["updated_at", "2023-10-24 13:59:06.257162"]]
+  [1m[36mTRANSACTION (111.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStation Load (115.5ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva szászfalu"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (106.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRouteStation Create (101.0ms)[0m  [1m[32mINSERT INTO "route_stations" ("route_station_uid", "station_uid", "company_uid", "route_uid", "departure_time", "sequence", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "route_station_uid"[0m  [["route_station_uid", "RST_QE78R"], ["station_uid", "STT_KY4I2"], ["company_uid", "CPY_GCGOA"], ["route_uid", "ROU_V0X2Z"], ["departure_time", "2023-10-24 03:57:00"], ["sequence", 10], ["created_at", "2023-10-24 13:59:06.710077"], ["updated_at", "2023-10-24 13:59:06.710077"]]
+  [1m[36mTRANSACTION (101.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mStation Load (110.2ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva központ"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (95.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mRouteStation Create (106.8ms)[0m  [1m[32mINSERT INTO "route_stations" ("route_station_uid", "station_uid", "company_uid", "route_uid", "departure_time", "sequence", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "route_station_uid"[0m  [["route_station_uid", "RST_JT71T"], ["station_uid", "STT_TMSWQ"], ["company_uid", "CPY_GCGOA"], ["route_uid", "ROU_V0X2Z"], ["departure_time", "2023-10-24 04:03:00"], ["sequence", 11], ["created_at", "2023-10-24 13:59:07.146178"], ["updated_at", "2023-10-24 13:59:07.146178"]]
+  [1m[36mTRANSACTION (102.8ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Csomafalva%20k%C3%B6zpont" for 127.0.0.1 at 2023-10-24 17:00:11 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (108.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Csomafalva központ"}
+  [1m[36mRoute Load (134.0ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (107.6ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Csomafalva központ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (154.6ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (101.8ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_TMSWQ"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 1821ms (Views: 0.3ms | ActiveRecord: 1384.1ms | Allocations: 20496)
+
+
+Started GET "/v1/get_departure_times_for_station_in_route?route=Sz%C3%A1szfalu-Gyergy%C3%B3&station=Gyergy%C3%B3%20%C3%A1llom%C3%A1s" for 127.0.0.1 at 2023-10-24 17:00:55 +0300
+Processing by V1::ApplicationController#get_departure_times_for_station_in_route as */*
+  Parameters: {"route"=>"Szászfalu-Gyergyó", "station"=>"Gyergyó állomás"}
+  [1m[36mRoute Load (119.7ms)[0m  [1m[34mSELECT "routes".* FROM "routes" WHERE "routes"."name" = $1 LIMIT $2[0m  [["name", "Szászfalu-Gyergyó"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:32:in `get_departure_times_for_station_in_route'
+  [1m[36mStation Load (114.8ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."name" = $1 LIMIT $2[0m  [["name", "Gyergyó állomás"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:33:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Exists? (108.9ms)[0m  [1m[34mSELECT 1 AS one FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2 LIMIT $3[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_VR2HP"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:38:in `get_departure_times_for_station_in_route'
+  [1m[36mRouteStation Pluck (103.6ms)[0m  [1m[34mSELECT "route_stations"."departure_time" FROM "route_stations" WHERE "route_stations"."route_uid" = $1 AND "route_stations"."station_uid" = $2[0m  [["route_uid", "ROU_V0X2Z"], ["station_uid", "STT_VR2HP"]]
+  ↳ app/controllers/v1/application_controller.rb:39:in `get_departure_times_for_station_in_route'
+Completed 200 OK in 572ms (Views: 0.5ms | ActiveRecord: 447.1ms | Allocations: 2217)
+
+

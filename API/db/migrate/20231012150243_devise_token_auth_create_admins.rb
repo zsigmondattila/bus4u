@@ -32,7 +32,6 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :firstname
       t.string :lastname
-      t.string :nickname
       t.string :role 
       t.string :phone_number 
       t.string :address

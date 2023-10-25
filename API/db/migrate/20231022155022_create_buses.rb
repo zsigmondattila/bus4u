@@ -3,7 +3,6 @@ class CreateBuses < ActiveRecord::Migration[7.0]
     create_table :buses, id: false do |t|
       t.string :bus_uid, primary_key: true
       t.string :company_uid
-      t.string :string
       t.string :license_plate
       t.string :brand
       t.integer :manufacturing_year

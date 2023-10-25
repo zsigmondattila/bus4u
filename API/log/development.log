@@ -5103,3 +5103,273 @@ Processing by V1::ApplicationController#get_departure_times_for_station_in_route
 Completed 200 OK in 572ms (Views: 0.5ms | ActiveRecord: 447.1ms | Allocations: 2217)
 
 
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:24:41 +0300
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:25:35 +0300
+Started GET "/v1/get_stations_by_city?name=Ciumani" for 127.0.0.1 at 2023-10-25 08:26:51 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (203.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::ApplicationController#get_stations_by_city as */*
+  Parameters: {"name"=>"Ciumani"}
+  [1m[36mCity Load (99.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Ciumani"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/application_controller.rb:10:in `get_stations_by_city'
+  [1m[36mStation Load (92.1ms)[0m  [1m[34mSELECT "stations".* FROM "stations" WHERE "stations"."city_uid" = $1[0m  [["city_uid", "CTY_THCDG"]]
+  ↳ app/controllers/v1/application_controller.rb:13:in `get_stations_by_city'
+Completed 200 OK in 1602ms (Views: 149.3ms | ActiveRecord: 1189.4ms | Allocations: 18520)
+
+
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:27:19 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/v1/admin/teszt"):
+  
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:27:41 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/v1/admin/teszt"):
+  
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:30:02 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (201.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant V1::Admin
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:30:36 +0300
+  
+ActionController::RoutingError (uninitialized constant V1::Admin
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:33:19 +0300
+  
+ActionController::RoutingError (uninitialized constant V1::Admin
+
+      Object.const_get(camel_cased_word)
+            ^^^^^^^^^^
+
+            raise MissingController.new(error.message, error.name)
+            ^^^^^):
+  
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:33:49 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (201.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::Admin::AdminController#teszt as */*
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.0ms | Allocations: 4755)
+
+
+  
+NoMethodError (undefined method `json' for #<V1::Admin::AdminController:0x0000000000b068>
+Did you mean?  JSON):
+  
+app/controllers/v1/admin/admin_controller.rb:4:in `teszt'
+Started GET "/v1/admin/teszt" for 127.0.0.1 at 2023-10-25 08:34:15 +0300
+Processing by V1::Admin::AdminController#teszt as */*
+Completed 200 OK in 3ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 315)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:01:24 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (109.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::Admin::AdminController#create_station as */*
+  [1m[36mCity Load (114.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 200 OK in 1059ms (Views: 0.2ms | ActiveRecord: 805.9ms | Allocations: 15032)
+
+
+  [1m[36mStation Load (204.8ms)[0m  [1m[34mSELECT "stations".* FROM "stations"[0m
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:02:41 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  [1m[36mCity Load (107.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 200 OK in 3286ms (Views: 4.5ms | ActiveRecord: 1985.7ms | Allocations: 7873)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:04:47 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (204.5ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 200 OK in 1181ms (Views: 0.3ms | ActiveRecord: 865.9ms | Allocations: 7886)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:05:08 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (201.9ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 500 Internal Server Error in 1016ms (ActiveRecord: 898.2ms | Allocations: 7709)
+
+
+  
+ArgumentError (Unrecognized status code :error):
+  
+app/controllers/v1/admin/admin_controller.rb:14:in `create_station'
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:05:25 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (102.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 500 Internal Server Error in 646ms (ActiveRecord: 529.3ms | Allocations: 7784)
+
+
+  
+ArgumentError (Unrecognized status code :unprosessable_entity):
+  
+app/controllers/v1/admin/admin_controller.rb:14:in `create_station'
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:05:33 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (312.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 422 Unprocessable Entity in 1007ms (Views: 0.2ms | ActiveRecord: 887.2ms | Allocations: 7651)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:06:43 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (194.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 422 Unprocessable Entity in 819ms (Views: 0.4ms | ActiveRecord: 682.4ms | Allocations: 7653)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:07:18 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (216.1ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 422 Unprocessable Entity in 1292ms (Views: 0.2ms | ActiveRecord: 1014.3ms | Allocations: 7707)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:07:33 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (99.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 422 Unprocessable Entity in 770ms (Views: 0.3ms | ActiveRecord: 623.0ms | Allocations: 7793)
+
+
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:08:05 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (114.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 500 Internal Server Error in 969ms (ActiveRecord: 683.2ms | Allocations: 8849)
+
+
+  
+NoMethodError (undefined method `any' for #<ActiveModel::Errors [#<ActiveModel::Error attribute=city, type=blank, options={:message=>:required}>]>
+
+        puts "El van baszva hogy #{station.errors.any}"
+                                                 ^^^^
+Did you mean?  any?):
+  
+app/controllers/v1/admin/admin_controller.rb:11:in `create_station'
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:08:14 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Gyergyócsomafalva", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (98.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Gyergyócsomafalva"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+Completed 422 Unprocessable Entity in 628ms (Views: 0.3ms | ActiveRecord: 509.6ms | Allocations: 7913)
+
+
+  [1m[36mCity Load (161.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+Started POST "/v1/admin/create_station" for 127.0.0.1 at 2023-10-25 19:09:08 +0300
+Processing by V1::Admin::AdminController#create_station as */*
+  Parameters: {"name"=>"Csomafalvi lilabót", "latitude"=>"11", "longitude"=>"12", "city"=>"Ciumani", "address"=>"Str. principala nr. 88"}
+  [1m[36mCity Load (98.8ms)[0m  [1m[34mSELECT "cities".* FROM "cities" WHERE "cities"."name" = $1 LIMIT $2[0m  [["name", "Ciumani"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_station'
+  [1m[36mTRANSACTION (108.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:10:in `create_station'
+  [1m[36mStation Create (313.4ms)[0m  [1m[32mINSERT INTO "stations" ("station_uid", "name", "longitude", "latitude", "city_uid", "address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "station_uid"[0m  [["station_uid", "STT_0SGM2"], ["name", "Csomafalvi lilabót"], ["longitude", "12.0"], ["latitude", "11.0"], ["city_uid", "CTY_THCDG"], ["address", "Str. principala nr. 88"], ["created_at", "2023-10-25 16:09:09.061838"], ["updated_at", "2023-10-25 16:09:09.061838"]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:10:in `create_station'
+  [1m[36mTRANSACTION (135.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:10:in `create_station'
+Completed 200 OK in 891ms (Views: 0.2ms | ActiveRecord: 765.9ms | Allocations: 5424)
+
+
+  [1m[36mStation Load (205.6ms)[0m  [1m[34mSELECT "stations".* FROM "stations" ORDER BY "stations"."station_uid" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mStation Load (204.8ms)[0m  [1m[34mSELECT "stations".* FROM "stations"[0m
+  [1m[36mStation Load (149.2ms)[0m  [1m[34mSELECT "stations".* FROM "stations" ORDER BY "stations"."station_uid" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/v1/admin/create_bus" for 127.0.0.1 at 2023-10-25 19:20:56 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (105.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/v1/admin/create_bus"):
+  
+Started POST "/v1/admin/create_bus" for 127.0.0.1 at 2023-10-25 19:21:24 +0300
+Processing by V1::Admin::AdminController#create_bus as */*
+  Parameters: {"company_uid"=>"", "license_plate"=>"HR21ZSA", "brand"=>"Mercedes Sprinter", "manufacturing_year"=>"2017", "capacity"=>"28", "road_tax"=>"", "insurance"=>"", "technical_exam"=>""}
+  [1m[36mCompany Load (92.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."company_uid" = $1 LIMIT $2[0m  [["company_uid", ""], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:5:in `create_bus'
+Completed 422 Unprocessable Entity in 865ms (Views: 0.4ms | ActiveRecord: 642.5ms | Allocations: 12382)
+
+
+  [1m[36mCompany Load (121.1ms)[0m  [1m[34mSELECT "companies".* FROM "companies" ORDER BY "companies"."company_uid" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/v1/admin/create_bus" for 127.0.0.1 at 2023-10-25 19:22:32 +0300
+Processing by V1::Admin::AdminController#create_bus as */*
+  Parameters: {"company_uid"=>"CPY_GCGOA", "license_plate"=>"HR21ZSA", "brand"=>"Mercedes Sprinter", "manufacturing_year"=>"2017", "capacity"=>"28", "road_tax"=>"", "insurance"=>"", "technical_exam"=>""}
+  [1m[36mCompany Load (103.0ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."company_uid" = $1 LIMIT $2[0m  [["company_uid", "CPY_GCGOA"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:5:in `create_bus'
+  [1m[36mTRANSACTION (99.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+  [1m[36mBus Create (99.2ms)[0m  [1m[32mINSERT INTO "buses" ("bus_uid", "company_uid", "string", "license_plate", "brand", "manufacturing_year", "capacity", "road_tax", "insurance", "technical_exam", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "bus_uid"[0m  [["bus_uid", "BUS_MW1YJ"], ["company_uid", "CPY_GCGOA"], ["string", nil], ["license_plate", "HR21ZSA"], ["brand", "Mercedes Sprinter"], ["manufacturing_year", 2017], ["capacity", 28], ["road_tax", nil], ["insurance", nil], ["technical_exam", nil], ["created_at", "2023-10-25 16:22:33.353849"], ["updated_at", "2023-10-25 16:22:33.353849"]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+  [1m[36mTRANSACTION (90.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+Completed 200 OK in 1080ms (Views: 0.3ms | ActiveRecord: 940.5ms | Allocations: 14774)
+
+
+  [1m[36mBus Load (175.6ms)[0m  [1m[34mSELECT "buses".* FROM "buses"[0m
+Started POST "/v1/admin/create_bus" for 127.0.0.1 at 2023-10-25 19:23:42 +0300
+Processing by V1::Admin::AdminController#create_bus as */*
+  Parameters: {"company_uid"=>"CPY_GCGOA", "license_plate"=>"HR21ZSA", "brand"=>"Mercedes Sprinter", "manufacturing_year"=>"2017", "capacity"=>"28", "road_tax"=>"2024-11-22", "insurance"=>"2024-02-10", "technical_exam"=>"2025-03-01"}
+  [1m[36mCompany Load (102.0ms)[0m  [1m[34mSELECT "companies".* FROM "companies" WHERE "companies"."company_uid" = $1 LIMIT $2[0m  [["company_uid", "CPY_GCGOA"], ["LIMIT", 1]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:5:in `create_bus'
+  [1m[36mTRANSACTION (95.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+  [1m[36mBus Create (259.1ms)[0m  [1m[32mINSERT INTO "buses" ("bus_uid", "company_uid", "string", "license_plate", "brand", "manufacturing_year", "capacity", "road_tax", "insurance", "technical_exam", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING "bus_uid"[0m  [["bus_uid", "BUS_1NWD5"], ["company_uid", "CPY_GCGOA"], ["string", nil], ["license_plate", "HR21ZSA"], ["brand", "Mercedes Sprinter"], ["manufacturing_year", 2017], ["capacity", 28], ["road_tax", "2024-11-21 22:00:00"], ["insurance", "2024-02-09 22:00:00"], ["technical_exam", "2025-02-28 22:00:00"], ["created_at", "2023-10-25 16:23:42.597127"], ["updated_at", "2023-10-25 16:23:42.597127"]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+  [1m[36mTRANSACTION (108.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:13:in `create_bus'
+Completed 200 OK in 678ms (Views: 0.1ms | ActiveRecord: 565.2ms | Allocations: 2824)
+
+
+  [1m[36mBus Load (369.2ms)[0m  [1m[34mSELECT "buses".* FROM "buses"[0m
+Started POST "/v1/admin/create_city" for 127.0.0.1 at 2023-10-25 19:31:44 +0300
+Processing by V1::Admin::AdminController#create_city as */*
+  Parameters: {"name"=>"Gyergyóújfalu", "zip_code"=>"535560"}
+Completed 204 No Content in 2811ms (ActiveRecord: 1598.4ms | Allocations: 6236)
+
+
+Started POST "/v1/admin/create_city" for 127.0.0.1 at 2023-10-25 19:33:12 +0300
+Processing by V1::Admin::AdminController#create_city as */*
+  Parameters: {"name"=>"Gyergyóújfalu", "zip_code"=>"535560"}
+  [1m[36mTRANSACTION (90.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_city'
+  [1m[36mCity Create (107.8ms)[0m  [1m[32mINSERT INTO "cities" ("city_uid", "name", "zip_code", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "city_uid"[0m  [["city_uid", "CTY_LG50V"], ["name", "Gyergyóújfalu"], ["zip_code", "535560"], ["created_at", "2023-10-25 16:33:13.502750"], ["updated_at", "2023-10-25 16:33:13.502750"]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_city'
+  [1m[36mTRANSACTION (104.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:8:in `create_city'
+Completed 200 OK in 769ms (Views: 0.2ms | ActiveRecord: 647.3ms | Allocations: 5631)
+
+
+  [1m[36mCity Load (148.6ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+Started POST "/v1/admin/create_company" for 127.0.0.1 at 2023-10-25 19:38:37 +0300
+  
+ActionController::RoutingError (No route matches [POST] "/v1/admin/create_company"):
+  
+Started POST "/v1/admin/create_company" for 127.0.0.1 at 2023-10-25 19:39:14 +0300
+Processing by V1::Admin::AdminController#create_company as */*
+  Parameters: {"name"=>"Tikk-takk trans SRL", "email"=>"tikktakk@gmail.com", "phone_number"=>"0735819991", "tax_number"=>"45726420", "city"=>"Gheorgheni", "office_address"=>"Str. Kiss Antal nr. 13"}
+  [1m[36mTRANSACTION (87.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:24:in `create_company'
+  [1m[36mCompany Create (122.9ms)[0m  [1m[32mINSERT INTO "companies" ("company_uid", "name", "email", "phone_number", "tax_number", "city", "office_address", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "company_uid"[0m  [["company_uid", "CPY_LV2SZ"], ["name", "Tikk-takk trans SRL"], ["email", "tikktakk@gmail.com"], ["phone_number", "0735819991"], ["tax_number", "45726420"], ["city", "Gheorgheni"], ["office_address", "Str. Kiss Antal nr. 13"], ["created_at", "2023-10-25 16:39:17.882797"], ["updated_at", "2023-10-25 16:39:17.882797"]]
+  ↳ app/controllers/v1/admin/admin_controller.rb:24:in `create_company'
+  [1m[36mTRANSACTION (97.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/v1/admin/admin_controller.rb:24:in `create_company'
+Completed 200 OK in 3208ms (Views: 0.2ms | ActiveRecord: 1975.2ms | Allocations: 11031)
+
+
+  [1m[36mCompany Load (124.7ms)[0m  [1m[34mSELECT "companies".* FROM "companies"[0m

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   mount_devise_token_auth_for 'User', at: 'auth'
 
   mount_devise_token_auth_for 'Admin', at: 'admin'
@@ -22,5 +23,5 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  # root "articles#index"
+  get '/', to: "home#index"
 end

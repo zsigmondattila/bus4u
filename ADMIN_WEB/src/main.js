@@ -12,6 +12,11 @@ import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import colors from 'vuetify/lib/util/colors'
 
 const vuetify = createVuetify({
+  defaults: {
+    VTextField: {
+      density: 'comfortable'
+    }
+  },
   icons: {
     defaultSet: 'mdi',
     aliases,

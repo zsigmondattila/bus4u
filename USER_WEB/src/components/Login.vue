@@ -5,8 +5,8 @@
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
-    <v-btn type="submit" size="50" block color="primary"> Log In </v-btn>
-    <v-btn type="reset" size="50" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
+    <v-btn type="submit" size="40" block color="primary"> Log In </v-btn>
+    <v-btn type="reset" size="40" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
   </v-form>
 </template>
 

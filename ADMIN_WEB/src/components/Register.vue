@@ -9,7 +9,7 @@
       <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary-light" :rules="confirmation"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'login' }" class="link"> Already registered? </RouterLink>
-    <v-btn type="submit" size="50" block color="primary"> Register </v-btn>
+    <v-btn type="submit" size="40" block color="primary"> Register </v-btn>
   </v-form>
 </template>
 

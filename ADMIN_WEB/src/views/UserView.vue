@@ -43,7 +43,7 @@ defineProps(['isLogin'])
 @media screen and (min-width: 640px) {
   .sheet {
 
-    min-width: 500px;
+    min-width: 450px;
   }
 }
 </style>

@@ -23,8 +23,13 @@ const router = createRouter({
       props: { isLogin: false}
     },
     {
-      path: '/schedules',
+      path: '/schedule',
       name: 'schedule',
+      component: HomeView
+    },
+    {
+      path: '/stations',
+      name: 'stations',
       component: HomeView
     },
     {

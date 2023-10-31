@@ -20,7 +20,8 @@
     <v-navigation-drawer color="primary" v-model="isNavOpen">
       <v-list nav class="h-100 d-flex flex-column">
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
-        <v-list-item prepend-icon="mdi-bus" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-bus" title="Schedules" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
         <v-list-item prepend-icon="mdi-information-outline" title="About" value="about" :to="{ name: 'about' }"></v-list-item>
         <v-spacer></v-spacer>
         <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
@@ -48,9 +49,17 @@ const isNavOpen = ref(false)
 <style scoped>
 .content {
   padding: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .logo {
   height: 42px;
   vertical-align: middle;
+}
+
+@media screen and (min-width: 600px) {
+  .content {
+    padding: 25px;
+  }
 }
 </style>

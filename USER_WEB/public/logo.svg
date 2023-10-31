@@ -9,9 +9,9 @@
    width="400"
    height="150"
    inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
-   inkscape:export-filename="../../../bus4u-assets/logo-text.png"
-   inkscape:export-xdpi="189.334"
-   inkscape:export-ydpi="189.334"
+   inkscape:export-filename="../../../bus4u-assets/favicon-96.png"
+   inkscape:export-xdpi="72"
+   inkscape:export-ydpi="72"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -28,19 +28,19 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      inkscape:zoom="2.0553612"
-     inkscape:cx="179.77375"
+     inkscape:cx="179.53049"
      inkscape:cy="128.93111"
      inkscape:window-width="1920"
-     inkscape:window-height="998"
+     inkscape:window-height="996"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg14" />
+     inkscape:current-layer="layer1" />
   <g
      id="g14"
      transform="translate(1.3782704,-25)"
      sodipodi:insensitive="true"
-     style="display:inline">
+     style="display:none">
     <g
        id="icon-0"
        transform="matrix(0.62524474,0,0,0.62524474,-2.1762921,35.988354)">
@@ -116,6 +116,25 @@
        fill="#ffffff"
        data-fill-palette-color="background"
        id="path5-6"
-       style="display:inline;stroke-width:1.28" />
+       style="display:inline;fill:#ffffff;fill-opacity:1;stroke-width:1.28" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="favicon"
+     transform="translate(20.057281,-53.999996)">
+    <rect
+       style="opacity:0;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:14.031;stroke-linecap:round"
+       id="rect1"
+       width="128"
+       height="127.99999"
+       x="115.94272"
+       y="65" />
+    <path
+       d="m 153.58816,65 v 7.53024 h -15.05792 c -3.76577,0 -7.53024,3.76448 -7.53024,7.528958 v 45.176312 37.64735 7.52896 7.53025 h 7.53024 v 15.05792 h 15.05792 v -15.05792 h 52.70783 v 15.05792 h 15.05793 v -15.05792 h 7.53151 v -7.53025 -7.52896 -37.64735 -45.176312 c 0,-3.764478 -3.76576,-7.528958 -7.53151,-7.528958 H 206.29599 V 65 Z m -7.52896,22.588161 h 67.76448 v 22.588149 15.0592 H 146.0592 v -15.0592 z m 7.52896,60.235509 c 4.17152,0 7.53024,3.36 7.53024,7.53279 0,4.17024 -3.35872,7.5277 -7.53024,7.5277 -4.17024,0 -7.52896,-3.35746 -7.52896,-7.5277 0,-4.17279 3.35872,-7.53279 7.52896,-7.53279 z m 52.70783,0 c 4.17024,0 7.52896,3.36 7.52896,7.53279 0,4.17024 -3.35872,7.5277 -7.52896,7.5277 -4.17151,0 -7.53151,-3.35746 -7.53151,-7.5277 0,-4.17279 3.36,-7.53279 7.53151,-7.53279 z"
+       fill="#ffffff"
+       data-fill-palette-color="background"
+       id="path5-6-3"
+       style="display:inline;fill:#ef6c00;fill-opacity:1;stroke-width:1.28" />
   </g>
 </svg>

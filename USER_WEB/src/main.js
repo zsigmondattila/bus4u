@@ -11,10 +11,13 @@ import { createVuetify } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import colors from 'vuetify/lib/util/colors'
 
+const appColor = colors.orange;
+
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
-      density: 'comfortable'
+      density: 'comfortable',
+      color: appColor.darken3
     }
   },
   icons: {
@@ -29,17 +32,17 @@ const vuetify = createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: colors.orange.darken3,
-          secondary: colors.orange.lighten3,
-          accent: colors.orange.accent2
+          primary: appColor.darken3,
+          secondary: appColor.lighten3,
+          accent: appColor.accent2
         }
       },
       dark: {
         dark: true,
         colors: {
-          primary: colors.orange.darken4,
-          secondary: colors.orange.lighten1,
-          accent: colors.orange.accent3
+          primary: appColor.darken4,
+          secondary: appColor.lighten1,
+          accent: appColor.accent3
         }
       },
     },

@@ -10,12 +10,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :bought_tickets, foreign_key: "user_uid"
+  has_many :bought_tickets, foreign_key: "uid"
 
   private
 
   def generate_uid
     charset = ('0'..'9').to_a + ('A'..'Z').to_a
-    self.user_uid = "USR_" + (1..5).map { charset.sample }.join
+    self.uid = "USR_" + (1..5).map { charset.sample }.join
   end
 end

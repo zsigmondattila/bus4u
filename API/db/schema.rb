@@ -14,9 +14,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", id: false, force: :cascade do |t|
+  create_table "admins", primary_key: "uid", id: :string, default: "", force: :cascade do |t|
     t.string "provider", default: "email", null: false
-    t.string "admin_uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -29,7 +28,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
     t.string "email"
     t.string "firstname"
     t.string "lastname"
-    t.string "nickname"
     t.string "role"
     t.string "phone_number"
     t.string "address"
@@ -37,10 +35,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["admin_uid", "provider"], name: "index_admins_on_admin_uid_and_provider", unique: true
     t.index ["confirmation_token"], name: "index_admins_on_confirmation_token", unique: true
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
 
   create_table "bought_tickets", primary_key: "bought_ticket_uid", id: :string, force: :cascade do |t|
@@ -55,7 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
 
   create_table "buses", primary_key: "bus_uid", id: :string, force: :cascade do |t|
     t.string "company_uid"
-    t.string "string"
     t.string "license_plate"
     t.string "brand"
     t.integer "manufacturing_year"
@@ -134,9 +131,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: false, force: :cascade do |t|
+  create_table "users", primary_key: "uid", id: :string, default: "", force: :cascade do |t|
     t.string "provider", default: "email", null: false
-    t.string "user_uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -157,7 +153,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["user_uid", "provider"], name: "index_users_on_user_uid_and_provider", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
 end

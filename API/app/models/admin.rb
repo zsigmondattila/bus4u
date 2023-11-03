@@ -16,6 +16,6 @@ class Admin < ActiveRecord::Base
 
   def generate_uid
     charset = ('0'..'9').to_a + ('A'..'Z').to_a
-    self.admin_uid = "ADM_" + (1..5).map { charset.sample }.join
+    self.uid = "ADM_" + (1..5).map { charset.sample }.join
   end
 end

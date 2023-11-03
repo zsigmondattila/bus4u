@@ -7,7 +7,7 @@ class V1::ApplicationController < ApplicationController
    end
 
    def get_stations_by_city
-    city = City.find_by(name: params[:name])
+    city = City.find_by(city_uid: params[:city_uid])
     if city
       stations = city.stations
       render json: {stations: stations}
@@ -17,8 +17,8 @@ class V1::ApplicationController < ApplicationController
    end
 
    def get_routes_by_city_and_station
-    city = City.find_by(name: params[:city])
-    station = Station.find_by(name: params[:station])
+    city = City.find_by(city_uid: params[:city_uid])
+    station = Station.find_by(station_uid: params[:station_uid])
 
     if city && station
       routes = city.routes.includes(:stations).where(stations: { station_uid: station.station_uid })
@@ -29,8 +29,8 @@ class V1::ApplicationController < ApplicationController
   end
 
   def get_departure_times_for_station_in_route
-    route = Route.find_by(name: params[:route])
-    station = Station.find_by(name: params[:station])
+    route = Route.find_by(route_uid: params[:route_uid])
+    station = Station.find_by(station_uid: params[:station_uid])
   
     if route && station
       route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)

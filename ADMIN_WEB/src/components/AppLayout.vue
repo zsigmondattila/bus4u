@@ -7,13 +7,9 @@
           <LogoWide :fill="$vuetify.theme.current.colors.primary" :adjacent="$vuetify.theme.current.colors.adjacent" class="logo"/>
         </RouterLink>
       </v-app-bar-title>
-      <template #append v-if="!user.client">
-        <v-btn icon="mdi-login" :to="{ name: 'login' }"></v-btn>
-        <v-btn icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
-      </template>
-      <template #append v-else>
-        <v-btn icon="mdi-account-circle-outline"></v-btn>
-        <v-btn icon="mdi-logout" @click="user.signOut"></v-btn>
+      <template #append>
+        <v-btn icon="mdi-account-circle-outline" @click="router.push({ name: 'settings' })"></v-btn>
+        <v-btn icon="mdi-logout" @click="signOut"></v-btn>
       </template>
     </v-app-bar>
 
@@ -40,9 +36,15 @@ import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { userStore } from '@/stores/userStore';
 import LogoWide from './LogoWide.vue';
+import router from '../router';
 
 const user = userStore()
 const isNavOpen = ref(false)
+
+function signOut() {
+  user.signOut();
+  router.replace({ name: 'login'});
+}
 </script>
 
 <style scoped>
@@ -52,5 +54,8 @@ const isNavOpen = ref(false)
 .logo {
   height: 42px;
   vertical-align: middle;
+}
+.reset-bg{
+  background: transparent;
 }
 </style>

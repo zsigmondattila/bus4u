@@ -33,7 +33,7 @@ const vuetify = createVuetify({
           primary: colors.deepOrange.darken3,
           secondary: colors.deepOrange.lighten3,
           accent: colors.deepOrange.accent2,
-          'adjacent': '#bc1251'
+          adjacent: '#bc1251'
         }
       },
       dark: {

@@ -37,11 +37,10 @@ async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
     console.log(response);
-    axios.post('/auth', form).then((rsp) => console.log(rsp.headers)).catch((e) => console.log(e.message));
-    // axios.post('/auth', form).then((rsp) => {
-    //   user.signIn(rsp.json(), rsp.headers)
-    //   router.replace({ name: 'home'})
-    // }).catch((e) => console.log(e.message));
+    axios.post('https://bus4u.fast-table.com/auth/sign_in', form).then((rsp) => {
+      user.signIn(rsp.data.data, rsp.headers)
+      router.replace({ name: 'home'})
+    }).catch((e) => console.log(e.message));
   } else console.log('Validation failed');
 }
 </script>

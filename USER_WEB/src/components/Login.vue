@@ -5,7 +5,7 @@
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
-    <v-btn type="submit" size="40" block color="primary"> Log In </v-btn>
+    <v-btn type="submit" size="40" :loading="isLoading" block color="primary"> Log In </v-btn>
     <v-btn type="reset" size="40" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
   </v-form>
 </template>
@@ -14,10 +14,11 @@
 import axios from 'axios';
 import router from '@/router';
 import { userStore } from '@/stores/userStore';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const user = userStore()
+const isLoading = ref(false)
 
 const form = reactive({
   email: '',
@@ -36,12 +37,19 @@ const email = [
 async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
-    console.log(response);
-    axios.post('/auth', form).then((rsp) => console.log(rsp.headers)).catch((e) => console.log(e.message));
-    // axios.post('/auth', form).then((rsp) => {
-    //   user.signIn(rsp.json(), rsp.headers)
-    //   router.replace({ name: 'home'})
-    // }).catch((e) => console.log(e.message));
+    isLoading.value = true;
+    axios.post('https://bus4u.fast-table.com/auth/sign_in', form).then((rsp) => {
+      if(rsp.data.data.uid) {
+        router.replace({ name: 'home' })
+        user.signIn(rsp.data.data, rsp.headers)
+      } else {
+        console.error('Login failed');
+        isLoading.value = false;
+      }
+    }).catch((e) => {
+      console.log(e.message);
+      isLoading.value = false;
+    });
   } else console.log('Validation failed');
 }
 </script>

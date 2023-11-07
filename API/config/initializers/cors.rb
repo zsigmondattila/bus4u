@@ -11,6 +11,6 @@
 
      resource "*",
        headers: :any,
-       methods: [:get, :post, :put, :patch, :delete, :options, :head]
+       methods: [:get, :post, :put, :patch, :delete, :options, :head], expose: ['Date', 'access-token', 'client', 'uid', 'Authorization']
    end
  end

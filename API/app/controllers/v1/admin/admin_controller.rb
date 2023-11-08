@@ -71,5 +71,16 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def create_a_route 
+        route = Route.new
+        route.name = params[:name]
+        route.company_uid = params[:company_uid]
+    end
+
+    def add_station_to_route 
+        route = Route.find_by(route_uid: params[:route_uid])
+        station = Station.find_by(station_uid: params[:station_uid])
+        
+    end
 
 end

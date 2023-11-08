@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   style="margin: auto;"
    version="1.1"
    viewBox="0 0 400 150"
    class="rounded-lg overflow-hidden"
    matcher="0.315442500657521"
    id="svg14"
    sodipodi:docname="logo-api.svg"
-   width="400"
-   height="150"
+   width="900"
+   height="100vh"
    inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"

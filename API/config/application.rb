@@ -15,6 +15,10 @@ module API
     config.hosts << "bus4u.fast-table.com"
     config.hosts << "127.0.0.1"
     config.hosts << "4.231.249.253"
+
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #

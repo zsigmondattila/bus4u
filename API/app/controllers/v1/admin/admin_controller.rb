@@ -61,6 +61,15 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def get_routes_of_a_company
+        routes = Route.where(company_uid: params[:company_uid])
+
+        if(routes)
+            render json: { routes: routes }
+        else
+            render json: { error: "Routes not found!" }, status: :unprocessable_entity
+        end
+    end
 
 
 end

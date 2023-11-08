@@ -98,7 +98,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
 
   create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
     t.string "station_uid"
-    t.string "company_uid"
     t.string "route_uid"
     t.datetime "departure_time"
     t.integer "sequence"
@@ -107,8 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_23_160822) do
   end
 
   create_table "routes", primary_key: "route_uid", id: :string, force: :cascade do |t|
+    t.string "company_uid"
     t.string "name"
-    t.string "city_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

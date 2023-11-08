@@ -13,8 +13,9 @@ Rails.application.routes.draw do
       #Superuser requests
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
-      post '/create_bus', to:'admin#create_bus'
-      post '/create_station', to:'admin#create_station'
+      post '/create_bus', to: 'admin#create_bus'
+      post '/create_station', to: 'admin#create_station'
+      get '/get_routes_of_a_company', to: 'admin#get_routes_of_a_company'
     end
     get '/get_cities', to: 'application#get_cities'
     get '/get_stations_by_city', to: 'application#get_stations_by_city'

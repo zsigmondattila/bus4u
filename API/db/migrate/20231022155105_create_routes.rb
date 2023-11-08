@@ -2,8 +2,8 @@ class CreateRoutes < ActiveRecord::Migration[7.0]
   def change
     create_table :routes, id: false do |t|
       t.string :route_uid, primary_key: true
+      t.string :company_uid
       t.string :name
-      t.string :city_uid
       
       t.timestamps
     end

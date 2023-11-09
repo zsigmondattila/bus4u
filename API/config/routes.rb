@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'
       post '/create_station', to: 'admin#create_station'
+      post '/create_route', to: 'admin#create_route'
       post '/add_station_to_route', to: 'admin#add_station_to_route'
       get '/get_routes_of_a_company', to: 'admin#get_routes_of_a_company'
       get '/get_stations_of_a_route', to: 'admin#get_stations_of_a_route'

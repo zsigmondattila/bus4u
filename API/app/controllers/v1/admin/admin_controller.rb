@@ -1,6 +1,5 @@
 class V1::Admin::AdminController < ApplicationController
     
-    #Superuser requests
     def create_city
         city = City.new
         city.name = params[:name]
@@ -82,8 +81,8 @@ class V1::Admin::AdminController < ApplicationController
             {
               station_uid: station.station_uid,
               name: station.name,
-              latitude: station.latitude,
               longitude: station.longitude,
+              latitude: station.latitude,
               address: station.address,
               departure_time: route_station.departure_time.strftime("%H:%M"),
               sequence: route_station.sequence
@@ -100,10 +99,15 @@ class V1::Admin::AdminController < ApplicationController
         end
       end
 
-    def create_a_route 
+    def create_route 
         route = Route.new
         route.name = params[:name]
         route.company_uid = params[:company_uid]
+        if route.save
+            render json: { success: "Route created successfully" }
+        else
+            render json: { error: "Cannot create route "}, status: :unprocessable_entity
+        end
     end
 
     def add_station_to_route 

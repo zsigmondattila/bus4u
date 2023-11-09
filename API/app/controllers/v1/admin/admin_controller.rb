@@ -64,12 +64,41 @@ class V1::Admin::AdminController < ApplicationController
     def get_routes_of_a_company
         routes = Route.where(company_uid: params[:company_uid])
 
-        if(routes)
+        if routes
             render json: { routes: routes }
         else
             render json: { error: "Routes not found!" }, status: :unprocessable_entity
         end
     end
+
+    def get_stations_of_a_route
+        route = Route.find_by(route_uid: params[:route_uid])
+      
+        if route
+          route_stations = RouteStation.where(route_uid: route.route_uid)
+      
+          stations = route_stations.map do |route_station|
+            station = Station.find_by(station_uid: route_station.station_uid)
+            {
+              station_uid: station.station_uid,
+              name: station.name,
+              latitude: station.latitude,
+              longitude: station.longitude,
+              address: station.address,
+              departure_time: route_station.departure_time.strftime("%H:%M"),
+              sequence: route_station.sequence
+            }
+          end
+      
+          if stations
+            render json: { stations: stations }
+          else
+            render json: { error: "Stations not found!" }, status: :unprocessable_entity
+          end
+        else 
+          render json: { error: "Route not found!" }, status: :unprocessable_entity
+        end
+      end
 
     def create_a_route 
         route = Route.new
@@ -80,7 +109,22 @@ class V1::Admin::AdminController < ApplicationController
     def add_station_to_route 
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
+
+        if route && station
+            route_station = RouteStation.new
+            route_station.route_uid = route.route_uid
+            route_station.station_uid = station.station_uid
+            route_station.departure_time = params[:departure_time]
+            route_station.sequence = params[:sequence]
         
+            if route_station.save
+                render json: { success: "RouteStation created successfully" }
+            else
+                render json: { error: "Cannot create RouteStation" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Route or station not found" }, status: :unprocessable_entity
+        end
     end
 
 end

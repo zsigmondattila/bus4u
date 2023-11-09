@@ -16,12 +16,11 @@ class V1::ApplicationController < ApplicationController
     end
    end
 
-   def get_routes_by_city_and_station
-    city = City.find_by(city_uid: params[:city_uid])
+   def get_routes_by_station
     station = Station.find_by(station_uid: params[:station_uid])
 
-    if city && station
-      routes = city.routes.includes(:stations).where(stations: { station_uid: station.station_uid })
+    if station
+      routes = station.routes.includes(:stations).distinct
       render json: {routes: routes}
     else
       render json: { error: "City or station not found!" }, status: :not_found

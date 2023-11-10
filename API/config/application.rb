@@ -16,6 +16,17 @@ module API
     config.hosts << "127.0.0.1"
     config.hosts << "4.231.249.253"
 
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'bus4u.com',
+      user_name: 'office.bus4u@gmail.com',
+      password: 'wclaabbldbptckyf',
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options

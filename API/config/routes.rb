@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       get '/get_routes_of_a_company', to: 'admin#get_routes_of_a_company'
       get '/get_stations_of_a_route', to: 'admin#get_stations_of_a_route'
     end
+    post '/send_verification_email', to: 'application#send_verification_email'
+    get '/verify_code_email', to: 'application#verify_code_email'
     get '/get_cities', to: 'application#get_cities'
     get '/get_stations_by_city', to: 'application#get_stations_by_city'
     get '/get_routes_by_station', to: 'application#get_routes_by_station'

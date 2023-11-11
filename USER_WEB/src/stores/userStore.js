@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import axios from 'axios';
+import axios from 'axios'
 
 export const userStore = defineStore('user', () => {
   const firstName = ref('')
@@ -22,8 +22,7 @@ export const userStore = defineStore('user', () => {
   }
   function signOut() {
     axios.delete('https://bus4u.fast-table.com/auth/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
-      .then((rsp) => {
-        console.log(rsp)
+      .then(() => {
         firstName.value = ''
         lastName.value = ''
         email.value = ''

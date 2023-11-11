@@ -43,7 +43,7 @@ import { userStore } from '@/stores/userStore';
 import LogoWide from './LogoWide.vue';
 
 const user = userStore()
-const isNavOpen = ref(false)
+const isNavOpen = ref(document.body.offsetWidth >= 1280)
 </script>
 
 <style scoped>

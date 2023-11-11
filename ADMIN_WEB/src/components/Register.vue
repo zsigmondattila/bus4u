@@ -18,6 +18,9 @@ import axios from 'axios';
 import router from '@/router';
 import { reactive } from 'vue';
 import { RouterLink } from 'vue-router';
+import { userStore } from '@/stores/userStore';
+
+const user = userStore()
 
 const form = reactive({
   firstname: '',
@@ -54,11 +57,14 @@ const confirmation = [
 async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
-    axios.post('/auth', form).then((rsp) => console.log(rsp.headers)).catch((e) => console.log(e));
-    // axios.post('/auth', form).then((rsp) => {
-    //   user.signIn(rsp.json(), rsp.headers)
-    //   router.replace({ name: 'home'})
-    // }).catch((e) => console.log(e.message));
+    axios.post('https://bus4u.fast-table.com/admin', form).then((rsp) => {
+      if(rsp.data.data.uid) {
+        router.replace({ name: 'home' })
+        user.signIn(rsp.data.data, rsp.headers)
+      } else {
+        console.error('Registration failed');
+      }
+    }).catch((e) => console.log(e.message));
   } else console.log('Validation failed');
 }
 </script>

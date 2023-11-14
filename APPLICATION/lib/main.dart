@@ -33,13 +33,12 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages = const [
-    HomePage(),
-    SchedulesPage(),
-    StationsPage(),
-    AboutPage(),
+  List<Widget> pages =  [
+    const HomePage(),
+    const SchedulesPage(),
+    const StationsPage(),
+    const AboutPage(),
     AccountPage(),
-  
   ];
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class _RootPageState extends State<RootPage> {
         centerTitle: true,
         
       ),
-      body: pages[currentPage],
+      body: SingleChildScrollView(child: pages[currentPage]),
       bottomNavigationBar: NavigationBar(
         destinations: const [
           NavigationDestination(icon: Icon(Icons.home), label: 'Home'),

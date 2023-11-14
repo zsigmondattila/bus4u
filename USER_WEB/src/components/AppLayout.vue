@@ -7,7 +7,7 @@
           <LogoWide :fill="$vuetify.theme.current.colors.primary" class="logo"/>
         </RouterLink>
       </v-app-bar-title>
-      <template #append v-if="!user.client">
+      <template #append v-if="!user.accessToken">
         <v-btn title="Login" icon="mdi-login" :to="{ name: 'login' }"></v-btn>
         <v-btn title="Register" icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
       </template>

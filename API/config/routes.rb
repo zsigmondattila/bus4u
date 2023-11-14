@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     post '/send_verification_email', to: 'application#send_verification_email'
     get '/verify_code_email', to: 'application#verify_code_email'
+    post '/add_userdata', to: 'application#add_userdata'
     get '/get_cities', to: 'application#get_cities'
     get '/get_stations_by_city', to: 'application#get_stations_by_city'
     get '/get_routes_by_station', to: 'application#get_routes_by_station'

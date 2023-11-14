@@ -103,6 +103,7 @@ class V1::Admin::AdminController < ApplicationController
         route = Route.new
         route.name = params[:name]
         route.company_uid = params[:company_uid]
+        route.basic_fare = params[:basic_fare]
         if route.save
             render json: { success: "Route created successfully" }
         else
@@ -120,6 +121,7 @@ class V1::Admin::AdminController < ApplicationController
             route_station.station_uid = station.station_uid
             route_station.departure_time = params[:departure_time]
             route_station.sequence = params[:sequence]
+            route_station.fare = params[:fare]
         
             if route_station.save
                 render json: { success: "RouteStation created successfully" }
@@ -129,6 +131,13 @@ class V1::Admin::AdminController < ApplicationController
         else
             render json: { error: "Route or station not found" }, status: :unprocessable_entity
         end
+    end
+
+    def create_ticket
+        ticket = Ticket.new
+        company_uid = params[:company_uid]
+        type = params[:type]
+        
     end
 
 end

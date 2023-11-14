@@ -95,20 +95,20 @@ Station.create(name: "Gyergyó állomás", latitude: 46.7164726, longitude: 25.5
 Station.create(name: "Gyergyó Maros hotel", latitude: 46.7209535, longitude: 25.5823401, city: gheorgheni, address: "Bul. Fratiei nr. 65")
 
 #CREATE A ROUTE
-Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid);
+Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid, basic_fare: 0);
 
 route = Route.find_by(name: "Szászfalu-Gyergyó");
-RouteStation.create(route: route, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 1)
-RouteStation.create(route: route, departure_time: Time.parse("06:05"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 2)
-RouteStation.create(route: route, departure_time: Time.parse("06:12"), station: Station.find_by(name: "Alfalu központ"), sequence: 3)
-RouteStation.create(route: route, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
-RouteStation.create(route: route, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
-RouteStation.create(route: route, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
-RouteStation.create(route: route, departure_time: Time.parse("06:34"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 7)
-RouteStation.create(route: route, departure_time: Time.parse("06:42"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 8)
-RouteStation.create(route: route, departure_time: Time.parse("06:50"), station: Station.find_by(name: "Alfalu központ"), sequence: 9)
-RouteStation.create(route: route, departure_time: Time.parse("06:57"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 10)
-RouteStation.create(route: route, departure_time: Time.parse("07:03"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 11)
+RouteStation.create(route: route, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("06:05"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("06:12"), station: Station.find_by(name: "Alfalu központ"), sequence: 3, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("06:18"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("06:26"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("06:34"), station: Station.find_by(name: "Gyergyó állomás"), sequence: 7, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("06:42"), station: Station.find_by(name: "Alfalu lengyár"), sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("06:50"), station: Station.find_by(name: "Alfalu központ"), sequence: 9, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("06:57"), station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 10, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("07:03"), station: Station.find_by(name: "Csomafalva központ"),  sequence: 11, fare: 4)
 
 #CREATING TICKETS
 

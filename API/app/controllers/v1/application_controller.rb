@@ -74,10 +74,25 @@ class V1::ApplicationController < ApplicationController
       email_verification = EmailVerification.find_by(email: user_email)
       code = email_verification.verification_code
       if code_submitted === code
-        render json: { response: "Correct verification code" }, status: :ok
+        render json: { success: "Correct verification code" }, status: :ok
       else
-        render json: { response: "The codes does not match" }, status: :unauthorized
+        render json: { error: "The codes does not match" }, status: :unauthorized
       end    
     end 
+
+    # Fill userdata
+
+    def add_userdata 
+      user = User.find_by(uid: params[:user_uid])
+      user.firstname = params[:firstname]
+      user.lastname = params[:lastname]
+      user.phone_number = params[:phone_number]
+      user.language = params[:language]
+      if user.save
+        render json: { success: "User data saved successfully" }
+      else
+        render json: { error: "Cannot save userdata" }
+      end
+    end
 
 end

@@ -76,7 +76,7 @@ class V1::ApplicationController < ApplicationController
     
         if route_stations.any?
           departure_times = route_stations.pluck(:departure_time)
-          render json: { departure_times: departure_times.map { |time| time.strftime("%H:%M") } }
+          render json: { name: route_stations.first.name ,departure_times: departure_times.map { |time| time.strftime("%H:%M") } }
         else
           render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
         end

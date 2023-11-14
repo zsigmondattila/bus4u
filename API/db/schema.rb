@@ -94,18 +94,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "prices", primary_key: "price_uid", id: :string, force: :cascade do |t|
-    t.string "route_uid"
-    t.string "from_station_uid"
-    t.string "to_station_uid"
-    t.decimal "ticket_price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
     t.string "station_uid"
     t.string "route_uid"
+    t.string "name"
     t.datetime "departure_time"
     t.integer "sequence"
     t.decimal "fare"
@@ -134,7 +126,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
   create_table "tickets", primary_key: "ticket_uid", id: :string, force: :cascade do |t|
     t.string "company_uid"
     t.string "type"
-    t.string "price_uid"
+    t.string "route_uid"
+    t.string "from_station_uid"
+    t.string "to_station_uid"
+    t.decimal "ticket_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

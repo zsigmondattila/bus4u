@@ -103,6 +103,7 @@ class V1::Admin::AdminController < ApplicationController
         route = Route.new
         route.name = params[:name]
         route.company_uid = params[:company_uid]
+        route.basic_fare = params[:basic_fare]
         if route.save
             render json: { success: "Route created successfully" }
         else
@@ -120,6 +121,7 @@ class V1::Admin::AdminController < ApplicationController
             route_station.station_uid = station.station_uid
             route_station.departure_time = params[:departure_time]
             route_station.sequence = params[:sequence]
+            route_station.fare = params[:fare]
         
             if route_station.save
                 render json: { success: "RouteStation created successfully" }
@@ -130,5 +132,36 @@ class V1::Admin::AdminController < ApplicationController
             render json: { error: "Route or station not found" }, status: :unprocessable_entity
         end
     end
+
+    def create_ticket
+        ticket = Ticket.new
+        route_uid = params[:route_uid]
+        from_station_uid = params[:from_station_uid]
+        to_station_uid = params[:to_station_uid]
+      
+        rs1 = RouteStation.find_by(route_uid: route_uid, station_uid: from_station_uid)
+        rs2 = RouteStation.find_by(route_uid: route_uid, station_uid: to_station_uid)
+        route = Route.find_by(route_uid: route_uid)
+      
+        if rs1 && rs2
+          start_sequence = [rs1.sequence, rs2.sequence].min
+          end_sequence = [rs1.sequence, rs2.sequence].max
+      
+          stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+          fare_sum = stations_between.sum(:fare)
+      
+          ticket.from_station_uid = from_station_uid
+          ticket.to_station_uid = to_station_uid
+          ticket.ticket_price = fare_sum + route.basic_fare
+      
+          ticket.save
+      
+          render json: { success: "Ticket saved successfully "}
+        else
+          render json: { error: "No RouteStations found" }, status: :unprocessable_entity
+        end
+      end
+      
+      
 
 end

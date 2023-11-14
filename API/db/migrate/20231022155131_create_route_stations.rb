@@ -4,6 +4,7 @@ class CreateRouteStations < ActiveRecord::Migration[7.0]
       t.string :route_station_uid, primary_key: true
       t.string :station_uid
       t.string :route_uid
+      t.string :name
       t.datetime :departure_time
       t.integer :sequence
       t.decimal :fare

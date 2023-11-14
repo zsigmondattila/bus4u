@@ -6,15 +6,55 @@ class V1::ApplicationController < ApplicationController
     render json: {cities: cities}
    end
 
+   def get_stations 
+    stations = Station.all
+    render json: { stations: stations }
+   end
+
    def get_stations_by_city
     city = City.find_by(city_uid: params[:city_uid])
     if city
-      stations = city.stations
-      render json: {stations: stations}
+      new_data = []
+      stations = city.stations.map do |station|
+      new_data << { station_uid: station.station_uid,
+                     name: station.name, 
+                     address: station.address,
+                     coordinates: [station.longitude, station.latitude] }
+      end
+      render json: {stations: new_data}
     else
       render json: { error: "Could not find the city!" }, status: :not_found
     end
    end
+
+   def get_stations_of_a_route
+    route = Route.find_by(route_uid: params[:route_uid])
+  
+    if route
+      route_stations = RouteStation.where(route_uid: route.route_uid)
+  
+      stations = route_stations.map do |route_station|
+        station = Station.find_by(station_uid: route_station.station_uid)
+        {
+          station_uid: station.station_uid,
+          name: station.name,
+          longitude: station.longitude,
+          latitude: station.latitude,
+          address: station.address,
+          departure_time: route_station.departure_time.strftime("%H:%M"),
+          sequence: route_station.sequence
+        }
+      end
+  
+      if stations
+        render json: { stations: stations }
+      else
+        render json: { error: "Stations not found!" }, status: :unprocessable_entity
+      end
+    else 
+      render json: { error: "Route not found!" }, status: :unprocessable_entity
+    end
+  end
 
    def get_routes_by_station
     station = Station.find_by(station_uid: params[:station_uid])

@@ -1,5 +1,5 @@
 <template>
-  <div ref="mapRef" class="map rounded my-15">
+  <div ref="mapRef" class="map rounded mt-10">
 
   </div>
 </template>
@@ -8,7 +8,7 @@
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 
-const props = defineProps(['coordinateArray'])
+const props = defineProps(['stations', 'points'])
 const mapRef = ref(null);
 const map = ref(null);
 
@@ -28,7 +28,7 @@ onMounted(() => {
         'properties': {},
         'geometry': {
           'type': 'LineString',
-          'coordinates': props.coordinateArray
+          'coordinates': []
         }
       }
     });
@@ -49,16 +49,22 @@ onMounted(() => {
 })
 
 onBeforeUpdate(() => {
+  const arr = [];
+  props.stations.forEach(element => {
+    let coord = [element.longitude, element.latitude]
+    arr.push(coord);
+  });
+
   const data = {
     'type': 'Feature',
     'properties': {},
     'geometry': {
       'type': 'LineString',
-      'coordinates': props.coordinateArray
+      'coordinates':arr
     }
   }
   map.value.getSource('route').setData(data)
-  map.panTo(props.coordinateArray[0])
+  map.value.panTo(arr[0])
 })
 
 onUnmounted(() => {

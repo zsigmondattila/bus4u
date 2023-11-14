@@ -18,6 +18,9 @@ const vuetify = createVuetify({
     VTextField: {
       density: 'comfortable',
       color: appColor.darken3
+    },
+    VSelect: {
+      density: 'comfortable'
     }
   },
   icons: {

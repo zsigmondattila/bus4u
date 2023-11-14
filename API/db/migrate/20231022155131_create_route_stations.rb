@@ -6,6 +6,7 @@ class CreateRouteStations < ActiveRecord::Migration[7.0]
       t.string :route_uid
       t.datetime :departure_time
       t.integer :sequence
+      t.decimal :fare
 
       t.timestamps
     end

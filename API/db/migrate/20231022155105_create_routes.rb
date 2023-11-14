@@ -4,6 +4,7 @@ class CreateRoutes < ActiveRecord::Migration[7.0]
       t.string :route_uid, primary_key: true
       t.string :company_uid
       t.string :name
+      t.decimal :basic_fare
       
       t.timestamps
     end

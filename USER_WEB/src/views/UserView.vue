@@ -34,7 +34,7 @@ const props = defineProps(['isLogin'])
 .logo-container {
   display: flex;
   justify-content: center;
-  padding: 25px;
+  padding: 20px;
 }
 .logo {
   width: 300px;
@@ -43,7 +43,7 @@ const props = defineProps(['isLogin'])
 @media screen and (min-width: 640px) {
   .sheet {
     border-radius: 12px;
-    min-width: 500px;
+    min-width: 450px;
     box-shadow: 0px 3px 10px 2px darkgray;
   }
 }

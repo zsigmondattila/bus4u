@@ -12,11 +12,28 @@ module API
     config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here.
-    #
+    config.hosts << "bus4u.fast-table.com"
+    config.hosts << "127.0.0.1"
+    config.hosts << "4.231.249.253"
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'bus4u.com',
+      user_name: 'office.bus4u@gmail.com',
+      password: 'wclaabbldbptckyf',
+      authentication: 'plain',
+      enable_starttls_auto: true
+    }
+
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Central Time (US & Canada)"
+    config.time_zone = 'Europe/Bucharest'
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Only loads a smaller set of middleware suitable for API only apps.

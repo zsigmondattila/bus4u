@@ -8,16 +8,20 @@
       <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'login' }" class="link"> Already registered? </RouterLink>
-    <v-btn type="submit" size="50" block color="primary"> Register </v-btn>
-    <v-btn type="reset" size="50" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
+    <v-btn type="submit" size="40" :loading="isLoading" block color="primary"> Register </v-btn>
+    <v-btn type="reset" size="40" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
   </v-form>
 </template>
 
 <script setup>
 import axios from 'axios';
 import router from '@/router';
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { userStore } from '@/stores/userStore';
+
+const user = userStore()
+const isLoading = ref(false)
 
 const form = reactive({
   firstname: '',
@@ -51,11 +55,19 @@ const confirmation = [
 async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
-    axios.post('/auth', form).then((rsp) => console.log(rsp.headers)).catch((e) => console.log(e));
-    // axios.post('/auth', form).then((rsp) => {
-    //   user.signIn(rsp.json(), rsp.headers)
-    //   router.replace({ name: 'home'})
-    // }).catch((e) => console.log(e.message));
+    isLoading.value = true;
+    axios.post('https://bus4u.fast-table.com/auth', form).then((rsp) => {
+      if(rsp.data.data.uid) {
+        router.replace({ name: 'home' })
+        user.signIn(rsp.data.data, rsp.headers)
+      } else {
+        console.error('Registration failed');
+        isLoading.value = false;
+      }
+    }).catch((e) => {
+      console.log(e.message);
+      isLoading.value = false;
+    });
   } else console.log('Validation failed');
 }
 </script>
@@ -70,6 +82,6 @@ button {
   color: revert;
 }
 .inputs {
-  margin: 20px 0;
+  margin: 15px 0;
 }
 </style>

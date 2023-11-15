@@ -137,7 +137,7 @@ class RegisterPage extends StatelessWidget {
                       Text(
                         "You have account?",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16,
                         ),
                       ),
@@ -145,7 +145,7 @@ class RegisterPage extends StatelessWidget {
                       Text(
                         "Login here",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16,
                         ),
                       ),

@@ -7,11 +7,12 @@
           <LogoWide :fill="$vuetify.theme.current.colors.primary" class="logo"/>
         </RouterLink>
       </v-app-bar-title>
-      <template #append v-if="!user.client">
+      <template #append v-if="!user.accessToken">
         <v-btn title="Login" icon="mdi-login" :to="{ name: 'login' }"></v-btn>
         <v-btn title="Register" icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
       </template>
       <template #append v-else>
+        <span>{{ user.lastName }}</span>
         <v-btn title="Account" icon="mdi-account-circle-outline"></v-btn>
         <v-btn title="Logout" icon="mdi-logout" @click="user.signOut"></v-btn>
       </template>
@@ -43,7 +44,7 @@ import { userStore } from '@/stores/userStore';
 import LogoWide from './LogoWide.vue';
 
 const user = userStore()
-const isNavOpen = ref(false)
+const isNavOpen = ref(document.body.offsetWidth >= 1280)
 </script>
 
 <style scoped>

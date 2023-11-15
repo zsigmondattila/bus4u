@@ -12,6 +12,7 @@
         <v-btn title="Register" icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
       </template>
       <template #append v-else>
+        <span>{{ user.lastName }}</span>
         <v-btn title="Account" icon="mdi-account-circle-outline"></v-btn>
         <v-btn title="Logout" icon="mdi-logout" @click="user.signOut"></v-btn>
       </template>

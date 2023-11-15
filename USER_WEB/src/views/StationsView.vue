@@ -10,10 +10,10 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="5">
-            <v-select :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto"></v-select>
+            <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" @update:modelValue="getBuses"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="5">
-            <v-select :items="buses" :item-props="getName" label="Bus" :loading="!buses.length" v-model="form.bus" class="text-field" hide-details="auto"></v-select>
+            <v-autocomplete :items="buses" :item-props="getName" label="Bus" :disabled="!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Filter </v-btn>
@@ -55,6 +55,13 @@ function onSubmit() {
   }
 }
 
+async function getBuses(city) {
+  axios.get('https://bus4u.fast-table.com/v1/get_routes_by_city', {params: {city_uid: city.city_uid}})
+    .then(rsp => {
+      if(rsp.status == 200) buses.value = rsp.data.routes
+    }).catch(e => console.error(e))
+}
+
 onMounted(() => {
   axios.get('https://bus4u.fast-table.com/v1/get_stations')
   .then(rsp => {
@@ -64,11 +71,6 @@ onMounted(() => {
   axios.get('https://bus4u.fast-table.com/v1/get_cities')
     .then(rsp => {
       if(rsp.status == 200) cities.value = rsp.data.cities
-    }).catch(e => console.error(e))
-  
-  axios.get('https://bus4u.fast-table.com/v1/get_routes')
-    .then(rsp => {
-      if(rsp.status == 200) buses.value = rsp.data.routes
     }).catch(e => console.error(e))
 })
 </script>

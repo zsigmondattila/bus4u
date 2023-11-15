@@ -10,10 +10,10 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="4">
-            <v-select :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getStations"></v-select>
+            <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getStations"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-select :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getBuses"></v-select>
+            <v-autocomplete :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getBuses"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="4">
             <v-select :items="buses" :item-props="getName" label="Bus" :disabled="!form.station" :loading="!buses.length && !!form.station" v-model="form.bus" class="text-field" hide-details="auto" :rules="rules"></v-select>
@@ -34,7 +34,7 @@
       </tbody>
       <h3 v-else class="fallback"> Here will appear the timetable </h3>
     </v-table>
-    <Map v-if="coordinates" :coordinate-array="coordinates"/>
+    <Map v-if="route" :stations="route" :route="true"/>
   </AppLayout>
 </template>
 
@@ -60,16 +60,7 @@ const timetable = ref([
     }
   ])
 
-const coordinates = ref([
-    [24.599099264925712, 46.52369326079823],
-    [24.601341591579715, 46.5248079350453],
-    [24.589255558112836, 46.53304548076141],
-    [24.595199333221995, 46.535540118192806],
-    [24.584760175828738, 46.539702512465624],
-    [24.583354698146348, 46.53514157435465],
-    [24.571992860849594, 46.53560654187607],
-    [24.571638809235168, 46.53348832419385],
-  ])
+const route = ref([])
 
 const form = reactive({
   city: '',
@@ -99,6 +90,8 @@ async function getBuses(station) {
 
 async function onSubmit() {
   timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.bus.route_uid }})).data
+  route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.bus.route_uid }})).data.stations
+  console.log(route.value);
 }
 
 onMounted(() => {

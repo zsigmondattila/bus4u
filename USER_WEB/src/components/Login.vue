@@ -1,7 +1,7 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
-      <v-text-field label="Email" v-model="form.email" color="primary" :rules="email"></v-text-field>
+      <v-text-field label="Email" v-model="form.email" type="email" color="primary" :rules="email"></v-text-field>
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>

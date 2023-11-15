@@ -21,6 +21,9 @@ const vuetify = createVuetify({
     },
     VSelect: {
       density: 'comfortable'
+    },
+    VAutocomplete: {
+      density: 'comfortable'
     }
   },
   icons: {

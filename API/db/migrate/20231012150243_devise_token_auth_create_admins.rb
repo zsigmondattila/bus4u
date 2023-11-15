@@ -1,10 +1,10 @@
 class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
   def change
     
-    create_table(:admins) do |t|
+    create_table :admins, id: false do |t|
       ## Required
       t.string :provider, :null => false, :default => "email"
-      t.string :uid, :null => false, :default => ""
+      t.string :uid, primary_key: true, :null => false, :default => ""
 
       ## Database authenticatable
       t.string :encrypted_password, :null => false, :default => ""
@@ -32,10 +32,10 @@ class DeviseTokenAuthCreateAdmins < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :firstname
       t.string :lastname
-      t.string :nickname
       t.string :role 
       t.string :phone_number 
       t.string :address
+      t.string :company_uid
 
       ## Tokens
       t.json :tokens

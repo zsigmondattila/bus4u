@@ -10,16 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_150243) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "azure"
-  enable_extension "pg_cron"
-  enable_extension "pgaadauth"
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", primary_key: "uid", id: :string, default: "", force: :cascade do |t|
     t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -29,10 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_150243) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.string "nickname"
-    t.string "image"
     t.string "email"
+    t.string "firstname"
+    t.string "lastname"
+    t.string "role"
+    t.string "phone_number"
+    t.string "address"
+    t.string "company_uid"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -42,9 +41,101 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_150243) do
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "bought_tickets", primary_key: "bought_ticket_uid", id: :string, force: :cascade do |t|
+    t.string "ticket_uid"
+    t.string "user_uid"
+    t.datetime "date_of_purchase"
+    t.datetime "expiration_date"
+    t.boolean "is_vaild"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "buses", primary_key: "bus_uid", id: :string, force: :cascade do |t|
+    t.string "company_uid"
+    t.string "license_plate"
+    t.string "brand"
+    t.integer "manufacturing_year"
+    t.integer "capacity"
+    t.datetime "road_tax"
+    t.datetime "insurance"
+    t.datetime "technical_exam"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", primary_key: "city_uid", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.string "zip_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", primary_key: "company_uid", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "tax_number"
+    t.string "city"
+    t.string "office_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_stations", primary_key: "company_station_uid", id: :string, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "email_verifications", force: :cascade do |t|
+    t.string "email"
+    t.string "verification_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
+    t.string "station_uid"
+    t.string "route_uid"
+    t.string "name"
+    t.datetime "departure_time"
+    t.integer "sequence"
+    t.decimal "fare"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "routes", primary_key: "route_uid", id: :string, force: :cascade do |t|
+    t.string "company_uid"
+    t.string "name"
+    t.decimal "basic_fare"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "stations", primary_key: "station_uid", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.decimal "longitude"
+    t.decimal "latitude"
+    t.string "city_uid"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets", primary_key: "ticket_uid", id: :string, force: :cascade do |t|
+    t.string "company_uid"
+    t.string "type"
+    t.string "route_uid"
+    t.string "from_station_uid"
+    t.string "to_station_uid"
+    t.decimal "ticket_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", primary_key: "uid", id: :string, default: "", force: :cascade do |t|
     t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -54,10 +145,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_150243) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
-    t.string "nickname"
-    t.string "image"
+    t.string "firstname"
+    t.string "lastname"
     t.string "email"
+    t.string "phone_number"
+    t.string "language"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

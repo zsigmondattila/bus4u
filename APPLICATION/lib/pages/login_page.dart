@@ -128,7 +128,7 @@ class LoginPage extends StatelessWidget {
                       Text(
                         "Not a member?",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16,
                         ),
                       ),
@@ -136,7 +136,7 @@ class LoginPage extends StatelessWidget {
                       Text(
                         "Register now",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16,
                         ),
                       ),

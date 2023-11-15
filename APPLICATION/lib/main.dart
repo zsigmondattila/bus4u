@@ -1,7 +1,7 @@
 import 'package:bus4u/pages/home_page.dart';
 import 'package:bus4u/pages/schedules_page.dart';
 import 'package:bus4u/pages/stations_page.dart';
-import 'package:bus4u/pages/about_page.dart';
+import 'package:bus4u/pages/info_page.dart';
 import 'package:bus4u/pages/account_page.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +37,7 @@ class _RootPageState extends State<RootPage> {
     const HomePage(),
     const SchedulesPage(),
     const StationsPage(),
-    const AboutPage(),
+    const InfoPage(),
     const AccountPage(),
   ];
   @override
@@ -62,7 +62,7 @@ class _RootPageState extends State<RootPage> {
               icon: Icon(Icons.calendar_month), label: 'Schedules'),
           NavigationDestination(
               icon: Icon(Icons.location_pin), label: 'Stations'),
-          NavigationDestination(icon: Icon(Icons.info), label: 'About'),
+          NavigationDestination(icon: Icon(Icons.info), label: 'Info'),
           NavigationDestination(
               icon: Icon(Icons.account_circle), label: 'Account'),
         ],

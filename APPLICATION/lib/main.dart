@@ -33,24 +33,26 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   int currentPage = 0;
-  List<Widget> pages =  [
+  List<Widget> pages = [
     const HomePage(),
     const SchedulesPage(),
     const StationsPage(),
     const AboutPage(),
-    AccountPage(),
+    const AccountPage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        title: Container(
-          padding: const EdgeInsets.fromLTRB(5,0,200,0),
-          child: Image.asset('assets/images/logo-text.png'),
-        ),
-        centerTitle: true,
-        
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start, 
+          children: [
+          Image.asset(
+            'assets/images/logo-text.png',
+            height: 40,
+          ),
+        ]),
       ),
       body: SingleChildScrollView(child: pages[currentPage]),
       bottomNavigationBar: NavigationBar(
@@ -66,7 +68,7 @@ class _RootPageState extends State<RootPage> {
         ],
         onDestinationSelected: (int index) {
           setState(() {
-          currentPage = index;
+            currentPage = index;
           });
         },
         selectedIndex: currentPage,

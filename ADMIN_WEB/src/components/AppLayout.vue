@@ -17,7 +17,7 @@
       <v-list color="primary-light" class="h-100 d-flex flex-column">
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
         <v-list-item prepend-icon="mdi-bus" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
-        <v-list-item prepend-icon="mdi-information-outline" title="About" value="about" :to="{ name: 'about' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
         <v-spacer></v-spacer>
         <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
       </v-list>
@@ -39,7 +39,7 @@ import LogoWide from './LogoWide.vue';
 import router from '../router';
 
 const user = userStore()
-const isNavOpen = ref(false)
+const isNavOpen = ref(true)
 
 function signOut() {
   user.signOut();
@@ -49,7 +49,7 @@ function signOut() {
 
 <style scoped>
 .content {
-  padding: 15px;
+  padding: 25px;
 }
 .logo {
   height: 42px;

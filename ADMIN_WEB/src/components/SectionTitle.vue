@@ -1,5 +1,5 @@
 <template>
-  <div class="title-container my-md-3">
+  <div class="title-container">
     <h2 class="text-h5 text-md-h4 font-weight-bold">
       <slot></slot>
     </h2>

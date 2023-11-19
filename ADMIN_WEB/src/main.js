@@ -11,13 +11,13 @@ import { createVuetify } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import colors from 'vuetify/lib/util/colors'
 
-const appColor = colors.orange;
+const appColor = colors.deepOrange;
 
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
-      density: 'comfortable',
-      color: appColor.lighten3
+      density: 'compact',
+      color: appColor.darken1
     },
     VSelect: {
       density: 'comfortable'

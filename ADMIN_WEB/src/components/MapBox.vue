@@ -1,12 +1,11 @@
 <template>
-  <div ref="mapRef" class="map rounded mt-10">
-
-  </div>
+  <div ref="mapRef" class="map"></div>
 </template>
 
 <script setup>
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
+import axios from 'axios';
 
 const props = defineProps(['stations', 'route', 'pointer'])
 const emit = defineEmits(['update:pointer'])
@@ -15,6 +14,10 @@ let map = null;
 let markers = [];
 let points = [];
 let customPoint = null;
+
+function panTo(coord) {
+  if(map) map.panTo(coord);
+}
 
 function addCustomPointer(coordinates){
   if(!coordinates.length) return
@@ -59,7 +62,21 @@ onMounted(() => {
   });
   map.on('load', () => {
     map.on('click', (e) => {
-      emit('update:pointer', [e.lngLat.lng, e.lngLat.lat])
+      if(customPoint) customPoint.remove();
+      addCustomPointer(e.lngLat.toArray())
+      axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${e.lngLat.lng},${e.lngLat.lat}.json`, { params: { 'access_token': mapboxgl.accessToken }})
+        .then(rsp => {
+          let arr = rsp.data.features;
+          let point = props.pointer;
+          point.city = arr[2].text
+          point.address = `${arr[0].text || ''} ${arr[0].address || ''}`
+          point.coordinates = [e.lngLat.lng, e.lngLat.lat]
+          emit('update:pointer', point)
+        }).catch(() => {
+          let point = props.pointer;
+          point.coordinates = [e.lngLat.lng, e.lngLat.lat]
+          emit('update:pointer', point)
+        })
     })
     map.addSource('route', {
       'type': 'geojson',
@@ -91,6 +108,8 @@ onMounted(() => {
   });
 })
 
+defineExpose({ panTo })
+
 onBeforeUpdate(() => {
   markers.forEach(marker => marker.remove())
   markers = []
@@ -99,8 +118,6 @@ onBeforeUpdate(() => {
   if(props.route) {
     addRoute()
   }
-  if(customPoint) customPoint.remove();
-  if(props.pointer) addCustomPointer(props.pointer)
 })
 
 onUnmounted(() => {
@@ -111,6 +128,6 @@ onUnmounted(() => {
 
 <style scoped>
 .map {
-  height: 500px;
+  min-height: 600px;
 }
 </style>

@@ -66,6 +66,11 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
+  def get_routes 
+    routes = Route.all
+    render json: { routes: routes }
+   end
+
    def get_routes_by_station
     station = Station.find_by(station_uid: params[:station_uid])
 

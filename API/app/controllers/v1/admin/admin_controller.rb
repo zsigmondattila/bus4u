@@ -50,8 +50,9 @@ class V1::Admin::AdminController < ApplicationController
         station.name = params[:name]
         station.latitude = params[:latitude]
         station.longitude = params[:longitude]
-        station.city = City.find_by(name: params[:city])
+        station.city = City.find_or_create_by(name: params[:city])
         station.address = params[:address]
+
         station.save
         if(station.save)       
             render json: { success: "Station created successfully" }

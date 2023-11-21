@@ -10,13 +10,13 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Start city" :item-props="getName" :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="stationRule" @update:modelValue="getStartStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Start city" :item-props="getName" :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getStartStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="startStations" label="Start station" :item-props="getName" :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation" class="text-field" hide-details="auto" :rules="stationRule"></v-autocomplete>
+            <v-autocomplete :items="startStations" label="Start station" :item-props="getName" :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation" class="text-field" hide-details="auto"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Destination city" :item-props="getName" :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="stationRule" @update:modelValue="getDestStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Destination city" :item-props="getName" :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getDestStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
             <v-autocomplete :items="destStations" label="Destination station" :item-props="getName" :disabled="!form.toCity" :loading="!destStations.length && !!form.toCity" v-model="form.toStation" class="text-field" hide-details="auto" :rules="uniqueStation"></v-autocomplete>
@@ -33,7 +33,7 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-list lines="two" border rounded class="py-0 my-10">
+    <v-list v-if="routes.length" lines="two" border rounded class="py-0 my-10">
         <RouteListElement v-for="route in routes" :key="route.id" :trip="route"></RouteListElement>
     </v-list>
   </AppLayout>
@@ -86,16 +86,20 @@ const form = reactive({
   time: date.toLocaleTimeString().slice(0, 5),
 })
 
-const stationRule = [
+const cityRule = [
   (v) => !!v || 'Please select an option.'
 ]
 const uniqueStation = [
-  (v) => !!v || 'Please select an option.',
-  (v) => v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
+  (v) => !v || v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
 ]
 
-function onSubmit() {
-  console.log(form);
+async function onSubmit(e) {
+  if(!(await e).valid) return
+  axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
+    {params: { city_uid: form.fromCity.city_uid, dest_city_uid: form.toCity.city_uid, station: form.fromStation.station_uid, dest_station: form.toStation.station_uid, date: form.date, time: form.time}}
+    ).then(rsp => {
+      if(rsp.status == 200) routes.value = rsp.data.tickets
+    }).catch(e => console.error(e))
 }
 
 function getName(item){
@@ -103,6 +107,7 @@ function getName(item){
 }
 
 async function getStartStation(city){
+  if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) startStations.value = rsp.data.stations
@@ -110,6 +115,7 @@ async function getStartStation(city){
 }
 
 async function getDestStation(city){
+  if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) destStations.value = rsp.data.stations

@@ -8,19 +8,32 @@
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 
-const props = defineProps(['stations', 'route'])
+const props = defineProps(['stations', 'isRoute', 'pointer', 'togglePan'])
 const mapRef = ref(null);
+
 let map = null;
 let markers = [];
 let points = [];
+let customPoint = [];
+let currentLocation = [];
+
+function panTo(coord) {
+  if(map) map.panTo(coord);
+}
+
+function addCustomPointer(coordinates){
+  if(!coordinates.length) return
+  customPoint = new mapboxgl.Marker({ color: "#2979FF" }).setLngLat(coordinates).addTo(map);
+  map.panTo(coordinates)
+}
 
 function addStations(array) {
   if(!array.length) return;
   array.forEach(station => {
-    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat(station.coordinates).addTo(map));
-    points.push(station.coordinates);
+    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).addTo(map));
+    points.push([station.longitude, station.latitude]);
   })
-  map.panTo(array[0].coordinates)
+  if(props.togglePan) map.panTo([array[0].longitude, array[0].latitude])
 }
 
 function addRoute() {
@@ -37,6 +50,16 @@ function addRoute() {
   map.getSource('route').setData(data)
   map.panTo(points[0])
 
+}
+
+defineExpose({ panTo })
+
+if(navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition((p) => {
+    currentLocation = [p.coords.longitude, p.coords.latitude]
+    customPoint = new mapboxgl.Marker({ color: "#2979FF" }).setLngLat(currentLocation).addTo(map);
+    map.panTo(currentLocation)
+  });
 }
 
 onMounted(() => {
@@ -60,7 +83,7 @@ onMounted(() => {
       }
     });
     if(props.stations) addStations(props.stations)
-    if(props.route){
+    if(props.isRoute){
       map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -82,10 +105,9 @@ onBeforeUpdate(() => {
   markers.forEach(marker => marker.remove())
   markers = []
   points = []
+  if(customPoint.length) customPoint = []
   addStations(props.stations)
-  if(props.route) {
-    addRoute()
-  }
+  if(props.isRoute) addRoute()
 })
 
 onUnmounted(() => {

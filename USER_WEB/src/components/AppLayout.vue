@@ -50,7 +50,7 @@ const isNavOpen = ref(document.body.offsetWidth >= 1280)
 <style scoped>
 .content {
   padding: 15px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 .logo {

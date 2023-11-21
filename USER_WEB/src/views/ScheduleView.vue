@@ -34,7 +34,7 @@
       </tbody>
       <h3 v-else class="fallback"> Here will appear the timetable </h3>
     </v-table>
-    <Map v-if="route" :stations="route" :route="true"/>
+    <Map v-if="route" :stations="route" :isRoute="true"/>
   </AppLayout>
 </template>
 
@@ -49,17 +49,7 @@ const cities = ref([]);
 const stations = ref([]);
 const buses = ref([]);
 
-const timetable = ref([
-    {
-      name: 'Weekday',
-      departure_times: ['8:00', '9:30', '11:00', '12:00', '14:30', '15:00', '16:00', '17:30']
-    },
-    {
-      name: 'Weekend',
-      departure_times: ['8:00', '11:00', '14:30', '16:00', '18:30']
-    }
-  ])
-
+const timetable = ref([])
 const route = ref([])
 
 const form = reactive({
@@ -88,10 +78,10 @@ async function getBuses(station) {
   buses.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
 }
 
-async function onSubmit() {
+async function onSubmit(e) {
+  if(!(await e).valid) return
   timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.bus.route_uid }})).data
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.bus.route_uid }})).data.stations
-  console.log(route.value);
 }
 
 onMounted(() => {

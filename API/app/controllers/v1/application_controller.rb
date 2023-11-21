@@ -8,26 +8,16 @@ class V1::ApplicationController < ApplicationController
 
    def get_stations 
     new_data = []
-    stations = Station.all.map do |station|
-    new_data << { station_uid: station.station_uid,
-                     name: station.name, 
-                     address: station.address,
-                     coordinates: [station.longitude, station.latitude] }
-    end
-    render json: { stations: new_data }
+    stations = Station.all
+    render json: { stations: stations }
    end
 
    def get_stations_by_city
     city = City.find_by(city_uid: params[:city_uid])
     if city
       new_data = []
-      stations = city.stations.map do |station|
-      new_data << { station_uid: station.station_uid,
-                     name: station.name, 
-                     address: station.address,
-                     coordinates: [station.longitude, station.latitude] }
-      end
-      render json: {stations: new_data}
+      stations = city.stations
+      render json: {stations: stations}
     else
       render json: { error: "Could not find the city!" }, status: :not_found
     end

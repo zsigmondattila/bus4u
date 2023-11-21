@@ -7,8 +7,17 @@ class V1::ApplicationController < ApplicationController
    end
 
    def get_stations 
-    stations = Station.all
-    render json: { stations: stations }
+    new_data = []
+    stations = Station.all.map do |station|
+    city = City.find_by(city_uid: station.city_uid)
+    new_data << { station_uid: station.station_uid,
+                   name: station.name, 
+                   city: city.name,
+                   address: station.address,
+                   longitude: station.longitude, 
+                   latitude: station.latitude, }
+    end
+    render json: {stations: new_data}
    end
 
    def get_stations_by_city
@@ -19,7 +28,8 @@ class V1::ApplicationController < ApplicationController
       new_data << { station_uid: station.station_uid,
                      name: station.name, 
                      address: station.address,
-                     coordinates: [station.longitude, station.latitude] }
+                     longitude: station.longitude, 
+                     latitude: station.latitude, }
       end
       render json: {stations: new_data}
     else
@@ -67,24 +77,32 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-    def get_departure_times_for_station_in_route
-      route = Route.find_by(route_uid: params[:route_uid])
-      station = Station.find_by(station_uid: params[:station_uid])
-    
-      if route && station
-        route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
-    
-        if route_stations.any?
-          departure_times = route_stations.pluck(:departure_time)
-          render json: { name: route_stations.first.name ,departure_times: departure_times.map { |time| time.strftime("%H:%M") } }
-        else
-          render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
+  def get_departure_times_for_station_in_route
+    route = Route.find_by(route_uid: params[:route_uid])
+    station = Station.find_by(station_uid: params[:station_uid])
+  
+    if route && station
+      route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
+  
+      if route_stations.any?
+        grouped_data = route_stations.group_by(&:name).transform_values do |rs_array|
+          rs_array.pluck(:departure_time).map { |time| time.strftime("%H:%M") }
         end
+  
+        result = grouped_data.map do |name, departure_times|
+          { 'name' => name, 'departure_times' => departure_times }
+        end
+  
+        render json: result
       else
-        render json: { error: "Station or route not found!" }, status: :not_found
+        render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
       end
+    else
+      render json: { error: "Station or route not found!" }, status: :not_found
+    end
   end
-
+  
+  
     #Requests to send a confirmation email
     def send_verification_email
       user_email = params[:user_email]
@@ -100,7 +118,7 @@ class V1::ApplicationController < ApplicationController
           email_verification = EmailVerification.find_by(email: user_email)
           code = email_verification.verification_code
           VerificationMailer.verification_mailer(user_email, code).deliver_now
-          render json: { email: "Email sent succesfully" }, status: :ok
+          render json: { success: "Email sent succesfully" }, status: :ok
         else
           render json: { error: "Error generating the code" }, status: :accepted
         end    

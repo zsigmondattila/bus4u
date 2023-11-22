@@ -14,7 +14,7 @@
       <template #append v-else>
         <span>{{ user.lastName }}</span>
         <v-btn title="Account" icon="mdi-account-circle-outline"></v-btn>
-        <v-btn title="Logout" icon="mdi-logout" @click="user.signOut"></v-btn>
+        <v-btn title="Logout" icon="mdi-logout" @click="logout"></v-btn>
       </template>
     </v-app-bar>
 
@@ -31,6 +31,9 @@
 
     <v-main>
       <div class="content">
+        <v-snackbar v-model="isLoggedOut">
+          Logout successfull
+        </v-snackbar>
         <slot></slot>
       </div>
     </v-main>
@@ -44,7 +47,12 @@ import { userStore } from '@/stores/userStore';
 import LogoWide from './LogoWide.vue';
 
 const user = userStore()
+const isLoggedOut = ref(false)
 const isNavOpen = ref(document.body.offsetWidth >= 1280)
+
+function logout() {
+  user.signOut().then(() => isLoggedOut.value = true)
+}
 </script>
 
 <style scoped>

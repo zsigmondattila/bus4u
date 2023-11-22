@@ -33,8 +33,14 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-list v-if="routes.length" lines="two" border rounded class="py-0 my-10">
-        <RouteListElement v-for="route in routes" :key="route.id" :trip="route"></RouteListElement>
+    <v-list v-if="routes && !isLoadingRoutes" lines="two" border rounded class="py-0 my-10">
+      <RouteListElement v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
+      <p v-if="routes && !routes.length" class="fallback"> No available trips found with the data given. </p>
+    </v-list>
+    <v-list v-else-if="isLoadingRoutes" border rounded>
+      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
+      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
+      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
     </v-list>
   </AppLayout>
 </template>
@@ -46,36 +52,13 @@ import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
 
+const isLoadingRoutes = ref(false)
+
 const date = new Date();
 const startStations = ref([]);
 const destStations = ref([]);
 const cities = ref([])
-const routes = ref([
-  {
-    id: 1,
-    name: '44',
-    time: '10:40',
-    from: 'Sapientia',
-    to: 'Combinat',
-    price: 2
-  },
-  {
-    id: 2,
-    name: '26',
-    time: '10:55',
-    from: 'Sapientia',
-    to: 'Aleea Carpatii',
-    price: 3
-  },
-  {
-    id: 3,
-    name: '27',
-    time: '11:15',
-    from: 'Sapientia',
-    to: 'Poli 2',
-    price: 2
-  }
-]);
+const routes = ref(null);
 
 const form = reactive({
   fromCity: '',
@@ -95,10 +78,15 @@ const uniqueStation = [
 
 async function onSubmit(e) {
   if(!(await e).valid) return
+  isLoadingRoutes.value = true
   axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
-    {params: { city_uid: form.fromCity.city_uid, dest_city_uid: form.toCity.city_uid, station: form.fromStation.station_uid, dest_station: form.toStation.station_uid, date: form.date, time: form.time}}
+    { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}}
     ).then(rsp => {
-      if(rsp.status == 200) routes.value = rsp.data.tickets
+      console.log(rsp.data);
+      if(rsp.status == 200) {
+        routes.value = rsp.data.tickets
+        isLoadingRoutes = false
+      }
     }).catch(e => console.error(e))
 }
 
@@ -129,5 +117,10 @@ axios.get('https://bus4u.fast-table.com/v1/get_cities')
 </script>
 
 <style scoped>
+.fallback {
+  opacity: .5;
+  text-align: center;
+  margin: 15px;
+}
 
 </style>

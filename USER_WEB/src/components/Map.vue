@@ -1,58 +1,71 @@
 <template>
-  <div ref="mapRef" class="map rounded mt-10">
-
-  </div>
+  <div ref="mapRef" class="map rounded mt-10"></div>
 </template>
 
 <script setup>
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
+import axios from 'axios';
 
-const props = defineProps(['stations', 'isRoute', 'pointer', 'togglePan'])
+const props = defineProps(['stations', 'isRoute', 'panTo'])
 const mapRef = ref(null);
 
 let map = null;
 let markers = [];
-let points = [];
-let customPoint = [];
+let customPoint = null;
 let currentLocation = [];
+let waypoints = [];
 
-function panTo(coord) {
-  if(map) map.panTo(coord);
-}
-
-function addCustomPointer(coordinates){
-  if(!coordinates.length) return
-  customPoint = new mapboxgl.Marker({ color: "#2979FF" }).setLngLat(coordinates).addTo(map);
-  map.panTo(coordinates)
+function resetRoute() {
+  const data = {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+      'type': 'LineString',
+      'coordinates': waypoints
+    }
+  }
+  if(map.getSource('route')) map.getSource('route').setData(data)
 }
 
 function addStations(array) {
-  if(!array.length) return;
   array.forEach(station => {
     markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).addTo(map));
-    points.push([station.longitude, station.latitude]);
   })
-  if(props.togglePan) map.panTo([array[0].longitude, array[0].latitude])
+  if(props.panTo && props.panTo.length) {
+    map.setZoom(11).panTo(props.panTo)
+  }
 }
 
-function addRoute() {
-  if(!points.length) return;
+async function addRoute() {
+  waypoints = []
+  if(props.stations.length > 25) {
+    props.stations.forEach(station => {
+      waypoints.push([station.longitude, station.latitude]);
+    })
+  } else {
+    let str = 'https://api.mapbox.com/directions/v5/mapbox/driving/'
+    props.stations.forEach(station => {
+      if(station != props.stations[0]) str += ';'
+      str += `${station.longitude},${station.latitude}`
+    })
+    let way = await axios.get(str, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
+    if(way.data) waypoints = way.data.routes[0].geometry.coordinates
+  }
 
   const data = {
     'type': 'Feature',
     'properties': {},
     'geometry': {
       'type': 'LineString',
-      'coordinates': points
+      'coordinates': waypoints
     }
   }
-  map.getSource('route').setData(data)
-  map.panTo(points[0])
-
+  if(map.getSource('route')){ 
+    map.getSource('route').setData(data)
+    if(!props.panTo || !props.panTo.length) map.setZoom(11).panTo(waypoints[0])
+  }
 }
-
-defineExpose({ panTo })
 
 if(navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((p) => {
@@ -78,7 +91,7 @@ onMounted(() => {
         'properties': {},
         'geometry': {
           'type': 'LineString',
-          'coordinates': points
+          'coordinates': waypoints
         }
       }
     });
@@ -94,7 +107,7 @@ onMounted(() => {
         },
         'paint': {
           'line-color': '#EF6C00',
-          'line-width': 8
+          'line-width': 5
         }
       });
     }
@@ -104,10 +117,11 @@ onMounted(() => {
 onBeforeUpdate(() => {
   markers.forEach(marker => marker.remove())
   markers = []
-  points = []
-  if(customPoint.length) customPoint = []
-  addStations(props.stations)
-  if(props.isRoute) addRoute()
+  if(!props.stations.length) resetRoute();
+  else {
+    addStations(props.stations)
+    if(props.isRoute) addRoute()
+  }
 })
 
 onUnmounted(() => {

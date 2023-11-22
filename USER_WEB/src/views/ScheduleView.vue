@@ -3,7 +3,7 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Departure timetable
+        Departure timetable for the selected route
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
@@ -26,15 +26,15 @@
     </v-form>
 
     <v-table class="border rounded">
-      <tbody v-if="timetable">
+      <tbody v-if="timetable.length">
         <tr v-for="day in timetable" :key="day.name">
-          <td>{{ day.name }}</td>
-          <td v-for="time in day.departure_times" :key="time">{{ time }}</td>
+          <td class="font-weight-medium">{{ day.name }}</td>
+          <td v-for="time in day.departure_times" :key="time" :max-width="2">{{ time }}</td>
         </tr>
       </tbody>
-      <h3 v-else class="fallback"> Here will appear the timetable </h3>
+      <v-skeleton-loader v-else type="table-row@2" :boilerplate="!isLoadingTable"></v-skeleton-loader>
     </v-table>
-    <Map v-if="route" :stations="route" :isRoute="true"/>
+    <Map v-if="route" :stations="route" :isRoute="true" :pan-to="center"/>
   </AppLayout>
 </template>
 
@@ -45,9 +45,12 @@ import AppLayout from "@/components/AppLayout.vue"
 import SectionTitle from "@/components/SectionTitle.vue"
 import Map from "../components/Map.vue";
 
+const isLoadingTable = ref(false)
+
 const cities = ref([]);
 const stations = ref([]);
 const buses = ref([]);
+const center = ref([]);
 
 const timetable = ref([])
 const route = ref([])
@@ -71,16 +74,22 @@ async function getCities() {
 }
 
 async function getStations(city) {
-  stations.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
+  form.station = ''
+  form.bus = ''
+  if(city) stations.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
 }
 
 async function getBuses(station) {
-  buses.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
+  form.bus = ''
+  if(station) buses.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
+  center.value = [station.longitude, station.latitude]
 }
 
 async function onSubmit(e) {
   if(!(await e).valid) return
+  isLoadingTable.value = true
   timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.bus.route_uid }})).data
+  isLoadingTable.value = false
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.bus.route_uid }})).data.stations
 }
 
@@ -90,9 +99,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.fallback {
-  opacity: .5;
-  text-align: center;
-  margin: 10px;
-}
 </style>

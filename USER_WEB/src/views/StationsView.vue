@@ -10,10 +10,10 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="cities" :item-props="getName" label="City" :disabled="!!form.bus" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" @update:modelValue="getBuses"></v-autocomplete>
+            <v-autocomplete :items="cities" :item-props="getName" label="City" :disabled="!!form.bus" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" @update:modelValue="getBuses" clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="buses" :item-props="getName" label="Bus" :disabled="!!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto"></v-autocomplete>
+            <v-autocomplete :items="buses" :item-props="getName" label="Bus" :disabled="!!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto" clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Filter </v-btn>
@@ -22,7 +22,7 @@
       </v-container>
     </v-form>
 
-    <Map ref="mapBox" :stations="stations" :toggle-pan="autoPan"/>
+    <Map ref="mapBox" :stations="stations" :pan-to="center"/>
   </AppLayout>
 </template>
 
@@ -38,7 +38,7 @@ const form = reactive({
   bus: '',
 })
 
-const autoPan = ref(false)
+const center = ref(false)
 const cities = ref([])
 const buses = ref([])
 const stations = ref([])
@@ -53,7 +53,7 @@ function onSubmit() {
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
-        autoPan.value = true
+        if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
       }
     }).catch(e => console.error(e))
   } else if(form.bus) {
@@ -61,9 +61,14 @@ function onSubmit() {
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
-        autoPan.value = true
+        if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
       }
     }).catch(e => console.error(e))
+  } else {
+    axios.get('https://bus4u.fast-table.com/v1/get_stations')
+      .then(rsp => {
+          if(rsp.status == 200) stations.value = rsp.data.stations
+        }).catch(e => console.error(e))
   }
 }
 

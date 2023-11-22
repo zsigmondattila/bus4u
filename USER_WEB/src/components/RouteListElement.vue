@@ -2,14 +2,13 @@
   <div class="border d-flex flex-wrap justify-center">
     <v-list-item class="flex-1-1"
       density="compact"
-      :title="`${trip.time} • ${trip.name}`"
-      :subtitle="`${trip.from} ➞ ${trip.to}`"
+      :subtitle="`${trip.start_station} ➞ ${trip.destination_station}`"
       prepend-icon="mdi-bus">
       <template #title>
-        <b>{{ trip.time }}</b> • {{trip.name}}
+        <b>{{ trip.departure_times[0].departure_times[0] }}</b> • {{trip.route_name}}
       </template>
       <template #append>
-          <span class="text-body-1"> <b>{{ trip.price }}</b> Lei </span>
+          <span class="text-body-1"> <b>{{ trip.ticket_price }}</b> Lei </span>
         </template>
     </v-list-item>
     <div class="flex-0-0-100 flex-sm-0-0 pa-3">

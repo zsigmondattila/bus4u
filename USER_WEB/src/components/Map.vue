@@ -1,5 +1,5 @@
 <template>
-  <div ref="mapRef" class="map rounded my-15">
+  <div ref="mapRef" class="map rounded mt-10">
 
   </div>
 </template>
@@ -8,62 +8,89 @@
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 
-const props = defineProps(['coordinateArray'])
+const props = defineProps(['stations', 'route'])
 const mapRef = ref(null);
-const map = ref(null);
+let map = null;
+let markers = [];
+let points = [];
+
+function addStations(array) {
+  if(!array.length) return;
+  array.forEach(station => {
+    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat(station.coordinates).addTo(map));
+    points.push(station.coordinates);
+  })
+  map.panTo(array[0].coordinates)
+}
+
+function addRoute() {
+  if(!points.length) return;
+
+  const data = {
+    'type': 'Feature',
+    'properties': {},
+    'geometry': {
+      'type': 'LineString',
+      'coordinates': points
+    }
+  }
+  map.getSource('route').setData(data)
+  map.panTo(points[0])
+
+}
 
 onMounted(() => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
-  map.value = new mapboxgl.Map({
+  map = new mapboxgl.Map({
     container: mapRef.value,
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [24.57143496138591, 46.53342927867064],
     zoom: 12,
   });
-  map.value.on('load', () => {
-    map.value.addSource('route', {
+  map.on('load', () => {
+    map.addSource('route', {
       'type': 'geojson',
       'data': {
         'type': 'Feature',
         'properties': {},
         'geometry': {
           'type': 'LineString',
-          'coordinates': props.coordinateArray
+          'coordinates': points
         }
       }
     });
-    map.value.addLayer({
-      'id': 'route',
-      'type': 'line',
-      'source': 'route',
-      'layout': {
-        'line-join': 'round',
-        'line-cap': 'round'
-      },
-      'paint': {
-        'line-color': '#EF6C00',
-        'line-width': 8
-      }
-    });
+    if(props.stations) addStations(props.stations)
+    if(props.route){
+      map.addLayer({
+        'id': 'route',
+        'type': 'line',
+        'source': 'route',
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#EF6C00',
+          'line-width': 8
+        }
+      });
+    }
   });
 })
 
 onBeforeUpdate(() => {
-  const data = {
-    'type': 'Feature',
-    'properties': {},
-    'geometry': {
-      'type': 'LineString',
-      'coordinates': props.coordinateArray
-    }
+  markers.forEach(marker => marker.remove())
+  markers = []
+  points = []
+  addStations(props.stations)
+  if(props.route) {
+    addRoute()
   }
-  map.value.getSource('route').setData(data)
-  map.panTo(props.coordinateArray[0])
 })
 
 onUnmounted(() => {
-  map.value.remove();
-  map.value = null;
+  map.remove();
+  map = null;
 })
 </script>
 

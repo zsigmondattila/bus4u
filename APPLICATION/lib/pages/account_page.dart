@@ -20,7 +20,7 @@ class _AccountPageState extends State<AccountPage> {
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (BuildContext context) {
-                  return LoginPage();
+                  return const LoginPage();
                 }),
               );
             },

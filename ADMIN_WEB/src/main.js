@@ -11,9 +11,18 @@ import { createVuetify } from 'vuetify'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import colors from 'vuetify/lib/util/colors'
 
+const appColor = colors.deepOrange;
+
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
+      density: 'compact',
+      color: appColor.darken1
+    },
+    VSelect: {
+      density: 'comfortable'
+    },
+    VAutocomplete: {
       density: 'comfortable'
     }
   },
@@ -30,7 +39,7 @@ const vuetify = createVuetify({
       light: {
         dark: false,
         colors: {
-          primary: colors.deepOrange.darken3,
+          primary: colors.deepOrange.darken2,
           secondary: colors.deepOrange.lighten3,
           accent: colors.deepOrange.accent2,
           adjacent: '#bc1251'

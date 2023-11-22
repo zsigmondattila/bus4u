@@ -25,13 +25,13 @@ Bus.create(company_uid: transloc.company_uid, license_plate: "MS33ALS", brand: "
 
 
 #CREATING ADMINS FOR THE COMPANIES
-Admin.create(company_uid: vandor.company_uid, email: "office@vandortrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "hompoth.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "csatabela@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "magdi92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "orsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "ninjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
-Admin.create(company_uid: vandor.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "office@vandortrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "hompoth.krisztian@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "csatabela@gmail.com", firstname: "Béla", lastname: "Csata", role: "driver", phone_number: "0752358475", address: "Mun. Gheorgheni str. Ghindei nr. 1", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "magdi92@gmail.com", firstname: "Magdolna", lastname: "Kovács", role: "driver", phone_number: "0739489586", address: "Mun. Gheorgheni str. Stadionului nr. 4", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "orsospista11@gmail.com", firstname: "István", lastname: "Orsós", role: "driver", phone_number: "0755928111", address: "Com. Ciumani str. Inczelaka nr. 1398", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "ninjanarch@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+Admin.create(company_uid: vandor.company_uid, email: "karoly_elekes@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
 
 Admin.create(company_uid: transloc.company_uid, email: "office@transloctrans.ro", firstname: "Elemér", lastname: "Kecskeméti", role: "boss", phone_number: "0728493883", address: "Com. Joseni str. Principala nr. 19", password: "aaaaaa", password_confirmation: "aaaaaa")
 Admin.create(company_uid: transloc.company_uid, email: "hompoth.krisztian2@gmail.com", firstname: "Krisztián", lastname: "Orsós", role: "manager", phone_number: "0761837888", address: "Com. Joseni str. Faluköze nr. 1", password: "aaaaaa", password_confirmation: "aaaaaa")
@@ -42,20 +42,35 @@ Admin.create(company_uid: transloc.company_uid, email: "ninjanarc2h@yahoo.com", 
 Admin.create(company_uid: transloc.company_uid, email: "2@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
 #CREATING CITIES
-ciumani = City.create(name: "Ciumani", zip_code: "537050");
-joseni = City.create(name: "Joseni", zip_code: "537050");
-gheorgheni = City.create(name: "Gheorgheni", zip_code: "537050");
+ciumani = City.create(name: "Ciumani", zip_code: "537050")
+joseni = City.create(name: "Joseni", zip_code: "537150")
+gheorgheni = City.create(name: "Gheorgheni", zip_code: "117050")
+suseni = City.create(name: "Suseni", zip_code: "274922")
+valeast = City.create(name: "Valea stramba", zip_code: "582299")
+chileni = City.create(name: "Chileni", zip_code: "839288")
+tgm = City.create(name: "Targu mures", zip_code: "129138")
 
 #CREATING STATIONS
-Station.create(name: "Csomafalva központ", latitude: 46.6791797, longitude: 25.515264, city: ciumani, address: "Str. Principala nr. 89")
-Station.create(name: "Csomafalva szászfalu", latitude: 46.6729104, longitude: 25.4547497, city: ciumani, address: "Str. Tötés nr. 18")
-Station.create(name: "Alfalu központ", latitude: 46.7002046, longitude: 25.493437, city: joseni, address: "Str. Ciumani nr. 88")
-Station.create(name: "Alfalu lengyár", latitude: 46.70528, longitude: 25.5151177, city: joseni, address: "Str. Gheorgheni nr. 3")
-Station.create(name: "Gyergyó állomás", latitude: 46.7164726, longitude: 25.5679183, city: gheorgheni, address: "Str. Garii nr. 16")
-Station.create(name: "Gyergyó Maros hotel", latitude: 46.7209535, longitude: 25.5823401, city: gheorgheni, address: "Bul. Fratiei nr. 65")
+Station.create(name: "Csomafalva központ", latitude: 46.6791586975964, longitude: 25.51624828632996, city: ciumani, address: "Str. Principala nr. 89")
+Station.create(name: "Csomafalva szászfalu", latitude: 46.67291081146523, longitude: 25.49966790502754, city: ciumani, address: "Str. Töltés nr. 18")
+Station.create(name: "Alfalu központ", latitude: 46.701383449930674, longitude: 25.504336705477453, city: joseni, address: "Str. Ciumani nr. 88")
+Station.create(name: "Alfalu lengyár", latitude: 46.7061202738582, longitude: 25.527403454222306, city: joseni, address: "Str. Gheorgheni nr. 3")
+Station.create(name: "Gyergyó állomás", latitude: 46.719521757528696, longitude: 25.5740503955354, city: gheorgheni, address: "Str. Garii nr. 16")
+Station.create(name: "Gyergyó Maros hotel", latitude: 46.722678965669736, longitude: 25.59475044928773, city: gheorgheni, address: "Bul. Fratiei nr. 65")
+Station.create(name: "Gyergyó központ", latitude: 46.720802603020786, longitude: 25.599988435400288, city: gheorgheni, address: "Pta. Libertatii nr. 26")
+Station.create(name: "Tekerőpatak központ", latitude: 46.69237759383521, longitude: 25.59493211244968, city: valeast, address: "Str. Principala nr. 12")
+Station.create(name: "Kilyénfalva központ", latitude: 46.68281753325698, longitude: 25.572622649671338, city: chileni, address: "Str. Suseni nr. 65")
+Station.create(name: "Újfalu központ", latitude: 46.6689490666233, longitude: 25.556304911675166, city: suseni, address: "Str. Piac nr. 2")
+Station.create(name: "Újfalu temető", latitude: 46.67022625259149, longitude: 25.54420516094741, city: suseni, address: "Str. Ciumani nr. 26")
+
 
 #CREATE A ROUTE
-Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid, basic_fare: 0);
+Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid, nr_of_stations: 10, basic_fare: 0);
+Route.create(name: "Gyergyó körjárat", company_uid: vandor.company_uid, nr_of_stations: 10, basic_fare: 0);
+Route.create(name: "Gyergyó-Marosvásárhely", company_uid: vandor.company_uid, basic_fare: 0);
+Route.create(name: "26", company_uid: transloc.company_uid, basic_fare: 2);
+Route.create(name: "27", company_uid: transloc.company_uid, basic_fare: 2);
+Route.create(name: "44", company_uid: transloc.company_uid, basic_fare: 2);
 
 route = Route.find_by(name: "Szászfalu-Gyergyó");
 RouteStation.create(route: route, departure_time: Time.parse("06:00"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 1, fare: 0)
@@ -78,7 +93,6 @@ RouteStation.create(route: route, departure_time: Time.parse("07:34"), station: 
 RouteStation.create(route: route, departure_time: Time.parse("07:42"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekday", sequence: 8, fare: 3)
 RouteStation.create(route: route, departure_time: Time.parse("07:50"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 9, fare: 3)
 RouteStation.create(route: route, departure_time: Time.parse("07:56"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekday", sequence: 10, fare: 4)
-RouteStation.create(route: route, departure_time: Time.parse("08:00"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 11, fare: 4)
 RouteStation.create(route: route, departure_time: Time.parse("08:00"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 1, fare: 0)
 RouteStation.create(route: route, departure_time: Time.parse("08:05"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekday", sequence: 2, fare: 2)
 RouteStation.create(route: route, departure_time: Time.parse("08:12"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 3, fare: 4)
@@ -209,6 +223,58 @@ RouteStation.create(route: route, departure_time: Time.parse("20:34"), station: 
 RouteStation.create(route: route, departure_time: Time.parse("20:42"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekday", sequence: 8, fare: 3)
 RouteStation.create(route: route, departure_time: Time.parse("20:50"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 9, fare: 3)
 RouteStation.create(route: route, departure_time: Time.parse("20:56"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekday", sequence: 10, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("07:00"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekend", sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("07:05"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekend", sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("07:12"), station: Station.find_by(name: "Alfalu központ"), name: "Weekend", sequence: 3, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("07:18"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekend", sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:26"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekend", sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), name: "Weekend", sequence: 6, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("07:34"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekend", sequence: 7, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("07:42"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekend", sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:50"), station: Station.find_by(name: "Alfalu központ"), name: "Weekend", sequence: 9, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:56"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekend", sequence: 10, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("18:00"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekend", sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("18:05"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekend", sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("18:12"), station: Station.find_by(name: "Alfalu központ"), name: "Weekend", sequence: 3, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("18:18"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekend", sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("18:26"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekend", sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("18:30"), station: Station.find_by(name: "Gyergyó Maros hotel"), name: "Weekend", sequence: 6, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("18:34"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekend", sequence: 7, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("18:42"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekend", sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("18:50"), station: Station.find_by(name: "Alfalu központ"), name: "Weekend", sequence: 9, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("18:56"), station: Station.find_by(name: "Csomafalva szászfalu"), name: "Weekend", sequence: 10, fare: 4)
+
+route = Route.find_by(name: "Gyergyó körjárat");
+RouteStation.create(route: route, departure_time: Time.parse("06:30"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekday", sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("06:34"), station: Station.find_by(name: "Gyergyó Maros hotel"), name: "Weekday", sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("06:38"), station: Station.find_by(name: "Gyergyó központ"), name: "Weekday", sequence: 3, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("06:43"), station: Station.find_by(name: "Tekerőpatak központ"), name: "Weekday", sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("06:49"), station: Station.find_by(name: "Kilyénfalva központ"), name: "Weekday", sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:00"), station: Station.find_by(name: "Újfalu központ"), name: "Weekday", sequence: 6, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("07:06"), station: Station.find_by(name: "Újfalu temető"), name: "Weekday", sequence: 7, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("07:14"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("07:22"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 9, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("07:26"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekday", sequence: 10, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("12:30"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekday", sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("12:34"), station: Station.find_by(name: "Gyergyó Maros hotel"), name: "Weekday", sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("12:38"), station: Station.find_by(name: "Gyergyó központ"), name: "Weekday", sequence: 3, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("12:43"), station: Station.find_by(name: "Tekerőpatak központ"), name: "Weekday", sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("12:49"), station: Station.find_by(name: "Kilyénfalva központ"), name: "Weekday", sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("13:00"), station: Station.find_by(name: "Újfalu központ"), name: "Weekday", sequence: 6, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("13:06"), station: Station.find_by(name: "Újfalu temető"), name: "Weekday", sequence: 7, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("13:14"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("13:22"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 9, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("13:26"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekday", sequence: 10, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("18:30"), station: Station.find_by(name: "Gyergyó állomás"), name: "Weekday", sequence: 1, fare: 0)
+RouteStation.create(route: route, departure_time: Time.parse("18:34"), station: Station.find_by(name: "Gyergyó Maros hotel"), name: "Weekday", sequence: 2, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("18:38"), station: Station.find_by(name: "Gyergyó központ"), name: "Weekday", sequence: 3, fare: 1)
+RouteStation.create(route: route, departure_time: Time.parse("18:43"), station: Station.find_by(name: "Tekerőpatak központ"), name: "Weekday", sequence: 4, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("18:49"), station: Station.find_by(name: "Kilyénfalva központ"), name: "Weekday", sequence: 5, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("19:00"), station: Station.find_by(name: "Újfalu központ"), name: "Weekday", sequence: 6, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("19:06"), station: Station.find_by(name: "Újfalu temető"), name: "Weekday", sequence: 7, fare: 2)
+RouteStation.create(route: route, departure_time: Time.parse("19:14"), station: Station.find_by(name: "Csomafalva központ"), name: "Weekday", sequence: 8, fare: 3)
+RouteStation.create(route: route, departure_time: Time.parse("19:22"), station: Station.find_by(name: "Alfalu központ"), name: "Weekday", sequence: 9, fare: 4)
+RouteStation.create(route: route, departure_time: Time.parse("19:26"), station: Station.find_by(name: "Alfalu lengyár"), name: "Weekday", sequence: 10, fare: 2)
 
 #CREATING TICKETS
 

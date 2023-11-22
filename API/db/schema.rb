@@ -108,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
   create_table "routes", primary_key: "route_uid", id: :string, force: :cascade do |t|
     t.string "company_uid"
     t.string "name"
+    t.integer "nr_of_stations"
     t.decimal "basic_fare"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

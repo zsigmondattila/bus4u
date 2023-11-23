@@ -1,7 +1,7 @@
 import 'package:bus4u/components/my_text_field.dart';
 import 'package:bus4u/components/square_tile.dart';
-import 'package:bus4u/postman/api.dart';
-import 'dart:convert';
+//import 'package:bus4u/postman/api_service.dart';
+//import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class RegisterPage extends StatelessWidget {
   final repassController = TextEditingController();
 
   //register method
-  _register(context) async {
+ /* _register(context) async {
     var data = {
       'name': nameController.text,
       'email': emailController.text,
@@ -30,7 +30,7 @@ class RegisterPage extends StatelessWidget {
             },
             );
     }
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +104,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      _register(context);
+                     // _register(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,

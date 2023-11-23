@@ -55,7 +55,7 @@ function onSubmit() {
         stations.value = rsp.data.stations
         if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
       }
-    }).catch(e => console.error(e))
+    }).catch(() => stations.value = [])
   } else if(form.bus) {
     axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', {params: { route_uid: form.bus.route_uid }})
     .then(rsp => {
@@ -63,12 +63,12 @@ function onSubmit() {
         stations.value = rsp.data.stations
         if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
       }
-    }).catch(e => console.error(e))
+    }).catch(() => stations.value = [])
   } else {
     axios.get('https://bus4u.fast-table.com/v1/get_stations')
       .then(rsp => {
           if(rsp.status == 200) stations.value = rsp.data.stations
-        }).catch(e => console.error(e))
+        }).catch(() => stations.value = [])
   }
 }
 
@@ -76,23 +76,23 @@ async function getBuses() {
   axios.get('https://bus4u.fast-table.com/v1/get_routes')
     .then(rsp => {
       if(rsp.status == 200) buses.value = rsp.data.routes
-    }).catch(e => console.error(e))
+    }).catch(() => buses.value = [])
 }
 
 onMounted(() => {
   axios.get('https://bus4u.fast-table.com/v1/get_stations')
   .then(rsp => {
       if(rsp.status == 200) stations.value = rsp.data.stations
-    }).catch(e => console.error(e))
+    }).catch(() => stations.value = [])
 
   axios.get('https://bus4u.fast-table.com/v1/get_cities')
     .then(rsp => {
       if(rsp.status == 200) cities.value = rsp.data.cities
-    }).catch(e => console.error(e))
+    }).catch(() => cities.value = [])
   axios.get('https://bus4u.fast-table.com/v1/get_routes')
     .then(rsp => {
       if(rsp.status == 200) buses.value = rsp.data.routes
-    }).catch(e => console.error(e))
+    }).catch(() => buses.value = [])
 })
 </script>
 

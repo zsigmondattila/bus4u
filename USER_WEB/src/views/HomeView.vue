@@ -33,14 +33,12 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-list v-if="routes && !isLoadingRoutes" lines="two" border rounded class="py-0 my-10">
-      <RouteListElement v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
-      <p v-if="routes && !routes.length" class="fallback"> No available trips found with the data given. </p>
-    </v-list>
-    <v-list v-else-if="isLoadingRoutes" border rounded>
-      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
-      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
-      <v-skeleton-loader type="list-item-avatar-two-line"></v-skeleton-loader>
+    <v-list lines="two" border rounded class="py-0 my-10">
+      <div v-if="!routes">
+        <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
+      </div>
+      <p v-else-if="!routes.length" class="fallback"> No available trips found with the data given. </p>
+      <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
     </v-list>
   </AppLayout>
 </template>
@@ -80,12 +78,12 @@ async function onSubmit(e) {
   if(!(await e).valid) return
   isLoadingRoutes.value = true
   axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
-    { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}}
+    { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid || '', destination_station_uid: form.toStation.station_uid || '', date: form.date, time: form.time}}
     ).then(rsp => {
       console.log(rsp.data);
       if(rsp.status == 200) {
-        routes.value = rsp.data.tickets
-        isLoadingRoutes = false
+        routes.value = rsp.data.routes
+        isLoadingRoutes.value = false
       }
     }).catch(e => console.error(e))
 }
@@ -99,7 +97,7 @@ async function getStartStation(city){
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) startStations.value = rsp.data.stations
-    }).catch(e => console.error(e))
+    }).catch(() => startStations.value = [])
 }
 
 async function getDestStation(city){
@@ -107,13 +105,13 @@ async function getDestStation(city){
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) destStations.value = rsp.data.stations
-    }).catch(e => console.error(e))
+    }).catch(() => destStations.value = [])
 }
 
 axios.get('https://bus4u.fast-table.com/v1/get_cities')
   .then((rsp) => {
     cities.value = rsp.data.cities
-  }).catch(err => console.error(err))
+  }).catch(() => cities.value = [])
 </script>
 
 <style scoped>

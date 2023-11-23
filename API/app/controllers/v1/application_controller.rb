@@ -114,6 +114,7 @@ class V1::ApplicationController < ApplicationController
     dstation = Station.find_by(station_uid: params[:destination_station_uid])
     date = Time.zone.parse(params[:date])
     time = DateTime.strptime(params[:time], "%H:%M")
+    puts "timee #{time}"
     result = []
 
     if scity && dcity && date && time
@@ -123,8 +124,12 @@ class V1::ApplicationController < ApplicationController
         routes = sroutes & droutes
 
         routes.map do |route|
-          route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: sstation.station_uid).where('departure_time >= ?', time - 2.hours)
+          puts "kaptam"
+          route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: sstation.station_uid)
+                             .where('EXTRACT(HOUR FROM departure_time) * 60 + EXTRACT(MINUTE FROM departure_time) >= ?', time.hour * 60 + time.min)
+
           if route_stations.any?
+            puts "teszt"
             grouped_data = group_departure_times(route_stations, date, time - 2.hours)
             comp = Company.find_by(company_uid: route.company_uid)
             result << {
@@ -240,7 +245,7 @@ def calculate_fare_sum(route, sstation, dstation)
     end
     return fare_sum
   else
-    return 0 # or handle the case where rs1 or rs2 is not found
+    return 0
   end
 end
 

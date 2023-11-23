@@ -3,7 +3,7 @@
     <SectionTitle>
       Stations
       <template #description>
-        Browse stations on the map
+        Browse stations on the map and apply filter to these by city or route
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
@@ -13,7 +13,7 @@
             <v-autocomplete :items="cities" :item-props="getName" label="City" :disabled="!!form.bus" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" @update:modelValue="getBuses" clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="buses" :item-props="getName" label="Bus" :disabled="!!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto" clearable></v-autocomplete>
+            <v-autocomplete :items="buses" :item-props="getName" label="Route" :disabled="!!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto" clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Filter </v-btn>

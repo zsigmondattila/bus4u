@@ -3,7 +3,7 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Departure timetable for the selected route
+        Departure timetable for the selected station and bus
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">

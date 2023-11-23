@@ -25,6 +25,7 @@ const props = defineProps(['isLogin'])
   justify-content: center;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
 }
 .sheet {
   padding: 25px;

@@ -63,8 +63,8 @@ const form = reactive({
   toCity: '',
   fromStation: '',
   toStation: '',
-  date: date.toLocaleDateString().replaceAll('. ', '-').slice(0, 10),
-  time: date.toLocaleTimeString().slice(0, 5),
+  date: getDateStr(),
+  time: getTimeStr(),
 })
 
 const cityRule = [
@@ -73,6 +73,17 @@ const cityRule = [
 const uniqueStation = [
   (v) => !v || v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
 ]
+
+function getDateStr(){
+  let month = date.getMonth();
+  let day = date.getDay();
+  return `${date.getFullYear()}-${month>9 ? month : '0'+month}-${day>9 ? day : '0'+day}`
+}
+function getTimeStr(){
+  let hours = date.getHours();
+  let mins = date.getMinutes();
+  return `${hours > 9 ? hours : '0' + hours}:${mins > 9 ? mins : '0' + mins}`
+}
 
 async function onSubmit(e) {
   if(!(await e).valid) return
@@ -120,5 +131,4 @@ axios.get('https://bus4u.fast-table.com/v1/get_cities')
   text-align: center;
   margin: 15px;
 }
-
 </style>

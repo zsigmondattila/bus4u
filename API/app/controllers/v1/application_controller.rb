@@ -114,6 +114,7 @@ class V1::ApplicationController < ApplicationController
     dstation = Station.find_by(station_uid: params[:destination_station_uid])
     date = Time.zone.parse(params[:date])
     time = DateTime.strptime(params[:time], "%H:%M")
+    puts "timee #{time}"
     result = []
 
     if scity && dcity && date && time
@@ -123,9 +124,12 @@ class V1::ApplicationController < ApplicationController
         routes = sroutes & droutes
 
         routes.map do |route|
-          route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: sstation.station_uid).where('departure_time >= ?', time - 2.hours)
+          puts "kaptam"
+          route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: sstation.station_uid)
+
           if route_stations.any?
-            grouped_data = group_departure_times(route_stations, date, time - 2.hours)
+            puts "teszt"
+            grouped_data = group_departure_times(route_stations, date, time)
             comp = Company.find_by(company_uid: route.company_uid)
             result << {
               start_station: sstation.name,
@@ -212,17 +216,23 @@ private
 
 def group_departure_times(route_stations, date, time)
   is_weekend = date.saturday? || date.sunday?
+  time3 = time + 3.hours
 
-  route_stations.group_by(&:name).transform_values do |rs_array|
-    if is_weekend
-      weekend_departure_times = rs_array.select { |rs| rs.name == 'Weekend' && rs.departure_time <= time + 3.hours }.pluck(:departure_time)
-      weekend_departure_times.map { |time| time.strftime("%H:%M") }
-    else
-      weekday_departure_times = rs_array.select { |rs| rs.name == 'Weekday' && rs.departure_time <= time + 3.hours }.pluck(:departure_time)
-      weekday_departure_times.map { |time| time.strftime("%H:%M") }
+  route_stations
+    .group_by(&:name)
+    .transform_values do |rs_array|
+      filter_name = is_weekend ? 'Weekend' : 'Weekday'
+      filtered_departure_times = rs_array
+        .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
+        .pluck(:departure_time)
+        .map { |time| time.strftime("%H:%M") }
+
+      filtered_departure_times
     end
-  end
 end
+
+
+
 
 def calculate_fare_sum(route, sstation, dstation)
   rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route)
@@ -240,7 +250,7 @@ def calculate_fare_sum(route, sstation, dstation)
     end
     return fare_sum
   else
-    return 0 # or handle the case where rs1 or rs2 is not found
+    return 0
   end
 end
 

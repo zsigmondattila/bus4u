@@ -152,6 +152,25 @@ class V1::ApplicationController < ApplicationController
       render json: { error: "Start city or destination city or date or not found!" }, status: :not_found
     end
   end
+
+  def generate_a_ticket
+    quantity = params[:quantity]
+
+    quantity.times do
+      ticket = Ticket.new
+      ticket.company_uid = params[:company_uid]
+      ticket.user_uid = params[:user_uid]
+      ticket.type = params[:type]
+      ticket.route_uid = params[:route_uid]
+      ticket.from_station_uid = params[:from_station_uid]
+      ticket.to_station_uid = params[:to_station_uid]
+      ticket.date_of_purchase = Time.now 
+      ticket.expiration_date = Time.now + 1.months
+      ticket.is_valid = true 
+      ticket.is_paid = true
+      ticket.ticket_price = params[:ticket_price]
+    end
+  end
   
   
   

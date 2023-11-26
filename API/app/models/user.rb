@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :bought_tickets, foreign_key: "uid"
+  has_many :tickets, foreign_key: "uid"
 
   private
 

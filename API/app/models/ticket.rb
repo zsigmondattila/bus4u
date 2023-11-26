@@ -2,7 +2,7 @@ class Ticket < ApplicationRecord
     before_create :generate_uid
     
     belongs_to :company, foreign_key: "company_uid"
-    has_many :bought_tickets, foreign_key: "ticket_uid"
+    belongs_to :user, foreign_key: "user_uid"
 
     private
 

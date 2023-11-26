@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,16 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true
-  end
-
-  create_table "bought_tickets", primary_key: "bought_ticket_uid", id: :string, force: :cascade do |t|
-    t.string "ticket_uid"
-    t.string "user_uid"
-    t.datetime "date_of_purchase"
-    t.datetime "expiration_date"
-    t.boolean "is_vaild"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "buses", primary_key: "bus_uid", id: :string, force: :cascade do |t|
@@ -94,6 +84,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payments", primary_key: "payment_uid", id: :string, force: :cascade do |t|
+    t.string "ticket_id"
+    t.string "stripe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_payments_on_ticket_id"
+  end
+
   create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
     t.string "station_uid"
     t.string "route_uid"
@@ -126,10 +124,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
 
   create_table "tickets", primary_key: "ticket_uid", id: :string, force: :cascade do |t|
     t.string "company_uid"
+    t.string "user_uid"
     t.string "type"
     t.string "route_uid"
     t.string "from_station_uid"
     t.string "to_station_uid"
+    t.datetime "date_of_purchase"
+    t.datetime "expiration_date"
+    t.boolean "is_valid"
+    t.boolean "is_paid"
+    t.integer "payment_method"
     t.decimal "ticket_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -151,6 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
     t.string "email"
     t.string "phone_number"
     t.string "language"
+    t.string "stripe_id"
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -160,4 +165,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_09_202929) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "payments", "tickets", primary_key: "ticket_uid"
 end

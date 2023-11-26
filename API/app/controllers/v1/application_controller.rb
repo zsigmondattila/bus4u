@@ -153,9 +153,11 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-  def generate_a_ticket
-    quantity = params[:quantity]
-
+  def generate_a_cash_ticket
+    quantity = params[:quantity].to_i
+    ticket_price = params[:ticket_price]
+    success = true
+  
     quantity.times do
       ticket = Ticket.new
       ticket.company_uid = params[:company_uid]
@@ -166,9 +168,42 @@ class V1::ApplicationController < ApplicationController
       ticket.to_station_uid = params[:to_station_uid]
       ticket.date_of_purchase = Time.now 
       ticket.expiration_date = Time.now + 1.months
+      ticket.ticket_price = ticket_price * 100
       ticket.is_valid = true 
-      ticket.is_paid = true
-      ticket.ticket_price = params[:ticket_price]
+      ticket.is_paid = false
+  
+      success = success && ticket.save
+    end
+  
+    if success
+      render json: { success: "All tickets created successfully" }
+    else
+      render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
+    end
+  end
+  
+
+  def generate_a_card_ticket
+    quantity = params[:quantity].to_i
+    ticket_price = params[:ticket_price] 
+
+    quantity.times do
+      ticket = Ticket.new(order_params.merge(ticket_price: ticket_price*100, payment_method: 'credit_card'))
+      ticket.company_uid = params[:company_uid]
+      ticket.user_uid = params[:user_uid]
+      ticket.type = params[:type]
+      ticket.route_uid = params[:route_uid]
+      ticket.from_station_uid = params[:from_station_uid]
+      ticket.to_station_uid = params[:to_station_uid]
+      ticket.date_of_purchase = Time.now 
+      ticket.expiration_date = Time.now + 1.months
+      ticket.is_valid = true 
+      ticket.is_paid = false
+      if ticket.save
+        render json: { success: "Ticket created successfully" }
+      else
+        render json: {error: @response.errors}, status: :unprocessable_entity
+      end
     end
   end
   
@@ -279,5 +314,9 @@ def process_routes(routes, start_station, destination_station, date, time, resul
       }
     end
   end
+end
+
+def order_params
+  params.require(:data).permit(:user_uid, :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv)
 end
 

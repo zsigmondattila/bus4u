@@ -12,6 +12,7 @@ class CreateTickets < ActiveRecord::Migration[7.0]
       t.datetime :expiration_date
       t.boolean :is_valid
       t.boolean :is_paid
+      t.integer :payment_method
       t.decimal :ticket_price
 
       t.timestamps

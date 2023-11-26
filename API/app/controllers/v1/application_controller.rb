@@ -116,48 +116,43 @@ class V1::ApplicationController < ApplicationController
     time = DateTime.strptime(params[:time], "%H:%M")
     puts "timee #{time}"
     result = []
-
+  
     if scity && dcity && date && time
       if sstation && dstation
         sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
         droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
         routes = sroutes & droutes
-
-        routes.map do |route|
-          puts "kaptam"
-          route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: sstation.station_uid)
-
-          if route_stations.any?
-            puts "teszt"
-            grouped_data = group_departure_times(route_stations, date, time)
-            comp = Company.find_by(company_uid: route.company_uid)
-            result << {
-              start_station: sstation.name,
-              destination_station: dstation.name,
-              company_name: comp.name,
-              route_name: route.name,
-              ticket_price: calculate_fare_sum(route.route_uid, sstation.station_uid, dstation.station_uid),
-              departure_times: grouped_data.map do |name, departure_times|
-                { 'name' => name, 'departure_times' => departure_times }
-              end
-            }
+        process_routes(routes, sstation, dstation, date, time, result)
+      elsif sstation.nil? && dstation
+        scity.stations.each do |sstation|
+          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
+          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+          routes = sroutes & droutes
+          process_routes(routes, sstation, dstation, date, time, result)
+        end
+      elsif sstation && dstation.nil?
+        dcity.stations.each do |dstation|
+          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
+          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+          routes = sroutes & droutes
+          process_routes(routes, sstation, dstation, date, time, result)
+        end
+      elsif sstation.nil? && dstation.nil?
+        scity.stations.each do |sstation|
+          dcity.stations.each do |dstation|
+            sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
+            droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+            routes = sroutes & droutes
+            process_routes(routes, sstation, dstation, date, time, result)
           end
         end
-        render json: result 
       end
-      if sstation.nil? && dstation
-
-      end
-      if sstation && dstation.nil?
-
-      end
-      if sstation.nil? && dstation.nil?
-        render json: { routes: routes }
-      end
+      render json: result 
     else
       render json: { error: "Start city or destination city or date or not found!" }, status: :not_found
     end
   end
+  
   
   
     #Requests to send a confirmation email
@@ -231,26 +226,39 @@ def group_departure_times(route_stations, date, time)
     end
 end
 
-
-
-
 def calculate_fare_sum(route, sstation, dstation)
   rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route)
   rs2 = RouteStation.find_by(station_uid: dstation, route_uid: route)
-  puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA#{route} #{sstation} #{dstation} #{rs1.fare} #{rs2.fare}"
   if rs1 && rs2
     start_sequence = rs1.sequence
     end_sequence = rs2.sequence
-    puts "Start Sequence: #{start_sequence}, End Sequence: #{end_sequence}"
 
     stations_between = RouteStation.where(route_uid: route, sequence: start_sequence..end_sequence).distinct
     fare_sum = stations_between.sum(:fare)
-    stations_between.map do |st|
-      puts " FARE #{st.fare}"
-    end
     return fare_sum
   else
     return 0
+  end
+end
+
+def process_routes(routes, start_station, destination_station, date, time, result)
+  routes.map do |route|
+    route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: start_station.station_uid)
+
+    if route_stations.any?
+      grouped_data = group_departure_times(route_stations, date, time)
+      comp = Company.find_by(company_uid: route.company_uid)
+      result << {
+        start_station: start_station.name,
+        destination_station: destination_station.name,
+        company_name: comp.name,
+        route_name: route.name,
+        ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
+        departure_times: grouped_data.map do |name, departure_times|
+          { 'name' => name, 'departure_times' => departure_times }
+        end
+      }
+    end
   end
 end
 

@@ -263,22 +263,19 @@ end
 
 private
 
-def group_departure_times(route_stations, date, time)
+def filter_departure_times(route_stations, date, time)
   is_weekend = date.saturday? || date.sunday?
+  filter_name = is_weekend ? 'Weekend' : 'Weekday'
   time3 = time + 3.hours
 
-  route_stations
-    .group_by(&:name)
-    .transform_values do |rs_array|
-      filter_name = is_weekend ? 'Weekend' : 'Weekday'
-      filtered_departure_times = rs_array
-        .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
-        .pluck(:departure_time)
-        .map { |time| time.strftime("%H:%M") }
+  filtered_departure_times = route_stations
+    .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
+    .pluck(:departure_time)
+    .map { |time| time.strftime("%H:%M") }
 
-      filtered_departure_times
-    end
+  filtered_departure_times
 end
+
 
 def calculate_fare_sum(route, sstation, dstation)
   rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route)
@@ -300,7 +297,7 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: start_station.station_uid)
 
     if route_stations.any?
-      grouped_data = group_departure_times(route_stations, date, time)
+      filtered_departure_times = filter_departure_times(route_stations, date, time)
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
         start_station: start_station.name,
@@ -308,9 +305,7 @@ def process_routes(routes, start_station, destination_station, date, time, resul
         company_name: comp.name,
         route_name: route.name,
         ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
-        departure_times: grouped_data.map do |name, departure_times|
-          { 'name' => name, 'departure_times' => departure_times }
-        end
+        departure_times: filtered_departure_times
       }
     end
   end

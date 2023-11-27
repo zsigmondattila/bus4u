@@ -30,7 +30,9 @@ function resetRoute() {
 
 function addStations(array) {
   array.forEach(station => {
-    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).addTo(map));
+    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude])
+      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px").addTo(map);
+    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
   })
   if(props.panTo && props.panTo.length) {
     map.setZoom(11).panTo(props.panTo)
@@ -95,6 +97,7 @@ onMounted(() => {
         }
       }
     });
+    map.addControl(new mapboxgl.NavigationControl());
     if(props.stations) addStations(props.stations)
     if(props.isRoute){
       map.addLayer({

@@ -4,6 +4,8 @@ Public **travel application and webpage** with map, timetable and ticketing syst
 
 Our **kanban board** is accesible [on Jira](https://bus4u.atlassian.net/jira/software/projects/BUS/boards/1).
 
+**Live preview:** https://bus4u.netlify.app
+
 <br>
 
 Software Engineering Project

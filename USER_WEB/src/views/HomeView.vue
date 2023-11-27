@@ -33,13 +33,15 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-list lines="two" border rounded class="py-0 my-10">
-      <div v-if="!routes">
-        <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
-      </div>
-      <p v-else-if="!routes.length" class="fallback"> No available trips found with the data given. </p>
-      <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
-    </v-list>
+    <v-container class="px-0">
+      <v-list lines="two" border rounded class="py-0 my-10">
+        <div v-if="!routes">
+          <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
+        </div>
+        <p v-else-if="!routes.length" class="fallback"> No available trips found with the data given. </p>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
+      </v-list>
+    </v-container>
   </AppLayout>
 </template>
 
@@ -76,7 +78,7 @@ const uniqueStation = [
 
 function getDateStr(){
   let month = date.getMonth();
-  let day = date.getDay();
+  let day = date.getDate();
   return `${date.getFullYear()}-${month>9 ? month : '0'+month}-${day>9 ? day : '0'+day}`
 }
 function getTimeStr(){
@@ -91,12 +93,17 @@ async function onSubmit(e) {
   axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
     { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid || '', destination_station_uid: form.toStation.station_uid || '', date: form.date, time: form.time}}
     ).then(rsp => {
-      console.log(rsp.data);
       if(rsp.status == 200) {
-        routes.value = rsp.data.routes
+        routes.value = []
+        rsp.data.forEach(element => {
+          if(element.departure_times.length > 0) routes.value.push(element)
+        });
+        if(routes.value.length) {
+          routes.value = routes.value.sort((a, b) => a.departure_times[0].localeCompare(b.departure_times[0]))
+        }
         isLoadingRoutes.value = false
       }
-    }).catch(e => console.error(e))
+    }).catch(routes.value = null)
 }
 
 function getName(item){
@@ -127,8 +134,8 @@ axios.get('https://bus4u.fast-table.com/v1/get_cities')
 
 <style scoped>
 .fallback {
-  opacity: .5;
+  opacity: .6;
   text-align: center;
-  margin: 15px;
+  margin: 20px;
 }
 </style>

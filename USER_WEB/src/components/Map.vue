@@ -78,8 +78,7 @@ if(navigator.geolocation) {
 }
 
 onMounted(() => {
-  // mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
-  mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
   map = new mapboxgl.Map({
     container: mapRef.value,
     style: 'mapbox://styles/mapbox/streets-v11',

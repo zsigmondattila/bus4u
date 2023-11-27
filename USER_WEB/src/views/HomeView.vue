@@ -10,13 +10,13 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Start city" :item-props="getName" :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="stationRule" @update:modelValue="getStartStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Start city" :item-props="getName" :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getStartStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="startStations" label="Start station" :item-props="getName" :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation" class="text-field" hide-details="auto" :rules="stationRule"></v-autocomplete>
+            <v-autocomplete :items="startStations" label="Start station" :item-props="getName" :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation" class="text-field" hide-details="auto"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Destination city" :item-props="getName" :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="stationRule" @update:modelValue="getDestStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Destination city" :item-props="getName" :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getDestStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
             <v-autocomplete :items="destStations" label="Destination station" :item-props="getName" :disabled="!form.toCity" :loading="!destStations.length && !!form.toCity" v-model="form.toStation" class="text-field" hide-details="auto" :rules="uniqueStation"></v-autocomplete>
@@ -33,9 +33,15 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-list lines="two" border rounded class="py-0 my-10">
-        <RouteListElement v-for="route in routes" :key="route.id" :trip="route"></RouteListElement>
-    </v-list>
+    <v-container class="px-0">
+      <v-list lines="two" border rounded class="py-0 my-10">
+        <div v-if="!routes">
+          <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
+        </div>
+        <p v-else-if="!routes.length" class="fallback"> No available trips found with the data given. </p>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
+      </v-list>
+    </v-container>
   </AppLayout>
 </template>
 
@@ -46,56 +52,58 @@ import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
 
+const isLoadingRoutes = ref(false)
+
 const date = new Date();
 const startStations = ref([]);
 const destStations = ref([]);
 const cities = ref([])
-const routes = ref([
-  {
-    id: 1,
-    name: '44',
-    time: '10:40',
-    from: 'Sapientia',
-    to: 'Combinat',
-    price: 2
-  },
-  {
-    id: 2,
-    name: '26',
-    time: '10:55',
-    from: 'Sapientia',
-    to: 'Aleea Carpatii',
-    price: 3
-  },
-  {
-    id: 3,
-    name: '27',
-    time: '11:15',
-    from: 'Sapientia',
-    to: 'Poli 2',
-    price: 2
-  }
-]);
+const routes = ref(null);
 
 const form = reactive({
   fromCity: '',
   toCity: '',
   fromStation: '',
   toStation: '',
-  date: date.toLocaleDateString().replaceAll('. ', '-').slice(0, 10),
-  time: date.toLocaleTimeString().slice(0, 5),
+  date: getDateStr(),
+  time: getTimeStr(),
 })
 
-const stationRule = [
+const cityRule = [
   (v) => !!v || 'Please select an option.'
 ]
 const uniqueStation = [
-  (v) => !!v || 'Please select an option.',
-  (v) => v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
+  (v) => !v || v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
 ]
 
-function onSubmit() {
-  console.log(form);
+function getDateStr(){
+  let month = date.getMonth();
+  let day = date.getDate();
+  return `${date.getFullYear()}-${month>9 ? month : '0'+month}-${day>9 ? day : '0'+day}`
+}
+function getTimeStr(){
+  let hours = date.getHours();
+  let mins = date.getMinutes();
+  return `${hours > 9 ? hours : '0' + hours}:${mins > 9 ? mins : '0' + mins}`
+}
+
+async function onSubmit(e) {
+  if(!(await e).valid) return
+  isLoadingRoutes.value = true
+  axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
+    { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid || '', destination_station_uid: form.toStation.station_uid || '', date: form.date, time: form.time}}
+    ).then(rsp => {
+      if(rsp.status == 200) {
+        routes.value = []
+        rsp.data.forEach(element => {
+          if(element.departure_times.length > 0) routes.value.push(element)
+        });
+        if(routes.value.length) {
+          routes.value = routes.value.sort((a, b) => a.departure_times[0].localeCompare(b.departure_times[0]))
+        }
+        isLoadingRoutes.value = false
+      }
+    }).catch(routes.value = null)
 }
 
 function getName(item){
@@ -103,25 +111,31 @@ function getName(item){
 }
 
 async function getStartStation(city){
+  if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) startStations.value = rsp.data.stations
-    }).catch(e => console.error(e))
+    }).catch(() => startStations.value = [])
 }
 
 async function getDestStation(city){
+  if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) destStations.value = rsp.data.stations
-    }).catch(e => console.error(e))
+    }).catch(() => destStations.value = [])
 }
 
 axios.get('https://bus4u.fast-table.com/v1/get_cities')
   .then((rsp) => {
     cities.value = rsp.data.cities
-  }).catch(err => console.error(err))
+  }).catch(() => cities.value = [])
 </script>
 
 <style scoped>
-
+.fallback {
+  opacity: .6;
+  text-align: center;
+  margin: 20px;
+}
 </style>

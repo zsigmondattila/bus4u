@@ -2,7 +2,7 @@
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
       <v-text-field label="Email" v-model="form.email" type="email" color="primary" :rules="email"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
+      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password" :error-messages="errors"></v-text-field>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
     <v-btn type="submit" size="40" :loading="isLoading" block color="primary"> Log In </v-btn>
@@ -19,6 +19,7 @@ import { RouterLink } from 'vue-router';
 
 const user = userStore()
 const isLoading = ref(false)
+const errors = ref([])
 
 const form = reactive({
   email: '',
@@ -35,6 +36,7 @@ const email = [
 ]
 
 async function onSubmit(event) {
+  errors.value = []
   let response = await event;
   if(response.valid) {
     isLoading.value = true;
@@ -43,14 +45,13 @@ async function onSubmit(event) {
         router.replace({ name: 'home' })
         user.signIn(rsp.data.data, rsp.headers)
       } else {
-        console.error('Login failed');
         isLoading.value = false;
       }
     }).catch((e) => {
-      console.log(e.message);
+      if(e.response) errors.value = e.response.data.errors[0];
       isLoading.value = false;
     });
-  } else console.log('Validation failed');
+  }
 }
 </script>
 

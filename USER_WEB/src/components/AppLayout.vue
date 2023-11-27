@@ -8,13 +8,13 @@
         </RouterLink>
       </v-app-bar-title>
       <template #append v-if="!user.accessToken">
-        <v-btn title="Login" icon="mdi-login" :to="{ name: 'login' }"></v-btn>
-        <v-btn title="Register" icon="mdi-account-plus" :to="{ name: 'register' }"></v-btn>
+        <v-btn title="Login" icon="mdi-login" @click="navigate('login')"></v-btn>
+        <v-btn title="Register" icon="mdi-account-plus" @click="navigate('register')"></v-btn>
       </template>
       <template #append v-else>
         <span>{{ user.lastName }}</span>
         <v-btn title="Account" icon="mdi-account-circle-outline"></v-btn>
-        <v-btn title="Logout" icon="mdi-logout" @click="user.signOut"></v-btn>
+        <v-btn title="Logout" icon="mdi-logout" @click="logout"></v-btn>
       </template>
     </v-app-bar>
 
@@ -23,14 +23,16 @@
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
         <v-list-item prepend-icon="mdi-bus" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
         <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
-        <v-list-item prepend-icon="mdi-information-outline" title="About" value="about" :to="{ name: 'about' }"></v-list-item>
         <v-spacer></v-spacer>
-        <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-information-outline" title="About" value="about" :to="{ name: 'about' }"></v-list-item>
       </v-list>
     </v-navigation-drawer>
 
     <v-main>
       <div class="content">
+        <v-snackbar v-model="isLoggedOut">
+          Logout successfull
+        </v-snackbar>
         <slot></slot>
       </div>
     </v-main>
@@ -39,18 +41,28 @@
 
 <script setup>
 import { ref } from 'vue';
+import router from '@/router';
 import { RouterLink } from 'vue-router';
 import { userStore } from '@/stores/userStore';
 import LogoWide from './LogoWide.vue';
 
 const user = userStore()
+const isLoggedOut = ref(false)
 const isNavOpen = ref(document.body.offsetWidth >= 1280)
+
+function logout() {
+  user.signOut().then(() => isLoggedOut.value = true)
+}
+
+function navigate(page) {
+  router.push({ name: page });
+}
 </script>
 
 <style scoped>
 .content {
   padding: 15px;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 .logo {

@@ -45,9 +45,7 @@ class _RootPageState extends State<RootPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 10,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start, 
-          children: [
+        title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           Image.asset(
             'assets/images/logo-text.png',
             height: 40,

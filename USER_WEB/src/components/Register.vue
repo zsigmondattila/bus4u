@@ -1,14 +1,25 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
-    <div class="inputs">
+    <div v-if="hideOTP" class="inputs">
       <v-text-field label="First Name" v-model="form.firstname" color="primary" :rules="name"></v-text-field>
       <v-text-field label="Last Name" v-model="form.lastname" color="primary" :rules="name"></v-text-field>
       <v-text-field label="Email" type="email" v-model="form.email" color="primary" :rules="email"></v-text-field>
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="eightChars"></v-text-field>
-      <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
+      <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation" :error-messages="error"></v-text-field>
+    </div>
+    <div v-else class="text-center">
+      <div class="my-5">
+        <h2> We sent a verification code to: </h2>
+        <h4 class="text-primary"> {{ form.email }} </h4>
+        <br>
+      </div>
+      <p> Type here the code from the email: </p>
+      <v-otp-input length="4" v-model="code" :error="!!error"></v-otp-input>
+      <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
     </div>
     <RouterLink :to="{ name: 'login' }" class="link"> Already registered? </RouterLink>
-    <v-btn type="submit" size="40" :loading="isLoading" block color="primary"> Register </v-btn>
+    <v-btn v-if="hideOTP" type="submit" size="40" :loading="isLoading" block color="primary"> Register </v-btn>
+    <v-btn v-else size="40" :loading="isLoading" block color="primary" @click="checkCode"> Send </v-btn>
     <v-btn type="reset" size="40" block color="primary" variant="outlined" :to="{ name: 'home' }"> Cancel </v-btn>
   </v-form>
 </template>
@@ -22,7 +33,10 @@ import { userStore } from '@/stores/userStore';
 
 const user = userStore()
 const isLoading = ref(false)
+const hideOTP = ref(true)
+const error = ref('')
 
+const code = ref('')
 const form = reactive({
   firstname: '',
   lastname: '',
@@ -53,22 +67,50 @@ const confirmation = [
 ]
 
 async function onSubmit(event) {
+  error.value = ''
   let response = await event;
   if(response.valid) {
-    isLoading.value = true;
-    axios.post('https://bus4u.fast-table.com/auth', form).then((rsp) => {
-      if(rsp.data.data.uid) {
-        router.replace({ name: 'home' })
-        user.signIn(rsp.data.data, rsp.headers)
-      } else {
-        console.error('Registration failed');
+    isLoading.value = true
+    axios.post('https://bus4u.fast-table.com/v1/send_verification_email', { user_email: form.email })
+      .then(rsp => {
+        if(rsp.status == 200) {
+          hideOTP.value = false
+          isLoading.value = false
+        }
+      }).catch(e => {
+        if(e.response) error.value = e.response.data.errors[0];
+        isLoading.value = false
+      });
+  }
+}
+
+async function checkCode() {
+  error.value = ''
+  isLoading.value = true;
+  axios.get('https://bus4u.fast-table.com/v1/verify_code_email', { params: { user_email: form.email , verification_code: code.value }})
+    .then(rsp => {
+      if(rsp.status == 200) sendForm();
+      else {
         isLoading.value = false;
       }
-    }).catch((e) => {
-      console.log(e.message);
+    }).catch(e => {
+      if(e.response) error.value = e.response.data.error;
       isLoading.value = false;
     });
-  } else console.log('Validation failed');
+}
+
+async function sendForm() {
+  axios.post('https://bus4u.fast-table.com/auth', form).then((rsp) => {
+    if(rsp.data.data.uid) {
+      router.replace({ name: 'home' })
+      user.signIn(rsp.data.data, rsp.headers)
+    } else {
+      isLoading.value = false;
+    }
+  }).catch((e) => {
+    if(e.response) error.value = e.response.data.error;
+    isLoading.value = false;
+  });
 }
 </script>
 

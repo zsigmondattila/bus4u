@@ -169,6 +169,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     stringio (3.0.8)
+    stripe (10.1.0)
     thor (1.2.2)
     timeout (0.4.0)
     tzinfo (2.0.6)
@@ -192,10 +193,11 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.8)
+  stripe
   tzinfo-data
 
 RUBY VERSION
-   ruby 3.1.1p18
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.14

@@ -34,6 +34,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :phone_number
       t.string :language
+      t.string :stripe_id
 
       ## Tokens
       t.json :tokens

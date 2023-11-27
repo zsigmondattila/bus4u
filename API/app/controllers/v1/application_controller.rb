@@ -152,6 +152,60 @@ class V1::ApplicationController < ApplicationController
       render json: { error: "Start city or destination city or date or not found!" }, status: :not_found
     end
   end
+
+  def generate_a_cash_ticket
+    quantity = params[:quantity].to_i
+    ticket_price = params[:ticket_price]
+    success = true
+  
+    quantity.times do
+      ticket = Ticket.new
+      ticket.company_uid = params[:company_uid]
+      ticket.user_uid = params[:user_uid]
+      ticket.type = params[:type]
+      ticket.route_uid = params[:route_uid]
+      ticket.from_station_uid = params[:from_station_uid]
+      ticket.to_station_uid = params[:to_station_uid]
+      ticket.date_of_purchase = Time.now 
+      ticket.expiration_date = Time.now + 1.months
+      ticket.ticket_price = ticket_price * 100
+      ticket.is_valid = true 
+      ticket.is_paid = false
+  
+      success = success && ticket.save
+    end
+  
+    if success
+      render json: { success: "All tickets created successfully" }
+    else
+      render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
+    end
+  end
+  
+
+  def generate_a_card_ticket
+    quantity = params[:quantity].to_i
+    ticket_price = params[:ticket_price] 
+
+    quantity.times do
+      ticket = Ticket.new(order_params.merge(ticket_price: ticket_price*100, payment_method: 'credit_card'))
+      ticket.company_uid = params[:company_uid]
+      ticket.user_uid = params[:user_uid]
+      ticket.type = params[:type]
+      ticket.route_uid = params[:route_uid]
+      ticket.from_station_uid = params[:from_station_uid]
+      ticket.to_station_uid = params[:to_station_uid]
+      ticket.date_of_purchase = Time.now 
+      ticket.expiration_date = Time.now + 1.months
+      ticket.is_valid = true 
+      ticket.is_paid = false
+      if ticket.save
+        render json: { success: "Ticket created successfully" }
+      else
+        render json: {error: @response.errors}, status: :unprocessable_entity
+      end
+    end
+  end
   
   
   
@@ -209,22 +263,19 @@ end
 
 private
 
-def group_departure_times(route_stations, date, time)
+def filter_departure_times(route_stations, date, time)
   is_weekend = date.saturday? || date.sunday?
+  filter_name = is_weekend ? 'Weekend' : 'Weekday'
   time3 = time + 3.hours
 
-  route_stations
-    .group_by(&:name)
-    .transform_values do |rs_array|
-      filter_name = is_weekend ? 'Weekend' : 'Weekday'
-      filtered_departure_times = rs_array
-        .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
-        .pluck(:departure_time)
-        .map { |time| time.strftime("%H:%M") }
+  filtered_departure_times = route_stations
+    .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
+    .pluck(:departure_time)
+    .map { |time| time.strftime("%H:%M") }
 
-      filtered_departure_times
-    end
+  filtered_departure_times
 end
+
 
 def calculate_fare_sum(route, sstation, dstation)
   rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route)
@@ -246,7 +297,7 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: start_station.station_uid)
 
     if route_stations.any?
-      grouped_data = group_departure_times(route_stations, date, time)
+      filtered_departure_times = filter_departure_times(route_stations, date, time)
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
         start_station: start_station.name,
@@ -254,11 +305,13 @@ def process_routes(routes, start_station, destination_station, date, time, resul
         company_name: comp.name,
         route_name: route.name,
         ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
-        departure_times: grouped_data.map do |name, departure_times|
-          { 'name' => name, 'departure_times' => departure_times }
-        end
+        departure_times: filtered_departure_times
       }
     end
   end
+end
+
+def order_params
+  params.require(:data).permit(:user_uid, :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv)
 end
 

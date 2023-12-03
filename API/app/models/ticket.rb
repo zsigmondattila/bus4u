@@ -9,7 +9,7 @@ class Ticket < ApplicationRecord
 
     after_create :create_payment
 
-    enum payment_method: %i[credit_card, :cash]
+    enum payment_method: %i[credit_card]
 
   private
 

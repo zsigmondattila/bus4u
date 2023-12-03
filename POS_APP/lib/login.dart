@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'login/scan_ticket.dart';
 
 Future<void> loginUser(String email, String password, BuildContext context) async {
   final response = await http.post(
@@ -13,10 +12,7 @@ Future<void> loginUser(String email, String password, BuildContext context) asyn
 
   if (response.statusCode == 200) {
     print('Sikeres bejelentkezés: ${response.body}');
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ScanTicket()),
-    );
+    Navigator.pushNamed(context, '/scan_ticket');
   } else {
     print('Bejelentkezési hiba: ${response.statusCode}');
     // Sikertelen bejelentkezés esetén párbeszédpanel megjelenítése

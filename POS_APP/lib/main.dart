@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pos_app/gps.dart';
+import 'package:pos_app/home.dart';
 import 'login.dart';
 import 'scan_ticket.dart';
 
@@ -9,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +21,9 @@ class MyApp extends StatelessWidget {
         ),
         home: Login(),
         routes: {
+          '/home': (context) => Home(),
           '/scan_ticket': (context) => ScanTicket(),
+          '/gps': (context) => GPS(),
         });
   }
 }

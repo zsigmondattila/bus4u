@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:barcode_scan2/barcode_scan2.dart';
-import 'package:flutter/services.dart';
 
 class ScanTicket extends StatefulWidget {
   @override

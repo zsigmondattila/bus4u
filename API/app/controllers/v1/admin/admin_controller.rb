@@ -162,6 +162,7 @@ class V1::Admin::AdminController < ApplicationController
         end
       end
       
-      
+    def get_buses_of_a_company
+    end  
 
 end

@@ -33,6 +33,7 @@ dependencies:
 
   http: any
   barcode_scan2: any
+  location: any
 
 
   # The following adds the Cupertino Icons font to your application.

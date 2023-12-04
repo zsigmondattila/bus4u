@@ -11,11 +11,8 @@ Future<void> loginUser(String email, String password, BuildContext context) asyn
   );
 
   if (response.statusCode == 200) {
-    print('Sikeres bejelentkezés: ${response.body}');
-    Navigator.pushNamed(context, '/scan_ticket');
+    Navigator.pushNamed(context, '/home');
   } else {
-    print('Bejelentkezési hiba: ${response.statusCode}');
-    // Sikertelen bejelentkezés esetén párbeszédpanel megjelenítése
     showDialog(
       context: context,
       builder: (BuildContext context) {

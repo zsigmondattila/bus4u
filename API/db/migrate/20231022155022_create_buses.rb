@@ -10,6 +10,10 @@ class CreateBuses < ActiveRecord::Migration[7.0]
       t.datetime :road_tax
       t.datetime :insurance
       t.datetime :technical_exam
+      t.boolean :tracked
+      t.decimal :latitude
+      t.decimal :longitude
+      t.string :current_route_uid
 
       t.timestamps
     end

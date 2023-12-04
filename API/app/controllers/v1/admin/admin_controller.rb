@@ -167,4 +167,58 @@ class V1::Admin::AdminController < ApplicationController
         render json: buses
     end  
 
+    def set_a_bus_tracked
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        bus.tracked = true
+        if bus.save
+            render json: { success: "Bus attribute saved successfully!" }
+        else
+            render json: { error: "Cannot save the bus attribute!" }
+        end
+    end
+
+    def set_a_bus_untracked
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        bus.tracked = false
+        if bus.save
+            render json: { success: "Bus attribute saved successfully!" }
+        else
+            render json: { error: "Cannot save the bus attribute!" }, status: :unprocessable_entity
+        end
+    end
+
+    def set_current_route_of_a_bus
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        route = Route.find_by(route_uid: params[:route_uid])
+        if route
+            bus.current_route_uid = params[:route_uid]
+            if bus.save
+                render json: { success: "Current route saved successfully!" }
+            else
+                render json: { error: "Cannot save current route" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Route does not exist" }, status: :unprocessable_entity
+        end
+    end
+
+    def change_bus_location
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        route = Route.find_by(route_uid: params[:route_uid])
+
+        bus.current_route_uid = route.route_uid
+        bus.latitude = params[:latitude]
+        bus.longitude = params[:longitude]
+        if bus.save
+            render json: { success: "Location updated successfully" }
+        else
+            render json: { error: "Cannot update location" }, status: :unprocessable_entity
+        end
+    end
+
+    def get_locations_by_bus_and_route
+        buses = Bus.where(license_plate: params[:license_plate], current_route_uid: params[:route_uid])
+        render json: buses
+    end
+
 end

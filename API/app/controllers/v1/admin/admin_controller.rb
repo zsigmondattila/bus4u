@@ -167,4 +167,54 @@ class V1::Admin::AdminController < ApplicationController
         render json: buses
     end  
 
+    def set_a_bus_tracked
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        bus.tracked = true
+        if bus.save
+            render json: { success: "Bus attribute saved successfully!" }
+        else
+            render json: { error: "Cannot save the bus attribute!" }
+        end
+    end
+
+    def set_a_bus_untracked
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        bus.tracked = false
+        if bus.save
+            render json: { success: "Bus attribute saved successfully!" }
+        else
+            render json: { error: "Cannot save the bus attribute!" }, status: :unprocessable_entity
+        end
+    end
+
+    def set_coordinates_of_a_bus
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        if bus.tracked
+            bus.latitude = params[:latitude]
+            bus.longitude = params[:longitude]
+            if bus.save
+                render json: { success: "Coordinates saved successfully!" }
+            else
+                render json: { error: "Cannot save coordinates!" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "The bus is not tracked" }, status: :unprocessable_entity
+        end
+    end
+
+    def set_current_route_of_a_bus
+        bus = Bus.find_by(license_plate: params[:license_plate])
+        route = Route.find_by(route_uid: params[:route_uid])
+        if route
+            bus.current_route_uid = params[:route_uid]
+            if bus.save
+                render json: { success: "Current route saved successfully!" }
+            else
+                render json: { error: "Cannot save current route" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Route does not exist" }, status: :unprocessable_entity
+        end
+    end
+
 end

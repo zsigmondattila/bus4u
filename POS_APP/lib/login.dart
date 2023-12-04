@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pos_app/main.dart';
 
-Future<void> loginUser(String email, String password, BuildContext context) async {
+Future<void> loginUser(
+    String email, String password, BuildContext context) async {
   final response = await http.post(
     Uri.parse('https://bus4u.fast-table.com/admin/sign_in'),
     body: {
@@ -11,6 +15,10 @@ Future<void> loginUser(String email, String password, BuildContext context) asyn
   );
 
   if (response.statusCode == 200) {
+    Map<String, dynamic> responseBody = json.decode(response.body);
+    String companyUid = responseBody['data']['company_uid'] ?? "";
+    saveData("token", response.headers['authorization'] ?? '');
+    saveData("company", companyUid);
     Navigator.pushNamed(context, '/home');
   } else {
     showDialog(

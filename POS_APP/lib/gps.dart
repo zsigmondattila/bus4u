@@ -1,6 +1,9 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'dart:async';
+import 'package:pos_app/main.dart';
 
 class GPS extends StatefulWidget {
   @override
@@ -16,6 +19,7 @@ class _GPSState extends State<GPS> {
   String _currentLatitude = '';
   String _currentLongitude = '';
   String? selectedBus;
+  List<String> _busList = [];
 
   @override
   void initState() {
@@ -23,6 +27,27 @@ class _GPSState extends State<GPS> {
     _timer = Timer.periodic(Duration(seconds: 20), (timer) {
       _sendCurrentLocation();
     });
+    _fetchBuses();
+  }
+
+  Future<void> _fetchBuses() async {
+      final String companyUid = await readData("company") ?? "";
+      final response = await http.get(
+        Uri.parse(
+            'https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
+      );
+
+      if (response.statusCode == 200) {
+        final List<dynamic> buses = json.decode(response.body);
+        final List<String> plates = buses.map<String>((dynamic bus) {
+          return (bus as Map<String, dynamic>)['license_plate'] as String;
+        }).toList();
+        setState(() {
+          _busList = plates;
+        });
+      } else {
+        print('Error: ${response.statusCode}');
+      }  
   }
 
   Future<void> enableGps() async {
@@ -61,9 +86,29 @@ class _GPSState extends State<GPS> {
     });
   }
 
-  void _sendCurrentLocation() {
-    if (_isGpsEnabled && _isSwitched) {
-      print('Latitude: $_currentLatitude, Longitude: $_currentLongitude');
+  void _sendCurrentLocation() async {
+    if (_isGpsEnabled && _isSwitched && selectedBus != null) {
+      final Map<String, dynamic> requestBody = {
+        'license_plate': selectedBus!,
+        'latitude': _currentLatitude,
+        'longitude': _currentLongitude,
+      };
+
+      try {
+        final response = await http.post(
+          Uri.parse('https://bus4u.fast-table.com/v1/admin/set_location'),
+          body: jsonEncode(requestBody),
+          headers: {'Content-Type': 'application/json'},
+        );
+
+        if (response.statusCode == 200) {
+          print('Location sent successfully.');
+        } else {
+          print('Error sending location: ${response.statusCode}');
+        }
+      } catch (e) {
+        print('Error sending location: $e');
+      }
     }
   }
 
@@ -84,8 +129,7 @@ class _GPSState extends State<GPS> {
                   selectedBus = newValue!;
                 });
               },
-              items: <String>['Busz 1', 'Busz 2', 'Busz 3', 'Busz 4']
-                  .map<DropdownMenuItem<String>>((String value) {
+              items: _busList.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
@@ -129,7 +173,6 @@ class _GPSState extends State<GPS> {
       ),
     );
   }
-
 
   void stopGpsUpdates() {
     _locationSubscription.cancel();

@@ -163,6 +163,8 @@ class V1::Admin::AdminController < ApplicationController
       end
       
     def get_buses_of_a_company
+        buses = Bus.where(company_uid: params[:company_uid])
+        render json: buses
     end  
 
 end

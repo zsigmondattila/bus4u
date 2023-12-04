@@ -16,8 +16,9 @@
     <v-navigation-drawer permanent v-model="isNavOpen">
       <v-list color="primary-light" class="h-100 d-flex flex-column">
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
-        <v-list-item prepend-icon="mdi-bus" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
         <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-bus" title="Routes" value="routes" :to="{ name: 'routes' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-timetable" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
         <v-spacer></v-spacer>
         <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
       </v-list>

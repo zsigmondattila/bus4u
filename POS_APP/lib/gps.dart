@@ -5,6 +5,13 @@ import 'package:location/location.dart';
 import 'dart:async';
 import 'package:pos_app/main.dart';
 
+class RouteInfo {
+  final String name;
+  final String routeUid;
+
+  RouteInfo(this.name, this.routeUid);
+}
+
 class GPS extends StatefulWidget {
   @override
   _GPSState createState() => _GPSState();
@@ -19,35 +26,65 @@ class _GPSState extends State<GPS> {
   String _currentLatitude = '';
   String _currentLongitude = '';
   String? selectedBus;
+  String? selectedRoute;
   List<String> _busList = [];
+  List<RouteInfo> _routeList = [];
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 20), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 30), (timer) {
       _sendCurrentLocation();
     });
     _fetchBuses();
+    _fetchRoutes();
   }
 
   Future<void> _fetchBuses() async {
+    final String companyUid = await readData("company") ?? "";
+    final response = await http.get(
+      Uri.parse(
+          'https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> buses = json.decode(response.body);
+      final List<String> plates = buses.map<String>((dynamic bus) {
+        return (bus as Map<String, dynamic>)['license_plate'] as String;
+      }).toList();
+      setState(() {
+        _busList = plates;
+      });
+    } else {
+      print('Error: ${response.statusCode}');
+    }
+  }
+
+  Future<void> _fetchRoutes() async {
       final String companyUid = await readData("company") ?? "";
       final response = await http.get(
         Uri.parse(
-            'https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
+            'https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
       );
 
       if (response.statusCode == 200) {
-        final List<dynamic> buses = json.decode(response.body);
-        final List<String> plates = buses.map<String>((dynamic bus) {
-          return (bus as Map<String, dynamic>)['license_plate'] as String;
-        }).toList();
-        setState(() {
-          _busList = plates;
-        });
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        final List<dynamic> routes = responseData['routes'];
+
+        final List<RouteInfo> routeInfoList =
+              routes.map<RouteInfo>((dynamic route) {
+            return RouteInfo(
+              (route as Map<String, dynamic>)['name'] as String,
+              (route as Map<String, dynamic>)['route_uid'] as String,
+            );
+          }).toList();
+
+          setState(() {
+            _routeList = routeInfoList;
+          });
       } else {
         print('Error: ${response.statusCode}');
-      }  
+      }
   }
 
   Future<void> enableGps() async {
@@ -90,11 +127,11 @@ class _GPSState extends State<GPS> {
     if (_isGpsEnabled && _isSwitched && selectedBus != null) {
       final Map<String, dynamic> requestBody = {
         'license_plate': selectedBus!,
+        'route_uid': selectedRoute!,
         'latitude': _currentLatitude,
         'longitude': _currentLongitude,
       };
-
-      try {
+      print(requestBody);
         final response = await http.post(
           Uri.parse('https://bus4u.fast-table.com/v1/admin/set_location'),
           body: jsonEncode(requestBody),
@@ -106,9 +143,6 @@ class _GPSState extends State<GPS> {
         } else {
           print('Error sending location: ${response.statusCode}');
         }
-      } catch (e) {
-        print('Error sending location: $e');
-      }
     }
   }
 
@@ -122,7 +156,7 @@ class _GPSState extends State<GPS> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             DropdownButton<String>(
-              hint: Text('Válassz egy buszt'),
+              hint: Text('Please select a bus'),
               value: selectedBus,
               onChanged: (String? newValue) {
                 setState(() {
@@ -133,6 +167,23 @@ class _GPSState extends State<GPS> {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 20),
+            DropdownButton<String>(
+              hint: Text('Please select a route'),
+              value: selectedRoute,
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedRoute = newValue!;
+                });
+              },
+              items:
+                  _routeList.map<DropdownMenuItem<String>>((RouteInfo value) {
+                return DropdownMenuItem<String>(
+                  value: value.routeUid,
+                  child: Text(value.name),
                 );
               }).toList(),
             ),

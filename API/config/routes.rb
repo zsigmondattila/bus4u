@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       post '/create_ticket', to: 'admin#create_ticket'
       get '/get_routes_of_a_company', to: 'admin#get_routes_of_a_company'
       get '/get_stations_of_a_route', to: 'admin#get_stations_of_a_route'
+      get '/get_buses_of_a_company', to: 'admin#get_buses_of_a_company'
 
     end
     post '/send_verification_email', to: 'application#send_verification_email'

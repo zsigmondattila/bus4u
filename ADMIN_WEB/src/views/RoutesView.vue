@@ -9,12 +9,12 @@
     <br>
     <v-form validate-on="submit">
       <v-container>
-        <v-row>
-          <v-col cols="9">
+        <v-row justify="center">
+          <v-col cols="12" :sm="route ? 9 : 10">
             <v-autocomplete label="Route" :items="routes" :item-props="getProps" :disabled="routeCreation" v-model="route" :rules="rules" @update:modelValue="getStations"></v-autocomplete>
           </v-col>
-          <v-col cols="3">
-            <v-btn class="form-button h-100" @click="createRoute"> New Route </v-btn>
+          <v-col cols="6" sm="3">
+              <v-btn class="form-button" color="primary" @click="createRoute"> New Route </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -34,7 +34,7 @@
           </v-row>
           <v-list border class="py-0 my-5">
             <v-list-subheader class="border"> Stations ({{ stations.length }}) </v-list-subheader>
-            <v-list-item v-for="(station, index) in stations" :key="station.station_uid" :value="station" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
+            <v-list-item v-for="(station, index) in stations" :key="index" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
               <template #subtitle>
                 {{ station.address }}&nbsp;&nbsp;►&nbsp;&nbsp;{{ station.longitude }} · {{ station.latitude }}
               </template>
@@ -45,20 +45,20 @@
           </v-list>
           <v-form class="my-5" validate-on="submit" @submit.prevent="addStation">
             <v-row>
-              <v-col cols="10">
+              <v-col cols="9">
                 <v-autocomplete label="Add station" :items="allStations" :item-props="getProps" v-model="newStation" :rules="rules"></v-autocomplete>
               </v-col>
-              <v-col cols="2">
-                <v-btn type="submit" class="form-button h-100"> Add </v-btn>
+              <v-col cols="3">
+                <v-btn type="submit" class="form-button"> Add </v-btn>
               </v-col>
             </v-row>
           </v-form>
-          <v-row justify="end">
+          <v-row justify="center" justify-lg="end" class="mt-8">
             <v-col cols="6" lg="3">
-              <v-btn class="form-button" @click="deleteRoute"> Delete route </v-btn>
+              <v-btn class="form-button" @click="deleteRoute" color="red" variant="outlined"> Delete route </v-btn>
             </v-col>
             <v-col cols="6" lg="3">
-              <v-btn type="submit" class="form-button"> Save route </v-btn>
+              <v-btn type="submit" class="form-button" color="primary"> Save route </v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -129,9 +129,9 @@ async function editRoute(e) {
 function deleteRoute() {
   // axios deletes the route
   route.value = ''
+  routeCreation.value = false
   axios.get('https://bus4u.fast-table.com/v1/get_routes')
   .then(rsp => {
-    console.log(rsp);
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])
 }
@@ -145,7 +145,6 @@ function getStations(route){
 
 axios.get('https://bus4u.fast-table.com/v1/get_routes')
   .then(rsp => {
-    console.log(rsp);
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])
 axios.get('https://bus4u.fast-table.com/v1/get_stations')

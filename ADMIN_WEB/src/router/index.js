@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import UserView from '../views/UserView.vue'
+import LoginView from '../views/LoginView.vue'
+import EmployeesView from '../views/EmployeesView.vue'
 import ScheduleView from '../views/ScheduleView.vue'
 import StationsView from '../views/StationsView.vue'
 import RoutesView from '../views/RoutesView.vue'
@@ -16,14 +17,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'login',
-      component: UserView,
-      props: { isLogin: true }
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: UserView,
-      props: { isLogin: false}
+      component: LoginView
     },
     {
       path: '/schedule',
@@ -39,6 +33,11 @@ const router = createRouter({
       path: '/stations',
       name: 'stations',
       component: StationsView
+    },
+    {
+      path: '/employees',
+      name: 'employees',
+      component: EmployeesView
     },
     {
       path: '/settings',

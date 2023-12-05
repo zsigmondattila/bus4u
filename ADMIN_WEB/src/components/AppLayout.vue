@@ -13,12 +13,13 @@
       </template>
     </v-app-bar>
 
-    <v-navigation-drawer permanent v-model="isNavOpen">
+    <v-navigation-drawer v-model="isNavOpen">
       <v-list color="primary-light" class="h-100 d-flex flex-column">
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
         <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
         <v-list-item prepend-icon="mdi-bus" title="Routes" value="routes" :to="{ name: 'routes' }"></v-list-item>
         <v-list-item prepend-icon="mdi-timetable" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-account-group" title="Employees" value="employees" :to="{ name: 'employees' }"></v-list-item>
         <v-spacer></v-spacer>
         <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
       </v-list>
@@ -40,7 +41,7 @@ import LogoWide from './LogoWide.vue';
 import router from '../router';
 
 const user = userStore()
-const isNavOpen = ref(true)
+const isNavOpen = ref(document.body.offsetWidth >= 1280)
 
 function signOut() {
   user.signOut();
@@ -50,7 +51,7 @@ function signOut() {
 
 <style scoped>
 .content {
-  padding: 25px;
+  padding: 15px;
 }
 .logo {
   height: 42px;
@@ -58,5 +59,10 @@ function signOut() {
 }
 .reset-bg{
   background: transparent;
+}
+@media (min-width: 640px) {
+  .content {
+    padding: 25px;
+  }
 }
 </style>

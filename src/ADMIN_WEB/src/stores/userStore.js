@@ -6,6 +6,7 @@ export const userStore = defineStore('user', () => {
   const firstName = ref('')
   const lastName = ref('')
   const email = ref('')
+  const companyUid = ref('')
   const authorization = ref('')
   const uid = ref('')
   const client = ref('')
@@ -23,9 +24,10 @@ export const userStore = defineStore('user', () => {
   }
 
   function signIn(user, headers) {
-    firstName.value = user.firstName
-    lastName.value = user.lastName
+    firstName.value = user.firstname
+    lastName.value = user.lastname
     email.value = user.email
+    companyUid.value = user.company_uid
     authorization.value = headers.authorization
     uid.value = headers.uid
     client.value = headers.client
@@ -39,6 +41,7 @@ export const userStore = defineStore('user', () => {
         firstName.value = ''
         lastName.value = ''
         email.value = ''
+        companyUid.value = ''
         authorization.value = ''
         uid.value = ''
         client.value = ''
@@ -46,6 +49,6 @@ export const userStore = defineStore('user', () => {
       })
       .catch((err) => console.error(err))
   }
-  return { firstName, lastName, email, authorization, uid, client, accessToken, signIn, signOut }
+  return { firstName, lastName, email, companyUid, authorization, uid, client, accessToken, signIn, signOut }
   }
 )

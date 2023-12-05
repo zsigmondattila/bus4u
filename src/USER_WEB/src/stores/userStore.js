@@ -24,8 +24,8 @@ export const userStore = defineStore('user', () => {
 
 
   function signIn(user, headers) {
-    firstName.value = user.firstName
-    lastName.value = user.lastName
+    firstName.value = user.firstname
+    lastName.value = user.lastname
     email.value = user.email
     authorization.value = headers.authorization
     uid.value = headers.uid

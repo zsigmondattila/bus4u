@@ -8,7 +8,8 @@
         </RouterLink>
       </v-app-bar-title>
       <template #append>
-        <v-btn title="Account" icon="mdi-account-circle-outline" @click="router.push({ name: 'settings' })"></v-btn>
+        <span>{{ user.lastName }}</span>
+        <v-btn :title="user.uid" icon="mdi-account-circle-outline" @click="router.push({ name: 'settings' })"></v-btn>
         <v-btn title="Logout" icon="mdi-logout" @click="signOut"></v-btn>
       </template>
     </v-app-bar>

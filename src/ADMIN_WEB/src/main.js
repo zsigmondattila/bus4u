@@ -16,7 +16,7 @@ const appColor = colors.deepOrange;
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
-      density: 'compact',
+      density: 'comfortable',
       color: appColor.darken1,
       hideDetails: 'auto'
     },

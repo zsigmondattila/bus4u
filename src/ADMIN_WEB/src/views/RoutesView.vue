@@ -22,7 +22,7 @@
     <div v-if="route">
       <v-divider class="my-5"></v-divider>
       <h3 class="text-subtitle-1"> Edit route </h3>
-      <v-form @submit.prevent="editRoute">
+      <v-form @submit.prevent="saveRoute">
         <v-container>
           <v-row>
             <v-col cols="12" md="9">
@@ -70,8 +70,11 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { userStore } from '@/stores/userStore';
 import AppLayout from '../components/AppLayout.vue';
 import SectionTitle from '../components/SectionTitle.vue';
+
+const user = userStore()
 
 const route = ref(null)
 const routes = ref([])
@@ -114,11 +117,19 @@ function addStation(e){
   }).catch()
 }
 
-async function editRoute(e) {
+async function saveRoute(e) {
   let rsp = await e;
   if(rsp.valid) {
     // axios delete route
     // axios create route from route and stations
+    console.log(Object.assign(route.value, { company_uid: user.companyUid }));
+    axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
+      .then(() => {
+        for(let i=0; i<stations.value.length; i++) {
+          axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: route.value.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
+            .then(rsp => console.log(rsp))
+        }
+      })
     routes.value.push(route.value) // TODO: replace with update from API
     route.value = null
     routeCreation.value = false
@@ -143,7 +154,7 @@ function getStations(route){
     }).catch(() => stations.value = [])
 }
 
-axios.get('https://bus4u.fast-table.com/v1/get_routes')
+axios.get('https://bus4u.fast-table.com/v1/get_routes') // TODO: get routes of a company
   .then(rsp => {
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])

@@ -7,7 +7,7 @@ class Ticket < ApplicationRecord
     belongs_to :user, foreign_key: "user_uid"
     has_one :payment
 
-    after_create :create_payment
+    #after_create :create_payment
 
     enum payment_method: %i[credit_card]
 

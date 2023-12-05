@@ -4,18 +4,14 @@
       <div class="logo-container">
         <LogoWide :fill="$vuetify.theme.current.colors.primary" :adjacent="$vuetify.theme.current.colors.adjacent" class="logo"/>
       </div>
-      <LoginPanel v-if="isLogin"/>
-      <RegisterPanel v-else />
+      <LoginPanel/>
     </v-sheet>
   </div>
 </template>
 
 <script setup>
 import LoginPanel from '@/components/LoginPanel.vue';
-import RegisterPanel from '@/components/RegisterPanel.vue';
-import LogoWide from '../components/LogoWide.vue';
-
-defineProps(['isLogin'])
+import LogoWide from '@/components/LogoWide.vue';
 </script>
 
 <style scoped>

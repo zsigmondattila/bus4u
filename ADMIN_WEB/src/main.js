@@ -17,13 +17,16 @@ const vuetify = createVuetify({
   defaults: {
     VTextField: {
       density: 'compact',
-      color: appColor.darken1
+      color: appColor.darken1,
+      hideDetails: 'auto'
     },
     VSelect: {
-      density: 'comfortable'
+      density: 'comfortable',
+      hideDetails: 'auto'
     },
     VAutocomplete: {
-      density: 'comfortable'
+      density: 'comfortable',
+      hideDetails: 'auto'
     }
   },
   icons: {

@@ -119,9 +119,8 @@ class V1::Admin::AdminController < ApplicationController
             route_station = RouteStation.new
             route_station.route_uid = route.route_uid
             route_station.station_uid = station.station_uid
-            route_station.departure_time = params[:departure_time]
             route_station.sequence = params[:sequence]
-            route_station.fare = params[:fare]
+
         
             if route_station.save
                 render json: { success: "RouteStation created successfully" }
@@ -133,34 +132,18 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
-    def create_ticket
-        ticket = Ticket.new
-        route_uid = params[:route_uid]
-        from_station_uid = params[:from_station_uid]
-        to_station_uid = params[:to_station_uid]
-      
-        rs1 = RouteStation.find_by(route_uid: route_uid, station_uid: from_station_uid)
-        rs2 = RouteStation.find_by(route_uid: route_uid, station_uid: to_station_uid)
-        route = Route.find_by(route_uid: route_uid)
-      
-        if rs1 && rs2
-          start_sequence = [rs1.sequence, rs2.sequence].min
-          end_sequence = [rs1.sequence, rs2.sequence].max
-      
-          stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
-          fare_sum = stations_between.sum(:fare)
-      
-          ticket.from_station_uid = from_station_uid
-          ticket.to_station_uid = to_station_uid
-          ticket.ticket_price = fare_sum + route.basic_fare
-      
-          ticket.save
-      
-          render json: { success: "Ticket saved successfully "}
-        else
-          render json: { error: "No RouteStations found" }, status: :unprocessable_entity
+    def add_timetable_to_route
+        route = Route.find_by(route_uid: params[:route_uid])
+        station = Station.find_by(station_uid: params[:station_uid])
+
+        if route && station
+            route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid) 
+
+            route_station.departure_time = params[:departure_time]
+            route_station.fare = params[:fare]
+            route_station.name = params[:name]
         end
-      end
+    end
       
     def get_buses_of_a_company
         buses = Bus.where(company_uid: params[:company_uid])
@@ -220,5 +203,20 @@ class V1::Admin::AdminController < ApplicationController
         buses = Bus.where(license_plate: params[:license_plate], current_route_uid: params[:route_uid])
         render json: buses
     end
+
+    def use_ticket
+        ticket = Ticket.find_by(ticket_uid: params[:ticket_uid])
+        if ticket
+            if ticket.expiration_date < Time.now || !ticket.is_valid
+                render json: { error: "The ticket is used or expired" }, status: :unprocessable_entity
+            else
+                ticket.is_valid = false
+                ticket.save
+                render json: { success: "The ticked is validated successfully" }, status: :accepted
+            end
+        else
+            render json: { error: "The ticket UID is invalid" }, status: :not_found
+        end
+    end 
 
 end

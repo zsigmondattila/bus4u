@@ -133,13 +133,13 @@ class _GPSState extends State<GPS> {
       };
       print(requestBody);
         final response = await http.post(
-          Uri.parse('https://bus4u.fast-table.com/v1/admin/set_location'),
+          Uri.parse('https://bus4u.fast-table.com/v1/admin/change_bus_location'),
           body: jsonEncode(requestBody),
           headers: {'Content-Type': 'application/json'},
         );
 
         if (response.statusCode == 200) {
-          print('Location sent successfully.');
+          print('${response.body}}');
         } else {
           print('Error sending location: ${response.statusCode}');
         }

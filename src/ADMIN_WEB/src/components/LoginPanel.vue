@@ -35,11 +35,11 @@ async function onSubmit(event) {
   errors.value = []
   let response = await event;
   if(response.valid) {
-    console.log(response);
     axios.post('https://bus4u.fast-table.com/admin/sign_in', form).then((rsp) => {
       if(rsp.status == 200 && rsp.data.data.uid) {
+        sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
+        user.signIn(rsp.data.data)
         router.replace({ name: 'home' })
-        user.signIn(rsp.data.data, rsp.headers)
       } else {
         errors.value = ['Login failed'];
       }

@@ -206,9 +206,7 @@ class V1::Admin::AdminController < ApplicationController
             route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid, name: params[:name]) 
 
             route_station.destroy
-
         end
-    end
     end
       
     def get_buses_of_a_company
@@ -283,7 +281,6 @@ class V1::Admin::AdminController < ApplicationController
         else
             render json: { error: "The ticket UID is invalid" }, status: :not_found
         end
-    end 
     end
 
     def use_ticket

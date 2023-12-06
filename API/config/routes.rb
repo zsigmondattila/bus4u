@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'
+      delete '/delete_bus', to: 'admin#delete_bus'
       post '/create_station', to: 'admin#create_station'
       post '/create_route', to: 'admin#create_route'
       post '/add_station_to_route', to: 'admin#add_station_to_route'

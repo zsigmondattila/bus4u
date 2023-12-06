@@ -3,6 +3,7 @@ class RouteStation < ApplicationRecord
     
     belongs_to :station, foreign_key: "station_uid"
     belongs_to :route, foreign_key: "route_uid"
+    has_many :timetable, foreign_key: "route_station_uid"
 
     private
 

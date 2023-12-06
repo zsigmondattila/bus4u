@@ -45,6 +45,16 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def delete_bus
+        bus = Bus.find_by(bus_uid: params[:bus_uid])
+        if(bus)
+            bus.destroy
+            render json: { success: "Bus deleted successfully" }
+        else
+            render json: { error: "Invalid data for deleting a bus" }, status: :unprocessable_entity
+        end
+    end
+
     def create_station
         station = Station.new
         station.name = params[:name]
@@ -57,6 +67,16 @@ class V1::Admin::AdminController < ApplicationController
             render json: { success: "Station created successfully" }
         else
             render json: { error: "Invalid data for creating a station" }, status: :unprocessable_entity
+        end
+    end
+
+    def delete_station
+        station = Station.find_by(station_uid: params[:station_uid])
+        if(station)
+            station.destroy
+            render json: { success: "Station deleted successfully" }
+        else
+            render json: { error: "Invalid data for deleting a station" }, status: :unprocessable_entity
         end
     end
 
@@ -111,6 +131,15 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def delete_route
+        route = Route.find_by(route_uid: params[:route_uid])
+        if(route.destroy)
+            render json: { success: "Route deleted successfully" }
+        else
+            render json: { error: "Invalid data for deleting a route" }, status: :unprocessable_entity
+        end
+    end
+
     def add_station_to_route 
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
@@ -120,7 +149,6 @@ class V1::Admin::AdminController < ApplicationController
             route_station.route_uid = route.route_uid
             route_station.station_uid = station.station_uid
             route_station.sequence = params[:sequence]
-
         
             if route_station.save
                 render json: { success: "RouteStation created successfully" }
@@ -132,16 +160,53 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
-    def add_timetable_to_route
+    def delete_station_from_route
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
 
         if route && station
+            route_station = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
+            if route_station.destroy
+                render json: { success: "RouteStation deleted successfully" }
+            else
+                render json: { error: "Cannot delete RouteStation" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Route or station not found" }, status: :unprocessable_entity
+        end
+    end
+
+    def add_timetable_to_route
+        route = Route.find_by(route_uid: params[:route_uid])
+        station = Station.find_by(station_uid: params[:station_uid])
+        times = params[:departure_times]
+        names = params[:names]
+
+        if route && station
             route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid) 
 
-            route_station.departure_time = params[:departure_time]
-            route_station.fare = params[:fare]
-            route_station.name = params[:name]
+            names.map do |name|
+                times.map do |time|
+                    
+                    route_station.departure_time = time
+                    route_station.fare = params[:fare]
+                    route_station.name = name
+
+                    route_station.save
+                end
+            end
+        end
+    end
+
+    def delete_timetable_from_route
+        route = Route.find_by(route_uid: params[:route_uid])
+        station = Station.find_by(station_uid: params[:station_uid])
+
+        if route && station
+            route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid, name: params[:name]) 
+
+            route_station.destroy
+
         end
     end
       

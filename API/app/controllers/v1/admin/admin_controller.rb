@@ -209,6 +209,7 @@ class V1::Admin::AdminController < ApplicationController
 
         end
     end
+    end
       
     def get_buses_of_a_company
         buses = Bus.where(company_uid: params[:company_uid])
@@ -267,6 +268,22 @@ class V1::Admin::AdminController < ApplicationController
     def get_locations_by_bus_and_route
         buses = Bus.where(license_plate: params[:license_plate], current_route_uid: params[:route_uid])
         render json: buses
+    end
+
+    def use_ticket
+        ticket = Ticket.find_by(ticket_uid: params[:ticket_uid])
+        if ticket
+            if ticket.expiration_date < Time.now || !ticket.is_valid
+                render json: { error: "The ticket is used or expired" }, status: :unprocessable_entity
+            else
+                ticket.is_valid = false
+                ticket.save
+                render json: { success: "The ticked is validated successfully" }, status: :accepted
+            end
+        else
+            render json: { error: "The ticket UID is invalid" }, status: :not_found
+        end
+    end 
     end
 
     def use_ticket

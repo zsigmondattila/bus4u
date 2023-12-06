@@ -20,6 +20,11 @@ class V1::ApplicationController < ApplicationController
     render json: {stations: new_data}
    end
 
+   def get_routes 
+    routes = Route.all
+    render json: { routes: routes }
+   end
+
    def get_stations_by_city
     city = City.find_by(city_uid: params[:city_uid])
     if city
@@ -37,40 +42,6 @@ class V1::ApplicationController < ApplicationController
     end
    end
 
-   def get_stations_of_a_route
-    route = Route.find_by(route_uid: params[:route_uid])
-  
-    if route
-      route_stations = RouteStation.where(route_uid: route.route_uid)
-      
-      stations = route_stations.take(route.nr_of_stations).map do |route_station|
-        station = Station.find_by(station_uid: route_station.station_uid)
-        {
-          station_uid: station.station_uid,
-          name: station.name,
-          longitude: station.longitude,
-          latitude: station.latitude,
-          address: station.address,
-          departure_time: route_station.departure_time.strftime("%H:%M"),
-          sequence: route_station.sequence
-        }
-      end
-  
-      if stations
-        render json: { stations: stations }
-      else
-        render json: { error: "Stations not found!" }, status: :unprocessable_entity
-      end
-    else 
-      render json: { error: "Route not found!" }, status: :unprocessable_entity
-    end
-  end
-
-  def get_routes 
-    routes = Route.all
-    render json: { routes: routes }
-   end
-
    def get_routes_by_station
     station = Station.find_by(station_uid: params[:station_uid])
 
@@ -82,30 +53,65 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-  def get_departure_times_for_station_in_route
-    route = Route.find_by(route_uid: params[:route_uid])
-    station = Station.find_by(station_uid: params[:station_uid])
-  
-    if route && station
-      route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
-  
-      if route_stations.any?
-        grouped_data = route_stations.group_by(&:name).transform_values do |rs_array|
-          rs_array.pluck(:departure_time).map { |time| time.strftime("%H:%M") }
+    def get_stations_of_a_route
+        route = Route.find_by(route_uid: params[:route_uid])
+      
+        if route
+          route_stations = RouteStation.where(route_uid: route.route_uid)
+      
+          stations = route_stations.map do |route_station|
+            station = Station.find_by(station_uid: route_station.station_uid)
+            
+            {
+              station_uid: station.station_uid,
+              name: station.name,
+              longitude: station.longitude,
+              latitude: station.latitude,
+              address: station.address,
+            }
+          end
+      
+          if stations
+            render json: { stations: stations }
+          else
+            render json: { error: "Stations not found!" }, status: :unprocessable_entity
+          end
+        else 
+          render json: { error: "Route not found!" }, status: :unprocessable_entity
         end
-  
-        result = grouped_data.map do |name, departure_times|
-          { 'name' => name, 'departure_times' => departure_times }
-        end
-  
-        render json: result
-      else
-        render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
       end
-    else
-      render json: { error: "Station or route not found!" }, status: :not_found
+
+    def get_departure_times_for_station_in_route
+      route = Route.find_by(route_uid: params[:route_uid])
+      station = Station.find_by(station_uid: params[:station_uid])
+    
+      if route && station
+        route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid)
+    
+        if route_station
+          timetables = Timetable.where(route_station_uid: route_station.route_station_uid)
+    
+          if timetables.any?
+            grouped_data = timetables.group_by(&:name).transform_values do |timetable_array|
+              timetable_array.pluck(:departure_time).map { |time| time.strftime("%H:%M") }
+            end
+    
+            result = grouped_data.map do |name, departure_times|
+              { 'name' => name, 'departure_times' => departure_times }
+            end
+    
+            render json: result
+          else
+            render json: { error: "No departure times found for the specified station on the specified route" }, status: :not_found
+          end
+        else
+          render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
+        end
+      else
+        render json: { error: "Station or route not found!" }, status: :not_found
+      end
     end
-  end
+      
 
   def get_available_tickets 
     scity = City.find_by(city_uid: params[:start_city_uid])
@@ -263,40 +269,51 @@ end
 
 private
 
-def filter_departure_times(route_stations, date, time)
+def filter_departure_times(route_station, date, time)
   is_weekend = date.saturday? || date.sunday?
   filter_name = is_weekend ? 'Weekend' : 'Weekday'
   time3 = time + 3.hours
 
-  filtered_departure_times = route_stations
-    .select { |rs| rs.name == filter_name && rs.departure_time.strftime("%H:%M") >= time.strftime("%H:%M") && rs.departure_time.strftime("%H:%M") < time3.strftime("%H:%M") }
-    .pluck(:departure_time)
-    .map { |time| time.strftime("%H:%M") }
+  timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: filter_name)
+                        .where("departure_time >= ? AND departure_time < ?", time, time3)
+                        .pluck(:departure_time)
+                        .map { |departure_time| departure_time.strftime("%H:%M") }
 
-  filtered_departure_times
+  timetables
 end
 
+def calculate_fare_sum(route_uid, sstation, dstation)
+  rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route_uid)
+  rs2 = RouteStation.find_by(station_uid: dstation, route_uid: route_uid)
+  route = Route.find_by(route_uid: route_uid)
 
-def calculate_fare_sum(route, sstation, dstation)
-  rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route)
-  rs2 = RouteStation.find_by(station_uid: dstation, route_uid: route)
   if rs1 && rs2
     start_sequence = rs1.sequence
     end_sequence = rs2.sequence
 
-    stations_between = RouteStation.where(route_uid: route, sequence: start_sequence..end_sequence).distinct
-    fare_sum = stations_between.sum(:fare)
+    stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+
+    fare_sum = 0
+
+    stations_between.each do |station|
+      timetable = Timetable.find_by(route_station_uid: station.route_station_uid)
+
+      fare_sum += timetable.fare
+    end
+
     return fare_sum
   else
     return 0
   end
 end
 
-def process_routes(routes, start_station, destination_station, date, time, result)
-  routes.map do |route|
-    route_stations = RouteStation.where(route_uid: route.route_uid, station_uid: start_station.station_uid)
 
-    if route_stations.any?
+
+def process_routes(routes, start_station, destination_station, date, time, result)
+  routes.each do |route|
+    route_stations = RouteStation.find_by(route_uid: route.route_uid, station_uid: start_station.station_uid)
+
+    if route_stations
       filtered_departure_times = filter_departure_times(route_stations, date, time)
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
@@ -310,6 +327,7 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     end
   end
 end
+
 
 def order_params
   params.require(:data).permit(:user_uid, :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv)

@@ -106,9 +106,6 @@ class V1::Admin::AdminController < ApplicationController
               longitude: station.longitude,
               latitude: station.latitude,
               address: station.address,
-              departure_time: timetable.departure_time.strftime("%H:%M"),
-              sequence: route_station.sequence,
-              fare: timetable.fare
             }
           end
       

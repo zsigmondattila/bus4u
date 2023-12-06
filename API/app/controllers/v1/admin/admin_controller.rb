@@ -20,7 +20,7 @@ class V1::Admin::AdminController < ApplicationController
         company.tax_number = params[:tax_number]
         company.city = params[:city]
         company.office_address = params[:office_address]
-        if(company.save)
+        if company.save
             render json: { success: "Company created successfully" }
         else
             render json: { error: "Invalid data for creating a company" }, status: :unprocessable_entity        
@@ -38,7 +38,7 @@ class V1::Admin::AdminController < ApplicationController
         bus.insurance = params[:insurance]
         bus.technical_exam = params[:technical_exam]
         bus.save
-        if(bus.save)
+        if bus.save
             render json: { success: "Bus created successfully" }
         else
             render json: { error: "Invalid data for creating a bus" }, status: :unprocessable_entity
@@ -47,7 +47,7 @@ class V1::Admin::AdminController < ApplicationController
 
     def delete_bus
         bus = Bus.find_by(bus_uid: params[:bus_uid])
-        if(bus)
+        if bus
             bus.destroy
             render json: { success: "Bus deleted successfully" }
         else
@@ -83,7 +83,7 @@ class V1::Admin::AdminController < ApplicationController
     def get_routes_of_a_company
         routes = Route.where(company_uid: params[:company_uid])
 
-        if routes
+        if !routes.empty?
             render json: { routes: routes }
         else
             render json: { error: "Routes not found!" }, status: :unprocessable_entity
@@ -98,14 +98,14 @@ class V1::Admin::AdminController < ApplicationController
       
           stations = route_stations.map do |route_station|
             station = Station.find_by(station_uid: route_station.station_uid)
+            timetable = Timetable.find_by(route_station_uid: route_station.route_station_uid)
+            
             {
               station_uid: station.station_uid,
               name: station.name,
               longitude: station.longitude,
               latitude: station.latitude,
               address: station.address,
-              departure_time: route_station.departure_time.strftime("%H:%M"),
-              sequence: route_station.sequence
             }
           end
       
@@ -118,6 +118,7 @@ class V1::Admin::AdminController < ApplicationController
           render json: { error: "Route not found!" }, status: :unprocessable_entity
         end
       end
+      
 
     def create_route 
         route = Route.new
@@ -166,7 +167,7 @@ class V1::Admin::AdminController < ApplicationController
 
         if route && station
             route_station = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
-            if route_station.destroy
+            if route_station.destroy_all
                 render json: { success: "RouteStation deleted successfully" }
             else
                 render json: { error: "Cannot delete RouteStation" }, status: :unprocessable_entity
@@ -181,31 +182,31 @@ class V1::Admin::AdminController < ApplicationController
         station = Station.find_by(station_uid: params[:station_uid])
         times = params[:departure_times]
         names = params[:names]
+        all_saved = true
 
         if route && station
             route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid) 
 
             names.map do |name|
                 times.map do |time|
-                    
-                    route_station.departure_time = time
-                    route_station.fare = params[:fare]
-                    route_station.name = name
+                    timetable = Timetable.new
+                    timetable.route_station_uid = route_station.route_station_uid
+                    timetable.departure_time = time
+                    timetable.fare = params[:fare]
+                    timetable.name = name
 
-                    route_station.save
+                    if !timetable.save
+                        all_saved = false
+                    end
                 end
             end
-        end
-    end
-
-    def delete_timetable_from_route
-        route = Route.find_by(route_uid: params[:route_uid])
-        station = Station.find_by(station_uid: params[:station_uid])
-
-        if route && station
-            route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid, name: params[:name]) 
-
-            route_station.destroy
+            if all_saved
+                render json: { success: "Timetable saved successfully" }
+            else
+                render json: { error: "Cannot save timetable" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Route or station not found" }, status: :unprocessable_entity
         end
     end
       

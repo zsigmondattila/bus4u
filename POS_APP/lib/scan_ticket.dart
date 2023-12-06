@@ -68,6 +68,47 @@ class _ScanTicketState extends State<ScanTicket> {
     });
   }
 
+  Future<void> sendscannedTicket(String ticketUid) async {
+    final response = await http.post(
+      Uri.parse('https://bus4u.fast-table.com/v1/admin/use_ticket'),
+      body: {'ticket_uid': ticketUid},
+    );
+
+    if (response.statusCode == 200) {
+      showStatusMessage('Have a nice trip!', 200);
+    } else if (response.statusCode == 201) {
+      showStatusMessage('The scanned ticket is invalid, please try again!', 201);
+    } else {
+      showStatusMessage('API error, please try again', 404);
+    }
+  }
+
+ void showStatusMessage(String message, int statusCode) {
+  Color backgroundColor;
+
+  if (statusCode == 200) {
+    backgroundColor = const Color.fromARGB(255, 161, 255, 164);
+  }  else {
+    backgroundColor = const Color.fromARGB(255, 255, 75, 62);
+  }
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(message),
+        backgroundColor: backgroundColor,
+      );
+    },
+  );
+
+  Future.delayed(Duration(seconds: 5), () {
+    Navigator.pop(context);
+
+    scanQRCode();
+  });
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

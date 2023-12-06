@@ -283,19 +283,4 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
-    def use_ticket
-        ticket = Ticket.find_by(ticket_uid: params[:ticket_uid])
-        if ticket
-            if ticket.expiration_date < Time.now || !ticket.is_valid
-                render json: { error: "The ticket is used or expired" }, status: :unprocessable_entity
-            else
-                ticket.is_valid = false
-                ticket.save
-                render json: { success: "The ticked is validated successfully" }, status: :accepted
-            end
-        else
-            render json: { error: "The ticket UID is invalid" }, status: :not_found
-        end
-    end 
-
 end

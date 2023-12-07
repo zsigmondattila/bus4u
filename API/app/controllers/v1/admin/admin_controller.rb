@@ -134,7 +134,8 @@ class V1::Admin::AdminController < ApplicationController
 
     def delete_route
         route = Route.find_by(route_uid: params[:route_uid])
-        if(route.destroy)
+        if route
+            route.destroy
             render json: { success: "Route deleted successfully" }
         else
             render json: { error: "Invalid data for deleting a route" }, status: :unprocessable_entity

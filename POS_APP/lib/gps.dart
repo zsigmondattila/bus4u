@@ -155,6 +155,11 @@ class _GPSState extends State<GPS> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+             Container(
+                  height: 80.0,
+                  child: Image(image: AssetImage('assets/pos.png')),
+                ),
+                SizedBox(height: 80.0),
             DropdownButton<String>(
               hint: Text('Please select a bus'),
               value: selectedBus,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pos_app/gps.dart';
-import 'package:pos_app/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'login.dart';
 import 'scan_ticket.dart';
@@ -17,12 +16,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Color.fromRGBO(216, 67, 21, 1)),
           useMaterial3: true,
         ),
         home: Login(),
         routes: {
-          '/home': (context) => Home(),
           '/scan_ticket': (context) => ScanTicket(),
           '/gps': (context) => GPS(),
         });

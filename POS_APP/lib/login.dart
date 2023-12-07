@@ -20,7 +20,7 @@ Future<void> loginUser(
     String companyUid = responseBody['data']['company_uid'] ?? "";
     saveData("token", response.headers['authorization'] ?? '');
     saveData("company", companyUid);
-    Navigator.pushNamed(context, '/home');
+    Navigator.pushNamed(context, '/gps');
   } else {
     showDialog(
       context: context,
@@ -56,10 +56,6 @@ class _LoginState extends State<Login> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Card(
-          elevation: 5.0,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -67,7 +63,7 @@ class _LoginState extends State<Login> {
                   height: 80.0,
                   child: Image(image: AssetImage('assets/pos.png')),
                 ),
-                SizedBox(height: 16.0),
+                SizedBox(height: 80.0),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 16.0),
                   child: TextField(
@@ -101,12 +97,14 @@ class _LoginState extends State<Login> {
                   onPressed: () {
                     loginUser(email, password, context);
                   },
+                  style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromRGBO(216, 67, 21, 1),
+                  foregroundColor: Colors.white,
+                ),
                   child: Text("Sign in"),
                 ),
               ],
             ),
-          ),
-        ),
       ),
     );
   }

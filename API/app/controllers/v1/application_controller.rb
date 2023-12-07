@@ -97,7 +97,7 @@ class V1::ApplicationController < ApplicationController
             end
     
             result = grouped_data.map do |name, departure_times|
-              { 'name' => name, 'departure_times' => departure_times }
+              { 'name' => name, 'fare' => Timetable.find_by(name: name).fare, 'departure_times' => departure_times }
             end
     
             render json: result

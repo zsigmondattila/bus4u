@@ -24,7 +24,7 @@
       <h3 class="text-subtitle-1"> Edit route </h3>
       <v-form @submit.prevent="saveRoute">
         <v-container>
-          <v-row>
+          <v-row dense>
             <v-col cols="12" md="9">
               <v-text-field label="Name" v-model="route.name" :rules="nameRules"></v-text-field>
             </v-col>
@@ -32,7 +32,7 @@
               <v-text-field label="Basic fare" v-model="route.basic_fare" suffix="Lei"></v-text-field>
             </v-col>
           </v-row>
-          <v-list border class="py-0 my-5">
+          <v-list border class="py-0 my-3">
             <v-list-subheader class="border"> Stations ({{ stations.length }}) </v-list-subheader>
             <v-list-item v-for="(station, index) in stations" :key="index" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
               <template #subtitle>
@@ -43,8 +43,8 @@
               </template>
             </v-list-item>
           </v-list>
-          <v-form class="my-5" validate-on="submit" @submit.prevent="addStation">
-            <v-row>
+          <v-form class="my-2" validate-on="submit" @submit.prevent="addStation">
+            <v-row dense>
               <v-col cols="9">
                 <v-autocomplete label="Add station" :items="allStations" :item-props="getProps" v-model="newStation" :rules="rules"></v-autocomplete>
               </v-col>
@@ -53,7 +53,7 @@
               </v-col>
             </v-row>
           </v-form>
-          <v-row justify="center" justify-lg="end" class="mt-8">
+          <v-row justify="center" justify-lg="end" class="mt-8" dense>
             <v-col cols="6" lg="3">
               <v-btn class="form-button" @click="deleteRoute" color="red" variant="outlined"> Delete route </v-btn>
             </v-col>
@@ -64,6 +64,9 @@
         </v-container>
       </v-form>
     </div>
+    <v-snackbar v-model="notification">
+      {{ notification }}
+    </v-snackbar>
   </AppLayout>
 </template>
 
@@ -75,6 +78,7 @@ import AppLayout from '../components/AppLayout.vue';
 import SectionTitle from '../components/SectionTitle.vue';
 
 const user = userStore()
+const notification = ref(null)
 
 const route = ref(null)
 const routes = ref([])
@@ -84,7 +88,7 @@ const allStations = ref([])
 const routeCreation = ref(false)
 
 const rules = [
-  (v) => !!v || 'Select a route first!'
+  (v) => !!v || 'Select an option first!'
 ]
 const nameRules = [
   (v) => !!v || 'This can\'t be empty!'
@@ -104,8 +108,8 @@ function createRoute(){
 }
 
 function deleteStation(station){
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station_from_route', { params: { route_uid: route.value.route_uid, station_uid: stations.value[station].station_uid }})
   stations.value.splice(station, 1)
-  console.log('Update:', stations.value);
 }
 
 function addStation(e){
@@ -120,31 +124,37 @@ function addStation(e){
 async function saveRoute(e) {
   let rsp = await e;
   if(rsp.valid) {
-    // axios delete route
-    // axios create route from route and stations
-    console.log(Object.assign(route.value, { company_uid: user.companyUid }));
-    axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
+    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { bus_uid: route.value.route_uid }})
       .then(() => {
-        for(let i=0; i<stations.value.length; i++) {
-          axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: route.value.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
-            .then(rsp => console.log(rsp))
-        }
+        axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
+        .then(async () => {
+          for(let i=0; i<stations.value.length; i++) {
+            await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: route.value.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
+          }
+          axios.get('https://bus4u.fast-table.com/v1/get_routes')
+            .then(rsp => {
+              if(rsp.status == 200) routes.value = rsp.data.routes
+          }).catch(() => routes.value = [])
+          notification.value = 'Route saved successfully'
+          route.value = null
+          routeCreation.value = false
+        })
       })
-    routes.value.push(route.value) // TODO: replace with update from API
-    route.value = null
-    routeCreation.value = false
   }
   else console.warn('Not valid');
 }
 
 function deleteRoute() {
-  // axios deletes the route
-  route.value = ''
-  routeCreation.value = false
-  axios.get('https://bus4u.fast-table.com/v1/get_routes')
-  .then(rsp => {
-    if(rsp.status == 200) routes.value = rsp.data.routes
-  }).catch(() => routes.value = [])
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { bus_uid: route.value.route_uid }})
+  .then(() => {
+    notification.value = 'Route deleted successfully'
+    route.value = ''
+    routeCreation.value = false
+    axios.get('https://bus4u.fast-table.com/v1/get_routes')
+      .then(rsp => {
+        if(rsp.status == 200) routes.value = rsp.data.routes
+      }).catch(() => routes.value = [])
+  }).catch(() => console.error('Cannot delete route'))
 }
 
 function getStations(route){
@@ -154,7 +164,7 @@ function getStations(route){
     }).catch(() => stations.value = [])
 }
 
-axios.get('https://bus4u.fast-table.com/v1/get_routes') // TODO: get routes of a company
+axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.companyUid }})
   .then(rsp => {
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])

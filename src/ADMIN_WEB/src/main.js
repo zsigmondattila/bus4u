@@ -27,6 +27,12 @@ const vuetify = createVuetify({
     VAutocomplete: {
       density: 'comfortable',
       hideDetails: 'auto'
+    },
+    VSnackbar: {
+      color: appColor.darken3,
+      location: 'bottom',
+      variant: 'elevated',
+      timeout: 5000
     }
   },
   icons: {

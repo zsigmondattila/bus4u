@@ -1,0 +1,14 @@
+class RouteStation < ApplicationRecord
+    before_create :generate_uid
+    
+    belongs_to :station, foreign_key: "station_uid"
+    belongs_to :route, foreign_key: "route_uid"
+    has_many :timetable, foreign_key: "route_station_uid", dependent: :destroy
+
+    private
+
+  def generate_uid
+    charset = ('0'..'9').to_a + ('A'..'Z').to_a
+    self.route_station_uid = "RST_" + (1..5).map { charset.sample }.join
+  end
+end

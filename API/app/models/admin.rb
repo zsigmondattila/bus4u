@@ -10,7 +10,7 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  belongs_to :company, foreign_key: "company_uid"
+  belongs_to :company, foreign_key: "company_uid", optional: true
 
   private
 

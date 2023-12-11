@@ -154,6 +154,16 @@ class V1::ApplicationController < ApplicationController
             sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
             droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
             routes = sroutes & droutes
+            puts "sasd #{sstation.station_uid} #{dstation.station_uid} #{} #{} #{}"
+            sroutes.each do |ro|
+              puts "stutt #{ro.name}"
+            end
+            droutes.each do |ro|
+              puts "dtutt #{ro.name}"
+            end
+            routes.each do |ro|
+              puts "tutt #{ro.name}"
+            end
             process_routes(routes, sstation, dstation, date, time, result)
           end
         end
@@ -258,7 +268,9 @@ def filter_departure_times(route_station, date, time)
                         .where("departure_time >= ?", time - 2.hours)
                         .pluck(:departure_time)
                         .map { |departure_time| departure_time.strftime("%H:%M") }
-
+  timetables.each do |timetable|
+    puts "TIMETABLE #{timetable.departure_time}"
+  end
   timetables
 end
 

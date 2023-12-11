@@ -60,7 +60,7 @@ class V1::Admin::AdminController < ApplicationController
         station.name = params[:name]
         station.latitude = params[:latitude]
         station.longitude = params[:longitude]
-        station.city = City.find_or_create_by(name: params[:city])
+        station.city = City.find_or_create_by(name: params[:city], zip_code: params[:zip_code])
         station.address = params[:address]
         station.save
         if(station.save)       
@@ -206,6 +206,23 @@ class V1::Admin::AdminController < ApplicationController
             else
                 render json: { error: "Cannot save timetable" }, status: :unprocessable_entity
             end
+        else
+            render json: { error: "Route or station not found" }, status: :unprocessable_entity
+        end
+    end
+
+    def delete_timetables_from_route
+        route = Route.find_by(route_uid: params[:route_uid])
+        station = Station.find_by(station_uid: params[:station_uid])
+
+        if route && station
+            route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid)
+
+            times = Timetable.where(route_station_uid: route_station.route_station_uid)
+            times.each do |time|
+                time.destroy
+            end
+                render json: { success: "Timetables deleted successfully" }
         else
             render json: { error: "Route or station not found" }, status: :unprocessable_entity
         end

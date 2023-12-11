@@ -120,7 +120,6 @@ class V1::ApplicationController < ApplicationController
     dstation = Station.find_by(station_uid: params[:destination_station_uid])
     date = Time.zone.parse(params[:date])
     time = DateTime.strptime(params[:time], "%H:%M")
-    puts "timee #{time}"
     result = []
   
     if scity && dcity && date && time
@@ -270,12 +269,10 @@ end
 private
 
 def filter_departure_times(route_station, date, time)
-  is_weekend = date.saturday? || date.sunday?
-  filter_name = is_weekend ? 'Weekend' : 'Weekday'
-  time3 = time + 3.hours
+  today = date.strftime("%A")
 
-  timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: filter_name)
-                        .where("departure_time >= ? AND departure_time < ?", time, time3)
+  timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: today)
+                        .where("departure_time >= ?", time - 2.hours)
                         .pluck(:departure_time)
                         .map { |departure_time| departure_time.strftime("%H:%M") }
 
@@ -292,6 +289,9 @@ def calculate_fare_sum(route_uid, sstation, dstation)
     end_sequence = rs2.sequence
 
     stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+    if stations_between.empty?
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence)
+    end
 
     fare_sum = 0
 
@@ -311,10 +311,10 @@ end
 
 def process_routes(routes, start_station, destination_station, date, time, result)
   routes.each do |route|
-    route_stations = RouteStation.find_by(route_uid: route.route_uid, station_uid: start_station.station_uid)
+    route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: start_station.station_uid)
 
-    if route_stations
-      filtered_departure_times = filter_departure_times(route_stations, date, time)
+    if route_station
+      filtered_departure_times = filter_departure_times(route_station, date, time)
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
         start_station: start_station.name,

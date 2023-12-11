@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post '/add_station_to_route', to: 'admin#add_station_to_route'
       delete '/delete_station_from_route', to: 'admin#delete_station_from_route'
       post '/add_timetable_to_route', to: 'admin#add_timetable_to_route'
+      delete '/delete_timetables_from_route', to:'admin#delete_timetables_from_route'
       post '/set_a_bus_tracked', to: 'admin#set_a_bus_tracked'
       post '/set_a_bus_untracked', to: 'admin#set_a_bus_untracked'
       post '/set_current_route_of_a_bus', to: 'admin#set_current_route_of_a_bus'

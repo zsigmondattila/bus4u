@@ -264,51 +264,6 @@ weekends.each do |name|
     Timetable.create(route_station: rs10, departure_time: Time.parse("18:56"), fare: 4, name: name )
 end
 
-route = Route.find_by(name: "Gyergyó körjárat");
-
-rs1 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó állomás"), sequence: 1)
-rs2 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 2)
-rs3 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó központ"), sequence: 3)
-rs4 = RouteStation.create(route: route, station: Station.find_by(name: "Tekerőpatak központ"), sequence: 4)
-rs5 = RouteStation.create(route: route, station: Station.find_by(name: "Kilyénfalva központ"), sequence: 5)
-rs6 = RouteStation.create(route: route, station: Station.find_by(name: "Újfalu központ"), sequence: 6)
-rs7 = RouteStation.create(route: route, station: Station.find_by(name: "Újfalu temető"), sequence: 7)
-rs8 = RouteStation.create(route: route, station: Station.find_by(name: "Csomafalva központ"), sequence: 8)
-rs9 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu központ"), sequence: 9)
-rs10 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu lengyár"), sequence: 10)
-
-weekdays.each do |name|
-    Timetable.create(route_station: rs1, departure_time: Time.parse("07:30"), fare: 0, name: name)
-    Timetable.create(route_station: rs1, departure_time: Time.parse("12:30"), fare: 0, name: name)
-    Timetable.create(route_station: rs1, departure_time: Time.parse("18:30"), fare: 0, name: name)
-    Timetable.create(route_station: rs2, departure_time: Time.parse("07:34"), fare: 2, name: name)
-    Timetable.create(route_station: rs2, departure_time: Time.parse("12:34"), fare: 2, name: name)
-    Timetable.create(route_station: rs2, departure_time: Time.parse("18:34"), fare: 2, name: name)
-    Timetable.create(route_station: rs3, departure_time: Time.parse("07:38"), fare: 1, name: name)
-    Timetable.create(route_station: rs3, departure_time: Time.parse("12:38"), fare: 1, name: name)
-    Timetable.create(route_station: rs3, departure_time: Time.parse("18:38"), fare: 1, name: name)
-    Timetable.create(route_station: rs4, departure_time: Time.parse("07:43"), fare: 0, name: name)
-    Timetable.create(route_station: rs4, departure_time: Time.parse("12:43"), fare: 0, name: name)
-    Timetable.create(route_station: rs4, departure_time: Time.parse("18:43"), fare: 0, name: name)
-    Timetable.create(route_station: rs5, departure_time: Time.parse("07:49"), fare: 0, name: name)
-    Timetable.create(route_station: rs5, departure_time: Time.parse("12:49"), fare: 0, name: name)
-    Timetable.create(route_station: rs5, departure_time: Time.parse("18:49"), fare: 0, name: name)
-    Timetable.create(route_station: rs6, departure_time: Time.parse("08:00"), fare: 0, name: name)
-    Timetable.create(route_station: rs6, departure_time: Time.parse("13:00"), fare: 0, name: name)
-    Timetable.create(route_station: rs6, departure_time: Time.parse("19:00"), fare: 0, name: name)
-    Timetable.create(route_station: rs7, departure_time: Time.parse("08:06"), fare: 0, name: name)
-    Timetable.create(route_station: rs7, departure_time: Time.parse("13:06"), fare: 0, name: name)
-    Timetable.create(route_station: rs7, departure_time: Time.parse("19:06"), fare: 0, name: name)
-    Timetable.create(route_station: rs8, departure_time: Time.parse("08:14"), fare: 0, name: name)
-    Timetable.create(route_station: rs8, departure_time: Time.parse("13:14"), fare: 0, name: name)
-    Timetable.create(route_station: rs8, departure_time: Time.parse("19:14"), fare: 0, name: name)
-    Timetable.create(route_station: rs9, departure_time: Time.parse("08:22"), fare: 0, name: name)
-    Timetable.create(route_station: rs9, departure_time: Time.parse("13:22"), fare: 0, name: name)
-    Timetable.create(route_station: rs9, departure_time: Time.parse("19:22"), fare: 0, name: name)
-    Timetable.create(route_station: rs10, departure_time: Time.parse("08:26"), fare: 0, name: name)
-    Timetable.create(route_station: rs10, departure_time: Time.parse("13:26"), fare: 0, name: name)
-    Timetable.create(route_station: rs10, departure_time: Time.parse("19:26"), fare: 0, name: name)
-end
 
 #CREATING TICKETS
 

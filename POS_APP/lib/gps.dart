@@ -56,7 +56,7 @@ class _GPSState extends State<GPS> {
         _busList = plates;
       });
     } else {
-      print('Error: ${response.statusCode}');
+      print('Error: ${response.body}');
     }
   }
 
@@ -83,7 +83,7 @@ class _GPSState extends State<GPS> {
             _routeList = routeInfoList;
           });
       } else {
-        print('Error: ${response.statusCode}');
+        print('Error: ${response.body}');
       }
   }
 

@@ -288,8 +288,9 @@ def calculate_fare_sum(route_uid, sstation, dstation)
     start_sequence = rs1.sequence
     end_sequence = rs2.sequence
 
-    stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
-    if stations_between.empty?
+    if start_sequence < end_sequence
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+    else
       stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence)
     end
 

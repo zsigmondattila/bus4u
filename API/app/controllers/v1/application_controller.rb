@@ -132,6 +132,7 @@ class V1::ApplicationController < ApplicationController
       if sstation && dstation
         sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
         droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+        
         routes = sroutes & droutes
         process_routes(routes, sstation, dstation, date, time, result)
       elsif sstation.nil? && dstation
@@ -151,19 +152,10 @@ class V1::ApplicationController < ApplicationController
       elsif sstation.nil? && dstation.nil?
         scity.stations.each do |sstation|
           dcity.stations.each do |dstation|
-            sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
-            droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+            sroutes = Route.joins(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
+droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
             routes = sroutes & droutes
-            puts "sasd #{sstation.station_uid} #{dstation.station_uid} #{} #{} #{}"
-            sroutes.each do |ro|
-              puts "stutt #{ro.name}"
-            end
-            droutes.each do |ro|
-              puts "dtutt #{ro.name}"
-            end
-            routes.each do |ro|
-              puts "tutt #{ro.name}"
-            end
+
             process_routes(routes, sstation, dstation, date, time, result)
           end
         end
@@ -268,9 +260,7 @@ def filter_departure_times(route_station, date, time)
                         .where("departure_time >= ?", time - 2.hours)
                         .pluck(:departure_time)
                         .map { |departure_time| departure_time.strftime("%H:%M") }
-  timetables.each do |timetable|
-    puts "TIMETABLE #{timetable.departure_time}"
-  end
+
   timetables
 end
 
@@ -298,7 +288,7 @@ def calculate_fare_sum(route_uid, sstation, dstation)
       fare_sum += timetable.fare
     end
 
-    return fare_sum
+    return fare_sum + route.basic_fare
   else
     return 0
   end

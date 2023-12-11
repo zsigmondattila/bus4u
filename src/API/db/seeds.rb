@@ -1,7 +1,5 @@
 #CREATING COMPANIES
 Company.create(name: "VANDOR TRANS TOURS SRL", email: "office@vandortrans.ro", phone_number: "0762883716", tax_number: "49281782", city: "Gheorgheni", office_address: "Str. Kossuth Lajos nr. 91")
-Company.create(name: "PANORAMA TURIST SRL", email: "panorama@gmail.com", phone_number: "0755197688", tax_number: "74112365", city: "Ditrau", office_address: "Str. Dealul frumos 73/A")
-Company.create(name: "BALINT TRANS SRL", email: "balinttrans@yahoo.com", phone_number: "0723763998", tax_number: "41549877", city: "Targu Mures", office_address: "Str. Bega nr. 9")
 Company.create(name: "TRANSPORT LOCAL SA", email: "office@vandortrans.ro", phone_number: "0763777716", tax_number: "87654782", city: "Targu Mures", office_address: "Str. Bega nr. 2")
 
 #CREATING BUSES FOR THE COMPANIES
@@ -45,44 +43,65 @@ Admin.create(company_uid: transloc.company_uid, email: "2@gmail.com", firstname:
 ciumani = City.create(name: "Ciumani", zip_code: "537050")
 joseni = City.create(name: "Joseni", zip_code: "537150")
 gheorgheni = City.create(name: "Gheorgheni", zip_code: "117050")
-suseni = City.create(name: "Suseni", zip_code: "274922")
-valeast = City.create(name: "Valea stramba", zip_code: "582299")
-chileni = City.create(name: "Chileni", zip_code: "839288")
 tgm = City.create(name: "Targu mures", zip_code: "129138")
+praid = City.create(name: "Praid", zip_code: "382983")
 
 #CREATING STATIONS
-Station.create(name: "Csomafalva központ", latitude: 46.6791586975964, longitude: 25.51624828632996, city: ciumani, address: "Str. Principala nr. 89")
-Station.create(name: "Csomafalva szászfalu", latitude: 46.67291081146523, longitude: 25.49966790502754, city: ciumani, address: "Str. Töltés nr. 18")
-Station.create(name: "Alfalu központ", latitude: 46.701383449930674, longitude: 25.504336705477453, city: joseni, address: "Str. Ciumani nr. 88")
-Station.create(name: "Alfalu lengyár", latitude: 46.7061202738582, longitude: 25.527403454222306, city: joseni, address: "Str. Gheorgheni nr. 3")
-Station.create(name: "Gyergyó állomás", latitude: 46.719521757528696, longitude: 25.5740503955354, city: gheorgheni, address: "Str. Garii nr. 16")
+Station.create(name: "Csomafalva Központ", latitude: 46.6791586975964, longitude: 25.51624828632996, city: ciumani, address: "Str. Principala nr. 89")
+Station.create(name: "Csomafalva Szászfalu", latitude: 46.67291081146523, longitude: 25.49966790502754, city: ciumani, address: "Str. Töltés nr. 18")
+Station.create(name: "Alfalu Központ", latitude: 46.701383449930674, longitude: 25.504336705477453, city: joseni, address: "Str. Ciumani nr. 88")
+Station.create(name: "Alfalu Lengyár", latitude: 46.7061202738582, longitude: 25.527403454222306, city: joseni, address: "Str. Gheorgheni nr. 3")
+Station.create(name: "Gyergyó Állomás", latitude: 46.719521757528696, longitude: 25.5740503955354, city: gheorgheni, address: "Str. Garii nr. 16")
 Station.create(name: "Gyergyó Maros hotel", latitude: 46.722678965669736, longitude: 25.59475044928773, city: gheorgheni, address: "Bul. Fratiei nr. 65")
-Station.create(name: "Gyergyó központ", latitude: 46.720802603020786, longitude: 25.599988435400288, city: gheorgheni, address: "Pta. Libertatii nr. 26")
-Station.create(name: "Tekerőpatak központ", latitude: 46.69237759383521, longitude: 25.59493211244968, city: valeast, address: "Str. Principala nr. 12")
-Station.create(name: "Kilyénfalva központ", latitude: 46.68281753325698, longitude: 25.572622649671338, city: chileni, address: "Str. Suseni nr. 65")
-Station.create(name: "Újfalu központ", latitude: 46.6689490666233, longitude: 25.556304911675166, city: suseni, address: "Str. Piac nr. 2")
-Station.create(name: "Újfalu temető", latitude: 46.67022625259149, longitude: 25.54420516094741, city: suseni, address: "Str. Ciumani nr. 26")
+Station.create(name: "Gyergyó Központ", latitude: 46.720802603020786, longitude: 25.599988435400288, city: gheorgheni, address: "Pta. Libertatii nr. 26")
+
+Station.create(name: "Sapientia", latitude: 46.52339, longitude: 24.59883, city: tgm, address: "Str. Calea Sighisoarei nr. 2")
+Station.create(name: "Dedeman", latitude: 46.52678, longitude: 24.59941, city: tgm, address: "Bul. 1 Decembrie nr. 189")
+Station.create(name: "Regele Ferdinand", latitude: 46.53422, longitude: 24.59133, city: tgm, address: "Str. Livezeni nr. 32")
+Station.create(name: "Piata Diamant 1", latitude: 46.53736, longitude: 24.59033, city: tgm, address: "Str. Cutezantei nr. 12")
+Station.create(name: "Infratirii", latitude: 46.53851, longitude: 24.58423, city: tgm, address: "Str. infratirii nr. 78")
+Station.create(name: "Fortuna", latitude: 46.53560, longitude: 24.58276, city: tgm, address: "Bul. 1 Decembrie nr. 117")
+Station.create(name: "Lalelelor", latitude: 46.53908, longitude: 24.57623, city: tgm, address: "Bul. 1 Decembrie nr. 93")
+Station.create(name: "Izvor", latitude: 46.53967, longitude: 24.56045, city: tgm, address: "Bul. 1 Decembrie nr. 59")
+Station.create(name: "Grand", latitude: 46.54195, longitude: 24.55786, city: tgm, address: "Piata Vitoriei nr. 4")
+Station.create(name: "Piata Trandafirilor", latitude: 46.54377, longitude: 24.56029, city: tgm, address: "Piata Trandafirilor nr. 10")
+Station.create(name: "Evidenta Populatiei", latitude: 46.54757, longitude: 24.56036, city: tgm, address: "Str. Calarasilor nr. 48")
+Station.create(name: "Cocosul de Aur", latitude: 46.55060, longitude: 24.55606, city: tgm, address: "Str. Calarasilor nr. 81")
+Station.create(name: "Aleea Carpati 2", latitude: 46.55300, longitude: 24.55728, city: tgm, address: "Str. Aleea Carpati nr. 17")
+Station.create(name: "Strandul 1 Mai", latitude: 46.55674, longitude: 24.56346, city: tgm, address: "Str. Aleea Carpati nr. 93")
+Station.create(name: "Aleea Carpati 1", latitude: 46.55456, longitude: 24.55977, city: tgm, address: "Str. Aleea Carpati nr. 32")
+Station.create(name: "Darina", latitude: 46.55363, longitude: 24.55819, city: tgm, address: "")
+Station.create(name: "Piata de Vechituri", latitude: 46.55313, longitude: 24.55179, city: tgm, address: "Str. Insulei nr. 3")
+Station.create(name: "Electrica", latitude: 46.55041, longitude: 24.55600, city: tgm, address: "Str Calarasilor nr. 11")
+Station.create(name: "Evreilor Martiri", latitude: 46.54814, longitude: 24.55849, city: tgm, address: "Str. Calarasilor nr. 23")
+Station.create(name: "Piata Teatrului", latitude: 46.54563, longitude: 24.56196, city: tgm, address: "Piata Trandafirilor nr. 11")
+Station.create(name: "Poli 2", latitude: 46.53940, longitude: 24.56104, city: tgm, address: "Bul. 1 Decembrie nr. 26")
+Station.create(name: "Europa", latitude: 46.53886, longitude: 24.57537, city: tgm, address: "Bul. 1 Decembrie nr. 48")
+Station.create(name: "Poklos", latitude: 46.53768, longitude: 24.58447, city: tgm, address: "Str. Infratirii nr. 82")
+Station.create(name: "Tudor Vladimirescu", latitude: 46.53892, longitude: 24.58686, city: tgm, address: "Str. Cutezanzei nr. 183")
+Station.create(name: "Piata Diamant 2", latitude: 46.53674, longitude: 46.53674, city: tgm, address: "Str. Cutezantei nr. 83")
+Station.create(name: "Liceul Electromures", latitude: 46.53404, longitude: 24.59039, city: tgm, address: "Str. Livezeni nr. 8")
+Station.create(name: "Corina 2", latitude: 46.53256, longitude: 24.58980, city: tgm, address: "Bul. 1 Decembrie nr. 173")
+Station.create(name: "Shopping City", latitude: 46.52830, longitude: 24.59659, city: tgm, address: "Bul. 1 Decembrie fara numar")
+Station.create(name: "Hotel Business", latitude: 46.52687, longitude: 24.59910, city: tgm, address: "")
 
 
 #CREATE A ROUTE
 Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid, nr_of_stations: 10, basic_fare: 0);
-Route.create(name: "Gyergyó körjárat", company_uid: vandor.company_uid, nr_of_stations: 10, basic_fare: 0);
-Route.create(name: "Gyergyó-Marosvásárhely", company_uid: vandor.company_uid, basic_fare: 0);
-Route.create(name: "26", company_uid: transloc.company_uid, basic_fare: 2);
-Route.create(name: "27", company_uid: transloc.company_uid, basic_fare: 2);
-Route.create(name: "44", company_uid: transloc.company_uid, basic_fare: 2);
+Route.create(name: "Gyergyó-Marosvásárhely", company_uid: vandor.company_uid, nr_of_stations: , basic_fare: 0);
+Route.create(name: "26", company_uid: transloc.company_uid, nr_of_stations: 27, basic_fare: 2);
 
 route = Route.find_by(name: "Szászfalu-Gyergyó");
-rs1 = RouteStation.create(route: route, station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 1)
-rs2 = RouteStation.create(route: route, station: Station.find_by(name: "Csomafalva központ"), sequence: 2)
-rs3 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu központ"), sequence: 3)
-rs4 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
-rs5 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
-rs6 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
-rs7 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó állomás"), sequence: 7)
-rs8 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu lengyár"), sequence: 8)
-rs9 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu központ"), sequence: 9)
-rs10 = RouteStation.create(route: route,station: Station.find_by(name: "Csomafalva központ"), sequence: 10)
+rs1 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Csomafalva szászfalu"), sequence: 1)
+rs2 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Csomafalva központ"), sequence: 2)
+rs3 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Alfalu központ"), sequence: 3)
+rs4 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Alfalu lengyár"), sequence: 4)
+rs5 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyergyó állomás"), sequence: 5)
+rs6 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyergyó Maros hotel"), sequence: 6)
+rs7 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyergyó állomás"), sequence: 7)
+rs8 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Alfalu lengyár"), sequence: 8)
+rs9 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Alfalu központ"), sequence: 9)
+rs10 = RouteStation.create(route: route,station: Station.find_by(company: vandor, name: "Csomafalva központ"), sequence: 10)
 
 weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 weekends = ["Saturday", "Sunday"]
@@ -264,6 +283,66 @@ weekends.each do |name|
     Timetable.create(route_station: rs10, departure_time: Time.parse("18:56"), fare: 4, name: name )
 end
 
+route = Route.find_by(name: "Gyergyó-Marosvásárhely");
+rs1 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyergyó központ"), sequence: 1)
+rs2 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyegyó állomás"), sequence: 2)
+rs3 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Parajd központ"), sequence: 3)
+rs4 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Dedeman"), sequence: 4)
+rs5 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Piata Trandafirilor"), sequence: 5)
+rs6 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Dedeman"), sequence: 6)
+rs7 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Parajd központ"), sequence: 7)
+rs8 = RouteStation.create(route: route, station: Station.find_by(company: vandor, name: "Gyergyó állomás"), sequence: 8)
+
+weekdays.each do |name|
+    Timetable.create(route_station: rs1, departure_time: Time.parse("06:00"), fare: 0, name: name )
+    Timetable.create(route_station: rs1, departure_time: Time.parse("18:00"), fare: 0, name: name )
+    Timetable.create(route_station: rs2, departure_time: Time.parse("06:05"), fare: 2, name: name )
+    Timetable.create(route_station: rs2, departure_time: Time.parse("18:05"), fare: 2, name: name )
+    Timetable.create(route_station: rs3, departure_time: Time.parse("07:00"), fare: 18, name: name )
+    Timetable.create(route_station: rs3, departure_time: Time.parse("19:00"), fare: 18, name: name )
+    Timetable.create(route_station: rs4, departure_time: Time.parse("07:45"), fare: 20, name: name )
+    Timetable.create(route_station: rs4, departure_time: Time.parse("19:45"), fare: 20, name: name )
+    Timetable.create(route_station: rs5, departure_time: Time.parse("08:00"), fare: 1, name: name )
+    Timetable.create(route_station: rs5, departure_time: Time.parse("20:00"), fare: 1, name: name )
+    Timetable.create(route_station: rs6, departure_time: Time.parse("08:15"), fare: 1, name: name )
+    Timetable.create(route_station: rs6, departure_time: Time.parse("20:15"), fare: 1, name: name )
+    Timetable.create(route_station: rs7, departure_time: Time.parse("9:00"), fare: 20, name: name )
+    Timetable.create(route_station: rs7, departure_time: Time.parse("21:00"), fare: 20, name: name )
+    Timetable.create(route_station: rs8, departure_time: Time.parse("10:00"), fare: 18, name: name )
+    Timetable.create(route_station: rs8, departure_time: Time.parse("22:00"), fare: 18, name: name )
+end
+
+route = Route.find_by(name: "26")
+
+rs1 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Sapientia"), sequence: )
+rs2 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Dedeman"), sequence: )
+rs3 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Regele Ferdinand"), sequence: )
+rs4 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Piata Diamant 1"), sequence: )
+rs5 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Infratirii"), sequence: )
+rs6 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Fortuna"), sequence: )
+rs7 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Lalelelor"), sequence: )
+rs8 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Izvor"), sequence: )
+rs9 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Grand"), sequence: )
+rs10 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Piata Trandafirilor"), sequence: )
+rs11 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Evidenta Populatiei"), sequence: )
+rs12 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Cocosul de Aur"), sequence: )
+rs13 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Aleea Carpati 2"), sequence: )
+rs14 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Strandul 1 Mai"), sequence: )
+rs15 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Aleea Carpati "), sequence: )
+rs16 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Darina"), sequence: )
+rs17 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Piata de Vechituri"), sequence: )
+rs18 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Electrica"), sequence: )
+rs19 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Evreilor Martiri"), sequence: )
+rs20 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Piata Teatrului"), sequence: )
+rs21 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Poli 2"), sequence: )
+rs22 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Europa"), sequence: )
+rs23 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Poklos"), sequence: )
+rs24 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Tudor Vladimirescu"), sequence: )
+rs25 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Piata Diamant 2"), sequence: )
+rs26 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Liceul Electromures"), sequence: )
+rs27 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Corina 2"), sequence: )
+rs28 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Shopping City"), sequence: )
+rs29 = RouteStation.create(route: route, station: Station.find_by(company: transloc, name: "Hotel Business"), sequence: )
 
 #CREATING TICKETS
 

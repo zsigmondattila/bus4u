@@ -168,7 +168,7 @@ class V1::ApplicationController < ApplicationController
   #Generating a ticket when is is bought
   def generate_a_ticket
     quantity = params[:quantity].to_i
-    ticket_price = params[:ticket_price]
+    ticket_price = params[:ticket_price].to_i
     success = true
   
     quantity.times do

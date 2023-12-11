@@ -9,6 +9,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^2.2.0",
     "axios": "^1.5.1",
     "mapbox-gl": "^2.15.0",
     "pinia": "^2.1.6",

@@ -124,7 +124,7 @@ function addStation(e){
 async function saveRoute(e) {
   let rsp = await e;
   if(rsp.valid) {
-    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { bus_uid: route.value.route_uid }})
+    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
       .then(() => {
         axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
         .then(async () => {

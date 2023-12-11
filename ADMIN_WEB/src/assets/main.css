@@ -63,3 +63,10 @@ body {
   margin: 0 auto;
   font-weight: normal;
 }
+.my-popup {
+  color: black;
+  text-align: center;
+}
+.my-popup div h3 {
+  font-weight:bold;
+}

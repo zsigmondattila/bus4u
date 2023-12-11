@@ -48,11 +48,21 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
+import {loadStripe} from '@stripe/stripe-js';
 import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
 
 const isLoadingRoutes = ref(false)
+
+let stripe = null
+
+loadStripe(import.meta.env.VITE_STRIPE_KEY).then((rsp) => stripe = rsp);
+let elements = stripe.elements({
+  mode: 'payment',
+  currency: 'ron',
+  amount: 10,
+});
 
 const date = new Date();
 const startStations = ref([]);

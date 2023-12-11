@@ -4,7 +4,7 @@
       <v-text-field label="Email" v-model="form.email" color="primary" :rules="email" :hide-details="false"></v-text-field>
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password" :error-messages="errors" :hide-details="false"></v-text-field>
     </div>
-    <v-btn type="submit" size="40" block color="primary"> Log In </v-btn>
+    <v-btn type="submit" size="40" block color="primary" :loading="isLoading"> Log In </v-btn>
   </v-form>
 </template>
 
@@ -15,7 +15,7 @@ import { userStore } from '@/stores/userStore';
 import { reactive, ref } from 'vue';
 
 const user = userStore()
-
+const isLoading = ref(false)
 const errors = ref([])
 const form = reactive({
   email: '',
@@ -35,16 +35,19 @@ async function onSubmit(event) {
   errors.value = []
   let response = await event;
   if(response.valid) {
+    isLoading.value = true
     axios.post('https://bus4u.fast-table.com/admin/sign_in', form).then((rsp) => {
       if(rsp.status == 200 && rsp.data.data.uid) {
         sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
         user.signIn(rsp.data.data)
         router.replace({ name: 'home' })
       } else {
+        isLoading.value = false
         errors.value = ['Login failed'];
       }
     }).catch((e) => {
       if(e.response) errors.value = e.response.data.errors
+      isLoading.value = false
     });
   }
 }

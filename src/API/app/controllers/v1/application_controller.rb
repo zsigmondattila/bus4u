@@ -1,48 +1,52 @@
 class V1::ApplicationController < ApplicationController
 
-   #Requests for the Schedule page
-   def get_cities 
+  #List of all cities
+  def get_cities 
     cities = City.all
     render json: {cities: cities}
-   end
+  end
 
-   def get_stations 
+  #List of all stations
+  def get_stations 
     new_data = []
     stations = Station.all.map do |station|
     city = City.find_by(city_uid: station.city_uid)
     new_data << { station_uid: station.station_uid,
-                   name: station.name, 
-                   city: city.name,
-                   address: station.address,
-                   longitude: station.longitude, 
-                   latitude: station.latitude, }
+                    name: station.name, 
+                    city: city.name,
+                    address: station.address,
+                    longitude: station.longitude, 
+                    latitude: station.latitude, }
     end
     render json: {stations: new_data}
-   end
+  end
 
-   def get_routes 
+  #List of all routes
+  def get_routes 
     routes = Route.all
     render json: { routes: routes }
-   end
+  end
 
-   def get_stations_by_city
+  #List os stations in a given city
+  def get_stations_by_city
     city = City.find_by(city_uid: params[:city_uid])
     if city
       new_data = []
       stations = city.stations.map do |station|
       new_data << { station_uid: station.station_uid,
-                     name: station.name, 
-                     address: station.address,
-                     longitude: station.longitude, 
-                     latitude: station.latitude, }
+                      name: station.name, 
+                      address: station.address,
+                      longitude: station.longitude, 
+                      latitude: station.latitude, }
       end
       render json: {stations: new_data}
     else
       render json: { error: "Could not find the city!" }, status: :not_found
     end
-   end
+  end
 
-   def get_routes_by_station
+  #List of routes which are going through a given station
+  def get_routes_by_station
     station = Station.find_by(station_uid: params[:station_uid])
 
     if station
@@ -53,66 +57,68 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-    def get_stations_of_a_route
-        route = Route.find_by(route_uid: params[:route_uid])
-      
-        if route
-          route_stations = RouteStation.where(route_uid: route.route_uid)
-      
-          stations = route_stations.map do |route_station|
-            station = Station.find_by(station_uid: route_station.station_uid)
-            
-            {
-              station_uid: station.station_uid,
-              name: station.name,
-              longitude: station.longitude,
-              latitude: station.latitude,
-              address: station.address,
-            }
-          end
-      
-          if stations
-            render json: { stations: stations }
-          else
-            render json: { error: "Stations not found!" }, status: :unprocessable_entity
-          end
-        else 
-          render json: { error: "Route not found!" }, status: :unprocessable_entity
-        end
-      end
-
-    def get_departure_times_for_station_in_route
+  #List of stations which appear in a given route
+  def get_stations_of_a_route
       route = Route.find_by(route_uid: params[:route_uid])
-      station = Station.find_by(station_uid: params[:station_uid])
     
-      if route && station
-        route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid)
+      if route
+        route_stations = RouteStation.where(route_uid: route.route_uid)
     
-        if route_station
-          timetables = Timetable.where(route_station_uid: route_station.route_station_uid)
+        stations = route_stations.map do |route_station|
+          station = Station.find_by(station_uid: route_station.station_uid)
+          
+          {
+            station_uid: station.station_uid,
+            name: station.name,
+            longitude: station.longitude,
+            latitude: station.latitude,
+            address: station.address,
+          }
+        end
     
-          if timetables.any?
-            grouped_data = timetables.group_by(&:name).transform_values do |timetable_array|
-              timetable_array.pluck(:departure_time).map { |time| time.strftime("%H:%M") }
-            end
-    
-            result = grouped_data.map do |name, departure_times|
-              { 'name' => name, 'fare' => Timetable.find_by(name: name).fare, 'departure_times' => departure_times }
-            end
-    
-            render json: result
-          else
-            render json: { error: "No departure times found for the specified station on the specified route" }, status: :not_found
-          end
+        if stations
+          render json: { stations: stations }
         else
-          render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
+          render json: { error: "Stations not found!" }, status: :unprocessable_entity
+        end
+      else 
+        render json: { error: "Route not found!" }, status: :unprocessable_entity
+      end
+  end
+
+  #List of departure times in a station in a route
+  def get_departure_times_for_station_in_route
+    route = Route.find_by(route_uid: params[:route_uid])
+    station = Station.find_by(station_uid: params[:station_uid])
+  
+    if route && station
+      route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid)
+  
+      if route_station
+        timetables = Timetable.where(route_station_uid: route_station.route_station_uid)
+  
+        if timetables.any?
+          grouped_data = timetables.group_by(&:name).transform_values do |timetable_array|
+            timetable_array.pluck(:departure_time).map { |time| time.strftime("%H:%M") }
+          end
+  
+          result = grouped_data.map do |name, departure_times|
+            { 'name' => name, 'fare' => Timetable.find_by(name: name).fare, 'departure_times' => departure_times }
+          end
+  
+          render json: result
+        else
+          render json: { error: "No departure times found for the specified station on the specified route" }, status: :not_found
         end
       else
-        render json: { error: "Station or route not found!" }, status: :not_found
+        render json: { error: "The bus does not stop at the specified stop on the specified route" }, status: :not_found
       end
+    else
+      render json: { error: "Station or route not found!" }, status: :not_found
     end
+  end
       
-
+  #List of tickets available by the parameters given by the user
   def get_available_tickets 
     scity = City.find_by(city_uid: params[:start_city_uid])
     sstation = Station.find_by(station_uid: params[:start_station_uid])
@@ -158,7 +164,9 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-  def generate_a_cash_ticket
+
+  #Generating a ticket when is is bought
+  def generate_a_ticket
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price]
     success = true
@@ -187,87 +195,62 @@ class V1::ApplicationController < ApplicationController
     end
   end
   
+  
+  #Requests to send a confirmation email
+  def send_verification_email
+    user_email = params[:user_email]
+    user = User.find_by(email: user_email)
 
-  def generate_a_card_ticket
-    quantity = params[:quantity].to_i
-    ticket_price = params[:ticket_price] 
-
-    quantity.times do
-      ticket = Ticket.new(order_params.merge(ticket_price: ticket_price*100, payment_method: 'credit_card'))
-      ticket.company_uid = params[:company_uid]
-      ticket.user_uid = params[:user_uid]
-      ticket.type = params[:type]
-      ticket.route_uid = params[:route_uid]
-      ticket.from_station_uid = params[:from_station_uid]
-      ticket.to_station_uid = params[:to_station_uid]
-      ticket.date_of_purchase = Time.now 
-      ticket.expiration_date = Time.now + 1.months
-      ticket.is_valid = true 
-      ticket.is_paid = false
-      if ticket.save
-        render json: { success: "Ticket created successfully" }
+    if user
+      render json: { error: "User exists" }, status: :accepted
+    else
+      email_verification = EmailVerification.new
+      email_verification.email  = user_email
+      email_verification.save
+      if email_verification.save
+        email_verification = EmailVerification.find_by(email: user_email)
+        code = email_verification.verification_code
+        VerificationMailer.verification_mailer(user_email, code).deliver_now
+        render json: { success: "Email sent succesfully" }, status: :ok
       else
-        render json: {error: @response.errors}, status: :unprocessable_entity
-      end
+        render json: { error: "Error generating the code" }, status: :accepted
+      end    
+    end  
+  end  
+
+
+  def verify_code_email
+    user_email = params[:user_email]
+    code_submitted = params[:verification_code]
+    email_verification = EmailVerification.find_by(email: user_email)
+    code = email_verification.verification_code
+    if code_submitted === code
+      render json: { success: "Correct verification code" }, status: :ok
+    else
+      render json: { error: "The codes does not match" }, status: :unauthorized
+    end    
+  end 
+
+
+  #Add additional data to users
+  def add_userdata 
+    user = User.find_by(uid: params[:user_uid])
+    user.firstname = params[:firstname]
+    user.lastname = params[:lastname]
+    user.phone_number = params[:phone_number]
+    user.language = params[:language]
+    if user.save
+      render json: { success: "User data saved successfully" }
+    else
+      render json: { error: "Cannot save userdata" }
     end
   end
-  
-  
-  
-    #Requests to send a confirmation email
-    def send_verification_email
-      user_email = params[:user_email]
-      user = User.find_by(email: user_email)
-
-      if user
-        render json: { error: "User exists" }, status: :accepted
-      else
-        email_verification = EmailVerification.new
-        email_verification.email  = user_email
-        email_verification.save
-        if email_verification.save
-          email_verification = EmailVerification.find_by(email: user_email)
-          code = email_verification.verification_code
-          VerificationMailer.verification_mailer(user_email, code).deliver_now
-          render json: { success: "Email sent succesfully" }, status: :ok
-        else
-          render json: { error: "Error generating the code" }, status: :accepted
-        end    
-      end  
-    end  
-
-
-    def verify_code_email
-      user_email = params[:user_email]
-      code_submitted = params[:verification_code]
-      email_verification = EmailVerification.find_by(email: user_email)
-      code = email_verification.verification_code
-      if code_submitted === code
-        render json: { success: "Correct verification code" }, status: :ok
-      else
-        render json: { error: "The codes does not match" }, status: :unauthorized
-      end    
-    end 
-
-    # Fill userdata
-
-    def add_userdata 
-      user = User.find_by(uid: params[:user_uid])
-      user.firstname = params[:firstname]
-      user.lastname = params[:lastname]
-      user.phone_number = params[:phone_number]
-      user.language = params[:language]
-      if user.save
-        render json: { success: "User data saved successfully" }
-      else
-        render json: { error: "Cannot save userdata" }
-      end
-    end
 
 end
 
 private
 
+#Filter the suitable departure times
 def filter_departure_times(route_station, date, time)
   today = date.strftime("%A")
 
@@ -279,6 +262,7 @@ def filter_departure_times(route_station, date, time)
   timetables
 end
 
+#Calculate the total price of the tour
 def calculate_fare_sum(route_uid, sstation, dstation)
   rs1 = RouteStation.find_by(station_uid: sstation, route_uid: route_uid)
   rs2 = RouteStation.find_by(station_uid: dstation, route_uid: route_uid)
@@ -309,7 +293,7 @@ def calculate_fare_sum(route_uid, sstation, dstation)
 end
 
 
-
+#Generate the final format of the response
 def process_routes(routes, start_station, destination_station, date, time, result)
   routes.each do |route|
     route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: start_station.station_uid)
@@ -328,9 +312,3 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     end
   end
 end
-
-
-def order_params
-  params.require(:data).permit(:user_uid, :credit_card_number, :credit_card_exp_month, :credit_card_exp_year, :credit_card_cvv)
-end
-

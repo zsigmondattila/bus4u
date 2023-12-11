@@ -53,6 +53,9 @@
         <MapBox ref="mapBox" :stations="stations" v-model:pointer="newStation"/>
       </v-col>
     </v-row>
+    <v-snackbar v-model="notification">
+      {{ notification }}
+    </v-snackbar>
   </AppLayout>
 </template>
 
@@ -66,6 +69,7 @@ import MapBox from '../components/MapBox.vue';
 const mapBox = ref(null)
 const stations = ref([])
 const formIsOpen = ref(false)
+const notification = ref(null)
 const newStation = reactive({
   coordinates: [],
   name: '',
@@ -88,8 +92,11 @@ function panMap(station) {
 }
 
 function deleteStation(station){
-  console.log(station.name + ' deleted');
-  updateStations();
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station', { params: { station_uid: station.station_uid }})
+    .then(() => {
+      notification.value = 'Station deleted successfully'
+      updateStations();
+    })
 }
 
 function cancelAddStation() {
@@ -104,7 +111,7 @@ async function addStation(e){
 
   let createRsp = await axios.post('https://bus4u.fast-table.com/v1/admin/create_station', { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address })
   if (createRsp.status == 200) {
-    console.log('Station created successfully');
+    notification.value = 'Station created successfully';
     formIsOpen.value = false;
     newStation.name = ''
     newStation.coordinates = []

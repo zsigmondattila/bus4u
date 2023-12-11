@@ -1,10 +1,9 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
-      <v-text-field label="Email" v-model="form.email" color="primary" :rules="email"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
+      <v-text-field label="Email" v-model="form.email" color="primary" :rules="email" :hide-details="false"></v-text-field>
+      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password" :error-messages="errors" :hide-details="false"></v-text-field>
     </div>
-    <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
     <v-btn type="submit" size="40" block color="primary"> Log In </v-btn>
   </v-form>
 </template>
@@ -13,11 +12,11 @@
 import axios from 'axios';
 import router from '@/router';
 import { userStore } from '@/stores/userStore';
-import { reactive } from 'vue';
-import { RouterLink } from 'vue-router';
+import { reactive, ref } from 'vue';
 
 const user = userStore()
 
+const errors = ref([])
 const form = reactive({
   email: '',
   password: ''
@@ -33,18 +32,21 @@ const email = [
 ]
 
 async function onSubmit(event) {
+  errors.value = []
   let response = await event;
   if(response.valid) {
-    console.log(response);
     axios.post('https://bus4u.fast-table.com/admin/sign_in', form).then((rsp) => {
-      if(rsp.data.data.uid) {
+      if(rsp.status == 200 && rsp.data.data.uid) {
+        sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
+        user.signIn(rsp.data.data)
         router.replace({ name: 'home' })
-        user.signIn(rsp.data.data, rsp.headers)
       } else {
-        console.error('Login failed');
+        errors.value = ['Login failed'];
       }
-    }).catch((e) => console.log(e.message));
-  } else console.log('Validation failed');
+    }).catch((e) => {
+      if(e.response) errors.value = e.response.data.errors
+    });
+  }
 }
 </script>
 

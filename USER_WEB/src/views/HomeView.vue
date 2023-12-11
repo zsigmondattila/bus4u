@@ -90,7 +90,7 @@ function getTimeStr(){
 async function onSubmit(e) {
   if(!(await e).valid) return
   isLoadingRoutes.value = true
-  axios.get('http://127.0.0.1:3000/v1/get_available_tickets',
+  axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
     { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid || '', destination_station_uid: form.toStation.station_uid || '', date: form.date, time: form.time}}
     ).then(rsp => {
       if(rsp.status == 200) {
@@ -112,7 +112,7 @@ function getName(item){
 
 async function getStartStation(city){
   if(!city) return
-  axios.get('http://127.0.0.1:3000/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
+  axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) startStations.value = rsp.data.stations
     }).catch(() => startStations.value = [])
@@ -120,13 +120,13 @@ async function getStartStation(city){
 
 async function getDestStation(city){
   if(!city) return
-  axios.get('http://127.0.0.1:3000/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
+  axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) destStations.value = rsp.data.stations
     }).catch(() => destStations.value = [])
 }
 
-axios.get('http://127.0.0.1:3000/v1/get_cities')
+axios.get('https://bus4u.fast-table.com/v1/get_cities')
   .then((rsp) => {
     cities.value = rsp.data.cities
   }).catch(() => cities.value = [])

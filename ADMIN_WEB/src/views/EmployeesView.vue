@@ -12,7 +12,7 @@
 <script setup>
 import AppLayout from '../components/AppLayout.vue';
 import SectionTitle from '../components/SectionTitle.vue';
-import RegisterPanel from '@/components/RegisterPanel.vue';
+// import RegisterPanel from '@/components/RegisterPanel.vue';
 </script>
 
 <style scoped>

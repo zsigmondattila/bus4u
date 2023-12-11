@@ -12,19 +12,20 @@ export const userStore = defineStore('user', () => {
   const accessToken = ref('')
 
   const session = sessionStorage.getItem('user')
-  if(session) resumeSession(JSON.parse(session))
+  if(session) resumeUser(JSON.parse(session))
 
-  async function resumeSession(user) {
+  async function resumeUser(user) {
     accessToken.value = user.accessToken
-    let rsp = await axios.get('https://bus4u.fast-table.com/admin/validate_token', { params: { 'uid': user.uid, 'client': user.client, 'access-token': user.accessToken}})
+    let rsp = await axios.get('https://bus4u.fast-table.com/auth/validate_token', { params: { 'uid': user.uid, 'client': user.client, 'access-token': user.accessToken}})
     if(rsp.status == 200){
       signIn(rsp.data.data, rsp.headers)
     }
   }
 
+
   function signIn(user, headers) {
-    firstName.value = user.firstName
-    lastName.value = user.lastName
+    firstName.value = user.firstname
+    lastName.value = user.lastname
     email.value = user.email
     authorization.value = headers.authorization
     uid.value = headers.uid
@@ -32,10 +33,10 @@ export const userStore = defineStore('user', () => {
     accessToken.value = headers['access-token']
     sessionStorage.setItem('user', JSON.stringify({ uid: uid.value, client: client.value, accessToken: accessToken.value }))
   }
-  function signOut() {
-    sessionStorage.removeItem('user')
-    axios.delete('https://bus4u.fast-table.com/admin/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
+  async function signOut() {
+    axios.delete('https://bus4u.fast-table.com/auth/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
       .then(() => {
+        sessionStorage.removeItem('user')
         firstName.value = ''
         lastName.value = ''
         email.value = ''
@@ -43,9 +44,9 @@ export const userStore = defineStore('user', () => {
         uid.value = ''
         client.value = ''
         accessToken.value = ''
+        return true
       })
-      .catch((err) => console.error(err))
+      .catch(() => false)
   }
   return { firstName, lastName, email, authorization, uid, client, accessToken, signIn, signOut }
-  }
-)
+})

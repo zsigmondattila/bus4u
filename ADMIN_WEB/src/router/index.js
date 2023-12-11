@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import axios from 'axios'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import EmployeesView from '../views/EmployeesView.vue'
@@ -45,6 +46,22 @@ const router = createRouter({
       component: HomeView
     },
   ]
+})
+
+router.beforeEach((to) => {
+  if(to.name !== 'login') {
+    const sessionData = sessionStorage.getItem('auth')
+    if(sessionData) {
+      const auth = JSON.parse(sessionData)
+      return axios.get('https://bus4u.fast-table.com/admin/validate_token', { params: { 'uid': auth.uid, 'client': auth.client, 'access-token': auth.accessToken}})
+        .then(rsp => {
+          if(rsp.status == 200){
+            sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
+            sessionStorage.setItem('user', JSON.stringify(rsp.data.data))
+          }
+        }).catch(() => { return { name: 'login' }})
+    } else return { name: 'login' }
+  }
 })
 
 export default router

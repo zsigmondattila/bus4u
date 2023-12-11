@@ -1,2 +1,4 @@
 USER_WEB/node_modules
 USER_WEB/.env
+ADMIN_WEB/node_modules
+ADMIN_WEB/.env

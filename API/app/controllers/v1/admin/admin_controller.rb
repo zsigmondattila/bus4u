@@ -1,5 +1,6 @@
 class V1::Admin::AdminController < ApplicationController
     
+    #Creating a city model, it requires a name and a postal code
     def create_city
         city = City.new
         city.name = params[:name]
@@ -12,6 +13,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Creating a company model to which admin accounts can be assigned 
     def create_company
         company = Company.new
         company.name = params[:name]
@@ -27,6 +29,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Creating a bus model where you can keep track of the buses, the expiration date of important papers and the current location are stored
     def create_bus
         bus = Bus.new
         bus.company = Company.find_by(company_uid: params[:company_uid])
@@ -45,6 +48,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Deleting a bus if it is no longer necessary
     def delete_bus
         bus = Bus.find_by(bus_uid: params[:bus_uid])
         if bus
@@ -55,6 +59,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Creating a station where a bus can stop and user can check the exact location of it
     def create_station
         station = Station.new
         station.name = params[:name]
@@ -70,6 +75,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Delete a station is it is no longer necessary
     def delete_station
         station = Station.find_by(station_uid: params[:station_uid])
         if(station)
@@ -80,6 +86,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #List of routes of a company
     def get_routes_of_a_company
         routes = Route.where(company_uid: params[:company_uid])
 
@@ -90,6 +97,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #List od stations of a route
     def get_stations_of_a_route
         route = Route.find_by(route_uid: params[:route_uid])
       
@@ -117,9 +125,9 @@ class V1::Admin::AdminController < ApplicationController
         else 
           render json: { error: "Route not found!" }, status: :unprocessable_entity
         end
-      end
+    end
       
-
+    #Creating a route model for a certain company
     def create_route 
         route = Route.new
         route.name = params[:name]
@@ -132,6 +140,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Delete a route if it is no longer necessary
     def delete_route
         route = Route.find_by(route_uid: params[:route_uid])
         if route
@@ -142,6 +151,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #An admin can add certaion stations to a route
     def add_station_to_route 
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
@@ -162,6 +172,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #An admin can delete certaion stations from a route
     def delete_station_from_route
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
@@ -178,6 +189,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #An admin can add timestamps for a given station in a route
     def add_timetable_to_route
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
@@ -211,6 +223,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #An admin can delete timestamps for a given station in a route
     def delete_timetables_from_route
         route = Route.find_by(route_uid: params[:route_uid])
         station = Station.find_by(station_uid: params[:station_uid])
@@ -227,12 +240,14 @@ class V1::Admin::AdminController < ApplicationController
             render json: { error: "Route or station not found" }, status: :unprocessable_entity
         end
     end
-      
+
+    #List of all buses of a company  
     def get_buses_of_a_company
         buses = Bus.where(company_uid: params[:company_uid])
         render json: buses
     end  
 
+    #Set a bus as currently tracked (to know if it should appear on the map or not)
     def set_a_bus_tracked
         bus = Bus.find_by(license_plate: params[:license_plate])
         bus.tracked = true
@@ -243,6 +258,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Set a bus as currently untracked (to know if it should appear on the map or not)
     def set_a_bus_untracked
         bus = Bus.find_by(license_plate: params[:license_plate])
         bus.tracked = false
@@ -253,6 +269,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Set the current route of a bus on which is travelling
     def set_current_route_of_a_bus
         bus = Bus.find_by(license_plate: params[:license_plate])
         route = Route.find_by(route_uid: params[:route_uid])
@@ -268,6 +285,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Set the current coordinates of a bus
     def change_bus_location
         bus = Bus.find_by(license_plate: params[:license_plate])
         route = Route.find_by(route_uid: params[:route_uid])
@@ -282,11 +300,13 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    #Get the locations of buses on a given route
     def get_locations_by_bus_and_route
         buses = Bus.where(license_plate: params[:license_plate], current_route_uid: params[:route_uid])
         render json: buses
     end
 
+    #Check if a ticket is valid, and if it is, then change it to invalid
     def use_ticket
         ticket = Ticket.find_by(ticket_uid: params[:ticket_uid])
         if ticket

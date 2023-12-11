@@ -44,8 +44,7 @@ Rails.application.routes.draw do
     get '/get_routes_by_station', to: 'application#get_routes_by_station'
     get '/get_departure_times_for_station_in_route', to:'application#get_departure_times_for_station_in_route'
     get '/get_available_tickets', to: 'application#get_available_tickets'
-    post '/generate_a_cash_ticket', to: 'application#generate_a_cash_ticket'
-    post '/generate_a_card_ticket', to: 'application#generate_a_card_ticket'
+    post '/generate_a_ticket', to: 'application#generate_a_ticket'
   end
 
   # Defines the root path route ("/")

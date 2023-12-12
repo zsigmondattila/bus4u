@@ -109,6 +109,7 @@ class V1::Admin::AdminController < ApplicationController
             timetable = Timetable.find_by(route_station_uid: route_station.route_station_uid)
             
             {
+              route_station_uid: route_station.route_station_uid,
               station_uid: station.station_uid,
               name: station.name,
               longitude: station.longitude,
@@ -134,7 +135,8 @@ class V1::Admin::AdminController < ApplicationController
         route.company_uid = params[:company_uid]
         route.basic_fare = params[:basic_fare]
         if route.save
-            render json: { success: "Route created successfully" }
+            render json: { success: "Route created successfully",
+                           route_uid: route.route_uid }
         else
             render json: { error: "Cannot create route "}, status: :unprocessable_entity
         end
@@ -174,19 +176,12 @@ class V1::Admin::AdminController < ApplicationController
 
     #An admin can delete certaion stations from a route
     def delete_station_from_route
-        route = Route.find_by(route_uid: params[:route_uid])
-        station = Station.find_by(station_uid: params[:station_uid])
-
-        if route && station
-            route_station = RouteStation.where(route_uid: route.route_uid, station_uid: station.station_uid)
-            if route_station.destroy_all
+            route_station = RouteStation.find_by(route_station_uid: params[:route_station_uid])
+            if route_station.destroy
                 render json: { success: "RouteStation deleted successfully" }
             else
                 render json: { error: "Cannot delete RouteStation" }, status: :unprocessable_entity
             end
-        else
-            render json: { error: "Route or station not found" }, status: :unprocessable_entity
-        end
     end
 
     #An admin can add timestamps for a given station in a route
@@ -196,6 +191,7 @@ class V1::Admin::AdminController < ApplicationController
         times = params[:departure_times]
         names = params[:names]
         all_saved = true
+        fare = params[:fare].to_f
 
         if route && station
             route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: station.station_uid) 
@@ -205,7 +201,8 @@ class V1::Admin::AdminController < ApplicationController
                     timetable = Timetable.new
                     timetable.route_station_uid = route_station.route_station_uid
                     timetable.departure_time = time
-                    timetable.fare = params[:fare]
+                    timetable.fare = fare
+                    puts "AAABB #{fare}"
                     timetable.name = name
 
                     if !timetable.save

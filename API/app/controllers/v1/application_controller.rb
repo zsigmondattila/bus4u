@@ -65,15 +65,21 @@ class V1::ApplicationController < ApplicationController
         route_stations = RouteStation.where(route_uid: route.route_uid)
     
         stations = route_stations.map do |route_station|
+          puts "abc #{route_station.sequence}"
           station = Station.find_by(station_uid: route_station.station_uid)
           
           {
+            route_station_uid: route_station.route_station_uid,
             station_uid: station.station_uid,
             name: station.name,
             longitude: station.longitude,
             latitude: station.latitude,
             address: station.address,
           }
+        end
+
+        stations.each do |st|
+          puts "teszt #{st}"
         end
     
         if stations
@@ -103,7 +109,7 @@ class V1::ApplicationController < ApplicationController
           end
   
           result = grouped_data.map do |name, departure_times|
-            { 'name' => name, 'fare' => Timetable.find_by(name: name).fare, 'departure_times' => departure_times }
+            { 'name' => name, 'fare' => Timetable.find_by(route_station_uid: route_station.route_station_uid, name: name).fare, 'departure_times' => departure_times }
           end
   
           render json: result

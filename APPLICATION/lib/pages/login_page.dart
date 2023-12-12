@@ -1,5 +1,3 @@
-import 'package:bus4u/components/square_tile.dart';
-import 'package:bus4u/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -144,43 +142,6 @@ class _LoginPageState extends State<LoginPage> {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text('Or continue with'),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      )
-                    ]),
-                  ),
-                  const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SquareTile(
-                        imagePath: 'assets/images/google.png',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SquareTile(
-                        imagePath: 'assets/images/apple.png',
-                      ),
-                    ],
                   ),
                   const SizedBox(height: 25),
                   const Row(

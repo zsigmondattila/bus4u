@@ -1,37 +1,75 @@
-import 'package:bus4u/components/my_text_field.dart';
 import 'package:bus4u/components/square_tile.dart';
-//import 'package:bus4u/postman/api_service.dart';
-//import 'dart:convert';
+import 'package:bus4u/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
-  final passController = TextEditingController();
-  final repassController = TextEditingController();
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpassController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+
+  void login(String email, password, confirmpassword, firstname) async {
+    try {
+      Response response =
+          await post(Uri.parse('https://bus4u.fast-table.com/auth'), body: {
+        'email': email,
+        'password': password,
+        'password_confirmation': confirmpassword,
+        'firstname': firstname,
+      });
+      if (response.statusCode == 200) {
+        showDialog<String>(
+          context: context,
+          builder: ( context) => AlertDialog(
+            title: const Text('Successfull'),
+            content: const Text('You created account successfully, now you can sign in'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+        
+      } else {
+        print('failed');
+        showDialog<String>(
+          context: context,
+          builder: ( context) => AlertDialog(
+            title: const Text('Something wrong'),
+            content: const Text('Wrong email format or exiting account'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   //register method
- /* _register(context) async {
-    var data = {
-      'name': nameController.text,
-      'email': emailController.text,
-      'password': passController.text,
-    };
-
-    var res = await CallApi().postData(data, 'register');
-    var body = json.decode(res.body);
-    if(body[null]){
-      TextButton(
-            child: const Text('Approve'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            );
-    }
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,50 +99,49 @@ class RegisterPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[800], fontSize: 16),
                   ),
                   const SizedBox(height: 25),
-                  MyTextField(
-                      controller: emailController,
-                      hintText: 'Email',
-                      obscureText: false),
-                  const TextField(
+                  TextFormField(
+                    controller: emailController,
+                    obscureText: false,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Firstname',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Email',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Lastname',
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Username',
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: confirmpassController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Confirm password',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Confirm password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: nameController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        hintText: 'Firstname',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                     // _register(context);
+                      login(
+                          emailController.text.toString(),
+                          passwordController.text.toString(),
+                          confirmpassController.text.toString(),
+                          nameController.text.toString());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,

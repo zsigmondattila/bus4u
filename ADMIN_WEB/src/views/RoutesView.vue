@@ -34,12 +34,12 @@
           </v-row>
           <v-list border class="py-0 my-3">
             <v-list-subheader class="border"> Stations ({{ stations.length }}) </v-list-subheader>
-            <v-list-item v-for="(station, index) in stations" :key="index" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
+            <v-list-item v-for="station in stations" :key="station.route_station_uid" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
               <template #subtitle>
                 {{ station.address }}&nbsp;&nbsp;►&nbsp;&nbsp;{{ station.longitude }} · {{ station.latitude }}
               </template>
               <template #append>
-                <v-btn icon="mdi-delete-outline" elevation="0" @click="deleteStation(index)"></v-btn>
+                <v-btn icon="mdi-delete-outline" elevation="0" @click="deleteStation(station)"></v-btn>
               </template>
             </v-list-item>
           </v-list>
@@ -58,14 +58,14 @@
               <v-btn class="form-button" @click="deleteRoute" color="red" variant="outlined"> Delete route </v-btn>
             </v-col>
             <v-col cols="6" lg="3">
-              <v-btn type="submit" class="form-button" color="primary"> Save route </v-btn>
+              <v-btn type="submit" class="form-button" color="primary" :loading="isLoading"> Save route </v-btn>
             </v-col>
           </v-row>
         </v-container>
       </v-form>
     </div>
-    <v-snackbar v-model="notification">
-      {{ notification }}
+    <v-snackbar v-model="notification.show">
+      {{ notification.message }}
     </v-snackbar>
   </AppLayout>
 </template>
@@ -78,7 +78,11 @@ import AppLayout from '../components/AppLayout.vue';
 import SectionTitle from '../components/SectionTitle.vue';
 
 const user = userStore()
-const notification = ref(null)
+const notification = ref({
+  show: false,
+  message: ''
+})
+const isLoading = ref(false)
 
 const route = ref(null)
 const routes = ref([])
@@ -108,7 +112,7 @@ function createRoute(){
 }
 
 function deleteStation(station){
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station_from_route', { params: { route_uid: route.value.route_uid, station_uid: stations.value[station].station_uid }})
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station_from_route', { params: { route_station_uid: station.route_station_uid }})
   stations.value.splice(station, 1)
 }
 
@@ -124,22 +128,30 @@ function addStation(e){
 async function saveRoute(e) {
   let rsp = await e;
   if(rsp.valid) {
-    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { bus_uid: route.value.route_uid }})
+    isLoading.value = true
+    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
       .then(() => {
         axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
-        .then(async () => {
+        .then(async (rsp) => {
           for(let i=0; i<stations.value.length; i++) {
-            await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: route.value.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
+            await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
           }
-          axios.get('https://bus4u.fast-table.com/v1/get_routes')
+          axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.companyUid }})
             .then(rsp => {
               if(rsp.status == 200) routes.value = rsp.data.routes
           }).catch(() => routes.value = [])
-          notification.value = 'Route saved successfully'
+          isLoading.value = false
+          notification.value.message = 'Route saved successfully'
           route.value = null
           routeCreation.value = false
+        }).catch(() => {
+          isLoading.value = false
+          notification.value.message = 'Something went wrong, try again later.'
         })
-      })
+      }).catch(() => {
+        isLoading.value = false
+        notification.value.message = 'Something went wrong, try again later.'
+      }).finally(() => {notification.value.show = true})
   }
   else console.warn('Not valid');
 }

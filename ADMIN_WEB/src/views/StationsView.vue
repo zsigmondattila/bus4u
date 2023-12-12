@@ -88,7 +88,13 @@ const coordinateRule = [
 ]
 
 function panMap(station) {
-  if(mapBox.value) mapBox.value.panTo([station.id.longitude, station.id.latitude])
+  if(mapBox.value) {
+    mapBox.value.setCustomPointer([station.id.longitude, station.id.latitude])
+    newStation.name = ''
+    newStation.coordinates = []
+    newStation.city = ''
+    newStation.address = ''
+  }
 }
 
 function deleteStation(station){
@@ -134,7 +140,6 @@ axios.get('https://bus4u.fast-table.com/v1/get_stations')
   .then(rsp => {
     if (rsp.status == 200) {
       stations.value = rsp.data.stations
-      console.log(stations.value);
     }
   })
 </script>

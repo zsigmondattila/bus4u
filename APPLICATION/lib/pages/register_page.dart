@@ -1,14 +1,36 @@
+import 'package:bus4u/components/my_text_field.dart';
 import 'package:bus4u/components/square_tile.dart';
+import 'package:bus4u/postman/api.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+  final repassController = TextEditingController();
 
-  //sign user in method
-  void signUserIn() {}
+  //register method
+  _register(context) async {
+    var data = {
+      'name': nameController.text,
+      'email': emailController.text,
+      'password': passController.text,
+    };
+
+    var res = await CallApi().postData(data, 'register');
+    var body = json.decode(res.body);
+    if(body[null]){
+      TextButton(
+            child: const Text('Approve'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +61,10 @@ class RegisterPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[800], fontSize: 16),
                   ),
                   const SizedBox(height: 25),
+                  MyTextField(
+                      controller: emailController,
+                      hintText: 'Email',
+                      obscureText: false),
                   const TextField(
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -78,7 +104,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      signUserIn();
+                      _register(context);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,

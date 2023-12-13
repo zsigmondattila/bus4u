@@ -71,6 +71,7 @@ onMounted(() => {
           point.city = arr[2].text
           point.address = `${arr[0].text || ''} ${arr[0].address || ''}`
           point.coordinates = [e.lngLat.lng, e.lngLat.lat]
+          point.postcode = arr[1].text
           emit('update:pointer', point)
         }).catch(() => {
           let point = props.pointer;
@@ -111,7 +112,7 @@ onMounted(() => {
 defineExpose({ panTo, setCustomPointer })
 
 onBeforeUpdate(() => {
-  markers.forEach(marker => marker.remove())
+  markers.forEach(marker => marker.marker.remove())
   markers = []
   points = []
   addStations(props.stations)

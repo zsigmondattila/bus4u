@@ -58,7 +58,7 @@ const email = [
 
 const name = [
   (v) => !!v || 'The field is required',
-  (v) => /^[A-Z][-a-zA-Z\s]+$/.test(v) || 'The field must be a valid name'
+  (v) => /^[\p{Lu}][-\p{L}\s]+$/u.test(v) || 'The field must be a valid name'
 ]
 
 const confirmation = [

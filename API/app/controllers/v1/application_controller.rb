@@ -175,6 +175,7 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
 
   #Generating a ticket when is is bought
   def generate_a_ticket
+    user = User.find_by(uid: params[:user_uid])
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price].to_i
     success = true
@@ -194,9 +195,11 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
       ticket.is_paid = false
   
       success = success && ticket.save
+      puts "#{ticket.errors} succ"
     end
   
     if success
+      TicketMailer.ticket_mailer(user.email).deliver_now
       render json: { success: "All tickets created successfully" }
     else
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity

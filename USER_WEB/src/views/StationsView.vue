@@ -34,8 +34,8 @@ import SectionTitle from '../components/SectionTitle.vue';
 import Map from '../components/Map.vue';
 
 const form = reactive({
-  city: '',
-  bus: '',
+  city: null,
+  bus: null,
 })
 
 const center = ref(false)

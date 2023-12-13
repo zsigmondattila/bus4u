@@ -7,7 +7,7 @@ import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 
-const props = defineProps(['stations', 'isRoute', 'panTo'])
+const props = defineProps(['stations', 'buses', 'isRoute', 'panTo'])
 const mapRef = ref(null);
 
 let map = null;
@@ -33,6 +33,17 @@ function addStations(array) {
     const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude])
       .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px").addTo(map);
     markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
+  })
+  if(props.panTo && props.panTo.length) {
+    map.setZoom(11).panTo(props.panTo)
+  }
+}
+
+function addBuses(array) {
+  array.forEach(bus => {
+    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([bus.longitude, bus.latitude])
+      .setHTML(`<h3>${bus.name}</h3>`).setMaxWidth("300px").addTo(map);
+    markers.push(new mapboxgl.Marker({ color: "#bc1251" }).setLngLat([bus.longitude, bus.latitude]).setPopup(popup).addTo(map));
   })
   if(props.panTo && props.panTo.length) {
     map.setZoom(11).panTo(props.panTo)
@@ -72,7 +83,7 @@ async function addRoute() {
 if(navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((p) => {
     currentLocation = [p.coords.longitude, p.coords.latitude]
-    customPoint = new mapboxgl.Marker({ color: "#2979FF" }).setLngLat(currentLocation).addTo(map);
+    customPoint = new mapboxgl.Marker({ color: "#297bFF" }).setLngLat(currentLocation).addTo(map);
     map.panTo(currentLocation)
   });
 }
@@ -99,6 +110,7 @@ onMounted(() => {
     });
     map.addControl(new mapboxgl.NavigationControl());
     if(props.stations) addStations(props.stations)
+    if(props.buses) addBuses(props.buses)
     if(props.isRoute){
       map.addLayer({
         'id': 'route',

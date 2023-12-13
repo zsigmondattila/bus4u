@@ -56,9 +56,9 @@ const timetable = ref([])
 const route = ref([])
 
 const form = reactive({
-  city: '',
-  station: '',
-  bus: ''
+  city: null,
+  station: null,
+  bus: null
 })
 
 const rules = [

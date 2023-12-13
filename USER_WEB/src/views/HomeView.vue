@@ -48,27 +48,11 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
-import {loadStripe} from '@stripe/stripe-js';
 import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
 
 const isLoadingRoutes = ref(false)
-
-let stripe = null
-
-loadStripe(import.meta.env.VITE_STRIPE_KEY).then((rsp) => {
-  stripe = rsp
-  let elements = stripe.elements({
-    mode: 'payment',
-    currency: 'usd',
-    amount: 10,
-  });
-  elements.create('payment')
-  stripe.confirmPayment({elements, confirmParams: {return_url: location.pathname}})
-  .then((rsp) => { console.log(rsp)})
-  .catch((err) => console.log(err));
-});
 
 const date = new Date();
 const startStations = ref([]);
@@ -77,10 +61,10 @@ const cities = ref([])
 const routes = ref(null);
 
 const form = reactive({
-  fromCity: '',
-  toCity: '',
-  fromStation: '',
-  toStation: '',
+  fromCity: null,
+  toCity: null,
+  fromStation: null,
+  toStation: null,
   date: getDateStr(),
   time: getTimeStr(),
 })

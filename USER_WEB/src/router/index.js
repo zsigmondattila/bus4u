@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import UserView from '../views/UserView.vue'
 import ScheduleView from '../views/ScheduleView.vue'
 import StationsView from '../views/StationsView.vue'
+import LiveMapView from '../views/LiveMapView.vue'
 import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/stations',
       name: 'stations',
       component: StationsView
+    },
+    {
+      path: '/live',
+      name: 'live',
+      component: LiveMapView
     },
     {
       path: '/about',

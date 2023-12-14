@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     namespace :admin do
       #Superuser requests
+      get '/document_validity_checker', to: 'admin#document_validity_checker'
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'
@@ -45,6 +46,8 @@ Rails.application.routes.draw do
     get '/get_departure_times_for_station_in_route', to:'application#get_departure_times_for_station_in_route'
     get '/get_available_tickets', to: 'application#get_available_tickets'
     post '/generate_a_ticket', to: 'application#generate_a_ticket'
+    get '/get_routes_by_city', to: 'application#get_routes_by_city'
+    get '/get_bus_locations_by_route', to: 'application#get_bus_locations_by_route'
   end
 
   # Defines the root path route ("/")

@@ -175,6 +175,7 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
 
   #Generating a ticket when is is bought
   def generate_a_ticket
+    user = User.find_by(uid: params[:user_uid])
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price].to_i
     success = true
@@ -194,9 +195,11 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
       ticket.is_paid = false
   
       success = success && ticket.save
+      puts "#{ticket.errors} succ"
     end
   
     if success
+      TicketMailer.ticket_mailer(user.email).deliver_now
       render json: { success: "All tickets created successfully" }
     else
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
@@ -251,6 +254,40 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
       render json: { success: "User data saved successfully" }
     else
       render json: { error: "Cannot save userdata" }
+    end
+  end
+
+
+  def get_routes_by_city
+    city = City.find_by(city_uid: params[:city_uid])
+    routes = []
+    if city
+      city.stations.each do |station|
+        puts "megálló: #{station.name}"
+        station.routes.each do |route|
+          puts "----------útvonal amiben van az adott megálló: #{route.name}"
+          routes << route unless routes.include?(route)
+        end
+      end
+      render json: routes
+    else
+      render json: { error: 'City not found' }, status: :not_found
+    end
+  end
+
+  #
+  def get_bus_locations_by_route
+    route = Route.find_by(route_uid: params[:route_uid])
+    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid)
+
+    if route
+      if buses
+        render json: buses
+      else
+        render json: { error: "Cannot find any bus on the selected route" }
+      end
+    else
+      render json: { error: "The bus uid is invalid" }, status: :unprocessable_entity
     end
   end
 
@@ -318,5 +355,17 @@ def process_routes(routes, start_station, destination_station, date, time, resul
         departure_times: filtered_departure_times
       }
     end
+  end
+end
+
+#
+def get_buses_on_a_route
+  route = Route.find_by(route_uid: params[:route_uid])
+
+  buses = Bus.where(current_route_uid: route.route_uid)
+  if buses
+    render json: buses
+  else
+    render json: { error: "Cannot find buses" }
   end
 end

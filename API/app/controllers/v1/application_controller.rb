@@ -257,6 +257,40 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
     end
   end
 
+
+  def get_routes_by_city
+    city = City.find_by(city_uid: params[:city_uid])
+    routes = []
+    if city
+      city.stations.each do |station|
+        puts "megálló: #{station.name}"
+        station.routes.each do |route|
+          puts "----------útvonal amiben van az adott megálló: #{route.name}"
+          routes << route unless routes.include?(route)
+        end
+      end
+      render json: routes
+    else
+      render json: { error: 'City not found' }, status: :not_found
+    end
+  end
+
+  #
+  def get_bus_locations_by_route
+    route = Route.find_by(route_uid: params[:route_uid])
+    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid)
+
+    if route
+      if buses
+        render json: buses
+      else
+        render json: { error: "Cannot find any bus on the selected route" }
+      end
+    else
+      render json: { error: "The bus uid is invalid" }, status: :unprocessable_entity
+    end
+  end
+
 end
 
 private

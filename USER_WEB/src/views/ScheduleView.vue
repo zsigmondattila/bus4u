@@ -13,10 +13,10 @@
             <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getStations"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-autocomplete :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getBuses"></v-autocomplete>
+            <v-autocomplete :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getRoutes"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="4">
-            <v-select :items="buses" :item-props="getName" label="Bus" :disabled="!form.station" :loading="!buses.length && !!form.station" v-model="form.bus" class="text-field" hide-details="auto" :rules="rules"></v-select>
+            <v-select :items="routes" :item-props="getName" label="Route" :disabled="!form.station" :loading="!routes.length && !!form.station" v-model="form.route" class="text-field" hide-details="auto" :rules="rules"></v-select>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Search </v-btn>
@@ -34,7 +34,7 @@
       </tbody>
       <v-skeleton-loader v-else type="table-row@2" :boilerplate="!isLoadingTable"></v-skeleton-loader>
     </v-table>
-    <Map v-if="route" :stations="route" :isRoute="true" :pan-to="center"/>
+    <Map class="mt-0" v-if="route" :stations="route" :buses="buses" :toggleRoute="true" controls="true" :pan-to="center"/>
   </AppLayout>
 </template>
 
@@ -44,11 +44,14 @@ import { onMounted, reactive, ref } from "vue";
 import AppLayout from "@/components/AppLayout.vue"
 import SectionTitle from "@/components/SectionTitle.vue"
 import Map from "../components/Map.vue";
+import { onBeforeUnmount } from "vue";
 
 const isLoadingTable = ref(false)
+let updateInterval = null
 
 const cities = ref([]);
 const stations = ref([]);
+const routes = ref([]);
 const buses = ref([]);
 const center = ref([]);
 
@@ -58,7 +61,7 @@ const route = ref([])
 const form = reactive({
   city: null,
   station: null,
-  bus: null
+  route: null
 })
 
 const rules = [
@@ -75,26 +78,43 @@ async function getCities() {
 
 async function getStations(city) {
   form.station = ''
-  form.bus = ''
+  form.route = ''
   if(city) stations.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
 }
 
-async function getBuses(station) {
-  form.bus = ''
-  if(station) buses.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
+async function getRoutes(station) {
+  form.route = ''
+  if(station) routes.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
   center.value = [station.longitude, station.latitude]
+}
+
+function getBuses(route) {
+  axios.get('https://bus4u.fast-table.com/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
+    .then(rsp => {
+      if(rsp.status == 200) {
+        buses.value = rsp.data
+      }
+    }).catch(() => {
+      buses.value = []
+    })
 }
 
 async function onSubmit(e) {
   if(!(await e).valid) return
+  clearInterval(updateInterval)
   isLoadingTable.value = true
-  timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.bus.route_uid }})).data
+  timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
   isLoadingTable.value = false
-  route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.bus.route_uid }})).data.stations
+  route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
+  getBuses(form.route)
+  updateInterval = setInterval(() => getBuses(form.route), 30000);
 }
 
 onMounted(() => {
   getCities();
+})
+onBeforeUnmount(() => {
+  clearInterval(updateInterval);
 })
 </script>
 

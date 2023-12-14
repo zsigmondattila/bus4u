@@ -30,6 +30,9 @@ const vuetify = createVuetify({
       location: 'bottom',
       variant: 'elevated',
       timeout: 6000
+    },
+    VCheckbox: {
+      density: 'compact'
     }
   },
   icons: {

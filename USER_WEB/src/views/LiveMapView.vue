@@ -21,8 +21,7 @@
         </v-row>
       </v-container>
     </v-form>
-
-    <Map ref="mapBox" :stations="stations" :is-route="true" :buses="buses" :pan-to="center"/>
+    <Map ref="mapBox" :stations="stations" :toggleRoute="true" :hide-stations="true" controls="true" :buses="buses" :pan-to="center"/>
   </AppLayout>
 </template>
 
@@ -43,7 +42,7 @@ const cities = ref([])
 const routes = ref([])
 const stations = ref([])
 const buses = ref([])
-let interval = null
+let updateInterval = null
 
 function getName(item){
   return { title: item.name };
@@ -56,31 +55,36 @@ const required = [
 async function onSubmit(e) {
   let validation = await e
   if(!validation.valid) return
+  clearInterval(updateInterval)
     axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', {params: { route_uid: form.route.route_uid }}) /// or on a route?
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
         if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
-        getBuses(route)
-        interval = setInterval(getBuses, 30000);
+        getBuses(form.route)
+        updateInterval = setInterval(() => getBuses(form.route), 30000);
       }
-    }).catch(() => stations.value = [])
+    }).catch((e) => {
+      stations.value = []
+    })
 }
 
 function getBuses(route) {
-  axios.get('https://bus4u.fast-table.com/v1/get_buses_of_a_route', {params: { route_uid: route.route_uid }})
+  axios.get('https://bus4u.fast-table.com/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
     .then(rsp => {
       if(rsp.status == 200) {
-        buses.value = rsp.data.buses
+        buses.value = rsp.data
         if(buses.value.length) center.value = [buses.value[0].longitude, buses.value[0].latitude]
       }
-    }).catch(() => buses.value = [])
+    }).catch(() => {
+      buses.value = []
+    })
 }
 
 async function getRoutes(city) {
   axios.get('https://bus4u.fast-table.com/v1/get_routes_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
-      if(rsp.status == 200) routes.value = rsp.data.routes
+      if(rsp.status == 200) routes.value = rsp.data
     }).catch(() => routes.value = [])
 }
 
@@ -91,7 +95,7 @@ onMounted(() => {
     }).catch(() => cities.value = [])
 })
 onBeforeUnmount(() => {
-  clearInterval(interval)
+  clearInterval(updateInterval)
 })
 </script>
 

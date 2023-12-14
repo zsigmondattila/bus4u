@@ -31,7 +31,7 @@
         <slot></slot>
       </div>
       <div v-if="user.documents">
-        <v-snackbar v-model="user.documents.show.road_taxes" timeout="-1" :close-on-content-click="true">
+        <v-snackbar v-model="user.documents.show.road_taxes" timeout="-1">
           <h3 class="font-weight-bold"> Document validity warning </h3>
           <p> The road tax will expire in the next two weeks for bus(es): </p>
           <p>{{ user.documents.road_taxes.join(', ') }}</p>
@@ -41,7 +41,7 @@
             </v-btn>
           </template>
         </v-snackbar>
-        <v-snackbar v-model="user.documents.show.insurances" timeout="-1" :close-on-content-click="true">
+        <v-snackbar v-model="user.documents.show.insurances" timeout="-1">
           <h3 class="font-weight-bold"> Document validity warning </h3>
           <p> The insurance will expire in the next two weeks for bus(es): </p>
           <p>{{ user.documents.insurances.join(', ') }}</p>
@@ -51,7 +51,7 @@
             </v-btn>
           </template>
         </v-snackbar>
-        <v-snackbar v-model="user.documents.show.technical_exams" timeout="-1" :close-on-content-click="true">
+        <v-snackbar v-model="user.documents.show.technical_exams" timeout="-1">
           <h3 class="font-weight-bold"> Document validity warning </h3>
           <p> The technical exam will expire in the next two weeks for bus(es): </p>
           <p class="text-center">{{ user.documents.technical_exams.join(', ') }}</p>

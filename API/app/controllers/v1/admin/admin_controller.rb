@@ -1,4 +1,30 @@
 class V1::Admin::AdminController < ApplicationController
+
+    def document_validity_checker
+        road_taxes = []
+        insurances = []
+        technical_exams = []
+        company = Company.find_by(company_uid: params[:company_uid])
+        buses = Bus.where(company_uid: company.company_uid)
+
+        buses.each do |bus|
+            if bus.technical_exam < Time.now + 2.week
+                technical_exams << bus.license_plate
+            end 
+            if bus.insurance < Time.now + 2.week
+                insurances << bus.license_plate
+            end 
+            if bus.road_tax < Time.now + 2.week
+                road_taxes << bus.license_plate
+            end
+            puts "#{bus.technical_exam} #{bus.insurance} #{bus.road_tax}"
+        end
+        if technical_exams.empty? && insurances.empty? && road_taxes.empty?
+            render json: { success: "All documents are valid in the next two weeks" }
+        else
+            render json: { road_taxes: road_taxes, insurances: insurances, technical_exams: technical_exams}
+        end
+    end
     
     #Creating a city model, it requires a name and a postal code
     def create_city

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     namespace :admin do
       #Superuser requests
+      get '/document_validity_checker', to: 'admin#document_validity_checker'
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'

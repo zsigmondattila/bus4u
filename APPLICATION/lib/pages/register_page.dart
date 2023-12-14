@@ -1,15 +1,73 @@
-import 'package:bus4u/components/square_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
-class RegisterPage extends StatelessWidget {
-  RegisterPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
 
-  //sign user in method
-  void signUserIn() {}
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpassController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
+  void login(String email, password, confirmpassword, firstname) async {
+    try {
+      Response response =
+          await post(Uri.parse('https://bus4u.fast-table.com/auth'), body: {
+        'email': email,
+        'password': password,
+        'password_confirmation': confirmpassword,
+        'firstname': firstname,
+      });
+      if (response.statusCode == 200) {
+        showDialog<String>(
+          context: context,
+          builder: ( context) => AlertDialog(
+            title: const Text('Successfull'),
+            content: const Text('You created account successfully, now you can sign in'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+        
+      } else {
+        print('failed');
+        showDialog<String>(
+          context: context,
+          builder: ( context) => AlertDialog(
+            title: const Text('Something wrong'),
+            content: const Text('Wrong email format or exiting account'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  //register method
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,46 +97,49 @@ class RegisterPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[800], fontSize: 16),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: emailController,
+                    obscureText: false,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Firstname',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Email',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Lastname',
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  const TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Username',
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: confirmpassController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Confirm password',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Confirm password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: nameController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        hintText: 'Firstname',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      signUserIn();
+                      login(
+                          emailController.text.toString(),
+                          passwordController.text.toString(),
+                          confirmpassController.text.toString(),
+                          nameController.text.toString());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -92,64 +153,6 @@ class RegisterPage extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
-                  const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text('Or register with'),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      )
-                    ]),
-                  ),
-                  const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SquareTile(
-                        imagePath: 'assets/images/google.png',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SquareTile(
-                        imagePath: 'assets/images/apple.png',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "You have account?",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Text(
-                        "Login here",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
                   ),
                   const SizedBox(height: 25),
                 ],

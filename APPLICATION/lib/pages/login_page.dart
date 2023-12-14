@@ -1,23 +1,72 @@
-import 'package:bus4u/components/square_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:bus4u/pages/register_page.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   //sign user in method
-  void signUserIn() {}
+  void signUserIn(String email, password) async {
+    try {
+      Response response = await post(
+          Uri.parse('https://bus4u.fast-table.com/auth/sign_in'),
+          body: {
+            'email': email,
+            'password': password,
+          });
+      if (response.statusCode == 200) {
+        showDialog<String>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Successfull'),
+            content: const Text('Logined successful'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } else {
+        print('failed');
+        showDialog<String>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Something wrong'),
+            content: const Text('Email or password incorrect'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'Cancel'),
+                child: const Text('Cancel'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context, 'OK'),
+                child: const Text('OK'),
+              ),
+            ],
+          ),
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Image.asset(
-              'assets/images/logo-text.png',
-              height: 40,
-            ),
-          ]),
-        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
@@ -36,19 +85,22 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.grey[800], fontSize: 16),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: emailController,
+                    obscureText: false,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Username',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Email',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),
-                  const TextField(
+                  TextFormField(
+                    controller: passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Password',
-                    ),
+                        border: const OutlineInputBorder(),
+                        hintText: 'Password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 15),
                   const Padding(
@@ -69,7 +121,8 @@ class LoginPage extends StatelessWidget {
                   const SizedBox(height: 25),
                   ElevatedButton(
                     onPressed: () {
-                      signUserIn();
+                      signUserIn(emailController.text.toString(),
+                          passwordController.text.toString());
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
@@ -85,61 +138,28 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                    child: Row(children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text('Or continue with'),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[800],
-                        ),
-                      )
-                    ]),
-                  ),
-                  const SizedBox(height: 25),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SquareTile(
-                        imagePath: 'assets/images/google.png',
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      SquareTile(
-                        imagePath: 'assets/images/apple.png',
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 25),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
+                       const Text(
                         "Not a member?",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(width: 4),
-                      Text(
-                        "Register now",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
+                      const SizedBox(width: 4),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return const RegisterPage();
+                            }),
+                          );
+                        },
+                        child: const Text('Register'),
                       ),
+                      
                     ],
                   ),
                 ],

@@ -1,9 +1,9 @@
+import 'package:bus4u/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:bus4u/pages/schedules_page.dart';
 import 'package:bus4u/pages/stations_page.dart';
 import 'package:bus4u/pages/info_page.dart';
-import 'package:bus4u/pages/account_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,6 +53,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: _pageController,
           onPageChanged: (int index) {
             setState(() {
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
             SchedulesPage(),
             StationsPage(),
             InfoPage(),
-            AccountPage(),
+            LoginPage(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -97,12 +98,11 @@ class _MyAppState extends State<MyApp> {
           onTap: (int index) {
             setState(() {
               currentPage = index;
-              
-              /*_pageController.animateToPage(
+              _pageController.animateToPage(
                 index,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.ease,
-              );*/
+              );
             });
           },
         ),

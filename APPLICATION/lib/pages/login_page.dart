@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:bus4u/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -14,11 +15,12 @@ class _LoginPageState extends State<LoginPage> {
   //sign user in method
   void signUserIn(String email, password) async {
     try {
-      Response response =
-          await post(Uri.parse('https://bus4u.fast-table.com/auth/sign_in'), body: {
-        'email': email,
-        'password': password,
-      });
+      Response response = await post(
+          Uri.parse('https://bus4u.fast-table.com/auth/sign_in'),
+          body: {
+            'email': email,
+            'password': password,
+          });
       if (response.statusCode == 200) {
         showDialog<String>(
           context: context,
@@ -65,14 +67,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-            Image.asset(
-              'assets/images/logo-text.png',
-              height: 40,
-            ),
-          ]),
-        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
@@ -144,24 +138,28 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  const Row(
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                       const Text(
                         "Not a member?",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(width: 4),
-                      Text(
-                        "Register now",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
+                      const SizedBox(width: 4),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return const RegisterPage();
+                            }),
+                          );
+                        },
+                        child: const Text('Register'),
                       ),
+                      
                     ],
                   ),
                 ],

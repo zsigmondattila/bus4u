@@ -6,10 +6,10 @@ class StationsPage extends StatefulWidget {
   const StationsPage({Key? key}) : super(key: key);
 
   @override
-  _StationsPageState createState() => _StationsPageState();
+  StationsPageState createState() => StationsPageState();
 }
 
-class _StationsPageState extends State<StationsPage> {
+class StationsPageState extends State<StationsPage> {
   GoogleMapController? mapController;
   LocationData? currentLocation;
   final Location location = Location();
@@ -61,19 +61,12 @@ class _StationsPageState extends State<StationsPage> {
   void setMarkers() {
     markers.add(
       const Marker(
-        markerId: MarkerId('Marker1'),
-        position: LatLng(37.7749, -122.4194),
-        infoWindow: InfoWindow(title: 'Marker 1'),
+        markerId: MarkerId('Sapi parkolo'),
+        position: LatLng(46.5234, 24.5984),
+        infoWindow: InfoWindow(title: 'Sapi parkolo'),
       ),
     );
-    markers.add(
-      const Marker(
-        markerId: MarkerId('Marker2'),
-        position: LatLng(37.3382, -121.8863),
-        infoWindow: InfoWindow(title: 'Marker 2'),
-      ),
-    );
-    // Add more markers as needed
+    // a tobbi marker
   }
 
   @override
@@ -93,14 +86,22 @@ class _StationsPageState extends State<StationsPage> {
               currentLocation?.longitude ?? 0.0),
           zoom: 15.0,
         ),
-        markers: markers,
+        markers: <Marker>{
+              Marker(
+                markerId: const MarkerId('My Location'),
+                position: LatLng(currentLocation?.latitude ?? 0.0,
+                    currentLocation?.longitude ?? 0.0),
+                infoWindow: const InfoWindow(title: 'My Location'),
+              ),
+            },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           checkPermission();
         },
-        child: const Icon(Icons.location_searching),
+        child: const Icon(Icons.my_location),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

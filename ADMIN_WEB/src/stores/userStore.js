@@ -8,6 +8,7 @@ export const userStore = defineStore('user', () => {
   const lastName = ref('')
   const email = ref('')
   const companyUid = ref('')
+  const documents = ref(null)
 
   const usr = sessionStorage.getItem('user')
   if(usr) signIn(JSON.parse(usr))
@@ -29,6 +30,7 @@ export const userStore = defineStore('user', () => {
           lastName.value = ''
           email.value = ''
           companyUid.value = ''
+          documents.value = null
           sessionStorage.removeItem('auth')
           router.replace({name: 'login'})
         })
@@ -38,9 +40,22 @@ export const userStore = defineStore('user', () => {
       lastName.value = ''
       email.value = ''
       companyUid.value = ''
+      documents.value = null
       router.replace({name: 'login'})
     }
   }
-  return { firstName, lastName, email, companyUid, signIn, signOut }
+  function checkDocuments(company) {
+    axios.get('https://bus4u.fast-table.com/v1/admin/document_validity_checker', { params: { company_uid: company }})
+    .then(rsp => {
+      documents.value = Object.assign(rsp.data, { show: {
+        road_taxes: !!rsp.data.road_taxes,
+        insurances: !!rsp.data.insurances,
+        technical_exams: !!rsp.data.technical_exams
+      }})
+    }).catch(() => {
+      documents.value = null
+    })
+  }
+  return { firstName, lastName, email, companyUid, documents, signIn, signOut, checkDocuments }
   }
 )

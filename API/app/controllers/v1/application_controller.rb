@@ -323,3 +323,15 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     end
   end
 end
+
+#
+def get_buses_on_a_route
+  route = Route.find_by(route_uid: params[:route_uid])
+
+  buses = Bus.where(current_route_uid: route.route_uid)
+  if buses
+    render json: buses
+  else
+    render json: { error: "Cannot find buses" }
+  end
+end

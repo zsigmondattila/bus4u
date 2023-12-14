@@ -76,11 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_142635) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "company_stations", primary_key: "company_station_uid", id: :string, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "email_verifications", force: :cascade do |t|
     t.string "email"
     t.string "verification_code"

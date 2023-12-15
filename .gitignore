@@ -1,0 +1,62 @@
+# FRONTEND
+USER_WEB/node_modules
+USER_WEB/.env
+ADMIN_WEB/node_modules
+ADMIN_WEB/.env
+
+# APP
+# Miscellaneous
+APPLICATION/*.class
+APPLICATION/*.log
+APPLICATION/*.pyc
+APPLICATION/*.swp
+APPLICATION/.DS_Store
+APPLICATION/.atom/
+APPLICATION/.buildlog/
+APPLICATION/.history
+APPLICATION/.svn/
+APPLICATION/migrate_working_dir/
+
+# IntelliJ related
+APPLICATION/*.iml
+APPLICATION/*.ipr
+APPLICATION/*.iws
+APPLICATION/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+APPLICATION/**/doc/api/
+APPLICATION/**/ios/Flutter/.last_build_id
+APPLICATION/.dart_tool/
+APPLICATION/.flutter-plugins
+APPLICATION/.flutter-plugins-dependencies
+APPLICATION/.packages
+APPLICATION/.pub-cache/
+APPLICATION/.pub/
+APPLICATION/build/
+
+# Symbolication related
+APPLICATION/app.*.symbols
+
+# Obfuscation related
+APPLICATION/app.*.map.json
+
+# Android Studio will place build artifacts here
+APPLICATION/android/app/debug
+APPLICATION/android/app/profile
+APPLICATION/android/app/release
+
+API/.bundle
+API/db/*.sqlite3
+API/db/*.sqlite3-*
+
+API/log/*
+API/tmp/*
+!API/log/.keep
+!API/tmp/.keep
+
+API/tmp/pids/*

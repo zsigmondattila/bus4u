@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_06_142635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
     t.datetime "road_tax"
     t.datetime "insurance"
     t.datetime "technical_exam"
+    t.boolean "tracked"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.string "current_route_uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,11 +76,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "company_stations", primary_key: "company_station_uid", id: :string, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "email_verifications", force: :cascade do |t|
     t.string "email"
     t.string "verification_code"
@@ -95,10 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
   create_table "route_stations", primary_key: "route_station_uid", id: :string, force: :cascade do |t|
     t.string "station_uid"
     t.string "route_uid"
-    t.string "name"
-    t.datetime "departure_time"
     t.integer "sequence"
-    t.decimal "fare"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -135,6 +131,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_26_153217) do
     t.boolean "is_paid"
     t.integer "payment_method"
     t.decimal "ticket_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "timetables", primary_key: "timetable_uid", id: :string, force: :cascade do |t|
+    t.string "route_station_uid"
+    t.datetime "departure_time"
+    t.decimal "fare"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

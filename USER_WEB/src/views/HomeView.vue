@@ -6,7 +6,7 @@
         Fill the form to get available buses
       </template>
     </SectionTitle>
-    <v-form @submit.prevent="onSubmit" class="my-10" validate-on="submit">
+    <v-form @submit.prevent="onSubmit" class="my-8" validate-on="submit">
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="6">
@@ -34,7 +34,7 @@
       </v-container>
     </v-form>
     <v-container class="px-0">
-      <v-list lines="two" border rounded class="py-0 my-10">
+      <v-list lines="two" border rounded class="py-0">
         <div v-if="!routes">
           <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
         </div>
@@ -61,10 +61,10 @@ const cities = ref([])
 const routes = ref(null);
 
 const form = reactive({
-  fromCity: '',
-  toCity: '',
-  fromStation: '',
-  toStation: '',
+  fromCity: null,
+  toCity: null,
+  fromStation: null,
+  toStation: null,
   date: getDateStr(),
   time: getTimeStr(),
 })
@@ -77,7 +77,7 @@ const uniqueStation = [
 ]
 
 function getDateStr(){
-  let month = date.getMonth();
+  let month = date.getMonth() + 1;
   let day = date.getDate();
   return `${date.getFullYear()}-${month>9 ? month : '0'+month}-${day>9 ? day : '0'+day}`
 }
@@ -90,9 +90,14 @@ function getTimeStr(){
 async function onSubmit(e) {
   if(!(await e).valid) return
   isLoadingRoutes.value = true
-  axios.get('https://bus4u.fast-table.com/v1/get_available_tickets',
-    { params: { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid || '', destination_station_uid: form.toStation.station_uid || '', date: form.date, time: form.time}}
-    ).then(rsp => {
+  let params = {}
+  if(form.fromStation && form.toStation){
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}
+  } else {
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time}
+  }
+  axios.get('https://bus4u.fast-table.com/v1/get_available_tickets', { params })
+  .then(rsp => {
       if(rsp.status == 200) {
         routes.value = []
         rsp.data.forEach(element => {
@@ -111,6 +116,7 @@ function getName(item){
 }
 
 async function getStartStation(city){
+  form.fromStation = null
   if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
@@ -119,6 +125,7 @@ async function getStartStation(city){
 }
 
 async function getDestStation(city){
+  form.toStation = null
   if(!city) return
   axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {

@@ -53,6 +53,9 @@
         <MapBox ref="mapBox" :stations="stations" v-model:pointer="newStation"/>
       </v-col>
     </v-row>
+    <v-snackbar v-model="notification.show">
+      {{ notification.message }}
+    </v-snackbar>
   </AppLayout>
 </template>
 
@@ -66,16 +69,21 @@ import MapBox from '../components/MapBox.vue';
 const mapBox = ref(null)
 const stations = ref([])
 const formIsOpen = ref(false)
+const notification = ref({
+  show: false,
+  message: null
+})
 const newStation = reactive({
-  coordinates: [],
   name: '',
+  coordinates: [],
   city: '',
-  address: ''
+  address: '',
+  postcode: ''
 })
 
 const nameRule = [
   (v) => !!v || 'The field is required',
-  (v) => /^[A-Z].+$/.test(v) || 'The field must be a valid name'
+  (v) => /^[\p{L}].+$/u.test(v) || 'The field must be a valid name'
 ]
 
 const coordinateRule = [
@@ -84,17 +92,31 @@ const coordinateRule = [
 ]
 
 function panMap(station) {
-  if(mapBox.value) mapBox.value.panTo([station.id.longitude, station.id.latitude])
+  if(mapBox.value) {
+    mapBox.value.setCustomPointer([station.id.longitude, station.id.latitude])
+    newStation.name = ''
+    newStation.coordinates = []
+    newStation.city = ''
+    newStation.address = ''
+    newStation.postcode = ''
+  }
 }
 
 function deleteStation(station){
-  console.log(station.name + ' deleted');
-  updateStations();
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station', { params: { station_uid: station.station_uid }})
+    .then(() => {
+      notification.value.message = 'Station deleted successfully'
+      notification.value.show = true
+      updateStations();
+    })
 }
 
 function cancelAddStation() {
   newStation.name = ''
   newStation.coordinates = []
+  newStation.city = ''
+  newStation.address = ''
+  newStation.postcode = ''
   formIsOpen.value = false
 }
 
@@ -102,14 +124,17 @@ async function addStation(e){
   let rsp = await e;
   if(!rsp.valid) return;
 
-  let createRsp = await axios.post('https://bus4u.fast-table.com/v1/admin/create_station', { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address })
+  let createRsp = await axios.post('https://bus4u.fast-table.com/v1/admin/create_station', 
+    { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address, zip_code: newStation.postcode })
   if (createRsp.status == 200) {
-    console.log('Station created successfully');
+    notification.value.message = 'Station created successfully';
+    notification.value.show = true
     formIsOpen.value = false;
     newStation.name = ''
     newStation.coordinates = []
     newStation.city = ''
     newStation.address = ''
+    newStation.postcode = ''
     updateStations();
   }
 }
@@ -127,7 +152,6 @@ axios.get('https://bus4u.fast-table.com/v1/get_stations')
   .then(rsp => {
     if (rsp.status == 200) {
       stations.value = rsp.data.stations
-      console.log(stations.value);
     }
   })
 </script>

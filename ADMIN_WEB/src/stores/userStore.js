@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import router from '../router'
 import { ref } from 'vue'
 import axios from 'axios'
 
@@ -6,46 +7,55 @@ export const userStore = defineStore('user', () => {
   const firstName = ref('')
   const lastName = ref('')
   const email = ref('')
-  const authorization = ref('')
-  const uid = ref('')
-  const client = ref('')
-  const accessToken = ref('')
+  const companyUid = ref('')
+  const documents = ref(null)
 
-  const session = sessionStorage.getItem('user')
-  if(session) resumeSession(JSON.parse(session))
+  const usr = sessionStorage.getItem('user')
+  if(usr) signIn(JSON.parse(usr))
 
-  async function resumeSession(user) {
-    accessToken.value = user.accessToken
-    let rsp = await axios.get('https://bus4u.fast-table.com/admin/validate_token', { params: { 'uid': user.uid, 'client': user.client, 'access-token': user.accessToken}})
-    if(rsp.status == 200){
-      signIn(rsp.data.data, rsp.headers)
-    }
-  }
-
-  function signIn(user, headers) {
-    firstName.value = user.firstName
-    lastName.value = user.lastName
+  function signIn(user) {
+    firstName.value = user.firstname
+    lastName.value = user.lastname
     email.value = user.email
-    authorization.value = headers.authorization
-    uid.value = headers.uid
-    client.value = headers.client
-    accessToken.value = headers['access-token']
-    sessionStorage.setItem('user', JSON.stringify({ uid: uid.value, client: client.value, accessToken: accessToken.value }))
+    companyUid.value = user.company_uid
   }
   function signOut() {
     sessionStorage.removeItem('user')
-    axios.delete('https://bus4u.fast-table.com/admin/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
-      .then(() => {
-        firstName.value = ''
-        lastName.value = ''
-        email.value = ''
-        authorization.value = ''
-        uid.value = ''
-        client.value = ''
-        accessToken.value = ''
-      })
-      .catch((err) => console.error(err))
+    const auth = sessionStorage.getItem('auth')
+    if(auth) {
+      let data = JSON.parse(auth)
+      axios.delete('https://bus4u.fast-table.com/admin/sign_out', { params: { 'uid': data.uid, 'client': data.client, 'access-token': data.accessToken}})
+        .then(() => {
+          firstName.value = ''
+          lastName.value = ''
+          email.value = ''
+          companyUid.value = ''
+          documents.value = null
+          sessionStorage.removeItem('auth')
+          router.replace({name: 'login'})
+        })
+        .catch((err) => console.error(err))
+    } else {
+      firstName.value = ''
+      lastName.value = ''
+      email.value = ''
+      companyUid.value = ''
+      documents.value = null
+      router.replace({name: 'login'})
+    }
   }
-  return { firstName, lastName, email, authorization, uid, client, accessToken, signIn, signOut }
+  function checkDocuments(company) {
+    axios.get('https://bus4u.fast-table.com/v1/admin/document_validity_checker', { params: { company_uid: company }})
+    .then(rsp => {
+      documents.value = Object.assign(rsp.data, { show: {
+        road_taxes: !!rsp.data.road_taxes,
+        insurances: !!rsp.data.insurances,
+        technical_exams: !!rsp.data.technical_exams
+      }})
+    }).catch(() => {
+      documents.value = null
+    })
+  }
+  return { firstName, lastName, email, companyUid, documents, signIn, signOut, checkDocuments }
   }
 )

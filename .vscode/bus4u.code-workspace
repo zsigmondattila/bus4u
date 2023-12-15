@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"name": "Root",
+			"path": ".."
+		},
+		{
+			"name": "API",
+			"path": "../API"
+		},
+		{
+			"name": "Admin Frontend",
+			"path": "../ADMIN_WEB"
+		},
+		{
+			"name": "User Frontend",
+			"path": "../USER_WEB"
+		},
+		{
+			"name": "POS App",
+			"path": "../POS_APP"
+		},
+		{
+			"name": "Flutter App",
+			"path": "../APPLICATION"
+		}
+	],
+	"settings": {}
+}

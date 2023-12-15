@@ -19,7 +19,8 @@ function panTo(coord) {
   if(map) map.panTo(coord);
 }
 
-function addCustomPointer(coordinates){
+function setCustomPointer(coordinates){
+  if(customPoint) customPoint.remove();
   if(!coordinates.length) return
   customPoint = new mapboxgl.Marker({ color: "#bc1251" }).setLngLat(coordinates).addTo(map);
   map.panTo(coordinates)
@@ -30,7 +31,7 @@ function addStations(array) {
   let c = [];
   array.forEach(station => {
     c = [station.longitude, station.latitude];
-    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat(c).addTo(map));
+    markers.push({ name: station.name, marker: new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat(c).addTo(map)});
     points.push(c);
   })
   map.panTo(c)
@@ -62,8 +63,7 @@ onMounted(() => {
   });
   map.on('load', () => {
     map.on('click', (e) => {
-      if(customPoint) customPoint.remove();
-      addCustomPointer(e.lngLat.toArray())
+      setCustomPointer(e.lngLat.toArray())
       axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${e.lngLat.lng},${e.lngLat.lat}.json`, { params: { 'access_token': mapboxgl.accessToken }})
         .then(rsp => {
           let arr = rsp.data.features;
@@ -71,6 +71,7 @@ onMounted(() => {
           point.city = arr[2].text
           point.address = `${arr[0].text || ''} ${arr[0].address || ''}`
           point.coordinates = [e.lngLat.lng, e.lngLat.lat]
+          point.postcode = arr[1].text
           emit('update:pointer', point)
         }).catch(() => {
           let point = props.pointer;
@@ -108,10 +109,10 @@ onMounted(() => {
   });
 })
 
-defineExpose({ panTo })
+defineExpose({ panTo, setCustomPointer })
 
 onBeforeUpdate(() => {
-  markers.forEach(marker => marker.remove())
+  markers.forEach(marker => marker.marker.remove())
   markers = []
   points = []
   addStations(props.stations)

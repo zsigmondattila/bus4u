@@ -11,15 +11,27 @@ Rails.application.routes.draw do
   namespace :v1 do
     namespace :admin do
       #Superuser requests
+      get '/document_validity_checker', to: 'admin#document_validity_checker'
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'
+      delete '/delete_bus', to: 'admin#delete_bus'
       post '/create_station', to: 'admin#create_station'
+      delete '/delete_station', to: 'admin#delete_station'
       post '/create_route', to: 'admin#create_route'
+      delete '/delete_route', to: 'admin#delete_route'
       post '/add_station_to_route', to: 'admin#add_station_to_route'
-      post '/create_ticket', to: 'admin#create_ticket'
+      delete '/delete_station_from_route', to: 'admin#delete_station_from_route'
+      post '/add_timetable_to_route', to: 'admin#add_timetable_to_route'
+      delete '/delete_timetables_from_route', to:'admin#delete_timetables_from_route'
+      post '/set_a_bus_tracked', to: 'admin#set_a_bus_tracked'
+      post '/set_a_bus_untracked', to: 'admin#set_a_bus_untracked'
+      post '/set_current_route_of_a_bus', to: 'admin#set_current_route_of_a_bus'
+      post '/change_bus_location', to: 'admin#change_bus_location'
+      post '/use_ticket', to:'admin#use_ticket'
       get '/get_routes_of_a_company', to: 'admin#get_routes_of_a_company'
       get '/get_stations_of_a_route', to: 'admin#get_stations_of_a_route'
+      get '/get_buses_of_a_company', to: 'admin#get_buses_of_a_company'
 
     end
     post '/send_verification_email', to: 'application#send_verification_email'
@@ -33,8 +45,9 @@ Rails.application.routes.draw do
     get '/get_routes_by_station', to: 'application#get_routes_by_station'
     get '/get_departure_times_for_station_in_route', to:'application#get_departure_times_for_station_in_route'
     get '/get_available_tickets', to: 'application#get_available_tickets'
-    post '/generate_a_cash_ticket', to: 'application#generate_a_cash_ticket'
-    post '/generate_a_card_ticket', to: 'application#generate_a_card_ticket'
+    post '/generate_a_ticket', to: 'application#generate_a_ticket'
+    get '/get_routes_by_city', to: 'application#get_routes_by_city'
+    get '/get_bus_locations_by_route', to: 'application#get_bus_locations_by_route'
   end
 
   # Defines the root path route ("/")

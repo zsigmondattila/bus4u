@@ -1,20 +1,45 @@
 <template>
-  <div ref="mapRef" class="map rounded mt-10"></div>
+  <div class="container mt-8">
+    <div ref="mapRef" class="map rounded"></div>
+    <div v-if="controls" class="pa-2">
+      <v-row dense>
+        <v-col cols="12" sm="4">
+          <v-checkbox label="Current location" v-model="showLocation" color="#297bFF" hide-details="auto"></v-checkbox>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-checkbox label="Live bus location" v-model="showBuses" color="#bc1251" hide-details="auto"></v-checkbox>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-checkbox label="Stations" v-model="showStations" color="#EF6C00" hide-details="auto"></v-checkbox>
+        </v-col>
+      </v-row>
+    </div>
+  </div>
 </template>
 
 <script setup>
 import { onBeforeUpdate, onMounted, onUnmounted, ref } from 'vue';
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
+import { watch } from 'vue';
 
-const props = defineProps(['stations', 'isRoute', 'panTo'])
+const props = defineProps(['stations', 'buses', 'enableRoute', 'hideStations', 'controls'])
 const mapRef = ref(null);
+const showStations = ref(!props.hideStations);
+const showLocation = ref(true);
+const showBuses = ref(true);
 
 let map = null;
-let markers = [];
-let customPoint = null;
-let currentLocation = [];
+let stationMarkers = [];
+let busMarkers = [];
+let currentLocation = null;
 let waypoints = [];
+
+function panTo(coord, zoom) {
+  if(!map) return
+  if(zoom !== undefined) map.setZoom(zoom).panTo(coord)
+  else map.panTo(coord);
+}
 
 function resetRoute() {
   const data = {
@@ -29,18 +54,26 @@ function resetRoute() {
 }
 
 function addStations(array) {
+  if(!showStations.value) return
   array.forEach(station => {
     const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude])
-      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px").addTo(map);
-    markers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
+      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px");
+    stationMarkers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
   })
-  if(props.panTo && props.panTo.length) {
-    map.setZoom(11).panTo(props.panTo)
-  }
+}
+
+function addBuses(array) {
+  if(!showBuses.value) return
+  array.forEach(bus => {
+    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([bus.longitude, bus.latitude])
+      .setHTML(`<h3>${bus.license_plate}</h3><p>${bus.brand}</p><p>Capacity: ${bus.capacity}</p>`).setMaxWidth("300px");
+    busMarkers.push(new mapboxgl.Marker({ color: "#bc1251" }).setLngLat([bus.longitude, bus.latitude]).setPopup(popup).addTo(map));
+  })
 }
 
 async function addRoute() {
   waypoints = []
+  if(props.stations.length < 2) return
   if(props.stations.length > 25) {
     props.stations.forEach(station => {
       waypoints.push([station.longitude, station.latitude]);
@@ -63,19 +96,55 @@ async function addRoute() {
       'coordinates': waypoints
     }
   }
-  if(map.getSource('route')){ 
+  if(map.getSource('route')){
     map.getSource('route').setData(data)
-    if(!props.panTo || !props.panTo.length) map.setZoom(11).panTo(waypoints[0])
   }
 }
 
+watch(showLocation, () => {
+  if(showLocation.value) {
+    if(navigator.geolocation && !props.hideLocation) {
+      navigator.geolocation.getCurrentPosition((p) => {
+        let current = [p.coords.longitude, p.coords.latitude]
+        currentLocation = new mapboxgl.Marker({ color: "#297bFF" }).setLngLat(current).addTo(map);
+        map.panTo(current)
+      });
+    }
+  } else {
+    currentLocation.remove();
+    currentLocation = null;
+  }
+})
+
+watch(showStations, () => {
+  if(showStations.value && props.stations) {
+    addStations(props.stations)
+    if(props.enableRoute) addRoute()
+  } else {
+    stationMarkers.forEach(marker => marker.remove())
+    stationMarkers = []
+    resetRoute();
+  }
+})
+
+watch(showBuses, () => {
+  if(showBuses.value && props.buses) {
+    addBuses(props.buses)
+  } else {
+    busMarkers.forEach(marker => marker.remove())
+    busMarkers = []
+  }
+})
+
 if(navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((p) => {
-    currentLocation = [p.coords.longitude, p.coords.latitude]
-    customPoint = new mapboxgl.Marker({ color: "#2979FF" }).setLngLat(currentLocation).addTo(map);
-    map.panTo(currentLocation)
+    let current = [p.coords.longitude, p.coords.latitude]
+    currentLocation = new mapboxgl.Marker({ color: "#297bFF" }).setLngLat(current).addTo(map);
+    map.panTo(current)
   });
 }
+
+defineExpose({ panTo })
 
 onMounted(() => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
@@ -99,7 +168,8 @@ onMounted(() => {
     });
     map.addControl(new mapboxgl.NavigationControl());
     if(props.stations) addStations(props.stations)
-    if(props.isRoute){
+    if(props.buses) addBuses(props.buses)
+    if(props.enableRoute){
       map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -118,13 +188,16 @@ onMounted(() => {
 })
 
 onBeforeUpdate(() => {
-  markers.forEach(marker => marker.remove())
-  markers = []
+  stationMarkers.forEach(marker => marker.remove())
+  stationMarkers = []
+  busMarkers.forEach(marker => marker.remove())
+  busMarkers = []
   if(!props.stations.length) resetRoute();
   else {
     addStations(props.stations)
-    if(props.isRoute) addRoute()
+    if(props.enableRoute) addRoute()
   }
+  if(props.buses) addBuses(props.buses)
 })
 
 onUnmounted(() => {
@@ -136,5 +209,8 @@ onUnmounted(() => {
 <style scoped>
 .map {
   height: 480px;
+}
+.container {
+  height: 100%;
 }
 </style>

@@ -37,13 +37,14 @@ async function onSubmit(event) {
   if(response.valid) {
     isLoading.value = true
     axios.post('https://bus4u.fast-table.com/admin/sign_in', form).then((rsp) => {
-      if(rsp.status == 200 && rsp.data.data.uid) {
+      if(rsp.status == 200 && rsp.data.data.role === 'boss') {
         sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
         user.signIn(rsp.data.data)
+        user.checkDocuments(rsp.data.data.company_uid)
         router.replace({ name: 'home' })
       } else {
         isLoading.value = false
-        errors.value = ['Login failed'];
+        errors.value = ['Unathorized user, permission denied.'];
       }
     }).catch((e) => {
       if(e.response) errors.value = e.response.data.errors

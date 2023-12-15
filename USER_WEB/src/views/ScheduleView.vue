@@ -3,38 +3,38 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Departure timetable for the selected station and bus
+        Departure timetable and map
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
-      <v-container class="px-0">
-        <v-row justify="center">
-          <v-col cols="12" sm="4">
-            <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getStations"></v-autocomplete>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-autocomplete :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getRoutes"></v-autocomplete>
-          </v-col>
-          <v-col cols="12" sm="4">
-            <v-select :items="routes" :item-props="getName" label="Route" :disabled="!form.station" :loading="!routes.length && !!form.station" v-model="form.route" class="text-field" hide-details="auto" :rules="rules"></v-select>
-          </v-col>
-          <v-col cols="12" sm="2" style="text-align: center;">
-            <v-btn type="submit" color="primary"> Search </v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
+      <v-row justify="center">
+        <v-col cols="12" sm="4">
+          <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getStations"></v-autocomplete>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-autocomplete :items="stations" :item-props="getName" label="Station" :disabled="!form.city" :loading="!stations.length && !!form.city" v-model="form.station" class="text-field" hide-details="auto" :rules="rules" @update:model-value="getRoutes"></v-autocomplete>
+        </v-col>
+        <v-col cols="12" sm="4">
+          <v-select :items="routes" :item-props="getName" label="Bus" :disabled="!form.station" :loading="!routes.length && !!form.station" v-model="form.route" class="text-field" hide-details="auto" :rules="rules"></v-select>
+        </v-col>
+        <v-col cols="12" sm="2" style="text-align: center;">
+          <v-btn type="submit" color="primary"> Search </v-btn>
+        </v-col>
+      </v-row>
     </v-form>
-
-    <v-table class="border rounded">
-      <tbody v-if="timetable.length">
-        <tr v-for="day in timetable" :key="day.name">
-          <td class="font-weight-medium">{{ day.name }}</td>
-          <td v-for="time in day.departure_times" :key="time" :max-width="2">{{ time }}</td>
-        </tr>
-      </tbody>
-      <v-skeleton-loader v-else type="table-row@2" :boilerplate="!isLoadingTable"></v-skeleton-loader>
-    </v-table>
-    <Map class="mt-0" v-if="route" :stations="route" :buses="buses" :toggleRoute="true" controls="true" :pan-to="center"/>
+    <div class="border rounded">
+      <h3 v-if="timetable.length" class="pa-3 text-subtitle-2"> <b>Departure times for station: </b>{{ displayed.station.name }}<b> and bus: </b>{{ displayed.route.name }}</h3>
+      <v-table class="border-t rounded-t-0">
+        <tbody v-if="timetable.length">
+          <tr v-for="day in timetable" :key="day.name">
+            <td class="font-weight-medium">{{ day.name }}</td>
+            <td v-for="time in day.departure_times" :key="time" :max-width="2">{{ time }}</td>
+          </tr>
+        </tbody>
+        <v-skeleton-loader v-else type="table-row@2" :boilerplate="!isLoadingTable"></v-skeleton-loader>
+      </v-table>
+    </div>
+    <Map ref="map" class="mt-0" v-if="route" :stations="route" :buses="buses" :enableRoute="true" controls="true"/>
   </AppLayout>
 </template>
 
@@ -48,12 +48,13 @@ import { onBeforeUnmount } from "vue";
 
 const isLoadingTable = ref(false)
 let updateInterval = null
+const map = ref(null)
+const displayed = ref(null)
 
 const cities = ref([]);
 const stations = ref([]);
 const routes = ref([]);
 const buses = ref([]);
-const center = ref([]);
 
 const timetable = ref([])
 const route = ref([])
@@ -77,15 +78,14 @@ async function getCities() {
 }
 
 async function getStations(city) {
-  form.station = ''
-  form.route = ''
+  form.station = null
+  form.route = null
   if(city) stations.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
 }
 
 async function getRoutes(station) {
   form.route = ''
   if(station) routes.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
-  center.value = [station.longitude, station.latitude]
 }
 
 function getBuses(route) {
@@ -103,11 +103,13 @@ async function onSubmit(e) {
   if(!(await e).valid) return
   clearInterval(updateInterval)
   isLoadingTable.value = true
+  displayed.value = { station: form.station, route: form.route }
   timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
   isLoadingTable.value = false
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
+  map.value.panTo([form.station.longitude, form.station.latitude])
   getBuses(form.route)
-  updateInterval = setInterval(() => getBuses(form.route), 30000);
+  updateInterval = setInterval(() => getBuses(form.route), 10000);
 }
 
 onMounted(() => {

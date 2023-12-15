@@ -3,7 +3,7 @@
     <SectionTitle>
       Stations
       <template #description>
-        Browse stations on the map and apply filter to these by city or route
+        Browse stations on the map and apply filter by city or route
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
@@ -22,7 +22,7 @@
       </v-container>
     </v-form>
 
-    <Map ref="mapBox" :stations="stations" :pan-to="center"/>
+    <Map ref="mapBox" :stations="stations"/>
   </AppLayout>
 </template>
 
@@ -38,7 +38,7 @@ const form = reactive({
   bus: null,
 })
 
-const center = ref(false)
+const mapBox = ref(null)
 const cities = ref([])
 const buses = ref([])
 const stations = ref([])
@@ -53,7 +53,7 @@ function onSubmit() {
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
-        if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
+        if(stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
       }
     }).catch(() => stations.value = [])
   } else if(form.bus) {
@@ -61,7 +61,7 @@ function onSubmit() {
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
-        if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
+        if(stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
       }
     }).catch(() => stations.value = [])
   } else {

@@ -21,7 +21,7 @@
         </v-row>
       </v-container>
     </v-form>
-    <Map ref="mapBox" :stations="stations" :toggleRoute="true" :hide-stations="true" controls="true" :buses="buses" :pan-to="center"/>
+    <Map ref="map" :stations="stations" :enableRoute="true" :hide-stations="true" controls="true" :buses="buses"/>
   </AppLayout>
 </template>
 
@@ -37,7 +37,7 @@ const form = reactive({
   route: null,
 })
 
-const center = ref(false)
+const map = ref(null)
 const cities = ref([])
 const routes = ref([])
 const stations = ref([])
@@ -60,7 +60,7 @@ async function onSubmit(e) {
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
-        if(stations.value.length) center.value = [stations.value[0].longitude, stations.value[0].latitude]
+        if(stations.value.length) map.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
         getBuses(form.route)
         updateInterval = setInterval(() => getBuses(form.route), 30000);
       }
@@ -74,7 +74,7 @@ function getBuses(route) {
     .then(rsp => {
       if(rsp.status == 200) {
         buses.value = rsp.data
-        if(buses.value.length) center.value = [buses.value[0].longitude, buses.value[0].latitude]
+        if(buses.value.length) map.value.panTo([buses.value[0].longitude, buses.value[0].latitude])
       }
     }).catch(() => {
       buses.value = []
@@ -82,6 +82,7 @@ function getBuses(route) {
 }
 
 async function getRoutes(city) {
+  form.route = null
   axios.get('https://bus4u.fast-table.com/v1/get_routes_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) routes.value = rsp.data

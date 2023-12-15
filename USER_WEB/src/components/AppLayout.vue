@@ -32,7 +32,7 @@
     <v-main>
       <div class="content">
         <v-snackbar v-model="isLoggedOut">
-          Logout successfull
+          Logout successful
         </v-snackbar>
         <slot></slot>
       </div>

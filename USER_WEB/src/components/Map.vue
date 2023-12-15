@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-10">
+  <div class="container mt-8">
     <div ref="mapRef" class="map rounded"></div>
     <div v-if="controls" class="pa-2">
       <v-row dense>
@@ -23,7 +23,7 @@ import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import { watch } from 'vue';
 
-const props = defineProps(['stations', 'buses', 'toggleRoute', 'hideStations', 'controls', 'panTo'])
+const props = defineProps(['stations', 'buses', 'enableRoute', 'hideStations', 'controls'])
 const mapRef = ref(null);
 const showStations = ref(!props.hideStations);
 const showLocation = ref(true);
@@ -34,6 +34,12 @@ let stationMarkers = [];
 let busMarkers = [];
 let currentLocation = null;
 let waypoints = [];
+
+function panTo(coord, zoom) {
+  if(!map) return
+  if(zoom !== undefined) map.setZoom(zoom).panTo(coord)
+  else map.panTo(coord);
+}
 
 function resetRoute() {
   const data = {
@@ -51,24 +57,18 @@ function addStations(array) {
   if(!showStations.value) return
   array.forEach(station => {
     const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude])
-      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px").addTo(map);
+      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px");
     stationMarkers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
   })
-  if(props.panTo && props.panTo.length) {
-    map.setZoom(12).panTo(props.panTo)
-  }
 }
 
 function addBuses(array) {
   if(!showBuses.value) return
   array.forEach(bus => {
     const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([bus.longitude, bus.latitude])
-      .setHTML(`<h3>${bus.license_plate}</h3><p>${bus.brand}</p><p>Capacity: ${bus.capacity}</p>`).setMaxWidth("300px").addTo(map);
+      .setHTML(`<h3>${bus.license_plate}</h3><p>${bus.brand}</p><p>Capacity: ${bus.capacity}</p>`).setMaxWidth("300px");
     busMarkers.push(new mapboxgl.Marker({ color: "#bc1251" }).setLngLat([bus.longitude, bus.latitude]).setPopup(popup).addTo(map));
   })
-  if(props.panTo && props.panTo.length) {
-    map.panTo(props.panTo)
-  }
 }
 
 async function addRoute() {
@@ -96,9 +96,8 @@ async function addRoute() {
       'coordinates': waypoints
     }
   }
-  if(map.getSource('route')){ 
+  if(map.getSource('route')){
     map.getSource('route').setData(data)
-    if(!props.panTo || !props.panTo.length) map.setZoom(11).panTo(waypoints[0])
   }
 }
 
@@ -120,7 +119,7 @@ watch(showLocation, () => {
 watch(showStations, () => {
   if(showStations.value && props.stations) {
     addStations(props.stations)
-    if(props.toggleRoute) addRoute()
+    if(props.enableRoute) addRoute()
   } else {
     stationMarkers.forEach(marker => marker.remove())
     stationMarkers = []
@@ -145,6 +144,8 @@ if(navigator.geolocation) {
   });
 }
 
+defineExpose({ panTo })
+
 onMounted(() => {
   mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN;
   map = new mapboxgl.Map({
@@ -168,7 +169,7 @@ onMounted(() => {
     map.addControl(new mapboxgl.NavigationControl());
     if(props.stations) addStations(props.stations)
     if(props.buses) addBuses(props.buses)
-    if(props.toggleRoute){
+    if(props.enableRoute){
       map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -194,7 +195,7 @@ onBeforeUpdate(() => {
   if(!props.stations.length) resetRoute();
   else {
     addStations(props.stations)
-    if(props.toggleRoute) addRoute()
+    if(props.enableRoute) addRoute()
   }
   if(props.buses) addBuses(props.buses)
 })
@@ -208,5 +209,8 @@ onUnmounted(() => {
 <style scoped>
 .map {
   height: 480px;
+}
+.container {
+  height: 100%;
 }
 </style>

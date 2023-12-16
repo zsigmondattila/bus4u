@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_06_142635) do
   create_table "tickets", primary_key: "ticket_uid", id: :string, force: :cascade do |t|
     t.string "company_uid"
     t.string "user_uid"
-    t.string "type"
+    t.string "ticket_type"
     t.string "route_uid"
     t.string "from_station_uid"
     t.string "to_station_uid"

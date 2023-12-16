@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'
       delete '/delete_bus', to: 'admin#delete_bus'
+      post '/update_bus', to: 'admin#update_bus'
       post '/create_station', to: 'admin#create_station'
       delete '/delete_station', to: 'admin#delete_station'
       post '/create_route', to: 'admin#create_route'

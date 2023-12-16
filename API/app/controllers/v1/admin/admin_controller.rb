@@ -85,6 +85,29 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def update_bus
+        bus = Bus.find_by(bus_uid: params[:bus_uid])
+        license_plate = params[:license_plate]
+        brand = params[:brand]
+        manufacturing_year = params[:manufacturing_year]
+        capacity = params[:capacity]
+        road_tax = params[:road_tax]
+        insurance = params[:insurance]
+        technical_exam = params[:technical_exam]
+
+        if bus
+            if license_plate
+                bus.license_plate = license_plate
+            end
+            if brand
+                bus.brand = brand
+            end
+            bus.save
+        else
+        render json: { error: "Invalid bus_uid" }
+        end
+    end
+
     #Creating a station where a bus can stop and user can check the exact location of it
     def create_station
         station = Station.new
@@ -338,7 +361,7 @@ class V1::Admin::AdminController < ApplicationController
             else
                 ticket.is_valid = false
                 ticket.save
-                render json: { success: "The ticked is validated successfully" }, status: :accepted
+                render json: { success: "The ticket is validated successfully" }, status: :accepted
             end
         else
             render json: { error: "The ticket UID is invalid" }, status: :not_found

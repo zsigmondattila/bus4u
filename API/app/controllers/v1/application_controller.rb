@@ -136,30 +136,30 @@ class V1::ApplicationController < ApplicationController
   
     if scity && dcity && date && time
       if sstation && dstation
-        sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
-        droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+        sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid })
+        droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid })
         
         routes = sroutes & droutes
         process_routes(routes, sstation, dstation, date, time, result)
       elsif sstation.nil? && dstation
         scity.stations.each do |sstation|
-          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
-          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid })
+          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid })
           routes = sroutes & droutes
           process_routes(routes, sstation, dstation, date, time, result)
         end
       elsif sstation && dstation.nil?
         dcity.stations.each do |dstation|
-          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
-          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+          sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid })
+          droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid })
           routes = sroutes & droutes
           process_routes(routes, sstation, dstation, date, time, result)
         end
       elsif sstation.nil? && dstation.nil?
         scity.stations.each do |sstation|
           dcity.stations.each do |dstation|
-            sroutes = Route.joins(:route_stations).where(route_stations: { station_uid: sstation.station_uid }).order('route_stations.sequence ASC')
-droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dstation.station_uid }).order('route_stations.sequence ASC')
+            sroutes = Route.includes(:route_stations).where(route_stations: { station_uid: sstation.station_uid })
+            droutes = Route.includes(:route_stations).where(route_stations: { station_uid: dstation.station_uid })
             routes = sroutes & droutes
 
             process_routes(routes, sstation, dstation, date, time, result)
@@ -178,13 +178,14 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
     user = User.find_by(uid: params[:user_uid])
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price].to_i
+    bought_tickets = []
     success = true
   
     quantity.times do
       ticket = Ticket.new
       ticket.company_uid = params[:company_uid]
       ticket.user_uid = params[:user_uid]
-      ticket.type = params[:type]
+      ticket.ticket_type = params[:type]
       ticket.route_uid = params[:route_uid]
       ticket.from_station_uid = params[:from_station_uid]
       ticket.to_station_uid = params[:to_station_uid]
@@ -196,11 +197,12 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
   
       success = success && ticket.save
       puts "#{ticket.errors} succ"
+      bought_tickets << ticket.ticket_uid
     end
   
     if success
       TicketMailer.ticket_mailer(user.email).deliver_now
-      render json: { success: "All tickets created successfully" }
+      render json: bought_tickets
     else
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
     end
@@ -298,12 +300,11 @@ private
 #Filter the suitable departure times
 def filter_departure_times(route_station, date, time)
   today = date.strftime("%A")
-
   timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: today)
-                        .where("departure_time >= ?", time - 2.hours)
                         .pluck(:departure_time)
+                        .map { |dt| dt.change(year: time.year, month: time.month, day: time.day)}
+                        .select { |dt| dt >= time }
                         .map { |departure_time| departure_time.strftime("%H:%M") }
-
   timetables
 end
 
@@ -344,7 +345,10 @@ def process_routes(routes, start_station, destination_station, date, time, resul
     route_station = RouteStation.find_by(route_uid: route.route_uid, station_uid: start_station.station_uid)
 
     if route_station
-      filtered_departure_times = filter_departure_times(route_station, date, time)
+      sel_time = Time.now.change(hour: time.hour, min: time.min)
+      puts "A valasz #{sel_time}"
+      filtered_departure_times = filter_departure_times(route_station, date, sel_time)
+
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
         start_station: start_station.name,
@@ -358,14 +362,4 @@ def process_routes(routes, start_station, destination_station, date, time, resul
   end
 end
 
-#
-def get_buses_on_a_route
-  route = Route.find_by(route_uid: params[:route_uid])
 
-  buses = Bus.where(current_route_uid: route.route_uid)
-  if buses
-    render json: buses
-  else
-    render json: { error: "Cannot find buses" }
-  end
-end

@@ -94,16 +94,16 @@ Route.create(name: "Gyergyó-Marosvásárhely", company_uid: vandor.company_uid,
 Route.create(name: "26", company_uid: transloc.company_uid, nr_of_stations: 29, basic_fare: 2);
 
 szgy = Route.find_by(name: "Szászfalu-Gyergyó");
-rs1 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 1)
-rs2 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva központ"), sequence: 2)
-rs3 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu központ"), sequence: 3)
-rs4 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
-rs5 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
+rs1 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva Szászfalu"), sequence: 1)
+rs2 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva Központ"), sequence: 2)
+rs3 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Központ"), sequence: 3)
+rs4 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Lengyár"), sequence: 4)
+rs5 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Állomás"), sequence: 5)
 rs6 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
-rs7 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó állomás"), sequence: 7)
-rs8 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu lengyár"), sequence: 8)
-rs9 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu központ"), sequence: 9)
-rs10 = RouteStation.create(route: szgy,station: Station.find_by(name: "Csomafalva központ"), sequence: 10)
+rs7 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Állomás"), sequence: 7)
+rs8 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Lengyár"), sequence: 8)
+rs9 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Központ"), sequence: 9)
+rs10 = RouteStation.create(route: szgy,station: Station.find_by(name: "Csomafalva Központ"), sequence: 10)
 
 weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 weekends = ["Saturday", "Sunday"]

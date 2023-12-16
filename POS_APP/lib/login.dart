@@ -62,7 +62,7 @@ class _LoginState extends State<Login> {
               height: 80.0,
               child: Image(image: AssetImage('assets/pos.png')),
             ),
-            SizedBox(height: 80.0),
+            SizedBox(height: 100.0),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: TextField(

@@ -4,7 +4,7 @@ class CreateTickets < ActiveRecord::Migration[7.0]
       t.string :ticket_uid, primary_key: true
       t.string :company_uid
       t.string :user_uid
-      t.string :type
+      t.string :ticket_type
       t.string :route_uid
       t.string :from_station_uid
       t.string :to_station_uid

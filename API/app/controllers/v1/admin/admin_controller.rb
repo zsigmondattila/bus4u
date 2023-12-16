@@ -338,7 +338,7 @@ class V1::Admin::AdminController < ApplicationController
             else
                 ticket.is_valid = false
                 ticket.save
-                render json: { success: "The ticked is validated successfully" }, status: :accepted
+                render json: { success: "The ticket is validated successfully" }, status: :accepted
             end
         else
             render json: { error: "The ticket UID is invalid" }, status: :not_found

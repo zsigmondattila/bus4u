@@ -78,7 +78,61 @@ Our API is based on Ruby on Rails, which is installed on an Azure virtual machin
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Getting started
 
+Depending on which part of the project you want to work on, you need to install Ruby on Rails, Vue or Flutter.
+
+
+### Prerequisites
+* <b>Ruby on rails</b> <br>
+To modify the api, it is necessary to install a ruby version manager and rails from the following link: https://gorails.com/setup/
+
+* <b>Vue</b> <br>
+In order to start developing web interfaces, it is necessary to install npm and vite. Useful links for this: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+* <b>Flutter</b> <br>
+If you want to work with the application, flutter can be installed from here: https://docs.flutter.dev/get-started/install/ <br>
+NOTE: The application can be tested using an emulator during development, but it is strongly recommended to connect a phone and the computer with a USB cable. In this way, the computer is not overloaded unnecessarily, and the input is also more realistic.
+  
+### Installation and setting up
+
+You have to clone the project to your computer by using the following command:
+```
+  git clone https://github.com/zsigmondattila/bus4u.git
+```
+
+#### API
+To refresh the dependencies in the project, type
+```
+  bundle install
+```
+Then you can start the server by typing
+```
+  rails s
+```
+You can then reach the endpoints at the address 127.0.0.1:3000 and start making api calls.
+
+#### Webpages
+
+The dependencies of the website must be installed with the following command:
+```
+  npm install
+```
+
+Now you can run the web pages with this command:
+```
+  npm run dev
+```
+#### Application
+The dependencies for the application are updated with the following command:
+```
+flutter pub get
+```
+Testing can be started with the following command:
+```
+flutter run
+```
+If there is a phone connected to the computer, the application will automatically start on it. Otherwise, you must select the emulator from the list provided.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -115,8 +169,6 @@ Project Link: [https://github.com/zsigmondattila/bus4u](https://github.com/zsigm
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [Devise token auth](https://devise-token-auth.gitbook.io/devise-token-auth/)
 * [PostreSQL](https://www.postgresql.org/)

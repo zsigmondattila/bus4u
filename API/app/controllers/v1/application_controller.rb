@@ -178,13 +178,14 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
     user = User.find_by(uid: params[:user_uid])
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price].to_i
+    bought_tickets = []
     success = true
   
     quantity.times do
       ticket = Ticket.new
       ticket.company_uid = params[:company_uid]
       ticket.user_uid = params[:user_uid]
-      ticket.type = params[:type]
+      ticket.ticket_type = params[:type]
       ticket.route_uid = params[:route_uid]
       ticket.from_station_uid = params[:from_station_uid]
       ticket.to_station_uid = params[:to_station_uid]
@@ -196,11 +197,12 @@ droutes = Route.joins(:route_stations).where(route_stations: { station_uid: dsta
   
       success = success && ticket.save
       puts "#{ticket.errors} succ"
+      bought_tickets << ticket.ticket_uid
     end
   
     if success
       TicketMailer.ticket_mailer(user.email).deliver_now
-      render json: { success: "All tickets created successfully" }
+      render json: bought_tickets
     else
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
     end

@@ -280,7 +280,7 @@ class V1::ApplicationController < ApplicationController
   #
   def get_bus_locations_by_route
     route = Route.find_by(route_uid: params[:route_uid])
-    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid)
+    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid, is_tracked: true)
 
     if route
       if buses

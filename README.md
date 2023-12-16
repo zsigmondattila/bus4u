@@ -39,7 +39,12 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#installation-and-setting-up">Installation and setting up</a></li>
+        <ul>
+          <li><a href="#api">API</a></li>
+          <li><a href="#webpages">Webpages</a></li>
+          <li><a href="#application">Application</a></li>
+        </ul>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>

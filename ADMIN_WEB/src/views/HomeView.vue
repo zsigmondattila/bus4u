@@ -5,16 +5,16 @@
     </SectionTitle>
     <v-container>
       <v-row v-for="stat in stats" :key="stat.name" justify="center">
-        <v-col cols="12">
-          <h3 class="text-h6">{{ stat.name }}</h3>
+        <v-col cols="12" class="py-0" xl="3" align-self="center">
+          <p class="text-subtitle-1 text-sm-h6 text-xl-h4">{{ stat.name }}</p>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="6" md="4" xl="3">
           <StatSheet label="Tickets sold" :value="stat.values[0]" />
         </v-col>
-        <v-col cols="12" sm="4">
-          <StatSheet label="KMs traveled" :value="stat.values[1]" />
+        <v-col cols="12" sm="6" md="4" xl="3">
+          <StatSheet label="Different users" :value="stat.values[1]" />
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" sm="6" md="4" xl="3">
           <StatSheet label="LEI income" :value="stat.values[2]" />
         </v-col>
       </v-row>

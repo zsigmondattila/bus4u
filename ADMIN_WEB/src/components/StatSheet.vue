@@ -1,6 +1,6 @@
 <template>
   <v-sheet max-width="300" class="mx-auto" @mouseenter="isHovering = true" @mouseleave="isHovering = false">
-    <v-responsive :aspect-ratio="16 / 9" class="align-center text-center">
+    <v-responsive :aspect-ratio="2" class="align-center text-center">
       <div class="d-flex flex-column h-100">
         <h2 class="text-h2" :class="{ h2hover: isHovering }">{{ value }}</h2>
         <p class="text-body-1" :class="{ phover: isHovering }"> {{ label }} </p>

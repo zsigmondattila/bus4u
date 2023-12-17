@@ -1,5 +1,47 @@
 class V1::Admin::AdminController < ApplicationController
 
+    # Statistics data for the homepage
+    def statistics
+        company = Company.find_by(company_uid: params[:company_uid])
+        tickets = Ticket.find_by(company_uid: company.company_uid)
+
+        month_tickets = 0
+        month_users = 0
+        month_income = 0
+        year_tickets = 0
+        year_users = 0
+        year_income = 0
+        all_tickets = 0
+        all_users = 0
+        all_income = 0
+
+        all_tickets = tickets.count
+        all_income = tickets.sum(&:price)
+        all_users = tickets.map(&:user_uid).uniq.count
+
+        year_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.year }
+        year_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.sum(&:price)
+        year_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.map(&:user_uid).uniq.count
+
+        month_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.month }
+        month_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.sum(&:price)
+        month_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.map(&:user_uid).uniq.count
+
+        render json: {
+            month_tickets: month_tickets,
+            month_income: month_income,
+            month_users: month_users,
+            year_tickets: year_tickets,
+            year_income: year_income,
+            year_users: year_users,
+            all_tickets: all_tickets,
+            all_income: all_income,
+            all_users: all_users
+        }
+
+    end
+
+    # Check the validity of road_taxes, insurances and technical_exams
     def document_validity_checker
         road_taxes = []
         insurances = []

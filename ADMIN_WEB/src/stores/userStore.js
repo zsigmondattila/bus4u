@@ -7,7 +7,7 @@ export const userStore = defineStore('user', () => {
   const firstName = ref('')
   const lastName = ref('')
   const email = ref('')
-  const companyUid = ref('')
+  const company_uid = ref('')
   const documents = ref(null)
 
   const usr = sessionStorage.getItem('user')
@@ -17,7 +17,7 @@ export const userStore = defineStore('user', () => {
     firstName.value = user.firstname
     lastName.value = user.lastname
     email.value = user.email
-    companyUid.value = user.company_uid
+    company_uid.value = user.company_uid
   }
   function signOut() {
     sessionStorage.removeItem('user')
@@ -29,7 +29,7 @@ export const userStore = defineStore('user', () => {
           firstName.value = ''
           lastName.value = ''
           email.value = ''
-          companyUid.value = ''
+          company_uid.value = ''
           documents.value = null
           sessionStorage.removeItem('auth')
           router.replace({name: 'login'})
@@ -39,7 +39,7 @@ export const userStore = defineStore('user', () => {
       firstName.value = ''
       lastName.value = ''
       email.value = ''
-      companyUid.value = ''
+      company_uid.value = ''
       documents.value = null
       router.replace({name: 'login'})
     }
@@ -56,6 +56,6 @@ export const userStore = defineStore('user', () => {
       documents.value = null
     })
   }
-  return { firstName, lastName, email, companyUid, documents, signIn, signOut, checkDocuments }
+  return { firstName, lastName, email, company_uid, documents, signIn, signOut, checkDocuments }
   }
 )

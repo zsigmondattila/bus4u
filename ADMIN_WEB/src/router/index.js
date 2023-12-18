@@ -6,6 +6,8 @@ import EmployeesView from '../views/EmployeesView.vue'
 import ScheduleView from '../views/ScheduleView.vue'
 import StationsView from '../views/StationsView.vue'
 import RoutesView from '../views/RoutesView.vue'
+import CreateEmployee from '@/components/CreateEmployee.vue'
+import EmployeeList from '@/components/EmployeeList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,8 +39,11 @@ const router = createRouter({
     },
     {
       path: '/employees',
-      name: 'employees',
-      component: EmployeesView
+      component: EmployeesView,
+      children: [
+        { path: '', name: 'employees', component: EmployeeList },
+        { path: 'create', name: 'create-employee', component: CreateEmployee }
+      ]
     },
     {
       path: '/settings',

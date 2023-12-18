@@ -131,12 +131,12 @@ async function saveRoute(e) {
     isLoading.value = true
     axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
       .then(() => {
-        axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.companyUid }))
+        axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
         .then(async (rsp) => {
           for(let i=0; i<stations.value.length; i++) {
             await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
           }
-          axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.companyUid }})
+          axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
             .then(rsp => {
               if(rsp.status == 200) routes.value = rsp.data.routes
           }).catch(() => routes.value = [])
@@ -176,7 +176,7 @@ function getStations(route){
     }).catch(() => stations.value = [])
 }
 
-axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.companyUid }})
+axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
   .then(rsp => {
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])

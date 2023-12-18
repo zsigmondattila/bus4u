@@ -31,6 +31,7 @@ export const userStore = defineStore('user', () => {
           email.value = ''
           company_uid.value = ''
           documents.value = null
+          delete axios.defaults.headers.common['Authorization']
           sessionStorage.removeItem('auth')
           router.replace({name: 'login'})
         })

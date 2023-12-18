@@ -61,8 +61,9 @@ router.beforeEach((to) => {
       return axios.get('https://bus4u.fast-table.com/admin/validate_token', { params: { 'uid': auth.uid, 'client': auth.client, 'access-token': auth.accessToken}})
         .then(rsp => {
           if(rsp.status == 200){
-            sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client, authorization: rsp.headers.authorization }))
+            sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client }))
             sessionStorage.setItem('user', JSON.stringify(rsp.data.data))
+            axios.defaults.headers.common['Authorization'] = rsp.headers.authorization;
           }
         }).catch(() => { return { name: 'login' }})
     } else return { name: 'login' }

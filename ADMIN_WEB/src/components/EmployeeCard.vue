@@ -4,10 +4,12 @@
         <v-icon size="120" icon="mdi-account-outline"></v-icon>
       </v-sheet>
       <v-card-title class="text-center"> {{ employee.firstname }} {{ employee.lastname }} </v-card-title>
-      <v-card-text class="flex-1-1">
+      <v-card-subtitle class="flex-1-1">
         <p>Role: {{ employee.role }}</p>
+        <p v-if="employee.phone_number">Phone: {{ employee.phone_number }}</p>
         <p>Email: {{ employee.email }}</p>
-      </v-card-text>
+        <p>Created on: {{ created }}</p>
+      </v-card-subtitle>
       <v-card-actions class="justify-center">
         <v-btn prepend-icon="mdi-trash-can-outline" color="red" @click="deleteEmployee">
           Delete
@@ -17,8 +19,16 @@
 </template>
 
 <script setup>
-defineProps(['employee'])
+import { computed } from 'vue';
+
+const props = defineProps(['employee'])
 const emit = defineEmits(['delete'])
+
+const created = computed(() => {
+  if(!props.employee.created_at) return null
+  let date = new Date(props.employee.created_at)
+  return date.toLocaleDateString()
+})
 
 function deleteEmployee() {
   emit('delete')

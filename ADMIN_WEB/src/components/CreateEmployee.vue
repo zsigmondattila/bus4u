@@ -21,6 +21,12 @@
           <v-select label="Role" v-model="form.role" color="primary-light" :items="roles" :rules="required"></v-select>
         </v-col>
         <v-col cols="12" sm="6">
+          <v-text-field label="Phone Number" type="tel" v-model="form.phone_number" color="primary-light" :rules="phone"></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-text-field label="Address" v-model="form.address" color="primary-light"></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="6">
           <v-text-field label="Password" type="password" v-model="form.password" color="primary-light" :rules="eightChars"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
@@ -53,6 +59,8 @@ const form = reactive({
   lastname: null,
   email: null,
   role: null,
+  address: null,
+  phone_number: null,
   company_uid: user.company_uid,
   password: null,
   password_confirmation: null
@@ -75,7 +83,9 @@ const name = [
   (v) => !!v || 'The field is required',
   (v) => /^[\p{Lu}][-\p{L}\s]+$/u.test(v) || 'The field must be a valid name'
 ]
-
+const phone = [
+  (v) => !v || /^[0-9+-]+$/.test(v) || 'Invalid phone number'
+]
 const confirmation = [
   (v) => !!v || 'The field is required',
   (v) => v == form.password || 'Passwords must be the same'
@@ -97,7 +107,7 @@ async function onSubmit(event) {
     }
   }).catch((err) => {
     isLoading.value = false
-    error.value = err.response.data.errors[0]
+    error.value = err.response.data.errors.full_messages[0]
   });
 }
 </script>

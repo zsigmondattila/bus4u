@@ -172,7 +172,6 @@ function resetTimetable() {
 }
 
 function deleteTimetable(index) {
-  console.log(timetable.value[index].names)
   timetable.value.splice(index, 1)
 }
 

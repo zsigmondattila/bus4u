@@ -46,8 +46,8 @@ const router = createRouter({
       ]
     },
     {
-      path: '/settings',
-      name: 'settings',
+      path: '/:notFound(.*)',
+      name: 'notFound',
       component: HomeView
     },
   ]

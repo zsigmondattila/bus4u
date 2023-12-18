@@ -3,41 +3,45 @@ class V1::Admin::AdminController < ApplicationController
     # Statistics data for the homepage
     def statistics
         company = Company.find_by(company_uid: params[:company_uid])
-        tickets = Ticket.find_by(company_uid: company.company_uid)
+        tickets = Ticket.where(company_uid: company.company_uid)
 
-        month_tickets = 0
-        month_users = 0
-        month_income = 0
-        year_tickets = 0
-        year_users = 0
-        year_income = 0
-        all_tickets = 0
-        all_users = 0
-        all_income = 0
+        if tickets
+            month_tickets = 0
+            month_users = 0
+            month_income = 0
+            year_tickets = 0
+            year_users = 0
+            year_income = 0
+            all_tickets = 0
+            all_users = 0
+            all_income = 0
 
-        all_tickets = tickets.count
-        all_income = tickets.sum(&:price)
-        all_users = tickets.map(&:user_uid).uniq.count
+            all_tickets = tickets.count
+            all_income = tickets.sum(&:ticket_price)
+            all_users = tickets.map(&:user_uid).uniq.count
 
-        year_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.year }
-        year_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.sum(&:price)
-        year_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.map(&:user_uid).uniq.count
+            year_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.year }
+            year_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.sum(&:ticket_price)
+            year_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.map(&:user_uid).uniq.count
 
-        month_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.month }
-        month_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.sum(&:price)
-        month_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.map(&:user_uid).uniq.count
+            month_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.month }
+            month_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.sum(&:ticket_price)
+            month_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.map(&:user_uid).uniq.count
 
-        render json: {
-            month_tickets: month_tickets,
-            month_income: month_income,
-            month_users: month_users,
-            year_tickets: year_tickets,
-            year_income: year_income,
-            year_users: year_users,
-            all_tickets: all_tickets,
-            all_income: all_income,
-            all_users: all_users
-        }
+            render json: {
+                month_tickets: month_tickets,
+                month_income: month_income,
+                month_users: month_users,
+                year_tickets: year_tickets,
+                year_income: year_income,
+                year_users: year_users,
+                all_tickets: all_tickets,
+                all_income: all_income,
+                all_users: all_users
+            }
+        else
+            render json: { error: "No tickets found" }, status: :unprocessable_entity
+        end
 
     end
 
@@ -65,6 +69,31 @@ class V1::Admin::AdminController < ApplicationController
             render json: { success: "All documents are valid in the next two weeks" }
         else
             render json: { road_taxes: road_taxes, insurances: insurances, technical_exams: technical_exams}
+        end
+    end
+
+    def list_of_drivers
+        company = Company.find_by(company_uid: params[:company_uid])
+        drivers = Admin.where(company_uid: company.company_uid, role: "driver")
+
+        if drivers
+            render json: drivers
+        else 
+            render json: { error: "The drivers list is empty" }, status: :unprocessable_entity
+        end
+    end
+
+    def delete_driver
+        driver = Admin.find_by(uid: params[:admin_uid])
+        if driver
+            if driver.role == "driver"
+                driver.destroy
+                render json: { success: "Driver destroyed successfully" }
+            else
+                render json: { error: "Cannot destroy driver" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Cannot find driver" }, status: :not_found
         end
     end
     

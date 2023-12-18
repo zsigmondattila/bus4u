@@ -10,8 +10,10 @@ Rails.application.routes.draw do
 
   namespace :v1 do
     namespace :admin do
-      #Superuser requests
+      get '/statistics', to: 'admin#statistics'
       get '/document_validity_checker', to: 'admin#document_validity_checker'
+      get '/list_of_drivers', to: 'admin#list_of_drivers'
+      delete '/delete_driver', to: 'admin#delete_driver'
       post '/create_city', to: 'admin#create_city'
       post '/create_company', to: 'admin#create_company'
       post '/create_bus', to: 'admin#create_bus'

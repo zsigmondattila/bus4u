@@ -96,6 +96,7 @@ function getBuses(route) {
       }
     }).catch(() => {
       buses.value = []
+      clearInterval(updateInterval)
     })
 }
 

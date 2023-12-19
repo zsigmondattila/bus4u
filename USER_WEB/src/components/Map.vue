@@ -74,18 +74,26 @@ function addBuses(array) {
 async function addRoute() {
   waypoints = []
   if(props.stations.length < 2) return
-  if(props.stations.length > 25) {
+  if(props.stations.length > 150) {
     props.stations.forEach(station => {
       waypoints.push([station.longitude, station.latitude]);
     })
   } else {
-    let str = 'https://api.mapbox.com/directions/v5/mapbox/driving/'
-    props.stations.forEach(station => {
-      if(station != props.stations[0]) str += ';'
-      str += `${station.longitude},${station.latitude}`
-    })
-    let way = await axios.get(str, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
-    if(way.data) waypoints = way.data.routes[0].geometry.coordinates
+    let base = 'https://api.mapbox.com/directions/v5/mapbox/driving/'
+    let str = ''
+    for(let i=0; i<props.stations.length; i++){
+      str += `${props.stations[i].longitude},${props.stations[i].latitude}`
+      if(i > 0 && i % 20 === 0){
+        if(i+1 < props.stations.length) str += `;${props.stations[i+1].longitude},${props.stations[i+1].latitude}`
+        let way = await axios.get(`${base}${str}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
+        if(way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
+        str = ''
+      } else str += ';'
+    }
+    if(str.length > 0) {
+      let way = await axios.get(`${base}${str.slice(0, -1)}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
+      if(way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
+    }
   }
 
   const data = {

@@ -173,38 +173,56 @@ class V1::ApplicationController < ApplicationController
   end
 
 
-  #Generating a ticket when is is bought
+  #Generating a ticket when it is bought
   def generate_a_ticket
-    user = User.find_by(uid: params[:user_uid])
+    user = current_user
     quantity = params[:quantity].to_i
     ticket_price = params[:ticket_price].to_i
     bought_tickets = []
     success = true
   
-    quantity.times do
-      ticket = Ticket.new
-      ticket.company_uid = params[:company_uid]
-      ticket.user_uid = params[:user_uid]
-      ticket.ticket_type = params[:type]
-      ticket.route_uid = params[:route_uid]
-      ticket.from_station_uid = params[:from_station_uid]
-      ticket.to_station_uid = params[:to_station_uid]
-      ticket.date_of_purchase = Time.now 
-      ticket.expiration_date = Time.now + 1.months
-      ticket.ticket_price = ticket_price * 100
-      ticket.is_valid = true 
-      ticket.is_paid = false
-  
-      success = success && ticket.save
-      puts "#{ticket.errors} succ"
-      bought_tickets << ticket.ticket_uid
-    end
-  
-    if success
-      TicketMailer.ticket_mailer(user.email).deliver_now
-      render json: bought_tickets
+    if user
+      quantity.times do
+        ticket = Ticket.new
+        ticket.company_uid = params[:company_uid]
+        ticket.user_uid = params[:user_uid]
+        ticket.ticket_type = params[:type]
+        ticket.route_uid = params[:route_uid]
+        ticket.from_station_uid = params[:from_station_uid]
+        ticket.to_station_uid = params[:to_station_uid]
+        ticket.date_of_purchase = Time.now 
+        ticket.expiration_date = Time.now + 1.months
+        ticket.ticket_price = ticket_price * 100
+        ticket.is_valid = true 
+        ticket.is_paid = false
+    
+        success = success && ticket.save
+        puts "#{ticket.errors} succ"
+        bought_tickets << ticket.ticket_uid
+      end
+    
+      if success
+        TicketMailer.ticket_mailer(user.email).deliver_now
+        render json: bought_tickets
+      else
+        render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
+      end
     else
-      render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
+      render json: { error: "The user is not logged in" }, status: :unauthorized
+    end
+  end
+
+  def tickets_of_user
+    user = current_user
+    if user
+      tickets = Ticket.where(user_uid: user.uid)
+      if tickets 
+        render json: tickets 
+      else
+        render json: { error: "No tickets available" }, status: :not_found
+      end
+    else
+      render json: { error: "User is not logged in" }, status: :unauthorized
     end
   end
   

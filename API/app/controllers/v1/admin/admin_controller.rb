@@ -1,10 +1,9 @@
 class V1::Admin::AdminController < ApplicationController
-
+    before_action :check_current_user
     # Statistics data for the homepage
     def statistics
         company = Company.find_by(company_uid: params[:company_uid])
         tickets = Ticket.where(company_uid: company.company_uid)
-
         if tickets
             month_tickets = 0
             month_users = 0
@@ -436,6 +435,12 @@ class V1::Admin::AdminController < ApplicationController
             end
         else
             render json: { error: "The ticket UID is invalid" }, status: :not_found
+        end
+    end
+
+    def check_current_user
+        if !current_user
+            render json: { error: "The admin is not logged in!" }, status: :unauthorized
         end
     end
 

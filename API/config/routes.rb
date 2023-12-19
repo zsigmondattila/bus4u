@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get '/get_departure_times_for_station_in_route', to:'application#get_departure_times_for_station_in_route'
     get '/get_available_tickets', to: 'application#get_available_tickets'
     post '/generate_a_ticket', to: 'application#generate_a_ticket'
+    get '/tickets_of_user', to: 'application#tickets_of_user'
     get '/get_routes_by_city', to: 'application#get_routes_by_city'
     get '/get_bus_locations_by_route', to: 'application#get_bus_locations_by_route'
   end

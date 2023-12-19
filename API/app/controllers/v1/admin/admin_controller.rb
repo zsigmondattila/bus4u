@@ -440,7 +440,7 @@ class V1::Admin::AdminController < ApplicationController
 
     def check_current_user
         if !current_user
-            render json: { error: "The admin is logged out!" }, status: :unprocessable_entity
+            render json: { error: "The admin is not logged in!" }, status: :unauthorized
         end
     end
 

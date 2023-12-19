@@ -8,8 +8,8 @@
         </RouterLink>
       </v-app-bar-title>
       <template #append>
-        <span>{{ user.lastName }}</span>
-        <v-btn :title="user.email" icon="mdi-account-circle-outline" @click="router.push({ name: 'settings' })"></v-btn>
+        <span class="username">{{ user.lastName }}</span>
+        <v-btn :title="user.email" icon="mdi-account-circle-outline"></v-btn>
         <v-btn title="Logout" icon="mdi-logout" @click="signOut"></v-btn>
       </template>
     </v-app-bar>
@@ -18,11 +18,10 @@
       <v-list color="primary-light" class="h-100 d-flex flex-column">
         <v-list-item prepend-icon="mdi-home" title="Home" value="home" :to="{ name: 'home' }"></v-list-item>
         <v-list-item prepend-icon="mdi-map-marker-outline" title="Stations" value="stations" :to="{ name: 'stations' }"></v-list-item>
-        <v-list-item prepend-icon="mdi-bus" title="Routes" value="routes" :to="{ name: 'routes' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-routes" title="Routes" value="routes" :to="{ name: 'routes' }"></v-list-item>
         <v-list-item prepend-icon="mdi-timetable" title="Schedule" value="schedule" :to="{ name: 'schedule' }"></v-list-item>
+        <v-list-item prepend-icon="mdi-bus" title="Buses" value="buses" :to="{ name: 'buses' }"></v-list-item>
         <v-list-item prepend-icon="mdi-account-group" title="Employees" value="employees" :to="{ name: 'employees' }"></v-list-item>
-        <v-spacer></v-spacer>
-        <v-list-item prepend-icon="mdi-cog-outline" title="Settings" value="settings" :to="{ name: 'settings' }"></v-list-item>
       </v-list>
     </v-navigation-drawer>
 
@@ -93,9 +92,15 @@ function signOut() {
 .reset-bg{
   background: transparent;
 }
+.username {
+  display: none;
+}
 @media (min-width: 640px) {
   .content {
     padding: 25px;
+  }
+  .username {
+    display: initial;
   }
 }
 </style>

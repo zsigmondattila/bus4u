@@ -172,7 +172,6 @@ function resetTimetable() {
 }
 
 function deleteTimetable(index) {
-  console.log(timetable.value[index].names)
   timetable.value.splice(index, 1)
 }
 
@@ -231,7 +230,7 @@ function getTimetable() {
   }).catch(() => timetable.value = [])
 }
 
-axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: {company_uid: user.companyUid }})
+axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: {company_uid: user.company_uid }})
   .then(rsp => {
     if(rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])

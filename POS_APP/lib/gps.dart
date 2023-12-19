@@ -61,30 +61,64 @@ class _GPSState extends State<GPS> {
   }
 
   Future<void> _fetchRoutes() async {
-      final String companyUid = await readData("company") ?? "";
-      final response = await http.get(
-        Uri.parse(
-            'https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
+    final String companyUid = await readData("company") ?? "";
+    final response = await http.get(
+      Uri.parse(
+          'https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      final List<dynamic> routes = responseData['routes'];
+
+      final List<RouteInfo> routeInfoList =
+          routes.map<RouteInfo>((dynamic route) {
+        return RouteInfo(
+          (route as Map<String, dynamic>)['name'] as String,
+          (route as Map<String, dynamic>)['route_uid'] as String,
+        );
+      }).toList();
+
+      setState(() {
+        _routeList = routeInfoList;
+      });
+    } else {
+      print('Error: ${response.body}');
+    }
+  }
+
+  Future<void> _setBusTracked() async {
+    if (selectedBus != null) {
+      final Map<String, dynamic> requestBody = {
+        'license_plate': selectedBus!,
+      };
+
+      final response = await http.post(
+        Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_tracked'),
+        body: requestBody,
       );
 
-      if (response.statusCode == 200) {
-        final Map<String, dynamic> responseData = json.decode(response.body);
-        final List<dynamic> routes = responseData['routes'];
-
-        final List<RouteInfo> routeInfoList =
-              routes.map<RouteInfo>((dynamic route) {
-            return RouteInfo(
-              (route as Map<String, dynamic>)['name'] as String,
-              (route as Map<String, dynamic>)['route_uid'] as String,
-            );
-          }).toList();
-
-          setState(() {
-            _routeList = routeInfoList;
-          });
-      } else {
-        print('Error: ${response.body}');
+      if (response.statusCode != 200) {
+        print('Error ${response.statusCode}');
       }
+    }
+  }
+
+  Future<void> _setBusUntracked() async {
+    if (selectedBus != null) {
+      final Map<String, dynamic> requestBody = {
+        'license_plate': selectedBus!,
+      };
+      print(requestBody);
+      final response = await http.post(
+        Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_untracked'),
+        body: requestBody,
+      );
+
+      if (response.statusCode != 200) {
+        print('Error ${response.statusCode}');
+      }
+    }
   }
 
   Future<void> enableGps() async {
@@ -132,17 +166,17 @@ class _GPSState extends State<GPS> {
         'longitude': _currentLongitude,
       };
       print(requestBody);
-        final response = await http.post(
-          Uri.parse('https://bus4u.fast-table.com/v1/admin/change_bus_location'),
-          body: jsonEncode(requestBody),
-          headers: {'Content-Type': 'application/json'},
-        );
+      final response = await http.post(
+        Uri.parse('https://bus4u.fast-table.com/v1/admin/change_bus_location'),
+        body: jsonEncode(requestBody),
+        headers: {'Content-Type': 'application/json'},
+      );
 
-        if (response.statusCode == 200) {
-          print('${response.body}}');
-        } else {
-          print('Error sending location: ${response.statusCode}');
-        }
+      if (response.statusCode == 200) {
+        print('${response.body}}');
+      } else {
+        print('Error sending location: ${response.statusCode}');
+      }
     }
   }
 
@@ -155,11 +189,11 @@ class _GPSState extends State<GPS> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-             Container(
-                  height: 80.0,
-                  child: Image(image: AssetImage('assets/pos.png')),
-                ),
-                SizedBox(height: 80.0),
+            Container(
+              height: 80.0,
+              child: Image(image: AssetImage('assets/pos.png')),
+            ),
+            SizedBox(height: 80.0),
             DropdownButton<String>(
               hint: Text('Please select a bus'),
               value: selectedBus,
@@ -200,6 +234,11 @@ class _GPSState extends State<GPS> {
                 Switch(
                   value: _isSwitched,
                   onChanged: (value) {
+                    if (!_isSwitched) {
+                      _setBusTracked();
+                    } else {
+                      _setBusUntracked();
+                    }
                     setState(() {
                       _isSwitched = value;
                       if (_isSwitched) {

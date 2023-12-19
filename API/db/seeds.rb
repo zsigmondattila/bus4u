@@ -47,10 +47,10 @@ tgm = City.create(name: "Targu mures", zip_code: "129138")
 praid = City.create(name: "Praid", zip_code: "382983")
 
 #CREATING STATIONS
-Station.create(name: "Csomafalva Központ", latitude: 46.6791586975964, longitude: 25.51624828632996, city: ciumani, address: "Str. Principala nr. 89")
+s1 = Station.create(name: "Csomafalva Központ", latitude: 46.6791586975964, longitude: 25.51624828632996, city: ciumani, address: "Str. Principala nr. 89")
 Station.create(name: "Csomafalva Szászfalu", latitude: 46.67291081146523, longitude: 25.49966790502754, city: ciumani, address: "Str. Töltés nr. 18")
 Station.create(name: "Alfalu Központ", latitude: 46.701383449930674, longitude: 25.504336705477453, city: joseni, address: "Str. Ciumani nr. 88")
-Station.create(name: "Alfalu Lengyár", latitude: 46.7061202738582, longitude: 25.527403454222306, city: joseni, address: "Str. Gheorgheni nr. 3")
+s2 = Station.create(name: "Alfalu Lengyár", latitude: 46.7061202738582, longitude: 25.527403454222306, city: joseni, address: "Str. Gheorgheni nr. 3")
 Station.create(name: "Gyergyó Állomás", latitude: 46.719521757528696, longitude: 25.5740503955354, city: gheorgheni, address: "Str. Garii nr. 16")
 Station.create(name: "Gyergyó Maros hotel", latitude: 46.722678965669736, longitude: 25.59475044928773, city: gheorgheni, address: "Bul. Fratiei nr. 65")
 Station.create(name: "Gyergyó Központ", latitude: 46.720802603020786, longitude: 25.599988435400288, city: gheorgheni, address: "Pta. Libertatii nr. 26")
@@ -93,17 +93,17 @@ Route.create(name: "Szászfalu-Gyergyó", company_uid: vandor.company_uid, nr_of
 Route.create(name: "Gyergyó-Marosvásárhely", company_uid: vandor.company_uid, nr_of_stations: 8, basic_fare: 0);
 Route.create(name: "26", company_uid: transloc.company_uid, nr_of_stations: 29, basic_fare: 2);
 
-route = Route.find_by(name: "Szászfalu-Gyergyó");
-rs1 = RouteStation.create(route: route, station: Station.find_by(name: "Csomafalva szászfalu"), sequence: 1)
-rs2 = RouteStation.create(route: route, station: Station.find_by(name: "Csomafalva központ"), sequence: 2)
-rs3 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu központ"), sequence: 3)
-rs4 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu lengyár"), sequence: 4)
-rs5 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó állomás"), sequence: 5)
-rs6 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
-rs7 = RouteStation.create(route: route, station: Station.find_by(name: "Gyergyó állomás"), sequence: 7)
-rs8 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu lengyár"), sequence: 8)
-rs9 = RouteStation.create(route: route, station: Station.find_by(name: "Alfalu központ"), sequence: 9)
-rs10 = RouteStation.create(route: route,station: Station.find_by(name: "Csomafalva központ"), sequence: 10)
+szgy = Route.find_by(name: "Szászfalu-Gyergyó");
+rs1 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva Szászfalu"), sequence: 1)
+rs2 = RouteStation.create(route: szgy, station: Station.find_by(name: "Csomafalva Központ"), sequence: 2)
+rs3 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Központ"), sequence: 3)
+rs4 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Lengyár"), sequence: 4)
+rs5 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Állomás"), sequence: 5)
+rs6 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Maros hotel"), sequence: 6)
+rs7 = RouteStation.create(route: szgy, station: Station.find_by(name: "Gyergyó Állomás"), sequence: 7)
+rs8 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Lengyár"), sequence: 8)
+rs9 = RouteStation.create(route: szgy, station: Station.find_by(name: "Alfalu Központ"), sequence: 9)
+rs10 = RouteStation.create(route: szgy,station: Station.find_by(name: "Csomafalva Központ"), sequence: 10)
 
 weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 weekends = ["Saturday", "Sunday"]
@@ -1220,5 +1220,12 @@ weekdays.each do |name|
     end
 end
 
+
+#CREATE A USER
+
+user = User.create(email: "attila.zsigmond2002@gmail.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+
 #CREATING TICKETS
+
+Ticket.create(company: vandor, user_uid: user.uid, ticket_type: "normal", route_uid: szgy.route_uid, from_station_uid: s1.station_uid, to_station_uid: s2.station_uid, date_of_purchase: Time.now, is_valid: true, ticket_price: 8.0)
 

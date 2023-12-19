@@ -128,7 +128,13 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.map {
-  min-height: 600px;
+  .map {
+    min-height: 400px;
+  }
+
+@media (min-width: 600px) {
+  .map {
+    min-height: 600px;
+  }
 }
 </style>

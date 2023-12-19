@@ -24,26 +24,26 @@
         <v-form v-else @submit.prevent="addStation" validate-on="submit" class="my-5 bg-grey-darken-4 pa-5 border-md">
           <p class="text-subtitle-1"> Create new Station </p>
           <v-row justify="center" class="mt-0" dense>
-            <v-col cols="12">
+            <v-col cols="12" order="1">
               <v-text-field label="Station name" v-model="newStation.name" :rules="nameRule" hide-details="auto" density="compact"></v-text-field>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="12" sm="5" order="2">
               <v-text-field label="City" v-model="newStation.city" hide-details="auto"></v-text-field>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="12" sm="5" order="3">
               <v-text-field label="Address" v-model="newStation.address" hide-details="auto"></v-text-field>
             </v-col>
-            <v-col cols="2">
-              <v-btn type="reset" color="primary" variant="outlined" class="h-100" block @click="cancelAddStation"> Cancel </v-btn>
+            <v-col cols="12" sm="2" order="7" order-sm="4">
+              <v-btn type="reset" color="primary" variant="outlined" class="form-button" block @click="resetForm"> Cancel </v-btn>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="12" sm="5" order="5">
               <v-text-field label="Longitude" type="number" v-model="newStation.coordinates[0]" :rules="coordinateRule" hide-details="auto"></v-text-field>
             </v-col>
-            <v-col cols="5">
+            <v-col cols="12" sm="5" order="6">
               <v-text-field label="Latitude" type="number" v-model="newStation.coordinates[1]" :rules="coordinateRule" hide-details="auto"></v-text-field>
             </v-col>
-            <v-col cols="2">
-              <v-btn type="submit" color="primary" class="h-100" block> Save </v-btn>
+            <v-col cols="12" sm="2" order="8">
+              <v-btn type="submit" color="primary" class="form-button" block> Save </v-btn>
             </v-col>
           </v-row>
           <p class="text-caption text-disabled pa-1 opacity-5"> Click on the map to fill the coordinates. </p>
@@ -111,7 +111,7 @@ function deleteStation(station){
     })
 }
 
-function cancelAddStation() {
+function resetForm() {
   newStation.name = ''
   newStation.coordinates = []
   newStation.city = ''
@@ -128,13 +128,8 @@ async function addStation(e){
     { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address, zip_code: newStation.postcode })
   if (createRsp.status == 200) {
     notification.value.message = 'Station created successfully';
-    notification.value.show = true
-    formIsOpen.value = false;
-    newStation.name = ''
-    newStation.coordinates = []
-    newStation.city = ''
-    newStation.address = ''
-    newStation.postcode = ''
+    notification.value.show = true;
+    resetForm();
     updateStations();
   }
 }
@@ -157,4 +152,9 @@ axios.get('https://bus4u.fast-table.com/v1/get_stations')
 </script>
 
 <style scoped>
+@media (min-width: 600px) {
+  .form-button {
+    height: 100%;
+  }
+}
 </style>

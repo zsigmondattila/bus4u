@@ -59,7 +59,7 @@ const router = createRouter({
       path: '/:notFound(.*)',
       name: 'notFound',
       component: HomeView
-    },
+    }
   ]
 })
 

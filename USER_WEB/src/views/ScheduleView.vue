@@ -109,7 +109,7 @@ async function onSubmit(e) {
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
   map.value.panTo([form.station.longitude, form.station.latitude])
   getBuses(form.route)
-  updateInterval = setInterval(() => getBuses(form.route), 10000);
+  updateInterval = setInterval(() => getBuses(form.route), 30000);
 }
 
 onMounted(() => {

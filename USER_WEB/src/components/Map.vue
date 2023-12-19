@@ -56,8 +56,8 @@ function resetRoute() {
 function addStations(array) {
   if(!showStations.value) return
   array.forEach(station => {
-    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude])
-      .setHTML(`<h3>${station.name}</h3><p>${station.address}<p>`).setMaxWidth("300px");
+    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude]).setMaxWidth("300px")
+      .setHTML(`<h3>${station.name}</h3><a href="https://google.com/maps/search/?api=1&query=${station.latitude},${station.longitude}" target="_blank">${station.address}<a>`);
     stationMarkers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
   })
 }

@@ -15,7 +15,7 @@
           <StatSheet label="Tickets sold" :value="stats.month_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.month_income" />
+          <StatSheet label="LEI income" :value="stats.month_income/100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -29,7 +29,7 @@
           <StatSheet label="Tickets sold" :value="stats.year_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.year_income" />
+          <StatSheet label="LEI income" :value="stats.year_income/100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -43,7 +43,7 @@
           <StatSheet label="Tickets sold" :value="stats.all_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.all_income" />
+          <StatSheet label="LEI income" :value="stats.all_income/100" />
         </v-col>
       </v-row>
     </v-container>

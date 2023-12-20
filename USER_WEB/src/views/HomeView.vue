@@ -47,7 +47,7 @@
         <v-img :src="newTicket.qr"></v-img>
         <v-card-title class="text-center"> Transaction successful </v-card-title>
         <v-card-subtitle class="text-center">Code: <b>{{ newTicket.id }}</b></v-card-subtitle>
-        <v-card-text>Ticket successfully saved to your collection. Scan the QR code when you get on the bus.</v-card-text>
+        <v-card-text>Ticket(s) successfully saved to your collection. Scan the QR code when you get on the bus.</v-card-text>
         <v-card-actions class="justify-space-evenly">
           <v-btn @click="newTicket.isPurchased = false"> Close </v-btn>
           <v-btn :to="{name: 'tickets'}" class="text-orange-darken-4"> All tickets </v-btn>
@@ -106,8 +106,8 @@ function getTimeStr(){
 }
 
 async function ticketBought(ticket){
-  newTicket.id = ticket
-  newTicket.qr = await QRCode.toDataURL(ticket, { width: 300 })
+  newTicket.id = ticket[0]
+  newTicket.qr = await QRCode.toDataURL(ticket[0], { width: 300 })
   newTicket.isPurchased = true
 }
 

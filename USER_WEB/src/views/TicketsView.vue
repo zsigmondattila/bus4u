@@ -5,7 +5,7 @@
     </SectionTitle>
     <v-container>
       <v-row v-if="user.uid">
-        <v-col v-for="ticket in tickets" :key="ticket.ticket_uid" cols="6" sm="6" md="4" lg="3">
+        <v-col v-for="ticket in tickets" :key="ticket.ticket_uid" cols="12" sm="6" md="4" lg="3">
           <TicketCard :ticket="ticket"/>
         </v-col>
         <div v-if="!tickets.length && !isLoading" class="border rounded w-100 pa-3 ma-5 text-center">
@@ -39,8 +39,8 @@
         </v-col>
       </v-row>
       <v-row v-if="isLoading">
-        <v-col v-for="index in 3" cols="6" sm="6" md="4" lg="3" xl="2">
-          <v-skeleton-loader type="card" :loading="true"></v-skeleton-loader>
+        <v-col v-for="index in 3" cols="6" sm="6" md="4" lg="3">
+          <v-skeleton-loader type="card, paragraph" :loading="true"></v-skeleton-loader>
         </v-col>
       </v-row>
     </v-container>
@@ -66,8 +66,9 @@ watchEffect(() => {
     axios.get('https://bus4u.fast-table.com/v1/tickets_of_user', { headers: { Authorization: user.authorization}, params: { uid: user.uid }})
       .then(rsp => {
         isLoading.value = false
-        tickets.value = rsp.data
+        tickets.value = rsp.data.slice().reverse()
         for(let i=0; i<tickets.value.length; i++) {
+          if(!tickets.value[i].is_valid) continue
           QRCode.toDataURL(tickets.value[i].ticket_uid, { width: 250 }).then(rsp => tickets.value[i].qr = rsp)
         }
       }).catch(() => {

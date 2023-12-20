@@ -3,43 +3,47 @@ class V1::Admin::AdminController < ApplicationController
     # Statistics data for the homepage
     def statistics
         company = Company.find_by(company_uid: params[:company_uid])
-        tickets = Ticket.where(company_uid: company.company_uid)
-        if tickets
-            month_tickets = 0
-            month_users = 0
-            month_income = 0
-            year_tickets = 0
-            year_users = 0
-            year_income = 0
-            all_tickets = 0
-            all_users = 0
-            all_income = 0
+        if company
+            tickets = Ticket.where(company_uid: company.company_uid)
+            if tickets
+                month_tickets = 0
+                month_users = 0
+                month_income = 0
+                year_tickets = 0
+                year_users = 0
+                year_income = 0
+                all_tickets = 0
+                all_users = 0
+                all_income = 0
 
-            all_tickets = tickets.count
-            all_income = tickets.sum(&:ticket_price)
-            all_users = tickets.map(&:user_uid).uniq.count
+                all_tickets = tickets.count
+                all_income = tickets.sum(&:ticket_price)
+                all_users = tickets.map(&:user_uid).uniq.count
 
-            year_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.year }
-            year_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.sum(&:ticket_price)
-            year_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.map(&:user_uid).uniq.count
+                year_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.year }
+                year_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.sum(&:ticket_price)
+                year_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.year }.map(&:user_uid).uniq.count
 
-            month_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.month }
-            month_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.sum(&:ticket_price)
-            month_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.map(&:user_uid).uniq.count
+                month_tickets = tickets.count { |ticket| ticket.date_of_purchase >= Time.now - 1.month }
+                month_income = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.sum(&:ticket_price)
+                month_users = tickets.select { |ticket| ticket.date_of_purchase >= Time.now - 1.month }.map(&:user_uid).uniq.count
 
-            render json: {
-                month_tickets: month_tickets,
-                month_income: month_income,
-                month_users: month_users,
-                year_tickets: year_tickets,
-                year_income: year_income,
-                year_users: year_users,
-                all_tickets: all_tickets,
-                all_income: all_income,
-                all_users: all_users
-            }
+                render json: {
+                    month_tickets: month_tickets,
+                    month_income: month_income,
+                    month_users: month_users,
+                    year_tickets: year_tickets,
+                    year_income: year_income,
+                    year_users: year_users,
+                    all_tickets: all_tickets,
+                    all_income: all_income,
+                    all_users: all_users
+                }
+            else
+                render json: { error: "No tickets found" }, status: :unprocessable_entity
+            end
         else
-            render json: { error: "No tickets found" }, status: :unprocessable_entity
+            render json: { error: "Invalid company uid!" }, status: :unprocessable_entity
         end
 
     end
@@ -151,31 +155,22 @@ class V1::Admin::AdminController < ApplicationController
             bus.destroy
             render json: { success: "Bus deleted successfully" }
         else
-            render json: { error: "Invalid data for deleting a bus" }, status: :unprocessable_entity
+            render json: { error: "Invalid bud_uid!" }, status: :unprocessable_entity
+        end
+    end
+
+    def get_bus_by_id
+        bus = Bus.find_by(bus_uid: params[:bus_uid])
+        if bus
+            render json: bus
+        else
+            render json: { error: "Invalid bus_uid!" }, status: :unprocessable_entity
         end
     end
 
     def update_bus
         bus = Bus.find_by(bus_uid: params[:bus_uid])
-        license_plate = params[:license_plate]
-        brand = params[:brand]
-        manufacturing_year = params[:manufacturing_year]
-        capacity = params[:capacity]
-        road_tax = params[:road_tax]
-        insurance = params[:insurance]
-        technical_exam = params[:technical_exam]
-
-        if bus
-            if license_plate
-                bus.license_plate = license_plate
-            end
-            if brand
-                bus.brand = brand
-            end
-            bus.save
-        else
-        render json: { error: "Invalid bus_uid" }
-        end
+        
     end
 
     #Creating a station where a bus can stop and user can check the exact location of it

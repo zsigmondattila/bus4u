@@ -4,6 +4,7 @@ import UserView from '../views/UserView.vue'
 import ScheduleView from '../views/ScheduleView.vue'
 import StationsView from '../views/StationsView.vue'
 import LiveMapView from '../views/LiveMapView.vue'
+import TicketsView from '../views/TicketsView.vue'
 import AboutView from '../views/AboutView.vue'
 
 const router = createRouter({
@@ -47,10 +48,15 @@ const router = createRouter({
       component: AboutView
     },
     {
-      path: '/settings',
-      name: 'settings',
-      component: HomeView
+      path: '/tickets',
+      name: 'tickets',
+      component: TicketsView
     },
+    {
+      path: '/:notFound(.*)',
+      name: 'notFound',
+      component: HomeView
+    }
   ]
 })
 

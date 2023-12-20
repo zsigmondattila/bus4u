@@ -74,7 +74,7 @@ function addBuses(array) {
 async function addRoute() {
   waypoints = []
   if(props.stations.length < 2) return
-  if(props.stations.length > 150) {
+  if(props.stations.length > 100) {
     props.stations.forEach(station => {
       waypoints.push([station.longitude, station.latitude]);
     })

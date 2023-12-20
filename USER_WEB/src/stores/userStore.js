@@ -22,7 +22,6 @@ export const userStore = defineStore('user', () => {
     }
   }
 
-
   function signIn(user, headers) {
     firstName.value = user.firstname
     lastName.value = user.lastname
@@ -31,7 +30,7 @@ export const userStore = defineStore('user', () => {
     uid.value = headers.uid
     client.value = headers.client
     accessToken.value = headers['access-token']
-    sessionStorage.setItem('user', JSON.stringify({ uid: uid.value, client: client.value, accessToken: accessToken.value }))
+    sessionStorage.setItem('user', JSON.stringify({ uid: uid.value, client: client.value, accessToken: accessToken.value , authorization: authorization.value }))
   }
   async function signOut() {
     axios.delete('https://bus4u.fast-table.com/auth/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:logger/logger.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -13,6 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmpassController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  var logger = Logger();
 
   void login(String email, password, confirmpassword, firstname) async {
     try {
@@ -26,9 +28,10 @@ class _RegisterPageState extends State<RegisterPage> {
       if (response.statusCode == 200) {
         showDialog<String>(
           context: context,
-          builder: ( context) => AlertDialog(
+          builder: (context) => AlertDialog(
             title: const Text('Successfull'),
-            content: const Text('You created account successfully, now you can sign in'),
+            content: const Text(
+                'You created account successfully, now you can sign in'),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
@@ -41,12 +44,11 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
         );
-        
       } else {
-        print('failed');
+        logger.e('failed');
         showDialog<String>(
           context: context,
-          builder: ( context) => AlertDialog(
+          builder: (context) => AlertDialog(
             title: const Text('Something wrong'),
             content: const Text('Wrong email format or exiting account'),
             actions: <Widget>[
@@ -63,11 +65,10 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       }
     } catch (e) {
-      print(e.toString());
+      logger.e(e.toString());
     }
   }
 
-  //register method
   @override
   Widget build(BuildContext context) {
     return Scaffold(

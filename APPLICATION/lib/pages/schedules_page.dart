@@ -3,7 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
+import 'package:logger/logger.dart';
 
 class SchedulesPage extends StatefulWidget {
   const SchedulesPage({Key? key}) : super(key: key);
@@ -19,11 +19,12 @@ class _SchedulesPageState extends State<SchedulesPage> {
   LocationData? currentLocation;
   final Location location = Location();
   bool _permission = false;
+  var logger = Logger();
 
   List<Map<String, dynamic>> cities = [];
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> routes = [];
-  List<Map<String, dynamic>> schedule = []; // A járatok menetrendjének listája
+  List<Map<String, dynamic>> schedule = [];
 
   GoogleMapController? mapController;
   Set<Marker> markers = {};
@@ -52,7 +53,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
     }
   }
 
-    Future<List<Map<String, dynamic>>> getStationsByCity(String cityUid) async {
+  Future<List<Map<String, dynamic>>> getStationsByCity(String cityUid) async {
     final response = await http.get(Uri.parse(
         'https://bus4u.fast-table.com/v1/get_stations_by_city?city_uid=$cityUid'));
     if (response.statusCode == 200) {
@@ -78,75 +79,65 @@ class _SchedulesPageState extends State<SchedulesPage> {
     }
   }
 
-Future<void> loadRoutes(String stationUid) async {
-  try {
-    final response = await http.get(Uri.parse('API_ENDPOINT/routes?station=$stationUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      List<Map<String, dynamic>> fetchedRoutes = [];
-      for (var route in data) {
-        fetchedRoutes.add({
-          'route_uid': route['route_uid'],
-          'name': route['name'],
-          // Add other route details as required
+  Future<void> loadRoutes(String stationUid) async {
+    try {
+      final response =
+          await http.get(Uri.parse('API_ENDPOINT/routes?station=$stationUid'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        List<Map<String, dynamic>> fetchedRoutes = [];
+        for (var route in data) {
+          fetchedRoutes.add({
+            'route_uid': route['route_uid'],
+            'name': route['name'],
+          });
+        }
+        setState(() {
+          routes = fetchedRoutes;
         });
+      } else {
+        throw Exception('Failed to load routes');
       }
-      setState(() {
-        routes = fetchedRoutes;
-      });
-    } else {
-      throw Exception('Failed to load routes');
+    } catch (e) {
+      logger.e('Error loading routes: $e');
     }
-  } catch (e) {
-    print('Error loading routes: $e');
   }
-}
 
-
-Future<void> loadSchedule(String routeUid) async {
-  try {
-    final response = await http.get(Uri.parse('API_ENDPOINT/schedule?route=$routeUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      List<Map<String, dynamic>> fetchedSchedule = [];
-      for (var scheduleEntry in data) {
-        fetchedSchedule.add({
-          'time': scheduleEntry['time'],
-          'destination': scheduleEntry['destination'],
-          // Add other schedule details as required
+  Future<void> loadSchedule(String routeUid) async {
+    try {
+      final response =
+          await http.get(Uri.parse('API_ENDPOINT/schedule?route=$routeUid'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        List<Map<String, dynamic>> fetchedSchedule = [];
+        for (var scheduleEntry in data) {
+          fetchedSchedule.add({
+            'time': scheduleEntry['time'],
+            'destination': scheduleEntry['destination'],
+          });
+        }
+        setState(() {
+          schedule = fetchedSchedule;
         });
+      } else {
+        throw Exception('Failed to load schedule');
       }
-      setState(() {
-        schedule = fetchedSchedule;
-      });
-    } else {
-      throw Exception('Failed to load schedule');
+    } catch (e) {
+      logger.e('Error loading schedule: $e');
     }
-  } catch (e) {
-    print('Error loading schedule: $e');
   }
-}
 
+  void showRouteOnMap(String routeUid) {}
 
- void showRouteOnMap(String routeUid) {
-  // Fetch route data from API or other source
-  // Set markers for each stop
-  // Draw polylines to connect stops
-  // Update 'markers' and 'polylines' accordingly
-}
-
-    Future<void> loadCities() async {
+  Future<void> loadCities() async {
     try {
       cities = await getCities();
     } catch (e) {
-      print('Error loading cities: $e');
+      logger.e('Error loading cities: $e');
     }
-    }
+  }
 
-  
-
-
-@override
+  @override
   void initState() {
     super.initState();
     checkPermission();
@@ -155,7 +146,7 @@ Future<void> loadSchedule(String routeUid) async {
   }
 
   void _waitForLocation() async {
-    await Future.delayed(const Duration(seconds: 2)); // Várunk 2 másodpercet
+    await Future.delayed(const Duration(seconds: 2));
     getLocation();
   }
 
@@ -183,14 +174,15 @@ Future<void> loadSchedule(String routeUid) async {
         );
       });
     } catch (e) {
-      print("Error: $e");
+      logger.e("Error: $e");
     }
   }
-   Future<void> loadStationsForCity(String cityUid) async {
+
+  Future<void> loadStationsForCity(String cityUid) async {
     try {
       stations = await getStationsByCity(cityUid);
     } catch (e) {
-      print('Error loading stations: $e');
+      logger.e('Error loading stations: $e');
     }
   }
 
@@ -307,9 +299,4 @@ Future<void> loadSchedule(String routeUid) async {
       ),
     );
   }
-
-
-
-
-
 }

@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class StationsPage extends StatefulWidget {
   const StationsPage({Key? key}) : super(key: key);
@@ -17,37 +18,35 @@ class _StationsPageState extends State<StationsPage> {
   LocationData? currentLocation;
   final Location location = Location();
   bool _permission = false;
-  String? selectedCity; // A kiválasztott város neve
-
-  List<Map<String, String>> cities = []; // Városok listája
+  String? selectedCity = 'All city';
+  var logger = Logger();
+  List<Map<String, String>> cities = [];
 
   @override
-void initState() {
-  super.initState();
-  checkPermission();
-  getCities(); // Városok lekérése
-  getStations(); // Helyzet lekérése
-}
-
-
-void getLocation() async {
-  try {
-    LocationData locData = (await location.getLocation());
-    setState(() {
-      currentLocation = locData;
-      _addCurrentLocationMarker(); // Az aktuális helyzet hozzáadása markerként
-      mapController?.animateCamera(
-        CameraUpdate.newLatLngZoom(
-          LatLng(locData.latitude!, locData.longitude!),
-          15.0,
-        ),
-      );
-    });
-  } catch (e) {
-    print("Error getting location: $e");
+  void initState() {
+    super.initState();
+    checkPermission();
+    getCities();
+    getStations();
   }
-}
 
+  void getLocation() async {
+    try {
+      LocationData locData = (await location.getLocation());
+      setState(() {
+        currentLocation = locData;
+        _addCurrentLocationMarker();
+        mapController?.animateCamera(
+          CameraUpdate.newLatLngZoom(
+            LatLng(locData.latitude!, locData.longitude!),
+            15.0,
+          ),
+        );
+      });
+    } catch (e) {
+      logger.e("Error getting location, $e");
+    }
+  }
 
   void checkPermission() async {
     final hasPermission = await location.serviceEnabled();
@@ -63,7 +62,8 @@ void getLocation() async {
 
   void getCities() async {
     try {
-      final response = await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+      final response = await http
+          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         if (data.containsKey('cities')) {
@@ -76,8 +76,8 @@ void getLocation() async {
             });
           }
           setState(() {
-            cities = cityNames; // Városok frissítése
-            cities.insert(0, {'name': 'All city'}); 
+            cities = cityNames;
+            cities.insert(0, {'name': 'All city'});
           });
         } else {
           throw Exception('Invalid response format - cities not found');
@@ -86,68 +86,72 @@ void getLocation() async {
         throw Exception('Failed to load cities');
       }
     } catch (e) {
-      print("Error fetching cities: $e");
+      logger.e("Error fetching cities: $e");
     }
   }
 
-void getStations() async {
-  try {
-    setState(() {
-      markers.clear(); // Törölje a jelenlegi markereket
-    });
-
-    final response = await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_stations'));
-    if (response.statusCode == 200) {
-      List<dynamic> stationData = json.decode(response.body)['stations'];
-
+  void getStations() async {
+    try {
       setState(() {
-        if (selectedCity == 'All city') {
-          for (var station in stationData) {
-            markers.add(
-              Marker(
-                markerId: MarkerId(station['station_uid']),
-                position: LatLng(double.parse(station['latitude']), double.parse(station['longitude'])),
-                infoWindow: InfoWindow(title: station['name'], snippet: station['address']),
-              ),
-            );
-          }
-        } else {
-          for (var station in stationData) {
-            if (station['city'] == selectedCity) {
+        markers.clear();
+      });
+      final response = await http
+          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_stations'));
+      if (response.statusCode == 200) {
+        List<dynamic> stationData = json.decode(response.body)['stations'];
+        setState(() {
+          if (selectedCity == 'All city') {
+            for (var station in stationData) {
               markers.add(
                 Marker(
                   markerId: MarkerId(station['station_uid']),
-                  position: LatLng(double.parse(station['latitude']), double.parse(station['longitude'])),
-                  infoWindow: InfoWindow(title: station['name'], snippet: station['address']),
+                  position: LatLng(double.parse(station['latitude']),
+                      double.parse(station['longitude'])),
+                  infoWindow: InfoWindow(
+                      title: station['name'], snippet: station['address']),
                 ),
               );
             }
+          } else {
+            for (var station in stationData) {
+              if (station['city'] == selectedCity) {
+                markers.add(
+                  Marker(
+                    markerId: MarkerId(station['station_uid']),
+                    position: LatLng(double.parse(station['latitude']),
+                        double.parse(station['longitude'])),
+                    infoWindow: InfoWindow(
+                        title: station['name'], snippet: station['address']),
+                  ),
+                );
+              }
+            }
           }
-        }
-      });
+        });
+      }
+    } catch (e) {
+      logger.e("Error fetching stations: $e");
     }
-  } catch (e) {
-    print("Error fetching stations: $e");
   }
-}
-void _addCurrentLocationMarker() {
+
+  void _addCurrentLocationMarker() {
     if (currentLocation != null) {
       setState(() {
         markers.add(
           Marker(
-            markerId: MarkerId('currentLocation'),
+            markerId: const MarkerId('currentLocation'),
             position: LatLng(
               currentLocation!.latitude!,
               currentLocation!.longitude!,
             ),
-            infoWindow: InfoWindow(
+            infoWindow: const InfoWindow(
               title: 'Current Location',
               snippet: 'Your current position',
             ),
-            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
           ),
         );
-
         mapController?.animateCamera(
           CameraUpdate.newLatLngZoom(
             LatLng(
@@ -159,7 +163,7 @@ void _addCurrentLocationMarker() {
         );
       });
     }
-}
+  }
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -171,38 +175,63 @@ void _addCurrentLocationMarker() {
       appBar: AppBar(
         title: const Text('Stations Map'),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          if (cities.isNotEmpty) // Legördülő lista csak akkor jelenik meg, ha vannak városok
-            DropdownButton<String>(
-              value: selectedCity,
-              items: cities
-                  .map((city) => DropdownMenuItem<String>(
-                        value: city['name'],
-                        child: Text(city['name'] ?? ''),
-                      ))
-                  .toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedCity = value;
-                  markers.clear(); // Törölje a jelenlegi markereket
-                  getStations(); // Frissítse a markereket a kiválasztott város alapján
-                });
-              },
-              hint: const Text('Select City'),
-            ),
-            ElevatedButton(
-            onPressed: _addCurrentLocationMarker,
-            child: const Text('Current Location'),
-          ),
-          Expanded(
-            child: GoogleMap(
-              onMapCreated: _onMapCreated,
-              initialCameraPosition: CameraPosition(
-                target: LatLng(currentLocation?.latitude ?? 0.0, currentLocation?.longitude ?? 0.0),
-                zoom: 15.0,
+          Column(
+            children: [
+              Row(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Text(
+                      'Select City: ',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  if (cities.isNotEmpty)
+                    DropdownButton<String>(
+                      value: selectedCity,
+                      items: cities
+                          .map((city) => DropdownMenuItem<String>(
+                                value: city['name'],
+                                child: Text(city['name'] ?? ''),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedCity = value;
+                          markers.clear();
+                          getStations();
+                        });
+                      },
+                      hint: const Text('Select City'),
+                    ),
+                ],
               ),
-              markers: Set<Marker>.of(markers),
+              Expanded(
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(currentLocation?.latitude ?? 0.0,
+                        currentLocation?.longitude ?? 0.0),
+                    zoom: 15.0,
+                  ),
+                  markers: Set<Marker>.of(markers),
+                ),
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FloatingActionButton(
+                onPressed: _addCurrentLocationMarker,
+                child: const Icon(Icons.location_on),
+              ),
             ),
           ),
         ],

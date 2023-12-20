@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:bus4u/pages/register_page.dart';
+import 'package:logger/logger.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,7 +13,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  //sign user in method
+  var logger = Logger();
+
   void signUserIn(String email, password) async {
     try {
       Response response = await post(
@@ -40,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       } else {
-        print('failed');
+        logger.e('failed');
         showDialog<String>(
           context: context,
           builder: (context) => AlertDialog(
@@ -60,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       }
     } catch (e) {
-      print(e.toString());
+      logger.e(e.toString());
     }
   }
 
@@ -138,10 +140,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                   Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       const Text(
+                      const Text(
                         "Not a member?",
                         style: TextStyle(
                           color: Colors.black,
@@ -159,7 +161,6 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: const Text('Register'),
                       ),
-                      
                     ],
                   ),
                 ],

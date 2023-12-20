@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: 
+  logger:
   flutter_polyline_points: 
   google_maps_flutter: 
   intl:

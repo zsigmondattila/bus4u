@@ -38,21 +38,39 @@
         <div v-if="!routes">
           <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
         </div>
-        <p v-else-if="!routes.length" class="fallback"> No available trips found with the data given. </p>
-        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
+        <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found with the data given. </p>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @purchased="ticketBought"></RouteListElement>
       </v-list>
     </v-container>
+    <v-dialog v-model="newTicket.isPurchased" persistent max-width="300">
+      <v-card color="orange-lighten-5">
+        <v-img :src="newTicket.qr"></v-img>
+        <v-card-title class="text-center"> Transaction successful </v-card-title>
+        <v-card-subtitle class="text-center">Code: <b>{{ newTicket.id }}</b></v-card-subtitle>
+        <v-card-text>Ticket(s) successfully saved to your collection. Scan the QR code when you get on the bus.</v-card-text>
+        <v-card-actions class="justify-space-evenly">
+          <v-btn @click="newTicket.isPurchased = false"> Close </v-btn>
+          <v-btn :to="{name: 'tickets'}" class="text-orange-darken-4"> All tickets </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </AppLayout>
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue';
 import axios from 'axios';
+import QRCode from 'qrcode';
 import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
 
 const isLoadingRoutes = ref(false)
+const newTicket = reactive({
+  isPurchased: false,
+  id: null,
+  qr: null
+})
 
 const date = new Date();
 const startStations = ref([]);
@@ -85,6 +103,12 @@ function getTimeStr(){
   let hours = date.getHours();
   let mins = date.getMinutes();
   return `${hours > 9 ? hours : '0' + hours}:${mins > 9 ? mins : '0' + mins}`
+}
+
+async function ticketBought(ticket){
+  newTicket.id = ticket[0]
+  newTicket.qr = await QRCode.toDataURL(ticket[0], { width: 300 })
+  newTicket.isPurchased = true
 }
 
 async function onSubmit(e) {
@@ -140,9 +164,5 @@ axios.get('https://bus4u.fast-table.com/v1/get_cities')
 </script>
 
 <style scoped>
-.fallback {
-  opacity: .6;
-  text-align: center;
-  margin: 20px;
-}
+
 </style>

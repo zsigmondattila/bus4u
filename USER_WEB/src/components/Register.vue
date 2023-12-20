@@ -5,7 +5,8 @@
       <v-text-field label="Last Name" v-model="form.lastname" color="primary" :rules="name"></v-text-field>
       <v-text-field label="Email" type="email" v-model="form.email" color="primary" :rules="email"></v-text-field>
       <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="eightChars"></v-text-field>
-      <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation" :error-messages="error"></v-text-field>
+      <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
+      <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
     </div>
     <div v-else class="text-center">
       <div class="my-5">
@@ -14,7 +15,7 @@
         <br>
       </div>
       <p> Type here the code from the email: </p>
-      <v-otp-input length="4" v-model="code" :error="!!error"></v-otp-input>
+      <v-otp-input length="4" v-model="code" :error="!!error" @keydown.enter="checkCode"></v-otp-input>
       <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
     </div>
     <RouterLink :to="{ name: 'login' }" class="link"> Already registered? </RouterLink>
@@ -79,6 +80,7 @@ async function onSubmit(event) {
         }
       }).catch(e => {
         if(e.response) error.value = e.response.data.errors[0];
+        else error.value = e.message;
         isLoading.value = false
       });
   }
@@ -95,6 +97,7 @@ async function checkCode() {
       }
     }).catch(e => {
       if(e.response) error.value = e.response.data.error;
+      else error.value = e.message;
       isLoading.value = false;
     });
 }

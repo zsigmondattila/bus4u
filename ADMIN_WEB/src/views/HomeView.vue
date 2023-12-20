@@ -9,13 +9,13 @@
           <p class="text-subtitle-1 text-sm-h6 text-xl-h4">Last month</p>
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="Different users" :value="stats.month_users" />
+          <StatSheet label="Users" :value="stats.month_users" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
           <StatSheet label="Tickets sold" :value="stats.month_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.month_income" />
+          <StatSheet label="LEI income" :value="stats.month_income/100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -23,13 +23,13 @@
           <p class="text-subtitle-1 text-sm-h6 text-xl-h4">Last year</p>
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="Different users" :value="stats.year_users" />
+          <StatSheet label="Users" :value="stats.year_users" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
           <StatSheet label="Tickets sold" :value="stats.year_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.year_income" />
+          <StatSheet label="LEI income" :value="stats.year_income/100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -37,13 +37,13 @@
           <p class="text-subtitle-1 text-sm-h6 text-xl-h4">All time</p>
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="Different users" :value="stats.all_users" />
+          <StatSheet label="Users" :value="stats.all_users" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
           <StatSheet label="Tickets sold" :value="stats.all_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.all_income" />
+          <StatSheet label="LEI income" :value="stats.all_income/100" />
         </v-col>
       </v-row>
     </v-container>

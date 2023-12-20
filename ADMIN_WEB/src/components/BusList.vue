@@ -43,7 +43,6 @@ const isDeleted = ref(false)
 const error = ref(false)
 
 function deleteBus(bus) {
-  console.log(bus);
   axios.delete('https://bus4u.fast-table.com/v1/admin/delete_bus', { params: { company_uid: user.company_uid, bus_uid: bus.bus_uid }})
   .then(() => {
     isDeleted.value = true

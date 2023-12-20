@@ -29,11 +29,129 @@ class _SchedulesPageState extends State<SchedulesPage> {
   Set<Marker> markers = {};
   Set<Polyline> polylines = {};
 
+  Future<List<Map<String, String>>> getCities() async {
+    final response =
+        await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      if (data.containsKey('cities')) {
+        final List<dynamic> citiesData = data['cities'];
+        List<Map<String, String>> cityNames = [];
+        for (var city in citiesData) {
+          cityNames.add({
+            'name': city['name'],
+            'city_uid': city['city_uid'],
+          });
+        }
+        return cityNames;
+      } else {
+        throw Exception('Invalid response format - cities not found');
+      }
+    } else {
+      throw Exception('Failed to load cities');
+    }
+  }
+
+    Future<List<Map<String, dynamic>>> getStationsByCity(String cityUid) async {
+    final response = await http.get(Uri.parse(
+        'https://bus4u.fast-table.com/v1/get_stations_by_city?city_uid=$cityUid'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      if (data.containsKey('stations')) {
+        final List<dynamic> stationsData = data['stations'];
+        List<Map<String, dynamic>> stationDetails = [];
+        for (var station in stationsData) {
+          stationDetails.add({
+            'station_uid': station['station_uid'],
+            'name': station['name'],
+            'address': station['address'],
+            'longitude': station['longitude'],
+            'latitude': station['latitude'],
+          });
+        }
+        return stationDetails;
+      } else {
+        throw Exception('Invalid response format - stations not found');
+      }
+    } else {
+      throw Exception('Failed to load stations');
+    }
+  }
+
+Future<void> loadRoutes(String stationUid) async {
+  try {
+    final response = await http.get(Uri.parse('API_ENDPOINT/routes?station=$stationUid'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      List<Map<String, dynamic>> fetchedRoutes = [];
+      for (var route in data) {
+        fetchedRoutes.add({
+          'route_uid': route['route_uid'],
+          'name': route['name'],
+          // Add other route details as required
+        });
+      }
+      setState(() {
+        routes = fetchedRoutes;
+      });
+    } else {
+      throw Exception('Failed to load routes');
+    }
+  } catch (e) {
+    print('Error loading routes: $e');
+  }
+}
+
+
+Future<void> loadSchedule(String routeUid) async {
+  try {
+    final response = await http.get(Uri.parse('API_ENDPOINT/schedule?route=$routeUid'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      List<Map<String, dynamic>> fetchedSchedule = [];
+      for (var scheduleEntry in data) {
+        fetchedSchedule.add({
+          'time': scheduleEntry['time'],
+          'destination': scheduleEntry['destination'],
+          // Add other schedule details as required
+        });
+      }
+      setState(() {
+        schedule = fetchedSchedule;
+      });
+    } else {
+      throw Exception('Failed to load schedule');
+    }
+  } catch (e) {
+    print('Error loading schedule: $e');
+  }
+}
+
+
+ void showRouteOnMap(String routeUid) {
+  // Fetch route data from API or other source
+  // Set markers for each stop
+  // Draw polylines to connect stops
+  // Update 'markers' and 'polylines' accordingly
+}
+
+    Future<void> loadCities() async {
+    try {
+      cities = await getCities();
+    } catch (e) {
+      print('Error loading cities: $e');
+    }
+    }
+
+  
+
+
 @override
   void initState() {
     super.initState();
     checkPermission();
     _waitForLocation();
+    loadCities();
   }
 
   void _waitForLocation() async {
@@ -68,6 +186,13 @@ class _SchedulesPageState extends State<SchedulesPage> {
       print("Error: $e");
     }
   }
+   Future<void> loadStationsForCity(String cityUid) async {
+    try {
+      stations = await getStationsByCity(cityUid);
+    } catch (e) {
+      print('Error loading stations: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +218,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     routes.clear();
                   });
                   if (value != null) {
-                    loadStations(value);
+                    loadStationsForCity(value);
                   }
                 },
                 items: cities.map((Map<String, dynamic> city) {
@@ -183,110 +308,8 @@ class _SchedulesPageState extends State<SchedulesPage> {
     );
   }
 
-  // Függvények a városok, megállók, járatok, menetrend és térkép adatok betöltéséhez
-  Future<List<Map<String, String>>> getCities() async {
-    final response =
-        await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = json.decode(response.body);
-      if (data.containsKey('cities')) {
-        final List<dynamic> citiesData = data['cities'];
-        List<Map<String, String>> cityNames = [];
-        for (var city in citiesData) {
-          cityNames.add({
-            'name': city['name'],
-            'city_uid': city['city_uid'],
-          });
-        }
-        return cityNames;
-      } else {
-        throw Exception('Invalid response format - cities not found');
-      }
-    } else {
-      throw Exception('Failed to load cities');
-    }
-  }
-
-  Future<void> loadStations(String cityUid) async {
-  try {
-    final response = await http.get(Uri.parse('API_ENDPOINT/stations?city=$cityUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      List<Map<String, dynamic>> fetchedStations = [];
-      for (var station in data) {
-        fetchedStations.add({
-          'station_uid': station['station_uid'],
-          'name': station['name'],
-          // Add other station details as required
-        });
-      }
-      setState(() {
-        stations = fetchedStations;
-      });
-    } else {
-      throw Exception('Failed to load stations');
-    }
-  } catch (e) {
-    print('Error loading stations: $e');
-  }
-}
 
 
-Future<void> loadRoutes(String stationUid) async {
-  try {
-    final response = await http.get(Uri.parse('API_ENDPOINT/routes?station=$stationUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      List<Map<String, dynamic>> fetchedRoutes = [];
-      for (var route in data) {
-        fetchedRoutes.add({
-          'route_uid': route['route_uid'],
-          'name': route['name'],
-          // Add other route details as required
-        });
-      }
-      setState(() {
-        routes = fetchedRoutes;
-      });
-    } else {
-      throw Exception('Failed to load routes');
-    }
-  } catch (e) {
-    print('Error loading routes: $e');
-  }
-}
 
-
-Future<void> loadSchedule(String routeUid) async {
-  try {
-    final response = await http.get(Uri.parse('API_ENDPOINT/schedule?route=$routeUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      List<Map<String, dynamic>> fetchedSchedule = [];
-      for (var scheduleEntry in data) {
-        fetchedSchedule.add({
-          'time': scheduleEntry['time'],
-          'destination': scheduleEntry['destination'],
-          // Add other schedule details as required
-        });
-      }
-      setState(() {
-        schedule = fetchedSchedule;
-      });
-    } else {
-      throw Exception('Failed to load schedule');
-    }
-  } catch (e) {
-    print('Error loading schedule: $e');
-  }
-}
-
-
- void showRouteOnMap(String routeUid) {
-  // Fetch route data from API or other source
-  // Set markers for each stop
-  // Draw polylines to connect stops
-  // Update 'markers' and 'polylines' accordingly
-}
 
 }

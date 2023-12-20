@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key});
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -17,6 +17,7 @@ class Ticket {
   final String routeName;
   final double ticketPrice;
   final List<String> departureTimes;
+  int quantity;
 
   Ticket({
     required this.startStation,
@@ -25,6 +26,7 @@ class Ticket {
     required this.routeName,
     required this.ticketPrice,
     required this.departureTimes,
+    required this.quantity,
   });
 }
 
@@ -37,8 +39,8 @@ class _HomePageState extends State<HomePage> {
   String? _tempSelectedStartStation;
   String? _tempSelectedDestinationCity;
   String? _tempSelectedDestinationStation;
-  String _tempSelectedDate = '';
-  String _tempSelectedTime = '';
+  final String _tempSelectedDate = '';
+  final String _tempSelectedTime = '';
 
   late String selectedDate = '';
   late String selectedTime = '';
@@ -153,7 +155,7 @@ class _HomePageState extends State<HomePage> {
 
         List<Ticket> tickets = [];
 
-        ticketsData.forEach((ticketData) {
+        for (var ticketData in ticketsData) {
           String startStation = ticketData['start_station'];
           String destinationStation = ticketData['destination_station'];
           String companyName = ticketData['company_name'];
@@ -169,10 +171,11 @@ class _HomePageState extends State<HomePage> {
             routeName: routeName,
             ticketPrice: ticketPrice,
             departureTimes: departureTimes,
+            quantity: 1,
           );
 
           tickets.add(ticket);
-        });
+        }
 
         setState(() {
           availableTickets = tickets;
@@ -221,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             const SizedBox(height: 20),
-                            const Text('To', style: TextStyle(fontSize: 18)),
+                            const Text('From', style: TextStyle(fontSize: 18)),
 
                             // "From" város kiválasztása
 
@@ -369,10 +372,8 @@ class _HomePageState extends State<HomePage> {
                               },
                               controller: TextEditingController(
                                 text: _tempSelectedDate.isEmpty
-                                    ? selectedDate + ' ' + selectedTime
-                                    : _tempSelectedDate +
-                                        ' ' +
-                                        _tempSelectedTime,
+                                    ? '$selectedDate $selectedTime'
+                                    : '$_tempSelectedDate $_tempSelectedTime',
                               ),
                               decoration: const InputDecoration(
                                 labelText: 'Select Date & Time',
@@ -440,6 +441,40 @@ class _HomePageState extends State<HomePage> {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        if (displayedTickets[
+                                                                    ticketIndex]
+                                                                .quantity >
+                                                            1) {
+                                                          displayedTickets[
+                                                                  ticketIndex]
+                                                              .quantity--;
+                                                        }
+                                                      });
+                                                    },
+                                                    icon: Icon(Icons.remove),
+                                                  ),
+                                                  Container(
+                                                    width: 40,
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      '${displayedTickets[ticketIndex].quantity}',
+                                                      style: TextStyle(
+                                                          fontSize: 18),
+                                                    ),
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      setState(() {
+                                                        displayedTickets[
+                                                                ticketIndex]
+                                                            .quantity++;
+                                                      });
+                                                    },
+                                                    icon: Icon(Icons.add),
+                                                  ),
                                                   ElevatedButton(
                                                     onPressed: () {
                                                       // Implementáció a jegyek vásárlására
@@ -447,23 +482,6 @@ class _HomePageState extends State<HomePage> {
                                                     },
                                                     child: const Text(
                                                         'Buy Ticket'),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 120,
-                                                    child: TextFormField(
-                                                      keyboardType:
-                                                          TextInputType.number,
-                                                      decoration:
-                                                          InputDecoration(
-                                                        labelText: 'Quantity',
-                                                        border:
-                                                            OutlineInputBorder(),
-                                                      ),
-                                                      onChanged: (value) {
-                                                        // Implementáció az adott jegy mennyiségének tárolására
-                                                        // Például: updateTicketQuantity(ticketIndex, int.parse(value));
-                                                      },
-                                                    ),
                                                   ),
                                                 ],
                                               ),

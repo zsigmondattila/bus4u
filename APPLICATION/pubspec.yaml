@@ -36,10 +36,11 @@ dependencies:
   intl:
   location: 
   qr_flutter:
+  flutter_secure_storage:
   #geolocator: 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: 
+  cupertino_icons:
 
 dev_dependencies:
   flutter_test:

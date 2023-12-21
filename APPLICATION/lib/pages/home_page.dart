@@ -239,9 +239,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Available Tickets'),
-      ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(

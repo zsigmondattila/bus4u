@@ -14,16 +14,32 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+          ),
+          scaffoldBackgroundColor: Colors.white,
+          primarySwatch: MaterialColor(
+            0xFFEF6C00,
+            <int, Color>{
+              50: Color(0xFFFFF3E0),
+              100: Color(0xFFFFE0B2),
+              200: Color(0xFFFFCC80),
+              300: Color(0xFFFFB74D),
+              400: Color(0xFFFFA726),
+              500: Color(0xFFF57C00),
+              600: Color(0xFFF57C00),
+              700: Color(0xFFF57C00),
+              800: Color(0xFFEF6C00),
+              900: Color(0xFFE65100),
+            },
+          )),
       title: 'bus4u',
       home: AnimatedSplashScreen(
         splash: Image.asset('assets/images/logo-text.png'),
         nextScreen: const MyHomePage(),
         splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.white,
       ),
-      
     );
   }
 }
@@ -50,6 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         ),
+        iconTheme: IconThemeData(color: Colors.orange[800]),
       ),
       drawer: NavBar(
         onSelect: (Widget page) {

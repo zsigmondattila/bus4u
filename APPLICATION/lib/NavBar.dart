@@ -13,20 +13,20 @@ class NavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('Account name'),
-            accountEmail: Text('example@gmail.com'),
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              image: DecorationImage(
-                  image: AssetImage('assets/images/logo-text.png')),
-            ),
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Container(
+                      width: 100,
+                      height: 100,
+                      
+                      child:
+                          const Icon(Icons.person_outline, size: 100, color: Colors.black),
+                    ),
           ),
           ListTile(
-            leading: const Icon(Icons.home),
+            leading: const Icon(Icons.home,color: Colors.orange,),
             title: const Text('Home'),
             onTap: () {
               onSelect(const HomePage());
@@ -34,7 +34,7 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.calendar_month),
+            leading: const Icon(Icons.calendar_month,color: Colors.orange,),
             title: const Text('Schedules'),
             onTap: () {
               onSelect(const SchedulesPage());
@@ -42,7 +42,7 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.location_pin),
+            leading: const Icon(Icons.location_pin,color: Colors.orange,),
             title: const Text('Stations'),
             onTap: () {
               onSelect(const StationsPage());
@@ -50,7 +50,7 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.label_rounded),
+            leading: const Icon(Icons.label_rounded,color: Colors.orange,),
             title: const Text('My tickets'),
             onTap: () {
               onSelect(const TicketPage());
@@ -58,30 +58,28 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.directions_bus),
+            leading: const Icon(Icons.directions_bus,color: Colors.orange,),
             title: const Text('Tracking bus'),
             onTap: () {
               onSelect(const TrackingPage());
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About'),
-            onTap: () {
-              onSelect(const AboutPage());
-              Navigator.pop(context);
-            },
+          Expanded(
+            child: Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: ListTile(
+                  title: const Text('About'),
+                  leading: const Icon(Icons.info,color: Colors.orange,),
+                  onTap: () {
+                    onSelect(const AboutPage());
+                    Navigator.pop(context);
+                  },
+                  
+                ),
+              ),
           ),
-          const Divider(),
-          ListTile(
-            title: const Text('Account'),
-            leading: const Icon(Icons.account_circle),
-            onTap: () {
-              onSelect(const LoginPage());
-              Navigator.pop(context);
-            },
-          ),
+          
         ],
       ),
     );

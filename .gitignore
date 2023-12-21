@@ -60,3 +60,6 @@ API/tmp/*
 !API/tmp/.keep
 
 API/tmp/pids/*
+APPLICATION/.flutter-plugins-dependencies
+APPLICATION/.flutter-plugins
+APPLICATION/.flutter-plugins-dependencies

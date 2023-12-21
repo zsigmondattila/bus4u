@@ -2,7 +2,8 @@
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
       <v-text-field label="Email" v-model="form.email" type="email" color="primary" :rules="email"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password" :error-messages="errors"></v-text-field>
+      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
+      <p v-if="errors.length" class="text-error text-center mb-2"> {{ errors }} </p>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
     <v-btn type="submit" size="40" :loading="isLoading" block color="primary"> Log In </v-btn>
@@ -49,6 +50,7 @@ async function onSubmit(event) {
       }
     }).catch((e) => {
       if(e.response) errors.value = e.response.data.errors[0];
+      else errors.value = e.message;
       isLoading.value = false;
     });
   }

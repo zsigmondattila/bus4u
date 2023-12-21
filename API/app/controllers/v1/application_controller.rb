@@ -185,7 +185,7 @@ class V1::ApplicationController < ApplicationController
       quantity.times do
         ticket = Ticket.new
         ticket.company_uid = params[:company_uid]
-        ticket.user_uid = params[:user_uid]
+        ticket.user_uid = user.uid
         ticket.ticket_type = params[:type]
         ticket.route_uid = params[:route_uid]
         ticket.from_station_uid = params[:from_station_uid]
@@ -213,11 +213,30 @@ class V1::ApplicationController < ApplicationController
   end
 
   def tickets_of_user
+    results = []
     user = current_user
     if user
       tickets = Ticket.where(user_uid: user.uid)
       if tickets 
-        render json: tickets 
+        tickets.each do |ticket|
+          tostation = Station.find_by(station_uid: ticket.to_station_uid)
+          fromstation = Station.find_by(station_uid: ticket.from_station_uid)
+          route = Route.find_by(route_uid: ticket.route_uid)
+          results << {
+            ticket_uid: ticket.ticket_uid,
+            date_of_purchase: ticket.date_of_purchase,
+            expiration_date: ticket.expiration_date,
+            from_station_uid: ticket.from_station_uid,
+            to_station_uid: ticket.to_station_uid,
+            from_station_name: fromstation.name,
+            to_station_name: tostation.name,
+            is_valid: ticket.is_valid,
+            route_uid: ticket.route_uid,
+            route_name: route.name,
+            ticket_price: ticket.ticket_price
+          }
+        end
+        render json: results
       else
         render json: { error: "No tickets available" }, status: :not_found
       end
@@ -225,7 +244,6 @@ class V1::ApplicationController < ApplicationController
       render json: { error: "User is not logged in" }, status: :unauthorized
     end
   end
-  
   
   #Requests to send a confirmation email
   def send_verification_email
@@ -298,7 +316,7 @@ class V1::ApplicationController < ApplicationController
   #
   def get_bus_locations_by_route
     route = Route.find_by(route_uid: params[:route_uid])
-    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid, is_tracked: true)
+    buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid, tracked: true)
 
     if route
       if buses
@@ -369,10 +387,14 @@ def process_routes(routes, start_station, destination_station, date, time, resul
 
       comp = Company.find_by(company_uid: route.company_uid)
       result << {
-        start_station: start_station.name,
-        destination_station: destination_station.name,
+        from_station: start_station.name,
+        from_station_uid: start_station.station_uid,
+        to_station: destination_station.name,
+        to_station_uid: destination_station.station_uid,
         company_name: comp.name,
+        company_uid: comp.company_uid,
         route_name: route.name,
+        route_uid: route.route_uid,
         ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
         departure_times: filtered_departure_times
       }

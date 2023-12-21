@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:bus4u/NavBar.dart';
 import 'package:bus4u/pages/home_page.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       title: 'bus4u',
-      home: const MyHomePage(),
+      home: AnimatedSplashScreen(
+        splash: Image.asset('assets/images/logo-text.png'),
+        nextScreen: const MyHomePage(),
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.orange,
+      ),
+      
     );
   }
 }

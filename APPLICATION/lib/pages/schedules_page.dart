@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:logger/logger.dart';
@@ -16,19 +14,13 @@ class _SchedulesPageState extends State<SchedulesPage> {
   String? selectedCity;
   String? selectedStation;
   String? selectedRoute;
-  LocationData? currentLocation;
-  final Location location = Location();
-  bool _permission = false;
+
   var logger = Logger();
 
   List<Map<String, dynamic>> cities = [];
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> routes = [];
-  List<Map<String, dynamic>> schedule = [];
-
-  GoogleMapController? mapController;
-  Set<Marker> markers = {};
-  Set<Polyline> polylines = {};
+  List<Map<String, dynamic>> schedules = [];
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -79,111 +71,110 @@ class _SchedulesPageState extends State<SchedulesPage> {
     }
   }
 
-  Future<void> loadRoutes(String stationUid) async {
-    try {
-      final response =
-          await http.get(Uri.parse('API_ENDPOINT/routes?station=$stationUid'));
-      if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        List<Map<String, dynamic>> fetchedRoutes = [];
-        for (var route in data) {
-          fetchedRoutes.add({
+  Future<List<Map<String, dynamic>>> getRoutesByStation(
+      String stationUid) async {
+    final response = await http.get(Uri.parse(
+        'https://bus4u.fast-table.com/v1/get_routes_by_station?station_uid=$stationUid'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      if (data.containsKey('routes')) {
+        final List<dynamic> routesData = data['routes'];
+        List<Map<String, dynamic>> routeDetails = [];
+        for (var route in routesData) {
+          routeDetails.add({
             'route_uid': route['route_uid'],
             'name': route['name'],
+            // Add other route details if needed
           });
         }
-        setState(() {
-          routes = fetchedRoutes;
-        });
+        return routeDetails;
       } else {
-        throw Exception('Failed to load routes');
+        throw Exception('Invalid response format - routes not found');
       }
-    } catch (e) {
-      logger.e('Error loading routes: $e');
+    } else {
+      throw Exception('Failed to load routes');
     }
   }
-
-  Future<void> loadSchedule(String routeUid) async {
-    try {
-      final response =
-          await http.get(Uri.parse('API_ENDPOINT/schedule?route=$routeUid'));
-      if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        List<Map<String, dynamic>> fetchedSchedule = [];
-        for (var scheduleEntry in data) {
-          fetchedSchedule.add({
-            'time': scheduleEntry['time'],
-            'destination': scheduleEntry['destination'],
-          });
-        }
-        setState(() {
-          schedule = fetchedSchedule;
-        });
-      } else {
-        throw Exception('Failed to load schedule');
-      }
-    } catch (e) {
-      logger.e('Error loading schedule: $e');
-    }
-  }
-
-  void showRouteOnMap(String routeUid) {}
 
   Future<void> loadCities() async {
     try {
-      cities = await getCities();
+      List<Map<String, String>> fetchedCities = await getCities();
+      setState(() {
+        cities = fetchedCities;
+      });
     } catch (e) {
       logger.e('Error loading cities: $e');
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    checkPermission();
-    _waitForLocation();
-    loadCities();
-  }
-
-  void _waitForLocation() async {
-    await Future.delayed(const Duration(seconds: 2));
-    getLocation();
-  }
-
-  void checkPermission() async {
-    final hasPermission = await location.serviceEnabled();
-    if (!hasPermission) {
-      _permission = await location.requestService();
-      if (!_permission) {
-        return;
-      }
-    }
-    getLocation();
-  }
-
-  void getLocation() async {
+  Future<void> loadRoutes(String stationUid) async {
     try {
-      LocationData locData = (await location.getLocation());
+      List<Map<String, dynamic>> fetchedRoutes =
+          await getRoutesByStation(stationUid);
       setState(() {
-        currentLocation = locData;
-        mapController?.animateCamera(
-          CameraUpdate.newLatLngZoom(
-            LatLng(locData.latitude!, locData.longitude!),
-            15.0,
-          ),
-        );
+        routes = fetchedRoutes;
       });
     } catch (e) {
-      logger.e("Error: $e");
+      logger.e('Error loading routes: $e');
     }
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
     try {
       stations = await getStationsByCity(cityUid);
+      setState(() {
+        // Frissítsük a widgetet az új állomásokkal
+      });
     } catch (e) {
       logger.e('Error loading stations: $e');
     }
+  }
+
+  Future<void> fetchBusSchedule(String stationUid, String routeUid) async {
+    final response = await http.get(Uri.parse(
+        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      if (data.isNotEmpty) {
+        setState(() {
+          schedules = List<Map<String, dynamic>>.from(data);
+        });
+      } else {
+        setState(() {
+          schedules = [];
+        });
+      }
+    } else {
+      setState(() {
+        schedules = [];
+      });
+    }
+  }
+
+  List<DataCell> _generateTimeCellsForDay(String day) {
+    List<DataCell> cells = [];
+    final scheduleForDay = schedules
+        .firstWhere((schedule) => schedule['name'] == day, orElse: () => {});
+
+    if (scheduleForDay.isNotEmpty &&
+        scheduleForDay.containsKey('departure_times')) {
+      final List<dynamic> departureTimes = scheduleForDay['departure_times'];
+      for (var time in departureTimes) {
+        cells.add(DataCell(Text(time)));
+      }
+    } else {
+      for (var i = 0; i < 15; i++) {
+        cells.add(DataCell(Text('')));
+      }
+    }
+    return cells;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // Az inicializáló logika
+    loadCities();
   }
 
   @override
@@ -248,12 +239,8 @@ class _SchedulesPageState extends State<SchedulesPage> {
                   onChanged: (String? value) {
                     setState(() {
                       selectedRoute = value;
-                      schedule.clear();
                     });
-                    if (value != null) {
-                      loadSchedule(value);
-                      showRouteOnMap(value);
-                    }
+                    if (value != null) {}
                   },
                   items: routes.map((Map<String, dynamic> route) {
                     return DropdownMenuItem<String>(
@@ -262,37 +249,55 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     );
                   }).toList(),
                 ),
-              if (schedule.isNotEmpty)
-                DataTable(
-                  columns: const [
-                    DataColumn(label: Text('Time')),
-                    DataColumn(label: Text('Destination')),
-                  ],
-                  rows: schedule.map((Map<String, dynamic> entry) {
-                    return DataRow(cells: [
-                      DataCell(Text(entry['time'])),
-                      DataCell(Text(entry['destination'])),
-                    ]);
-                  }).toList(),
-                ),
-              const SizedBox(height: 20),
-              SizedBox(
-                height: 300,
-                child: GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation?.latitude ?? 0.0,
-                        currentLocation?.longitude ?? 0.0),
-                    zoom: 15.0,
-                  ),
-                  markers: markers,
-                  polylines: polylines,
-                  onMapCreated: (controller) {
-                    setState(() {
-                      mapController = controller;
-                    });
-                  },
-                ),
+              ElevatedButton(
+                onPressed: () {
+                  if (selectedRoute != null && selectedStation != null) {
+                    fetchBusSchedule(selectedStation!, selectedRoute!);
+                  }
+                },
+                child: const Text('Search'),
               ),
+              if (schedules.isNotEmpty)
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: DataTable(
+                    columns: [
+                      DataColumn(label: Text('Day')),
+                      for (var schedule in schedules)
+                        DataColumn(label: Text(schedule['name'])),
+                    ],
+                    rows: [
+                      DataRow(cells: [
+                        DataCell(Text('Monday')),
+                        ..._generateTimeCellsForDay('Monday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Tuesday')),
+                        ..._generateTimeCellsForDay('Tuesday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Wednesday')),
+                        ..._generateTimeCellsForDay('Wednesday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Thursday')),
+                        ..._generateTimeCellsForDay('Thursday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Friday')),
+                        ..._generateTimeCellsForDay('Friday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Saturday')),
+                        ..._generateTimeCellsForDay('Saturday'),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Text('Sunday')),
+                        ..._generateTimeCellsForDay('Sunday'),
+                      ]),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),

@@ -21,6 +21,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> routes = [];
   List<Map<String, dynamic>> schedules = [];
+  List<Map<String, dynamic>> busSchedule = [];
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -84,7 +85,6 @@ class _SchedulesPageState extends State<SchedulesPage> {
           routeDetails.add({
             'route_uid': route['route_uid'],
             'name': route['name'],
-            // Add other route details if needed
           });
         }
         return routeDetails;
@@ -93,6 +93,27 @@ class _SchedulesPageState extends State<SchedulesPage> {
       }
     } else {
       throw Exception('Failed to load routes');
+    }
+  }
+
+  Future<void> fetchBusSchedule(String stationUid, String routeUid) async {
+    final response = await http.get(Uri.parse(
+        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      if (data.isNotEmpty) {
+        setState(() {
+          busSchedule = List<Map<String, dynamic>>.from(data);
+        });
+      } else {
+        setState(() {
+          busSchedule = [];
+        });
+      }
+    } else {
+      setState(() {
+        busSchedule = [];
+      });
     }
   }
 
@@ -122,58 +143,15 @@ class _SchedulesPageState extends State<SchedulesPage> {
   Future<void> loadStationsForCity(String cityUid) async {
     try {
       stations = await getStationsByCity(cityUid);
-      setState(() {
-        // Frissítsük a widgetet az új állomásokkal
-      });
+      setState(() {});
     } catch (e) {
       logger.e('Error loading stations: $e');
     }
   }
 
-  Future<void> fetchBusSchedule(String stationUid, String routeUid) async {
-    final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid'));
-    if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      if (data.isNotEmpty) {
-        setState(() {
-          schedules = List<Map<String, dynamic>>.from(data);
-        });
-      } else {
-        setState(() {
-          schedules = [];
-        });
-      }
-    } else {
-      setState(() {
-        schedules = [];
-      });
-    }
-  }
-
-  List<DataCell> _generateTimeCellsForDay(String day) {
-    List<DataCell> cells = [];
-    final scheduleForDay = schedules
-        .firstWhere((schedule) => schedule['name'] == day, orElse: () => {});
-
-    if (scheduleForDay.isNotEmpty &&
-        scheduleForDay.containsKey('departure_times')) {
-      final List<dynamic> departureTimes = scheduleForDay['departure_times'];
-      for (var time in departureTimes) {
-        cells.add(DataCell(Text(time)));
-      }
-    } else {
-      for (var i = 0; i < 15; i++) {
-        cells.add(DataCell(Text('')));
-      }
-    }
-    return cells;
-  }
-
   @override
   void initState() {
     super.initState();
-    // Az inicializáló logika
     loadCities();
   }
 
@@ -257,45 +235,24 @@ class _SchedulesPageState extends State<SchedulesPage> {
                 },
                 child: const Text('Search'),
               ),
-              if (schedules.isNotEmpty)
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    columns: [
-                      DataColumn(label: Text('Day')),
-                      for (var schedule in schedules)
-                        DataColumn(label: Text(schedule['name'])),
-                    ],
-                    rows: [
-                      DataRow(cells: [
-                        DataCell(Text('Monday')),
-                        ..._generateTimeCellsForDay('Monday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Tuesday')),
-                        ..._generateTimeCellsForDay('Tuesday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Wednesday')),
-                        ..._generateTimeCellsForDay('Wednesday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Thursday')),
-                        ..._generateTimeCellsForDay('Thursday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Friday')),
-                        ..._generateTimeCellsForDay('Friday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Saturday')),
-                        ..._generateTimeCellsForDay('Saturday'),
-                      ]),
-                      DataRow(cells: [
-                        DataCell(Text('Sunday')),
-                        ..._generateTimeCellsForDay('Sunday'),
-                      ]),
-                    ],
+              if (busSchedule.isNotEmpty)
+                Container(
+                  height: 600,
+                  child: ListView.builder(
+                    itemCount: busSchedule.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Day: ${busSchedule[index]['name']}'),
+                          Text('Departure Times: '),
+                          SizedBox(height: 16.0),
+                          Text(
+                              ' ${busSchedule[index]['departure_times'].join(', ')}'),
+                          SizedBox(height: 16.0),
+                        ],
+                      );
+                    },
                   ),
                 ),
             ],

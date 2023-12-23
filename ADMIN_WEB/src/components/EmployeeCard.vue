@@ -10,9 +10,12 @@
         <p>Email: {{ employee.email }}</p>
         <p>Created on: {{ created }}</p>
       </v-card-subtitle>
-      <v-card-actions class="justify-center">
+      <v-card-actions class="justify-space-evenly">
         <v-btn prepend-icon="mdi-trash-can-outline" color="red" @click="deleteEmployee">
           Delete
+        </v-btn>
+        <v-btn prepend-icon="mdi-pencil-outline" @click="editEmployee">
+          Edit
         </v-btn>
       </v-card-actions>
   </v-card>
@@ -22,7 +25,7 @@
 import { computed } from 'vue';
 
 const props = defineProps(['employee'])
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['delete', 'edit'])
 
 const created = computed(() => {
   if(!props.employee.created_at) return null
@@ -32,6 +35,9 @@ const created = computed(() => {
 
 function deleteEmployee() {
   emit('delete')
+}
+function editEmployee() {
+  emit('edit')
 }
 </script>
 

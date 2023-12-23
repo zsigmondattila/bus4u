@@ -1,5 +1,11 @@
 <template>
-  <SectionTitle>
+    <SectionTitle v-if="employee">
+      Edit employee
+      <template #description>
+        Edit existing employee account
+      </template>
+    </SectionTitle>
+  <SectionTitle v-else>
     Add employee
     <template #description>
       Create new employee account
@@ -36,7 +42,8 @@
           <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
         </v-col>
         <v-col cols="6" sm="3">
-          <v-btn type="submit" size="40" block color="primary" :loading="isLoading"> Create </v-btn>
+          <v-btn v-if="employee" type="submit" size="40" block color="primary" :loading="isLoading"> Save </v-btn>
+          <v-btn v-else type="submit" size="40" block color="primary" :loading="isLoading"> Create </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -46,15 +53,16 @@
 <script setup>
 import axios from 'axios';
 import router from '@/router';
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 import { userStore } from '@/stores/userStore';
 import SectionTitle from '../components/SectionTitle.vue';
 
+const props = defineProps(['employee'])
 const user = userStore()
 const isLoading = ref(false)
 const error = ref('')
 
-const form = reactive({
+const form = ref({
   firstname: null,
   lastname: null,
   email: null,
@@ -88,27 +96,43 @@ const phone = [
 ]
 const confirmation = [
   (v) => !!v || 'The field is required',
-  (v) => v == form.password || 'Passwords must be the same'
+  (v) => v == form.value.password || 'Passwords must be the same'
 ]
 const required = [
 (v) => !!v || 'The field is required'
 ]
+
+if(props.employee) {
+  axios.get('https://bus4u.fast-table.com/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }}) // TODO: get employee by uid
+  .then(rsp => {
+    console.log(rsp.data)
+    rsp.data.forEach(employee => {
+      if(employee.uid.match(/[^@]+/)[0] == props.employee) {
+        form.value = employee
+      }
+    })
+  }).catch(() => error.value = 'Employee not found')
+}
 
 async function onSubmit(event) {
   error.value = ''
   let response = await event;
   if(!response.valid) return
   isLoading.value = true
-  axios.post('https://bus4u.fast-table.com/admin', form).then((rsp) => {
-    if(rsp.status === 200) {
-      router.replace({ name: 'employees' })
-    } else {
+  if(props.employee) {
+    console.error('no update method');
+  } else {
+    axios.post('https://bus4u.fast-table.com/admin', form.value).then((rsp) => {
+      if(rsp.status === 200) {
+        router.replace({ name: 'employees' })
+      } else {
+        isLoading.value = false
+      }
+    }).catch((err) => {
       isLoading.value = false
-    }
-  }).catch((err) => {
-    isLoading.value = false
-    error.value = err.response.data.errors.full_messages[0]
-  });
+      error.value = err.response.data.errors.full_messages[0]
+    });
+  }
 }
 </script>
 

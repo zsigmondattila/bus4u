@@ -8,7 +8,7 @@
   <v-container>
     <v-row>
       <v-col v-for="employee in employees" :key="employee.uid" cols="12" sm="6" md="4" lg="3" xl="2">
-        <EmployeeCard :employee="employee" @delete="deleteEmployee(employee)"/>
+        <EmployeeCard :employee="employee" @delete="deleteEmployee(employee)" @edit="editEmployee(employee)"/>
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3" xl="2">
         <v-card :to="{name: 'create-employee'}" height="100%" class="d-flex flex-column text-center" min-width="200">
@@ -33,6 +33,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import router from '../router';
 import EmployeeCard from '../components/EmployeeCard.vue';
 import SectionTitle from './SectionTitle.vue';
 import { userStore } from '../stores/userStore';
@@ -51,6 +52,10 @@ function deleteEmployee(employee) {
         employees.value = rsp.data
       }).catch(() => employees.value = [])
   }).catch(() => error.value = true)
+}
+
+function editEmployee(employee) {
+  router.push({ name: 'edit-employee', params: { employee: employee.uid.match(/[^@]+/)[0] }})
 }
 
 axios.get('https://bus4u.fast-table.com/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})

@@ -1,5 +1,11 @@
 <template>
-  <SectionTitle>
+    <SectionTitle v-if="bus">
+      Edit bus
+      <template #description>
+        Update existing bus
+      </template>
+    </SectionTitle>
+  <SectionTitle v-else>
     Add bus
     <template #description>
       Create new bus
@@ -33,7 +39,8 @@
           <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
         </v-col>
         <v-col cols="6" sm="3">
-          <v-btn type="submit" size="40" block color="primary" :loading="isLoading"> Create </v-btn>
+          <v-btn v-if="bus" type="submit" size="40" block color="primary" :loading="isLoading"> Save </v-btn>
+          <v-btn v-else type="submit" size="40" block color="primary" :loading="isLoading"> Create </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -47,6 +54,7 @@ import { reactive, ref } from 'vue';
 import { userStore } from '@/stores/userStore';
 import SectionTitle from '@/components/SectionTitle.vue';
 
+const props = defineProps(['bus'])
 const user = userStore()
 const isLoading = ref(false)
 const error = ref('')
@@ -75,21 +83,42 @@ const required = [
 (v) => !!v || 'The field is required'
 ]
 
+if(props.bus) {
+  axios.get('https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }}) // TODO: get bus by id
+  .then(rsp => {
+      rsp.data.forEach(bus => {
+        if(bus.bus_uid == props.bus.toUpperCase()) {
+          form.brand = bus.brand
+          form.license_plate = bus.license_plate
+          form.capacity = bus.capacity
+          form.manufacturing_year = `${bus.manufacturing_year}-01`
+          form.road_tax = bus.road_tax.substr(0,10)
+          form.technical_exam = bus.technical_exam.substr(0,10)
+          form.insurance = bus.insurance.substr(0,10)
+        }
+      });
+  }).catch(() => error.value = 'Bus not found')
+}
+
 async function onSubmit(event) {
   error.value = ''
   let response = await event;
   if(!response.valid) return
   isLoading.value = true
-  axios.post('https://bus4u.fast-table.com/v1/admin/create_bus', form).then((rsp) => {
-    if(rsp.status === 200) {
-      router.replace({ name: 'buses' })
-    } else {
+  if(props.bus) {
+    console.error('no update method available');
+  } else {
+    axios.post('https://bus4u.fast-table.com/v1/admin/create_bus', form).then((rsp) => {
+      if(rsp.status === 200) {
+        router.replace({ name: 'buses' })
+      } else {
+        isLoading.value = false
+      }
+    }).catch((err) => {
       isLoading.value = false
-    }
-  }).catch((err) => {
-    isLoading.value = false
-    error.value = err.response.data.errors.full_messages[0]
-  });
+      error.value = err.response.data.errors.full_messages[0]
+    });
+  }
 }
 </script>
 

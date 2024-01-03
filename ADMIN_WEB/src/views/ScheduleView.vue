@@ -81,12 +81,12 @@
           <v-btn @click="deleteSchedule" block> Cancel editing </v-btn>
         </v-col>
         <v-col cols="12" sm="6" md="3">
-          <v-btn @click="sendSchedule" color="primary" block> Save schedule </v-btn>
+          <v-btn @click="sendSchedule" color="primary" block :disabled="tempForm.names.length > 0"> Save schedule </v-btn>
         </v-col>
       </v-row>
     </v-container>
-    <v-snackbar v-model="notification">
-      {{ notification }}
+    <v-snackbar v-model="notification.show">
+      {{ notification.message }}
     </v-snackbar>
   </AppLayout>
 </template>
@@ -99,7 +99,10 @@ import AppLayout from '../components/AppLayout.vue';
 import SectionTitle from '../components/SectionTitle.vue';
 
 const user = userStore()
-const notification = ref(null)
+const notification = ref({
+  show: false,
+  message: ''
+})
 const timeInput = ref(null)
 const noTimesError = ref(null)
 const noStationError = ref(null)
@@ -201,7 +204,8 @@ function sendSchedule(){
         mainForm.route = null
         mainForm.station = null
       })
-      notification.value = 'Schedule saved successfully'
+      notification.value.message = 'Schedule saved successfully'
+      notification.value.show = true
       deleteSchedule();
     })
     .catch(err => console.error(err))

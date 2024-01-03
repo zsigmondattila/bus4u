@@ -112,8 +112,8 @@ function createRoute(){
 }
 
 function deleteStation(station){
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station_from_route', { params: { route_station_uid: station.route_station_uid }})
-  stations.value.splice(station, 1)
+  let i = stations.value.indexOf(station)
+  stations.value.splice(i, 1)
 }
 
 function addStation(e){
@@ -129,44 +129,54 @@ async function saveRoute(e) {
   let rsp = await e;
   if(rsp.valid) {
     isLoading.value = true
-    axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
-      .then(() => {
-        axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
-        .then(async (rsp) => {
-          for(let i=0; i<stations.value.length; i++) {
-            await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
-          }
-          axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
-            .then(rsp => {
-              if(rsp.status == 200) routes.value = rsp.data.routes
-          }).catch(() => routes.value = [])
-          isLoading.value = false
-          notification.value.message = 'Route saved successfully'
-          route.value = null
-          routeCreation.value = false
-        }).catch(() => {
-          isLoading.value = false
-          notification.value.message = 'Something went wrong, try again later.'
-        })
-      }).catch(() => {
+    if(route.value.route_uid){
+      try {
+        await axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
+      } catch {
         isLoading.value = false
         notification.value.message = 'Something went wrong, try again later.'
-      }).finally(() => {notification.value.show = true})
+        notification.value.show = true
+        return
+      }
+    }
+    axios.post('https://bus4u.fast-table.com/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
+    .then(async (rsp) => {
+      for(let i=0; i<stations.value.length; i++) {
+        await axios.post('https://bus4u.fast-table.com/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
+      }
+      axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
+        .then(rsp => {
+          if(rsp.status == 200) routes.value = rsp.data.routes
+        }).catch(() => routes.value = [])
+      isLoading.value = false
+      notification.value.message = 'Route saved successfully. Don\'t forget to update the timetable for this route too.'
+      route.value = null
+      routeCreation.value = false
+    }).catch(() => {
+      isLoading.value = false
+      notification.value.message = 'Something went wrong, try again later.'
+    }).finally(() => {notification.value.show = true})
   }
-  else console.warn('Not valid');
 }
 
 function deleteRoute() {
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { bus_uid: route.value.route_uid }})
-  .then(() => {
-    notification.value = 'Route deleted successfully'
-    route.value = ''
+  if(!route.value.route_uid) {
+    route.value = null
+    stations.value = []
     routeCreation.value = false
-    axios.get('https://bus4u.fast-table.com/v1/get_routes')
+    return
+  }
+  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
+  .then(() => {
+    notification.value.message = 'Route deleted successfully'
+    route.value = null
+    routeCreation.value = false
+    axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
       .then(rsp => {
         if(rsp.status == 200) routes.value = rsp.data.routes
       }).catch(() => routes.value = [])
-  }).catch(() => console.error('Cannot delete route'))
+  }).catch(() => notification.value.message = 'Cannot delete route')
+  .finally(() => notification.value.show = true)
 }
 
 function getStations(route){

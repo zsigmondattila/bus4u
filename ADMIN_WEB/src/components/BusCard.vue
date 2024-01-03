@@ -12,9 +12,12 @@
         <p>Insurance valid: {{ insurance }}</p>
         <p>Technical exam: {{ technicalExam }}</p>
       </v-card-subtitle>
-      <v-card-actions class="justify-center">
-        <v-btn prepend-icon="mdi-trash-can-outline" color="red" @click="deletebus">
+      <v-card-actions class="justify-space-evenly">
+        <v-btn prepend-icon="mdi-trash-can-outline" color="red" @click="deleteBus">
           Delete
+        </v-btn>
+        <v-btn prepend-icon="mdi-pencil-outline" @click="editBus">
+          Edit
         </v-btn>
       </v-card-actions>
   </v-card>
@@ -24,7 +27,7 @@
 import { computed } from 'vue';
 
 const props = defineProps(['bus'])
-const emit = defineEmits(['delete'])
+const emit = defineEmits(['delete', 'edit'])
 
 const roadTax = computed(() => {
   if(!props.bus.road_tax) return null
@@ -44,8 +47,12 @@ const technicalExam = computed(() => {
   return date.toLocaleDateString()
 })
 
-function deletebus() {
+function deleteBus() {
   emit('delete')
+}
+
+function editBus() {
+  emit('edit')
 }
 </script>
 

@@ -101,6 +101,15 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    def get_driver_by_id
+        driver = Admin.find_by(uid: params[:admin_uid])
+        if driver
+            render json: driver
+        else
+            render json: { error: "Invalid admin_uid!" }, status: :unprocessable_entity
+        end
+    end
+
     def update_driver
         driver = Admin.find_by(uid: params[:admin_uid])
         if driver

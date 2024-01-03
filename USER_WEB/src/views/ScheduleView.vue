@@ -109,8 +109,12 @@ async function onSubmit(e) {
   displayed.value = { station: form.station, route: form.route }
   try {
     timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
+    const days = {'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4, 'Saturday': 5, 'Sunday': 6}
+    timetable.value.sort((d1, d2) => {
+      return days[d1.name] - days[d2.name]
+    })
   } catch {
-      timetable.value = null
+    timetable.value = null
   }
   isLoadingTable.value = false
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations

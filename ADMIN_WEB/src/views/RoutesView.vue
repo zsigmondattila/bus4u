@@ -149,7 +149,7 @@ async function saveRoute(e) {
           if(rsp.status == 200) routes.value = rsp.data.routes
         }).catch(() => routes.value = [])
       isLoading.value = false
-      notification.value.message = 'Route saved successfully'
+      notification.value.message = 'Route saved successfully. Don\'t forget to update the timetable for this route too.'
       route.value = null
       routeCreation.value = false
     }).catch(() => {

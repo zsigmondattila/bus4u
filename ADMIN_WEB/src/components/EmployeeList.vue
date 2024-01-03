@@ -55,7 +55,7 @@ function deleteEmployee(employee) {
 }
 
 function editEmployee(employee) {
-  router.push({ name: 'edit-employee', params: { employee: employee.uid.match(/[^@]+/)[0] }})
+  router.push({ name: 'edit-employee', params: { employee: employee.uid.replaceAll('.', '/') }})
 }
 
 axios.get('https://bus4u.fast-table.com/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})

@@ -3,7 +3,7 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Departure timetable and map
+        Select a station and a bus to view the departure timetable and the route marked on the map
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
@@ -18,7 +18,7 @@
           <v-select :items="routes" :item-props="getName" label="Bus" :disabled="!form.station" :loading="!routes.length && !!form.station" v-model="form.route" class="text-field" hide-details="auto" :rules="rules"></v-select>
         </v-col>
         <v-col cols="12" sm="2" style="text-align: center;">
-          <v-btn type="submit" color="primary"> Search </v-btn>
+          <v-btn type="submit" color="primary" size="large"> Search </v-btn>
         </v-col>
       </v-row>
     </v-form>

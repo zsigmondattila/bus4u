@@ -3,7 +3,7 @@
     <SectionTitle>
       Live map
       <template #description>
-        Track live position of the buses on the map
+        Select a route to track live position of the buses on the map
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">

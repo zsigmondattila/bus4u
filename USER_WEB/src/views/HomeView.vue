@@ -28,7 +28,7 @@
             <v-text-field label="Time" type="time" v-model="form.time" class="text-field" hide-details="auto"></v-text-field>
           </v-col>
           <v-col cols="12" style="text-align: center;">
-            <v-btn type="submit" color="primary"> Search </v-btn>
+            <v-btn type="submit" color="primary" size="large"> Search </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -38,7 +38,7 @@
         <div v-if="!routes">
           <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
         </div>
-        <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found with the data given. </p>
+        <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found after the specified time between the selected stations. </p>
         <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @purchased="ticketBought"></RouteListElement>
       </v-list>
     </v-container>

@@ -3,7 +3,7 @@
     <SectionTitle>
       Routes
       <template #description>
-        Select a route from the list below or create a new one
+        Select a route from the list below to edit or create a new one
       </template>
     </SectionTitle>
     <br>
@@ -21,15 +21,22 @@
     </v-form>
     <div v-if="route">
       <v-divider class="my-5"></v-divider>
-      <h3 class="text-subtitle-1"> Edit route </h3>
+      <h3 class="text-subtitle-1"> Route editor </h3>
       <v-form @submit.prevent="saveRoute">
         <v-container>
           <v-row dense>
-            <v-col cols="12" md="9">
-              <v-text-field label="Name" v-model="route.name" :rules="nameRules"></v-text-field>
+            <v-col cols="12" sm="9" xl="6">
+              <v-text-field label="Name" v-model="route.name" :rules="nameRules" hint="It can include start and finish cities or a unique route name"></v-text-field>
             </v-col>
-            <v-col cols="12" md="3">
-              <v-text-field label="Basic fare" v-model="route.basic_fare" suffix="Lei"></v-text-field>
+            <v-col cols="12" sm="3" xl="2">
+              <v-text-field label="Basic fare" v-model="route.basic_fare" suffix="Lei" hint="Fare applied once in a travel"></v-text-field>
+            </v-col>
+            <v-col cols="12" xl="4">
+              <v-autocomplete label="Station" :items="allStations" :item-props="getProps" v-model="newStation" :error="emptyStation">
+              <template #append>
+                <v-btn class="form-button" @click="addStation"> Add station </v-btn>
+              </template>
+              </v-autocomplete>
             </v-col>
           </v-row>
           <v-list border class="py-0 my-3">
@@ -43,16 +50,6 @@
               </template>
             </v-list-item>
           </v-list>
-          <v-form class="my-2" validate-on="submit" @submit.prevent="addStation">
-            <v-row dense>
-              <v-col cols="9">
-                <v-autocomplete label="Add station" :items="allStations" :item-props="getProps" v-model="newStation" :rules="rules"></v-autocomplete>
-              </v-col>
-              <v-col cols="3">
-                <v-btn type="submit" class="form-button"> Add </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
           <v-row justify="center" justify-lg="end" class="mt-8" dense>
             <v-col cols="6" lg="3">
               <v-btn class="form-button" @click="deleteRoute" color="red" variant="outlined"> Delete route </v-btn>
@@ -83,6 +80,7 @@ const notification = ref({
   message: ''
 })
 const isLoading = ref(false)
+const emptyStation = ref(false)
 
 const route = ref(null)
 const routes = ref([])
@@ -116,13 +114,12 @@ function deleteStation(station){
   stations.value.splice(i, 1)
 }
 
-function addStation(e){
-  e.then(rsp => {
-    if(rsp.valid) {
-      stations.value.push(newStation.value)
-      newStation.value = ''
-    }
-  }).catch()
+function addStation(){
+  if(newStation.value) {
+    emptyStation.value = false
+    stations.value.push(newStation.value)
+    newStation.value = ''
+  } else emptyStation.value = true
 }
 
 async function saveRoute(e) {

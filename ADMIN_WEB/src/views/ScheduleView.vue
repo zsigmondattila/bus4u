@@ -3,17 +3,20 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Select a route and a station to edit/create timetables
+        Select a route and a start station to add/edit timetables
       </template>
     </SectionTitle>
     <v-form class="my-5">
       <v-container>
         <v-row justify="center">
-          <v-col cols="12" sm="6">
+          <v-col cols="12" lg="4">
             <v-autocomplete :items="routes" :item-props="getProps" label="Route" v-model="mainForm.route" class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getStations"></v-autocomplete>
           </v-col>
-          <v-col cols="12" sm="6">
-            <v-autocomplete :items="stations" :item-props="getProps" label="Station" :disabled="!mainForm.route" v-model="mainForm.station" class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getTimetable"></v-autocomplete>
+          <v-col cols="12" sm="6" lg="4">
+            <v-autocomplete :items="stations" :item-props="getProps" label="From station" :disabled="!mainForm.route" v-model="mainForm.station" class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getTimetable"></v-autocomplete>
+          </v-col>
+          <v-col cols="12" sm="6" lg="4">
+            <v-text-field label="To station"  :disabled="!mainForm.route" readonly v-model="toStation" class="text-field" hide-details="auto"></v-text-field>
           </v-col>
         </v-row>
       </v-container>
@@ -35,11 +38,11 @@
                 </template>
               </v-text-field>
             </v-col>
-            <v-col cols="12" md="9">
+            <v-col cols="12" md="9" xl="10">
               <v-chip v-for="(time, index) in elem.departure_times" :key="index" class="mr-2 mb-2">{{ time }}</v-chip>
             </v-col>
-            <v-col cols="6" md="3">
-              <v-btn color="red-darken-4" block @click="deleteTimetable(index)"> Delete </v-btn>
+            <v-col cols="6" md="3" xl="2">
+              <v-btn color="red-darken-4" block @click="deleteTimetable(index)" class="del-btn"> Delete </v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -48,39 +51,37 @@
     <v-form v-if="remainingDays.length" :disabled="!mainForm.station" class="my-3" @submit.prevent="saveTimetable" validate-on="submit" @reset="resetTimetable">
       <v-container class="border bg-grey-darken-4">
         <v-row justify="center">
-          <v-col cols="12">
-            <v-combobox :items="remainingDays" label="Day(s)" v-model="tempForm.names" multiple hide-details="auto" density="comfortable" :rules="dayRules"></v-combobox>
+          <v-col cols="12" lg="10" order="0">
+            <v-combobox :items="remainingDays" label="Day(s)" v-model="tempForm.names" multiple hide-details="auto" density="comfortable" :rules="dayRules" hint="Departure days"></v-combobox>
           </v-col>
-          <v-col cols="12" sm="6">
-            <v-text-field label="Fare" type="number" v-model="tempForm.fare" suffix="Lei" :rules="required"></v-text-field>
+          <v-col cols="12" sm="6" lg="5" order="1" order-lg="3">
+            <v-text-field label="Fare" type="number" v-model="tempForm.fare" suffix="Lei" :rules="required" :hint="fareHint"></v-text-field>
           </v-col>
-          <v-col cols="12" sm="6">
-            <v-text-field ref="timeInput" label="Time" v-model="tempTime" type="time" @keydown.enter.prevent="addTimeToArray" :error-messages="noTimesError">
+          <v-col cols="12" sm="6" lg="5" order="2" order-lg="4">
+            <v-text-field ref="timeInput" label="Time" v-model="tempTime" type="time" @keydown.enter.prevent="addTimeToArray" :error-messages="noTimesError" :hint="timeHint">
               <template #append>
-                <v-btn @click="addTimeToArray" class="h-100"> Add </v-btn>
+                <v-btn @click="addTimeToArray" class="h-100"> Add time </v-btn>
               </template>
             </v-text-field>
           </v-col>
-          <v-col cols="12">
+          <v-col cols="12" order="3" order-lg="6">
             <v-chip v-for="(time, index) in tempForm.departure_times" :key="time" closable @click:close="deleteTimeFromArray(index)" class="mr-2 mb-2">{{ time }}</v-chip>
           </v-col>
-        </v-row>
-        <v-row justify="center" justify-md="end">
-          <v-col cols="6" md="3">
+          <v-col cols="6" md="3" lg="2" order="4" order-lg="2">
             <v-btn type="reset" color="red" variant="outlined" block> Clear </v-btn>
           </v-col>
-          <v-col cols="6" md="3">
-            <v-btn type="submit" color="primary" block> Add </v-btn>
+          <v-col cols="6" md="3" lg="2" order="5" order-lg="5">
+            <v-btn type="submit" color="primary" block> Save day(s) </v-btn>
           </v-col>
         </v-row>
       </v-container>
     </v-form>
     <v-container v-if="timetable.length">
       <v-row justify="center" justify-md="end">
-        <v-col cols="12" sm="6" md=3>
+        <v-col cols="12" sm="6" md=3 xl="2">
           <v-btn @click="deleteSchedule" block> Cancel editing </v-btn>
         </v-col>
-        <v-col cols="12" sm="6" md="3">
+        <v-col cols="12" sm="6" md="3" xl=2>
           <v-btn @click="sendSchedule" color="primary" block :disabled="tempForm.names.length > 0"> Save schedule </v-btn>
         </v-col>
       </v-row>
@@ -121,6 +122,22 @@ const remainingDays = computed(() => {
     })
   })
   return arr
+})
+const toStation = computed(() => {
+  if(!mainForm.station) return null
+  for(let i = 0; i < stations.value.length; i++) {
+    if(mainForm.station.station_uid == stations.value[i].station_uid) {
+      if(i+1 == stations.value.length) return stations.value[0].name
+      else return stations.value[i+1].name
+    }
+  }
+  return null
+})
+const fareHint = computed(() => {
+  return mainForm.station ? `Price between ${mainForm.station.name} - ${toStation.value}` : 'Price'
+})
+const timeHint = computed(() => {
+  return mainForm.station ? `Departure times from ${mainForm.station.name}` : ''
 })
 
 const tempForm = ref({
@@ -216,6 +233,7 @@ function getProps(route){
 }
 
 function getStations(v) {
+  mainForm.station = null
   axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: { route_uid: v.route_uid }})
   .then(rsp => {
     if(rsp.status == 200) stations.value = rsp.data.stations
@@ -241,5 +259,7 @@ axios.get('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company', { par
 </script>
 
 <style scoped>
-
+.v-btn:not(.del-btn) {
+  height: 50px;
+}
 </style>

@@ -1,42 +1,49 @@
-import 'package:flutter/material.dart';
 import 'package:bus4u/NavBar.dart';
+import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static bool isLoggedIn = false;
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backgroundColor: Colors.white,
-          ),
-          scaffoldBackgroundColor: Colors.white,
-          primarySwatch: MaterialColor(
-            0xFFEF6C00,
-            <int, Color>{
-              50: Color(0xFFFFF3E0),
-              100: Color(0xFFFFE0B2),
-              200: Color(0xFFFFCC80),
-              300: Color(0xFFFFB74D),
-              400: Color(0xFFFFA726),
-              500: Color(0xFFF57C00),
-              600: Color(0xFFF57C00),
-              700: Color(0xFFF57C00),
-              800: Color(0xFFEF6C00),
-              900: Color(0xFFE65100),
-            },
-          )),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+        ),
+        scaffoldBackgroundColor: Colors.white,
+        primarySwatch: MaterialColor(
+          0xFFEF6C00,
+          <int, Color>{
+            50: Color(0xFFFFF3E0),
+            100: Color(0xFFFFE0B2),
+            200: Color(0xFFFFCC80),
+            300: Color(0xFFFFB74D),
+            400: Color(0xFFFFA726),
+            500: Color(0xFFF57C00),
+            600: Color(0xFFF57C00),
+            700: Color(0xFFF57C00),
+            800: Color(0xFFEF6C00),
+            900: Color(0xFFE65100),
+          },
+        ),
+      ),
       title: 'bus4u',
       home: AnimatedSplashScreen(
         splash: Image.asset('assets/images/logo-text.png'),
-        nextScreen: const MyHomePage(),
+        nextScreen: MyHomePage(
+          currentPage: const HomePage(),
+          isLoggedIn: isLoggedIn,
+        ),
         splashTransition: SplashTransition.fadeTransition,
         backgroundColor: Colors.white,
       ),
@@ -45,13 +52,45 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  final Widget? currentPage;
+  final bool isLoggedIn;
+
+  const MyHomePage({
+    Key? key,
+    this.currentPage,
+    this.isLoggedIn = false,
+  }) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget currentPage = const HomePage();
+  late Widget currentPage;
+
+  void signOut() async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+      );
+      if (response.statusCode == 200) {
+        setState(() {
+          MyApp.isLoggedIn = false;
+          currentPage = const HomePage();
+        });
+      } else {
+        print('Logout failed');
+      }
+    } catch (e) {
+      print('Error during logout: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    currentPage = widget.currentPage!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +103,22 @@ class _MyHomePageState extends State<MyHomePage> {
               'assets/images/logo-text.png',
               height: 40,
             ),
+            if (widget.isLoggedIn)
+              GestureDetector(
+                onTap: signOut,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Icon(Icons.account_circle),
+                    ),
+                    Text(
+                      'Sign Out',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
           ],
         ),
         iconTheme: IconThemeData(color: Colors.orange[800]),
@@ -74,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
             currentPage = page;
           });
         },
+        isLoggedIn: widget.isLoggedIn,
       ),
       body: currentPage,
     );

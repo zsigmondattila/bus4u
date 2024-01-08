@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:logger/logger.dart';
+import 'package:location/location.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class SchedulesPage extends StatefulWidget {
   const SchedulesPage({Key? key}) : super(key: key);
@@ -15,7 +17,16 @@ class _SchedulesPageState extends State<SchedulesPage> {
   String? selectedStation;
   String? selectedRoute;
 
+LocationData? currentLocation;
+  final Location location = Location();
+  bool _permission = false;
+
   var logger = Logger();
+
+  late GoogleMapController mapController;
+  Set<Marker> markers = {};
+  List<LatLng> polylineCoordinates = [];
+  Set<Polyline> polylines = {};
 
   List<Map<String, dynamic>> cities = [];
   List<Map<String, dynamic>> stations = [];
@@ -149,10 +160,107 @@ class _SchedulesPageState extends State<SchedulesPage> {
     }
   }
 
+
+ void updateMap() {
+    setState(() {
+      markers.clear();
+      polylines.clear();
+
+      for (var station in busSchedule) {
+        double latitude = double.parse(station['latitude']);
+        double longitude = double.parse(station['longitude']);
+
+        markers.add(
+          Marker(
+            markerId: MarkerId(station['station_uid']),
+            position: LatLng(latitude, longitude),
+            infoWindow: InfoWindow(title: station['name']),
+          ),
+        );
+
+        polylineCoordinates.add(LatLng(latitude, longitude));
+      }
+
+      polylines.add(
+        Polyline(
+          polylineId: PolylineId('route'),
+          color: Colors.blue,
+          points: polylineCoordinates,
+        ),
+      );
+    });
+  }
+
+    void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+    void _addCurrentLocationMarker() {
+    if (currentLocation != null) {
+      setState(() {
+        markers.add(
+          Marker(
+            markerId: const MarkerId('currentLocation'),
+            position: LatLng(
+              currentLocation!.latitude!,
+              currentLocation!.longitude!,
+            ),
+            infoWindow: const InfoWindow(
+              title: 'Current Location',
+              snippet: 'Your current position',
+            ),
+            icon:
+                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+          ),
+        );
+        mapController.animateCamera(
+          CameraUpdate.newLatLngZoom(
+            LatLng(
+              currentLocation!.latitude!,
+              currentLocation!.longitude!,
+            ),
+            15.0,
+          ),
+        );
+      });
+    }
+  }
+
+    void getLocation() async {
+    try {
+      LocationData locData = (await location.getLocation());
+      setState(() {
+        currentLocation = locData;
+        _addCurrentLocationMarker();
+        mapController.animateCamera(
+          CameraUpdate.newLatLngZoom(
+            LatLng(locData.latitude!, locData.longitude!),
+            15.0,
+          ),
+        );
+      });
+    } catch (e) {
+      logger.e("Error getting location, $e");
+    }
+  }
+
+    void checkPermission() async {
+    final hasPermission = await location.serviceEnabled();
+    if (!hasPermission) {
+      _permission = await location.requestService();
+      if (_permission) {
+        getLocation();
+      }
+    } else {
+      getLocation();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     loadCities();
+    checkPermission();
   }
 
   @override
@@ -177,6 +285,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     selectedRoute = null;
                     stations.clear();
                     routes.clear();
+                    
                   });
                   if (value != null) {
                     loadStationsForCity(value);
@@ -230,29 +339,27 @@ class _SchedulesPageState extends State<SchedulesPage> {
               ElevatedButton(
                 onPressed: () {
                   if (selectedRoute != null && selectedStation != null) {
-                    fetchBusSchedule(selectedStation!, selectedRoute!);
+                    fetchBusSchedule(selectedStation!, selectedRoute!)
+                        .then((_) {
+                      updateMap();
+                    });
                   }
                 },
                 child: const Text('Search'),
               ),
+
               if (busSchedule.isNotEmpty)
                 Container(
-                  height: 600,
-                  child: ListView.builder(
-                    itemCount: busSchedule.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Day: ${busSchedule[index]['name']}'),
-                          Text('Departure Times: '),
-                          SizedBox(height: 16.0),
-                          Text(
-                              ' ${busSchedule[index]['departure_times'].join(', ')}'),
-                          SizedBox(height: 16.0),
-                        ],
-                      );
-                    },
+                  height: 300,
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(currentLocation?.latitude ?? 0.0,
+                        currentLocation?.longitude ?? 0.0),
+                    zoom: 15.0,
+                  ),
+                    markers: markers,
+                    polylines: polylines,
                   ),
                 ),
                 

@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
         "ticket_price": selectedTicket.ticketPrice,
         "company_uid": selectedTicket.companyName,
         "user_uid":
-            "attila.zsigmond2002@gmail.com", // Replace with actual user uid
+            "attila.zsigmond2002@gmail.com", // uid
         "type": "normal",
         "route_uid": selectedTicket.routeName,
         "from_station_uid": selectedTicket.startStation,
@@ -239,9 +239,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Available Tickets'),
-      ),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(
@@ -254,8 +251,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(height: 20),
                 const Text('From', style: TextStyle(fontSize: 18)),
-
-                // "From" város kiválasztása
+              // From város kiválasztása
                 DropdownButtonFormField<String>(
                   value: _tempSelectedStartCity ?? selectedStartCity,
                   hint: const Text('Select Start City'),
@@ -279,8 +275,7 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-
-                // "From" megálló kiválasztása
+              // From megálló kiválasztása
                 if (stations.isNotEmpty)
                   DropdownButtonFormField<String>(
                     value: _tempSelectedStartStation ?? selectedStartStation,
@@ -296,8 +291,7 @@ class _HomePageState extends State<HomePage> {
                     }).toList(),
                   ),
                 const SizedBox(height: 20),
-
-                // "To" város kiválasztása
+              // To város kiválasztása
                 const SizedBox(height: 20),
                 const Text('To', style: TextStyle(fontSize: 18)),
                 DropdownButtonFormField<String>(
@@ -323,8 +317,7 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-
-                // "To" megálló kiválasztása
+              // To megálló kiválasztása
                 if (destinationStations.isNotEmpty)
                   DropdownButtonFormField<String>(
                     value: _tempSelectedDestinationStation ??
@@ -342,8 +335,7 @@ class _HomePageState extends State<HomePage> {
                     }).toList(),
                   ),
                 const SizedBox(height: 20),
-
-                // Dátum és idő kiválasztása
+              // Dátum és idő kiválasztása
                 TextFormField(
                   readOnly: true,
                   onTap: () async {

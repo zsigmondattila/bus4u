@@ -76,6 +76,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # List of drivers at a company
     def list_of_drivers
         company = Company.find_by(company_uid: params[:company_uid])
         drivers = Admin.where(company_uid: company.company_uid, role: "driver")
@@ -87,6 +88,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # Delete a given driver
     def delete_driver
         driver = Admin.find_by(uid: params[:admin_uid])
         if driver
@@ -101,6 +103,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # Get a driver by his admin_uid
     def get_driver_by_id
         driver = Admin.find_by(uid: params[:admin_uid])
         if driver
@@ -110,6 +113,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # Update the data of a given driver
     def update_driver
         driver = Admin.find_by(uid: params[:admin_uid])
         if driver
@@ -189,6 +193,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # Get a bus by its bus_uid
     def get_bus_by_id
         bus = Bus.find_by(bus_uid: params[:bus_uid])
         if bus
@@ -198,6 +203,7 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+    # Update the data of a bus
     def update_bus
         bus = Bus.find_by(bus_uid: params[:bus_uid])
         if bus

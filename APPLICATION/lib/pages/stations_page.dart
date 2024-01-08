@@ -213,6 +213,7 @@ class _StationsPageState extends State<StationsPage> {
               ),
               Expanded(
                 child: GoogleMap(
+                  
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: CameraPosition(
                     target: LatLng(currentLocation?.latitude ?? 0.0,

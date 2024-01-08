@@ -336,6 +336,7 @@ private
 #Filter the suitable departure times
 def filter_departure_times(route_station, date, time)
   today = date.strftime("%A")
+  puts "today #{today} time #{time}"
   timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: today)
                         .pluck(:departure_time)
                         .map { |dt| dt.change(year: time.year, month: time.month, day: time.day)}
@@ -355,9 +356,9 @@ def calculate_fare_sum(route_uid, sstation, dstation)
     end_sequence = rs2.sequence
 
     if start_sequence < end_sequence
-      stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence-1)
     else
-      stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence)
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence-1)
     end
 
     fare_sum = 0

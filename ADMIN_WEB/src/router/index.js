@@ -44,6 +44,7 @@ const router = createRouter({
       component: ElementsView,
       children: [
         { path: '', name: 'employees', component: EmployeeList },
+        { path: ':employee', name: 'edit-employee', component: CreateEmployee, props: true },
         { path: 'create', name: 'create-employee', component: CreateEmployee }
       ]
     },
@@ -52,6 +53,7 @@ const router = createRouter({
       component: ElementsView,
       children: [
         { path: '', name: 'buses', component: BusList },
+        { path: ':bus', name: 'edit-bus', component: CreateBus, props: true },
         { path: 'create', name: 'create-bus', component: CreateBus }
       ]
     },

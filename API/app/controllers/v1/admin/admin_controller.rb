@@ -100,6 +100,35 @@ class V1::Admin::AdminController < ApplicationController
             render json: { error: "Cannot find driver" }, status: :not_found
         end
     end
+
+    def get_driver_by_id
+        driver = Admin.find_by(uid: params[:admin_uid])
+        if driver
+            render json: driver
+        else
+            render json: { error: "Invalid admin_uid!" }, status: :unprocessable_entity
+        end
+    end
+
+    def update_driver
+        driver = Admin.find_by(uid: params[:admin_uid])
+        if driver
+            driver.email = params[:email] if params.key?(:email)
+            driver.firstname = params[:firstname] if params.key?(:firstname)
+            driver.lastname = params[:lastname] if params.key?(:lastname)
+            driver.role = params[:role] if params.key?(:role)
+            driver.company = Company.find_by(company_uid: params[:company_uid]) if params.key?(:company_uid)
+            driver.address = params[:address] if params.key?(:address)
+            driver.phone_number = params[:phone_number] if params.key?(:phone_number)
+            if driver.save
+                render json: { success: "Driver updated successfully" }
+            else
+                render json: { error: "Cannot save driver" }, status: :unprocessable_entity
+            end
+        else
+            render json: { error: "Cannot find driver" }, status: :not_found
+        end
+    end
     
     #Creating a city model, it requires a name and a postal code
     def create_city
@@ -171,8 +200,25 @@ class V1::Admin::AdminController < ApplicationController
 
     def update_bus
         bus = Bus.find_by(bus_uid: params[:bus_uid])
-        
-    end
+        if bus
+          bus.company = Company.find_by(company_uid: params[:company_uid]) if params.key?(:company_uid)
+          bus.license_plate = params[:license_plate] if params.key?(:license_plate)
+          bus.brand = params[:brand] if params.key?(:brand)
+          bus.manufacturing_year = params[:manufacturing_year] if params.key?(:manufacturing_year)
+          bus.capacity = params[:capacity] if params.key?(:capacity)
+          bus.road_tax = params[:road_tax] if params.key?(:road_tax)
+          bus.insurance = params[:insurance] if params.key?(:insurance)
+          bus.technical_exam = params[:technical_exam] if params.key?(:technical_exam)
+      
+          if bus.save
+            render json: { success: "Bus updated successfully" }
+          else
+            render json: { error: "Invalid data for updating the bus" }, status: :unprocessable_entity
+          end
+        else
+          render json: { error: "Invalid bus_uid!" }, status: :unprocessable_entity
+        end
+      end
 
     #Creating a station where a bus can stop and user can check the exact location of it
     def create_station

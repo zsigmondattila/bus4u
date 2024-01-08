@@ -8,7 +8,7 @@
   <v-container>
     <v-row>
       <v-col v-for="bus in buses" :key="bus.bus_uid" cols="12" sm="6" md="4" lg="3" xl="2">
-        <BusCard :bus="bus" @delete="deleteBus(bus)"/>
+        <BusCard :bus="bus" @delete="deleteBus(bus)" @edit="editBus(bus)"/>
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3" xl="2">
         <v-card :to="{name: 'create-bus'}" height="100%" class="d-flex flex-column text-center" min-width="200">
@@ -33,6 +33,7 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import router from '../router';
 import BusCard from '../components/BusCard.vue';
 import SectionTitle from './SectionTitle.vue';
 import { userStore } from '../stores/userStore';
@@ -51,6 +52,10 @@ function deleteBus(bus) {
         buses.value = rsp.data
       }).catch(() => buses.value = [])
   }).catch(() => error.value = true)
+}
+
+function editBus(bus) {
+  router.push({ name: 'edit-bus', params: { bus: bus.bus_uid }})
 }
 
 axios.get('https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})

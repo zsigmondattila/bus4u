@@ -3,12 +3,12 @@
     <SectionTitle>
       Stations
       <template #description>
-        Edit stations
+        Delete stations from the list or add new station by clicking on the plus icon.
       </template>
     </SectionTitle>
     <v-row class="mt-1">
-      <v-col cols="12" lg="6">
-        <v-list border class="py-0 mb-5" max-height="320" @click:select="panMap">
+      <v-col cols="12" md="6">
+        <v-list border class="py-0 mb-5" :max-height="formIsOpen ? 320 : 600" @click:select="panMap">
           <v-list-item v-for="station in stations" :key="station.station_uid" :value="station" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
             <template #subtitle>
               {{ station.address }}&nbsp;&nbsp;►&nbsp;&nbsp;{{ station.longitude }} · {{ station.latitude }}
@@ -18,10 +18,10 @@
             </template>
           </v-list-item>
         </v-list>
-        <div v-if="!formIsOpen" class="d-flex">
-          <v-btn icon="mdi-plus-circle" class="mx-auto" @click="formIsOpen = true"></v-btn>
+        <div v-if="!formIsOpen" class="d-flex mt-n11">
+          <v-btn icon="mdi-plus-circle" class="mx-auto" @click="formIsOpen = true" color="primary"></v-btn>
         </div>
-        <v-form v-else @submit.prevent="addStation" validate-on="submit" class="my-5 bg-grey-darken-4 pa-5 border-md">
+        <v-form v-else @submit.prevent="addStation" validate-on="submit" class="my-5 bg-grey-darken-4 pa-4 border-md">
           <p class="text-subtitle-1"> Create new Station </p>
           <v-row justify="center" class="mt-0" dense>
             <v-col cols="12" order="1">
@@ -46,10 +46,10 @@
               <v-btn type="submit" color="primary" class="form-button" block> Save </v-btn>
             </v-col>
           </v-row>
-          <p class="text-caption text-disabled pa-1 opacity-5"> Click on the map to fill the coordinates. </p>
+          <p class="text-caption text-disabled pa-1 opacity-5"> Click on the map to fill the coordinates, city and address. </p>
         </v-form>
       </v-col>
-      <v-col cols="12" lg="6">
+      <v-col cols="12" md="6">
         <MapBox ref="mapBox" :stations="stations" v-model:pointer="newStation"/>
       </v-col>
     </v-row>

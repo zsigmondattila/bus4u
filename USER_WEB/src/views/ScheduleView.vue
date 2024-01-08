@@ -3,7 +3,7 @@
     <SectionTitle>
       Schedule
       <template #description>
-        Departure timetable and map
+        Select a station and a bus to view the departure timetable and the route marked on the map
       </template>
     </SectionTitle>
     <v-form @submit.prevent="onSubmit" validate-on="submit" class="my-5">
@@ -18,13 +18,14 @@
           <v-select :items="routes" :item-props="getName" label="Bus" :disabled="!form.station" :loading="!routes.length && !!form.station" v-model="form.route" class="text-field" hide-details="auto" :rules="rules"></v-select>
         </v-col>
         <v-col cols="12" sm="2" style="text-align: center;">
-          <v-btn type="submit" color="primary"> Search </v-btn>
+          <v-btn type="submit" color="primary" size="large"> Search </v-btn>
         </v-col>
       </v-row>
     </v-form>
     <div class="border rounded">
-      <h3 v-if="timetable.length" class="pa-3 text-subtitle-2"> <b>Departure times for station: </b>{{ displayed.station.name }}<b> and bus: </b>{{ displayed.route.name }}</h3>
-      <v-table class="border-t rounded-t-0">
+      <p v-if="!timetable" class="pa-3 text-subtitle-2 text-medium-emphasis text-center"> There are no departure times for this station and bus. </p>
+      <h3 v-else-if="timetable.length" class="pa-3 text-subtitle-2"> <b>Departure times for station: </b>{{ displayed.station.name }}<b> and bus: </b>{{ displayed.route.name }}</h3>
+      <v-table v-if="timetable" class="border-t rounded-t-0">
         <tbody v-if="timetable.length">
           <tr v-for="day in timetable" :key="day.name">
             <td class="font-weight-medium">{{ day.name }}</td>
@@ -93,6 +94,7 @@ function getBuses(route) {
     .then(rsp => {
       if(rsp.status == 200) {
         buses.value = rsp.data
+        if(buses.value.length === 0) clearInterval(updateInterval)
       }
     }).catch(() => {
       buses.value = []
@@ -105,7 +107,15 @@ async function onSubmit(e) {
   clearInterval(updateInterval)
   isLoadingTable.value = true
   displayed.value = { station: form.station, route: form.route }
-  timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
+  try {
+    timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
+    const days = {'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4, 'Saturday': 5, 'Sunday': 6}
+    timetable.value.sort((d1, d2) => {
+      return days[d1.name] - days[d2.name]
+    })
+  } catch {
+    timetable.value = null
+  }
   isLoadingTable.value = false
   route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
   map.value.panTo([form.station.longitude, form.station.latitude])

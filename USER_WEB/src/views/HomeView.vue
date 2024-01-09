@@ -94,6 +94,19 @@ const uniqueStation = [
   (v) => !v || v.station_uid != form.fromStation.station_uid || 'The 2 stations must not be the same.'
 ]
 
+const lastData = sessionStorage.getItem('home-form')
+if(lastData) {
+  const data = JSON.parse(lastData)
+  form.fromCity = data.fromCity
+  form.toCity = data.toCity
+  getStartStation(data.fromCity)
+  getDestStation(data.toCity)
+  form.fromStation = data.fromStation
+  form.toStation = data.toStation
+  form.date = data.date
+  form.time = data.time
+}
+
 function getDateStr(){
   let month = date.getMonth() + 1;
   let day = date.getDate();
@@ -113,6 +126,7 @@ async function ticketBought(ticket){
 
 async function onSubmit(e) {
   if(!(await e).valid) return
+  sessionStorage.setItem('home-form', JSON.stringify(form))
   isLoadingRoutes.value = true
   let params = {}
   if(form.fromStation && form.toStation){

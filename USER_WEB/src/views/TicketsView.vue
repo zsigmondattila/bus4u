@@ -66,7 +66,11 @@ watchEffect(() => {
     axios.get('https://bus4u.fast-table.com/v1/tickets_of_user', { headers: { Authorization: user.authorization}, params: { uid: user.uid }})
       .then(rsp => {
         isLoading.value = false
-        tickets.value = rsp.data.slice().reverse()
+        tickets.value = rsp.data.sort((a, b) => {
+          if(!a.is_valid && b.is_valid) return 1
+          if(!b.is_valid && a.is_valid) return -1
+          return b.date_of_purchase.localeCompare(a.date_of_purchase)
+        })
         for(let i=0; i<tickets.value.length; i++) {
           if(!tickets.value[i].is_valid) continue
           QRCode.toDataURL(tickets.value[i].ticket_uid, { width: 250 }).then(rsp => tickets.value[i].qr = rsp)

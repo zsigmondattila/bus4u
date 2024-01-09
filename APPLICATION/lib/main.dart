@@ -71,9 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void signOut() async {
     try {
-      final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
-      );
+      String? uid = await readData('user_uid');
+      String? client = await readData('client');
+      String? access_token = await readData('access_token');
+      print('uid ${uid} client ${client} ');
+      final response = await http.delete(
+          Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+          body: {'uid': uid, 'client': client, 'access-token': access_token});
       if (response.statusCode == 200) {
         setState(() {
           MyApp.isLoggedIn = false;
@@ -104,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'assets/images/logo-text.png',
               height: 40,
             ),
-            if (widget.isLoggedIn)
+            if (MyApp.isLoggedIn)
               GestureDetector(
                 onTap: signOut,
                 child: Column(

@@ -36,9 +36,13 @@ class _LoginPageState extends State<LoginPage> {
 
         String token = response.headers['authorization'] ?? '';
         String user_uid = response.headers['uid'] ?? '';
+        String client = response.headers['client'] ?? '';
+        String access_token = response.headers['access-token'] ?? '';
         print("uiduser $user_uid");
         saveData('token', token);
         saveData('user_uid', user_uid);
+        saveData('client', client);
+        saveData('access_token', access_token);
 
         MyApp.isLoggedIn = true;
 

@@ -6,6 +6,7 @@ import 'package:bus4u/pages/stations_page.dart';
 import 'package:bus4u/pages/ticket_page.dart';
 import 'package:bus4u/pages/tracking_page.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NavBar extends StatelessWidget {
   final Function(Widget) onSelect;
@@ -89,8 +90,7 @@ class NavBar extends StatelessWidget {
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {
-                onSelect(const TicketPage());
-                Navigator.pop(context);
+                launch('https://bus4u.netlify.com/tickets');
               },
             ),
           ),

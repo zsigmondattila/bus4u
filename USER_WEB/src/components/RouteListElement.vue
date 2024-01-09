@@ -16,7 +16,7 @@
           </div>
         </template>
         <template #append>
-          <v-btn color="primary" type="secondary" height="44" variant="outlined" @click="buy"> Buy </v-btn>
+          <v-btn color="primary" type="secondary" height="44" variant="outlined" @click="buy" :loading="isLoading"> Buy </v-btn>
         </template>
       </v-text-field>
     </div>
@@ -34,6 +34,7 @@ const props = defineProps(['trip'])
 const emit = defineEmits(['purchased'])
 
 const count = ref(1)
+const isLoading = ref(false)
 
 const ticketRules = [
   (n) => n <= 50 || 'Too much',
@@ -47,12 +48,14 @@ const departureTime = computed(() => {
 
 function buy() {
   if(!user.uid) router.push({name: 'login'});
+  isLoading.value = true
   axios.post('https://bus4u.fast-table.com/v1/generate_a_ticket',
     { quantity: count.value, ticket_price: props.trip.ticket_price, type:'normal', route_uid: props.trip.route_uid, from_station_uid: props.trip.from_station_uid, to_station_uid: props.trip.to_station_uid, company_uid: props.trip.company_uid },
     { headers: { Authorization: user.authorization }})
     .then(rsp => {
       emit('purchased', rsp.data)
-    }).catch(err => console.log(err))
+      isLoading.value = false
+    }).catch(() => isLoading.value = false)
 }
 </script>
 

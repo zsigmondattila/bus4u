@@ -342,7 +342,6 @@ def filter_departure_times(route_station, date, time)
                         .pluck(:departure_time)
                         .map { |dt| dt.change(year: time.year, month: time.month, day: time.day)}
                         .select { |dt| dt >= time }
-                        .map { |departure_time| departure_time.strftime("%H:%M") }
                         .take(3)
   timetables
 end

@@ -57,11 +57,11 @@ class _ScanTicketState extends State<ScanTicket> {
 
     if (statusCode == 202) {
       backgroundColor = Color.fromARGB(255, 205, 252, 207);
-      textColor = Colors.black; // Szövegszín a háttérszínhez illesztve
+      textColor = Colors.black;
     } else {
       backgroundColor = Color.fromARGB(255, 255, 185, 180);
       textColor = const Color.fromARGB(
-          255, 0, 0, 0); // Szövegszín a háttérszínhez illesztve
+          255, 0, 0, 0);
     }
 
     showDialog(
@@ -72,7 +72,7 @@ class _ScanTicketState extends State<ScanTicket> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          contentPadding: EdgeInsets.all(10.0), // Add padding on all sides
+          contentPadding: EdgeInsets.all(10.0),
           content: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -88,9 +88,9 @@ class _ScanTicketState extends State<ScanTicket> {
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20.0, // Set font size to 20
+                      fontSize: 20.0, 
                     ),
-                    textAlign: TextAlign.center, // Center align the text
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

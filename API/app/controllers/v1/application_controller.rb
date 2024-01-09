@@ -212,6 +212,7 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
+  #Rendering the tickets of a user
   def tickets_of_user
     results = []
     user = current_user
@@ -267,7 +268,7 @@ class V1::ApplicationController < ApplicationController
     end  
   end  
 
-
+  #Request to check the validity of a code given in the email
   def verify_code_email
     user_email = params[:user_email]
     code_submitted = params[:verification_code]
@@ -295,7 +296,7 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-
+  #Request to get the routes filtered by a city
   def get_routes_by_city
     city = City.find_by(city_uid: params[:city_uid])
     routes = []
@@ -313,7 +314,7 @@ class V1::ApplicationController < ApplicationController
     end
   end
 
-  #
+  #Request whick gives back the actual buses on a route
   def get_bus_locations_by_route
     route = Route.find_by(route_uid: params[:route_uid])
     buses = Bus.where(company_uid: route.company_uid, current_route_uid: route.route_uid, tracked: true)
@@ -336,11 +337,13 @@ private
 #Filter the suitable departure times
 def filter_departure_times(route_station, date, time)
   today = date.strftime("%A")
+  puts "today #{today} time #{time}"
   timetables = Timetable.where(route_station_uid: route_station.route_station_uid, name: today)
                         .pluck(:departure_time)
                         .map { |dt| dt.change(year: time.year, month: time.month, day: time.day)}
                         .select { |dt| dt >= time }
-                        .map { |departure_time| departure_time.strftime("%H:%M") }
+                        .map { |departure_time| departure_time.to_i }
+                        .take(3)
   timetables
 end
 
@@ -355,9 +358,9 @@ def calculate_fare_sum(route_uid, sstation, dstation)
     end_sequence = rs2.sequence
 
     if start_sequence < end_sequence
-      stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence)
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: start_sequence..end_sequence-1)
     else
-      stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence)
+      stations_between = RouteStation.where(route_uid: route_uid, sequence: end_sequence..start_sequence-1)
     end
 
     fare_sum = 0
@@ -386,18 +389,21 @@ def process_routes(routes, start_station, destination_station, date, time, resul
       filtered_departure_times = filter_departure_times(route_station, date, sel_time)
 
       comp = Company.find_by(company_uid: route.company_uid)
-      result << {
-        from_station: start_station.name,
-        from_station_uid: start_station.station_uid,
-        to_station: destination_station.name,
-        to_station_uid: destination_station.station_uid,
-        company_name: comp.name,
-        company_uid: comp.company_uid,
-        route_name: route.name,
-        route_uid: route.route_uid,
-        ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
-        departure_times: filtered_departure_times
-      }
+
+      filtered_departure_times.each do |departure_time|
+        result << {
+          from_station: start_station.name,
+          from_station_uid: start_station.station_uid,
+          to_station: destination_station.name,
+          to_station_uid: destination_station.station_uid,
+          company_name: comp.name,
+          company_uid: comp.company_uid,
+          route_name: route.name,
+          route_uid: route.route_uid,
+          ticket_price: calculate_fare_sum(route.route_uid, start_station.station_uid, destination_station.station_uid),
+          departure_time: departure_time
+        }
+      end
     end
   end
 end

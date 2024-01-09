@@ -17,7 +17,7 @@ class Ticket {
   final String companyName;
   final String routeName;
   final double ticketPrice;
-  final List<String> departureTimes;
+  final int departureTime;
   int quantity;
 
   Ticket({
@@ -26,7 +26,7 @@ class Ticket {
     required this.companyName,
     required this.routeName,
     required this.ticketPrice,
-    required this.departureTimes,
+    required this.departureTime,
     required this.quantity,
   });
 }
@@ -170,8 +170,7 @@ class _HomePageState extends State<HomePage> {
           String companyName = ticketData['company_name'];
           String routeName = ticketData['route_name'];
           double ticketPrice = double.parse(ticketData['ticket_price']);
-          List<String> departureTimes =
-              List<String>.from(ticketData['departure_times']);
+          int departureTime = ticketData['departure_time'];
 
           Ticket ticket = Ticket(
             startStation: startStation,
@@ -179,10 +178,11 @@ class _HomePageState extends State<HomePage> {
             companyName: companyName,
             routeName: routeName,
             ticketPrice: ticketPrice,
-            departureTimes: departureTimes,
+            departureTime: departureTime,
             quantity: 1,
           );
           tickets.add(ticket);
+          print("price ${ticket.ticketPrice}");
         }
         setState(() {
           availableTickets = tickets;
@@ -204,8 +204,7 @@ class _HomePageState extends State<HomePage> {
         "quantity": selectedTicket.quantity,
         "ticket_price": selectedTicket.ticketPrice,
         "company_uid": selectedTicket.companyName,
-        "user_uid":
-            "attila.zsigmond2002@gmail.com", // uid
+        "user_uid": "attila.zsigmond2002@gmail.com", // uid
         "type": "normal",
         "route_uid": selectedTicket.routeName,
         "from_station_uid": selectedTicket.startStation,
@@ -224,6 +223,7 @@ class _HomePageState extends State<HomePage> {
         logger.e('Ticket generated successfully');
       } else {
         logger.e('Failed to generate ticket');
+        print(response.body);
       }
     } catch (e) {
       logger.e('Error buying ticket: $e');
@@ -251,7 +251,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(height: 20),
                 const Text('From', style: TextStyle(fontSize: 18)),
-              // From város kiválasztása
+                // From város kiválasztása
                 DropdownButtonFormField<String>(
                   value: _tempSelectedStartCity ?? selectedStartCity,
                   hint: const Text('Select Start City'),
@@ -275,7 +275,7 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-              // From megálló kiválasztása
+                // From megálló kiválasztása
                 if (stations.isNotEmpty)
                   DropdownButtonFormField<String>(
                     value: _tempSelectedStartStation ?? selectedStartStation,
@@ -291,7 +291,7 @@ class _HomePageState extends State<HomePage> {
                     }).toList(),
                   ),
                 const SizedBox(height: 20),
-              // To város kiválasztása
+                // To város kiválasztása
                 const SizedBox(height: 20),
                 const Text('To', style: TextStyle(fontSize: 18)),
                 DropdownButtonFormField<String>(
@@ -317,7 +317,7 @@ class _HomePageState extends State<HomePage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 20),
-              // To megálló kiválasztása
+                // To megálló kiválasztása
                 if (destinationStations.isNotEmpty)
                   DropdownButtonFormField<String>(
                     value: _tempSelectedDestinationStation ??
@@ -335,7 +335,7 @@ class _HomePageState extends State<HomePage> {
                     }).toList(),
                   ),
                 const SizedBox(height: 20),
-              // Dátum és idő kiválasztása
+                // Dátum és idő kiválasztása
                 TextFormField(
                   readOnly: true,
                   onTap: () async {
@@ -408,84 +408,69 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
                       children: displayedTickets
                           .asMap()
                           .entries
-                          .expand((ticketEntry) => ticketEntry
-                                  .value.departureTimes
-                                  .map((departureTime) {
-                                final int ticketIndex = ticketEntry.key;
-                                return Column(
-                                  children: [
-                                    ListTile(
-                                      title: Text(
-                                        '${ticketEntry.value.startStation} - ${ticketEntry.value.destinationStation}',
-                                      ),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              'Company: ${ticketEntry.value.companyName}'),
-                                          Text(
-                                              'Route: ${ticketEntry.value.routeName}'),
-                                          Text(
-                                              'Ticket Price: \$${ticketEntry.value.ticketPrice.toStringAsFixed(2)}'),
-                                          Text(
-                                              'Departure Time: $departureTime'),
-                                        ],
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              if (displayedTickets[ticketIndex]
-                                                      .quantity >
-                                                  1) {
-                                                displayedTickets[ticketIndex]
-                                                    .quantity--;
-                                              }
-                                            });
-                                          },
-                                          icon: const Icon(Icons.remove),
-                                        ),
-                                        Container(
-                                          width: 40,
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            '${displayedTickets[ticketIndex].quantity}',
-                                            style:
-                                                const TextStyle(fontSize: 18),
-                                          ),
-                                        ),
-                                        IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              displayedTickets[ticketIndex]
-                                                  .quantity++;
-                                            });
-                                          },
-                                          icon: const Icon(Icons.add),
-                                        ),
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            buyTicket(ticketIndex);
-                                          },
-                                          child: const Text('Buy Ticket'),
-                                        ),
-                                      ],
-                                    ),
-                                    const Divider(),
-                                  ],
-                                );
-                              }))
-                          .toList(),
+                          .expand((ticketEntry) {
+                        final int ticketIndex = ticketEntry.key;
+                        final ticket = ticketEntry.value;
+
+                        return [
+                          ListTile(
+                            title: Text(
+                              '${ticket.startStation} - ${ticket.destinationStation}',
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Company: ${ticket.companyName}'),
+                                Text('Route: ${ticket.routeName}'),
+                                Text(
+                                    'Ticket Price: \$${ticket.ticketPrice.toStringAsFixed(2)}'),
+                                Text('Departure Time: ${ticket.departureTime}'),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    if (ticket.quantity > 1) {
+                                      ticket.quantity--;
+                                    }
+                                  });
+                                },
+                                icon: const Icon(Icons.remove),
+                              ),
+                              Container(
+                                width: 40,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '${ticket.quantity}',
+                                  style: const TextStyle(fontSize: 18),
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    ticket.quantity++;
+                                  });
+                                },
+                                icon: const Icon(Icons.add),
+                              ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  buyTicket(ticketIndex);
+                                },
+                                child: const Text('Buy Ticket'),
+                              ),
+                            ],
+                          ),
+                          const Divider(),
+                        ];
+                      }).toList(),
                     ),
                   ),
               ],

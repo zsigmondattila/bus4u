@@ -11,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool isLoggedIn = false;
+  static late String token;
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -104,7 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset(
+              Text(
+                '$currentPage',
+                style: TextStyle(color:Colors.black,fontSize: 20),
+              ),
+              SizedBox(width: 50),
+              Image.asset(
               'assets/images/logo-text.png',
               height: 40,
             ),

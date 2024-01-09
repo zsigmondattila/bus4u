@@ -42,9 +42,13 @@ class _GPSState extends State<GPS> {
 
   Future<void> _fetchBuses() async {
     final String companyUid = await readData("company") ?? "";
+    final String token = await readData("token") ?? "";
     final response = await http.get(
       Uri.parse(
           'https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
+          headers: {
+      "Authorization": "Bearer $token",
+    },
     );
 
     if (response.statusCode == 200) {
@@ -62,9 +66,11 @@ class _GPSState extends State<GPS> {
 
   Future<void> _fetchRoutes() async {
     final String companyUid = await readData("company") ?? "";
+    final String token = await readData("token") ?? "";
+
     final response = await http.get(
-      Uri.parse(
-          'https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
+      Uri.parse('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
+      headers: {"Authorization": "Bearer $token"},
     );
 
     if (response.statusCode == 200) {
@@ -88,6 +94,7 @@ class _GPSState extends State<GPS> {
   }
 
   Future<void> _setBusTracked() async {
+    final String token = await readData("token") ?? "";
     if (selectedBus != null) {
       final Map<String, dynamic> requestBody = {
         'license_plate': selectedBus!,
@@ -96,6 +103,9 @@ class _GPSState extends State<GPS> {
       final response = await http.post(
         Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_tracked'),
         body: requestBody,
+        headers: {
+        "Authorization": "Bearer $token",
+        },
       );
 
       if (response.statusCode != 200) {
@@ -105,6 +115,7 @@ class _GPSState extends State<GPS> {
   }
 
   Future<void> _setBusUntracked() async {
+    final String token = await readData("token") ?? "";
     if (selectedBus != null) {
       final Map<String, dynamic> requestBody = {
         'license_plate': selectedBus!,
@@ -113,6 +124,9 @@ class _GPSState extends State<GPS> {
       final response = await http.post(
         Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_untracked'),
         body: requestBody,
+        headers: {
+        "Authorization": "Bearer $token",
+        },
       );
 
       if (response.statusCode != 200) {
@@ -158,6 +172,7 @@ class _GPSState extends State<GPS> {
   }
 
   void _sendCurrentLocation() async {
+    final String token = await readData("token") ?? "";
     if (_isGpsEnabled && _isSwitched && selectedBus != null) {
       final Map<String, dynamic> requestBody = {
         'license_plate': selectedBus!,
@@ -169,7 +184,9 @@ class _GPSState extends State<GPS> {
       final response = await http.post(
         Uri.parse('https://bus4u.fast-table.com/v1/admin/change_bus_location'),
         body: jsonEncode(requestBody),
-        headers: {'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json',
+        "Authorization": "Bearer $token",
+      },
       );
 
       if (response.statusCode == 200) {

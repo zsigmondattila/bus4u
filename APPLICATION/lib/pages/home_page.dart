@@ -1,3 +1,4 @@
+import 'package:bus4u/main.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,8 +15,12 @@ class HomePage extends StatefulWidget {
 class Ticket {
   final String startStation;
   final String destinationStation;
+  final String startStationUID;
+  final String destinationStationUID;
   final String companyName;
+  final String companyUID;
   final String routeName;
+  final String routeUID;
   final double ticketPrice;
   final int departureTime;
   int quantity;
@@ -23,8 +28,12 @@ class Ticket {
   Ticket({
     required this.startStation,
     required this.destinationStation,
+    required this.startStationUID,
+    required this.destinationStationUID,
     required this.companyName,
+    required this.companyUID,
     required this.routeName,
+    required this.routeUID,
     required this.ticketPrice,
     required this.departureTime,
     required this.quantity,
@@ -43,6 +52,8 @@ class _HomePageState extends State<HomePage> {
   final String _tempSelectedDate = '';
   final String _tempSelectedTime = '';
   var logger = Logger();
+  String? token;
+  String? user_uid;
 
   late String selectedDate = '';
   late String selectedTime = '';
@@ -145,8 +156,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> fetchRoutes() async {
-    if (selectedStartCity == null ||
-        selectedDestinationCity == null) {
+    if (selectedStartCity == null || selectedDestinationCity == null) {
       logger.e('Please select all cities and stations');
       return;
     }
@@ -164,17 +174,25 @@ class _HomePageState extends State<HomePage> {
 
         for (var ticketData in ticketsData) {
           String startStation = ticketData['from_station'];
+          String startStationUID = ticketData['from_station_uid'];
           String destinationStation = ticketData['to_station'];
+          String destinationStationUID = ticketData['to_station_uid'];
           String companyName = ticketData['company_name'];
+          String companyUID = ticketData['company_uid'];
           String routeName = ticketData['route_name'];
+          String routeUID = ticketData['route_uid'];
           double ticketPrice = double.parse(ticketData['ticket_price']);
           int departureTime = ticketData['departure_time'];
 
           Ticket ticket = Ticket(
             startStation: startStation,
+            startStationUID: startStationUID,
             destinationStation: destinationStation,
+            destinationStationUID: destinationStationUID,
             companyName: companyName,
+            companyUID: companyUID,
             routeName: routeName,
+            routeUID: routeUID,
             ticketPrice: ticketPrice,
             departureTime: departureTime,
             quantity: 1,
@@ -197,22 +215,29 @@ class _HomePageState extends State<HomePage> {
   Future<void> buyTicket(int ticketIndex) async {
     try {
       final Ticket selectedTicket = displayedTickets[ticketIndex];
+      token = await readData('token');
+      user_uid = await readData('user_uid');
+
+      print("uuuid ${user_uid}");
 
       final Map<String, dynamic> ticketData = {
         "quantity": selectedTicket.quantity,
         "ticket_price": selectedTicket.ticketPrice,
-        "company_uid": selectedTicket.companyName,
-        "user_uid": "attila.zsigmond2002@gmail.com", // uid
+        "company_uid": selectedTicket.companyUID,
+        "user_uid": user_uid,
         "type": "normal",
-        "route_uid": selectedTicket.routeName,
-        "from_station_uid": selectedTicket.startStation,
-        "to_station_uid": selectedTicket.destinationStation,
+        "route_uid": selectedTicket.routeUID,
+        "from_station_uid": selectedTicket.startStationUID,
+        "to_station_uid": selectedTicket.destinationStationUID,
       };
+
+      print(ticketData);
 
       final response = await http.post(
         Uri.parse('https://bus4u.fast-table.com/v1/generate_a_ticket'),
         headers: <String, String>{
           'Content-Type': 'application/json',
+          'Authorization': token ?? ""
         },
         body: jsonEncode(ticketData),
       );
@@ -239,6 +264,8 @@ class _HomePageState extends State<HomePage> {
           },
         );
         print(response.statusCode);
+      } else {
+        print(response.body);
       }
     } catch (e) {
       logger.e('Error buying ticket: $e');
@@ -429,8 +456,12 @@ class _HomePageState extends State<HomePage> {
                           .expand((ticketEntry) {
                         final int ticketIndex = ticketEntry.key;
                         final ticket = ticketEntry.value;
-                        DateTime depTimestamp = DateTime.fromMillisecondsSinceEpoch(ticket.departureTime * 1000, isUtc: true);
-                        String departureTime = '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
+                        DateTime depTimestamp =
+                            DateTime.fromMillisecondsSinceEpoch(
+                                ticket.departureTime * 1000,
+                                isUtc: true);
+                        String departureTime =
+                            '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
                         return [
                           ListTile(
                             title: Text(

@@ -146,9 +146,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchRoutes() async {
     if (selectedStartCity == null ||
-        selectedStartStation == null ||
-        selectedDestinationCity == null ||
-        selectedDestinationStation == null) {
+        selectedDestinationCity == null) {
       logger.e('Please select all cities and stations');
       return;
     }
@@ -221,9 +219,26 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         logger.e('Ticket generated successfully');
-      } else {
+      } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
-        print(response.body);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Unauthorized'),
+              content: Text('Please sign in before continuing!'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+        print(response.statusCode);
       }
     } catch (e) {
       logger.e('Error buying ticket: $e');
@@ -414,7 +429,8 @@ class _HomePageState extends State<HomePage> {
                           .expand((ticketEntry) {
                         final int ticketIndex = ticketEntry.key;
                         final ticket = ticketEntry.value;
-
+                        DateTime depTimestamp = DateTime.fromMillisecondsSinceEpoch(ticket.departureTime * 1000, isUtc: true);
+                        String departureTime = '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
                         return [
                           ListTile(
                             title: Text(
@@ -426,8 +442,8 @@ class _HomePageState extends State<HomePage> {
                                 Text('Company: ${ticket.companyName}'),
                                 Text('Route: ${ticket.routeName}'),
                                 Text(
-                                    'Ticket Price: \$${ticket.ticketPrice.toStringAsFixed(2)}'),
-                                Text('Departure Time: ${ticket.departureTime}'),
+                                    'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
+                                Text('Departure Time: ${departureTime}'),
                               ],
                             ),
                           ),

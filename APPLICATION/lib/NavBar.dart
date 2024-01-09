@@ -1,6 +1,6 @@
 import 'package:bus4u/pages/about_page.dart';
+import 'package:bus4u/pages/account_page.dart';
 import 'package:bus4u/pages/home_page.dart';
-import 'package:bus4u/pages/login_page.dart';
 import 'package:bus4u/pages/schedules_page.dart';
 import 'package:bus4u/pages/stations_page.dart';
 import 'package:bus4u/pages/ticket_page.dart';
@@ -9,78 +9,140 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
   final Function(Widget) onSelect;
-  const NavBar({Key? key, required this.onSelect}) : super(key: key);
+  final bool isLoggedIn;
+
+  const NavBar({
+    Key? key,
+    required this.onSelect,
+    required this.isLoggedIn,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
+      child: Column(
         children: [
-          const UserAccountsDrawerHeader(
-            accountName: Text('Account name'),
-            accountEmail: Text('example@gmail.com'),
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              image: DecorationImage(
-                  image: AssetImage('assets/images/logo-text.png')),
+          Padding(
+            padding: const EdgeInsets.all(50.0),
+            child: Container(
+              width: 100,
+              height: 100,
+              child: const Icon(
+                Icons.person_outline,
+                size: 100,
+                color: Colors.black,
+              ),
             ),
           ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () {
-              onSelect(const HomePage());
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.home, color: Colors.orange, size: 35),
+              title: const Text(
+                'Home',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const HomePage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.calendar_month),
-            title: const Text('Schedules'),
-            onTap: () {
-              onSelect(const SchedulesPage());
-              Navigator.pop(context);
-            },
+    
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.calendar_month,
+                  color: Colors.orange, size: 35),
+              title: const Text(
+                'Schedules',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const SchedulesPage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.location_pin),
-            title: const Text('Stations'),
-            onTap: () {
-              onSelect(const StationsPage());
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.location_pin,
+                  color: Colors.orange, size: 35),
+              title: const Text(
+                'Stations',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const StationsPage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.label_rounded),
-            title: const Text('My tickets'),
-            onTap: () {
-              onSelect(const TicketPage());
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.label_rounded,
+                  color: Colors.orange, size: 35),
+              title: const Text(
+                'My tickets',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const TicketPage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.directions_bus),
-            title: const Text('Tracking bus'),
-            onTap: () {
-              onSelect(const TrackingPage());
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.directions_bus,
+                  color: Colors.orange, size: 35),
+              title: const Text(
+                'Tracking bus',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const TrackingPage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About'),
-            onTap: () {
-              onSelect(const AboutPage());
-              Navigator.pop(context);
-            },
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListTile(
+              leading: const Icon(Icons.verified_user,
+                  color: Colors.orange, size: 35),
+              title: const Text(
+                'Profile',
+                style: TextStyle(fontSize: 20),
+              ),
+              onTap: () {
+                onSelect(const AccountPage());
+                Navigator.pop(context);
+              },
+            ),
           ),
-          const Divider(),
-          ListTile(
-            title: const Text('Account'),
-            leading: const Icon(Icons.account_circle),
-            onTap: () {
-              onSelect(const LoginPage());
-              Navigator.pop(context);
-            },
+          Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ListTile(
+                  title: const Text(
+                    'About',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  leading:
+                      const Icon(Icons.info, color: Colors.orange, size: 35),
+                  onTap: () {
+                    onSelect(const AboutPage());
+                    Navigator.pop(context);
+                  },
+                ),
+              ),
+            ),
           ),
         ],
       ),

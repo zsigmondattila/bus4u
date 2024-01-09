@@ -1,11 +1,11 @@
 <template>
-  <div v-if="trip.departure_times.length" class="border d-flex flex-wrap flex-sm-nowrap justify-center">
+  <div v-if="trip.departure_time" class="border d-flex flex-wrap flex-sm-nowrap justify-center">
     <v-list-item class="flex-1-1"
       density="compact"
       :subtitle="`${trip.from_station} ➞ ${trip.to_station}`"
       prepend-icon="mdi-bus">
       <template #title>
-        <b>{{ trip.departure_times[0] }}</b> • {{trip.route_name}}
+        <b>{{ departureTime }}</b> • {{trip.route_name}}
       </template>
     </v-list-item>
     <div class="flex-0-0-100 flex-sm-0-0 pa-3">
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import router from '@/router';
 import axios from 'axios';
 import { userStore } from '@/stores/userStore';
@@ -39,6 +39,11 @@ const ticketRules = [
   (n) => n <= 50 || 'Too much',
   (n) => n > 0 || 'Not enough'
 ]
+const departureTime = computed(() => {
+  const d = new Date(props.trip.departure_time * 1000)
+  const minutes = d.getUTCMinutes()
+  return `${d.getUTCHours()}:${minutes > 9 ? minutes : '0' + minutes}`
+})
 
 function buy() {
   if(!user.uid) router.push({name: 'login'});

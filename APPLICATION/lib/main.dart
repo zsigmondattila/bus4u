@@ -2,7 +2,7 @@ import 'package:bus4u/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:http/http.dart' as http;
+
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +10,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool isLoggedIn = false;
+  static late String token;
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -68,23 +69,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late Widget currentPage;
 
-  void signOut() async {
-    try {
-      final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
-      );
-      if (response.statusCode == 200) {
-        setState(() {
-          MyApp.isLoggedIn = false;
-          currentPage = const HomePage();
-        });
-      } else {
-        print('Logout failed');
-      }
-    } catch (e) {
-      print('Error during logout: $e');
-    }
-  }
+
 
   @override
   void initState() {
@@ -99,26 +84,15 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset(
+              Text(
+                '$currentPage',
+                style: TextStyle(color:Colors.black,fontSize: 20),
+              ),
+              SizedBox(width: 50),
+              Image.asset(
               'assets/images/logo-text.png',
               height: 40,
             ),
-            if (widget.isLoggedIn)
-              GestureDetector(
-                onTap: signOut,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(Icons.account_circle),
-                    ),
-                    Text(
-                      'Sign Out',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
           ],
         ),
         iconTheme: IconThemeData(color: Colors.orange[800]),

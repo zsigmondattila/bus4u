@@ -225,7 +225,10 @@ function sendSchedule(){
       notification.value.show = true
       deleteSchedule();
     })
-    .catch(err => console.error(err))
+    .catch(() => {
+      notification.value.message = 'Something went wrong'
+      notification.value.show = true
+    })
 }
 
 function getProps(route){

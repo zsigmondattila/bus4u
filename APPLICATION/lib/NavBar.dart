@@ -48,7 +48,6 @@ class NavBar extends StatelessWidget {
               },
             ),
           ),
-    
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: ListTile(
@@ -100,7 +99,7 @@ class NavBar extends StatelessWidget {
               leading: const Icon(Icons.directions_bus,
                   color: Colors.orange, size: 35),
               title: const Text(
-                'Tracking bus',
+                'Bus tracking',
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {

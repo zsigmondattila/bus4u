@@ -100,7 +100,7 @@ class NavBar extends StatelessWidget {
               leading: const Icon(Icons.directions_bus,
                   color: Colors.orange, size: 35),
               title: const Text(
-                'Tracking bus',
+                'Live map',
                 style: TextStyle(fontSize: 20),
               ),
               onTap: () {

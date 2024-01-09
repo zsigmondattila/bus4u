@@ -33,10 +33,16 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         Map<String, dynamic> responseBody = json.decode(response.body);
-        
+
         String token = response.headers['authorization'] ?? '';
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('token', token);
+        String user_uid = response.headers['uid'] ?? '';
+        String client = response.headers['client'] ?? '';
+        String access_token = response.headers['access-token'] ?? '';
+        print("uiduser $user_uid");
+        saveData('token', token);
+        saveData('user_uid', user_uid);
+        saveData('client', client);
+        saveData('access_token', access_token);
 
         MyApp.isLoggedIn = true;
 

@@ -2,7 +2,8 @@ import 'package:bus4u/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -69,7 +70,27 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late Widget currentPage;
 
-
+  void signOut() async {
+    try {
+      String? uid = await readData('user_uid');
+      String? client = await readData('client');
+      String? access_token = await readData('access_token');
+      print('uid ${uid} client ${client} ');
+      final response = await http.delete(
+          Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+          body: {'uid': uid, 'client': client, 'access-token': access_token});
+      if (response.statusCode == 200) {
+        setState(() {
+          MyApp.isLoggedIn = false;
+          currentPage = const HomePage();
+        });
+      } else {
+        print('Logout failed');
+      }
+    } catch (e) {
+      print('Error during logout: $e');
+    }
+  }
 
   @override
   void initState() {
@@ -93,6 +114,22 @@ class _MyHomePageState extends State<MyHomePage> {
               'assets/images/logo-text.png',
               height: 40,
             ),
+            if (MyApp.isLoggedIn)
+              GestureDetector(
+                onTap: signOut,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Icon(Icons.account_circle),
+                    ),
+                    Text(
+                      'Sign Out',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+              ),
           ],
         ),
         iconTheme: IconThemeData(color: Colors.orange[800]),
@@ -108,4 +145,20 @@ class _MyHomePageState extends State<MyHomePage> {
       body: currentPage,
     );
   }
+}
+
+Future<void> saveData(key, value) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString(key, value);
+}
+
+Future<String?> readData(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  final value = prefs.getString(key);
+  return value;
+}
+
+Future<void> removeData(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove(key);
 }

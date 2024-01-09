@@ -35,7 +35,8 @@ dependencies:
   flutter_polyline_points: 
   google_maps_flutter: 
   intl:
-  location:  
+  location: 
+  url_launcher: 
   animated_splash_screen:
   qr_flutter:
   flutter_secure_storage:

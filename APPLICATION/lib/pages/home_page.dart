@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -244,6 +245,36 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         logger.e('Ticket generated successfully');
+         showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Ticket Ordered Successfully!'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    launch('https://bus4u.netlify.com/tickets');
+                  },
+                  child: Text(
+                    'If you want to scan your ticket, please click this text to visit our website',
+                  ),
+                ),
+              ],
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
         showDialog(

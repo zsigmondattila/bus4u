@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:logger/logger.dart';
-import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'dart:convert';
+import 'package:location/location.dart';
+import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
 
 class SchedulesPage extends StatefulWidget {
   const SchedulesPage({Key? key}) : super(key: key);
@@ -16,23 +16,20 @@ class _SchedulesPageState extends State<SchedulesPage> {
   String? selectedCity;
   String? selectedStation;
   String? selectedRoute;
-
-LocationData? currentLocation;
+  GoogleMapController? mapController;
+  LocationData? currentLocation;
   final Location location = Location();
   bool _permission = false;
-
   var logger = Logger();
 
-  late GoogleMapController mapController;
-  Set<Marker> markers = {};
+  List<Marker> markers = [];
   List<LatLng> polylineCoordinates = [];
-  Set<Polyline> polylines = {};
-
+  List<Polyline> polylines = [];
   List<Map<String, dynamic>> cities = [];
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> routes = [];
   List<Map<String, dynamic>> schedules = [];
-  List<Map<String, dynamic>> busSchedule = [];
+  List<Map<String, dynamic>> departureTimes = [];
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -107,24 +104,29 @@ LocationData? currentLocation;
     }
   }
 
-  Future<void> fetchBusSchedule(String stationUid, String routeUid) async {
+  Future<List<Map<String, dynamic>>> getStationsOfRoute(String routeUid) async {
     final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid'));
+        'https://bus4u.fast-table.com/v1/get_stations_of_a_route?route_uid=$routeUid'));
     if (response.statusCode == 200) {
-      final List<dynamic> data = json.decode(response.body);
-      if (data.isNotEmpty) {
-        setState(() {
-          busSchedule = List<Map<String, dynamic>>.from(data);
-        });
+      final Map<String, dynamic> data = json.decode(response.body);
+      if (data.containsKey('stations')) {
+        final List<dynamic> stationsData = data['stations'];
+        List<Map<String, dynamic>> stationDetails = [];
+        for (var station in stationsData) {
+          stationDetails.add({
+            'route_station_uid': station['route_station_uid'],
+            'station_uid': station['station_uid'],
+            'name': station['name'],
+            'longitude': station['longitude'],
+            'latitude': station['latitude'],
+          });
+        }
+        return stationDetails;
       } else {
-        setState(() {
-          busSchedule = [];
-        });
+        throw Exception('Invalid response format - stations not found');
       }
     } else {
-      setState(() {
-        busSchedule = [];
-      });
+      throw Exception('Failed to load stations');
     }
   }
 
@@ -160,42 +162,53 @@ LocationData? currentLocation;
     }
   }
 
-
- void updateMap() {
+  void drawRouteOnMap(List<Map<String, dynamic>> routeStations) {
     setState(() {
       markers.clear();
       polylines.clear();
+      polylineCoordinates.clear();
 
-      for (var station in busSchedule) {
-        double latitude = double.parse(station['latitude']);
-        double longitude = double.parse(station['longitude']);
+      for (var station in routeStations) {
+        if (station.containsKey('latitude') &&
+            station.containsKey('longitude')) {
+          double? latitude = double.tryParse(station['latitude']);
+          double? longitude = double.tryParse(station['longitude']);
 
-        markers.add(
-          Marker(
-            markerId: MarkerId(station['station_uid']),
-            position: LatLng(latitude, longitude),
-            infoWindow: InfoWindow(title: station['name']),
-          ),
-        );
+          if (latitude != null && longitude != null) {
+            markers.add(
+              Marker(
+                markerId: MarkerId(station['route_station_uid']),
+                position: LatLng(latitude, longitude),
+                infoWindow: InfoWindow(
+                    title: station['name'], snippet: station['address']),
+                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueOrange),
+              ),
+            );
 
-        polylineCoordinates.add(LatLng(latitude, longitude));
+            polylineCoordinates.add(LatLng(latitude, longitude));
+          }
+        }
       }
 
       polylines.add(
         Polyline(
           polylineId: PolylineId('route'),
-          color: Colors.blue,
+          color: const Color.fromARGB(255, 239, 108, 0),
           points: polylineCoordinates,
+          width: 4,
         ),
       );
     });
+    _addCurrentLocationMarker();
   }
 
-    void _onMapCreated(GoogleMapController controller) {
+  void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
+    _addCurrentLocationMarker();
   }
 
-    void _addCurrentLocationMarker() {
+  void _addCurrentLocationMarker() {
     if (currentLocation != null) {
       setState(() {
         markers.add(
@@ -213,7 +226,7 @@ LocationData? currentLocation;
                 BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
           ),
         );
-        mapController.animateCamera(
+        mapController?.animateCamera(
           CameraUpdate.newLatLngZoom(
             LatLng(
               currentLocation!.latitude!,
@@ -226,13 +239,13 @@ LocationData? currentLocation;
     }
   }
 
-    void getLocation() async {
+  void getLocation() async {
     try {
       LocationData locData = (await location.getLocation());
       setState(() {
         currentLocation = locData;
         _addCurrentLocationMarker();
-        mapController.animateCamera(
+        mapController?.animateCamera(
           CameraUpdate.newLatLngZoom(
             LatLng(locData.latitude!, locData.longitude!),
             15.0,
@@ -244,7 +257,7 @@ LocationData? currentLocation;
     }
   }
 
-    void checkPermission() async {
+  void checkPermission() async {
     final hasPermission = await location.serviceEnabled();
     if (!hasPermission) {
       _permission = await location.requestService();
@@ -256,24 +269,77 @@ LocationData? currentLocation;
     }
   }
 
+  Widget buildDepartureTimesTable() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: DataTable(
+        columns: const <DataColumn>[
+          DataColumn(label: Text('Day')),
+          DataColumn(label: Text('Departure Times')),
+        ],
+        rows: departureTimes.map((time) {
+          return DataRow(
+            cells: <DataCell>[
+              DataCell(Text(time['name'])),
+              DataCell(
+                Container(
+                  constraints: BoxConstraints(maxWidth: 800),
+                  child: Text(time['departure_times'].join('  ')),
+                ),
+              ),
+            ],
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Future<void> _showMapDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Map View'),
+          content: Container(
+            width: 700,
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(currentLocation?.latitude ?? 0.0,
+                    currentLocation?.longitude ?? 0.0),
+                zoom: 15.0,
+              ),
+              markers: markers.toSet(),
+              polylines: polylines.toSet(),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    loadCities();
     checkPermission();
+    loadCities();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Schedule'),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               DropdownButtonFormField<String>(
                 value: selectedCity,
@@ -285,7 +351,6 @@ LocationData? currentLocation;
                     selectedRoute = null;
                     stations.clear();
                     routes.clear();
-                    
                   });
                   if (value != null) {
                     loadStationsForCity(value);
@@ -337,32 +402,30 @@ LocationData? currentLocation;
                   }).toList(),
                 ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (selectedRoute != null && selectedStation != null) {
-                    fetchBusSchedule(selectedStation!, selectedRoute!)
-                        .then((_) {
-                      updateMap();
-                    });
+                    List<Map<String, dynamic>> routeStations =
+                        await getStationsOfRoute(selectedRoute!);
+                    drawRouteOnMap(routeStations);
+                    String routeUid = selectedRoute!;
+                    String stationUid = selectedStation!;
+                    String url =
+                        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid';
+                    final response = await http.get(Uri.parse(url));
+                    if (response.statusCode == 200) {
+                      List<dynamic> data = json.decode(response.body);
+                      setState(() {
+                        departureTimes = List<Map<String, dynamic>>.from(data);
+                      });
+                    } else {
+                      logger.e('Failed to load departure times');
+                    }
                   }
                 },
                 child: const Text('Search'),
               ),
-
-              if (busSchedule.isNotEmpty)
-                Container(
-                  height: 300,
-                  child: GoogleMap(
-                    onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation?.latitude ?? 0.0,
-                        currentLocation?.longitude ?? 0.0),
-                    zoom: 15.0,
-                  ),
-                    markers: markers,
-                    polylines: polylines,
-                  ),
-                ),
-                
+              if (departureTimes.isNotEmpty) buildDepartureTimesTable(),
+              ElevatedButton(onPressed: _showMapDialog, child: Text('Show map'))
             ],
           ),
         ),

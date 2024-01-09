@@ -123,12 +123,9 @@ async function onSubmit(e) {
   axios.get('https://bus4u.fast-table.com/v1/get_available_tickets', { params })
   .then(rsp => {
       if(rsp.status == 200) {
-        routes.value = []
-        rsp.data.forEach(element => {
-          if(element.departure_times.length > 0) routes.value.push(element)
-        });
+        routes.value = rsp.data
         if(routes.value.length) {
-          routes.value = routes.value.sort((a, b) => a.departure_times[0].localeCompare(b.departure_times[0]))
+          routes.value = routes.value.sort((a, b) => a.departure_time - b.departure_time)
         }
         isLoadingRoutes.value = false
       }

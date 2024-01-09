@@ -15,7 +15,7 @@
         <p>To: {{ ticket.to_station_name }}</p>
         <p>Price: {{ ticket.ticket_price/100 }} Lei</p>
         <p>Purchased: {{ created }}</p>
-        <p>Exiration: 
+        <p>Expiration: 
           <span v-if="ticket.is_valid">{{ expiration }}</span>
           <b v-else> already used </b>
         </p>

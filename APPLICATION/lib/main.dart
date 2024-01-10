@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   static bool isLoggedIn = false;
+  static late String token;
   const MyApp({Key? key}) : super(key: key);
 
   @override
@@ -70,9 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void signOut() async {
     try {
-      final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
-      );
+      String? uid = await readData('user_uid');
+      String? client = await readData('client');
+      String? access_token = await readData('access_token');
+      print('uid ${uid} client ${client} ');
+      final response = await http.delete(
+          Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+          body: {'uid': uid, 'client': client, 'access-token': access_token});
       if (response.statusCode == 200) {
         setState(() {
           MyApp.isLoggedIn = false;
@@ -99,11 +105,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Image.asset(
+              Text(
+                '$currentPage',
+                style: TextStyle(color:Colors.black,fontSize: 20),
+              ),
+              SizedBox(width: 50),
+              Image.asset(
               'assets/images/logo-text.png',
               height: 40,
             ),
-            if (widget.isLoggedIn)
+            if (MyApp.isLoggedIn)
               GestureDetector(
                 onTap: signOut,
                 child: Column(
@@ -134,4 +145,20 @@ class _MyHomePageState extends State<MyHomePage> {
       body: currentPage,
     );
   }
+}
+
+Future<void> saveData(key, value) async {
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setString(key, value);
+}
+
+Future<String?> readData(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  final value = prefs.getString(key);
+  return value;
+}
+
+Future<void> removeData(String key) async {
+  final prefs = await SharedPreferences.getInstance();
+  await prefs.remove(key);
 }

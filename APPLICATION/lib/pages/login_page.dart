@@ -1,9 +1,11 @@
+import 'package:bus4u/pages/account_page.dart';
 import 'package:bus4u/pages/register_page.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:bus4u/main.dart';
-import 'package:bus4u/pages/account_page.dart';
 import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.currentPage}) : super(key: key);
@@ -15,13 +17,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  String email = "";
+  String password = "";
   var logger = Logger();
 
   void signUserIn(String email, password) async {
     try {
-      Response response = await post(
+      final response = await http.post(
         Uri.parse('https://bus4u.fast-table.com/auth/sign_in'),
         body: {
           'email': email,
@@ -30,6 +32,20 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (response.statusCode == 200) {
+        Map<String, dynamic> responseBody = json.decode(response.body);
+
+        String token = response.headers['authorization'] ?? '';
+        String user_uid = response.headers['uid'] ?? '';
+        String client = response.headers['client'] ?? '';
+        String access_token = response.headers['access-token'] ?? '';
+        print("uiduser $user_uid");
+        saveData('token', token);
+        saveData('user_uid', user_uid);
+        saveData('client', client);
+        saveData('access_token', access_token);
+
+        MyApp.isLoggedIn = true;
+
         showDialog<String>(
           context: context,
           builder: (context) => AlertDialog(
@@ -44,15 +60,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               TextButton(
                 onPressed: () {
-                  MyApp.isLoggedIn = true;
                   Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MyHomePage(
-                          currentPage: AccountPage(),
-                          isLoggedIn: true,
-                        ),
-                      ));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyHomePage(
+                        currentPage: AccountPage(),
+                        isLoggedIn: true,
+                      ),
+                    ),
+                  );
                 },
                 child: const Text('OK'),
               ),
@@ -105,32 +121,38 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(color: Colors.grey[800], fontSize: 16),
                 ),
                 const SizedBox(height: 25),
-                TextFormField(
-                  controller: emailController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.grey[500]),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        email = value;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      labelText: "E-mail",
+                    ),
                   ),
                 ),
                 const SizedBox(height: 25),
-                TextFormField(
-                  controller: passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.grey[500]),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        password = value;
+                      });
+                    },
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      labelText: "Password",
+                    ),
                   ),
                 ),
                 const SizedBox(height: 25),
                 ElevatedButton(
                   onPressed: () {
-                    signUserIn(
-                      emailController.text.toString(),
-                      passwordController.text.toString(),
-                    );
+                    signUserIn(email, password);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,

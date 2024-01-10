@@ -14,7 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmpassController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
 
   var logger = Logger();
 
@@ -185,7 +186,8 @@ class _RegisterPageState extends State<RegisterPage> {
           emailController.text.toString(),
           passwordController.text.toString(),
           confirmpassController.text.toString(),
-          nameController.text.toString(),
+          firstnameController.text.toString(),
+          lastnameController.text.toString(),
         );
       } else {
         print('Code verification failed');
@@ -196,7 +198,8 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  void register(String email, password, confirmpassword, firstname) async {
+  void register(
+      String email, password, confirmpassword, firstname, lastname) async {
     try {
       Response response =
           await post(Uri.parse('https://bus4u.fast-table.com/auth'), body: {
@@ -204,11 +207,13 @@ class _RegisterPageState extends State<RegisterPage> {
         'password': password,
         'password_confirmation': confirmpassword,
         'firstname': firstname,
+        'lastname': lastname,
       });
       if (response.statusCode == 200) {
         _showRegistrationSuccessDialog();
       } else {
         logger.e('failed');
+        print(response.body);
         _showRegistrationFailureDialog();
       }
     } catch (e) {
@@ -265,11 +270,20 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   const SizedBox(height: 25),
                   TextFormField(
-                    controller: nameController,
+                    controller: firstnameController,
                     obscureText: false,
                     decoration: InputDecoration(
                         border: const OutlineInputBorder(),
                         hintText: 'Firstname',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 25),
+                  TextFormField(
+                    controller: lastnameController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                        border: const OutlineInputBorder(),
+                        hintText: 'Lastname',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
                   const SizedBox(height: 25),

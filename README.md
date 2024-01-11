@@ -141,6 +141,14 @@ If there is a phone connected to the computer, the application will automaticall
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+Homepage where you can buy a ticket for a suitable route
+![Homepage](docs/homepage)
+
+On the Schedule page you van view the actual timetable in a given station
+![Schedule](docs/schedule)
+
+On the Stations page you can find any station in a given city or route with its address
+![Station](docs/stations)
 
 
 _For more examples, please refer to the [Documentation](https://github.com/zsigmondattila/bus4u/tree/main/docs)_

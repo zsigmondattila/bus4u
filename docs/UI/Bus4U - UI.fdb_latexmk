@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1721926796 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1721926796
+["pdflatex"] 1722951004 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1722951005
   "/etc/texmf/web2c/texmf.cnf" 1720637560 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk" 1721924171 25396 2189b37ac8e432a7b0139ca730ff0238 ""
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk" 1721898182 28952 4c4dc922837c4bc729a82637441ae0cb ""
@@ -11,7 +11,7 @@
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk" 1721895490 42496 d392f6ca4e3818abb84b0d28c801958f ""
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk" 1721898182 53712 3b42a473c7c128b3ba2558471eb71b71 ""
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2986.600pk" 1721926758 83884 7070019baa237e8278623afe74446a7e ""
-  "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" 1721926796 2690 cdaf01641a42c0dea69558210f67699e ""
+  "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" 1722951004 3491 7067ae86c25165be8771cefaa7824426 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm" 1136768653 3584 21b378cca2e40816b0e6d74a4dc98f04 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm" 1136768653 3584 ad49a18d8515beef6d92d4d3f197d0fd ""
@@ -52,8 +52,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1721897878 128957 ca981464d9cffa893e50f7d38c99be42 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1721897880 2030686 5a92baafec79146b050e5f6f4772a7be ""
-  "Bus4U - UI.aux" 1721926796 113 a6251fc288b2015ad863efa37dccae3b "pdflatex"
-  "Bus4U - UI.tex" 1721926796 2690 cdaf01641a42c0dea69558210f67699e ""
+  "Bus4U - UI.aux" 1722951005 113 a6251fc288b2015ad863efa37dccae3b "pdflatex"
+  "Bus4U - UI.tex" 1722951004 3491 7067ae86c25165be8771cefaa7824426 ""
   "magyar.ldf" 1721895403 251992 ee328fa843abec22fa053c131fe8e53a ""
   "moresize.sty" 1721925291 2690 ff20575f4d1777f515b27161a60eef01 ""
   (generated)

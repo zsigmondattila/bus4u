@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, twoside]{report}
 
 \usepackage[utf8]{inputenc}
 \def\magyarOptions{defaults=hu-min}
@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{moresize}
+\usepackage{float}
 
 \title{Bus4U - UI}
 \author{Portik Szabolcs}
@@ -28,7 +29,7 @@
   \textbf{Bus4U - UI} \\
   \vspace{0.5in}
   \Huge
-  Szakdolgozat \\
+  \textbf{DIPLOMADOLGOZAT} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -58,7 +59,7 @@
   \textbf{Bus4U - UI} \\
   \vspace{0.5in}
   \Huge
-  Lucrare finală \\
+  \textbf{PROIECT DE DIPLOMĂ} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -86,5 +87,11 @@
   \newline
   Ez a dolgozat a webalkalmazás felhasználói felületére fókuszál, a backend működése egy másik dolgozat keretein belül van ismertetve.
 \end{abstract}
+
+\chapter{Követelmény specifikációi}
+\input{chapters/system-requirements}
+
+\chapter{A felhasználói felület tervezése}
+\input{chapters/ui-design}
 
 \end{document}

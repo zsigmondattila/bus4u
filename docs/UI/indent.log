@@ -1,7 +1,7 @@
 INFO:  latexindent version 3.24.4, 2024-07-18, a script to indent .tex files
        latexindent lives here: /home/pszabi/.local/bin/
-       Sun Aug 25 14:50:33 2024
-       Filename: /mnt/Adatok/IT/bus4u/docs/UI/chapters/__latexindent_temp_ui-design.tex
+       Mon Aug 26 09:31:20 2024
+       Filename: /mnt/Adatok/IT/bus4u/docs/UI/chapters/__latexindent_temp_implementation.tex
 INFO:  Processing switches:
        -y|--yaml: YAML settings specified via command line
        -c|--cruft: cruft directory

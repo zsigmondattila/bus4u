@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  25 AUG 2024 14:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  26 AUG 2024 09:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -262,10 +262,25 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <17.28> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 55.
- [1] [1]
+ [1] (./chapters/abstract.tex) [1] (./Bus4U - UI.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
+\tf@toc=\write3
+\openout3 = `"Bus4U - UI.toc"'.
+
+ [2
+
+]
 1. fejezet.
+(./chapters/goals.tex) [3
+
+]
+2. fejezet.
 (./chapters/system-requirements.tex
-<figures/use-case.jpg, id=21, 1714.405pt x 2055.68pt>
+<figures/use-case.jpg, id=28, 1714.405pt x 2055.68pt>
 File: figures/use-case.jpg Graphic file (type jpg)
 <use figures/use-case.jpg>
 Package pdftex.def Info: figures/use-case.jpg  used on input line 36.
@@ -273,43 +288,51 @@ Package pdftex.def Info: figures/use-case.jpg  used on input line 36.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2
+ [4
 
-] [3 <./figures/use-case.jpg>]) [4] [5]
-2. fejezet.
+] [5 <./figures/use-case.jpg>]) [6] [7]
+3. fejezet.
 (./chapters/ui-design.tex
-<figures/ui-mobile.png, id=37, 1510.29552pt x 1204.25418pt>
+<figures/ui-mobile.png, id=43, 1510.29552pt x 1204.25418pt>
 File: figures/ui-mobile.png Graphic file (type png)
 <use figures/ui-mobile.png>
 Package pdftex.def Info: figures/ui-mobile.png  used on input line 4.
 (pdftex.def)             Requested size: 455.24411pt x 362.98796pt.
- [6
+ [8
 
  <./figures/ui-mobile.png>]
-<figures/ui-web.png, id=41, 1441.385pt x 5673.195pt>
+<figures/ui-web.png, id=47, 1441.385pt x 5673.195pt>
 File: figures/ui-web.png Graphic file (type png)
 <use figures/ui-web.png>
 Package pdftex.def Info: figures/ui-web.png  used on input line 12.
 (pdftex.def)             Requested size: 166.25064pt x 654.41338pt.
-<figures/ui-admin.png, id=43, 1449.415pt x 6279.46pt>
+<figures/ui-admin.png, id=49, 1449.415pt x 6279.46pt>
 File: figures/ui-admin.png Graphic file (type png)
 <use figures/ui-admin.png>
 Package pdftex.def Info: figures/ui-admin.png  used on input line 18.
 (pdftex.def)             Requested size: 151.03195pt x 654.41338pt.
- [7 <./figures/ui-web.png> <./figures/ui-admin.png>]) (./Bus4U - UI.aux) ) 
+ [9 <./figures/ui-web.png> <./figures/ui-admin.png>])
+4. fejezet.
+(./chapters/implementation.tex) [10
+
+]
+5. fejezet.
+(./chapters/summary.tex) [11
+
+] (./Bus4U - UI.aux) ) 
 Here is how much of TeX's memory you used:
- 4283 strings out of 479647
- 74527 string characters out of 5878802
- 396827 words of memory out of 5000000
- 22234 multiletter control sequences out of 15000+600000
- 482665 words of font info for 49 fonts, out of 8000000 for 9000
+ 4327 strings out of 479647
+ 75317 string characters out of 5878802
+ 395829 words of memory out of 5000000
+ 22258 multiletter control sequences out of 15000+600000
+ 484488 words of font info for 55 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 55i,6n,62p,911b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,6n,62p,947b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on "Bus4U - UI.pdf" (9 pages, 3670454 bytes).
+Output written on "Bus4U - UI.pdf" (13 pages, 3691727 bytes).
 PDF statistics:
- 341 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 399 PDF objects out of 1000 (max. 8388607)
+ 76 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

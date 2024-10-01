@@ -1,0 +1,8 @@
+\select@language {magyar} \contentsline {section}{\numberline {1}Bevezető}{3}{}%
+\select@language {magyar} \contentsline {section}{\numberline {2}Követelmény specifikációk}{3}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1}Felhasználói követelmények}{3}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.2}Rendszerkövetelmények}{4}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.1}Funkcionális követelmények}{4}{}%
+\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.2}Nem-funkcionális követelmények}{4}{}%
+\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{4}{}%
+\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{4}{}%

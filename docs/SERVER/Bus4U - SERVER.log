@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  30 JUL 2024 15:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  25 AUG 2024 22:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER"
+**"/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex"
 (/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -173,8 +173,7 @@ Package: moresize 1999/07/26 v1.9 (more font sizes)
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count277
 \l__pdf_internal_box=\box95
-)
-No file "Bus4U - SERVER".aux.
+) (./Bus4U - SERVER.aux)
 \openout1 = `"Bus4U - SERVER.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
@@ -191,6 +190,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
 LaTeX Font Info:    ... okay on input line 18.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -254,20 +254,29 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <17.28> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 54.
- [1] [1] (./Bus4U - SERVER.aux) ) 
+ [1] [1] (./Bus4U - SERVER.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
+\tf@toc=\write3
+\openout3 = `"Bus4U - SERVER.toc"'.
+
+ [2] (./chapters/introduction.tex) (./chapters/requirements.tex [3] [4]) [5] (./Bus4U - SERVER.aux) ) 
 Here is how much of TeX's memory you used:
- 4130 strings out of 479574
- 72129 string characters out of 5877220
- 387987 words of memory out of 5000000
- 22112 multiletter control sequences out of 15000+600000
- 479575 words of font info for 45 fonts, out of 8000000 for 9000
+ 4174 strings out of 479574
+ 72865 string characters out of 5877220
+ 395978 words of memory out of 5000000
+ 22134 multiletter control sequences out of 15000+600000
+ 483922 words of font info for 55 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
- 55i,6n,62p,797b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on "Bus4U - SERVER.pdf" (3 pages, 60775 bytes).
+ 55i,6n,62p,1307b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on "Bus4U - SERVER.pdf" (7 pages, 121881 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 385 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

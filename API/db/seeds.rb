@@ -40,6 +40,7 @@ Admin.create(company_uid: transloc.company_uid, email: "orsospista112@gmail.com"
 Admin.create(company_uid: transloc.company_uid, email: "ninjanarc2h@yahoo.com", firstname: "Iván", lastname: "Elekes", role: "driver", phone_number: "0724889734", address: "Com. Ciumani str. Principala nr. 12", password: "aaaaaa", password_confirmation: "aaaaaa")
 Admin.create(company_uid: transloc.company_uid, email: "2@gmail.com", firstname: "Károly", lastname: "Elekes", role: "driver", phone_number: "0745399324", address: "Com. Suseni str. Kéthíd nr. 198", password: "aaaaaa", password_confirmation: "aaaaaa")
 
+tesztceg = Company.find_by(name: "TESZT CÉG")
 Admin.create(company_uid: tesztceg.company_uid, email: "teszt@bus4u.com", firstname: "Teszt", lastname: "Teszt", role: "boss", phone_number: "0728493883", address: "asdasd str. afjei", password: "bus4u@teszt", password_confirmation: "bus4u@teszt")
 
 #CREATING CITIES

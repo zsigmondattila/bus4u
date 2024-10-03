@@ -1,0 +1,30 @@
+INFO:  latexindent version 3.24.4, 2024-07-18, a script to indent .tex files
+       latexindent lives here: /home/pszabi/.local/bin/
+       Mon Aug 26 09:31:20 2024
+       Filename: /mnt/Adatok/IT/bus4u/docs/UI/chapters/__latexindent_temp_implementation.tex
+INFO:  Processing switches:
+       -y|--yaml: YAML settings specified via command line
+       -c|--cruft: cruft directory
+INFO:  Directory for backup files and log file /mnt/Adatok/IT/bus4u/docs/UI/indent.log:
+       /mnt/Adatok/IT/bus4u/docs/UI/
+INFO:  YAML settings read: defaultSettings.yaml
+       Reading defaultSettings.yaml from /home/pszabi/.local/bin/defaultSettings.yaml
+       Reading defaultSettings.yaml (2nd attempt) from /home/pszabi/.local/bin/../../texmf-dist/scripts/latexindent/defaultSettings.yaml
+       and then, if necessary, /home/pszabi/.local/bin/LatexIndent/defaultSettings.yaml
+INFO:  YAML reading settings
+       Home directory is /home/pszabi
+       latexindent.pl didn't find indentconfig.yaml or .indentconfig.yaml
+       see all possible locations: https://latexindentpl.readthedocs.io/en/latest/sec-appendices.html#indentconfig-options)
+INFO:  YAML settings read: -y switch
+       YAML setting: defaultIndent:'  '
+       single-quoted string found in -y switch: '  ', substitute to   
+       Updating mainSettings with defaultIndent:   
+INFO:  Phase 1: searching for objects
+INFO:  Phase 2: finding surrounding indentation
+INFO:  Phase 3: indenting objects
+INFO:  Phase 4: final indentation check
+INFO:  Output routine:
+       Not outputting to file; see -w and -o switches for more options.
+       --------------
+INFO:  Please direct all communication/issues to:
+        https://github.com/cmhughes/latexindent.pl

@@ -41,7 +41,7 @@ async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
     isLoading.value = true;
-    axios.post('https://bus4u.fast-table.com/auth/sign_in', form).then((rsp) => {
+    axios.post('https://api.bus4u.online/auth/sign_in', form).then((rsp) => {
       if(rsp.data.data.uid) {
         router.replace({ name: 'home' })
         user.signIn(rsp.data.data, rsp.headers)

@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   void signUserIn(String email, password) async {
     try {
       final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/auth/sign_in'),
+        Uri.parse('https://api.bus4u.online/auth/sign_in'),
         body: {
           'email': email,
           'password': password,

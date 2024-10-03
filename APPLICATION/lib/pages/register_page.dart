@@ -138,7 +138,7 @@ class _RegisterPageState extends State<RegisterPage> {
   void sendVerificationEmail(String email) async {
     try {
       Response response = await post(
-        Uri.parse('https://bus4u.fast-table.com/v1/send_verification_email'),
+        Uri.parse('https://api.bus4u.online/v1/send_verification_email'),
         body: {'user_email': email},
       );
 
@@ -172,7 +172,7 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       Response response = await get(
         Uri.parse(
-          'https://bus4u.fast-table.com/v1/verify_code_email?user_email=$email&verification_code=$verificationCode',
+          'https://api.bus4u.online/v1/verify_code_email?user_email=$email&verification_code=$verificationCode',
         ),
       );
       print('Response status code: $email');
@@ -202,7 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
       String email, password, confirmpassword, firstname, lastname) async {
     try {
       Response response =
-          await post(Uri.parse('https://bus4u.fast-table.com/auth'), body: {
+          await post(Uri.parse('https://api.bus4u.online/auth'), body: {
         'email': email,
         'password': password,
         'password_confirmation': confirmpassword,

@@ -4,7 +4,7 @@ import '../model/login_model.dart';
 
 class APIService {
   Future<LoginResponseModel> login(LoginRequestModel requestModel) async {
-    String url = "https://bus4u.fast-table.com/auth";
+    String url = "https://api.bus4u.online/auth";
 
     final response = await http.post(url as Uri, body: requestModel.toJson());
     if (response.statusCode == 200 || response.statusCode == 400) {

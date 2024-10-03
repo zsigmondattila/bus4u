@@ -44,10 +44,10 @@ const isDeleted = ref(false)
 const error = ref(false)
 
 function deleteEmployee(employee) {
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_driver', { params: { company_uid: user.company_uid, admin_uid: employee.uid }})
+  axios.delete('https://api.bus4u.online/v1/admin/delete_driver', { params: { company_uid: user.company_uid, admin_uid: employee.uid }})
   .then(() => {
     isDeleted.value = true
-    axios.get('https://bus4u.fast-table.com/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
+    axios.get('https://api.bus4u.online/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
       .then(rsp => {
         employees.value = rsp.data
       }).catch(() => employees.value = [])
@@ -58,7 +58,7 @@ function editEmployee(employee) {
   router.push({ name: 'edit-employee', params: { employee: employee.uid.replaceAll('.', '/') }})
 }
 
-axios.get('https://bus4u.fast-table.com/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
+axios.get('https://api.bus4u.online/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
   .then(rsp => {
     employees.value = rsp.data
   }).catch(() => employees.value = [])

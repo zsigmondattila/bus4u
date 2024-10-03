@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
-        await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+        await http.get(Uri.parse('https://api.bus4u.online/v1/get_cities'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('cities')) {
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<Map<String, dynamic>>> getStationsByCity(String cityUid) async {
     final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_stations_by_city?city_uid=$cityUid'));
+        'https://api.bus4u.online/v1/get_stations_by_city?city_uid=$cityUid'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('stations')) {
@@ -164,7 +164,7 @@ class _HomePageState extends State<HomePage> {
     try {
       final response = await http.get(
         Uri.parse(
-          'https://bus4u.fast-table.com/v1/get_available_tickets?start_city_uid=$selectedStartCity&start_station_uid=$selectedStartStation&destination_city_uid=$selectedDestinationCity&destination_station_uid=$selectedDestinationStation&date=$selectedDate&time=$selectedTime',
+          'https://api.bus4u.online/v1/get_available_tickets?start_city_uid=$selectedStartCity&start_station_uid=$selectedStartStation&destination_city_uid=$selectedDestinationCity&destination_station_uid=$selectedDestinationStation&date=$selectedDate&time=$selectedTime',
         ),
       );
 
@@ -235,7 +235,7 @@ class _HomePageState extends State<HomePage> {
       print(ticketData);
 
       final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/v1/generate_a_ticket'),
+        Uri.parse('https://api.bus4u.online/v1/generate_a_ticket'),
         headers: <String, String>{
           'Content-Type': 'application/json',
           'Authorization': token ?? ""
@@ -245,36 +245,36 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         logger.e('Ticket generated successfully');
-         showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Ticket ordered Successfully!'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    launch('https://bus4u.netlify.com/tickets');
-                  },
-                  child: Text(
-                    'If you want to scan your ticket, please click this text to visit our website',
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Ticket ordered Successfully!'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      launch('https://bus4u.netlify.com/tickets');
+                    },
+                    child: Text(
+                      'If you want to scan your ticket, please click this text to visit our website',
+                    ),
                   ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('OK'),
                 ),
               ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+            );
+          },
+        );
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
         showDialog(

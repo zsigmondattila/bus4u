@@ -7,13 +7,13 @@ import 'package:pos_app/main.dart';
 Future<void> loginUser(
     String email, String password, BuildContext context) async {
   final response = await http.post(
-    Uri.parse('https://bus4u.fast-table.com/admin/sign_in'),
+    Uri.parse('https://api.bus4u.online/admin/sign_in'),
     body: {
       'email': email,
       'password': password,
     },
   );
-  
+
   if (response.statusCode == 200) {
     Map<String, dynamic> responseBody = json.decode(response.body);
     String companyUid = responseBody['data']['company_uid'] ?? "";

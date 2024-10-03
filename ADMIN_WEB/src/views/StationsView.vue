@@ -103,7 +103,7 @@ function panMap(station) {
 }
 
 function deleteStation(station){
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_station', { params: { station_uid: station.station_uid }})
+  axios.delete('https://api.bus4u.online/v1/admin/delete_station', { params: { station_uid: station.station_uid }})
     .then(() => {
       notification.value.message = 'Station deleted successfully'
       notification.value.show = true
@@ -124,7 +124,7 @@ async function addStation(e){
   let rsp = await e;
   if(!rsp.valid) return;
 
-  let createRsp = await axios.post('https://bus4u.fast-table.com/v1/admin/create_station', 
+  let createRsp = await axios.post('https://api.bus4u.online/v1/admin/create_station', 
     { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address, zip_code: newStation.postcode })
   if (createRsp.status == 200) {
     notification.value.message = 'Station created successfully';
@@ -135,7 +135,7 @@ async function addStation(e){
 }
 
 function updateStations() {
-  axios.get('https://bus4u.fast-table.com/v1/get_stations')
+  axios.get('https://api.bus4u.online/v1/get_stations')
   .then(rsp => {
     if (rsp.status == 200) {
       stations.value = rsp.data.stations
@@ -143,7 +143,7 @@ function updateStations() {
   })
 }
 
-axios.get('https://bus4u.fast-table.com/v1/get_stations')
+axios.get('https://api.bus4u.online/v1/get_stations')
   .then(rsp => {
     if (rsp.status == 200) {
       stations.value = rsp.data.stations

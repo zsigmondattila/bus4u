@@ -44,10 +44,10 @@ const isDeleted = ref(false)
 const error = ref(false)
 
 function deleteBus(bus) {
-  axios.delete('https://bus4u.fast-table.com/v1/admin/delete_bus', { params: { company_uid: user.company_uid, bus_uid: bus.bus_uid }})
+  axios.delete('https://api.bus4u.online/v1/admin/delete_bus', { params: { company_uid: user.company_uid, bus_uid: bus.bus_uid }})
   .then(() => {
     isDeleted.value = true
-    axios.get('https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
+    axios.get('https://api.bus4u.online/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
       .then(rsp => {
         buses.value = rsp.data
       }).catch(() => buses.value = [])
@@ -58,7 +58,7 @@ function editBus(bus) {
   router.push({ name: 'edit-bus', params: { bus: bus.bus_uid }})
 }
 
-axios.get('https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
+axios.get('https://api.bus4u.online/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
   .then(rsp => {
     buses.value = rsp.data
   }).catch(() => buses.value = [])

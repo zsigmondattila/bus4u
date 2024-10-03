@@ -100,8 +100,8 @@ class _StationsPageState extends State<StationsPage> {
 
   void getCities() async {
     try {
-      final response = await http
-          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+      final response =
+          await http.get(Uri.parse('https://api.bus4u.online/v1/get_cities'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         if (data.containsKey('cities')) {
@@ -130,8 +130,8 @@ class _StationsPageState extends State<StationsPage> {
 
   void getRoutes() async {
     try {
-      final response = await http
-          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_routes'));
+      final response =
+          await http.get(Uri.parse('https://api.bus4u.online/v1/get_routes'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         if (data.containsKey('routes')) {
@@ -162,8 +162,8 @@ class _StationsPageState extends State<StationsPage> {
       setState(() {
         markers.clear();
       });
-      final response = await http
-          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_stations'));
+      final response =
+          await http.get(Uri.parse('https://api.bus4u.online/v1/get_stations'));
       if (response.statusCode == 200) {
         List<dynamic> stationData = json.decode(response.body)['stations'];
         setState(() {
@@ -204,7 +204,7 @@ class _StationsPageState extends State<StationsPage> {
   void getStationsOfRoute(String routeUid) async {
     try {
       final response = await http.get(Uri.parse(
-          'https://bus4u.fast-table.com/v1/get_stations_of_a_route?route_uid=$routeUid'));
+          'https://api.bus4u.online/v1/get_stations_of_a_route?route_uid=$routeUid'));
       if (response.statusCode == 200) {
         List<dynamic> stationData = json.decode(response.body)['stations'];
         setState(() {

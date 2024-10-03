@@ -33,7 +33,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
-        await http.get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+        await http.get(Uri.parse('https://api.bus4u.online/v1/get_cities'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('cities')) {
@@ -56,7 +56,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
 
   Future<List<Map<String, dynamic>>> getStationsByCity(String cityUid) async {
     final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_stations_by_city?city_uid=$cityUid'));
+        'https://api.bus4u.online/v1/get_stations_by_city?city_uid=$cityUid'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('stations')) {
@@ -83,7 +83,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
   Future<List<Map<String, dynamic>>> getRoutesByStation(
       String stationUid) async {
     final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_routes_by_station?station_uid=$stationUid'));
+        'https://api.bus4u.online/v1/get_routes_by_station?station_uid=$stationUid'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('routes')) {
@@ -106,7 +106,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
 
   Future<List<Map<String, dynamic>>> getStationsOfRoute(String routeUid) async {
     final response = await http.get(Uri.parse(
-        'https://bus4u.fast-table.com/v1/get_stations_of_a_route?route_uid=$routeUid'));
+        'https://api.bus4u.online/v1/get_stations_of_a_route?route_uid=$routeUid'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
       if (data.containsKey('stations')) {
@@ -181,7 +181,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                 position: LatLng(latitude, longitude),
                 infoWindow: InfoWindow(
                     title: station['name'], snippet: station['address']),
-                    icon: BitmapDescriptor.defaultMarkerWithHue(
+                icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueOrange),
               ),
             );
@@ -410,7 +410,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     String routeUid = selectedRoute!;
                     String stationUid = selectedStation!;
                     String url =
-                        'https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid';
+                        'https://api.bus4u.online/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid';
                     final response = await http.get(Uri.parse(url));
                     if (response.statusCode == 200) {
                       List<dynamic> data = json.decode(response.body);

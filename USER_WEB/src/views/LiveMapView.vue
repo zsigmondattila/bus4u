@@ -56,7 +56,7 @@ async function onSubmit(e) {
   let validation = await e
   if(!validation.valid) return
   clearInterval(updateInterval)
-    axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', {params: { route_uid: form.route.route_uid }}) /// or on a route?
+    axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', {params: { route_uid: form.route.route_uid }}) /// or on a route?
     .then(rsp => {
       if(rsp.status == 200) {
         stations.value = rsp.data.stations
@@ -70,7 +70,7 @@ async function onSubmit(e) {
 }
 
 function getBuses(route) {
-  axios.get('https://bus4u.fast-table.com/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
+  axios.get('https://api.bus4u.online/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
     .then(rsp => {
       if(rsp.status == 200) {
         buses.value = rsp.data
@@ -84,14 +84,14 @@ function getBuses(route) {
 
 async function getRoutes(city) {
   form.route = null
-  axios.get('https://bus4u.fast-table.com/v1/get_routes_by_city', { params: { city_uid: city.city_uid }})
+  axios.get('https://api.bus4u.online/v1/get_routes_by_city', { params: { city_uid: city.city_uid }})
     .then(rsp => {
       if(rsp.status == 200) routes.value = rsp.data
     }).catch(() => routes.value = [])
 }
 
 onMounted(() => {
-  axios.get('https://bus4u.fast-table.com/v1/get_cities')
+  axios.get('https://api.bus4u.online/v1/get_cities')
     .then(rsp => {
       if(rsp.status == 200) cities.value = rsp.data.cities
     }).catch(() => cities.value = [])

@@ -49,7 +49,7 @@ const departureTime = computed(() => {
 function buy() {
   if(!user.uid) router.push({name: 'login'});
   isLoading.value = true
-  axios.post('https://bus4u.fast-table.com/v1/generate_a_ticket',
+  axios.post('https://api.bus4u.online/v1/generate_a_ticket',
     { quantity: count.value, ticket_price: props.trip.ticket_price, type:'normal', route_uid: props.trip.route_uid, from_station_uid: props.trip.from_station_uid, to_station_uid: props.trip.to_station_uid, company_uid: props.trip.company_uid },
     { headers: { Authorization: user.authorization }})
     .then(rsp => {

@@ -17,7 +17,7 @@ class _AccountPageState extends State<AccountPage> {
   Future<void> signOut() async {
     try {
       final response = await http.delete(
-        Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+        Uri.parse('https://api.bus4u.online/auth/sign_out'),
       );
       if (response.statusCode == 200) {
         setState(() {
@@ -30,7 +30,6 @@ class _AccountPageState extends State<AccountPage> {
       print('Error during logout: $e');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +94,7 @@ class _AccountPageState extends State<AccountPage> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                   ElevatedButton(
+                  ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (BuildContext context) {

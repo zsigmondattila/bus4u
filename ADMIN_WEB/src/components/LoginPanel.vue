@@ -36,7 +36,7 @@ async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
     isLoading.value = true
-    axios.post('https://bus4u.fast-table.com/admin/sign_in', form).then((rsp) => {
+    axios.post('https://api.bus4u.online/admin/sign_in', form).then((rsp) => {
       if(rsp.status == 200 && rsp.data.data.role === 'boss') {
         sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client }))
         user.signIn(rsp.data.data)

@@ -45,10 +45,10 @@ class _GPSState extends State<GPS> {
     final String token = await readData("token") ?? "";
     final response = await http.get(
       Uri.parse(
-          'https://bus4u.fast-table.com/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
-          headers: {
-      "Authorization": "Bearer $token",
-    },
+          'https://api.bus4u.online/v1/admin/get_buses_of_a_company?company_uid=$companyUid'),
+      headers: {
+        "Authorization": "Bearer $token",
+      },
     );
 
     if (response.statusCode == 200) {
@@ -69,7 +69,8 @@ class _GPSState extends State<GPS> {
     final String token = await readData("token") ?? "";
 
     final response = await http.get(
-      Uri.parse('https://bus4u.fast-table.com/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
+      Uri.parse(
+          'https://api.bus4u.online/v1/admin/get_routes_of_a_company?company_uid=$companyUid'),
       headers: {"Authorization": "Bearer $token"},
     );
 
@@ -101,10 +102,10 @@ class _GPSState extends State<GPS> {
       };
 
       final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_tracked'),
+        Uri.parse('https://api.bus4u.online/v1/admin/set_a_bus_tracked'),
         body: requestBody,
         headers: {
-        "Authorization": "Bearer $token",
+          "Authorization": "Bearer $token",
         },
       );
 
@@ -122,10 +123,10 @@ class _GPSState extends State<GPS> {
       };
       print(requestBody);
       final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/v1/admin/set_a_bus_untracked'),
+        Uri.parse('https://api.bus4u.online/v1/admin/set_a_bus_untracked'),
         body: requestBody,
         headers: {
-        "Authorization": "Bearer $token",
+          "Authorization": "Bearer $token",
         },
       );
 
@@ -182,11 +183,12 @@ class _GPSState extends State<GPS> {
       };
       print(requestBody);
       final response = await http.post(
-        Uri.parse('https://bus4u.fast-table.com/v1/admin/change_bus_location'),
+        Uri.parse('https://api.bus4u.online/v1/admin/change_bus_location'),
         body: jsonEncode(requestBody),
-        headers: {'Content-Type': 'application/json',
-        "Authorization": "Bearer $token",
-      },
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": "Bearer $token",
+        },
       );
 
       if (response.statusCode == 200) {

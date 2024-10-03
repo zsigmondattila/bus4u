@@ -103,7 +103,7 @@ const required = [
 ]
 
 if(props.employee) {
-  axios.get('https://bus4u.fast-table.com/v1/admin/get_driver_by_id', { params: { admin_uid: props.employee.replaceAll('/', '.') }})
+  axios.get('https://api.bus4u.online/v1/admin/get_driver_by_id', { params: { admin_uid: props.employee.replaceAll('/', '.') }})
   .then(rsp => {form.value = rsp.data})
   .catch(() => error.value = 'Employee not found')
 }
@@ -115,7 +115,7 @@ async function onSubmit(event) {
   isLoading.value = true
   if(props.employee) {
     let data = { firstname: form.value.firstname, lastname: form.value.lastname, email: form.value.email, phone_number: form.value.phone_number, address: form.value.address, role: form.value.role, password: form.value.password }
-    axios.put('https://bus4u.fast-table.com/v1/admin/update_driver', data, { params: {admin_uid: form.value.uid} })
+    axios.put('https://api.bus4u.online/v1/admin/update_driver', data, { params: {admin_uid: form.value.uid} })
     .then((rsp) => {
       if(rsp.status === 200) {
         router.replace({ name: 'employees' })
@@ -127,7 +127,7 @@ async function onSubmit(event) {
       error.value = err.response.data.errors.full_messages[0]
     });
   } else {
-    axios.post('https://bus4u.fast-table.com/admin', form.value).then((rsp) => {
+    axios.post('https://api.bus4u.online/admin', form.value).then((rsp) => {
       if(rsp.status === 200) {
         router.replace({ name: 'employees' })
       } else {

@@ -24,7 +24,7 @@ export const userStore = defineStore('user', () => {
     const auth = sessionStorage.getItem('auth')
     if(auth) {
       let data = JSON.parse(auth)
-      axios.delete('https://bus4u.fast-table.com/admin/sign_out', { params: { 'uid': data.uid, 'client': data.client, 'access-token': data.accessToken}})
+      axios.delete('https://api.bus4u.online/admin/sign_out', { params: { 'uid': data.uid, 'client': data.client, 'access-token': data.accessToken}})
         .then(() => {
           firstName.value = ''
           lastName.value = ''
@@ -46,7 +46,7 @@ export const userStore = defineStore('user', () => {
     }
   }
   function checkDocuments(company) {
-    axios.get('https://bus4u.fast-table.com/v1/admin/document_validity_checker', { params: { company_uid: company }})
+    axios.get('https://api.bus4u.online/v1/admin/document_validity_checker', { params: { company_uid: company }})
     .then(rsp => {
       documents.value = Object.assign(rsp.data, { show: {
         road_taxes: !!rsp.data.road_taxes,

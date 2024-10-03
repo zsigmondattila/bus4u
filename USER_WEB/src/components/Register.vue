@@ -72,7 +72,7 @@ async function onSubmit(event) {
   let response = await event;
   if(response.valid) {
     isLoading.value = true
-    axios.post('https://bus4u.fast-table.com/v1/send_verification_email', { user_email: form.email })
+    axios.post('https://api.bus4u.online/v1/send_verification_email', { user_email: form.email })
       .then(rsp => {
         if(rsp.status == 200) {
           hideOTP.value = false
@@ -89,7 +89,7 @@ async function onSubmit(event) {
 async function checkCode() {
   error.value = ''
   isLoading.value = true;
-  axios.get('https://bus4u.fast-table.com/v1/verify_code_email', { params: { user_email: form.email , verification_code: code.value }})
+  axios.get('https://api.bus4u.online/v1/verify_code_email', { params: { user_email: form.email , verification_code: code.value }})
     .then(rsp => {
       if(rsp.status == 200) sendForm();
       else {
@@ -103,7 +103,7 @@ async function checkCode() {
 }
 
 async function sendForm() {
-  axios.post('https://bus4u.fast-table.com/auth', form).then((rsp) => {
+  axios.post('https://api.bus4u.online/auth', form).then((rsp) => {
     if(rsp.data.data.uid) {
       router.replace({ name: 'home' })
       user.signIn(rsp.data.data, rsp.headers)

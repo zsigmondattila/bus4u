@@ -75,22 +75,22 @@ function getName(item){
 }
 
 async function getCities() {
-  cities.value = (await axios.get('https://bus4u.fast-table.com/v1/get_cities')).data.cities
+  cities.value = (await axios.get('https://api.bus4u.online/v1/get_cities')).data.cities
 }
 
 async function getStations(city) {
   form.station = null
   form.route = null
-  if(city) stations.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
+  if(city) stations.value = (await axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params:{ city_uid: city.city_uid }})).data.stations
 }
 
 async function getRoutes(station) {
   form.route = ''
-  if(station) routes.value = (await axios.get('https://bus4u.fast-table.com/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
+  if(station) routes.value = (await axios.get('https://api.bus4u.online/v1/get_routes_by_station', { params:{ station_uid: station.station_uid }})).data.routes
 }
 
 function getBuses(route) {
-  axios.get('https://bus4u.fast-table.com/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
+  axios.get('https://api.bus4u.online/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
     .then(rsp => {
       if(rsp.status == 200) {
         buses.value = rsp.data
@@ -108,7 +108,7 @@ async function onSubmit(e) {
   isLoadingTable.value = true
   displayed.value = { station: form.station, route: form.route }
   try {
-    timetable.value = (await axios.get('https://bus4u.fast-table.com/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
+    timetable.value = (await axios.get('https://api.bus4u.online/v1/get_departure_times_for_station_in_route', { params:{ station_uid: form.station.station_uid, route_uid: form.route.route_uid }})).data
     const days = {'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4, 'Saturday': 5, 'Sunday': 6}
     timetable.value.sort((d1, d2) => {
       return days[d1.name] - days[d2.name]
@@ -117,7 +117,7 @@ async function onSubmit(e) {
     timetable.value = null
   }
   isLoadingTable.value = false
-  route.value = (await axios.get('https://bus4u.fast-table.com/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
+  route.value = (await axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: {route_uid: form.route.route_uid }})).data.stations
   map.value.panTo([form.station.longitude, form.station.latitude])
   getBuses(form.route)
   updateInterval = setInterval(() => getBuses(form.route), 30000);

@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       String? access_token = await readData('access_token');
       print('uid ${uid} client ${client} ');
       final response = await http.delete(
-          Uri.parse('https://bus4u.fast-table.com/auth/sign_out'),
+          Uri.parse('https://api.bus4u.online/auth/sign_out'),
           body: {'uid': uid, 'client': client, 'access-token': access_token});
       if (response.statusCode == 200) {
         setState(() {
@@ -105,12 +105,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-              Text(
-                '$currentPage',
-                style: TextStyle(color:Colors.black,fontSize: 20),
-              ),
-              SizedBox(width: 50),
-              Image.asset(
+            Text(
+              '$currentPage',
+              style: TextStyle(color: Colors.black, fontSize: 20),
+            ),
+            SizedBox(width: 50),
+            Image.asset(
               'assets/images/logo-text.png',
               height: 40,
             ),

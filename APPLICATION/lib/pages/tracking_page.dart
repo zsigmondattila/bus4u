@@ -100,8 +100,8 @@ class _TrackingPageState extends State<TrackingPage> {
 
   void getCities() async {
     try {
-      final response = await http
-          .get(Uri.parse('https://bus4u.fast-table.com/v1/get_cities'));
+      final response =
+          await http.get(Uri.parse('https://api.bus4u.online/v1/get_cities'));
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = json.decode(response.body);
         if (data.containsKey('cities')) {
@@ -131,7 +131,7 @@ class _TrackingPageState extends State<TrackingPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://bus4u.fast-table.com/v1/get_routes_by_city?city_uid=$cityUid'),
+            'https://api.bus4u.online/v1/get_routes_by_city?city_uid=$cityUid'),
       );
 
       if (response.statusCode == 200) {
@@ -157,7 +157,7 @@ class _TrackingPageState extends State<TrackingPage> {
     try {
       final response = await http.get(
         Uri.parse(
-            'https://bus4u.fast-table.com/v1/get_bus_locations_by_route?route_uid=$routeUid'),
+            'https://api.bus4u.online/v1/get_bus_locations_by_route?route_uid=$routeUid'),
       );
 
       if (response.statusCode == 200) {
@@ -195,7 +195,7 @@ class _TrackingPageState extends State<TrackingPage> {
   void getStationsOfRoute(String routeUid) async {
     try {
       final response = await http.get(Uri.parse(
-          'https://bus4u.fast-table.com/v1/get_stations_of_a_route?route_uid=$routeUid'));
+          'https://api.bus4u.online/v1/get_stations_of_a_route?route_uid=$routeUid'));
       if (response.statusCode == 200) {
         List<dynamic> stationData = json.decode(response.body)['stations'];
         setState(() {

@@ -16,7 +16,7 @@ export const userStore = defineStore('user', () => {
 
   async function resumeUser(user) {
     accessToken.value = user.accessToken
-    let rsp = await axios.get('https://bus4u.fast-table.com/auth/validate_token', { params: { 'uid': user.uid, 'client': user.client, 'access-token': user.accessToken}})
+    let rsp = await axios.get('https://api.bus4u.online/auth/validate_token', { params: { 'uid': user.uid, 'client': user.client, 'access-token': user.accessToken}})
     if(rsp.status == 200){
       signIn(rsp.data.data, rsp.headers)
     }
@@ -33,7 +33,7 @@ export const userStore = defineStore('user', () => {
     sessionStorage.setItem('user', JSON.stringify({ uid: uid.value, client: client.value, accessToken: accessToken.value , authorization: authorization.value }))
   }
   async function signOut() {
-    axios.delete('https://bus4u.fast-table.com/auth/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
+    axios.delete('https://api.bus4u.online/auth/sign_out', { params: { 'uid': uid.value, 'client': client.value, 'access-token': accessToken.value}})
       .then(() => {
         sessionStorage.removeItem('user')
         firstName.value = ''

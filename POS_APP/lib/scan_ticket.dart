@@ -29,7 +29,7 @@ class _ScanTicketState extends State<ScanTicket> {
 
   Future<void> sendscannedTicket(String ticketUid, String token) async {
     final response = await http.post(
-      Uri.parse('https://bus4u.fast-table.com/v1/admin/use_ticket'),
+      Uri.parse('https://api.bus4u.online/v1/admin/use_ticket'),
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -60,8 +60,7 @@ class _ScanTicketState extends State<ScanTicket> {
       textColor = Colors.black;
     } else {
       backgroundColor = Color.fromARGB(255, 255, 185, 180);
-      textColor = const Color.fromARGB(
-          255, 0, 0, 0);
+      textColor = const Color.fromARGB(255, 0, 0, 0);
     }
 
     showDialog(
@@ -88,7 +87,7 @@ class _ScanTicketState extends State<ScanTicket> {
                     style: TextStyle(
                       color: textColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20.0, 
+                      fontSize: 20.0,
                     ),
                     textAlign: TextAlign.center,
                   ),

@@ -71,7 +71,7 @@ const stats = ref({
   year_users: 0
 })
 
-axios.get('https://bus4u.fast-table.com/v1/admin/statistics', { params: { company_uid: user.company_uid }})
+axios.get('https://api.bus4u.online/v1/admin/statistics', { params: { company_uid: user.company_uid }})
   .then(rsp => {
     stats.value = rsp.data
   }).catch(() => {

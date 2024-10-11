@@ -1,0 +1,9 @@
+PWD /home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/chapters
+INPUT /etc/texmf/web2c/texmf.cnf
+INPUT /usr/share/texmf/web2c/texmf.cnf
+INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
+INPUT /home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/chapters/requirements.tex
+OUTPUT requirements.log
+OUTPUT requirements.pdf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map

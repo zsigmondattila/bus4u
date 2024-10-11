@@ -1,0 +1,102 @@
+\documentclass[12pt, twoside]{report}
+
+\usepackage[utf8]{inputenc}
+\def\magyarOptions{defaults=hu-min}
+\usepackage[magyar]{babel}
+
+\usepackage{ragged2e}
+\usepackage{t1enc}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{moresize}
+\usepackage{float}
+
+\title{Bus4U - UI}
+\author{Portik Szabolcs}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+  \center
+  \Large
+  Sapientia Erdélyi Magyar Tudományegyetem \\
+  Marosvásárhelyi Kar \\
+  Számítástechnika szak \\
+  \vspace{2,5in}
+  \HUGE
+  \textbf{Bus4U - UI} \\
+  \vspace{0.5in}
+  \Huge
+  \textbf{DIPLOMADOLGOZAT} \\
+  \vspace{2.5in}
+  \Large
+  \begin{multicols}{2}
+    \begin{flushleft}
+      \textbf{Témavezető:} \\
+      Dr. Szántó Zoltán
+    \end{flushleft}
+    \columnbreak
+    \begin{flushright}
+      \textbf{Hallgató:} \\
+      Portik Szabolcs
+    \end{flushright}
+  \end{multicols}
+  \vspace{1in}
+  \LARGE
+  2024
+\end{titlepage}
+
+\begin{titlepage}
+  \center
+  \Large
+  Universitatea „Sapientia” din Cluj-Napoca \\
+  Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
+  Specializarea Calculatoare \\
+  \vspace{2,5in}
+  \HUGE
+  \textbf{Bus4U - UI} \\
+  \vspace{0.5in}
+  \Huge
+  \textbf{PROIECT DE DIPLOMĂ} \\
+  \vspace{2.5in}
+  \Large
+  \begin{multicols}{2}
+    \begin{flushleft}
+      \textbf{Coordonator științific:} \\
+      Dr. Szántó Zoltán
+    \end{flushleft}
+    \columnbreak
+    \begin{flushright}
+      \textbf{Student:} \\
+      Portik Szabolcs
+    \end{flushright}
+  \end{multicols}
+  \vspace{1in}
+  \LARGE
+  2024
+\end{titlepage}
+
+\begin{abstract}
+  \input{chapters/abstract}
+\end{abstract}
+
+\tableofcontents
+
+\chapter{Célkitűzések}
+\input{chapters/goals}
+
+\chapter{A rendszer specifikációi}
+\input{chapters/system-requirements}
+
+\chapter{A felhasználói felület tervezése}
+\input{chapters/ui-design}
+
+\chapter{Gyakorlati megvalósítás}
+\input{chapters/implementation}
+
+\chapter{Összefoglalás}
+\input{chapters/summary}
+
+\end{document}

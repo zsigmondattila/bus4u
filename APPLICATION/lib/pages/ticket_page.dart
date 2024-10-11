@@ -17,16 +17,14 @@ class _TicketPageState extends State<TicketPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(children: [
-          Text(
-            "List of tickets",
-            style: TextStyle(color: Colors.black, fontSize: 16),
-          ),
-        ]),
-      ),
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Column(children: [
+        Text(
+          "List of tickets",
+          style: TextStyle(color: Colors.black, fontSize: 16),
+        ),
+      ]),
     );
   }
 }

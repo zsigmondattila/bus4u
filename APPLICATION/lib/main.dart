@@ -8,7 +8,6 @@ import 'package:bus4u/pages/ticket_page.dart';
 import 'package:bus4u/pages/tracking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,24 +18,24 @@ void main() {
 class MyApp extends StatelessWidget {
   static bool isLoggedIn = false;
   static late String token;
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.from(
-          colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.orange, background: Colors.white)),
-      title: 'bus4u',
-      home: AnimatedSplashScreen(
-        duration: 500,
-        splash: Image.asset('assets/images/logo-text.png'),
-        nextScreen: MyHomePage(
-          isLoggedIn: isLoggedIn,
+              colorScheme: ColorScheme.fromSeed(
+                  seedColor: Colors.orange, background: Colors.white))
+          .copyWith(
+        inputDecorationTheme: const InputDecorationTheme(
+          contentPadding: EdgeInsets.all(10.0),
+          border: OutlineInputBorder(),
         ),
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.white,
+      ),
+      title: 'bus4u',
+      home: MyHomePage(
+        isLoggedIn: isLoggedIn,
       ),
     );
   }
@@ -46,12 +45,12 @@ class MyHomePage extends StatefulWidget {
   final int currentPage;
   final bool isLoggedIn;
   final List<Widget> pages = const [
-    const HomePage(),
-    const SchedulesPage(),
-    const StationsPage(),
-    const TicketPage(),
-    const TrackingPage(),
-    const AboutPage(),
+    HomePage(),
+    SchedulesPage(),
+    StationsPage(),
+    TicketPage(),
+    TrackingPage(),
+    AboutPage(),
   ];
   final List<String> pageTitles = const [
     'Plan your trip',
@@ -63,10 +62,10 @@ class MyHomePage extends StatefulWidget {
   ];
 
   const MyHomePage({
-    Key? key,
+    super.key,
     this.currentPage = 0,
     this.isLoggedIn = false,
-  }) : super(key: key);
+  });
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -79,11 +78,11 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       String? uid = await readData('user_uid');
       String? client = await readData('client');
-      String? access_token = await readData('access_token');
-      print('uid ${uid} client ${client} ');
+      String? accessToken = await readData('access_token');
+      print('uid $uid client $client ');
       final response = await http.delete(
           Uri.parse('https://api.bus4u.online/auth/sign_out'),
-          body: {'uid': uid, 'client': client, 'access-token': access_token});
+          body: {'uid': uid, 'client': client, 'access-token': accessToken});
       if (response.statusCode == 200) {
         setState(() {
           MyApp.isLoggedIn = false;
@@ -135,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   icon: const Icon(Icons.person_add),
                   tooltip: 'Register'),
             ],
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
           ],
           backgroundColor: Colors.white,
           shadowColor: Colors.grey,

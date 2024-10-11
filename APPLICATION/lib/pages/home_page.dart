@@ -162,7 +162,6 @@ class _HomePageState extends State<HomePage> {
             quantity: 1,
           );
           tickets.add(ticket);
-          print("price ${ticket.ticketPrice}");
         }
         setState(() {
           noAvailableRoutes = tickets.isEmpty;
@@ -182,8 +181,6 @@ class _HomePageState extends State<HomePage> {
       token = await readData('token');
       user_uid = await readData('user_uid');
 
-      print("uuuid ${user_uid}");
-
       final Map<String, dynamic> ticketData = {
         "quantity": selectedTicket.quantity,
         "ticket_price": selectedTicket.ticketPrice,
@@ -194,8 +191,6 @@ class _HomePageState extends State<HomePage> {
         "from_station_uid": selectedTicket.startStationUID,
         "to_station_uid": selectedTicket.destinationStationUID,
       };
-
-      print(ticketData);
 
       final response = await http.post(
         Uri.parse('https://api.bus4u.online/v1/generate_a_ticket'),
@@ -208,12 +203,13 @@ class _HomePageState extends State<HomePage> {
 
       if (response.statusCode == 200) {
         logger.i('Ticket generated successfully');
+        if (!context.mounted) return;
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Ticket ordered successfully!'),
-              content: Text(
+              title: const Text('Ticket ordered successfully!'),
+              content: const Text(
                 'You can manage your tickets on the website',
               ),
               actions: [
@@ -221,14 +217,14 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
                 TextButton(
                   onPressed: () {
                     launchUrl(Uri.parse('https://bus4u.online/tickets'));
                     Navigator.of(context).pop();
                   },
-                  child: Text('View tickets'),
+                  child: const Text('View tickets'),
                 ),
               ],
             );
@@ -236,18 +232,19 @@ class _HomePageState extends State<HomePage> {
         );
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
+        if (!context.mounted) return;
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Unauthorized'),
-              content: Text('Please log in before buying!'),
+              title: const Text('Unauthorized'),
+              content: const Text('Please log in before buying!'),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
                 TextButton(
                   onPressed: () {
@@ -255,15 +252,12 @@ class _HomePageState extends State<HomePage> {
                       builder: (context) => const LoginPage(),
                     ));
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
                 ),
               ],
             );
           },
         );
-        print(response.statusCode);
-      } else {
-        print(response.body);
       }
     } catch (e) {
       logger.e('Error buying ticket: $e');
@@ -286,13 +280,11 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Text('From', style: TextStyle(fontSize: 18)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               DropdownButtonFormField<String>(
                 value: _tempSelectedStartCity ?? selectedStartCity,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
                   labelText: 'Start City',
-                  border: OutlineInputBorder(),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -313,14 +305,12 @@ class _HomePageState extends State<HomePage> {
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               // From megálló kiválasztása
               DropdownButtonFormField<String>(
                 value: _tempSelectedStartStation ?? selectedStartStation,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
                   labelText: 'Start Station',
-                  border: OutlineInputBorder(),
                 ),
                 onChanged: (String? value) {
                   _tempSelectedStartStation = value;
@@ -338,9 +328,7 @@ class _HomePageState extends State<HomePage> {
               DropdownButtonFormField<String>(
                 value: _tempSelectedDestinationCity ?? selectedDestinationCity,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
                   labelText: 'Destination City',
-                  border: OutlineInputBorder(),
                 ),
                 onChanged: (String? value) {
                   setState(() {
@@ -360,15 +348,13 @@ class _HomePageState extends State<HomePage> {
                   );
                 }).toList(),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               // To megálló kiválasztása
               DropdownButtonFormField<String>(
                 value: _tempSelectedDestinationStation ??
                     selectedDestinationStation,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
                   labelText: 'Destination Station',
-                  border: OutlineInputBorder(),
                 ),
                 onChanged: (String? value) {
                   _tempSelectedDestinationStation = value;
@@ -382,7 +368,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 20),
               // Dátum és idő kiválasztása
-              const Text('Departure', style: TextStyle(fontSize: 18)),
+              const Text('Departure after', style: TextStyle(fontSize: 18)),
               const SizedBox(height: 10),
               TextFormField(
                 readOnly: true,
@@ -393,7 +379,9 @@ class _HomePageState extends State<HomePage> {
                     firstDate: DateTime.now(),
                     lastDate: DateTime(2100),
                   );
-                  if (pickedDate != null && pickedDate != selectedDateTime) {
+                  if (pickedDate != null &&
+                      pickedDate != selectedDateTime &&
+                      context.mounted) {
                     final TimeOfDay? pickedTime = await showTimePicker(
                       context: context,
                       initialTime: TimeOfDay.fromDateTime(selectedDateTime),
@@ -421,9 +409,7 @@ class _HomePageState extends State<HomePage> {
                       : '$_tempSelectedDate $_tempSelectedTime',
                 ),
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(8.0),
                   labelText: 'Date & Time',
-                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 20),
@@ -453,9 +439,9 @@ class _HomePageState extends State<HomePage> {
                 )),
                 child: const Text('Search'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               if (noAvailableRoutes)
-                Text(
+                const Text(
                     "There are no available routes, try again with other stations or date"),
               if (displayedTickets.isNotEmpty) ...[
                 const Text('Available buses', style: TextStyle(fontSize: 18)),

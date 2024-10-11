@@ -224,6 +224,13 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Register',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
@@ -231,12 +238,6 @@ class _RegisterPageState extends State<RegisterPage> {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.arrow_back)),
-                  ),
                   Image.asset(
                     'assets/images/logo-text.png',
                     height: 64,
@@ -249,7 +250,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelText: 'Firstname',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: lastnameController,
                     obscureText: false,
@@ -257,7 +258,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelText: 'Lastname',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: emailController,
                     obscureText: false,
@@ -265,7 +266,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelText: 'Email',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: passwordController,
                     obscureText: true,
@@ -273,7 +274,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         labelText: 'Password',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
                   TextFormField(
                     controller: confirmpassController,
                     obscureText: true,
@@ -288,7 +289,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                     style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 32, vertical: 16),
+                          horizontal: 30, vertical: 15),
                     ),
                     child: const Text(
                       'Register',
@@ -308,8 +309,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: ButtonStyle(
                             padding: MaterialStateProperty.all(
                           const EdgeInsets.symmetric(
-                            horizontal: 32,
-                            vertical: 16,
+                            horizontal: 30,
+                            vertical: 15,
                           ),
                         )),
                         onPressed: () {

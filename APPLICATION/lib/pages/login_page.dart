@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:bus4u/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -5,7 +7,7 @@ import 'package:bus4u/main.dart';
 import 'package:logger/logger.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key, this.currentPage}) : super(key: key);
+  const LoginPage({super.key, this.currentPage});
 
   final Widget? currentPage;
 
@@ -30,17 +32,18 @@ class _LoginPageState extends State<LoginPage> {
 
       if (response.statusCode == 200) {
         String token = response.headers['authorization'] ?? '';
-        String user_uid = response.headers['uid'] ?? '';
+        String userUid = response.headers['uid'] ?? '';
         String client = response.headers['client'] ?? '';
-        String access_token = response.headers['access-token'] ?? '';
-        print("uiduser $user_uid");
+        String accessToken = response.headers['access-token'] ?? '';
+        debugPrint("uiduser $userUid");
         saveData('token', token);
-        saveData('user_uid', user_uid);
+        saveData('user_uid', userUid);
         saveData('client', client);
-        saveData('access_token', access_token);
+        saveData('access_token', accessToken);
 
         MyApp.isLoggedIn = true;
 
+        if (!context.mounted) return;
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -52,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
         );
       } else {
         logger.e('failed');
+        if (!context.mounted) return;
         showDialog<String>(
           context: context,
           builder: (context) => AlertDialog(
@@ -78,6 +82,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: const Text(
+          'Login',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Center(
@@ -85,13 +96,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                Container(
-                  alignment: Alignment.topLeft,
-                  child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: const Icon(Icons.arrow_back)),
-                ),
-                const SizedBox(height: 64),
+                const SizedBox(height: 50),
                 Image.asset(
                   'assets/images/logo-text.png',
                   height: 64,
@@ -103,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       email = value;
                     });
                   },
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "E-mail",
                   ),
                 ),
@@ -119,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: "Password",
                   ),
                 ),
-                const SizedBox(height: 72),
+                const SizedBox(height: 50),
                 FilledButton(
                   onPressed: () {
                     signUserIn(email, password);
@@ -127,8 +132,8 @@ class _LoginPageState extends State<LoginPage> {
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 16,
+                        horizontal: 30,
+                        vertical: 15,
                       ),
                     ),
                   ),
@@ -140,15 +145,15 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 64),
+                const SizedBox(height: 50),
                 const Text("Not a member?"),
                 const SizedBox(height: 8),
                 ElevatedButton(
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(
-                        horizontal: 32,
-                        vertical: 16,
+                        horizontal: 30,
+                        vertical: 15,
                       ),
                     ),
                   ),

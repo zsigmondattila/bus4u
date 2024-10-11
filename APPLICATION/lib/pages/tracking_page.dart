@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
@@ -51,6 +53,7 @@ class _TrackingPageState extends State<TrackingPage> {
   }
 
   void checkPermission() async {
+    if (!Platform.isAndroid) return;
     final hasPermission = await location.serviceEnabled();
     if (!hasPermission) {
       _permission = await location.requestService();

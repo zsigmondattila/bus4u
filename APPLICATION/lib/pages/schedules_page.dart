@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
@@ -258,6 +260,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
   }
 
   void checkPermission() async {
+    if (!Platform.isAndroid) return;
     final hasPermission = await location.serviceEnabled();
     if (!hasPermission) {
       _permission = await location.requestService();
@@ -363,6 +366,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                   );
                 }).toList(),
               ),
+              SizedBox(height: 16),
               if (stations.isNotEmpty)
                 DropdownButtonFormField<String>(
                   value: selectedStation,
@@ -401,6 +405,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     );
                   }).toList(),
                 ),
+              SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () async {
                   if (selectedRoute != null && selectedStation != null) {
@@ -424,6 +429,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                 },
                 child: const Text('Search'),
               ),
+              SizedBox(height: 16),
               if (departureTimes.isNotEmpty) buildDepartureTimesTable(),
               ElevatedButton(onPressed: _showMapDialog, child: Text('Show map'))
             ],

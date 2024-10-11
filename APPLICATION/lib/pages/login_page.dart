@@ -1,11 +1,8 @@
-import 'package:bus4u/pages/account_page.dart';
 import 'package:bus4u/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:bus4u/main.dart';
 import 'package:logger/logger.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, this.currentPage}) : super(key: key);
@@ -32,8 +29,6 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (response.statusCode == 200) {
-        Map<String, dynamic> responseBody = json.decode(response.body);
-
         String token = response.headers['authorization'] ?? '';
         String user_uid = response.headers['uid'] ?? '';
         String client = response.headers['client'] ?? '';
@@ -46,33 +41,13 @@ class _LoginPageState extends State<LoginPage> {
 
         MyApp.isLoggedIn = true;
 
-        showDialog<String>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Successful'),
-            content: const Text('Logged in successfully'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context, 'Cancel');
-                },
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const MyHomePage(
-                        currentPage: AccountPage(),
-                        isLoggedIn: true,
-                      ),
-                    ),
-                  );
-                },
-                child: const Text('OK'),
-              ),
-            ],
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(
+              currentPage: 0,
+              isLoggedIn: true,
+            ),
           ),
         );
       } else {
@@ -107,94 +82,86 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(25.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                const SizedBox(height: 50),
-                const Icon(
-                  Icons.lock,
-                  size: 100,
-                ),
-                const SizedBox(height: 25),
-                Text(
-                  "Welcome back",
-                  style: TextStyle(color: Colors.grey[800], fontSize: 16),
-                ),
-                const SizedBox(height: 25),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        email = value;
-                      });
-                    },
-                    decoration: InputDecoration(
-                      labelText: "E-mail",
-                    ),
+                  alignment: Alignment.topLeft,
+                  child: IconButton(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back)),
+                ),
+                const SizedBox(height: 64),
+                Image.asset(
+                  'assets/images/logo-text.png',
+                  height: 64,
+                ),
+                const SizedBox(height: 64),
+                TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      email = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    labelText: "E-mail",
                   ),
                 ),
-                const SizedBox(height: 25),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: TextField(
-                    onChanged: (value) {
-                      setState(() {
-                        password = value;
-                      });
-                    },
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: "Password",
-                    ),
+                const SizedBox(height: 32),
+                TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      password = value;
+                    });
+                  },
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: "Password",
                   ),
                 ),
-                const SizedBox(height: 25),
-                ElevatedButton(
+                const SizedBox(height: 72),
+                FilledButton(
                   onPressed: () {
                     signUserIn(email, password);
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 120,
-                      vertical: 25,
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 16,
+                      ),
                     ),
                   ),
                   child: const Text(
-                    'Sign in',
+                    'Login',
                     style: TextStyle(
-                      color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
-                const SizedBox(height: 25),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Not a member?",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
+                const SizedBox(height: 64),
+                const Text("Not a member?"),
+                const SizedBox(height: 8),
+                ElevatedButton(
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 16,
                       ),
                     ),
-                    const SizedBox(width: 25),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (BuildContext context) {
-                              return const RegisterPage();
-                            },
-                          ),
-                        );
-                      },
-                      child: const Text('Register'),
-                    ),
-                  ],
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return const RegisterPage();
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text('Register'),
                 ),
               ],
             ),

@@ -1,4 +1,11 @@
-import 'package:bus4u/NavBar.dart';
+import 'package:bus4u/nav_bar.dart';
+import 'package:bus4u/pages/about_page.dart';
+import 'package:bus4u/pages/login_page.dart';
+import 'package:bus4u/pages/register_page.dart';
+import 'package:bus4u/pages/schedules_page.dart';
+import 'package:bus4u/pages/stations_page.dart';
+import 'package:bus4u/pages/ticket_page.dart';
+import 'package:bus4u/pages/tracking_page.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -18,32 +25,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-        ),
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: MaterialColor(
-          0xFFEF6C00,
-          <int, Color>{
-            50: Color(0xFFFFF3E0),
-            100: Color(0xFFFFE0B2),
-            200: Color(0xFFFFCC80),
-            300: Color(0xFFFFB74D),
-            400: Color(0xFFFFA726),
-            500: Color(0xFFF57C00),
-            600: Color(0xFFF57C00),
-            700: Color(0xFFF57C00),
-            800: Color(0xFFEF6C00),
-            900: Color(0xFFE65100),
-          },
-        ),
-      ),
+      theme: ThemeData.from(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.orange, background: Colors.white)),
       title: 'bus4u',
       home: AnimatedSplashScreen(
+        duration: 500,
         splash: Image.asset('assets/images/logo-text.png'),
         nextScreen: MyHomePage(
-          currentPage: const HomePage(),
           isLoggedIn: isLoggedIn,
         ),
         splashTransition: SplashTransition.fadeTransition,
@@ -54,12 +43,28 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  final Widget? currentPage;
+  final int currentPage;
   final bool isLoggedIn;
+  final List<Widget> pages = const [
+    const HomePage(),
+    const SchedulesPage(),
+    const StationsPage(),
+    const TicketPage(),
+    const TrackingPage(),
+    const AboutPage(),
+  ];
+  final List<String> pageTitles = const [
+    'Plan your trip',
+    'Schedule',
+    'Stations',
+    'My tickets',
+    'Live map',
+    'About',
+  ];
 
   const MyHomePage({
     Key? key,
-    this.currentPage,
+    this.currentPage = 0,
     this.isLoggedIn = false,
   }) : super(key: key);
 
@@ -68,7 +73,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Widget currentPage;
+  late int currentPage;
 
   void signOut() async {
     try {
@@ -82,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
       if (response.statusCode == 200) {
         setState(() {
           MyApp.isLoggedIn = false;
-          currentPage = const HomePage();
+          currentPage = 0;
         });
       } else {
         print('Logout failed');
@@ -95,54 +100,63 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    currentPage = widget.currentPage!;
+    currentPage = widget.currentPage;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              '$currentPage',
-              style: TextStyle(color: Colors.black, fontSize: 20),
-            ),
-            SizedBox(width: 50),
-            Image.asset(
-              'assets/images/logo-text.png',
-              height: 40,
-            ),
+    return Material(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
             if (MyApp.isLoggedIn)
-              GestureDetector(
-                onTap: signOut,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(Icons.account_circle),
-                    ),
-                    Text(
-                      'Sign Out',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
+              IconButton(
+                onPressed: signOut,
+                icon: const Icon(Icons.logout),
+                tooltip: 'Logout',
+              )
+            else ...[
+              IconButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      ),
+                  icon: const Icon(Icons.login),
+                  tooltip: 'Login'),
+              IconButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
+                      ),
+                  icon: const Icon(Icons.person_add),
+                  tooltip: 'Register'),
+            ],
+            SizedBox(width: 10),
           ],
+          backgroundColor: Colors.white,
+          shadowColor: Colors.grey,
+          titleSpacing: 8,
+          title: Text(
+            widget.pageTitles[currentPage],
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-        iconTheme: IconThemeData(color: Colors.orange[800]),
+        drawer: NavBar(
+          selectedIndex: currentPage,
+          onSelect: (page) {
+            setState(() {
+              currentPage = page;
+            });
+            Navigator.pop(context);
+          },
+          isLoggedIn: widget.isLoggedIn,
+        ),
+        body: widget.pages[currentPage],
       ),
-      drawer: NavBar(
-        onSelect: (Widget page) {
-          setState(() {
-            currentPage = page;
-          });
-        },
-        isLoggedIn: widget.isLoggedIn,
-      ),
-      body: currentPage,
     );
   }
 }

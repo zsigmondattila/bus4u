@@ -102,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
       builder: (context) => AlertDialog(
         title: const Text('Successful'),
         content: const Text(
-            'You created an account successfully, now you can sign in'),
+            'You created an account successfully, now you can Login'),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -228,104 +228,98 @@ class _RegisterPageState extends State<RegisterPage> {
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 50),
-                  const Icon(
-                    Icons.person_add_rounded,
-                    size: 100,
+                  Container(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                        onPressed: () => Navigator.pop(context),
+                        icon: const Icon(Icons.arrow_back)),
                   ),
-                  const SizedBox(height: 25),
-                  Text(
-                    "Welcome",
-                    style: TextStyle(color: Colors.grey[800], fontSize: 16),
+                  Image.asset(
+                    'assets/images/logo-text.png',
+                    height: 64,
                   ),
-                  const SizedBox(height: 25),
-                  TextFormField(
-                    controller: emailController,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: 'Email',
-                        hintStyle: TextStyle(color: Colors.grey[500])),
-                  ),
-                  const SizedBox(height: 25),
-                  TextFormField(
-                    controller: passwordController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: 'Password',
-                        hintStyle: TextStyle(color: Colors.grey[500])),
-                  ),
-                  const SizedBox(height: 25),
-                  TextFormField(
-                    controller: confirmpassController,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: 'Confirm password',
-                        hintStyle: TextStyle(color: Colors.grey[500])),
-                  ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: firstnameController,
                     obscureText: false,
                     decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: 'Firstname',
+                        labelText: 'Firstname',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: lastnameController,
                     obscureText: false,
                     decoration: InputDecoration(
-                        border: const OutlineInputBorder(),
-                        hintText: 'Lastname',
+                        labelText: 'Lastname',
                         hintStyle: TextStyle(color: Colors.grey[500])),
                   ),
-                  const SizedBox(height: 25),
-                  ElevatedButton(
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: emailController,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                        labelText: 'Email',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    controller: confirmpassController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        labelText: 'Confirm password',
+                        hintStyle: TextStyle(color: Colors.grey[500])),
+                  ),
+                  const SizedBox(height: 24),
+                  FilledButton(
                     onPressed: () {
                       sendVerificationEmail(emailController.text.toString());
                     },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
+                    style: FilledButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 120, vertical: 25),
+                          horizontal: 32, vertical: 16),
                     ),
                     child: const Text(
                       'Register',
                       style: TextStyle(
-                        color: Colors.white,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 24),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        "Registered yet?",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 15),
+                      const Text("Already registered?"),
+                      const SizedBox(height: 8),
                       ElevatedButton(
+                        style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                          const EdgeInsets.symmetric(
+                            horizontal: 32,
+                            vertical: 16,
+                          ),
+                        )),
                         onPressed: () {
-                          Navigator.of(context).push(
+                          Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (BuildContext context) {
                               return const LoginPage();
                             }),
                           );
                         },
-                        child: const Text('Sign in'),
+                        child: const Text('Login'),
                       ),
                     ],
                   ),

@@ -35,23 +35,18 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 25),
-            if (isLoggedIn)
-              Column(
+        child: isLoggedIn
+            ? Column(
                 children: [
                   Text(
                     'Welcome!',
                     style: TextStyle(fontSize: 24, color: Colors.black),
                   ),
-                  SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: () async {
                       await signOut();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange,
                       padding: EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
@@ -64,8 +59,8 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ],
               )
-            else
-              Column(
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
@@ -76,7 +71,6 @@ class _AccountPageState extends State<AccountPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[800],
                       padding: EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
@@ -87,13 +81,13 @@ class _AccountPageState extends State<AccountPage> {
                         Icon(Icons.login, size: 40),
                         SizedBox(height: 8),
                         Text(
-                          'Sign In',
+                          'Login',
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 50),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).push(
@@ -103,7 +97,6 @@ class _AccountPageState extends State<AccountPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.orange[800],
                       padding: EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
@@ -122,8 +115,6 @@ class _AccountPageState extends State<AccountPage> {
                   ),
                 ],
               ),
-          ],
-        ),
       ),
     );
   }

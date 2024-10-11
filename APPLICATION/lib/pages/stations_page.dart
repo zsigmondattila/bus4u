@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
@@ -51,14 +53,19 @@ class _StationsPageState extends State<StationsPage> {
   }
 
   void checkPermission() async {
-    final hasPermission = await location.serviceEnabled();
-    if (!hasPermission) {
-      _permission = await location.requestService();
-      if (_permission) {
+    try {
+      if (!Platform.isAndroid) return;
+      final hasPermission = await location.serviceEnabled();
+      if (!hasPermission) {
+        _permission = await location.requestService();
+        if (_permission) {
+          getLocation();
+        }
+      } else {
         getLocation();
       }
-    } else {
-      getLocation();
+    } catch (e) {
+      logger.e("Error checking permission: $e");
     }
   }
 
@@ -133,6 +140,7 @@ class _StationsPageState extends State<StationsPage> {
       final response =
           await http.get(Uri.parse('https://api.bus4u.online/v1/get_routes'));
       if (response.statusCode == 200) {
+        print(response.body);
         final Map<String, dynamic> data = json.decode(response.body);
         if (data.containsKey('routes')) {
           final List<dynamic> routesData = data['routes'];
@@ -167,7 +175,7 @@ class _StationsPageState extends State<StationsPage> {
       if (response.statusCode == 200) {
         List<dynamic> stationData = json.decode(response.body)['stations'];
         setState(() {
-          if (selectedCity == 'All city') {
+          if (selectedCity == 'All cities') {
             for (var station in stationData) {
               markers.add(
                 Marker(
@@ -228,102 +236,75 @@ class _StationsPageState extends State<StationsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select City: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+    return Stack(
+      children: [
+        Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                if (cities.isNotEmpty)
+                  DropdownButtonFormField<String>(
+                    value: selectedCity,
+                    items: cities
+                        .map((city) => DropdownMenuItem<String>(
+                              value: city['name'],
+                              child: Text(city['name'] ?? ''),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedCity = value;
+                        selectedRoute = null;
+                        markers.clear();
+                        getStationsOfCity();
+                      });
+                    },
+                    hint: const Text('Select City'),
                   ),
-                  if (cities.isNotEmpty)
-                    DropdownButton<String>(
-                      value: selectedCity,
-                      items: cities
-                          .map((city) => DropdownMenuItem<String>(
-                                value: city['name'],
-                                child: Text(city['name'] ?? ''),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedCity = value;
-                          selectedRoute = null;
-                          markers.clear();
-                          getStationsOfCity();
-                        });
-                      },
-                      hint: const Text('Select City'),
-                    ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select Route: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                SizedBox(height: 16),
+                if (routes.isNotEmpty)
+                  DropdownButtonFormField<String>(
+                    value: selectedRoute,
+                    items: routes
+                        .map((route) => DropdownMenuItem<String>(
+                              value: route['route_uid'],
+                              child: Text(route['name'] ?? ''),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        selectedRoute = value;
+                        selectedCity = null;
+                        markers.clear();
+                        getStationsOfRoute(selectedRoute!);
+                      });
+                    },
+                    hint: const Text('Select Route'),
                   ),
-                  if (routes.isNotEmpty)
-                    DropdownButton<String>(
-                      value: selectedRoute,
-                      items: routes
-                          .map((route) => DropdownMenuItem<String>(
-                                value: route['route_uid'],
-                                child: Text(route['name'] ?? ''),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedRoute = value;
-                          selectedCity = null;
-                          markers.clear();
-                          getStationsOfRoute(selectedRoute!);
-                        });
-                      },
-                      hint: const Text('Select Route'),
+                SizedBox(height: 16),
+                Expanded(
+                  child: GoogleMap(
+                    onMapCreated: _onMapCreated,
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(currentLocation?.latitude ?? 0.0,
+                          currentLocation?.longitude ?? 0.0),
+                      zoom: 15.0,
                     ),
-                ],
-              ),
-              Expanded(
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation?.latitude ?? 0.0,
-                        currentLocation?.longitude ?? 0.0),
-                    zoom: 15.0,
+                    markers: Set<Marker>.of(markers),
                   ),
-                  markers: Set<Marker>.of(markers),
                 ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FloatingActionButton(
-                onPressed: _addCurrentLocationMarker,
-                child: const Icon(Icons.location_on),
-              ),
+              ],
             ),
           ),
-        ],
-      ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _addCurrentLocationMarker,
+            child: const Icon(Icons.location_on),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+        ),
+      ],
     );
   }
 }

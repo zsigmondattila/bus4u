@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   final String _tempSelectedTime = '';
   var logger = Logger();
   String? token;
-  String? user_uid;
+  String? userUid;
 
   late String selectedDate = '';
   late String selectedTime = '';
@@ -42,9 +42,10 @@ class _HomePageState extends State<HomePage> {
   List<Ticket> displayedTickets = [];
 
   DateTime selectedDateTime = DateTime.now();
-  bool noAvailableRoutes = false;
-  bool isStartStationLoading = false;
-  bool isDestStationLoading = false;
+  bool _noAvailableRoutes = false;
+  bool _isStartStationLoading = false;
+  bool _isDestStationLoading = false;
+  bool _isRoutesLoading = false;
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -117,25 +118,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
-    isStartStationLoading = true;
+    _isStartStationLoading = true;
     try {
       stations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading stations: $e');
     } finally {
-      isStartStationLoading = false;
+      _isStartStationLoading = false;
     }
     setState(() {});
   }
 
   Future<void> loadDestinationStations(String cityUid) async {
-    isDestStationLoading = true;
+    _isDestStationLoading = true;
     try {
       destinationStations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading destination stations: $e');
     } finally {
-      isDestStationLoading = false;
+      _isDestStationLoading = false;
     }
     setState(() {});
   }
@@ -145,6 +146,7 @@ class _HomePageState extends State<HomePage> {
       logger.w('Please select all cities and stations');
       return;
     }
+    _isRoutesLoading = true;
     try {
       final response = await http.get(
         Uri.parse(
@@ -174,7 +176,7 @@ class _HomePageState extends State<HomePage> {
           tickets.add(ticket);
         }
         setState(() {
-          noAvailableRoutes = tickets.isEmpty;
+          _noAvailableRoutes = tickets.isEmpty;
           displayedTickets = tickets;
         });
       } else {
@@ -182,6 +184,8 @@ class _HomePageState extends State<HomePage> {
       }
     } catch (e) {
       logger.e('Error fetching tickets: $e');
+    } finally {
+      _isRoutesLoading = false;
     }
   }
 
@@ -189,13 +193,13 @@ class _HomePageState extends State<HomePage> {
     try {
       final Ticket selectedTicket = displayedTickets[ticketIndex];
       token = await readData('token');
-      user_uid = await readData('user_uid');
+      userUid = await readData('user_uid');
 
       final Map<String, dynamic> ticketData = {
         "quantity": selectedTicket.quantity,
         "ticket_price": selectedTicket.ticketPrice,
         "company_uid": selectedTicket.companyUID,
-        "user_uid": user_uid,
+        "user_uid": userUid,
         "type": "normal",
         "route_uid": selectedTicket.routeUID,
         "from_station_uid": selectedTicket.startStationUID,
@@ -323,7 +327,7 @@ class _HomePageState extends State<HomePage> {
                 // From megálló kiválasztása
                 DropdownButtonFormField<String>(
                   value: _tempSelectedStartStation ?? selectedStartStation,
-                  icon: isStartStationLoading
+                  icon: _isStartStationLoading
                       ? const AspectRatio(
                           aspectRatio: 1,
                           child: CircularProgressIndicator.adaptive(
@@ -379,7 +383,7 @@ class _HomePageState extends State<HomePage> {
                 DropdownButtonFormField<String>(
                   value: _tempSelectedDestinationStation ??
                       selectedDestinationStation,
-                  icon: isDestStationLoading
+                  icon: _isDestStationLoading
                       ? const AspectRatio(
                           aspectRatio: 1,
                           child: CircularProgressIndicator.adaptive(
@@ -446,28 +450,31 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                FilledButton(
-                  onPressed: () {
-                    if (!_formKey.currentState!.validate()) return;
-                    setState(() {
-                      selectedStartCity = _tempSelectedStartCity;
-                      selectedStartStation = _tempSelectedStartStation;
-                      selectedDestinationCity = _tempSelectedDestinationCity;
-                      selectedDestinationStation =
-                          _tempSelectedDestinationStation;
-                      selectedDate = _tempSelectedDate.isEmpty
-                          ? selectedDate
-                          : _tempSelectedDate;
-                      selectedTime = _tempSelectedTime.isEmpty
-                          ? selectedTime
-                          : _tempSelectedTime;
-                    });
-                    fetchRoutes();
-                  },
-                  child: const Text('Search'),
-                ),
+                _isRoutesLoading
+                    ? const Center(child: CircularProgressIndicator.adaptive())
+                    : FilledButton(
+                        onPressed: () {
+                          if (!_formKey.currentState!.validate()) return;
+                          setState(() {
+                            selectedStartCity = _tempSelectedStartCity;
+                            selectedStartStation = _tempSelectedStartStation;
+                            selectedDestinationCity =
+                                _tempSelectedDestinationCity;
+                            selectedDestinationStation =
+                                _tempSelectedDestinationStation;
+                            selectedDate = _tempSelectedDate.isEmpty
+                                ? selectedDate
+                                : _tempSelectedDate;
+                            selectedTime = _tempSelectedTime.isEmpty
+                                ? selectedTime
+                                : _tempSelectedTime;
+                          });
+                          fetchRoutes();
+                        },
+                        child: const Text('Search'),
+                      ),
                 const SizedBox(height: 32),
-                if (noAvailableRoutes)
+                if (_noAvailableRoutes)
                   const Text(
                       "There are no available routes, try again with other stations or date"),
                 if (displayedTickets.isNotEmpty) ...[

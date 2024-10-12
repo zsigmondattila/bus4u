@@ -79,7 +79,6 @@ class _MyHomePageState extends State<MyHomePage> {
       String? uid = await readData('user_uid');
       String? client = await readData('client');
       String? accessToken = await readData('access_token');
-      print('uid $uid client $client ');
       final response = await http.delete(
           Uri.parse('https://api.bus4u.online/auth/sign_out'),
           body: {'uid': uid, 'client': client, 'access-token': accessToken});
@@ -89,10 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
           currentPage = 0;
         });
       } else {
-        print('Logout failed');
+        debugPrint('Logout failed');
       }
     } catch (e) {
-      print('Error during logout: $e');
+      debugPrint('Error during logout: $e');
     }
   }
 

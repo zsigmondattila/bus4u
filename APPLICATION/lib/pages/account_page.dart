@@ -24,10 +24,10 @@ class _AccountPageState extends State<AccountPage> {
           MyApp.isLoggedIn = false;
         });
       } else {
-        print('Logout failed');
+        debugPrint('Logout failed');
       }
     } catch (e) {
-      print('Error during logout: $e');
+      debugPrint('Error during logout: $e');
     }
   }
 
@@ -38,7 +38,7 @@ class _AccountPageState extends State<AccountPage> {
         child: isLoggedIn
             ? Column(
                 children: [
-                  Text(
+                  const Text(
                     'Welcome!',
                     style: TextStyle(fontSize: 24, color: Colors.black),
                   ),
@@ -47,12 +47,12 @@ class _AccountPageState extends State<AccountPage> {
                       await signOut();
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Sign Out',
                       style: TextStyle(fontSize: 20),
                     ),
@@ -71,12 +71,12 @@ class _AccountPageState extends State<AccountPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
                       ),
                     ),
-                    child: Column(
+                    child: const Column(
                       children: [
                         Icon(Icons.login, size: 40),
                         SizedBox(height: 8),
@@ -97,12 +97,12 @@ class _AccountPageState extends State<AccountPage> {
                       );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 40,
                         vertical: 20,
                       ),
                     ),
-                    child: Column(
+                    child: const Column(
                       children: [
                         Icon(Icons.person_add, size: 40),
                         SizedBox(height: 8),

@@ -21,6 +21,8 @@ class _TrackingPageState extends State<TrackingPage> {
   Marker? currentLocationMarker;
   final Location location = Location();
   bool _permission = false;
+  bool _isStationsLoading = false;
+  bool _isBusesLoading = false;
   String? selectedCity;
   String? selectedRoute;
   List<Map<String, String>> cities = [];
@@ -129,6 +131,7 @@ class _TrackingPageState extends State<TrackingPage> {
   }
 
   void getRoutesByCity(String cityUid) async {
+    _isStationsLoading = true;
     try {
       final response = await http.get(
         Uri.parse(
@@ -151,10 +154,13 @@ class _TrackingPageState extends State<TrackingPage> {
       }
     } catch (e) {
       logger.e("Error fetching routes by city: $e");
+    } finally {
+      _isStationsLoading = false;
     }
   }
 
   void getBusesOnRoute(String routeUid) async {
+    _isBusesLoading = true;
     try {
       final response = await http.get(
         Uri.parse(
@@ -177,7 +183,8 @@ class _TrackingPageState extends State<TrackingPage> {
                   double.parse(bus['longitude']),
                 ),
                 infoWindow: InfoWindow(
-                  title: 'Bus ${bus['bus_uid']}',
+                  title: '${bus['license_plate']}',
+                  snippet: 'Capacity: ${bus['capacity']}',
                 ),
                 icon: BitmapDescriptor.defaultMarkerWithHue(
                     BitmapDescriptor.hueRed),
@@ -190,6 +197,8 @@ class _TrackingPageState extends State<TrackingPage> {
       }
     } catch (e) {
       logger.e("Error fetching buses on route: $e");
+    } finally {
+      _isBusesLoading = false;
     }
   }
 
@@ -286,6 +295,13 @@ class _TrackingPageState extends State<TrackingPage> {
                           getRoutesByCity(value!);
                         });
                       },
+                      icon: _isStationsLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
                       hint: const Text('Select City'),
                     ),
                   ),
@@ -312,6 +328,13 @@ class _TrackingPageState extends State<TrackingPage> {
                           getBusesOnRoute(selectedRoute!);
                         }
                       },
+                      icon: _isBusesLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
                       hint: const Text('Select Route'),
                     ),
                   ),

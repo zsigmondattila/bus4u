@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 class SchedulesPage extends StatefulWidget {
-  const SchedulesPage({Key? key}) : super(key: key);
+  const SchedulesPage({super.key});
 
   @override
   _SchedulesPageState createState() => _SchedulesPageState();
@@ -26,8 +26,9 @@ class _SchedulesPageState extends State<SchedulesPage> {
   final Location location = Location();
   bool _permission = false;
   var logger = Logger();
-  bool isRouteLoading = false;
-  bool isStationLoading = false;
+  bool _isRouteLoading = false;
+  bool _isStationLoading = false;
+  bool _isScheduleLoading = false;
 
   List<Marker> markers = [];
   List<LatLng> polylineCoordinates = [];
@@ -150,7 +151,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
 
   Future<void> loadRoutes(String stationUid) async {
     setState(() {
-      isRouteLoading = true;
+      _isRouteLoading = true;
     });
     try {
       List<Map<String, dynamic>> fetchedRoutes =
@@ -162,14 +163,14 @@ class _SchedulesPageState extends State<SchedulesPage> {
       logger.e('Error loading routes: $e');
     } finally {
       setState(() {
-        isRouteLoading = false;
+        _isRouteLoading = false;
       });
     }
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
     setState(() {
-      isStationLoading = true;
+      _isStationLoading = true;
     });
     try {
       var s = await getStationsByCity(cityUid);
@@ -180,7 +181,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
       logger.e('Error loading stations: $e');
     } finally {
       setState(() {
-        isStationLoading = false;
+        _isStationLoading = false;
       });
     }
   }
@@ -392,7 +393,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
                   value: selectedStation,
-                  icon: isStationLoading
+                  icon: _isStationLoading
                       ? const AspectRatio(
                           aspectRatio: 1,
                           child: CircularProgressIndicator.adaptive(
@@ -421,7 +422,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                 ),
                 const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
-                  icon: isRouteLoading
+                  icon: _isRouteLoading
                       ? const AspectRatio(
                           aspectRatio: 1,
                           child: CircularProgressIndicator.adaptive(
@@ -452,25 +453,33 @@ class _SchedulesPageState extends State<SchedulesPage> {
                   }).toList(),
                 ),
                 const SizedBox(height: 16),
-                FilledButton(
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      String url =
-                          'https://api.bus4u.online/v1/get_departure_times_for_station_in_route?route_uid=$selectedRoute&station_uid=$selectedStation';
-                      final response = await http.get(Uri.parse(url));
-                      if (response.statusCode == 200) {
-                        List<dynamic> data = json.decode(response.body);
-                        setState(() {
-                          departureTimes =
-                              List<Map<String, dynamic>>.from(data);
-                        });
-                      } else {
-                        logger.e('Failed to load departure times');
-                      }
-                    }
-                  },
-                  child: const Text('Search'),
-                ),
+                _isScheduleLoading
+                    ? const Center(child: CircularProgressIndicator.adaptive())
+                    : FilledButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              departureTimes.clear();
+                              _isScheduleLoading = true;
+                            });
+                            String url =
+                                'https://api.bus4u.online/v1/get_departure_times_for_station_in_route?route_uid=$selectedRoute&station_uid=$selectedStation';
+                            final response = await http.get(Uri.parse(url));
+                            List<Map<String, dynamic>> dt = [];
+                            if (response.statusCode == 200) {
+                              List<dynamic> data = json.decode(response.body);
+                              dt = List<Map<String, dynamic>>.from(data);
+                            } else {
+                              logger.e('Failed to load departure times');
+                            }
+                            setState(() {
+                              departureTimes = dt;
+                              _isScheduleLoading = false;
+                            });
+                          }
+                        },
+                        child: const Text('Search'),
+                      ),
                 if (departureTimes.isNotEmpty) ...[
                   const SizedBox(height: 32),
                   Align(

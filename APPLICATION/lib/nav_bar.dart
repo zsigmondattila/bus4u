@@ -6,11 +6,11 @@ class NavBar extends StatelessWidget {
   final int selectedIndex;
 
   const NavBar({
-    Key? key,
+    super.key,
     required this.onSelect,
     required this.isLoggedIn,
     this.selectedIndex = 0,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,41 +30,41 @@ class NavBar extends StatelessWidget {
             height: 48,
           ),
         ),
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.home),
-          label: const Text(
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.home),
+          label: Text(
             'Home',
           ),
         ),
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.calendar_month),
-          label: const Text(
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.calendar_month),
+          label: Text(
             'Schedule',
           ),
         ),
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.location_pin),
-          label: const Text(
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.location_pin),
+          label: Text(
             'Stations',
           ),
         ),
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.receipt),
-          label: const Text(
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.receipt),
+          label: Text(
             'My tickets',
           ),
         ),
-        NavigationDrawerDestination(
-          icon: const Icon(Icons.gps_fixed),
-          label: const Text(
+        const NavigationDrawerDestination(
+          icon: Icon(Icons.gps_fixed),
+          label: Text(
             'Live map',
           ),
         ),
-        NavigationDrawerDestination(
-          label: const Text(
+        const NavigationDrawerDestination(
+          label: Text(
             'About',
           ),
-          icon: const Icon(Icons.info_outline),
+          icon: Icon(Icons.info_outline),
         ),
       ],
     );

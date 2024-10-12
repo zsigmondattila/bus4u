@@ -21,6 +21,8 @@ class _StationsPageState extends State<StationsPage> {
   Marker? currentLocationMarker;
   final Location location = Location();
   bool _permission = false;
+  bool _isCitiesLoading = false;
+  bool _isRoutesLoading = false;
   String? selectedCity;
   String? selectedRoute;
   List<Map<String, String>> cities = [];
@@ -190,6 +192,7 @@ class _StationsPageState extends State<StationsPage> {
   }
 
   void getStationsOfCity() async {
+    _isCitiesLoading = true;
     try {
       final response = await http.get(Uri.parse(
           'https://api.bus4u.online/v1/get_stations_by_city?city_uid=$selectedCity'));
@@ -222,10 +225,15 @@ class _StationsPageState extends State<StationsPage> {
         markers.clear();
       });
       logger.e("Error fetching stations: $e");
+    } finally {
+      setState(() {
+        _isCitiesLoading = false;
+      });
     }
   }
 
   void getStationsOfRoute(String routeUid) async {
+    _isRoutesLoading = true;
     try {
       final response = await http.get(Uri.parse(
           'https://api.bus4u.online/v1/get_stations_of_a_route?route_uid=$routeUid'));
@@ -259,6 +267,10 @@ class _StationsPageState extends State<StationsPage> {
         markers.clear();
       });
       logger.e("Error fetching stations of route: $e");
+    } finally {
+      setState(() {
+        _isRoutesLoading = false;
+      });
     }
   }
 
@@ -303,6 +315,13 @@ class _StationsPageState extends State<StationsPage> {
                           getStationsOfCity();
                         });
                       },
+                      icon: _isCitiesLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
                       hint: const Text('Filter by City'),
                     ),
                   ),
@@ -329,6 +348,13 @@ class _StationsPageState extends State<StationsPage> {
                           getStationsOfRoute(selectedRoute!);
                         });
                       },
+                      icon: _isRoutesLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
                       hint: const Text('Filter by Route'),
                     ),
                   ),

@@ -55,14 +55,14 @@ class _RegisterPageState extends State<RegisterPage> {
                           }
                           if (i < 3 && value.length == 1) {
                             FocusScope.of(context).nextFocus();
-                          } else if (i > 0 && value.length == 0) {
+                          } else if (i > 0 && value.isEmpty) {
                             FocusScope.of(context).previousFocus();
                           }
                         },
                         keyboardType: TextInputType.number,
                         maxLength: 1,
                         textAlign: TextAlign.center,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           counterText: '',
                           border: InputBorder.none,
                         ),
@@ -108,7 +108,7 @@ class _RegisterPageState extends State<RegisterPage> {
             onPressed: () {
               Navigator.pop(context, 'OK');
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => LoginPage()));
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
             },
             child: const Text('OK'),
           ),
@@ -143,6 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
       );
 
       if (response.statusCode == 202) {
+        if (!context.mounted) return;
         showDialog<String>(
           context: context,
           builder: (context) => AlertDialog(

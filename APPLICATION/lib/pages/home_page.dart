@@ -16,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _formKey = GlobalKey<FormState>();
+
   String? selectedStartCity;
   String? selectedStartStation;
   String? selectedDestinationCity;
@@ -41,6 +43,8 @@ class _HomePageState extends State<HomePage> {
 
   DateTime selectedDateTime = DateTime.now();
   bool noAvailableRoutes = false;
+  bool isStartStationLoading = false;
+  bool isDestStationLoading = false;
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -113,19 +117,25 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
+    isStartStationLoading = true;
     try {
       stations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading stations: $e');
+    } finally {
+      isStartStationLoading = false;
     }
     setState(() {});
   }
 
   Future<void> loadDestinationStations(String cityUid) async {
+    isDestStationLoading = true;
     try {
       destinationStations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading destination stations: $e');
+    } finally {
+      isDestStationLoading = false;
     }
     setState(() {});
   }
@@ -276,261 +286,281 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const Text('From', style: TextStyle(fontSize: 18)),
-              const SizedBox(height: 10),
-              DropdownButtonFormField<String>(
-                value: _tempSelectedStartCity ?? selectedStartCity,
-                decoration: const InputDecoration(
-                  labelText: 'Start City',
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    _tempSelectedStartCity = value;
-                    _tempSelectedStartStation = null;
-                    selectedStartStation = null;
-                    if (value != null) {
-                      stations = [];
-                      selectedStartCity = value;
-                      loadStationsForCity(value);
-                    }
-                  });
-                },
-                items: cities.map((Map<String, dynamic> city) {
-                  return DropdownMenuItem<String>(
-                    value: city['city_uid'],
-                    child: Text(city['name']),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 16),
-              // From megálló kiválasztása
-              DropdownButtonFormField<String>(
-                value: _tempSelectedStartStation ?? selectedStartStation,
-                decoration: const InputDecoration(
-                  labelText: 'Start Station',
-                ),
-                onChanged: (String? value) {
-                  _tempSelectedStartStation = value;
-                },
-                items: stations.map((Map<String, dynamic> station) {
-                  return DropdownMenuItem<String>(
-                    value: station['station_uid'],
-                    child: Text(station['name']),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 32),
-              const Text('To', style: TextStyle(fontSize: 18)),
-              const SizedBox(height: 10),
-              DropdownButtonFormField<String>(
-                value: _tempSelectedDestinationCity ?? selectedDestinationCity,
-                decoration: const InputDecoration(
-                  labelText: 'Destination City',
-                ),
-                onChanged: (String? value) {
-                  setState(() {
-                    _tempSelectedDestinationCity = value;
-                    if (value != null) {
-                      selectedDestinationCity = value;
-                      _tempSelectedDestinationStation = null;
-                      selectedDestinationStation = null;
-                      loadDestinationStations(value);
-                    }
-                  });
-                },
-                items: destinationCities.map((Map<String, dynamic> city) {
-                  return DropdownMenuItem<String>(
-                    value: city['city_uid'],
-                    child: Text(city['name']),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 16),
-              // To megálló kiválasztása
-              DropdownButtonFormField<String>(
-                value: _tempSelectedDestinationStation ??
-                    selectedDestinationStation,
-                decoration: const InputDecoration(
-                  labelText: 'Destination Station',
-                ),
-                onChanged: (String? value) {
-                  _tempSelectedDestinationStation = value;
-                },
-                items: destinationStations.map((Map<String, dynamic> station) {
-                  return DropdownMenuItem<String>(
-                    value: station['station_uid'],
-                    child: Text(station['name']),
-                  );
-                }).toList(),
-              ),
-              const SizedBox(height: 20),
-              // Dátum és idő kiválasztása
-              const Text('Departure after', style: TextStyle(fontSize: 18)),
-              const SizedBox(height: 10),
-              TextFormField(
-                readOnly: true,
-                onTap: () async {
-                  final DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: selectedDateTime,
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime(2100),
-                  );
-                  if (pickedDate != null &&
-                      pickedDate != selectedDateTime &&
-                      context.mounted) {
-                    final TimeOfDay? pickedTime = await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.fromDateTime(selectedDateTime),
-                    );
-                    if (pickedTime != null) {
-                      setState(() {
-                        selectedDateTime = DateTime(
-                          pickedDate.year,
-                          pickedDate.month,
-                          pickedDate.day,
-                          pickedTime.hour,
-                          pickedTime.minute,
-                        );
-                        selectedDate =
-                            DateFormat('yyyy-MM-dd').format(selectedDateTime);
-                        selectedTime =
-                            DateFormat('HH:mm').format(selectedDateTime);
-                      });
-                    }
-                  }
-                },
-                controller: TextEditingController(
-                  text: _tempSelectedDate.isEmpty
-                      ? '$selectedDate $selectedTime'
-                      : '$_tempSelectedDate $_tempSelectedTime',
-                ),
-                decoration: const InputDecoration(
-                  labelText: 'Date & Time',
-                ),
-              ),
-              const SizedBox(height: 20),
-              FilledButton(
-                onPressed: () {
-                  setState(() {
-                    selectedStartCity = _tempSelectedStartCity;
-                    selectedStartStation = _tempSelectedStartStation;
-                    selectedDestinationCity = _tempSelectedDestinationCity;
-                    selectedDestinationStation =
-                        _tempSelectedDestinationStation;
-                    selectedDate = _tempSelectedDate.isEmpty
-                        ? selectedDate
-                        : _tempSelectedDate;
-                    selectedTime = _tempSelectedTime.isEmpty
-                        ? selectedTime
-                        : _tempSelectedTime;
-                  });
-                  fetchRoutes();
-                },
-                style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                  const EdgeInsets.symmetric(
-                    horizontal: 32,
-                    vertical: 16,
-                  ),
-                )),
-                child: const Text('Search'),
-              ),
-              const SizedBox(height: 20),
-              if (noAvailableRoutes)
-                const Text(
-                    "There are no available routes, try again with other stations or date"),
-              if (displayedTickets.isNotEmpty) ...[
-                const Text('Available buses', style: TextStyle(fontSize: 18)),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text('From', style: TextStyle(fontSize: 18)),
                 const SizedBox(height: 10),
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 500),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    );
+                DropdownButtonFormField<String>(
+                  value: _tempSelectedStartCity ?? selectedStartCity,
+                  decoration: const InputDecoration(
+                    labelText: 'Start City',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _tempSelectedStartCity = value;
+                      _tempSelectedStartStation = null;
+                      selectedStartStation = null;
+                      if (value != null) {
+                        stations = [];
+                        selectedStartCity = value;
+                        loadStationsForCity(value);
+                      }
+                    });
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: Theme.of(context).colorScheme.surfaceVariant,
-                          width: 2),
-                    ),
-                    child: ListView.separated(
-                        shrinkWrap: true,
-                        itemCount: displayedTickets.length,
-                        separatorBuilder: (context, index) => const Divider(),
-                        itemBuilder: (context, index) {
-                          Ticket ticket = displayedTickets[index];
-                          DateTime depTimestamp =
-                              DateTime.fromMillisecondsSinceEpoch(
-                                  ticket.departureTime * 1000,
-                                  isUtc: true);
-                          String departureTime =
-                              '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
-                          return ListTile(
-                            title: Text(
-                              '${ticket.startStation} - ${ticket.destinationStation}',
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Company: ${ticket.companyName}'),
-                                Text('Route: ${ticket.routeName}'),
-                                Text(
-                                    'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
-                                Text('Departure Time: ${departureTime}'),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          if (ticket.quantity > 1) {
-                                            ticket.quantity--;
-                                          }
-                                        });
-                                      },
-                                      icon: const Icon(Icons.remove),
-                                    ),
-                                    Container(
-                                      width: 40,
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        '${ticket.quantity}',
-                                        style: const TextStyle(fontSize: 18),
-                                      ),
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          ticket.quantity++;
-                                        });
-                                      },
-                                      icon: const Icon(Icons.add),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () {
-                                        buyTicket(index);
-                                      },
-                                      child: const Text('Buy Ticket'),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
+                  items: cities.map((Map<String, dynamic> city) {
+                    return DropdownMenuItem<String>(
+                      value: city['city_uid'],
+                      child: Text(city['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 16),
+                // From megálló kiválasztása
+                DropdownButtonFormField<String>(
+                  value: _tempSelectedStartStation ?? selectedStartStation,
+                  icon: isStartStationLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
+                  decoration: const InputDecoration(
+                    labelText: 'Start Station',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    _tempSelectedStartStation = value;
+                  },
+                  items: stations.map((Map<String, dynamic> station) {
+                    return DropdownMenuItem<String>(
+                      value: station['station_uid'],
+                      child: Text(station['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 32),
+                const Text('To', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
+                DropdownButtonFormField<String>(
+                  value:
+                      _tempSelectedDestinationCity ?? selectedDestinationCity,
+                  decoration: const InputDecoration(
+                    labelText: 'Destination City',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    setState(() {
+                      _tempSelectedDestinationCity = value;
+                      if (value != null) {
+                        selectedDestinationCity = value;
+                        _tempSelectedDestinationStation = null;
+                        selectedDestinationStation = null;
+                        loadDestinationStations(value);
+                      }
+                    });
+                  },
+                  items: destinationCities.map((Map<String, dynamic> city) {
+                    return DropdownMenuItem<String>(
+                      value: city['city_uid'],
+                      child: Text(city['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 16),
+                // To megálló kiválasztása
+                DropdownButtonFormField<String>(
+                  value: _tempSelectedDestinationStation ??
+                      selectedDestinationStation,
+                  icon: isDestStationLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
+                  decoration: const InputDecoration(
+                    labelText: 'Destination Station',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    _tempSelectedDestinationStation = value;
+                  },
+                  items:
+                      destinationStations.map((Map<String, dynamic> station) {
+                    return DropdownMenuItem<String>(
+                      value: station['station_uid'],
+                      child: Text(station['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 20),
+                // Dátum és idő kiválasztása
+                const Text('Date & time', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
+                TextFormField(
+                  readOnly: true,
+                  onTap: () async {
+                    final DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: selectedDateTime,
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime(2100),
+                    );
+                    if (pickedDate != null &&
+                        pickedDate != selectedDateTime &&
+                        context.mounted) {
+                      final TimeOfDay? pickedTime = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.fromDateTime(selectedDateTime),
+                      );
+                      if (pickedTime != null) {
+                        setState(() {
+                          selectedDateTime = DateTime(
+                            pickedDate.year,
+                            pickedDate.month,
+                            pickedDate.day,
+                            pickedTime.hour,
+                            pickedTime.minute,
                           );
-                        }),
+                          selectedDate =
+                              DateFormat('yyyy-MM-dd').format(selectedDateTime);
+                          selectedTime =
+                              DateFormat('HH:mm').format(selectedDateTime);
+                        });
+                      }
+                    }
+                  },
+                  controller: TextEditingController(
+                    text: _tempSelectedDate.isEmpty
+                        ? '$selectedDate $selectedTime'
+                        : '$_tempSelectedDate $_tempSelectedTime',
                   ),
                 ),
-              ]
-            ],
+                const SizedBox(height: 20),
+                FilledButton(
+                  onPressed: () {
+                    if (!_formKey.currentState!.validate()) return;
+                    setState(() {
+                      selectedStartCity = _tempSelectedStartCity;
+                      selectedStartStation = _tempSelectedStartStation;
+                      selectedDestinationCity = _tempSelectedDestinationCity;
+                      selectedDestinationStation =
+                          _tempSelectedDestinationStation;
+                      selectedDate = _tempSelectedDate.isEmpty
+                          ? selectedDate
+                          : _tempSelectedDate;
+                      selectedTime = _tempSelectedTime.isEmpty
+                          ? selectedTime
+                          : _tempSelectedTime;
+                    });
+                    fetchRoutes();
+                  },
+                  child: const Text('Search'),
+                ),
+                const SizedBox(height: 32),
+                if (noAvailableRoutes)
+                  const Text(
+                      "There are no available routes, try again with other stations or date"),
+                if (displayedTickets.isNotEmpty) ...[
+                  const Text('Available buses', style: TextStyle(fontSize: 18)),
+                  const SizedBox(height: 10),
+                  AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 500),
+                    transitionBuilder:
+                        (Widget child, Animation<double> animation) {
+                      return FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                            color: Theme.of(context).dividerColor, width: 1),
+                      ),
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: displayedTickets.length,
+                          separatorBuilder: (context, index) =>
+                              Divider(color: Theme.of(context).dividerColor),
+                          itemBuilder: (context, index) {
+                            Ticket ticket = displayedTickets[index];
+                            DateTime depTimestamp =
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    ticket.departureTime * 1000,
+                                    isUtc: true);
+                            String departureTime =
+                                '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
+                            return ListTile(
+                              title: Text(
+                                '${ticket.startStation} - ${ticket.destinationStation}',
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Company: ${ticket.companyName}'),
+                                  Text('Route: ${ticket.routeName}'),
+                                  Text(
+                                      'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
+                                  Text('Departure Time: $departureTime'),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            if (ticket.quantity > 1) {
+                                              ticket.quantity--;
+                                            }
+                                          });
+                                        },
+                                        icon: const Icon(Icons.remove),
+                                      ),
+                                      Container(
+                                        width: 40,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          '${ticket.quantity}',
+                                          style: const TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            ticket.quantity++;
+                                          });
+                                        },
+                                        icon: const Icon(Icons.add),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          buyTicket(index);
+                                        },
+                                        child: const Text('Buy Ticket'),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          }),
+                    ),
+                  ),
+                ]
+              ],
+            ),
           ),
         ),
       ),

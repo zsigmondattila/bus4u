@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 class TrackingPage extends StatefulWidget {
-  const TrackingPage({Key? key}) : super(key: key);
+  const TrackingPage({super.key});
 
   @override
   _TrackingPageState createState() => _TrackingPageState();
@@ -18,14 +18,15 @@ class _TrackingPageState extends State<TrackingPage> {
   GoogleMapController? mapController;
   List<Marker> markers = [];
   LocationData? currentLocation;
+  Marker? currentLocationMarker;
   final Location location = Location();
   bool _permission = false;
-  String? selectedCity = null;
-  String? selectedRoute = null;
+  String? selectedCity;
+  String? selectedRoute;
   List<Map<String, String>> cities = [];
   List<Map<String, dynamic>> routes = [];
   var logger = Logger();
-  Set<Polyline> polylines = Set<Polyline>();
+  Set<Polyline> polylines = <Polyline>{};
 
   @override
   void initState() {
@@ -68,20 +69,17 @@ class _TrackingPageState extends State<TrackingPage> {
   void _addCurrentLocationMarker() {
     if (currentLocation != null) {
       setState(() {
-        markers.add(
-          Marker(
-            markerId: const MarkerId('currentLocation'),
-            position: LatLng(
-              currentLocation!.latitude!,
-              currentLocation!.longitude!,
-            ),
-            infoWindow: const InfoWindow(
-              title: 'Current Location',
-              snippet: 'Your current position',
-            ),
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        currentLocationMarker = Marker(
+          markerId: const MarkerId('currentLocation'),
+          position: LatLng(
+            currentLocation!.latitude!,
+            currentLocation!.longitude!,
           ),
+          infoWindow: const InfoWindow(
+            title: 'Current Location',
+            snippet: 'Your current position',
+          ),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         );
         mapController?.animateCamera(
           CameraUpdate.newLatLngZoom(
@@ -233,8 +231,8 @@ class _TrackingPageState extends State<TrackingPage> {
     }
 
     Polyline polyline = Polyline(
-      polylineId: PolylineId('route'),
-      color: Colors.orange,
+      polylineId: const PolylineId('route'),
+      color: Colors.orange.withAlpha(128),
       points: polylineCoordinates,
       width: 4,
     );
@@ -247,25 +245,31 @@ class _TrackingPageState extends State<TrackingPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (currentLocationMarker != null) markers.add(currentLocationMarker!);
+
     return Scaffold(
       body: Stack(
         children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select City: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  if (cities.isNotEmpty)
-                    DropdownButton<String>(
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(currentLocation?.latitude ?? 0.0,
+                  currentLocation?.longitude ?? 0.0),
+              zoom: 15.0,
+            ),
+            markers: Set<Marker>.of(markers),
+            polylines: polylines,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                if (cities.isNotEmpty)
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4.0),
+                        color: Colors.white.withAlpha(230)),
+                    child: DropdownButtonFormField<String>(
                       value: selectedCity,
                       items: cities
                           .map((city) => DropdownMenuItem<String>(
@@ -284,22 +288,14 @@ class _TrackingPageState extends State<TrackingPage> {
                       },
                       hint: const Text('Select City'),
                     ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select Route: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ),
-                  if (routes.isNotEmpty)
-                    DropdownButton<String>(
+                const SizedBox(height: 10),
+                if (routes.isNotEmpty)
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4.0),
+                        color: Colors.white.withAlpha(230)),
+                    child: DropdownButtonFormField<String>(
                       value: selectedRoute,
                       items: routes
                           .map((route) => DropdownMenuItem<String>(
@@ -311,46 +307,24 @@ class _TrackingPageState extends State<TrackingPage> {
                         setState(() {
                           selectedRoute = value;
                         });
+                        if (selectedRoute != null) {
+                          getStationsOfRoute(selectedRoute!);
+                          getBusesOnRoute(selectedRoute!);
+                        }
                       },
                       hint: const Text('Select Route'),
                     ),
-                ],
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (selectedRoute != null) {
-                    getStationsOfRoute(selectedRoute!);
-                    getBusesOnRoute(selectedRoute!);
-                  }
-                },
-                child: Text('Show buses'),
-              ),
-              Expanded(
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation?.latitude ?? 0.0,
-                        currentLocation?.longitude ?? 0.0),
-                    zoom: 15.0,
                   ),
-                  markers: Set<Marker>.of(markers),
-                  polylines: polylines,
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FloatingActionButton(
-                onPressed: _addCurrentLocationMarker,
-                child: const Icon(Icons.location_on),
-              ),
+              ],
             ),
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addCurrentLocationMarker,
+        child: const Icon(Icons.location_on),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

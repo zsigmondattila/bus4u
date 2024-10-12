@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
@@ -9,12 +8,6 @@ class TicketPage extends StatefulWidget {
 }
 
 class _TicketPageState extends State<TicketPage> {
-  @override
-  void initState() {
-    // launchUrl(Uri.parse('https://bus4u.online/tickets'));
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Padding(

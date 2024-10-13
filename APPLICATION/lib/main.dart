@@ -4,38 +4,36 @@ import 'package:bus4u/pages/login_page.dart';
 import 'package:bus4u/pages/register_page.dart';
 import 'package:bus4u/pages/schedules_page.dart';
 import 'package:bus4u/pages/stations_page.dart';
-import 'package:bus4u/pages/ticket_page.dart';
+import 'package:bus4u/pages/tickets_page.dart';
 import 'package:bus4u/pages/tracking_page.dart';
+import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  static bool isLoggedIn = false;
-  static late String token;
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(
-                  seedColor: Colors.orange, background: Colors.white))
-          .copyWith(
-        inputDecorationTheme: const InputDecorationTheme(
-          contentPadding: EdgeInsets.all(10.0),
-          border: OutlineInputBorder(),
+    return ChangeNotifierProvider(
+      create: (context) => UserService(),
+      child: MaterialApp(
+        theme: ThemeData.from(
+                colorScheme: ColorScheme.fromSeed(
+                    seedColor: Colors.orange, background: Colors.white))
+            .copyWith(
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(),
+          ),
         ),
-      ),
-      title: 'bus4u',
-      home: MyHomePage(
-        isLoggedIn: isLoggedIn,
+        title: 'Bus4U',
+        home: const MyHomePage(),
       ),
     );
   }
@@ -43,7 +41,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final int currentPage;
-  final bool isLoggedIn;
   final List<Widget> pages = const [
     HomePage(),
     SchedulesPage(),
@@ -64,7 +61,6 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({
     super.key,
     this.currentPage = 0,
-    this.isLoggedIn = false,
   });
 
   @override
@@ -73,27 +69,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late int currentPage;
-
-  void signOut() async {
-    try {
-      String? uid = await readData('user_uid');
-      String? client = await readData('client');
-      String? accessToken = await readData('access_token');
-      final response = await http.delete(
-          Uri.parse('https://api.bus4u.online/auth/sign_out'),
-          body: {'uid': uid, 'client': client, 'access-token': accessToken});
-      if (response.statusCode == 200) {
-        setState(() {
-          MyApp.isLoggedIn = false;
-          currentPage = 0;
-        });
-      } else {
-        debugPrint('Logout failed');
-      }
-    } catch (e) {
-      debugPrint('Error during logout: $e');
-    }
-  }
 
   @override
   void initState() {
@@ -107,9 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            if (MyApp.isLoggedIn)
+            if (context.watch<UserService>().isLoggedIn)
               IconButton(
-                onPressed: signOut,
+                onPressed:
+                    Provider.of<UserService>(context, listen: false).signOut,
                 icon: const Icon(Icons.logout),
                 tooltip: 'Logout',
               )
@@ -151,26 +127,9 @@ class _MyHomePageState extends State<MyHomePage> {
             });
             Navigator.pop(context);
           },
-          isLoggedIn: widget.isLoggedIn,
         ),
         body: widget.pages[currentPage],
       ),
     );
   }
-}
-
-Future<void> saveData(key, value) async {
-  final prefs = await SharedPreferences.getInstance();
-  prefs.setString(key, value);
-}
-
-Future<String?> readData(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  final value = prefs.getString(key);
-  return value;
-}
-
-Future<void> removeData(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.remove(key);
 }

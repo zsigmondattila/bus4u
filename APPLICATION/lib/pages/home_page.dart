@@ -1,6 +1,6 @@
-import 'package:bus4u/main.dart';
-import 'package:bus4u/models/ticket.dart';
+import 'package:bus4u/models/route_ticket.dart';
 import 'package:bus4u/pages/login_page.dart';
+import 'package:bus4u/utils/state_management.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> destinationCities = [];
   List<Map<String, dynamic>> destinationStations = [];
-  List<Ticket> displayedTickets = [];
+  List<RouteTicket> displayedRouteTickets = [];
 
   DateTime selectedDateTime = DateTime.now();
   bool _noAvailableRoutes = false;
@@ -99,13 +99,14 @@ class _HomePageState extends State<HomePage> {
   Future<void> loadCities() async {
     try {
       cities = await getCities();
-      destinationCities = cities;
-      selectedDate = DateFormat('yyyy-MM-dd').format(selectedDateTime);
-      selectedTime = DateFormat('HH:mm').format(selectedDateTime);
+      setState(() {
+        destinationCities = cities;
+        selectedDate = DateFormat('yyyy-MM-dd').format(selectedDateTime);
+        selectedTime = DateFormat('HH:mm').format(selectedDateTime);
+      });
     } catch (e) {
       logger.e('Error loading cities: $e');
     }
-    setState(() {});
   }
 
   Future<void> loadDestinationCities() async {
@@ -157,10 +158,10 @@ class _HomePageState extends State<HomePage> {
       if (response.statusCode == 200) {
         final List<dynamic> ticketsData = json.decode(response.body);
 
-        List<Ticket> tickets = [];
+        List<RouteTicket> tickets = [];
 
         for (var ticketData in ticketsData) {
-          Ticket ticket = Ticket(
+          RouteTicket ticket = RouteTicket(
             startStation: ticketData['from_station'],
             startStationUID: ticketData['from_station_uid'],
             destinationStation: ticketData['to_station'],
@@ -177,7 +178,7 @@ class _HomePageState extends State<HomePage> {
         }
         setState(() {
           _noAvailableRoutes = tickets.isEmpty;
-          displayedTickets = tickets;
+          displayedRouteTickets = tickets;
         });
       } else {
         throw Exception('Failed to load tickets');
@@ -189,21 +190,22 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Future<void> buyTicket(int ticketIndex) async {
+  Future<void> buyRouteTicket(int ticketIndex) async {
     try {
-      final Ticket selectedTicket = displayedTickets[ticketIndex];
+      final RouteTicket selectedRouteTicket =
+          displayedRouteTickets[ticketIndex];
       token = await readData('token');
       userUid = await readData('user_uid');
 
       final Map<String, dynamic> ticketData = {
-        "quantity": selectedTicket.quantity,
-        "ticket_price": selectedTicket.ticketPrice,
-        "company_uid": selectedTicket.companyUID,
+        "quantity": selectedRouteTicket.quantity,
+        "ticket_price": selectedRouteTicket.ticketPrice,
+        "company_uid": selectedRouteTicket.companyUID,
         "user_uid": userUid,
         "type": "normal",
-        "route_uid": selectedTicket.routeUID,
-        "from_station_uid": selectedTicket.startStationUID,
-        "to_station_uid": selectedTicket.destinationStationUID,
+        "route_uid": selectedRouteTicket.routeUID,
+        "from_station_uid": selectedRouteTicket.startStationUID,
+        "to_station_uid": selectedRouteTicket.destinationStationUID,
       };
 
       final response = await http.post(
@@ -216,13 +218,13 @@ class _HomePageState extends State<HomePage> {
       );
 
       if (response.statusCode == 200) {
-        logger.i('Ticket generated successfully');
+        logger.i('RouteTicket generated successfully');
         if (!context.mounted) return;
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Ticket ordered successfully!'),
+              title: const Text('RouteTicket ordered successfully!'),
               content: const Text(
                 'You can manage your tickets on the website',
               ),
@@ -477,7 +479,7 @@ class _HomePageState extends State<HomePage> {
                 if (_noAvailableRoutes)
                   const Text(
                       "There are no available routes, try again with other stations or date"),
-                if (displayedTickets.isNotEmpty) ...[
+                if (displayedRouteTickets.isNotEmpty) ...[
                   const Text('Available buses', style: TextStyle(fontSize: 18)),
                   const SizedBox(height: 10),
                   AnimatedSwitcher(
@@ -498,11 +500,11 @@ class _HomePageState extends State<HomePage> {
                       child: ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: displayedTickets.length,
+                          itemCount: displayedRouteTickets.length,
                           separatorBuilder: (context, index) =>
                               Divider(color: Theme.of(context).dividerColor),
                           itemBuilder: (context, index) {
-                            Ticket ticket = displayedTickets[index];
+                            RouteTicket ticket = displayedRouteTickets[index];
                             DateTime depTimestamp =
                                 DateTime.fromMillisecondsSinceEpoch(
                                     ticket.departureTime * 1000,
@@ -519,7 +521,7 @@ class _HomePageState extends State<HomePage> {
                                   Text('Company: ${ticket.companyName}'),
                                   Text('Route: ${ticket.routeName}'),
                                   Text(
-                                      'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
+                                      'RouteTicket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
                                   Text('Departure Time: $departureTime'),
                                   Row(
                                     mainAxisAlignment:
@@ -553,9 +555,9 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       ElevatedButton(
                                         onPressed: () {
-                                          buyTicket(index);
+                                          buyRouteTicket(index);
                                         },
-                                        child: const Text('Buy Ticket'),
+                                        child: const Text('Buy RouteTicket'),
                                       ),
                                     ],
                                   ),

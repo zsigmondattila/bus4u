@@ -1,10 +1,9 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:bus4u/pages/register_page.dart';
+import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:bus4u/main.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key, this.currentPage});
@@ -19,65 +18,6 @@ class _LoginPageState extends State<LoginPage> {
   String email = "";
   String password = "";
   var logger = Logger();
-
-  void signUserIn(String email, password) async {
-    try {
-      final response = await http.post(
-        Uri.parse('https://api.bus4u.online/auth/sign_in'),
-        body: {
-          'email': email,
-          'password': password,
-        },
-      );
-
-      if (response.statusCode == 200) {
-        String token = response.headers['authorization'] ?? '';
-        String userUid = response.headers['uid'] ?? '';
-        String client = response.headers['client'] ?? '';
-        String accessToken = response.headers['access-token'] ?? '';
-        debugPrint("uiduser $userUid");
-        saveData('token', token);
-        saveData('user_uid', userUid);
-        saveData('client', client);
-        saveData('access_token', accessToken);
-
-        MyApp.isLoggedIn = true;
-
-        if (!context.mounted) return;
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MyHomePage(
-              currentPage: 0,
-              isLoggedIn: true,
-            ),
-          ),
-        );
-      } else {
-        logger.e('failed');
-        if (!context.mounted) return;
-        showDialog<String>(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: const Text('Something wrong'),
-            content: const Text('Email or password incorrect'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'Cancel'),
-                child: const Text('Cancel'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(context, 'OK'),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
-    } catch (e) {
-      logger.e(e.toString());
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,14 +60,44 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: "Password",
                   ),
                 ),
                 const SizedBox(height: 50),
                 FilledButton(
-                  onPressed: () {
-                    signUserIn(email, password);
+                  onPressed: () async {
+                    if (await Provider.of<UserService>(context, listen: false)
+                        .signIn(email, password)) {
+                      if (!context.mounted) return;
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyHomePage(
+                            currentPage: 0,
+                          ),
+                        ),
+                      );
+                    } else {
+                      if (!context.mounted) return;
+                      showDialog<String>(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: const Text('Login failed'),
+                          content: const Text('Email or password incorrect'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'OK'),
+                              child: const Text('OK'),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
                   },
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all<EdgeInsets>(

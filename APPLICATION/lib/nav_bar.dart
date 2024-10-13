@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatelessWidget {
   final void Function(int) onSelect;
-  final bool isLoggedIn;
   final int selectedIndex;
 
   const NavBar({
     super.key,
     required this.onSelect,
-    required this.isLoggedIn,
     this.selectedIndex = 0,
   });
 

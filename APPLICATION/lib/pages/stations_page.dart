@@ -297,7 +297,7 @@ class _StationsPageState extends State<StationsPage> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4.0),
-                      color: Colors.white.withAlpha(225),
+                      color: Colors.white.withAlpha(230),
                     ),
                     child: DropdownButtonFormField<String>(
                       value: selectedCity,
@@ -330,7 +330,7 @@ class _StationsPageState extends State<StationsPage> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(4.0),
-                      color: Colors.white.withAlpha(225),
+                      color: Colors.white.withAlpha(230),
                     ),
                     child: DropdownButtonFormField<String>(
                       value: selectedRoute,

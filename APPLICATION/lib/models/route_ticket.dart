@@ -1,4 +1,4 @@
-class Ticket {
+class RouteTicket {
   final String startStation;
   final String destinationStation;
   final String startStationUID;
@@ -11,7 +11,7 @@ class Ticket {
   final int departureTime;
   int quantity;
 
-  Ticket({
+  RouteTicket({
     required this.startStation,
     required this.destinationStation,
     required this.startStationUID,

@@ -48,7 +48,7 @@ class UserService extends ChangeNotifier {
     return true;
   }
 
-  void signOut() async {
+  Future<bool> signOut() async {
     try {
       final response = await http
           .delete(Uri.parse('https://api.bus4u.online/auth/sign_out'), body: {
@@ -64,10 +64,15 @@ class UserService extends ChangeNotifier {
         saveData();
       } else {
         debugPrint('Logout failed');
+        return false;
       }
     } catch (e) {
       debugPrint('Error during logout: $e');
+      return false;
+    } finally {
+      notifyListeners();
     }
+    return true;
   }
 
   void saveData() async {

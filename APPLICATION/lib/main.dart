@@ -84,8 +84,28 @@ class _MyHomePageState extends State<MyHomePage> {
           actions: [
             if (context.watch<UserService>().isLoggedIn)
               IconButton(
-                onPressed:
-                    Provider.of<UserService>(context, listen: false).signOut,
+                onPressed: () async {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Logging out...'),
+                      ),
+                    );
+                  }
+                  bool result =
+                      await Provider.of<UserService>(context, listen: false)
+                          .signOut();
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: result
+                            ? const Text('Logged out successfully')
+                            : const Text('Error logging out'),
+                      ),
+                    );
+                  }
+                },
                 icon: const Icon(Icons.logout),
                 tooltip: 'Logout',
               )

@@ -45,7 +45,10 @@ class _TicketPageState extends State<TicketPage> {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: isLoading
-          ? const Center(child: CircularProgressIndicator.adaptive())
+          ? const Padding(
+              padding: EdgeInsets.only(top: 32.0),
+              child: Center(child: CircularProgressIndicator.adaptive()),
+            )
           : Column(
               children: tickets
                   .map((ticket) => Card(

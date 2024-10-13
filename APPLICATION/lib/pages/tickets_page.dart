@@ -50,7 +50,7 @@ class _TicketPageState extends State<TicketPage> {
               child: Center(child: CircularProgressIndicator.adaptive()),
             )
           : Column(
-              children: tickets
+              children: tickets.reversed
                   .map((ticket) => Card(
                         elevation: 2.0,
                         margin: const EdgeInsets.only(bottom: 32.0),
@@ -112,7 +112,6 @@ class _TicketPageState extends State<TicketPage> {
                 .map<Ticket>((item) => Ticket.fromJson(item))
                 .toList();
           });
-          print(tickets[0]);
           break;
         case 404:
           setState(() {

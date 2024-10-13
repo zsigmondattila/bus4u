@@ -53,7 +53,7 @@ class MyHomePage extends StatefulWidget {
     'Plan your trip',
     'Schedule',
     'Stations',
-    'My tickets',
+    'My Tickets',
     'Live map',
     'About',
   ];

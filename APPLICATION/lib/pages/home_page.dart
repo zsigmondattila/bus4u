@@ -1,3 +1,4 @@
+import 'package:bus4u/main.dart';
 import 'package:bus4u/models/route_ticket.dart';
 import 'package:bus4u/pages/login_page.dart';
 import 'package:bus4u/utils/state_management.dart';
@@ -6,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -218,34 +218,36 @@ class _HomePageState extends State<HomePage> {
       );
 
       if (response.statusCode == 200) {
-        logger.i('RouteTicket generated successfully');
+        logger.i('Ticket generated successfully');
         if (!context.mounted) return;
-        showDialog(
+        showDialog<bool>(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('RouteTicket ordered successfully!'),
+              title: const Text('Successful order'),
               content: const Text(
-                'You can manage your tickets on the website',
+                'Your new ticket(s) has been added to the collection, which can be viewed on the My Tickets page.',
               ),
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(false);
                   },
                   child: const Text('OK'),
                 ),
                 TextButton(
                   onPressed: () {
-                    launchUrl(Uri.parse('https://bus4u.online/tickets'));
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(true);
                   },
                   child: const Text('View tickets'),
                 ),
               ],
             );
           },
-        );
+        ).then((value) => value == true
+            ? Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const MyHomePage(currentPage: 3)))
+            : null);
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
         if (!context.mounted) return;
@@ -254,7 +256,7 @@ class _HomePageState extends State<HomePage> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Unauthorized'),
-              content: const Text('Please log in before buying!'),
+              content: const Text('Please log in before buying a ticket'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -521,7 +523,7 @@ class _HomePageState extends State<HomePage> {
                                   Text('Company: ${ticket.companyName}'),
                                   Text('Route: ${ticket.routeName}'),
                                   Text(
-                                      'RouteTicket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
+                                      'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
                                   Text('Departure Time: $departureTime'),
                                   Row(
                                     mainAxisAlignment:
@@ -557,7 +559,7 @@ class _HomePageState extends State<HomePage> {
                                         onPressed: () {
                                           buyRouteTicket(index);
                                         },
-                                        child: const Text('Buy RouteTicket'),
+                                        child: const Text('Buy ticket'),
                                       ),
                                     ],
                                   ),

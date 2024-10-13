@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -7,6 +9,8 @@ class UserService extends ChangeNotifier {
   String? userUid;
   String? client;
   String? accessToken;
+  String? firstName;
+  String? lastName;
 
   UserService() {
     getUserData();
@@ -20,6 +24,9 @@ class UserService extends ChangeNotifier {
     userUid = prefs.getString('user_uid');
     client = prefs.getString('client');
     accessToken = prefs.getString('access_token');
+    firstName = prefs.getString('firstname');
+    lastName = prefs.getString('lastname');
+    notifyListeners();
   }
 
   Future<bool> signIn(String email, password) async {
@@ -37,6 +44,9 @@ class UserService extends ChangeNotifier {
         userUid = response.headers['uid'] ?? '';
         client = response.headers['client'] ?? '';
         accessToken = response.headers['access-token'] ?? '';
+        var body = jsonDecode(response.body)['data'];
+        firstName = body['firstname'];
+        lastName = body['lastname'];
         saveData();
       } else {
         return false;
@@ -61,6 +71,8 @@ class UserService extends ChangeNotifier {
         userUid = null;
         client = null;
         accessToken = null;
+        firstName = null;
+        lastName = null;
         saveData();
       } else {
         debugPrint('Logout failed');
@@ -85,11 +97,15 @@ class UserService extends ChangeNotifier {
       prefs.remove('user_uid');
       prefs.remove('client');
       prefs.remove('access_token');
+      prefs.remove('firstname');
+      prefs.remove('lastname');
     } else {
       prefs.setString('token', token!);
       prefs.setString('user_uid', userUid!);
       prefs.setString('client', client!);
       prefs.setString('access_token', accessToken!);
+      prefs.setString('firstname', firstName!);
+      prefs.setString('lastname', lastName!);
     }
   }
 }

@@ -1,4 +1,6 @@
+import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NavBar extends StatelessWidget {
   final void Function(int) onSelect;
@@ -21,11 +23,36 @@ class NavBar extends StatelessWidget {
             left: Radius.zero, right: Radius.circular(50)),
       ),
       children: [
-        Padding(
-          padding: const EdgeInsets.all(32),
-          child: Image.asset(
-            'assets/images/logo-text.png',
-            height: 48,
+        Consumer<UserService>(
+          builder: (context, user, child) => user.isLoggedIn
+              ? Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.account_circle_outlined,
+                        size: 64,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(
+                        height: 8.0,
+                      ),
+                      Text('${user.firstName} ${user.lastName}',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSurfaceVariant)),
+                    ],
+                  ),
+                )
+              : child!,
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: Image.asset(
+              'assets/images/logo-text.png',
+              height: 64,
+            ),
           ),
         ),
         const NavigationDrawerDestination(
@@ -49,7 +76,7 @@ class NavBar extends StatelessWidget {
         const NavigationDrawerDestination(
           icon: Icon(Icons.receipt),
           label: Text(
-            'My tickets',
+            'My Tickets',
           ),
         ),
         const NavigationDrawerDestination(

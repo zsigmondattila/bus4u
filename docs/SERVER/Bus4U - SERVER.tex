@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, twoside]{report}
 
 \usepackage[utf8]{inputenc}
 \def\magyarOptions{defaults=hu-min}
@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{moresize}
+\usepackage{float}
 
 \title{Bus4U - Szerver oldal}
 \author{Zsigmond Attila}
@@ -28,7 +29,7 @@
   \textbf{Bus4U - Szerver oldal} \\
   \vspace{0.5in}
   \Huge
-  Szakdolgozat \\
+  \textbf{DIPLOMADOLGOZAT} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -58,7 +59,7 @@
   \textbf{Bus4U - Partea de Server} \\
   \vspace{0.5in}
   \Huge
-  Lucrare finală \\
+  \textbf{PROIECT DE DIPLOMĂ} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -78,20 +79,18 @@
 \end{titlepage}
 
 \begin{abstract}
-  A webalkalmazás a tömegközlekedés megkönnyítését szolgálja. Lehetőséget biztosít jegyvásárlásra egy megadott járatra, illetve megtekinthetőek a járatok időpontjai városokra és megállókra lebontva. Ezen kívül megtekinthetőek a buszmegállók lokációi városok, illetve útvonalak szerint szűrve. Egy live map funkcióban valós időben követhetőek az autóbuszok jelenlegi helyzete, hogy a felhasználó előre informálódni tudjon a menetrend változásáról. Utóbbihoz, illetve a jegykezeléshez szükség van egy alkalmazásra, ami a buszokon található POS terminálon fut. Ez biztosítja a jegyek érvényesítését, illetve az autóbuszok helyzetének megosztását.
-  \newline
-  Ezen felül a webalkalmazás biztosít egy adminisztrációs felületet a busztársaságok számára. Ebben lehetőség nyílik elsősorban a menetrendek kezelésére, megállók és útvonalak feltöltésére. Itt lehet kezelni az alkalmazottak információit, és az autóbuszok különböző adatait.
-  \newline
-  Ezen dolgozat a webalkalmazás szerver oldali komponenseire fókuszál.
+  \input{chapters/abstract_hu}
 \end{abstract}
 
-\newpage
-
 \tableofcontents
-\newpage
 
+\chapter{Célkitűzések}
+\input{chapters/goals}
 
+\chapter{Bevezető}
 \input{chapters/introduction}
+
+\chapter{Követelmény specifikációk}
 \input{chapters/requirements}
 
 \end{document}

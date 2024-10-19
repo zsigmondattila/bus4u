@@ -1,8 +1,9 @@
-\select@language {magyar} \contentsline {section}{\numberline {1}Bevezető}{3}{}%
-\select@language {magyar} \contentsline {section}{\numberline {2}Követelmény specifikációk}{3}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1}Felhasználói követelmények}{3}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2}Rendszerkövetelmények}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.1}Funkcionális követelmények}{4}{}%
-\select@language {magyar} \contentsline {subsubsection}{\numberline {2.2.2}Nem-funkcionális követelmények}{4}{}%
-\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{4}{}%
-\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{4}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Célkitűzések}{3}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Bevezető}{4}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Követelmény specifikációk}{5}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Felhasználói követelmények}{5}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerkövetelmények}{5}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Funkcionális követelmények}{5}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Nem-funkcionális követelmények}{6}{}%
+\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{6}{}%
+\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{6}{}%

@@ -5,17 +5,17 @@ INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
 INPUT /home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex
 OUTPUT Bus4U - SERVER.log
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -180,6 +180,17 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -214,11 +225,12 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT /usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1728.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm3583.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx3583.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2986.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2986.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1728.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2074.tfm
 OUTPUT Bus4U - SERVER.pdf
@@ -230,12 +242,17 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1095.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
+INPUT ./chapters/abstract_hu.tex
+INPUT ./chapters/abstract_hu.tex
+INPUT ./chapters/abstract_hu.tex
+INPUT chapters/abstract_hu.tex
+INPUT ./chapters/abstract_hu.tex
+INPUT ./chapters/abstract_hu.tex
+INPUT chapters/abstract_hu.tex
 INPUT ./Bus4U - SERVER.toc
 INPUT Bus4U - SERVER.toc
 INPUT Bus4U - SERVER.toc
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
@@ -243,6 +260,15 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 OUTPUT Bus4U - SERVER.toc
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm
+INPUT ./chapters/goals.tex
+INPUT ./chapters/goals.tex
+INPUT ./chapters/goals.tex
+INPUT chapters/goals.tex
+INPUT ./chapters/goals.tex
+INPUT ./chapters/goals.tex
+INPUT chapters/goals.tex
 INPUT ./chapters/introduction.tex
 INPUT ./chapters/introduction.tex
 INPUT ./chapters/introduction.tex
@@ -262,15 +288,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT Bus4U - SERVER.aux
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk
-INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk
+INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk
-INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk
-INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk
+INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk
-INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2986.600pk
+INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk
 INPUT /home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb

@@ -1,6 +1,5 @@
-\section{Követelmény specifikációk}
 
-\subsection{Felhasználói követelmények}
+\section{Felhasználói követelmények}
 A felhasználói weboldal bejelentkezés nélkül használható. A főoldalon lehetőség nyílik rákeresni járatokra dátum, idő és cél alapján, a menetrendeknél megtekinthetőek a buszok és a megállók órarendjei. A megállók oldalon megjelenik az összes megálló a térképen, amelyek között szűrést is lehet alkalmazni. Az élőben frissülő térkép lapon követni lehet a buszok pozícióját percről percre. A jegyek oldalon vannak listázva az eddig megvásárolt jegyek QR-kódjai, a rólunk szóló oldalon pedig egy rövid leírás található a projektről. Fiókot létrehozni kizárólag a jegyvásárláshoz szükséges, ami a főoldalon lehetséges amennyiben a felhasználó megtalálta a neki megfelelő járatot és rálépett a vásárlás gombra. Fiók regisztrációjához meg kell adni a teljes nevet, egy meglévő email címet, egy új jelszót, majd egy ellenőrző kódot, amit a rendszer elküld a megadott email címre.
 
 Az admin felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak az adott cég főnöke tud létrehozni a saját busztársaságához, erre az alkalmazottak című lapon van lehetőség. Emellett az adminoknak lehetőségük van szerkeszteni a megállók listáját, valamint az útvonalak összes tulajdonságát is (meglátogatott megállók, indulási időpontok és jegyárak), ezeket a megállóknak és a járatoknak szóló oldalakon. A főoldalon egy statisztikát is láthatnak az eladott jegyek számáról, a megtett kilométerről és a bevételről, mindezt hónapos, éves és mindenkori bontásokban. Van még egy lap a buszok adatainak kezelésére is, ahol lehet konfigurálni az útadót, a biztosítást és a műszaki vizsgát is, valamit itt lehet buszokat kivonni forgalomból és hozzáadni újakat is.
@@ -9,14 +8,14 @@ A Flutter alapú mobil applikáció ugyanúgy működik, mint a felhasználókna
 
 A POS terminál alkalmazás használatához szükség van egy sofőr szerepkörű admin fiókra. Bejelentkezés után lehetőség van egy adott busz követését, illetve a jegyszkennelő programot elindítani.
 
-\subsection{Rendszerkövetelmények}
+\section{Rendszerkövetelmények}
 
-\subsubsection{Funkcionális követelmények}
+\subsection{Funkcionális követelmények}
 A felhasználói felület minden oldalán van egy kis form, amelyet kitöltve le lehet kérni az adatbázisból az adott oldalon megjelenítendő adatokat. Ilyenre példa van a főoldalon is, ahol meg kell adni az indulás helyét, a cél helyét (települést) és opcionálisan az ezekhez tartozó megállót, egy-egy lenyíló listából kiválasztva az adatokat. A települések betöltődnek az oldallal együtt, a megállók listája viszont csak a város kiválasztása után, mindig csak az adott településen találhatóak jelennek meg. Ezen kívül a főoldalon van egy dátumválasztó és egy időválasztó is, ezek alapértelmezetten az aktuális dátummal és idővel vannak kitöltve. Ha a form ki van töltve, a keresés gomb lenyomására az oldal elküldi a bevitt adatokat a backend szerverre, amely válaszként elküld egy listát a megfelelő utazási lehetőségekkel. Ezek az adatok JSON formátumban, HTTP protokollon keresztül közlekednek a frontend és backend között. A többi oldal is hasonlóan működik, először az adatokat kell megadni, aztán a gomb lenyomására pillanatok alatt megjelenik a képernyőn a szerver válasza a bevitt adatokra.
 
 A különböző formokon kívül, a weboldalon található térképek is API hívásokkal működnek. A rendszer először betölti az alap térképet a MapBox API segítségével, aztán amint a felhasználó kiválasztotta a megtekinteni kívánt útvonalat a Menetrend vagy az Élő térkép lapon, a weboldal a saját adatbázisunkból kéri le a hozzá tartozó megállók koordinátáit, ezeket megjeleníti a térképen, végül ismét a MapBox API-t használva útvonal-tervet generáltat. Ez úgy működik, hogy a rendszer elküldi a megállók listáját és visszakap egy sok pontból álló új listát a MapBox-tól, ezeket összekötve sok kis vonallal, kirajzolódik a részletes útvonal a térképen.
 
-\subsubsection{Nem-funkcionális követelmények}
+\subsection{Nem-funkcionális követelmények}
 
 \paragraph{Szervezéssel kapcsolatos követelmények}
 \begin{itemize}

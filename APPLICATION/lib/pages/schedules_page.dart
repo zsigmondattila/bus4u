@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
@@ -6,21 +8,27 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 class SchedulesPage extends StatefulWidget {
-  const SchedulesPage({Key? key}) : super(key: key);
+  const SchedulesPage({super.key});
 
   @override
   _SchedulesPageState createState() => _SchedulesPageState();
 }
 
 class _SchedulesPageState extends State<SchedulesPage> {
+  final _formKey = GlobalKey<FormState>();
+
   String? selectedCity;
   String? selectedStation;
   String? selectedRoute;
+  String? selectedRouteName;
   GoogleMapController? mapController;
   LocationData? currentLocation;
   final Location location = Location();
   bool _permission = false;
   var logger = Logger();
+  bool _isRouteLoading = false;
+  bool _isStationLoading = false;
+  bool _isScheduleLoading = false;
 
   List<Marker> markers = [];
   List<LatLng> polylineCoordinates = [];
@@ -142,6 +150,9 @@ class _SchedulesPageState extends State<SchedulesPage> {
   }
 
   Future<void> loadRoutes(String stationUid) async {
+    setState(() {
+      _isRouteLoading = true;
+    });
     try {
       List<Map<String, dynamic>> fetchedRoutes =
           await getRoutesByStation(stationUid);
@@ -150,15 +161,28 @@ class _SchedulesPageState extends State<SchedulesPage> {
       });
     } catch (e) {
       logger.e('Error loading routes: $e');
+    } finally {
+      setState(() {
+        _isRouteLoading = false;
+      });
     }
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
+    setState(() {
+      _isStationLoading = true;
+    });
     try {
-      stations = await getStationsByCity(cityUid);
-      setState(() {});
+      var s = await getStationsByCity(cityUid);
+      setState(() {
+        stations = s;
+      });
     } catch (e) {
       logger.e('Error loading stations: $e');
+    } finally {
+      setState(() {
+        _isStationLoading = false;
+      });
     }
   }
 
@@ -193,7 +217,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
 
       polylines.add(
         Polyline(
-          polylineId: PolylineId('route'),
+          polylineId: const PolylineId('route'),
           color: const Color.fromARGB(255, 239, 108, 0),
           points: polylineCoordinates,
           width: 4,
@@ -258,6 +282,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
   }
 
   void checkPermission() async {
+    if (!Platform.isAndroid) return;
     final hasPermission = await location.serviceEnabled();
     if (!hasPermission) {
       _permission = await location.requestService();
@@ -273,36 +298,39 @@ class _SchedulesPageState extends State<SchedulesPage> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: DataTable(
-        columns: const <DataColumn>[
-          DataColumn(label: Text('Day')),
-          DataColumn(label: Text('Departure Times')),
+        dataRowMaxHeight: double.infinity,
+        columnSpacing: 20,
+        horizontalMargin: 0,
+        columns: departureTimes
+            .map((e) => DataColumn(label: Text(e['name'])))
+            .toList(),
+        rows: [
+          DataRow(
+            cells: departureTimes.map((time) {
+              return DataCell(Column(
+                mainAxisSize: MainAxisSize.min,
+                children: time['departure_times']
+                    .map<Widget>((value) => Text(value))
+                    .toList(),
+              ));
+            }).toList(),
+          ),
         ],
-        rows: departureTimes.map((time) {
-          return DataRow(
-            cells: <DataCell>[
-              DataCell(Text(time['name'])),
-              DataCell(
-                Container(
-                  constraints: BoxConstraints(maxWidth: 800),
-                  child: Text(time['departure_times'].join('  ')),
-                ),
-              ),
-            ],
-          );
-        }).toList(),
       ),
     );
   }
 
-  Future<void> _showMapDialog() async {
+  Future<void> _showMapDialog({String? route}) async {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Map View'),
-          content: Container(
-            width: 700,
-            child: GoogleMap(
+        return Dialog.fullscreen(
+          child: Scaffold(
+            appBar: AppBar(
+              title:
+                  route != null ? Text("Route $route") : const Text('Map View'),
+            ),
+            body: GoogleMap(
               onMapCreated: _onMapCreated,
               initialCameraPosition: CameraPosition(
                 target: LatLng(currentLocation?.latitude ?? 0.0,
@@ -313,14 +341,6 @@ class _SchedulesPageState extends State<SchedulesPage> {
               polylines: polylines.toSet(),
             ),
           ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
         );
       },
     );
@@ -339,34 +359,50 @@ class _SchedulesPageState extends State<SchedulesPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              DropdownButtonFormField<String>(
-                value: selectedCity,
-                hint: const Text('Select City'),
-                onChanged: (String? value) {
-                  setState(() {
-                    selectedCity = value;
-                    selectedStation = null;
-                    selectedRoute = null;
-                    stations.clear();
-                    routes.clear();
-                  });
-                  if (value != null) {
-                    loadStationsForCity(value);
-                  }
-                },
-                items: cities.map((Map<String, dynamic> city) {
-                  return DropdownMenuItem<String>(
-                    value: city['city_uid'],
-                    child: Text(city['name']),
-                  );
-                }).toList(),
-              ),
-              if (stations.isNotEmpty)
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                DropdownButtonFormField<String>(
+                  value: selectedCity,
+                  decoration: const InputDecoration(
+                    labelText: 'City',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    setState(() {
+                      selectedCity = value;
+                      selectedStation = null;
+                      selectedRoute = null;
+                      stations.clear();
+                      routes.clear();
+                    });
+                    if (value != null) {
+                      loadStationsForCity(value);
+                    }
+                  },
+                  items: cities.map((Map<String, dynamic> city) {
+                    return DropdownMenuItem<String>(
+                      value: city['city_uid'],
+                      child: Text(city['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
                   value: selectedStation,
-                  hint: const Text('Select Station'),
+                  icon: _isStationLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
+                  decoration: const InputDecoration(labelText: 'Station'),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
                   onChanged: (String? value) {
                     setState(() {
                       selectedStation = value;
@@ -384,15 +420,30 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     );
                   }).toList(),
                 ),
-              if (routes.isNotEmpty)
+                const SizedBox(height: 16),
                 DropdownButtonFormField<String>(
+                  icon: _isRouteLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
                   value: selectedRoute,
-                  hint: const Text('Select Route'),
+                  decoration: const InputDecoration(labelText: 'Route'),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
                   onChanged: (String? value) {
+                    if (value == null) return;
+                    String? selectedName;
+                    try {
+                      selectedName = routes.firstWhere(
+                          (element) => element['route_uid'] == value)['name'];
+                    } catch (_) {}
                     setState(() {
                       selectedRoute = value;
+                      selectedRouteName = selectedName;
                     });
-                    if (value != null) {}
                   },
                   items: routes.map((Map<String, dynamic> route) {
                     return DropdownMenuItem<String>(
@@ -401,32 +452,56 @@ class _SchedulesPageState extends State<SchedulesPage> {
                     );
                   }).toList(),
                 ),
-              ElevatedButton(
-                onPressed: () async {
-                  if (selectedRoute != null && selectedStation != null) {
-                    List<Map<String, dynamic>> routeStations =
-                        await getStationsOfRoute(selectedRoute!);
-                    drawRouteOnMap(routeStations);
-                    String routeUid = selectedRoute!;
-                    String stationUid = selectedStation!;
-                    String url =
-                        'https://api.bus4u.online/v1/get_departure_times_for_station_in_route?route_uid=$routeUid&station_uid=$stationUid';
-                    final response = await http.get(Uri.parse(url));
-                    if (response.statusCode == 200) {
-                      List<dynamic> data = json.decode(response.body);
-                      setState(() {
-                        departureTimes = List<Map<String, dynamic>>.from(data);
-                      });
-                    } else {
-                      logger.e('Failed to load departure times');
-                    }
-                  }
-                },
-                child: const Text('Search'),
-              ),
-              if (departureTimes.isNotEmpty) buildDepartureTimesTable(),
-              ElevatedButton(onPressed: _showMapDialog, child: Text('Show map'))
-            ],
+                const SizedBox(height: 16),
+                _isScheduleLoading
+                    ? const Center(child: CircularProgressIndicator.adaptive())
+                    : FilledButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            setState(() {
+                              departureTimes.clear();
+                              _isScheduleLoading = true;
+                            });
+                            String url =
+                                'https://api.bus4u.online/v1/get_departure_times_for_station_in_route?route_uid=$selectedRoute&station_uid=$selectedStation';
+                            final response = await http.get(Uri.parse(url));
+                            List<Map<String, dynamic>> dt = [];
+                            if (response.statusCode == 200) {
+                              List<dynamic> data = json.decode(response.body);
+                              dt = List<Map<String, dynamic>>.from(data);
+                            } else {
+                              logger.e('Failed to load departure times');
+                            }
+                            setState(() {
+                              departureTimes = dt;
+                              _isScheduleLoading = false;
+                            });
+                          }
+                        },
+                        child: const Text('Search'),
+                      ),
+                if (departureTimes.isNotEmpty) ...[
+                  const SizedBox(height: 32),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Departure times for route $selectedRouteName:',
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      )),
+                  buildDepartureTimesTable(),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                      onPressed: () async {
+                        List<Map<String, dynamic>> routeStations =
+                            await getStationsOfRoute(selectedRoute!);
+                        drawRouteOnMap(routeStations);
+                        _showMapDialog(route: selectedRouteName);
+                      },
+                      child: const Text('View route on the map')),
+                ],
+              ],
+            ),
           ),
         ),
       ),

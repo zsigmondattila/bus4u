@@ -10,21 +10,14 @@ class AboutPage extends StatefulWidget {
 class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-          Text(
-            "About",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),
-          ),
-          SizedBox(height: 10),
+    return const SingleChildScrollView(
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             "The project and the team",
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 25),
           Text(
@@ -37,7 +30,8 @@ class _AboutPageState extends State<AboutPage> {
           SizedBox(height: 25),
           Text(
             "Bus4U team:",
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            style: TextStyle(
+                color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Text(
             "   Bodo Balint",

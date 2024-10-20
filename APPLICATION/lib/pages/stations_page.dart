@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
@@ -6,7 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 class StationsPage extends StatefulWidget {
-  const StationsPage({Key? key}) : super(key: key);
+  const StationsPage({super.key});
 
   @override
   _StationsPageState createState() => _StationsPageState();
@@ -16,10 +18,13 @@ class _StationsPageState extends State<StationsPage> {
   GoogleMapController? mapController;
   List<Marker> markers = [];
   LocationData? currentLocation;
+  Marker? currentLocationMarker;
   final Location location = Location();
   bool _permission = false;
-  String? selectedCity = null;
-  String? selectedRoute = null;
+  bool _isCitiesLoading = false;
+  bool _isRoutesLoading = false;
+  String? selectedCity;
+  String? selectedRoute;
   List<Map<String, String>> cities = [];
   List<Map<String, String>> routes = [];
   var logger = Logger();
@@ -28,6 +33,7 @@ class _StationsPageState extends State<StationsPage> {
   void initState() {
     super.initState();
     checkPermission();
+    getAllStations();
     getCities();
     getRoutes();
   }
@@ -51,34 +57,36 @@ class _StationsPageState extends State<StationsPage> {
   }
 
   void checkPermission() async {
-    final hasPermission = await location.serviceEnabled();
-    if (!hasPermission) {
-      _permission = await location.requestService();
-      if (_permission) {
+    try {
+      if (!Platform.isAndroid) return;
+      final hasPermission = await location.serviceEnabled();
+      if (!hasPermission) {
+        _permission = await location.requestService();
+        if (_permission) {
+          getLocation();
+        }
+      } else {
         getLocation();
       }
-    } else {
-      getLocation();
+    } catch (e) {
+      logger.e("Error checking permission: $e");
     }
   }
 
   void _addCurrentLocationMarker() {
     if (currentLocation != null) {
       setState(() {
-        markers.add(
-          Marker(
-            markerId: const MarkerId('currentLocation'),
-            position: LatLng(
-              currentLocation!.latitude!,
-              currentLocation!.longitude!,
-            ),
-            infoWindow: const InfoWindow(
-              title: 'Current Location',
-              snippet: 'Your current position',
-            ),
-            icon:
-                BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+        currentLocationMarker = Marker(
+          markerId: const MarkerId('currentLocation'),
+          position: LatLng(
+            currentLocation!.latitude!,
+            currentLocation!.longitude!,
           ),
+          infoWindow: const InfoWindow(
+            title: 'Current Location',
+            snippet: 'Your current position',
+          ),
+          icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
         );
         mapController?.animateCamera(
           CameraUpdate.newLatLngZoom(
@@ -95,7 +103,34 @@ class _StationsPageState extends State<StationsPage> {
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
-    _addCurrentLocationMarker();
+  }
+
+  void getAllStations() async {
+    try {
+      setState(() {
+        markers.clear();
+      });
+      final response =
+          await http.get(Uri.parse('https://api.bus4u.online/v1/get_stations'));
+      if (response.statusCode == 200) {
+        List<dynamic> stationData = json.decode(response.body)['stations'];
+        setState(() {
+          for (var station in stationData) {
+            markers.add(
+              Marker(
+                markerId: MarkerId(station['station_uid']),
+                position: LatLng(double.parse(station['latitude']),
+                    double.parse(station['longitude'])),
+                infoWindow: InfoWindow(
+                    title: station['name'], snippet: station['address']),
+              ),
+            );
+          }
+        });
+      }
+    } catch (e) {
+      logger.e("Error fetching stations: $e");
+    }
   }
 
   void getCities() async {
@@ -115,7 +150,6 @@ class _StationsPageState extends State<StationsPage> {
           }
           setState(() {
             cities = cityNames;
-            cities.insert(0, {'name': 'All city'});
           });
         } else {
           throw Exception('Cities not found');
@@ -158,99 +192,118 @@ class _StationsPageState extends State<StationsPage> {
   }
 
   void getStationsOfCity() async {
+    _isCitiesLoading = true;
     try {
+      final response = await http.get(Uri.parse(
+          'https://api.bus4u.online/v1/get_stations_by_city?city_uid=$selectedCity'));
+      if (response.statusCode == 200) {
+        List<dynamic> stationData = json.decode(response.body)['stations'];
+        List<Marker> tmpMarkers = [];
+        for (var station in stationData) {
+          tmpMarkers.add(
+            Marker(
+              markerId: MarkerId(station['station_uid']),
+              position: LatLng(double.parse(station['latitude']),
+                  double.parse(station['longitude'])),
+              infoWindow: InfoWindow(
+                  title: station['name'], snippet: station['address']),
+            ),
+          );
+        }
+        setState(() {
+          markers = tmpMarkers;
+        });
+        mapController?.animateCamera(
+          CameraUpdate.newLatLngZoom(
+            LatLng(markers[0].position.latitude, markers[0].position.longitude),
+            13.0,
+          ),
+        );
+      }
+    } catch (e) {
       setState(() {
         markers.clear();
       });
-      final response =
-          await http.get(Uri.parse('https://api.bus4u.online/v1/get_stations'));
-      if (response.statusCode == 200) {
-        List<dynamic> stationData = json.decode(response.body)['stations'];
-        setState(() {
-          if (selectedCity == 'All city') {
-            for (var station in stationData) {
-              markers.add(
-                Marker(
-                  markerId: MarkerId(station['station_uid']),
-                  position: LatLng(double.parse(station['latitude']),
-                      double.parse(station['longitude'])),
-                  infoWindow: InfoWindow(
-                      title: station['name'], snippet: station['address']),
-                ),
-              );
-            }
-          } else {
-            for (var station in stationData) {
-              if (station['city'] == selectedCity) {
-                markers.add(
-                  Marker(
-                    markerId: MarkerId(station['station_uid']),
-                    position: LatLng(double.parse(station['latitude']),
-                        double.parse(station['longitude'])),
-                    infoWindow: InfoWindow(
-                        title: station['name'], snippet: station['address']),
-                  ),
-                );
-              }
-            }
-          }
-        });
-      }
-    } catch (e) {
       logger.e("Error fetching stations: $e");
+    } finally {
+      setState(() {
+        _isCitiesLoading = false;
+      });
     }
   }
 
   void getStationsOfRoute(String routeUid) async {
+    _isRoutesLoading = true;
     try {
       final response = await http.get(Uri.parse(
           'https://api.bus4u.online/v1/get_stations_of_a_route?route_uid=$routeUid'));
       if (response.statusCode == 200) {
+        List<Marker> tmpMarkers = [];
         List<dynamic> stationData = json.decode(response.body)['stations'];
+        for (var station in stationData) {
+          tmpMarkers.add(
+            Marker(
+              markerId: MarkerId(station['station_uid']),
+              position: LatLng(double.parse(station['latitude']),
+                  double.parse(station['longitude'])),
+              infoWindow: InfoWindow(
+                  title: station['name'], snippet: station['address']),
+            ),
+          );
+        }
         setState(() {
-          for (var station in stationData) {
-            markers.add(
-              Marker(
-                markerId: MarkerId(station['station_uid']),
-                position: LatLng(double.parse(station['latitude']),
-                    double.parse(station['longitude'])),
-                infoWindow: InfoWindow(
-                    title: station['name'], snippet: station['address']),
-              ),
-            );
-          }
+          markers.clear();
+          markers = tmpMarkers;
         });
       }
+      mapController?.animateCamera(
+        CameraUpdate.newLatLngZoom(
+          LatLng(markers[0].position.latitude, markers[0].position.longitude),
+          13.0,
+        ),
+      );
     } catch (e) {
+      setState(() {
+        markers.clear();
+      });
       logger.e("Error fetching stations of route: $e");
+    } finally {
+      setState(() {
+        _isRoutesLoading = false;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (currentLocationMarker != null) markers.add(currentLocationMarker!);
     return Scaffold(
       body: Stack(
         children: [
-          Column(
-            children: [
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select City: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+          GoogleMap(
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(currentLocation?.latitude ?? 0.0,
+                  currentLocation?.longitude ?? 0.0),
+              zoom: 15.0,
+            ),
+            markers: Set<Marker>.of(markers),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              children: [
+                if (cities.isNotEmpty)
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Colors.white.withAlpha(230),
                     ),
-                  ),
-                  if (cities.isNotEmpty)
-                    DropdownButton<String>(
+                    child: DropdownButtonFormField<String>(
                       value: selectedCity,
                       items: cities
                           .map((city) => DropdownMenuItem<String>(
-                                value: city['name'],
+                                value: city['city_uid'],
                                 child: Text(city['name'] ?? ''),
                               ))
                           .toList(),
@@ -262,24 +315,24 @@ class _StationsPageState extends State<StationsPage> {
                           getStationsOfCity();
                         });
                       },
-                      hint: const Text('Select City'),
-                    ),
-                ],
-              ),
-              Row(
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Text(
-                      'Select Route: ',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      icon: _isCitiesLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
+                      hint: const Text('Filter by City'),
                     ),
                   ),
-                  if (routes.isNotEmpty)
-                    DropdownButton<String>(
+                const SizedBox(height: 10),
+                if (routes.isNotEmpty)
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Colors.white.withAlpha(230),
+                    ),
+                    child: DropdownButtonFormField<String>(
                       value: selectedRoute,
                       items: routes
                           .map((route) => DropdownMenuItem<String>(
@@ -295,35 +348,26 @@ class _StationsPageState extends State<StationsPage> {
                           getStationsOfRoute(selectedRoute!);
                         });
                       },
-                      hint: const Text('Select Route'),
+                      icon: _isRoutesLoading
+                          ? const AspectRatio(
+                              aspectRatio: 1,
+                              child: CircularProgressIndicator.adaptive(
+                                strokeWidth: 3.0,
+                              ))
+                          : null,
+                      hint: const Text('Filter by Route'),
                     ),
-                ],
-              ),
-              Expanded(
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: CameraPosition(
-                    target: LatLng(currentLocation?.latitude ?? 0.0,
-                        currentLocation?.longitude ?? 0.0),
-                    zoom: 15.0,
                   ),
-                  markers: Set<Marker>.of(markers),
-                ),
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FloatingActionButton(
-                onPressed: _addCurrentLocationMarker,
-                child: const Icon(Icons.location_on),
-              ),
+              ],
             ),
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _addCurrentLocationMarker,
+        child: const Icon(Icons.location_on),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

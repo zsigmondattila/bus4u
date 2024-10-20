@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:pos_app/main.dart';
 
 class ScanTicket extends StatefulWidget {
+  const ScanTicket({super.key});
+
   @override
   _ScanTicketState createState() => _ScanTicketState();
 }
@@ -36,9 +38,9 @@ class _ScanTicketState extends State<ScanTicket> {
       },
       body: {'ticket_uid': ticketUid},
     );
-    print(response.body);
+    debugPrint(response.body);
 
-    print("RESPCODE ${response.statusCode}");
+    debugPrint("RESPCODE ${response.statusCode}");
     if (response.statusCode == 202) {
       showStatusMessage(
           'Ticket successfully validated. Have a nice trip!', 202);
@@ -56,10 +58,10 @@ class _ScanTicketState extends State<ScanTicket> {
     Color textColor;
 
     if (statusCode == 202) {
-      backgroundColor = Color.fromARGB(255, 205, 252, 207);
+      backgroundColor = const Color.fromARGB(255, 205, 252, 207);
       textColor = Colors.black;
     } else {
-      backgroundColor = Color.fromARGB(255, 255, 185, 180);
+      backgroundColor = const Color.fromARGB(255, 255, 185, 180);
       textColor = const Color.fromARGB(255, 0, 0, 0);
     }
 
@@ -71,17 +73,17 @@ class _ScanTicketState extends State<ScanTicket> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          contentPadding: EdgeInsets.all(10.0),
+          contentPadding: const EdgeInsets.all(10.0),
           content: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                const SizedBox(
                   height: 80.0,
                   child: Image(image: AssetImage('assets/pos.png')),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     message,
                     style: TextStyle(
@@ -99,7 +101,7 @@ class _ScanTicketState extends State<ScanTicket> {
       },
     );
 
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pop(context);
 
       scanQRCode();

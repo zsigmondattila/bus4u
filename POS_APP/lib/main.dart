@@ -19,10 +19,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
           useMaterial3: true,
         ),
-        home: Login(),
+        home: const Login(),
         routes: {
-          '/scan_ticket': (context) => ScanTicket(),
-          '/gps': (context) => GPS(),
+          '/scan_ticket': (context) => const ScanTicket(),
+          '/gps': (context) => const GPS(),
         });
   }
 }

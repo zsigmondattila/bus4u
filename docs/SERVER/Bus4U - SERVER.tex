@@ -79,18 +79,43 @@
 \end{titlepage}
 
 \begin{abstract}
+  \input{chapters/abstract_ro}
+\end{abstract}
+\begin{abstract}
+  \input{chapters/abstract_en}
+\end{abstract}
+\begin{abstract}
   \input{chapters/abstract_hu}
 \end{abstract}
 
 \tableofcontents
 
-\chapter{Célkitűzések}
-\input{chapters/goals}
-
 \chapter{Bevezető}
 \input{chapters/introduction}
 
-\chapter{Követelmény specifikációk}
+\section{Célkitűzések}
+\input{chapters/goals}
+
+\chapter{Szakirodalom áttekintése}
+
+\chapter{Elméleti áttekintés}
+\input{chapters/theory}
+
+\chapter{Rendszer specifikációi}
 \input{chapters/requirements}
+
+\chapter{A rendszer részletes leírása}
+
+\chapter{A rendszer tesztelése}
+
+\chapter{Összefoglalás}
+
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\appendix
+\chapter{Függelék}
+\input{chapters/appendix}
 
 \end{document}

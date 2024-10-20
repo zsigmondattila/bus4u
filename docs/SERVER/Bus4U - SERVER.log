@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  19 OCT 2024 12:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  19 OCT 2024 13:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -262,12 +262,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <17.28> on input line 55.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 55.
- [1] (./chapters/abstract_hu.tex) [1] (./Bus4U - SERVER.toc
+ [1] (./chapters/abstract_ro.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 4.
-)
+(Font)              <6> on input line 2.
+) [1] (./chapters/abstract_en.tex) [1] (./chapters/abstract_hu.tex) [1] (./Bus4U - SERVER.toc)
 \tf@toc=\write3
 \openout3 = `"Bus4U - SERVER.toc"'.
 
@@ -275,30 +275,61 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ]
 1. fejezet.
-(./chapters/goals.tex) [3
+(./chapters/introduction.tex) (./chapters/goals.tex [3
 
 ]
+Overfull \hbox (2.376pt too wide) in paragraph at lines 13--14
+[]\T1/cmr/bx/n/12 Adminisztrációs Fe-lü-let: \T1/cmr/m/n/12 Lét-re-hoz-ni egy ad-mi-niszt-rá-ci-ós fe-lü-le-tet, ame-lyet a busz-
+ []
+
+) [4]
 2. fejezet.
-(./chapters/introduction.tex) [4
+[5
 
 ]
 3. fejezet.
-(./chapters/requirements.tex [5
+(./chapters/theory.tex [6
 
-] [6]) [7] (./Bus4U - SERVER.aux) ) 
+]) [7]
+4. fejezet.
+(./chapters/requirements.tex [8
+
+] [9]) [10]
+5. fejezet.
+[11
+
+]
+6. fejezet.
+[12
+
+]
+7. fejezet.
+(./Bus4U - SERVER.bbl [13
+
+]
+
+LaTeX Warning: Empty `thebibliography' environment on input line 3.
+
+) [14
+
+]
+A f\"uggel\'ek.
+(./chapters/appendix.tex) [15
+
+] (./Bus4U - SERVER.aux) ) 
 Here is how much of TeX's memory you used:
- 4281 strings out of 479574
- 74560 string characters out of 5877220
- 397055 words of memory out of 5000000
- 22229 multiletter control sequences out of 15000+600000
- 484693 words of font info for 56 fonts, out of 8000000 for 9000
+ 4312 strings out of 479574
+ 75258 string characters out of 5877220
+ 404057 words of memory out of 5000000
+ 22245 multiletter control sequences out of 15000+600000
+ 485459 words of font info for 57 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
  55i,6n,62p,1307b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Bus4U - SERVER.pdf" (9 pages, 126744 bytes).
+ </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on "Bus4U - SERVER.pdf" (19 pages, 158328 bytes).
 PDF statistics:
- 368 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 463 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

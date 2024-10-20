@@ -1,9 +1,19 @@
-\select@language {magyar} \contentsline {chapter}{\numberline {1}Célkitűzések}{3}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}Bevezető}{4}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}Követelmény specifikációk}{5}{}%
-\select@language {magyar} \contentsline {section}{\numberline {3.1}Felhasználói követelmények}{5}{}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerkövetelmények}{5}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Funkcionális követelmények}{5}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Nem-funkcionális követelmények}{6}{}%
-\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{6}{}%
-\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{6}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezető}{3}{}%
+\select@language {magyar} \contentsline {section}{\numberline {1.1}Célkitűzések}{3}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Szakirodalom áttekintése}{5}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Elméleti áttekintés}{6}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Hasonló alkalmazások}{6}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Felhasználói élmény és innovációk}{6}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Hatások a közlekedési rendszerre}{6}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}Rendszer specifikációi}{8}{}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói követelmények}{8}{}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Rendszerkövetelmények}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Funkcionális követelmények}{8}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Nem-funkcionális követelmények}{9}{}%
+\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{9}{}%
+\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{9}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}A rendszer részletes leírása}{11}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}A rendszer tesztelése}{12}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Összefoglalás}{13}{}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{13}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {A\@gobble }Függelék}{15}{}%

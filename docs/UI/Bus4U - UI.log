@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  26 AUG 2024 09:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  20 OCT 2024 12:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -313,26 +313,71 @@ Package pdftex.def Info: figures/ui-admin.png  used on input line 18.
 (pdftex.def)             Requested size: 151.03195pt x 654.41338pt.
  [9 <./figures/ui-web.png> <./figures/ui-admin.png>])
 4. fejezet.
-(./chapters/implementation.tex) [10
+(./chapters/implementation.tex
+Underfull \hbox (badness 10000) in paragraph at lines 16--24
+
+ []
+
+[10
 
 ]
+<figures/jegyvasarlas.jpg, id=58, 2269.47874pt x 2507.3675pt>
+File: figures/jegyvasarlas.jpg Graphic file (type jpg)
+<use figures/jegyvasarlas.jpg>
+Package pdftex.def Info: figures/jegyvasarlas.jpg  used on input line 26.
+(pdftex.def)             Requested size: 455.24411pt x 502.95673pt.
+ [11 <./figures/jegyvasarlas.jpg>]
+<figures/ticket_bought.png, id=64, 1405.57776pt x 671.81602pt>
+File: figures/ticket_bought.png Graphic file (type png)
+<use figures/ticket_bought.png>
+Package pdftex.def Info: figures/ticket_bought.png  used on input line 47.
+(pdftex.def)             Requested size: 455.24411pt x 217.5893pt.
+<figures/tickets.png, id=65, 1404.8403pt x 671.81602pt>
+File: figures/tickets.png Graphic file (type png)
+<use figures/tickets.png>
+Package pdftex.def Info: figures/tickets.png  used on input line 62.
+(pdftex.def)             Requested size: 455.24411pt x 217.70206pt.
+ [12 <./figures/ticket_bought.png (PNG copy)>]
+<figures/schedule.png, id=69, 774.32143pt x 884.93878pt>
+File: figures/schedule.png Graphic file (type png)
+<use figures/schedule.png>
+Package pdftex.def Info: figures/schedule.png  used on input line 75.
+(pdftex.def)             Requested size: 455.24411pt x 520.27293pt.
+ [13 <./figures/tickets.png (PNG copy)>] [14 <./figures/schedule.png (PNG copy)>]
+<figures/stations.png, id=76, 1404.8403pt x 671.07857pt>
+File: figures/stations.png Graphic file (type png)
+<use figures/stations.png>
+Package pdftex.def Info: figures/stations.png  used on input line 110.
+(pdftex.def)             Requested size: 455.24411pt x 217.46307pt.
+ [15 <./figures/stations.png (PNG copy)>]
+<figures/schedules_admin.png, id=80, 1404.8403pt x 663.70409pt>
+File: figures/schedules_admin.png Graphic file (type png)
+<use figures/schedules_admin.png>
+Package pdftex.def Info: figures/schedules_admin.png  used on input line 130.
+(pdftex.def)             Requested size: 455.24411pt x 215.07338pt.
+<figures/buses.png, id=81, 1404.8403pt x 671.07857pt>
+File: figures/buses.png Graphic file (type png)
+<use figures/buses.png>
+Package pdftex.def Info: figures/buses.png  used on input line 144.
+(pdftex.def)             Requested size: 455.24411pt x 217.46307pt.
+) [16 <./figures/schedules_admin.png (PNG copy)> <./figures/buses.png (PNG copy)>] [17]
 5. fejezet.
-(./chapters/summary.tex) [11
+(./chapters/summary.tex) [18
 
 ] (./Bus4U - UI.aux) ) 
 Here is how much of TeX's memory you used:
- 4327 strings out of 479647
- 75317 string characters out of 5878802
- 395829 words of memory out of 5000000
- 22258 multiletter control sequences out of 15000+600000
+ 4383 strings out of 479647
+ 76656 string characters out of 5878802
+ 396906 words of memory out of 5000000
+ 22307 multiletter control sequences out of 15000+600000
  484488 words of font info for 55 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 55i,6n,62p,947b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,6n,62p,1047b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on "Bus4U - UI.pdf" (13 pages, 3691727 bytes).
+Output written on "Bus4U - UI.pdf" (20 pages, 5105987 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 447 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

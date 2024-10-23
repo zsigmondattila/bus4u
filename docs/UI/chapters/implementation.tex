@@ -1,6 +1,17 @@
+\section{Felhasznált technológiák}
+A felhasználói és az adminisztrátori weboldalak Vue.js keretrendszerben készültek, Vuetify komponenseket felhasználva. Ennek a két technológiának a kombinációja egy-egy modern, esztétikus és gyors weboldalt eredményezett, amelynek az elkészítése is gyors és egyszerű volt.
+
+\subsection{Vue.js}
+A Vue.js egy progresszív JavaScript keretrendszer, amelyet azért hoztak létre, hogy a
+webes felhasználói felületek fejlesztése egyszerűbb és gyorsabb legyen. A JavaScript keretrendszerek célja hogy megkönnyítsék a webprogramozást, azáltal hogy előre megírt osztály- és függvénykönyvtárakat szolgáltatnak, amelyek segítenek lerövidíteni a fejlesztési időt. Ezen felül a Vue.js komponens alapú, amely lehetővé teszi a weboldalak felépítését újrafelhasználható, különálló komponensekből, amelyeket később össze lehet fűzni egy nagyobb alkalmazássá. A Vue.js egyik legnagyobb előnye, hogy könnyen tanulható és alkalmazható, így gyorsan lehet vele fejleszteni. Egy másik fontos tulajdonsága, hogy nagyon gyors, mivel a virtuális DOM-ot használja, amely csak a változásokat frissíti, nem az egész oldalt. Ezáltal egy gyors és hatékony felhasználói felületet lehet vele készíteni, amely a mobiltelefonokon és a gyengébb hardverrel rendelkező eszközökön is jól használható.
+
+\subsection{Vuetify}
+A Vuetify egy Material Design alapú Vue.js-re épülő keretrendszer, amely lehetővé teszi a gyors és egyszerű felhasználói felületek készítését, azáltal hogy rengeteg előre elkészített komponenst tartalmaz, amelyeket egyszerűen be lehet illeszteni a weboldalba, így sok időt lehet vele spórolni. A Vuetify segítségével gyorsan és hatékonyan lehet modern és esztétikus felhasználói felületeket készíteni, amelyek jól néznek ki és jól működnek.
+
 \section{Felhasználói weboldal}
 
 \subsection{Főoldal}
+\raggedbottom
 
 A weboldalra rákeresve a felhasználót a kezdőoldal fogadja, ahol lehetőség van
 egy utazás megtervezésére. Ki kell választani a kiindulási helyet és megállót, majd a
@@ -9,8 +20,132 @@ megállók közötti, az adott napon, a megadott időpont után közlekedő jár
 jegyárát. Minden egyes járatnál van egy vásárlás gomb, amellyel a felhasználó
 megszerezheti a jegyet vagy jegyeit az adott buszjáratra, amennyiben be van
 jelentkezve, ellenkező esetben a rendszer átirányítja a bejelentkezéshez. Ennek a
-folyamatnak a szemléltetésére készítettünk egy aktivitás diagramot:
+folyamatnak a szemléltetésére készítettünk egy aktivitás diagramot: \\
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/jegyvasarlas.jpg}
+  \caption{A jegyvásárlás folyamata}
+  \label{fig:activity-diagram}
+\end{figure}
+
+Ahogy az ábrán is látható, miután a felhasználó megtalálta a megfelelő
+buszjáratot és rálépett a jegy(ek) megvásárlására, a rendszer átirányítja őt a
+bejelentkezéshez, itt ha van már fiókja, bejelentkezhet a meglévő adataival,
+amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol meg kell adnia a nevét,
+email címét, és egy új jelszót. A rendszer minden adatot ellenőriz és ha valamelyik
+hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy hibaüzenetet ír ki. Ez
+addig ismétlődik, amíg minden adat megfelelő lesz, aztán automatikusan küldünk egy
+ellenőrző kódot a megadott e-mailre, amelyet a felhasználó be kell írjon a webes
+felületen megjelenő szövegmezőbe. Ha ez helytelen, ez is addig ismétlődik, amíg
+minden rendben lesz, majd a rendszer átirányítja a felhasználót a bankkártyás
+fizetéses oldalra, ami jelenleg nincs implementálva, ez a jövőbeli tervek között
+szerepel. Ezután már csak az következik, hogy a rendszer elmenti a megvásárolt jegy
+kódját, amelyet a felhasználó a Jegyek oldalon talál meg szöveges és QR-kódos
+formátumban.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/ticket_bought.png}
+  \caption{Megvásárolt jegy}
+  \label{fig:ticket-bought}
+\end{figure}
+
+\subsection{Jegyek}
+
+A megvásárolt jegyeket a rendszer elmenti a gyűjteménybe, ami a Jegyek oldalon
+található, így a jegyek bármikor visszakereshetőek és felhasználhatóak lesznek,
+kivéve ha lejár az egy hónapos érvényesség. A jegyen megjelenített adatok között van
+a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség
+dátumai. A már elhasznált jegyek megvannak jelölve így azokat nem lehet többször
+felhasználni.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/tickets.png}
+  \caption{A felhasználó megvásárolt jegyei}
+  \label{fig:tickets}
+\end{figure}
+
+\subsection{Menetrend}
+A következő oldal a menetrend, amely hasonlóan a buszmegállókban kihelyezett
+táblázatokhoz, megjeleníti a kiválasztott buszjárat indulási időpontjait, az adott
+megállóból. A mi megoldásunk viszont tartalmaz emellett egy térképet is, ahol meg
+lehet nézni a járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok
+élő pozícióját is.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/schedule.png}
+  \caption{Listázott menetrend és az útvonal térképe}
+  \label{fig:schedule}
+\end{figure}
+
+\subsection{Megállók és élő térkép}
+Ez a két oldal a fent említett térképes funkciókat mutatják meg külön-külön,
+egyszerűbben. Egyik megjeleníti a térképen az összes megállót, és ezek között
+szűrést is biztosít város vagy buszjárat szerint. A másik oldalon pedig egy-egy
+útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost
+és az útvonalat. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet,
+illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet
+vele spórolni.
 
 \section{Adminisztrátori weboldal}
+Az admin felület csak bejelentkezéssel elérhető, ehhez egy admin rangú
+felhasználói fiók szükséges, amely egy adott céghez van hozzárendelve. A cégek
+adatai el vannak különítve, így minden admin csak a saját cégéhez tartozó adatokat
+láthatja és módosíthatja.
+
+\subsection{Kezdőoldal/Statisztikák}
+Belépés után egy összegző oldal jelenik meg amelyen látható egy kis statisztika
+a regisztrált felhasználók számával, a megvásárolt jegyek számával és a bevétellel,
+mindez havi, évi és mindenkori bontásban. Itt jelennek meg az esetleges
+figyelmeztetések és értesítések is, például a buszok lejárt útadója vagy a közelgő
+műszaki vizsgálat.
+
+\subsection{Megállók}
+A Megállók oldalon létre lehet hozni új megállókat, megtekinteni meglévőket a
+térképen vagy törölni ezeket. Új megálló hozzáadásához meg kell adni a megálló
+nevét, a címet és a koordinátákat. A néven kívül, a többi adatot automatikusan kitölti a
+rendszer, ha a térképen a megálló helyére kattint a felhasználó, de manuálisan is meg
+lehet adni.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/stations.png}
+  \caption{Megállók létrehozása, megtekintése és törlése}
+  \label{fig:stations}
+\end{figure}
+
+\subsection{Útvonalak}
+Ezen az oldalon lehet felépíteni útvonalakat a létrehozott megállókból és itt lehet
+megadni az alap jegyárat is, abban az esetben, ha a jegyek ára nem függ a megtett
+távolságtól és időtől, hanem mindig és mindenhova ugyanannyi, ez esetben a fizetés
+az útvonalhoz lesz hozzárendelve, nem a különböző megállókhoz.
+
+\subsection{Menetrend}
+A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz lehet
+órarendeket hozzárendelni. Itt meg kell adni az órarendre érvényes napokat, a
+következő megállóig szükséges jegyárat és az indulási időpontokat. Egy megállóhoz
+hozzá lehet adni több ilyen órarendet is, ha különböző napokra különböző órarend
+érvényes. Így el lehet választani a hétvégét a hétköznapoktól, ha mások az indulási
+időpontok, vagy ha például hétvégén drágább a jegy.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/schedules_admin.png}
+  \caption{Menetrend létrehozása/törlése}
+  \label{fig:schedules-admin}
+\end{figure}
+
+\subsection{Buszok és alkalmazottak}
+Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Hasonlóan
+működnek, mindkettőn található egy lista a meglévő elemekkel, ahol bármelyiket lehet
+módosítani vagy törölni, illetve újat is lehet létrehozni. A buszoknál meg kell adni a
+márkát, a rendszámot, a férőhelyek számát, a gyártási évet, valamint az útadó, a
+biztosítás és a műszaki engedély lejárati dátumát. Új alkalmazott hozzáadásánál meg
+kell adni a nevet, e-mail címet, beosztást, telefonszámot, lakcímet (opcionális), és egy új jelszavat.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/buses.png}
+  \caption{Buszok kezelése}
+  \label{fig:buses}
+\end{figure}
 
 \section{Felhasználói applikáció}
+
+% TODO: Felhasználói applikáció leírása ???

@@ -13,6 +13,8 @@ class RouteInfo {
 }
 
 class GPS extends StatefulWidget {
+  const GPS({super.key});
+
   @override
   _GPSState createState() => _GPSState();
 }
@@ -33,7 +35,7 @@ class _GPSState extends State<GPS> {
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(Duration(seconds: 30), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 30), (timer) {
       _sendCurrentLocation();
     });
     _fetchBuses();
@@ -60,7 +62,7 @@ class _GPSState extends State<GPS> {
         _busList = plates;
       });
     } else {
-      print('Error: ${response.body}');
+      debugPrint('Error: ${response.body}');
     }
   }
 
@@ -90,7 +92,7 @@ class _GPSState extends State<GPS> {
         _routeList = routeInfoList;
       });
     } else {
-      print('Error: ${response.body}');
+      debugPrint('Error: ${response.body}');
     }
   }
 
@@ -110,7 +112,7 @@ class _GPSState extends State<GPS> {
       );
 
       if (response.statusCode != 200) {
-        print('Error ${response.statusCode}');
+        debugPrint('Error ${response.statusCode}');
       }
     }
   }
@@ -121,7 +123,7 @@ class _GPSState extends State<GPS> {
       final Map<String, dynamic> requestBody = {
         'license_plate': selectedBus!,
       };
-      print(requestBody);
+      debugPrint(requestBody.toString());
       final response = await http.post(
         Uri.parse('https://api.bus4u.online/v1/admin/set_a_bus_untracked'),
         body: requestBody,
@@ -131,7 +133,7 @@ class _GPSState extends State<GPS> {
       );
 
       if (response.statusCode != 200) {
-        print('Error ${response.statusCode}');
+        debugPrint('Error ${response.statusCode}');
       }
     }
   }
@@ -181,7 +183,7 @@ class _GPSState extends State<GPS> {
         'latitude': _currentLatitude,
         'longitude': _currentLongitude,
       };
-      print(requestBody);
+      debugPrint(requestBody.toString());
       final response = await http.post(
         Uri.parse('https://api.bus4u.online/v1/admin/change_bus_location'),
         body: jsonEncode(requestBody),
@@ -192,9 +194,9 @@ class _GPSState extends State<GPS> {
       );
 
       if (response.statusCode == 200) {
-        print('${response.body}}');
+        debugPrint('${response.body}}');
       } else {
-        print('Error sending location: ${response.statusCode}');
+        debugPrint('Error sending location: ${response.statusCode}');
       }
     }
   }
@@ -208,13 +210,13 @@ class _GPSState extends State<GPS> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            const SizedBox(
               height: 80.0,
               child: Image(image: AssetImage('assets/pos.png')),
             ),
-            SizedBox(height: 80.0),
+            const SizedBox(height: 80.0),
             DropdownButton<String>(
-              hint: Text('Please select a bus'),
+              hint: const Text('Please select a bus'),
               value: selectedBus,
               onChanged: (String? newValue) {
                 setState(() {
@@ -228,9 +230,9 @@ class _GPSState extends State<GPS> {
                 );
               }).toList(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             DropdownButton<String>(
-              hint: Text('Please select a route'),
+              hint: const Text('Please select a route'),
               value: selectedRoute,
               onChanged: (String? newValue) {
                 setState(() {
@@ -245,11 +247,11 @@ class _GPSState extends State<GPS> {
                 );
               }).toList(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Tracking'),
+                const Text('Tracking'),
                 Switch(
                   value: _isSwitched,
                   onChanged: (value) {
@@ -270,17 +272,17 @@ class _GPSState extends State<GPS> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             if (_isSwitched)
               Text(
                 'Latitude: $_currentLatitude, Longitude: $_currentLongitude',
               ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/scan_ticket');
               },
-              child: Text('Ticket scanner'),
+              child: const Text('Ticket scanner'),
             ),
           ],
         ),

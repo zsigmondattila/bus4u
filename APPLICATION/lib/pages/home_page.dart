@@ -1,10 +1,12 @@
 import 'package:bus4u/main.dart';
+import 'package:bus4u/models/route_ticket.dart';
+import 'package:bus4u/pages/login_page.dart';
+import 'package:bus4u/utils/state_management.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,35 +15,9 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class Ticket {
-  final String startStation;
-  final String destinationStation;
-  final String startStationUID;
-  final String destinationStationUID;
-  final String companyName;
-  final String companyUID;
-  final String routeName;
-  final String routeUID;
-  final double ticketPrice;
-  final int departureTime;
-  int quantity;
-
-  Ticket({
-    required this.startStation,
-    required this.destinationStation,
-    required this.startStationUID,
-    required this.destinationStationUID,
-    required this.companyName,
-    required this.companyUID,
-    required this.routeName,
-    required this.routeUID,
-    required this.ticketPrice,
-    required this.departureTime,
-    required this.quantity,
-  });
-}
-
 class _HomePageState extends State<HomePage> {
+  final _formKey = GlobalKey<FormState>();
+
   String? selectedStartCity;
   String? selectedStartStation;
   String? selectedDestinationCity;
@@ -54,7 +30,7 @@ class _HomePageState extends State<HomePage> {
   final String _tempSelectedTime = '';
   var logger = Logger();
   String? token;
-  String? user_uid;
+  String? userUid;
 
   late String selectedDate = '';
   late String selectedTime = '';
@@ -63,10 +39,13 @@ class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> stations = [];
   List<Map<String, dynamic>> destinationCities = [];
   List<Map<String, dynamic>> destinationStations = [];
-  List<Ticket> displayedTickets = [];
+  List<RouteTicket> displayedRouteTickets = [];
 
   DateTime selectedDateTime = DateTime.now();
-  late List<Ticket> availableTickets = [];
+  bool _noAvailableRoutes = false;
+  bool _isStartStationLoading = false;
+  bool _isDestStationLoading = false;
+  bool _isRoutesLoading = false;
 
   Future<List<Map<String, String>>> getCities() async {
     final response =
@@ -120,13 +99,14 @@ class _HomePageState extends State<HomePage> {
   Future<void> loadCities() async {
     try {
       cities = await getCities();
-      destinationCities = cities;
-      selectedDate = DateFormat('yyyy-MM-dd').format(selectedDateTime);
-      selectedTime = DateFormat('HH:mm').format(selectedDateTime);
+      setState(() {
+        destinationCities = cities;
+        selectedDate = DateFormat('yyyy-MM-dd').format(selectedDateTime);
+        selectedTime = DateFormat('HH:mm').format(selectedDateTime);
+      });
     } catch (e) {
       logger.e('Error loading cities: $e');
     }
-    setState(() {});
   }
 
   Future<void> loadDestinationCities() async {
@@ -139,28 +119,35 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> loadStationsForCity(String cityUid) async {
+    _isStartStationLoading = true;
     try {
       stations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading stations: $e');
+    } finally {
+      _isStartStationLoading = false;
     }
     setState(() {});
   }
 
   Future<void> loadDestinationStations(String cityUid) async {
+    _isDestStationLoading = true;
     try {
       destinationStations = await getStationsByCity(cityUid);
     } catch (e) {
       logger.e('Error loading destination stations: $e');
+    } finally {
+      _isDestStationLoading = false;
     }
     setState(() {});
   }
 
   Future<void> fetchRoutes() async {
     if (selectedStartCity == null || selectedDestinationCity == null) {
-      logger.e('Please select all cities and stations');
+      logger.w('Please select all cities and stations');
       return;
     }
+    _isRoutesLoading = true;
     try {
       final response = await http.get(
         Uri.parse(
@@ -171,68 +158,55 @@ class _HomePageState extends State<HomePage> {
       if (response.statusCode == 200) {
         final List<dynamic> ticketsData = json.decode(response.body);
 
-        List<Ticket> tickets = [];
+        List<RouteTicket> tickets = [];
 
         for (var ticketData in ticketsData) {
-          String startStation = ticketData['from_station'];
-          String startStationUID = ticketData['from_station_uid'];
-          String destinationStation = ticketData['to_station'];
-          String destinationStationUID = ticketData['to_station_uid'];
-          String companyName = ticketData['company_name'];
-          String companyUID = ticketData['company_uid'];
-          String routeName = ticketData['route_name'];
-          String routeUID = ticketData['route_uid'];
-          double ticketPrice = double.parse(ticketData['ticket_price']);
-          int departureTime = ticketData['departure_time'];
-
-          Ticket ticket = Ticket(
-            startStation: startStation,
-            startStationUID: startStationUID,
-            destinationStation: destinationStation,
-            destinationStationUID: destinationStationUID,
-            companyName: companyName,
-            companyUID: companyUID,
-            routeName: routeName,
-            routeUID: routeUID,
-            ticketPrice: ticketPrice,
-            departureTime: departureTime,
+          RouteTicket ticket = RouteTicket(
+            startStation: ticketData['from_station'],
+            startStationUID: ticketData['from_station_uid'],
+            destinationStation: ticketData['to_station'],
+            destinationStationUID: ticketData['to_station_uid'],
+            companyName: ticketData['company_name'],
+            companyUID: ticketData['company_uid'],
+            routeName: ticketData['route_name'],
+            routeUID: ticketData['route_uid'],
+            ticketPrice: double.parse(ticketData['ticket_price']),
+            departureTime: ticketData['departure_time'],
             quantity: 1,
           );
           tickets.add(ticket);
-          print("price ${ticket.ticketPrice}");
         }
         setState(() {
-          availableTickets = tickets;
-          displayedTickets = tickets;
+          _noAvailableRoutes = tickets.isEmpty;
+          displayedRouteTickets = tickets;
         });
       } else {
         throw Exception('Failed to load tickets');
       }
     } catch (e) {
       logger.e('Error fetching tickets: $e');
+    } finally {
+      _isRoutesLoading = false;
     }
   }
 
-  Future<void> buyTicket(int ticketIndex) async {
+  Future<void> buyRouteTicket(int ticketIndex) async {
     try {
-      final Ticket selectedTicket = displayedTickets[ticketIndex];
+      final RouteTicket selectedRouteTicket =
+          displayedRouteTickets[ticketIndex];
       token = await readData('token');
-      user_uid = await readData('user_uid');
-
-      print("uuuid ${user_uid}");
+      userUid = await readData('user_uid');
 
       final Map<String, dynamic> ticketData = {
-        "quantity": selectedTicket.quantity,
-        "ticket_price": selectedTicket.ticketPrice,
-        "company_uid": selectedTicket.companyUID,
-        "user_uid": user_uid,
+        "quantity": selectedRouteTicket.quantity,
+        "ticket_price": selectedRouteTicket.ticketPrice,
+        "company_uid": selectedRouteTicket.companyUID,
+        "user_uid": userUid,
         "type": "normal",
-        "route_uid": selectedTicket.routeUID,
-        "from_station_uid": selectedTicket.startStationUID,
-        "to_station_uid": selectedTicket.destinationStationUID,
+        "route_uid": selectedRouteTicket.routeUID,
+        "from_station_uid": selectedRouteTicket.startStationUID,
+        "to_station_uid": selectedRouteTicket.destinationStationUID,
       };
-
-      print(ticketData);
 
       final response = await http.post(
         Uri.parse('https://api.bus4u.online/v1/generate_a_ticket'),
@@ -244,59 +218,64 @@ class _HomePageState extends State<HomePage> {
       );
 
       if (response.statusCode == 200) {
-        logger.e('Ticket generated successfully');
-        showDialog(
+        logger.i('Ticket generated successfully');
+        if (!context.mounted) return;
+        showDialog<bool>(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Ticket ordered Successfully!'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      launch('https://bus4u.netlify.com/tickets');
-                    },
-                    child: Text(
-                      'If you want to scan your ticket, please click this text to visit our website',
-                    ),
-                  ),
-                ],
+              title: const Text('Successful order'),
+              content: const Text(
+                'Your new ticket(s) has been added to the collection, which can be viewed on the My Tickets page.',
               ),
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(context).pop(false);
                   },
-                  child: Text('OK'),
+                  child: const Text('OK'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                  child: const Text('View tickets'),
                 ),
               ],
             );
           },
-        );
+        ).then((value) => value == true
+            ? Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) => const MyHomePage(currentPage: 3)))
+            : null);
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
+        if (!context.mounted) return;
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Unauthorized'),
-              content: Text('Please sign in before continuing!'),
+              title: const Text('Unauthorized'),
+              content: const Text('Please log in before buying a ticket'),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('OK'),
+                  child: const Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ));
+                  },
+                  child: const Text('OK'),
                 ),
               ],
             );
           },
         );
-        print(response.statusCode);
-      } else {
-        print(response.body);
       }
     } catch (e) {
       logger.e('Error buying ticket: $e');
@@ -313,21 +292,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 20),
                 const Text('From', style: TextStyle(fontSize: 18)),
-                // From város kiválasztása
+                const SizedBox(height: 10),
                 DropdownButtonFormField<String>(
                   value: _tempSelectedStartCity ?? selectedStartCity,
-                  hint: const Text('Select Start City'),
+                  decoration: const InputDecoration(
+                    labelText: 'Start City',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
                   onChanged: (String? value) {
                     setState(() {
                       _tempSelectedStartCity = value;
@@ -347,30 +327,43 @@ class _HomePageState extends State<HomePage> {
                     );
                   }).toList(),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 // From megálló kiválasztása
-                if (stations.isNotEmpty)
-                  DropdownButtonFormField<String>(
-                    value: _tempSelectedStartStation ?? selectedStartStation,
-                    hint: const Text('Select Start Station'),
-                    onChanged: (String? value) {
-                      _tempSelectedStartStation = value;
-                    },
-                    items: stations.map((Map<String, dynamic> station) {
-                      return DropdownMenuItem<String>(
-                        value: station['station_uid'],
-                        child: Text(station['name']),
-                      );
-                    }).toList(),
+                DropdownButtonFormField<String>(
+                  value: _tempSelectedStartStation ?? selectedStartStation,
+                  icon: _isStartStationLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
+                  decoration: const InputDecoration(
+                    labelText: 'Start Station',
                   ),
-                const SizedBox(height: 20),
-                // To város kiválasztása
-                const SizedBox(height: 20),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    _tempSelectedStartStation = value;
+                  },
+                  items: stations.map((Map<String, dynamic> station) {
+                    return DropdownMenuItem<String>(
+                      value: station['station_uid'],
+                      child: Text(station['name']),
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(height: 32),
                 const Text('To', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
                 DropdownButtonFormField<String>(
                   value:
                       _tempSelectedDestinationCity ?? selectedDestinationCity,
-                  hint: const Text('Select Destination City'),
+                  decoration: const InputDecoration(
+                    labelText: 'Destination City',
+                  ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
                   onChanged: (String? value) {
                     setState(() {
                       _tempSelectedDestinationCity = value;
@@ -389,26 +382,38 @@ class _HomePageState extends State<HomePage> {
                     );
                   }).toList(),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 16),
                 // To megálló kiválasztása
-                if (destinationStations.isNotEmpty)
-                  DropdownButtonFormField<String>(
-                    value: _tempSelectedDestinationStation ??
-                        selectedDestinationStation,
-                    hint: const Text('Select Destination Station'),
-                    onChanged: (String? value) {
-                      _tempSelectedDestinationStation = value;
-                    },
-                    items:
-                        destinationStations.map((Map<String, dynamic> station) {
-                      return DropdownMenuItem<String>(
-                        value: station['station_uid'],
-                        child: Text(station['name']),
-                      );
-                    }).toList(),
+                DropdownButtonFormField<String>(
+                  value: _tempSelectedDestinationStation ??
+                      selectedDestinationStation,
+                  icon: _isDestStationLoading
+                      ? const AspectRatio(
+                          aspectRatio: 1,
+                          child: CircularProgressIndicator.adaptive(
+                            strokeWidth: 3.0,
+                          ))
+                      : null,
+                  decoration: const InputDecoration(
+                    labelText: 'Destination Station',
                   ),
+                  validator: (value) =>
+                      value == null ? 'This field is required' : null,
+                  onChanged: (String? value) {
+                    _tempSelectedDestinationStation = value;
+                  },
+                  items:
+                      destinationStations.map((Map<String, dynamic> station) {
+                    return DropdownMenuItem<String>(
+                      value: station['station_uid'],
+                      child: Text(station['name']),
+                    );
+                  }).toList(),
+                ),
                 const SizedBox(height: 20),
                 // Dátum és idő kiválasztása
+                const Text('Date & time', style: TextStyle(fontSize: 18)),
+                const SizedBox(height: 10),
                 TextFormField(
                   readOnly: true,
                   onTap: () async {
@@ -416,9 +421,11 @@ class _HomePageState extends State<HomePage> {
                       context: context,
                       initialDate: selectedDateTime,
                       firstDate: DateTime.now(),
-                      lastDate: DateTime(2101),
+                      lastDate: DateTime(2100),
                     );
-                    if (pickedDate != null && pickedDate != selectedDateTime) {
+                    if (pickedDate != null &&
+                        pickedDate != selectedDateTime &&
+                        context.mounted) {
                       final TimeOfDay? pickedTime = await showTimePicker(
                         context: context,
                         initialTime: TimeOfDay.fromDateTime(selectedDateTime),
@@ -445,32 +452,38 @@ class _HomePageState extends State<HomePage> {
                         ? '$selectedDate $selectedTime'
                         : '$_tempSelectedDate $_tempSelectedTime',
                   ),
-                  decoration: const InputDecoration(
-                    labelText: 'Select Date & Time',
-                    border: OutlineInputBorder(),
-                  ),
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      selectedStartCity = _tempSelectedStartCity;
-                      selectedStartStation = _tempSelectedStartStation;
-                      selectedDestinationCity = _tempSelectedDestinationCity;
-                      selectedDestinationStation =
-                          _tempSelectedDestinationStation;
-                      selectedDate = _tempSelectedDate.isEmpty
-                          ? selectedDate
-                          : _tempSelectedDate;
-                      selectedTime = _tempSelectedTime.isEmpty
-                          ? selectedTime
-                          : _tempSelectedTime;
-                    });
-                    fetchRoutes();
-                  },
-                  child: const Text('Search'),
-                ),
-                if (displayedTickets.isNotEmpty)
+                _isRoutesLoading
+                    ? const Center(child: CircularProgressIndicator.adaptive())
+                    : FilledButton(
+                        onPressed: () {
+                          if (!_formKey.currentState!.validate()) return;
+                          setState(() {
+                            selectedStartCity = _tempSelectedStartCity;
+                            selectedStartStation = _tempSelectedStartStation;
+                            selectedDestinationCity =
+                                _tempSelectedDestinationCity;
+                            selectedDestinationStation =
+                                _tempSelectedDestinationStation;
+                            selectedDate = _tempSelectedDate.isEmpty
+                                ? selectedDate
+                                : _tempSelectedDate;
+                            selectedTime = _tempSelectedTime.isEmpty
+                                ? selectedTime
+                                : _tempSelectedTime;
+                          });
+                          fetchRoutes();
+                        },
+                        child: const Text('Search'),
+                      ),
+                const SizedBox(height: 32),
+                if (_noAvailableRoutes)
+                  const Text(
+                      "There are no available routes, try again with other stations or date"),
+                if (displayedRouteTickets.isNotEmpty) ...[
+                  const Text('Available buses', style: TextStyle(fontSize: 18)),
+                  const SizedBox(height: 10),
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 500),
                     transitionBuilder:
@@ -480,77 +493,83 @@ class _HomePageState extends State<HomePage> {
                         child: child,
                       );
                     },
-                    child: Column(
-                      children: displayedTickets
-                          .asMap()
-                          .entries
-                          .expand((ticketEntry) {
-                        final int ticketIndex = ticketEntry.key;
-                        final ticket = ticketEntry.value;
-                        DateTime depTimestamp =
-                            DateTime.fromMillisecondsSinceEpoch(
-                                ticket.departureTime * 1000,
-                                isUtc: true);
-                        String departureTime =
-                            '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
-                        return [
-                          ListTile(
-                            title: Text(
-                              '${ticket.startStation} - ${ticket.destinationStation}',
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('Company: ${ticket.companyName}'),
-                                Text('Route: ${ticket.routeName}'),
-                                Text(
-                                    'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
-                                Text('Departure Time: ${departureTime}'),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (ticket.quantity > 1) {
-                                      ticket.quantity--;
-                                    }
-                                  });
-                                },
-                                icon: const Icon(Icons.remove),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        border: Border.all(
+                            color: Theme.of(context).dividerColor, width: 1),
+                      ),
+                      child: ListView.separated(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: displayedRouteTickets.length,
+                          separatorBuilder: (context, index) =>
+                              Divider(color: Theme.of(context).dividerColor),
+                          itemBuilder: (context, index) {
+                            RouteTicket ticket = displayedRouteTickets[index];
+                            DateTime depTimestamp =
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    ticket.departureTime * 1000,
+                                    isUtc: true);
+                            String departureTime =
+                                '${depTimestamp.hour}:${depTimestamp.minute.toString().padLeft(2, '0')}';
+                            return ListTile(
+                              title: Text(
+                                '${ticket.startStation} - ${ticket.destinationStation}',
                               ),
-                              Container(
-                                width: 40,
-                                alignment: Alignment.center,
-                                child: Text(
-                                  '${ticket.quantity}',
-                                  style: const TextStyle(fontSize: 18),
-                                ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Company: ${ticket.companyName}'),
+                                  Text('Route: ${ticket.routeName}'),
+                                  Text(
+                                      'Ticket Price: ${ticket.ticketPrice.toStringAsFixed(2)} RON'),
+                                  Text('Departure Time: $departureTime'),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            if (ticket.quantity > 1) {
+                                              ticket.quantity--;
+                                            }
+                                          });
+                                        },
+                                        icon: const Icon(Icons.remove),
+                                      ),
+                                      Container(
+                                        width: 40,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          '${ticket.quantity}',
+                                          style: const TextStyle(fontSize: 18),
+                                        ),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            ticket.quantity++;
+                                          });
+                                        },
+                                        icon: const Icon(Icons.add),
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          buyRouteTicket(index);
+                                        },
+                                        child: const Text('Buy ticket'),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
-                              IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    ticket.quantity++;
-                                  });
-                                },
-                                icon: const Icon(Icons.add),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  buyTicket(ticketIndex);
-                                },
-                                child: const Text('Buy Ticket'),
-                              ),
-                            ],
-                          ),
-                          const Divider(),
-                        ];
-                      }).toList(),
+                            );
+                          }),
                     ),
                   ),
+                ]
               ],
             ),
           ),

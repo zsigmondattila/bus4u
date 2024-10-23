@@ -1,164 +1,155 @@
-import 'package:bus4u/NavBar.dart';
+import 'package:bus4u/nav_bar.dart';
+import 'package:bus4u/pages/about_page.dart';
+import 'package:bus4u/pages/login_page.dart';
+import 'package:bus4u/pages/register_page.dart';
+import 'package:bus4u/pages/schedules_page.dart';
+import 'package:bus4u/pages/stations_page.dart';
+import 'package:bus4u/pages/tickets_page.dart';
+import 'package:bus4u/pages/tracking_page.dart';
+import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/pages/home_page.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  static bool isLoggedIn = false;
-  static late String token;
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
+    return ChangeNotifierProvider(
+      create: (context) => UserService(),
+      child: MaterialApp(
+        theme: ThemeData.from(
+                colorScheme: ColorScheme.fromSeed(
+                    seedColor: Colors.orange, background: Colors.white))
+            .copyWith(
+          inputDecorationTheme: const InputDecorationTheme(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(),
+          ),
         ),
-        scaffoldBackgroundColor: Colors.white,
-        primarySwatch: MaterialColor(
-          0xFFEF6C00,
-          <int, Color>{
-            50: Color(0xFFFFF3E0),
-            100: Color(0xFFFFE0B2),
-            200: Color(0xFFFFCC80),
-            300: Color(0xFFFFB74D),
-            400: Color(0xFFFFA726),
-            500: Color(0xFFF57C00),
-            600: Color(0xFFF57C00),
-            700: Color(0xFFF57C00),
-            800: Color(0xFFEF6C00),
-            900: Color(0xFFE65100),
-          },
-        ),
-      ),
-      title: 'bus4u',
-      home: AnimatedSplashScreen(
-        splash: Image.asset('assets/images/logo-text.png'),
-        nextScreen: MyHomePage(
-          currentPage: const HomePage(),
-          isLoggedIn: isLoggedIn,
-        ),
-        splashTransition: SplashTransition.fadeTransition,
-        backgroundColor: Colors.white,
+        title: 'Bus4U',
+        home: const MyHomePage(),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final Widget? currentPage;
-  final bool isLoggedIn;
+  final int currentPage;
+  final List<Widget> pages = const [
+    HomePage(),
+    SchedulesPage(),
+    StationsPage(),
+    TicketPage(),
+    TrackingPage(),
+    AboutPage(),
+  ];
+  final List<String> pageTitles = const [
+    'Plan your trip',
+    'Schedule',
+    'Stations',
+    'My Tickets',
+    'Live map',
+    'About',
+  ];
 
   const MyHomePage({
-    Key? key,
-    this.currentPage,
-    this.isLoggedIn = false,
-  }) : super(key: key);
+    super.key,
+    this.currentPage = 0,
+  });
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Widget currentPage;
-
-  void signOut() async {
-    try {
-      String? uid = await readData('user_uid');
-      String? client = await readData('client');
-      String? access_token = await readData('access_token');
-      print('uid ${uid} client ${client} ');
-      final response = await http.delete(
-          Uri.parse('https://api.bus4u.online/auth/sign_out'),
-          body: {'uid': uid, 'client': client, 'access-token': access_token});
-      if (response.statusCode == 200) {
-        setState(() {
-          MyApp.isLoggedIn = false;
-          currentPage = const HomePage();
-        });
-      } else {
-        print('Logout failed');
-      }
-    } catch (e) {
-      print('Error during logout: $e');
-    }
-  }
+  late int currentPage;
 
   @override
   void initState() {
     super.initState();
-    currentPage = widget.currentPage!;
+    currentPage = widget.currentPage;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text(
-              '$currentPage',
-              style: TextStyle(color: Colors.black, fontSize: 20),
-            ),
-            SizedBox(width: 50),
-            Image.asset(
-              'assets/images/logo-text.png',
-              height: 40,
-            ),
-            if (MyApp.isLoggedIn)
-              GestureDetector(
-                onTap: signOut,
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Icon(Icons.account_circle),
-                    ),
-                    Text(
-                      'Sign Out',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
+    return Material(
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            if (context.watch<UserService>().isLoggedIn)
+              IconButton(
+                onPressed: () async {
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text('Logging out...'),
+                      ),
+                    );
+                  }
+                  bool result =
+                      await Provider.of<UserService>(context, listen: false)
+                          .signOut();
+                  if (mounted) {
+                    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: result
+                            ? const Text('Logged out successfully')
+                            : const Text('Error logging out'),
+                      ),
+                    );
+                  }
+                },
+                icon: const Icon(Icons.logout),
+                tooltip: 'Logout',
+              )
+            else ...[
+              IconButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      ),
+                  icon: const Icon(Icons.login),
+                  tooltip: 'Login'),
+              IconButton(
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
+                      ),
+                  icon: const Icon(Icons.person_add),
+                  tooltip: 'Register'),
+            ],
+            const SizedBox(width: 10),
           ],
+          backgroundColor: Colors.white,
+          shadowColor: Colors.grey,
+          titleSpacing: 8,
+          title: Text(
+            widget.pageTitles[currentPage],
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-        iconTheme: IconThemeData(color: Colors.orange[800]),
+        drawer: NavBar(
+          selectedIndex: currentPage,
+          onSelect: (page) {
+            setState(() {
+              currentPage = page;
+            });
+            Navigator.pop(context);
+          },
+        ),
+        body: widget.pages[currentPage],
       ),
-      drawer: NavBar(
-        onSelect: (Widget page) {
-          setState(() {
-            currentPage = page;
-          });
-        },
-        isLoggedIn: widget.isLoggedIn,
-      ),
-      body: currentPage,
     );
   }
-}
-
-Future<void> saveData(key, value) async {
-  final prefs = await SharedPreferences.getInstance();
-  prefs.setString(key, value);
-}
-
-Future<String?> readData(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  final value = prefs.getString(key);
-  return value;
-}
-
-Future<void> removeData(String key) async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.remove(key);
 }

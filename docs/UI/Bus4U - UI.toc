@@ -10,18 +10,18 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Gyakorlati megvalósítás}{10}{}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasznált technológiák}{10}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Vue.js}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}Vuetify}{10}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Felhasználói weboldal}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Főoldal}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Jegyek}{12}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.3}Menetrend}{13}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.2.4}Megállók és élő térkép}{14}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.3}Adminisztrátori weboldal}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.1}Kezdőoldal/Statisztikák}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}Megállók}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}Útvonalak}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Menetrend}{15}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}Buszok és alkalmazottak}{16}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.4}Felhasználói applikáció}{17}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Összefoglalás}{18}{}%
-\select@language {magyar} \contentsline {section}{\numberline {5.1}További fejlesztési lehetőségek}{18}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}Vuetify}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.3}Flutter}{11}{}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Felhasználói felület}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Főoldal}{11}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Jegyek}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.3}Menetrend}{14}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.4}Megállók és élő térkép}{16}{}%
+\select@language {magyar} \contentsline {section}{\numberline {4.3}Adminisztrátori weboldal}{16}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.1}Kezdőoldal/Statisztikák}{16}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.2}Megállók}{16}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.3}Útvonalak}{17}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.4}Menetrend}{17}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.3.5}Buszok és alkalmazottak}{18}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}Összefoglalás}{19}{}%
+\select@language {magyar} \contentsline {section}{\numberline {5.1}További fejlesztési lehetőségek}{19}{}%

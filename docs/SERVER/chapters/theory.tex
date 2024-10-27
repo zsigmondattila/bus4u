@@ -1,3 +1,42 @@
+\section{Technológiai háttér}
+A Bus4U alkalmazás digitális megoldásai mögött modern webtechnológiák állnak, amelyek lehetővé teszik a felhasználói élmény folyamatos fejlesztését és a szolgáltatások hatékony működését. Az alkalmazás backendje Ruby on Rails keretrendszert használ, amely az egyik legnépszerűbb választás webes alkalmazások fejlesztésére.
+
+\subsection{Ruby on Rails}
+A Ruby on Rails egy \textit{nyílt forráskódú keretrendszer}, amely gyors fejlesztést és egyszerű karbantartást tesz lehetővé a „\textit{Convention over Configuration}” (Konvenció a konfiguráció felett) és a „\textit{Don’t Repeat Yourself}” (Ne ismételd önmagad) elvek alkalmazásával. Ezek az elvek elősegítik, hogy a fejlesztés kevesebb kóddal történjen, így könnyebb lesz a karbantartás, valamint az új funkciók beépítése is. Az \textit{MVC (Model-View-Controller)} architektúra révén a Ruby on Rails jól strukturált rendszert biztosít, amelyben az üzleti logika, az adatkezelés és a felhasználói felület egymástól elkülönítve, de összhangban működik.
+
+A Ruby on Rails további előnyei:
+\begin{itemize}
+    \item \textbf{Nagy és aktív közösség}: rengeteg dokumentáció, könyvtár (gem) és integráció áll rendelkezésre, ami gyorsabbá és biztonságosabbá teszi a fejlesztést.
+    \item \textbf{Automatizált tesztelés}: A Rails támogatja az automatizált tesztelést, amely a megbízhatóságot növeli.
+    \item \textbf{RESTful struktúra}: A Rails natív módon támogatja a RESTful API-k kialakítását, ami megkönnyíti az API-k integrációját más rendszerekkel és frontendekkel.
+\end{itemize}
+
+\subsection{PostgreSQL}
+A \textit{PostgreSQL} egy \textit{nyílt forráskódú, objektum-relációs adatbázis-kezelő rendszer}, amely gazdag szolgáltatáskészletet és rugalmasságot biztosít, így ideális választás olyan alkalmazások számára, amelyek összetett adatstruktúrákkal és nagyméretű adattömegekkel dolgoznak.
+
+A PostgreSQL előnyei a Bus4U számára:
+\begin{itemize}
+    \item \textbf{Teljesítmény optimalizálása és bonyolult lekérdezések kezelése}: PostgreSQL kiválóan kezeli a párhuzamos műveleteket és a nagy adattömegeket, így biztosítva az alkalmazás gyors működését.
+    \item \textbf{Skálázhatóság}: nagyobb adatmennyiség vagy felhasználói terhelés esetén a PostgreSQL támogatja a függőleges és vízszintes skálázást, ezáltal hosszú távon fenntartható teljesítményt biztosít.
+\end{itemize}
+
+\subsection{Azure}
+Az \textit{Azure} egy nagyvállalati szintű, biztonságos és skálázható felhőplatform, amely biztosítja a Bus4U alkalmazás számára a megbízható működést. Az Azure környezet használatával az infrastruktúra rugalmasan kezelhető, és az erőforrások felhasználása hatékonyan szabályozható.
+
+Az Azure előnyei a Bus4U számára:
+\begin{itemize}
+    \item \textbf{Skálázhatóság és rugalmasság}: Az Azure képes automatikusan alkalmazkodni a terheléshez, így ha megnövekszik a felhasználói forgalom, a rendszer könnyedén alkalmazkodik.
+    \item \textbf{Biztonság és adatvédelem}: Az Azure szigorú adatvédelmi szabályokat és fejlett biztonsági protokollokat biztosít, amelyek elengedhetetlenek egy tömegközlekedési alkalmazás számára.
+\end{itemize}
+
+\section{Integráció és fejlesztési lehetőségek}
+
+A Ruby on Rails, PostgreSQL és Azure kombinációja lehetővé teszi számunkra, hogy gyorsan új funkciókat integráljunk. A RESTful API-k használata révén a különböző komponensek (például a mobilalkalmazás és a backend) zökkenőmentesen kommunikálnak egymással, javítva az alkalmazás teljesítményét.
+
+\section{Fenntarthatóság}
+
+A Bus4U projekt nemcsak a közlekedési információk egyszerűsítésére szolgál, hanem fontos szerepet játszik a fenntartható közlekedés népszerűsítésében is. Az online jegyvásárlás és az alternatív közlekedési módok ösztönzése hozzájárul a közlekedési rendszer környezeti terheinek csökkentéséhez.
+
 \section{Hasonló alkalmazások}
 
 A közlekedési alkalmazások, mint például a Budapest Go, jelentős hatással vannak a modern városi közlekedésre. A Budapest Go a magyarországi főváros tömegközlekedési rendszerének digitális megoldása, amely lehetővé teszi a felhasználók számára, hogy egyszerűen és gyorsan intézzék utazásaik szervezését. Az alkalmazás számos funkcióval rendelkezik, amelyek javítják a felhasználói élményt.

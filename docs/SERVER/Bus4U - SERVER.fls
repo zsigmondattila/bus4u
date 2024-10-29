@@ -286,6 +286,10 @@ INPUT ./Bus4U - SERVER.toc
 INPUT Bus4U - SERVER.toc
 INPUT Bus4U - SERVER.toc
 OUTPUT Bus4U - SERVER.toc
+INPUT ./Bus4U - SERVER.lof
+INPUT Bus4U - SERVER.lof
+INPUT Bus4U - SERVER.lof
+OUTPUT Bus4U - SERVER.lof
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm
 INPUT ./chapters/introduction.tex
@@ -347,6 +351,16 @@ INPUT ./figures/database.jpg
 INPUT figures/database.jpg
 INPUT ./figures/database.jpg
 INPUT ./figures/database.jpg
+INPUT ./figures/jira.jpg
+INPUT ./figures/jira.jpg
+INPUT figures/jira.jpg
+INPUT ./figures/jira.jpg
+INPUT ./figures/jira.jpg
+INPUT ./figures/github.jpg
+INPUT ./figures/github.jpg
+INPUT figures/github.jpg
+INPUT ./figures/github.jpg
+INPUT ./figures/github.jpg
 INPUT ./chapters/infrastructure.tex
 INPUT ./chapters/infrastructure.tex
 INPUT ./chapters/infrastructure.tex

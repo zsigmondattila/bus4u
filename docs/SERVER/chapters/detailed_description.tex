@@ -79,3 +79,49 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
     \caption{Az rendszer adatbázisdiagramja}
     \label{fig:database-diagram}
   \end{figure}
+
+  \section{Projektmenedzsment és verziókövetés}
+
+  A projekt fejlesztése során több eszközt alkalmaztunk a feladatok nyomon követésére, a fejlesztési folyamat szervezésére és a forráskód verziókövetésére.
+  
+  \subsection{Jira}
+
+  A projektmenedzsment során a \textbf{Jira} kanban boardját használtuk, amely az Atlassian által fejlesztett projekt-követő platform. A Jirát választottuk, mert egy olyan hatékony eszköz, amely egyszerre letisztult, ám funkciókban komplex, így könnyedén igazítható a projekt igényeihez. 
+  
+  A Kanban tábla három fő oszlopból állt:
+  \begin{itemize}
+      \item \textbf{To do}: Ide kerültek azok a feladatok, amelyeket még nem kezdtünk el.
+      \item \textbf{In progress}: Ebben az oszlopban azok a feladatok szerepeltek, amelyek éppen folyamatban voltak.
+      \item \textbf{Done}: Az elvégzett feladatok ebbe az oszlopba kerültek, jelezve azok befejezését.
+  \end{itemize}
+  
+  Minden feladatot hozzárendeltünk egy konkrét tulajdonoshoz, valamint címkékkel láttunk el, amelyek megjelölték, hogy a munka épp a rendszer melyik komponensére vonatkozik: \textbf{API}, \textbf{felhasználói felület}, \textbf{admin felület}, vagy \textbf{mobil alkalmazás}. A feladatok ilyen címkézése segített abban, hogy pontosan tudjuk, ki mivel foglalkozik, illetve milyen állapotban van a fejlesztés különböző területein végzett munka.
+
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{figures/jira.jpg}
+    \caption{A Jira kanban board áttekintése}
+    \label{fig:jira}
+  \end{figure}
+      
+  \subsection{Git és GitHub}
+
+  A projekt forráskódjának verziókezelését a \textbf{Git} verziókezelő rendszer segítségével oldottuk meg, míg a kód tárolására a \textbf{GitHub} platformot használtuk. A GitHub lehetőséget biztosított a pull request-ek hatékony kezelésére, amelyekkel minden változtatást egyszerűen tudtunk jóváhagyni. Ez a megközelítés a kód visszakövethetőségét és dokumentálását is jelentősen megkönnyítette, hozzájárulva a kód minőségének javításához és a fejlesztési folyamat átláthatóságához.
+  
+  A projekt struktúráját három fő \textbf{branch} köré szerveztük:
+  \begin{itemize}
+      \item \textbf{main branch}: Ebbe az ágba kizárólag a már teljesen tesztelt és stabil kódrészletek kerültek be, amelyeket időszakosan publikáltunk. Ez az ág szolgált a hivatalos, működőképes verzió tárolására.
+      \item \textbf{develop branch}: A develop branch-et a fejlesztés és tesztelés helyszíneként használtuk. Az ide feltöltött kódok még tesztelés alatt álltak, de a fejlesztési idő alatt mindig a develop verzióját futtattuk az Azure környezetben, ezzel biztosítva, hogy az aktuális fejlesztések folyamatosan elérhetők és tesztelhetők legyenek.
+      \item \textbf{feature branchek}: Az új funkciók fejlesztését különálló, ún. feature branchekben végeztük, amelyek a konkrét feladatokra vagy kódrészletekre koncentráltak. Például kisebb munkaigényű kódok, mint az általános API lekérések fejlesztése külön branchekben történt, míg az összetettebb funkciókat külön feature branch-ekben dolgoztuk ki.
+  \end{itemize}
+  
+  A branch-ek ilyen felosztása lehetővé tette a párhuzamos fejlesztést, és biztosította, hogy a különböző fejlesztési szakaszok kódjai elkülönítve és rendezetten legyenek tárolva. A GitHub pull request funkciójának köszönhetően minden változtatást felül tudtunk vizsgálni, így minden módosítás előtt biztosak lehettünk annak minőségében és kompatibilitásában.
+
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{figures/github.jpg}
+    \caption{A GitHub repository áttekintése}
+    \label{fig:github}
+  \end{figure}
+  
+  
+  Ezek az eszközök hozzájárultak a projekt sikeres és hatékony fejlesztéséhez, elősegítve a feladatok egyértelműsítését, priorizálását és a csapat tagjai közötti együttműködést.
+  

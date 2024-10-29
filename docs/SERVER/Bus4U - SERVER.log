@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  29 OCT 2024 13:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  29 OCT 2024 18:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -261,9 +261,9 @@ LaTeX Info: Redefining \mit on input line 578.
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 56.
+(Font)              <17.28> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 56.
+(Font)              <12> on input line 59.
  [1] (./chapters/abstract_ro.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 2.
@@ -275,9 +275,15 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
 \openout3 = `"Bus4U - SERVER.toc"'.
 
- [3]
+ [3] (./Bus4U - SERVER.lof)
+\tf@lof=\write4
+\openout4 = `"Bus4U - SERVER.lof"'.
+
+ [4
+
+]
 1. fejezet.
-(./chapters/introduction.tex) [4
+(./chapters/introduction.tex) [5
 
 ]
 2. fejezet.
@@ -286,102 +292,106 @@ Overfull \hbox (2.376pt too wide) in paragraph at lines 13--14
 []\T1/cmr/bx/n/12 Adminisztrációs Fe-lü-let: \T1/cmr/m/n/12 Lét-re-hoz-ni egy ad-mi-niszt-rá-ci-ós fe-lü-le-tet, ame-lyet a busz-
  []
 
-) [5
+) [6
 
 ]
 3. fejezet.
-(./chapters/theory.tex [6
+(./chapters/theory.tex [7
 
 ]
 Overfull \hbox (1.47743pt too wide) in paragraph at lines 19--20
 []\T1/cmr/bx/n/12 Teljesítmény op-ti-ma-li-zá-lá-sa és bo-nyo-lult le-kér-de-zé-sek ke-ze-lé-se\T1/cmr/m/n/12 : Post-g-reSQL
  []
 
-[7] [8]) [9]
+[8] [9]) [10]
 4. fejezet.
-(./chapters/requirements.tex [10
+(./chapters/requirements.tex [11
 
-] [11]
+]
 <figures/use-case.jpg, id=63, 1714.405pt x 2055.68pt>
 File: figures/use-case.jpg Graphic file (type jpg)
 <use figures/use-case.jpg>
-Package pdftex.def Info: figures/use-case.jpg  used on input line 34.
+Package pdftex.def Info: figures/use-case.jpg  used on input line 33.
 (pdftex.def)             Requested size: 455.24411pt x 545.85046pt.
- [12
-
- <./figures/use-case.jpg>] [13]) [14]
+ [12] [13 <./figures/use-case.jpg>] [14]) [15]
 5. fejezet.
 (./chapters/detailed_description.tex
-<figures/component.jpg, id=74, 1606.0pt x 943.525pt>
+<figures/component.jpg, id=78, 1606.0pt x 943.525pt>
 File: figures/component.jpg Graphic file (type jpg)
 <use figures/component.jpg>
 Package pdftex.def Info: figures/component.jpg  used on input line 7.
 (pdftex.def)             Requested size: 455.24411pt x 267.45332pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [15
+ [16
 
 ]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 30.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [16 <./figures/component.jpg>]
+) [17 <./figures/component.jpg>]
 Overfull \hbox (4.69623pt too wide) in paragraph at lines 63--64
 []\T1/cmr/bx/n/12 Admins\T1/cmr/m/n/12 : Kü-lön-bö-z® cé-gek-hez tar-to-zó ad-mi-niszt-rá-to-rok ada-tai. Sze-re-pük le-het ^^Pboss^^Q
  []
 
-[17]
-<figures/database.jpg, id=86, 1283.79625pt x 1507.6325pt>
+[18]
+<figures/database.jpg, id=89, 1283.79625pt x 1507.6325pt>
 File: figures/database.jpg Graphic file (type jpg)
 <use figures/database.jpg>
 Package pdftex.def Info: figures/database.jpg  used on input line 78.
 (pdftex.def)             Requested size: 455.24411pt x 534.60367pt.
-)
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [18] [19 <./figures/database.jpg>]
+ [19] [20 <./figures/database.jpg>]
+<figures/jira.jpg, id=96, 926.46124pt x 825.0825pt>
+File: figures/jira.jpg Graphic file (type jpg)
+<use figures/jira.jpg>
+Package pdftex.def Info: figures/jira.jpg  used on input line 101.
+(pdftex.def)             Requested size: 455.24411pt x 405.42705pt.
+ [21] [22 <./figures/jira.jpg>]
+<figures/github.jpg, id=104, 1176.395pt x 807.015pt>
+File: figures/github.jpg Graphic file (type jpg)
+<use figures/github.jpg>
+Package pdftex.def Info: figures/github.jpg  used on input line 120.
+(pdftex.def)             Requested size: 455.24411pt x 312.2964pt.
+) [23 <./figures/github.jpg>]
 6. fejezet.
-(./chapters/infrastructure.tex [20
+(./chapters/infrastructure.tex [24
 
 ]
-<figures/deployment.jpg, id=96, 923.45pt x 657.45625pt>
+<figures/deployment.jpg, id=111, 923.45pt x 657.45625pt>
 File: figures/deployment.jpg Graphic file (type jpg)
 <use figures/deployment.jpg>
 Package pdftex.def Info: figures/deployment.jpg  used on input line 33.
 (pdftex.def)             Requested size: 455.24411pt x 324.11261pt.
-) [21 <./figures/deployment.jpg>]
+) [25 <./figures/deployment.jpg>]
 7. fejezet.
-(./chapters/testing.tex [22
+(./chapters/testing.tex [26
 
-] [23] [24]) [25]
+] [27] [28]) [29]
 8. fejezet.
-(./chapters/summary.tex) [26
+(./chapters/summary.tex) [30
 
-] (./Bus4U - SERVER.bbl [27]
+] (./Bus4U - SERVER.bbl [31]
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [28
+) [32
 
 ]
 A f\"uggel\'ek.
-(./chapters/appendix.tex) [29
+(./chapters/appendix.tex) [33
 
 ] (./Bus4U - SERVER.aux) ) 
 Here is how much of TeX's memory you used:
- 4443 strings out of 479574
- 78400 string characters out of 5877220
- 403986 words of memory out of 5000000
- 22349 multiletter control sequences out of 15000+600000
+ 4466 strings out of 479574
+ 78834 string characters out of 5877220
+ 404008 words of memory out of 5000000
+ 22367 multiletter control sequences out of 15000+600000
  486456 words of font info for 59 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
  55i,6n,62p,1470b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Bus4U - SERVER.pdf" (33 pages, 697887 bytes).
+Output written on "Bus4U - SERVER.pdf" (37 pages, 847147 bytes).
 PDF statistics:
- 689 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
+ 709 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

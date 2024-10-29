@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Bus4U - SERVER"] 1730017443 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1730017654
+["bibtex Bus4U - SERVER"] 1730199903 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1730199904
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - SERVER.aux" 1730017654 8734 bd62f35787fc7d16278aa9765c78858b "pdflatex"
+  "Bus4U - SERVER.aux" 1730199904 8738 9ed9a1843a386c813cf3a65a43dda531 "pdflatex"
   "references.bib" 1730013835 2003 e4ef1732efd5a1195ed14b6cf8955c79 ""
   (generated)
   "Bus4U - SERVER.bbl"
   "Bus4U - SERVER.blg"
-["pdflatex"] 1730017654 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1730017654
+["pdflatex"] 1730199904 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1730199904
   "/etc/texmf/web2c/texmf.cnf" 1722332107 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk" 1722341070 25396 1a84cfb34503f773b16b1bd9b923cc7d ""
   "/home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk" 1724612914 31928 d1a8f71d3b50f7a6f69e453b098e5b69 ""
@@ -22,7 +22,7 @@
   "/home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk" 1722341071 53712 8ff919035fb4b14551f1694ccc3e6d36 ""
   "/home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk" 1729332054 39096 6864e8abf0be157e0aad32baf7c5bb99 ""
   "/home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk" 1724612913 24132 20815cf7ad0523b6507b297b81f42658 ""
-  "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" 1729847113 2515 dfa1ee5e3509d15e8cb52e01e2fd3ec1 ""
+  "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" 1730199903 2554 a8c635eaf54c3e14e4148829a7bce229 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm" 1136768653 3584 402da0b29eafbad07963b1224b222f18 ""
@@ -77,15 +77,16 @@
   "/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
   "/usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty" 1137110375 2690 ff20575f4d1777f515b27161a60eef01 ""
   "/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty" 1639603888 9244 53da791cc5f775633a8a852b08533fe2 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty" 1324344192 22913 a27d7908fc6f0385466454a966a316eb ""
   "/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty" 1636758526 32262 2bb622a0aa56c4a7a5cbdfe9d122c15a ""
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1722334991 168054 c8928d7306e61dbf9bb950060320aa5b ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1722334997 2059327 1fe4ae0aa5a75cd3b63469d203ce0977 ""
-  "Bus4U - SERVER.aux" 1730017654 8734 bd62f35787fc7d16278aa9765c78858b "pdflatex"
-  "Bus4U - SERVER.bbl" 1730017443 49 0eba253fc001332e731e8aba3f23127b "bibtex Bus4U - SERVER"
-  "Bus4U - SERVER.tex" 1729847113 2515 dfa1ee5e3509d15e8cb52e01e2fd3ec1 ""
-  "Bus4U - SERVER.toc" 1730017654 4720 7f14ae9deae7da0822712fd2baa70933 "pdflatex"
+  "Bus4U - SERVER.aux" 1730199904 8738 9ed9a1843a386c813cf3a65a43dda531 "pdflatex"
+  "Bus4U - SERVER.bbl" 1730199903 49 0eba253fc001332e731e8aba3f23127b "bibtex Bus4U - SERVER"
+  "Bus4U - SERVER.tex" 1730199903 2554 a8c635eaf54c3e14e4148829a7bce229 ""
+  "Bus4U - SERVER.toc" 1730199904 4724 55d61dfaceed004cc72b635078a07456 "pdflatex"
   "chapters/abstract_en.tex" 1729701128 2233 bcdf3790a2dc976d14e2603e3ebd6eff ""
   "chapters/abstract_hu.tex" 1729701128 2670 2d69ea812d5559d87f90c9f806d2875e ""
   "chapters/abstract_ro.tex" 1729701128 2604 65df071cf3de61ad770c1f084e890990 ""

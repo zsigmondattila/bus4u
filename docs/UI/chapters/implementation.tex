@@ -3,18 +3,24 @@ A felhasználói és az admin weboldalak Vue.js keretrendszerben készültek, Vu
 Az mobil platformokra szánt alkalmazás Flutter technológiával készült, amely által egyetlen kódbázisból ki lehetett generálni Android és iOS készülékekre is a natív alkalmazást.
 
 \subsection{Vue.js}
-A Vue.js egy progresszív JavaScript keretrendszer, amelyet azért hoztak létre, hogy a webes felhasználói felületek fejlesztése egyszerűbb és gyorsabb legyen. A JavaScript keretrendszerek célja hogy megkönnyítsék a webprogramozást, azáltal hogy előre megírt osztály- és függvénykönyvtárakat szolgáltatnak, amelyek segítenek lerövidíteni a fejlesztési időt.\\
-A Vue.js két alapköve a deklaratív UI felépítés és a reaktivitás. A deklaratív felépítés azt jelenti hogy az alap HTML kódot a Vue kiegészíti egy saját sablon-szitaxissal, amely lehetővé teszi a változók beékelését a HTML kódba. A reaktivitás azt jelenti, hogy amikor a JavaScript változók értéke megváltozik, akkor a Vue érzékeli ezt és automatikusan megváltoztatja a megjelenített HTML kódot is, így mindig a legfrissebb adatokat látja a felhasználó.\\
-A Vue.js egyik legnagyobb előnye, hogy könnyen tanulható és alkalmazható, így gyorsan lehet vele fejleszteni. Ennek egyik oka, hogy komponens alapú, amely lehetővé teszi a weboldalak felépítését újrafelhasználható, különálló komponensekből, amelyeket később össze lehet fűzni egy nagyobb alkalmazássá. A fejlesztést felgyorsító másik fontos tulajdonság az, hogy alapértelmezetten egy Vite nevű build tool-t (építő eszközt) használ, amelynek a gyors újratöltés funkciója figyeli a forráskódban létrejött módosításokat és azonnal frissíti a weboldalt, így a fejlesztőnek nem kell manuálisan a frissítés gombot nyomogatni minden begépelt kódsor után. \\
+A Vue.js egy progresszív JavaScript keretrendszer, amelyet azért hoztak létre, hogy a webes felhasználói felületek fejlesztése egyszerűbb és gyorsabb legyen. A JavaScript keretrendszerek célja hogy megkönnyítsék a webprogramozást, azáltal hogy előre megírt osztály- és függvénykönyvtárakat szolgáltatnak, amelyek segítenek lerövidíteni a fejlesztési időt.
+
+A Vue.js két alapköve a deklaratív UI felépítés és a reaktivitás. A deklaratív felépítés azt jelenti hogy az alap HTML kódot a Vue kiegészíti egy saját sablon-szitaxissal, amely lehetővé teszi a változók beékelését a HTML kódba. A reaktivitás azt jelenti, hogy amikor a JavaScript változók értéke megváltozik, akkor a Vue érzékeli ezt és automatikusan megváltoztatja a megjelenített HTML kódot is, így mindig a legfrissebb adatokat látja a felhasználó.
+
+
+A Vue keretrendszer egyik legnagyobb előnye, hogy könnyen tanulható és alkalmazható, így gyorsan lehet vele fejleszteni. Ennek egyik oka, hogy komponens alapú, amely lehetővé teszi a weboldalak felépítését újrafelhasználható, különálló komponensekből, amelyeket később össze lehet fűzni egy nagyobb alkalmazássá. A fejlesztést felgyorsító másik fontos tulajdonság az, hogy alapértelmezetten egy Vite nevű build tool-t (építő eszközt) használ, amelynek a gyors újratöltés funkciója figyeli a forráskódban létrejött módosításokat és azonnal frissíti a weboldalt, így a fejlesztőnek nem kell manuálisan a frissítés gombot nyomogatni minden begépelt kódsor után.
+
+
 A felhasználó szemszögéből a Vue.js legfontosabb jellemzője, hogy nagyon gyors, mivel a virtuális DOM-ot használja, amely csak a változásokat frissíti, nem az egész oldalt, így lényegesen kevesebb adat közlekedik a hálózaton keresztül és a böngészőnek is kevesebb dolga van a weboldal megjelenítésénél. Ezáltal egy gyors és hatékony felhasználói felületet lehet vele készíteni, amely a gyengébb hálózati lefedettséggel és a gyengébb hardverrel rendelkező eszközökön is jól használható.
 
 \subsection{Vuetify}
 A Vuetify egy Material Design alapú Vue.js-re épülő keretrendszer, amely lehetővé teszi a gyors és egyszerű felhasználói felületek készítését, azáltal hogy rengeteg előre elkészített komponenst tartalmaz, amelyeket egyszerűen be lehet illeszteni a weboldalba, így sok időt lehet vele spórolni. A Vuetify segítségével gyorsan és hatékonyan lehet modern és esztétikus felhasználói felületeket készíteni, amelyek jól néznek ki és jól működnek minden eszközön.
 
 \subsection{Flutter}
-A Flutter egy nyílt forráskódú, Google által fejlesztett cross-platform keretrendszer, amely lényege, hogy egyetlen kódbázisból ki lehet generálni az alkalmazásokat a legnépszerűbb platformokra. Ezek a platformok a következők: Android, iOS, Windows, macOS, Linux, valamint a web. A Flutter a Dart programozási nyelvet használja, amely egy modern, gyors és hatékony nyelv, és amely lehetővé teszi a gyors és hatékony fejlesztést. A Flutter egyik nagy előnye, hogy egy widget rendszert használ, amely lehetővé teszi a felhasználói felületek egyszerű és gyors elkészítését, valamint a különböző platformokra történő kiadást. A Flutter egy másik nagy előnye, hogy a natív alkalmazásokhoz hasonlóan gyors és hatékony, mivel natív kódra fordítja le a Dart kódot, így a lehető legjobb teljesítményt nyújtja, bármilyen platformról is legyen szó.\\
+A Flutter egy nyílt forráskódú, Google által fejlesztett cross-platform keretrendszer, amely lényege, hogy egyetlen kódbázisból ki lehet generálni az alkalmazásokat a legnépszerűbb platformokra. Ezek a platformok a következők: Android, iOS, Windows, macOS, Linux, valamint a web. A Flutter a Dart programozási nyelvet használja, amely egy modern, gyors és hatékony nyelv, és amely lehetővé teszi a gyors és hatékony fejlesztést. A Flutter egyik nagy előnye, hogy egy widget rendszert használ, amely lehetővé teszi a felhasználói felületek egyszerű és gyors elkészítését, valamint a különböző platformokra történő kiadást. Ezek a widgetek alapértelmezetten a Material Designra épülnek, így egy bevált és szép felhasználói felület építhető fel belőlük, amely összhangban van a Vuetify webes komponenseivel is. A Flutter egy másik nagy előnye, hogy a natív alkalmazásokhoz hasonlóan gyors és hatékony, mivel natív kódra fordítja le a Dart kódot, így a lehető legjobb teljesítményt nyújtja, bármilyen platformról is legyen szó.\\
 Jelen projekt esetében, mivel a webes felületet a Vue.js és a Vuetify keretrendszerekkel készítettem, a Flutter használatakor inkább a mobilos platformokra koncentráltam, mint az Android és az iOS, ezáltal a legnépszerűbb platformok le lettek fedve és bárki, bármilyen eszközről el tudja érni a Bus4U-t.
 
+\newpage
 \section{Felhasználói felület}
 
 A felhasználói felület müködése megegyezik a weboldalon és a mobilalkalmazásban is, azonban a megjelenésük kicsit eltér egymástól, mivel a weboldal a böngészőben fut, míg az alkalmazás a mobil eszközön. A felületek létrehozásakor törekedtem a hasonlóságra, így a navigációs menü, a UI komponensek és a színpaletta is megegyezik, így a felhasználó könnyen átláthatja és használhatja mindkét platformot.
@@ -38,6 +44,7 @@ A weboldalra rákeresve a felhasználót a kezdőoldal fogadja, ahol lehetőség
   \label{fig:web-home}
 \end{figure}
 
+\newpage
 A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
 
 \begin{figure}[H]
@@ -51,13 +58,8 @@ buszjáratot és rákattintott a jegy(ek) megvásárlására, a rendszer átirá
 bejelentkezéshez, itt, ha van már fiókja, bejelentkezhet a meglévő adataival,
 amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol meg kell adnia a nevét,
 email címét, és egy új jelszót. A rendszer minden adatot ellenőriz és ha valamelyik
-hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy ennek megfelelő hibaüzenetet ír ki. Ez addig ismétlődik, amíg minden adat megfelelő lesz, aztán a szerver automatikusan küld egy ellenőrző kódot a megadott e-mailre, amelyet a felhasználó be kell írjon a webes
-felületen megjelenő szövegmezőbe. Ha ez helytelen, ez is addig ismétlődik, amíg
-minden rendben lesz, majd a rendszer átirányítja a felhasználót a bankkártyás
-fizetéses oldalra, ami jelenleg nincs implementálva, ez a jövőbeli tervek között
-szerepel. Ezután már csak az maradt, hogy a backend elmenti a megvásárolt jegy
-kódját, amelyet a felhasználó a Jegyek oldalon talál meg szöveges és QR-kódos
-formátumokban.
+hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy ennek megfelelő hibaüzenetet ír ki. Ez addig ismétlődik, amíg minden adat megfelelő lesz, aztán a szerver automatikusan küld egy 4 számjegyből álló ellenőrző kódot a megadott e-mail címre, amelyet a felhasználó be kell írjon az alkalmazásban megjelenő szövegmezőbe. Ha ez a kód helytelen, akkor a folyamat kezdődik elölről, a felhasználónak új adatokat kell megadnia. Ha regisztráció sikeres és az ellenőrzőkód helyes, akkor a rendszer átirányítja a felhasználót a bankkártyás fizetéses oldalra, ami jelenleg nincs implementálva, ez a jövőbeli tervek között
+szerepel. Ezután már csak az maradt, hogy a backend generál egy egyedi kódot a megvásárolt jegyhez és megjelenik a kijelzőn a sikeres vásárlás visszaigazolása. Az itt megvásárolt jegye(ke)t a felhasználó a Jegyek nevű oldalon találja meg szöveges és QR-kódos formátumokban.
 
 \subsection{Jegyek}
 
@@ -72,11 +74,9 @@ A itt megjelenő jegyeket úgy lehet felhasználni, hogy a buszra való felszál
 \end{figure}
 
 \subsection{Menetrend}
-A következő oldal a menetrend, amely hasonlóan a buszmegállókban kihelyezett
+A következő oldal a Menetrend, amely hasonlóan az egyes buszmegállókban kihelyezett
 táblázatokhoz, megjeleníti a kiválasztott buszjárat indulási időpontjait, az adott
-megállóból. A mi megoldásunk viszont tartalmaz emellett egy térképet is, ahol meg
-lehet nézni a járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok
-élő pozícióját is.
+megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett egy interaktív térképet is, ahol a felhasználó meg tudja tekinteni a kiválasztott járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok élő helyzeteit is, a saját pozíciója mellett.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/schedule.png}
@@ -96,9 +96,13 @@ lehet nézni a járat útvonalát, az érintett megállókat és az útvonalon k
 
 Ez a két oldal az előbb említett térképes funkciókat mutatják meg külön-külön,
 egyszerűbben. A Megállók oldal megjeleníti a térképen az összes megállót, és ezek között
-szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót. \\
-Az élő térkép oldalon pedig egy-egy útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost és az útvonalat. Ezeket az adatokat a buszokon lévő POS terminálok szolgátatják, így biztosak lehetünk abban, hogy a buszok helyzetei valós időben jelennek meg. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet, illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet vele spórolni. \\
-Mindkét oldalon megjelenik a felhasználó jelenlegi pozíciója, amennyiben engedélyezte az ehhez való hozzáférést, így könnyen megtalálhatja a legközelebbi megállót vagy buszt.
+szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót.
+
+
+Az élő térkép oldalon pedig egy-egy útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost és az útvonalat. Ezeket az adatokat a buszokon lévő POS terminálok szolgátatják, így biztosak lehetünk abban, hogy a buszok helyzetei valós időben jelennek meg. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet, illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet vele spórolni.
+
+
+Mindkét oldalon megjelenik a felhasználó jelenlegi pozíciója, amennyiben engedélyezte az ehhez való hozzáférést a telefonján, így könnyen megtalálhatja a legközelebbi megállót vagy buszt.
 
 \section{Adminisztrátori weboldal}
 Az admin felület csak bejelentkezéssel elérhető, ehhez egy admin rangú
@@ -131,6 +135,12 @@ Ezen az oldalon lehet felépíteni útvonalakat a létrehozott megállókból é
 megadni az alap jegyárat is, abban az esetben, ha a jegyek ára nem függ a megtett
 távolságtól és időtől, hanem mindig és mindenhova ugyanannyi, ez esetben a fizetés
 az útvonalhoz lesz hozzárendelve, nem a különböző megállókhoz.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/routes-admin.png}
+  \caption{Útvonalak létrehozása, módosítása és törlése}
+  \label{fig:routes}
+\end{figure}
 
 \subsection{Menetrend}
 A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz lehet

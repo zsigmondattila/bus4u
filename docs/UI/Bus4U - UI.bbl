@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}
 
+\bibitem{materialdesign}
+Rashi Desai.
+\newblock Google material design--the user interface development notion.
+\newblock In {\em IJSRD National Conference on Advances in Computer Science
+  Engineering \& Technology}, pages 125--7, 2017.
+
 \bibitem{vue3}
 Pablo~David Garaguso.
 \newblock {\em Vue. js 3 Design Patterns and Best Practices: Develop scalable

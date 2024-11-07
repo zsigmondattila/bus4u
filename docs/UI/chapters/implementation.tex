@@ -121,6 +121,12 @@ láthatja és módosíthatja. Egy cégnek végtelen számú admin fiókja lehet,
 \subsection{Kezdőoldal/Statisztikák}
 Sikeres bejelentkezés után egy áttekintő oldal jelenik meg, amelyen látható egy kis statisztika a regisztrált felhasználók számával, a megvásárolt jegyek számával és a bevétellel, mindezek havi, évi és mindenkori bontásban. Ez a statisztika segíthet a cégvezetőknek a tanulságok levonásában és a fontos döntések meghozatalában is. Ezen kívül itt jelennek meg az esetleges figyelmeztetések és értesítések is, mint például a buszok lejárt útadója vagy a közelgő műszaki vizsgálat, így biztosan nem felejtődnek el a karbantartással kapcsolatos események.
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/statistics.png}
+  \caption{Kezdőoldal statisztikával és értesítéssel}
+  \label{fig:statistics}
+\end{figure}
+
 \subsection{Megállók}
 A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataival, mint a név, a hely és a földrajzi koordináták. Egy megállóra rákattintva ennek pontos helyzete megjelenik a lista mellett található interaktív térképen. A listaelemeken található egy törlés gomb is amellyel megszüntethetjük az adott megállót. A lista alatt létre lehet hozni új megállókat is, ehhez csak meg kell adni a megálló nevét, a várost, a címet és a koordinátákat. A rendszer képes automatikusan is kitölteni a néven kívül az összes adatot, ha a felhasználó a megálló tervezett helyére kattint a térképen, ahogy az \ref*{fig:stations} ábrán is látszik.
 
@@ -131,7 +137,7 @@ A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataiva
 \end{figure}
 
 \subsection{Útvonalak}
-Az Útvonalak oldalon lehet szerkeszteni a buszjáratok útvonalait vagy újakat összerakni a létező megállókból és itt lehet megszabni a járatok alap jegyárát is. Először ki kell választani egy lenyíló listából a szerkeszteni kívánt útvonalat vagy a mellette lévő gombbal újat lehet hozzáadni. Ezután megjelenik az útvonal-szerkesztő, ahol meg lehet adni a nevet, az alap jegyárat és egy lenyíló listából egyenként ki lehet választani a megállókat. Az járatok alap jegyára kezdésből 0.0, mert ez csak olyan esetekben használatos, ahol nem a megállók közötti távolság alapján számolják a jegyárat, hanem fix áron. Alább megjelenik a hozzáadott megállók listája, az oldal legalján pedig el lehet menteni a kiválasztott útvonalat vagy akár ki is lehet törölni, ha már nem használják. Az útvonal-szerkesztő a mellékelt \ref{fig:routes} ábrán látható.
+Az Útvonalak oldalon lehet szerkeszteni a buszjáratok útvonalait vagy újakat összerakni a létező megállókból és itt lehet megszabni a járatok alap jegyárát is. Először ki kell választani egy lenyíló listából a szerkeszteni kívánt útvonalat vagy a mellette lévő gombbal újat lehet hozzáadni. Ezután megjelenik az útvonal-szerkesztő, ahol meg lehet adni a nevet, az alap jegyárat és egy lenyíló listából egyesével ki lehet választani az előző oldalon létrehozott megállókat. A járatok alap jegyára kezdésből 0.0 értékű, mert ez csak olyan esetekben használatos, ahol nem a megállók közötti távolság alapján számolják a jegyárat, hanem fix áron. Ilyen esetben ez az ár minden jegyre érvényes, indulási és érkezési helytől függetlenül. Alább megjelenik a hozzáadott megállók listája, az oldal legalján pedig el lehet menteni a kiválasztott útvonalat vagy akár ki is lehet törölni, ha már nem használják. Az útvonal-szerkesztő és egy betöltött útvonal a mellékelt \ref{fig:routes} ábrán látható.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/routes-admin.png}
@@ -139,6 +145,7 @@ Az Útvonalak oldalon lehet szerkeszteni a buszjáratok útvonalait vagy újakat
   \label{fig:routes}
 \end{figure}
 
+\newpage
 \subsection{Menetrend}
 A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz lehet
 órarendeket hozzárendelni. Itt az útvonal és megálló kiválasztása után meg kell adni az órarendre érvényes napokat, a következő megállóig megszabott jegyárat és az indulási időpontokat. Egy megállóhoz hozzá lehet adni több ilyen órarendet is, így el lehet különíteni a hétvégét a hétköznapoktól, de akár minden napra lehet más-más órarendet is megadni, ha különböznek az indulási időpontok vagy akár a jegyárak. Az órarendeket egyesével lehet szerkeszteni és törölni is, csak az a fontos, hogy a módosításokat a felhasználó az oldal alján található gombbal mentse el, különben nem lesznek érvényesek. A \ref{fig:schedules-admin} ábrán látható egy példa a menetrend szerkesztésére.
@@ -150,10 +157,17 @@ A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz le
 \end{figure}
 
 \subsection{Buszok és alkalmazottak}
-Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Ez a két oldal hasonlóan néz ki és hasonlóan működik. Mindkét esetben látható egy lista a meglévő buszokkal vagy alkalmazottakkal, ahol minden elemet egy ú.n. kártya komponens reprezentál. A kártyák tartalmazzák az elemek összes tulajdonságát, és két gombot, amelyekkel lehet módosítani vagy törölni őket. Az utolsó kártya segítségével újabb példányt is lehet létrehozni az adott kategóriában. A buszok létrehozásánal meg kell adni a márkát, a rendszámot, a férőhelyek számát, a gyártási évet, valamint az útadó, a biztosítás és a műszaki engedély lejárati dátumait. Az utóbbiakról később emlékeztető fog megjelenni a weboldalon, amikor közeledik azok lejárati ideje. Új alkalmazott hozzáadásánál meg kell adni a nevet, e-mail címet, beosztást (ez adja majd meg a jogait a weboldalon), telefonszámot, lakcímet (ez opcionális), és egy új jelszavat. A buszok listája és a rajta lévő kártyák a \ref{fig:buses} ábrán láthatóak.
+Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Ez a két oldal hasonlóan néz ki és hasonlóan működik. Mindkét esetben látható egy lista a meglévő buszokkal vagy alkalmazottakkal, ahol minden elemet egy ú.n. kártya komponens reprezentál. A kártyák tartalmazzák az elemek összes tulajdonságát, és két gombot, amelyekkel lehet módosítani vagy törölni őket. Az utolsó kártya segítségével újabb példányt is lehet létrehozni az adott kategóriában. A buszok létrehozásánal meg kell adni a márkát, a rendszámot, a férőhelyek számát, a gyártási évet, valamint az útadó, a biztosítás és a műszaki engedély lejárati dátumait. Az utóbbiakról később emlékeztető fog megjelenni a weboldalon, amikor közeledik azok lejárati ideje. Új alkalmazott hozzáadásánál meg kell adni a nevet, e-mail címet, beosztást (ez adja majd meg a jogait a weboldalon), telefonszámot, lakcímet (ez opcionális), és egy új jelszavat. A buszok listája és a rajta szerepelő kártyák a \ref{fig:buses} ábrán láthatóak, míg a busz szerkesztésére és az alkalmazott létrehozására példa a \ref{fig:edit-bus} ábrán.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/buses.png}
   \caption{Buszok listája}
   \label{fig:buses}
+\end{figure}
+
+\begin{figure}[H]
+  \includegraphics[width=0.498\textwidth]{figures/edit-bus.png}
+  \includegraphics[width=0.498\textwidth]{figures/create-employee.png}
+  \caption{Busz szerkesztése és alkalmazott létrehozása}
+  \label{fig:edit-bus}
 \end{figure}

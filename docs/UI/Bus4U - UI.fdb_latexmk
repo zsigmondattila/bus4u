@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Bus4U - UI"] 1731170564 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1731172259
+["bibtex Bus4U - UI"] 1731342900 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1731348200
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "Bus4U - UI.aux" 1731172259 10969 d82bce5f22fa765e2a67841ff800e7cd "pdflatex"
+  "Bus4U - UI.aux" 1731348199 11294 1363e35126897489432d714aeb0483ba "pdflatex"
   "refs.bib" 1731168236 1254 b455f9357ff0c83b4741744354011709 ""
   (generated)
   "Bus4U - UI.bbl"
   "Bus4U - UI.blg"
-["pdflatex"] 1731172256 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1731172259
+["pdflatex"] 1731348197 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1731348200
   "/etc/texmf/web2c/texmf.cnf" 1720637560 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk" 1721918369 24132 a0655d00fa63d1bf8ab495f1a428ef39 ""
   "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" 1731148565 2264 a68a955bc300954036b73ebefe3520af ""
@@ -98,16 +98,16 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1724577942 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1724577949 2029682 13cb1828bfecc119c6af21688f84eda0 ""
-  "Bus4U - UI.aux" 1731172259 10969 d82bce5f22fa765e2a67841ff800e7cd "pdflatex"
-  "Bus4U - UI.bbl" 1731170564 1048 d8d91b17e197b39ec5dc50a787ec763f "bibtex Bus4U - UI"
-  "Bus4U - UI.out" 1731172259 4440 495d700eb4a2b79ba60890ba8196c533 "pdflatex"
+  "Bus4U - UI.aux" 1731348199 11294 1363e35126897489432d714aeb0483ba "pdflatex"
+  "Bus4U - UI.bbl" 1731342900 1048 d8d91b17e197b39ec5dc50a787ec763f "bibtex Bus4U - UI"
+  "Bus4U - UI.out" 1731348199 4800 6e7440c19b928d3a373794759287862c "pdflatex"
   "Bus4U - UI.tex" 1731148565 2264 a68a955bc300954036b73ebefe3520af ""
-  "Bus4U - UI.toc" 1731172259 3445 8c838fc3deed2e0d6a0aa249a9c47ac0 "pdflatex"
+  "Bus4U - UI.toc" 1731348199 3690 34aea53469763590f8d7df5f78b4f86a "pdflatex"
   "chapters/abstract.tex" 1731139275 3016 1e0d6185e20971ba62422124c8309d65 ""
   "chapters/goals.tex" 1731139275 1377 af473bfc91d9e274f8fdd911a923ef74 ""
   "chapters/implementation.tex" 1731139275 22705 e8e968e82bae0d2dd4fb53d547d6afe4 ""
   "chapters/summary.tex" 1731139275 2321 4d50bcfc7db53a58ea4bcff62dd169e6 ""
-  "chapters/system-requirements.tex" 1731139283 5389 de057bb813d03a93bbc8c73328251c14 ""
+  "chapters/system-requirements.tex" 1731348197 7061 8ebbb0b30c971bf997ac655d16e17cd6 ""
   "chapters/theoretical-foundation.tex" 1731172256 4877 dd3fe09dca453eb72dec5d2f83b808d4 ""
   "chapters/ui-design.tex" 1731139275 936 c1b7c2ff4b1e45a55141cad772b5b0f5 ""
   "figures/buses.png" 1731139275 136705 916c89291b01635387ac22d8759a5394 ""

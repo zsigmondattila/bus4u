@@ -1,32 +1,39 @@
+A rendszer két fő részre bontható fel: backend és frontend. Mivel én a frontend résszel foglalkoztam, amely magában foglalja a felhasználói weboldalt, az adminisztrátori weboldalt és a mobil applikációt, ezért a következőkben csak ezekre a részekre vonatkozó rendszerkövetelményeket fogom részletezni.
+
 \section{Felhasználói követelmények}
+A frontend három különböző felületet tartalmaz: mobilalkalmazás, felhasználói- és adminisztrátori weboldal. A mobilapplikáció ugyanúgy működik, mint a felhasználóknak szánt weboldal, így ezeknek a követelményeit egyszerre fogom tárgyalni felhasználói felület néven. Ezzel szemben az adminisztrátori weboldal különálló egység, amelynek saját követelményei vannak.
 
-A felhasználói weboldal bejelentkezés nélkül használható. A főoldalon lehetőség
-nyílik rákeresni járatokra dátum, idő és cél alapján, a menetrendeknél megtekinthetőek
-a buszok és a megállók órarendjei. A megállók oldalon megjelenik az összes megálló
-a térképen, amelyek között szűrést is lehet alkalmazni. Az élőben frissülő térkép lapon
-a követni lehet a buszok pozícióját percről percre. A jegyek oldalon vannak listázva az
-eddig megvásárolt jegyek QR-kódjai, a rólunk szóló oldalon pedig egy rövid leírás
-található a projektről. Fiókot létrehozni kizárólag a jegyvásárláshoz szükséges, ami a
-főoldalon lehetséges amennyiben a felhasználó megtalálta a neki megfelelő járatot és
-rálépett a vásárlás gombra. Fiók regisztrációjához meg kell adni a teljes nevet, egy
-meglévő email címet, egy új jelszót, majd egy ellenőrző kódot, amit a rendszer elküld
-a megadott email címre.
+\subsection{Felhasználói felület}
+A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. Ezek a funkciók oldalanként csoportosítva a következők:
 
-Az admin felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak az
-adott cég főnöke tud létrehozni a saját busztársaságához, erre az alkalmazottak című
-lapon van lehetőség. Emellett az adminoknak lehetőségük van szerkeszteni a
-megállók listáját, valamint az útvonalak összes tulajdonságát is (meglátogatott
-megállók, indulási időpontok és jegyárak), ezeket a megállóknak és a járatoknak szóló
-oldalakon. A főoldalon egy statisztikát is láthatnak az eladott jegyek számáról, a
-megtett kilométerről és a bevételről, mindezt hónapos, éves és mindenkori
-bontásokban. Van még egy lap a buszok adatainak kezelésére is, ahol lehet
-konfigurálni az útadót, a biztosítást és a műszaki vizsgát is, valamit itt lehet buszokat
-kivonni forgalomból és hozzáadni újakat is.
+\begin{itemize}
+  \item Főoldal: járatokra való rákeresés dátum, idő, kezdő- és célállomás alapján, találatok listázása indulási idő szerinti növekvő sorrendben, jegyvásárlás (bejelentkezés szükséges)
+  \item Menetrendek: buszok és megállók órarendjeinek megtekintése, járatok útvonalának megjelenítése térképen
+  \item Megállók: megállók listázása térképen, szűrés település vagy buszjárat alapján
+  \item Élő térkép: buszok valós idejű pozícióinak megtekintése térképen
+  \item Jegyek (bejelentkezés szükséges): megvásárolt jegyek listázása QR-kódokkal
+  \item Rólunk: rövid leírás a projektről
+\end{itemize}
 
-A Flutter alapú mobil applikáció ugyanúgy működik, mint a felhasználóknak szánt
-weboldal, így ugyanazok a követelmények vonatkoznak erre is.
+A felhasználói fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. Egy fiók létrehozásához szükség van a teljes névre, egy érvényes email címre és egy jelszóra.
 
-A rendszer használati eset diagramja a \ref{fig:use-case}-es ábrán látható.
+\subsection{Adminisztrátori felület}
+Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a
+cégek főnökei tudnak létrehozni, mindenik a saját busztársaságához. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat. Az adminfelület funkciói oldalanként csoportosítva:
+
+\begin{itemize}
+  \item Főoldal: statisztikák az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervalumok szerint csoportosítva, értesítések megjelenítése
+  \item Megállók oldal: megállók listázása, új megálló hozzáadása térkép segítségével, meglévő megálló szerkesztése, megállók törlése
+  \item Járatok oldal: buszjáratok listázása, új járat hozzáadása, meglévő járat szerkesztése: megállók hozzáadása és eltávolítása, járatok törlése
+  \item Menetrendek oldal: járatok indulási időpontjainak és jegyárainak megtekintése, szerkesztése és törlése
+  \item Buszok oldal: buszok listázása, új busz hozzáadása, meglévő busz szerkesztése: útadó, biztosítás és műszaki vizsga időpontok megadása, buszok törlése
+  \item Alkalmazottak oldal: alkalmazotti fiókok listázása, új alkalmazott hozzáadása, meglévő alkalmazott szerkesztése, alkalmazottak törlése
+\end{itemize}
+
+Belépés előtt bármely oldalra rákeresve, a rendszer átirányítja a felhasználót a bejelentkező felületre. Regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést.
+
+\newpage
+A teljes rendszer funkcionalitását leíró használati eset diagram a \ref{fig:use-case}-es ábrán látható.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/use-case.jpg}
@@ -65,21 +72,17 @@ megállók listáját és visszakap egy sok pontból álló új listát a MapBox
 \subsubsection{Szervezéssel kapcsolatos követelmények}
 
 \begin{itemize}
-  \item Programozási nyelvek: Ruby, Dart, HTML, CSS, JavaScript
-  \item Keretrendszerek: Ruby on Rails, Flutter, Vue.js
+  \item Programozási nyelvek: Dart, HTML, CSS, JavaScript
+  \item Keretrendszerek: Flutter, Vue.js
   \item IDE: Visual Studio Code
   \item Verziókövetés: Git és GitHub
-  \item Adatbázis: Postgres
-  \item Cloud Service: Azure
   \item Webhost: Netlify
   \item Csoportos kommunikáció: Slack
 \end{itemize}
 
 \subsubsection{Termékkel kapcsolatos követelmények}
 
-A felhasználói weboldal és az admin felület használatához egy modern,
-internetezésre alkalmas eszközre van szükség. Ajánlott a 2018 után kiadott böngészők
-használata:
+A felhasználói weboldal és az admin felület használatához egy modern, internetezésre alkalmas eszközre van szükség, a térképfunkciókhoz teljes kihasználásához engedélyezni kell a helymeghatározást. Ajánlott a 2018 után kiadott böngészőverziók használata:
 \begin{itemize}
   \item Chrome >= 87
   \item Firefox >= 78
@@ -87,7 +90,6 @@ használata:
   \item Edge >= 88
 \end{itemize}
 
-Az applikáció használatához, szükség van egy okostelefonra, vagy tabletre,
-amelyen minimum android 5 vagy ios 8 -as verzió van telepítve. Fontos hogy legyen
-rajta helymeghatározás, internet elérés (3G,4G,5G) és legyen rajta minimum 120MB
-szabad tárhely és 516-1024 MB szabad memória.
+Az mobilapplikáció használatához szükség van egy okostelefonra vagy tabletre,
+amelyen minimum Android 5.0 vagy iOS 8.0 operációs rendszer fut. Fontos hogy legyen
+rajta internet elérés (3G,4G,5G vagy Wi-Fi), legalább 120MB szabad tárhely és 516-1024 MB szabad memória. Itt is ajánlott a helymeghatározás (GPS) engedélyezése, hogy a térképfunkciók helyesen működjenek.

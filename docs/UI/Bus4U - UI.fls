@@ -698,11 +698,11 @@ INPUT chapters/system-requirements.tex
 INPUT ./chapters/system-requirements.tex
 INPUT ./chapters/system-requirements.tex
 INPUT chapters/system-requirements.tex
-INPUT ./figures/use-case.jpg
-INPUT ./figures/use-case.jpg
-INPUT figures/use-case.jpg
-INPUT ./figures/use-case.jpg
-INPUT ./figures/use-case.jpg
+INPUT ./figures/use-case.png
+INPUT ./figures/use-case.png
+INPUT figures/use-case.png
+INPUT ./figures/use-case.png
+INPUT ./figures/use-case.png
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex

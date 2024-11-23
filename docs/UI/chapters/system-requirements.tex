@@ -1,10 +1,19 @@
-A rendszer két fő részre bontható fel: backend és frontend. Mivel én a frontend résszel foglalkoztam, amely magában foglalja a felhasználói weboldalt, az adminisztrátori weboldalt és a mobil applikációt, ezért a következőkben csak ezekre a részekre vonatkozó rendszerkövetelményeket fogom részletezni.
+A rendszer két fő részre bontható fel: backend és frontend. Mivel én a frontend résszel foglalkoztam, amely magában foglalja a felhasználói weboldalt, az adminisztrátori weboldalt és a mobil applikációt, ezért a következőkben csak ezekre a részekre vonatkozó követelmények specifikációját fogom részletezni.
 
 \section{Felhasználói követelmények}
-A frontend három különböző felületet tartalmaz: mobilalkalmazás, felhasználói- és adminisztrátori weboldal. A mobilapplikáció ugyanúgy működik, mint a felhasználóknak szánt weboldal, így ezeknek a követelményeit egyszerre fogom tárgyalni felhasználói felület néven. Ezzel szemben az adminisztrátori weboldal különálló egység, amelynek saját követelményei vannak.
+A felhasználói követelmények azokat a funkciókat írják le, amelyre a felhasználó szemszögéből szükség van. A szoftver általános felhasználói követelményei a következők:
+
+\begin{itemize}
+  \item A felhasználó gyorsan és egyszerűen kell tudjon navigálni az oldalak között.
+  \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenek megjelenítése által.
+  \item A felhasználói felületnek reszponzívnak kell lennie, azaz minden eszközön jól használhatónak kell lennie, legyen az mobiltelefon, tablet vagy számítógép.
+  \item A felhasználói felületnek egységesnek kell lennie, azaz minden oldalon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az oldalak közötti váltást.
+\end{itemize}
+
+A frontend három különböző felületet tartalmaz: mobilalkalmazás, felhasználói- és adminisztrátori weboldal, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek. A mobilapplikáció ugyanúgy működik, mint a felhasználóknak szánt weboldal, így ezeknek a követelményeit együtt fogom tárgyalni felhasználói felület néven. Ezzel szemben az adminisztrátori weboldal különálló egység, amelynek saját követelményei vannak.
 
 \subsection{Felhasználói felület}
-A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. Ezek a funkciók oldalanként csoportosítva a következők:
+A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. A fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. A felhasználói felület funkciói oldalanként csoportosítva a következők:
 
 \begin{itemize}
   \item Főoldal: járatokra való rákeresés dátum, idő, kezdő- és célállomás alapján, találatok listázása indulási idő szerinti növekvő sorrendben, jegyvásárlás (bejelentkezés szükséges)
@@ -12,10 +21,7 @@ A felhasználói felület funkcióinak nagy része bejelentkezés nélkül haszn
   \item Megállók: megállók listázása térképen, szűrés település vagy buszjárat alapján
   \item Élő térkép: buszok valós idejű pozícióinak megtekintése térképen
   \item Jegyek (bejelentkezés szükséges): megvásárolt jegyek listázása QR-kódokkal
-  \item Rólunk: rövid leírás a projektről
 \end{itemize}
-
-A felhasználói fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. Egy fiók létrehozásához szükség van a teljes névre, egy érvényes email címre és egy jelszóra.
 
 \subsection{Adminisztrátori felület}
 Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a
@@ -36,7 +42,7 @@ Belépés előtt bármely oldalra rákeresve, a rendszer átirányítja a felhas
 A teljes rendszer funkcionalitását leíró használati eset diagram a \ref{fig:use-case}-es ábrán látható.
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{figures/use-case.jpg}
+  \includegraphics[width=\textwidth]{figures/use-case.png}
   \caption{Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}
   \label{fig:use-case}
 \end{figure}
@@ -44,29 +50,13 @@ A teljes rendszer funkcionalitását leíró használati eset diagram a \ref{fig
 \section{Rendszerkövetelmények}
 \subsection{Funkcionális követelmények}
 
-A felhasználói felület minden oldalán van egy kis form, amelyet kitöltve le lehet
-kérni az adatbázisból az adott oldalon megjelenítendő adatokat. Ilyenre példa van a
-főoldalon is, ahol meg kell adni az indulás helyét, a cél helyét (települést) és
-opcionálisan az ezekhez tartozó megállót, egy-egy lenyíló listából kiválasztva az
-adatokat. A települések betöltődnek az oldallal együtt, a megállók listája viszont csak
-a város kiválasztása után, mindig csak az adott településen találhatóak jelennek meg.
-Ezen kívül a főoldalon van egy dátumválasztó és egy időválasztó is, ezek
-alapértelmezetten az aktuális dátummal és idővel vannak kitöltve. Ha a form ki van
-töltve a keresés gomb lenyomására az oldal elküldi a bevitt adatokat a backend
-szerverre, amely válaszként elküld egy listát a megfelelő utazási lehetőségekkel. Ezek
-az adatok JSON formátumban, HTTP protokollon keresztül közlekednek a frontend és
-backend között. A többi oldal is hasonlóan működik, először az adatokat kell megadni,
-aztán a gomb lenyomására pillanatok alatt megjelenik a képernyőn a szerver válasza
-a bevitt adatokra.
+A funkcionális követelmények a felületen megjelenő funkciók működését írják le. Ezek foglalják össze, hogy adott bemenetre milyen kimenetet kell szolgáltatnia a rendszernek. A Bus4U esetében ezeket is két csoportba sorolhatjuk: felhasználói és adminisztrátori követelmények.
 
-A különböző formokon kívül, a weboldalon található térképek is API hívásokkal
-működnek. A rendszer először betölti az alap térképet a MapBox API segítségével,
-aztán amint a felhasználó kiválasztotta a megtekinteni kívánt útvonalat a Menetrend
-vagy az Élő térkép lapon, a weboldal a saját adatbázisunkból kéri le a hozzá tartozó
-megállók koordinátáit, ezeket megjeleníti a térképen, végül ismét a MapBox API-t
-használva útvonal-tervet generáltat. Ez úgy működik, hogy a rendszer elküldi a
-megállók listáját és visszakap egy sok pontból álló új listát a MapBox-tól, ezeket
-összekötve sok kis vonallal, kirajzolódik a részletes útvonal a térképen.
+A felhasználói weboldalon és a mobilalkalmazásban bejelentkezés nélkül hozzá lehet férni a főoldalhoz, a menetrendekhez, a megállókhoz és az élő térképhez. Az egyetlen oldal, ami nem jeleníthető meg azonosítás nélkül az a jegyek oldal, innen a rendszernek át kell irányítania a bejelentkezési felületre. Itt biztosítani kell a regisztráció lehetőségét is, amennyiben a felhasználó még nem rendelkezik fiókkal. A regisztráció során a rendszer le kell ellenőrizzen minden megadott adatot, még az email tulajdonjogát is, azáltal hogy egy ellenőrző kódot küld a megadott email címre, amelyet be kell írni a felületen megjelenő szövegmezőbe. Sikeres regisztráció vagy bejelentkezés után a rendszernek minden adatot biztonságosan el kell mentenie, a jelszavat hash-elt formában és át kell irányítania a felhasználót a főoldalra.
+
+A főoldalon lévő szövegmezőkben megadott adatok alapján a rendszernek le kell kérnie a szerverről néhány lehetséges járatot, amelyek indulnak az adott településről, adott időben, a megadott célállomásra. A megjelenített találatokhoz tartoznia kell egy jegyvásárlási lehetőségnek is, amelyben meg kell adni a jegyek számát és véglegesíteni kell a vásárlást. A jegyvásárlás is bejelentkezést igényel, így az azonosítatlan felhasználót a rendszer vásárlás előtt átirányítja a bejelentkezéshez. A vásárlás csak a Stripe oldalon történő kifizetés után véglegesítődhet, ezt követi a jegy kódjának kigenerálása és elmentése az adatbázisban. Ezek után, a Jegyek oldalon, a felhasználóknak lehetőségük van a jegyek megtekintésére is, amelyeket korábban vásároltak, és amelyek QR kódos formában jelennek meg a buszon való könnyebb beolvasás végett. A menetrendek oldalon a felhasználóknak lehetőségük van a buszok és megállók közötti választásra lenyíló listákból, amelyet követően a rendszer kilistázza az adott járat megállóhoz kötött időpontjait egy táblázatban. Ugyanitt a rendszernek lehetőséget kell biztosítania a buszok útvonalának megjelenítésére térképen. A megállók oldalon a felhasználóknak lehetőségük van az összes megálló megtekintésére térképen, valamint lenyíló listákat használva, a megállók szűrésére település vagy buszjárat alapján is. A térképnek interaktívnak kell lennie, így a megjelölt megállókra való kattintás után meg kell jelennie az adott megálló adatainak egy kis előugró ablakban. Az élő térkép oldalon a felhasználóknak lehetőségük van a buszok valós idejű pozícióinak követésére térképen. A megjelenített buszokat a rendszernek valós időben kell frissítenie, legalább félpercenként, hogy a felhasználók pontos információkat kapjanak a buszok helyzetéről. Az összes térképes oldalon a felhasználóknak lehetőségük van a térkép nagyítására és kicsinyítésére, valamint a térkép mozgatására is, egérrel vagy érintéses gesztusok segítségével. A felhasználónak meg kell tudnia tekinteni a saját pozícióját is a térképeken, amennyiben engedélyezte a GPS-hez való hozzáférést.
+
+Az adminisztrátori weboldalon szükség van azonosításra, anélkül a rendszer minden oldalról átirányít a bejelentkezéshez. Itt a regisztráció nem lehetséges, így külső, admin szerepkörrel nem rendelkező felhasználók nem tudnak hozzáférni az adminisztrátori felülethez. A főoldalon található statisztikák között szerepel az eladott jegyek száma, a megtett kilométerek száma és a bevétel összege, időintervallumok szerint csoportosítva, táblázatos formában. Mivel minden busztársaságnak el kell legyenek különítve az adatai, ezért a szerver mindig a bejelentkezett adminhoz tartozó cég adataiból számolja ki a statisztikákat. A főoldalon a rendszernek meg kell jelenítenie az esetleges értesítéseket is, előugró "Toast" üzenetek segítségével. A megállók oldalon az adminisztrátoroknak lehetőségük van a megállók listázására, az ezekre való egyenkénti kattintás után pedig a szerkesztésükre is. Emellett megállók törlésére és új megállók hozzáadására is lehetőség van egy interaktív térkép segítségével. A térképre kattintva a hely koordinátáit a rendszer beilleszti az űrlapba, ahol meg kell adni még a megálló nevét és a címet is. Utóbbit, amennyiben elérhető, le kell kérnie a rendszernek a térképszolgáltatótól, hogy ezzel is gyorsítsa a létrehozást. A járatok oldalon az adminisztrátoroknak lehetőségük van a buszjáratok kiválasztására egy lenyíló menüből, ezt követően pedig meg kell jelennie a járatszerkesző űrlapnak. Ugyanitt lehetőség lesz járatok hozzáadására és törlésére is. A menetrendek oldalon az adminisztrátoroknak lehetőségük van a járatok indulási időpontjainak és jegyárainak megtekintésére, szerkesztésére és törlésére. Az órarendek bevitelét le kell lehessen bontani napokra, ezeket pedig dinamikusan megjeleníteni, hogy minél kevesebb helyet foglaljon az oldalon. A buszok és alkalmazottak oldalakon a rendszernek biztosítania kell egy egységes felületet, amelyben lehetőség nyílik az elemek listázására, új elemek hozzáadására, meglévő elemek szerkesztésére és ezek törlésére is. A buszoknál fontos megadni az útadó, biztosítás és műszaki vizsga időpontjait, mert a rendszer ezek alapján fog emlékeztetőket megjeleníteni a felületre való belépések alkalmával. Az alkalmazottaknál meg kell adni a nevet, a beosztást és a telefonszámot, valamint az emailt és a jelszót is, amelyet a rendszer hash-elt formában tárol. Utóbbiak az alkalmazott bejelentkezéséhez lesznek szükségesek, így a rendszernek ellenőriznie kell őket.
 
 \subsection{Nem funkcionális követelmények}
 \subsubsection{Szervezéssel kapcsolatos követelmények}
@@ -93,3 +83,5 @@ A felhasználói weboldal és az admin felület használatához egy modern, inte
 Az mobilapplikáció használatához szükség van egy okostelefonra vagy tabletre,
 amelyen minimum Android 5.0 vagy iOS 8.0 operációs rendszer fut. Fontos hogy legyen
 rajta internet elérés (3G,4G,5G vagy Wi-Fi), legalább 120MB szabad tárhely és 516-1024 MB szabad memória. Itt is ajánlott a helymeghatározás (GPS) engedélyezése, hogy a térképfunkciók helyesen működjenek.
+
+\section{A rendszer architektúrája}

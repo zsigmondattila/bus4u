@@ -85,3 +85,12 @@ amelyen minimum Android 5.0 vagy iOS 8.0 operációs rendszer fut. Fontos hogy l
 rajta internet elérés (3G,4G,5G vagy Wi-Fi), legalább 120MB szabad tárhely és 516-1024 MB szabad memória. Itt is ajánlott a helymeghatározás (GPS) engedélyezése, hogy a térképfunkciók helyesen működjenek.
 
 \section{A rendszer architektúrája}
+Az általunk tervezett rendszer architektúra diagramja a \ref{fig:architecture} ábrán látható. Az alkalmazás működésének megértéséhez a rendszer minden alkotóelemének ismertetése szükséges.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/architecture.jpg}
+  \caption{A rendszer architektúrája}
+  \label{fig:architecture}
+\end{figure}
+
+A rendszer frontend és backend része jól elkülöníthető egymástól. A frontend a felhasználói felületet biztosítja, a backend pedig a szerveroldali logikát és az adatbázis elérést végzi. A komponensek közötti kommunikáció HTTP kérések segítségével valósul meg. A weboldal működése eltér a klasszikustól, mivel kliens oldali renderelést használ, azaz a felhasználói felületet a kliens oldalon generálja a böngésző, nem pedig a webszerverről érkezik készen. Jelen esetben a webszerver csak a statikus fájlokat szolgáltatja, a dinamikus tartalmakat a kliens oldali JavaScript illeszti be az oldalakba. Ebből a szempontból a weboldal és a mobilalkalmazás működése megegyezik, mivel mindkettő direkt módon az API szerverrel kommunikál, REST kéréseken keresztül. Az adatok JSON típusú szövegként közlekednek az egyszerű feldolgozhatóság végett. Az API szerver az a komponens, ami az adatbázisból kiolvassa az adatokat, feldolgozza és elérhetővé teszi a frontend számára. Ugyanígy az adatbázist módosító műveletek is az API szerveren keresztül tudnak végrehajtódni.

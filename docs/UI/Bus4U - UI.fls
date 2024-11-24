@@ -703,6 +703,11 @@ INPUT ./figures/use-case.png
 INPUT figures/use-case.png
 INPUT ./figures/use-case.png
 INPUT ./figures/use-case.png
+INPUT ./figures/architecture.jpg
+INPUT ./figures/architecture.jpg
+INPUT figures/architecture.jpg
+INPUT ./figures/architecture.jpg
+INPUT ./figures/architecture.jpg
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex

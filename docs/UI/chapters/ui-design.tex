@@ -1,4 +1,21 @@
-Az egyik legfontosabb része a projektnek a UI, amelynek megtervezésére a Figma segédprogramot használtam, amelyben megépítettem az első elképzelésünket a felületekről. Ezt a wireframe-et követve már egyszerűbb volt a fejlesztés. Munka közben jöttek jobb ötletek is, mint a kezdeti, így a végső termék nem teljesen egyezik meg a tervvel, de iránymutatásnak megfelelt:
+Az egyik legfontosabb része a projektnek a UI, mert ezt a részét látják a felhasználók és ezzel fognak interakcióba lépni. Emiatt kiemelkedően fontos, hogy az jól meg legyen tervezve. Szerencsére ennek a feladatnak a megkönnyítésére léteznek jól bevált módszerek, amelyek nagyban felgyorsítják és megkönnyítik a munkát. Az én választásom a Figma tervezőprogramra és a Material Design 3 irányelveire esett, amelyeket a következőkben fogok bemutatni.
+
+\section{Material Design}
+Mivel nehéz egy olyan felhasználói felületi stílust kitalálni, ami tökéletesen működik, egységes és jól is néz ki, ezért a Google Material Design irányelveit követve terveztem meg a felületeket. A Meterial Design egy olyan nyílt forráskódú dizájnnyelv, amelyet követve egységes, jól kinéző és könnyen használható felületeket lehet készíteni. Ez tartalmazza mindazokat a felületi elemeket, amelyekre szükség lehet egy modern weboldal vagy mobilalkalmazás elkészítésekor, mint például a gombok, ikonok, szövegek, színek, betűtípusok, stb. Mindenről precíz leírás van a hivatalos dokumentációban, így könnyű követni az irányelveket és a felhasználói felület egységességét is biztosítani. Minden komponenshez elérhető egy előre elkészített Figma elem, így ezeket csak be kell húzni a tervezőfelületre, nem kell kézzel létrehozni. Emellett az elemekhez tartozik implementáció is, amely elérhető Flutterben, Androidban és weben is, így a fejlesztés során nem kell lekódolni őket, csak be kell importálni a projektbe. Ezáltal a fejlesztés gyorsabb és egyszerűbb lesz, és a felhasználói felület egységessége is garantált \footnote{Material Design 3: \url{https://m3.material.io/}}.
+
+Én a legújabb, 3-as verzióját használom a Material Design-nak, amely a legmodernebb és a legnagyobb támogatással rendelkezik. Ez egy jól bevált UI-t eredményez, amelyet már sok alkalmazás használ, köztük a Google összes alkalmazása is, így már szinte mindenki találkozhatott vele. Egy példa az MD3-as gomb stílusokra a \ref{fig:md3-buttons} ábrán látható. Ilyen és ehhez hasonló komponensekből épül fel az általam tervezett UI is.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/md-buttons.png}
+  \caption[A Material Design 3 gomb stílusai]{A Material Design 3 gomb stílusai \footnotemark}
+  \label{fig:md3-buttons}
+\end{figure}
+
+\footnotetext{Material Design 3: \url{https://m3.material.io/}}
+
+\section{Figma terv}
+A UI terv elkészítésére a Figma segédprogramot használtam, amelyben egyszerűen, komponensek behúzásával meg tudtam építeni az első elképzelésemet a felületekről. Az itt létrejött wireframe-eket (drótvázakat) követve már gyorsabb volt a fejlesztés. Munka közben jöttek további ötletek is, így a végső termék nem teljesen egyezik a tervvel, de iránymutatásnak megfelelt. Az Material Design irányelvei alapján elkészített mobilalkalmazás terve a \ref{fig:ui-mobile} ábrán látható, a felhasználói weboldal terve a \ref{fig:ui-web} ábrán, az adminfelület terve pedig a \ref{fig:ui-admin} ábrán látható.
 
 \begin{figure}[H]
   \centering
@@ -7,6 +24,7 @@ Az egyik legfontosabb része a projektnek a UI, amelynek megtervezésére a Figm
   \label{fig:ui-mobile}
 \end{figure}
 
+\newpage
 \begin{multicols*}{2}
   \begin{figure}[H]
     \centering

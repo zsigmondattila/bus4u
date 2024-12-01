@@ -13,6 +13,8 @@
 \select@language {magyar} \contentsline {subsubsection}{Szervezéssel kapcsolatos követelmények}{11}{section*.2}%
 \select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{12}{section*.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.3}A rendszer architektúrája}{12}{section.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Frontend}{13}{subsection.3.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Backend}{13}{subsection.3.3.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}A felhasználói felület tervezése}{14}{chapter.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {5}Gyakorlati megvalósítás}{16}{chapter.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Felhasznált technológiák}{16}{section.5.1}%

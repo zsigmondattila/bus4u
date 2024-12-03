@@ -1,26 +1,14 @@
 \documentclass[12pt, twoside]{report}
 
-\usepackage[utf8]{inputenc}
-\def\magyarOptions{defaults=hu-min}
-\usepackage[magyar]{babel}
+\include{preamble}
 
 \usepackage{ragged2e}
-\usepackage{t1enc}
-\usepackage[a4paper, margin=2.5cm]{geometry}
-\usepackage{graphicx}
 \usepackage{multicol}
-\usepackage{moresize}
-\usepackage{float}
 \usepackage{wrapfig}
-\usepackage{mathptmx}
-\usepackage[T1]{fontenc}
-\usepackage{hyperref}
-
-\linespread{1.25}
 
 \title{Bus4U - UI}
 \author{Portik Szabolcs}
-\date{}
+\date{2025}
 
 \begin{document}
 
@@ -30,13 +18,13 @@
   Universitatea „Sapientia” din Cluj-Napoca \\
   Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
   Specializarea Calculatoare \\
-  \vspace{2in}
-  \HUGE
-  \textbf{Bus4U - UI} \\
-  \vspace{0.5in}
+  \vspace{1.5in}
   \Huge
+  \textbf{Bus4U - UI} \\
+  \vspace{0.6in}
+  \LARGE
   \textbf{PROIECT DE DIPLOMĂ} \\
-  \vspace{2in}
+  \vspace{1.5in}
   \Large
   \begin{multicols}{2}
     \begin{flushleft}
@@ -49,9 +37,9 @@
       Portik Szabolcs
     \end{flushright}
   \end{multicols}
-  \vspace{1.25in}
-  \LARGE
-  2024
+  \vspace{1in}
+  \Huge
+  \textbf{2025}
 \end{titlepage}
 
 \begin{titlepage}
@@ -60,13 +48,13 @@
   Sapientia Erdélyi Magyar Tudományegyetem \\
   Marosvásárhelyi Kar \\
   Számítástechnika szak \\
-  \vspace{2in}
-  \HUGE
-  \textbf{Bus4U - UI} \\
-  \vspace{0.5in}
+  \vspace{1.5in}
   \Huge
+  \textbf{Bus4U - UI} \\
+  \vspace{0.6in}
+  \LARGE
   \textbf{DIPLOMADOLGOZAT} \\
-  \vspace{2in}
+  \vspace{1.5in}
   \Large
   \begin{multicols}{2}
     \begin{flushleft}
@@ -80,16 +68,19 @@
       Portik Szabolcs
     \end{flushright}
   \end{multicols}
-  \vspace{1in}
-  \LARGE
-  2024
+  \vspace{0.6in}
+  \Huge
+  \textbf{2025}
 \end{titlepage}
 
-\begin{abstract}
-  \input{chapters/abstract}
-\end{abstract}
+\pagenumbering{gobble}
+
+\section*{Kivonat}
+\input{chapters/abstract}
 
 \tableofcontents
+
+\pagenumbering{arabic}
 
 \chapter{Célkitűzések}
 \input{chapters/goals}
@@ -100,6 +91,9 @@
 \chapter{A rendszer specifikációi}
 \input{chapters/system-requirements}
 
+\chapter{A rendszer architektúrája}
+\input{chapters/architecture}
+
 \chapter{A felhasználói felület tervezése}
 \input{chapters/ui-design}
 
@@ -109,7 +103,8 @@
 \chapter{Összefoglalás}
 \input{chapters/summary}
 
-\bibliographystyle{plain}
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{ieeetr}
 \bibliography{refs}
 
 \end{document}

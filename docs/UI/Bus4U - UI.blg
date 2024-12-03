@@ -1,49 +1,49 @@
 This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Bus4U - UI.aux
-The style file: plain.bst
+The style file: ieeetr.bst
 Database file #1: refs.bib
 Warning--empty journal in rollandinfrastrukturalis
 Warning--empty year in rollandinfrastrukturalis
 You've used 6 entries,
-            2118 wiz_defined-function locations,
-            524 strings with 4720 characters,
-and the built_in function-call counts, 1535 in all, are:
-= -- 140
-> -- 54
-< -- 1
-+ -- 22
-- -- 16
-* -- 68
-:= -- 257
-add.period$ -- 17
+            1876 wiz_defined-function locations,
+            506 strings with 4217 characters,
+and the built_in function-call counts, 1052 in all, are:
+= -- 98
+> -- 32
+< -- 0
++ -- 14
+- -- 8
+* -- 52
+:= -- 158
+add.period$ -- 8
 call.type$ -- 6
-change.case$ -- 23
+change.case$ -- 4
 chr.to.int$ -- 0
 cite$ -- 8
-duplicate$ -- 76
-empty$ -- 145
-format.name$ -- 16
-if$ -- 330
+duplicate$ -- 63
+empty$ -- 124
+format.name$ -- 8
+if$ -- 257
 int.to.chr$ -- 0
 int.to.str$ -- 6
 missing$ -- 8
-newline$ -- 32
-num.names$ -- 12
-pop$ -- 52
+newline$ -- 24
+num.names$ -- 6
+pop$ -- 35
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 0
 quote$ -- 0
-skip$ -- 52
+skip$ -- 23
 stack$ -- 0
-substring$ -- 56
-swap$ -- 15
-text.length$ -- 1
+substring$ -- 26
+swap$ -- 12
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
+type$ -- 0
 warning$ -- 2
-while$ -- 15
+while$ -- 9
 width$ -- 7
-write$ -- 59
+write$ -- 53
 (There were 2 warnings)

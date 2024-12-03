@@ -708,6 +708,16 @@ INPUT ./figures/architecture.jpg
 INPUT figures/architecture.jpg
 INPUT ./figures/architecture.jpg
 INPUT ./figures/architecture.jpg
+INPUT ./figures/secvential-navigation.jpeg
+INPUT ./figures/secvential-navigation.jpeg
+INPUT figures/secvential-navigation.jpeg
+INPUT ./figures/secvential-navigation.jpeg
+INPUT ./figures/secvential-navigation.jpeg
+INPUT ./figures/secvential-buy-ticket.jpeg
+INPUT ./figures/secvential-buy-ticket.jpeg
+INPUT figures/secvential-buy-ticket.jpeg
+INPUT ./figures/secvential-buy-ticket.jpeg
+INPUT ./figures/secvential-buy-ticket.jpeg
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex
 INPUT ./chapters/ui-design.tex

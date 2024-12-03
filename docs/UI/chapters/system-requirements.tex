@@ -5,7 +5,7 @@ A felhasználói követelmények azokat a funkciókat írják le, amelyre a felh
 
 \begin{itemize}
   \item A felhasználó gyorsan és egyszerűen kell tudjon navigálni az oldalak között.
-  \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenek megjelenítése által.
+  \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenetek megjelenítése által.
   \item A felhasználói felületnek reszponzívnak kell lennie, azaz minden eszközön jól használhatónak kell lennie, legyen az mobiltelefon, tablet vagy számítógép.
   \item A felhasználói felületnek egységesnek kell lennie, azaz minden oldalon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az oldalak közötti váltást.
 \end{itemize}
@@ -85,7 +85,7 @@ amelyen minimum Android 5.0 vagy iOS 8.0 operációs rendszer fut. Fontos hogy l
 rajta internet elérés (3G,4G,5G vagy Wi-Fi), legalább 120MB szabad tárhely és 516-1024 MB szabad memória. Itt is ajánlott a helymeghatározás (GPS) engedélyezése, hogy a térképfunkciók helyesen működjenek.
 
 \section{A rendszer architektúrája}
-Az általunk tervezett rendszer architektúra diagramja a \ref{fig:architecture} ábrán látható. A rendszer frontend és backend része jól elkülöníthető egymástól, az egyes komponensek közötti kommunikáció titkosított HTTP kérések segítségével valósul meg. A továbbiakban külön fogom tárgyalni a frontend és backend részeket.
+Az általunk tervezett rendszer architektúra diagramja a \ref{fig:architecture} ábrán látható. A rendszer frontend és backend része jól elkülöníthető egymástól, az egyes komponensek közötti kommunikáció titkosított HTTP kérések segítségével valósul meg. Először tárgyalom a frontend és a backend felépítését, majd a közöttük megvalósuló kommunikációt.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/architecture.jpg}
@@ -94,7 +94,30 @@ Az általunk tervezett rendszer architektúra diagramja a \ref{fig:architecture}
 \end{figure}
 
 \subsection{Frontend}
-A frontend a felhasználói felületet biztosítja, amelyen keresztül az emberek interakcióba léphetek a rendszerrel. Jelen esetben a frontend két weboldalból és egy mobilalkalmazásból áll. A két weboldal teljesen elkülönül egymástól, mivel az egyik az adminisztrátoroknak, míg a másik a végfelhasználóknak készült. A weboldalak működése eltér a klasszikustól, mivel kliens oldali renderelést használnak, azaz a felhasználói felületet a kliens oldalon generálja a böngésző, nem pedig a webszerverről érkezik készen. Jelen esetben a webszerver csak a statikus fájlokat szolgáltatja, a dinamikus tartalmakat a kliens oldali JavaScript illeszti be az oldalakba. Ebből a szempontból a weboldal és a mobilalkalmazás működése megegyezik, mivel mindkettő direkt módon az API szerverrel kommunikál, REST kéréseken keresztül. Az adatok JSON típusú szövegként közlekednek a végpontok között az egyszerű feldolgozhatóság végett. Fontos megemlíteni, hogy egyes API végpontokhoz azonosítás szükséges, ami úgynevezett tokonek segítségével valósul meg. Úgy a weboldalak, mint az alkalmazás eltárolják a szervertől kapott tokenet és hozzáfűzik minden API kéréshez, ezzel azonosítva a felhasználót. Egyes oldalakon térképek is megjelennek, amelyeket a web esetében a MapBox, míg a mobil esetében a Google Maps szolgáltat. Mindkét esetben az adott platformhoz és technológiához közelebb álló térképszolgáltatót választottam, hogy a legjobb felhasználói élményt biztosítsam.
+A frontend a felhasználói felületet biztosítja, amelyen keresztül az emberek interakcióba léphetek a rendszerrel. Jelen esetben a frontend két weboldalból és egy mobilalkalmazásból áll. A két weboldal teljesen elkülönül egymástól, mivel az egyik az adminisztrátoroknak, míg a másik a végfelhasználóknak készült. A weboldalak működése eltér a klasszikustól, mivel ezek egyoldalas alkalmazások (SPA), így kliens oldali renderelést használnak, azaz a felhasználói felületet a kliens oldalon generálja a böngésző, nem pedig a webszerverről érkezik készen. Jelen esetben a webszerver csak a statikus fájlokat szolgáltatja, a dinamikus tartalmakat a kliens oldali JavaScript illeszti be az oldalakba. Ebből a szempontból a weboldal és a mobilalkalmazás működése megegyezik, mivel mindkettő direkt módon az API szerverrel kommunikál, REST kéréseken keresztül. Az adatok JSON típusú szövegként közlekednek a végpontok között az egyszerű feldolgozhatóság végett.
+
+Fontos megemlíteni, hogy egyes API végpontokhoz azonosítás szükséges, ami úgynevezett tokonek segítségével valósul meg. Úgy a weboldalak, mint az alkalmazás eltárolják a szervertől kapott tokenet és hozzáfűzik minden API kéréshez, ezzel azonosítva a felhasználót. Egyes oldalakon térképek is megjelennek, amelyeket a web esetében a MapBox, míg a mobil esetében a Google Maps szolgáltat. Mindkét esetben az adott platformhoz és technológiához közelebb álló térképszolgáltatót választottam, hogy a legjobb felhasználói élményt biztosítsam.
 
 \subsection{Backend}
-A backend a szerveroldali logikát és az adatbázis elérést biztosítja. Ahogyan az előbbiekben említettem, a weboldalak API hívásokon keresztül kapják meg az adatokat és dinamikusan jelenítik meg őket, ezért nincs egy olyan webszerver, amely backend oldalon renderelné ki a weboldalakat, csak egy olyan, amely statikus fájlokat szolgáltat. Ez azt eredményezi, hogy a webszerver nem tartalmaz üzleti logikát és az adatbázissal sincs összeköttetésben. Ezzel szemben van egy API szerver, amely az összes felhasználói felületet kiszolgálja adatokkal. Az ő feladata az adatbázissal való kommunikáció, az adatok feldolgozása és az ezek elérhetővé tétele a frontend számára, API végpontok formájában. Ez a komponens kezeli a felhasználóktól érkező kéréseket is, amelyek az adatbázist szeretnék módosítani. Minden ellenőrzés, biztonsági vizsgálat is itt folyik le, hogy a frontend csak a megfelelő adatokhoz férhessen hozzá és csak azokat módosíthassa. Ezekben a folyamatokban az adatbázisnak csak az a feladata, hogy a felhasználók, buszok, járatok, megállók és jegyek adatait biztonságosan tárolja és azokat az API szerver számára elérhetővé tegye olvasásra és módosításra is.
+A backend a szerveroldali logikát és az adatbázis elérést biztosítja. Ahogyan az előbbiekben említettem, a weboldalak API hívásokon keresztül kapják meg az adatokat és dinamikusan jelenítik meg őket, ezért nincs egy olyan webszerver, amely backend oldalon renderelné ki a weboldalakat, csak egy olyan, amely statikus fájlokat szolgáltat. Ez azt eredményezi, hogy a webszerver nem tartalmaz üzleti logikát és az adatbázissal sincs összeköttetésben.
+
+Ezzel szemben van egy API szerver, amely az összes felhasználói felületet kiszolgálja adatokkal. Az ő feladata az adatbázissal való kommunikáció, az adatok feldolgozása és az ezek elérhetővé tétele a frontend számára, API végpontok formájában. Ez a komponens kezeli a felhasználóktól érkező kéréseket is, amelyek az adatbázist szeretnék módosítani. Minden ellenőrzés, biztonsági vizsgálat is itt folyik le, hogy a frontend csak a megfelelő adatokhoz férhessen hozzá és csak azokat módosíthassa. 
+
+Az adatok kiszolgálásának folyamatában az adatbázisnak csak az a feladata, hogy a felhasználók, buszok, járatok, megállók és jegyek adatait biztonságosan tárolja és azokat az API szerver számára elérhetővé tegye olvasásra és módosításra is.
+
+\subsection{Kommunikáció}
+A felek közötti kommunikációt szemlélteti a \ref{fig:secvential-navigation} ábrán megjelenített szekvencia diagram, amely az utazás megtervezésének folyamatát írja le. A felhasználó a frontend felületen keresztül kiválasztja az indulási és célállomást, valamint az utazás idejét, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend először ellenőrzi a kérést, majd a megfelelő adatokat lekérdezi az adatbázisból és a választ visszaküldi a frontendnek, ahol az megjelenik a felhasználó számára. Amennyiben valahol hiba történik, a rendszer a hiba okát is visszajelzi a felhasználónak.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/secvential-navigation.jpeg}
+  \caption{Az utazás megtervezésének folyamata}
+  \label{fig:secvential-navigation}
+\end{figure}
+
+Ugyanígy leírható a jegyvásárlás folyamata is, ahol a felhasználó a frontend felületen keresztül kiválasztja a megfelelő jegyeket, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend ellenőrzi a kérést és ha az nem tartalmazza a bejelenkezett felhasználót, akkor visszaküldi a bejelenkezési kérést a frontendnek. Ha a kérés helyes, akkor a szerver létrehozza a jegyet vagy jegyeket az adatbázisban, majd küld egy emailt a felhsználónak és a frondendnek is visszaküldi a létrehozott jegyek azonosítóit. Ennek megfelelően a frontend megjeleníti a jegyeket, vagy adott esetben a hibaüzeneteket a felhasználó számára. Az ezt a folyamatot szemléltető szekvencia diagram a \ref{fig:secvential-buy-ticket} ábrán látható.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/secvential-buy-ticket.jpeg}
+  \caption{A jegyvásárlás folyamata}
+  \label{fig:secvential-buy-ticket}
+\end{figure}

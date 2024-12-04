@@ -2,7 +2,7 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {2}Szakirodalmi tanulmány}{3}{chapter.2}%
 \select@language {magyar} \contentsline {section}{\numberline {2.1}Létező megoldások}{4}{section.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {2.1.1}Moovit}{4}{subsection.2.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Budapest Go}{4}{subsection.2.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {2.1.2}Budapest Go}{5}{subsection.2.1.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {3}A rendszer specifikációi}{6}{chapter.3}%
 \select@language {magyar} \contentsline {section}{\numberline {3.1}Felhasználói követelmények}{6}{section.3.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Felhasználói felület}{7}{subsection.3.1.1}%

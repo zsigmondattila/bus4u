@@ -859,6 +859,12 @@ INPUT chapters/goals.tex
 INPUT ./chapters/goals.tex
 INPUT ./chapters/goals.tex
 INPUT chapters/goals.tex
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
 INPUT ./chapters/theoretical-foundation.tex
 INPUT ./chapters/theoretical-foundation.tex
 INPUT ./chapters/theoretical-foundation.tex
@@ -905,12 +911,6 @@ INPUT chapters/system-requirements.tex
 INPUT ./chapters/system-requirements.tex
 INPUT ./chapters/system-requirements.tex
 INPUT chapters/system-requirements.tex
-INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8c.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
 INPUT ./figures/use-case.png
 INPUT ./figures/use-case.png
 INPUT figures/use-case.png

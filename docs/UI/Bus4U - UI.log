@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  4 DEC 2024 11:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  28 DEC 2024 17:31
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -622,7 +622,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.23 ...√°l√≥i fel√ºlet tervez√©se}{22}{chapter.5}
+l.23 ...√°l√≥i fel√ºlet tervez√©se}{23}{chapter.5}
                                                   % [2
 
 ])
@@ -635,17 +635,21 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 l.85 \chapter
              {C√©lkit≈±z√©sek} [1]
 1. fejezet.
-(./chapters/goals.tex) [2
+(./chapters/goals.tex
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+) [2
 
-]
+]) [3]
 2. fejezet.
 (./chapters/theoretical-foundation.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3
+ [4
 
 ]
-<figures/moovit.jpg, id=227, 796.4449pt x 1670.32195pt>
+<figures/moovit.jpg, id=233, 796.4449pt x 1670.32195pt>
 File: figures/moovit.jpg Graphic file (type jpg)
 <use figures/moovit.jpg>
 Package pdftex.def Info: figures/moovit.jpg  used on input line 11.
@@ -654,21 +658,17 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 16.
-<figures/budapestgo.png, id=232, 813.0375pt x 1445.4pt>
+<figures/budapestgo.png, id=238, 813.0375pt x 1445.4pt>
 File: figures/budapestgo.png Graphic file (type png)
 <use figures/budapestgo.png>
 Package pdftex.def Info: figures/budapestgo.png  used on input line 23.
 (pdftex.def)             Requested size: 145.87875pt x 259.32268pt.
- [4 <./figures/moovit.jpg>]) [5 <./figures/budapestgo.png>]
+ [5 <./figures/moovit.jpg>]) [6 <./figures/budapestgo.png>]
 3. fejezet.
-(./chapters/system-requirements.tex
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 7.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [6
+(./chapters/system-requirements.tex [7
 
-] [7]
-<figures/use-case.png, id=263, 813.0375pt x 1150.2975pt>
+] [8]
+<figures/use-case.png, id=268, 813.0375pt x 1150.2975pt>
 File: figures/use-case.png Graphic file (type png)
 <use figures/use-case.png>
 Package pdftex.def Info: figures/use-case.png  used on input line 44.
@@ -676,24 +676,24 @@ Package pdftex.def Info: figures/use-case.png  used on input line 44.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8]
+ [9]
 Overfull \vbox (34.3479pt too high) has occurred while \output is active []
 
- [9 <./figures/use-case.png>] [10]
+ [10 <./figures/use-case.png>] [11]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11]) [12]
+ [12]) [13]
 4. fejezet.
 (./chapters/architecture.tex
-<figures/architecture.jpg, id=291, 973.78236pt x 542.025pt>
+<figures/architecture.jpg, id=296, 973.78236pt x 542.025pt>
 File: figures/architecture.jpg Graphic file (type jpg)
 <use figures/architecture.jpg>
 Package pdftex.def Info: figures/architecture.jpg  used on input line 4.
 (pdftex.def)             Requested size: 486.25761pt x 270.66446pt.
- [13
+ [14
 
- <./figures/architecture.jpg>] [14]
-<figures/secvential-navigation.jpeg, id=304, 954.56625pt x 592.2125pt>
+ <./figures/architecture.jpg>] [15]
+<figures/secvential-navigation.jpeg, id=310, 954.56625pt x 592.2125pt>
 File: figures/secvential-navigation.jpeg Graphic file (type jpg)
 <use figures/secvential-navigation.jpeg>
 Package pdftex.def Info: figures/secvential-navigation.jpeg  used on input line 27.
@@ -701,8 +701,8 @@ Package pdftex.def Info: figures/secvential-navigation.jpeg  used on input line 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [15]
-<figures/secvential-buy-ticket.jpeg, id=312, 844.15375pt x 610.28pt>
+ [16]
+<figures/secvential-buy-ticket.jpeg, id=317, 844.15375pt x 610.28pt>
 File: figures/secvential-buy-ticket.jpeg Graphic file (type jpg)
 <use figures/secvential-buy-ticket.jpeg>
 Package pdftex.def Info: figures/secvential-buy-ticket.jpeg  used on input line 35.
@@ -710,32 +710,32 @@ Package pdftex.def Info: figures/secvential-buy-ticket.jpeg  used on input line 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [16 <./figures/secvential-navigation.jpeg>]
+ [17 <./figures/secvential-navigation.jpeg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17 <./figures/secvential-buy-ticket.jpeg>]
+ [18 <./figures/secvential-buy-ticket.jpeg>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
+ [19]
 Overfull \hbox (4.9785pt too wide) in paragraph at lines 52--53
 []\T1/ptm/m/n/12 A Vue leg-˙jabb ver-zi-Û-ja a Vue 3, amely a kom-po-nen-sek le-Ìr·-s·-ra 2 fÈ-le API-t (App-li-ca-ti-on Program-
  []
 
-[19]) [20] [21]
+[20]) [21] [22]
 5. fejezet.
 (./chapters/ui-design.tex
 Underfull \vbox (badness 1142) has occurred while \output is active []
 
- [22
+ [23
 
 ]
-<figures/md-buttons.png, id=363, 1027.84pt x 301.125pt>
+<figures/md-buttons.png, id=368, 1027.84pt x 301.125pt>
 File: figures/md-buttons.png Graphic file (type png)
 <use figures/md-buttons.png>
 Package pdftex.def Info: figures/md-buttons.png  used on input line 10.
 (pdftex.def)             Requested size: 486.25761pt x 142.4615pt.
- [23 <./figures/md-buttons.png>]
-<figures/ui-mobile.png, id=379, 1653.17625pt x 1661.20625pt>
+ [24 <./figures/md-buttons.png>]
+<figures/ui-mobile.png, id=384, 1653.17625pt x 1661.20625pt>
 File: figures/ui-mobile.png Graphic file (type png)
 <use figures/ui-mobile.png>
 Package pdftex.def Info: figures/ui-mobile.png  used on input line 24.
@@ -743,51 +743,51 @@ Package pdftex.def Info: figures/ui-mobile.png  used on input line 24.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [24] [25 <./figures/ui-mobile.png>]
-<figures/ui-web.png, id=393, 1441.385pt x 5673.195pt>
+ [25] [26 <./figures/ui-mobile.png>]
+<figures/ui-web.png, id=398, 1441.385pt x 5673.195pt>
 File: figures/ui-web.png Graphic file (type png)
 <use figures/ui-web.png>
 Package pdftex.def Info: figures/ui-web.png  used on input line 33.
 (pdftex.def)             Requested size: 143.68507pt x 565.59282pt.
-<figures/ui-admin.png, id=394, 1449.415pt x 6279.46pt>
+<figures/ui-admin.png, id=399, 1449.415pt x 6279.46pt>
 File: figures/ui-admin.png Graphic file (type png)
 <use figures/ui-admin.png>
 Package pdftex.def Info: figures/ui-admin.png  used on input line 39.
 (pdftex.def)             Requested size: 130.53018pt x 565.59282pt.
- [26 <./figures/ui-web.png> <./figures/ui-admin.png>])
+ [27 <./figures/ui-web.png> <./figures/ui-admin.png>])
 6. fejezet.
 (./chapters/implementation.tex
-<figures/ticket_bought.png, id=401, 1405.57776pt x 671.81602pt>
+<figures/ticket_bought.png, id=407, 1405.57776pt x 671.81602pt>
 File: figures/ticket_bought.png Graphic file (type png)
 <use figures/ticket_bought.png>
 Package pdftex.def Info: figures/ticket_bought.png  used on input line 11.
 (pdftex.def)             Requested size: 447.35611pt x 213.8169pt.
- [27
+ [28
 
 ]
-<figures/mobile-home1.jpg, id=407, 1084.05pt x 2409.0pt>
+<figures/mobile-home1.jpg, id=412, 1084.05pt x 2409.0pt>
 File: figures/mobile-home1.jpg Graphic file (type jpg)
 <use figures/mobile-home1.jpg>
 Package pdftex.def Info: figures/mobile-home1.jpg  used on input line 18.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
-<figures/mobile-home2.jpg, id=408, 1084.05pt x 2409.0pt>
+<figures/mobile-home2.jpg, id=413, 1084.05pt x 2409.0pt>
 File: figures/mobile-home2.jpg Graphic file (type jpg)
 <use figures/mobile-home2.jpg>
 Package pdftex.def Info: figures/mobile-home2.jpg  used on input line 19.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
-<figures/mobile-home3.jpg, id=409, 1084.05pt x 2409.0pt>
+<figures/mobile-home3.jpg, id=414, 1084.05pt x 2409.0pt>
 File: figures/mobile-home3.jpg Graphic file (type jpg)
 <use figures/mobile-home3.jpg>
 Package pdftex.def Info: figures/mobile-home3.jpg  used on input line 20.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
- [28 <./figures/ticket_bought.png (PNG copy)> <./figures/mobile-home1.jpg> <./figures/mobile-home2.jpg> <./figures/mobile-home3.jpg>]
-<figures/jegyvasarlas.jpg, id=417, 2269.47874pt x 2507.3675pt>
+ [29 <./figures/ticket_bought.png (PNG copy)> <./figures/mobile-home1.jpg> <./figures/mobile-home2.jpg> <./figures/mobile-home3.jpg>]
+<figures/jegyvasarlas.jpg, id=423, 2269.47874pt x 2507.3675pt>
 File: figures/jegyvasarlas.jpg Graphic file (type jpg)
 <use figures/jegyvasarlas.jpg>
 Package pdftex.def Info: figures/jegyvasarlas.jpg  used on input line 29.
 (pdftex.def)             Requested size: 486.25761pt x 537.1988pt.
- [29 <./figures/jegyvasarlas.jpg>]
-<figures/tickets.png, id=425, 1404.8403pt x 671.81602pt>
+ [30 <./figures/jegyvasarlas.jpg>]
+<figures/tickets.png, id=430, 1404.8403pt x 671.81602pt>
 File: figures/tickets.png Graphic file (type png)
 <use figures/tickets.png>
 Package pdftex.def Info: figures/tickets.png  used on input line 48.
@@ -795,8 +795,8 @@ Package pdftex.def Info: figures/tickets.png  used on input line 48.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30]
-<figures/schedule.png, id=430, 774.32143pt x 884.93878pt>
+ [31]
+<figures/schedule.png, id=435, 774.32143pt x 884.93878pt>
 File: figures/schedule.png Graphic file (type png)
 <use figures/schedule.png>
 Package pdftex.def Info: figures/schedule.png  used on input line 59.
@@ -804,8 +804,8 @@ Package pdftex.def Info: figures/schedule.png  used on input line 59.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31 <./figures/tickets.png (PNG copy)>] [32 <./figures/schedule.png (PNG copy)>]
-<figures/stations-mobile.jpg, id=441, 796.4449pt x 1597.31448pt>
+ [32 <./figures/tickets.png (PNG copy)>] [33 <./figures/schedule.png (PNG copy)>]
+<figures/stations-mobile.jpg, id=447, 796.4449pt x 1597.31448pt>
 File: figures/stations-mobile.jpg Graphic file (type jpg)
 <use figures/stations-mobile.jpg>
 Package pdftex.def Info: figures/stations-mobile.jpg  used on input line 69.
@@ -818,19 +818,19 @@ Underfull \hbox (badness 1931) in paragraph at lines 82--83
 
 Underfull \vbox (badness 4229) has occurred while \output is active []
 
- [33 <./figures/stations-mobile.jpg>]
-<figures/statistics.png, id=448, 1415.90204pt x 682.87776pt>
+ [34 <./figures/stations-mobile.jpg>]
+<figures/statistics.png, id=453, 1415.90204pt x 682.87776pt>
 File: figures/statistics.png Graphic file (type png)
 <use figures/statistics.png>
 Package pdftex.def Info: figures/statistics.png  used on input line 94.
 (pdftex.def)             Requested size: 486.25761pt x 234.51984pt.
-<figures/stations.png, id=449, 1404.8403pt x 671.07857pt>
+<figures/stations.png, id=454, 1404.8403pt x 671.07857pt>
 File: figures/stations.png Graphic file (type png)
 <use figures/stations.png>
 Package pdftex.def Info: figures/stations.png  used on input line 103.
 (pdftex.def)             Requested size: 486.25761pt x 232.28009pt.
- [34 <./figures/statistics.png (PNG copy)>]
-<figures/routes-admin.png, id=456, 1415.90204pt x 796.4449pt>
+ [35 <./figures/statistics.png (PNG copy)>]
+<figures/routes-admin.png, id=461, 1415.90204pt x 796.4449pt>
 File: figures/routes-admin.png Graphic file (type png)
 <use figures/routes-admin.png>
 Package pdftex.def Info: figures/routes-admin.png  used on input line 112.
@@ -838,24 +838,24 @@ Package pdftex.def Info: figures/routes-admin.png  used on input line 112.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35 <./figures/stations.png (PNG copy)>] [36 <./figures/routes-admin.png (PNG copy)>]
-<figures/schedules_admin.png, id=468, 1404.8403pt x 663.70409pt>
+ [36 <./figures/stations.png (PNG copy)>] [37 <./figures/routes-admin.png (PNG copy)>]
+<figures/schedules_admin.png, id=473, 1404.8403pt x 663.70409pt>
 File: figures/schedules_admin.png Graphic file (type png)
 <use figures/schedules_admin.png>
 Package pdftex.def Info: figures/schedules_admin.png  used on input line 123.
 (pdftex.def)             Requested size: 486.25761pt x 229.72757pt.
- [37 <./figures/schedules_admin.png (PNG copy)>]
-<figures/buses.png, id=476, 1404.8403pt x 671.07857pt>
+ [38 <./figures/schedules_admin.png (PNG copy)>]
+<figures/buses.png, id=481, 1404.8403pt x 671.07857pt>
 File: figures/buses.png Graphic file (type png)
 <use figures/buses.png>
 Package pdftex.def Info: figures/buses.png  used on input line 132.
 (pdftex.def)             Requested size: 486.25761pt x 232.28009pt.
-<figures/edit-bus.png, id=477, 697.62674pt x 683.6152pt>
+<figures/edit-bus.png, id=482, 697.62674pt x 683.6152pt>
 File: figures/edit-bus.png Graphic file (type png)
 <use figures/edit-bus.png>
 Package pdftex.def Info: figures/edit-bus.png  used on input line 138.
 (pdftex.def)             Requested size: 242.15681pt x 237.28699pt.
-<figures/create-employee.png, id=478, 697.62674pt x 684.35265pt>
+<figures/create-employee.png, id=483, 697.62674pt x 684.35265pt>
 File: figures/create-employee.png Graphic file (type png)
 <use figures/create-employee.png>
 Package pdftex.def Info: figures/create-employee.png  used on input line 139.
@@ -863,32 +863,32 @@ Package pdftex.def Info: figures/create-employee.png  used on input line 139.
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38 <./figures/buses.png (PNG copy)>] [39 <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
+ [39 <./figures/buses.png (PNG copy)>] [40 <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
 7. fejezet.
 (./chapters/summary.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40
+ [41
 
-]) (./Bus4U - UI.bbl [41]) [42
+]) (./Bus4U - UI.bbl [42]) [43
 
 ] (./Bus4U - UI.aux)
 Package rerunfilecheck Info: File `"Bus4U - UI".out' has not changed.
 (rerunfilecheck)             Checksum: C62CCA460AC41F54331AF651FEE78223;5584.
  ) 
 Here is how much of TeX's memory you used:
- 15122 strings out of 479647
- 243240 string characters out of 5878802
- 556552 words of memory out of 5000000
+ 15123 strings out of 479647
+ 243247 string characters out of 5878802
+ 556553 words of memory out of 5000000
  32700 multiletter control sequences out of 15000+600000
  527813 words of font info for 100 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  68i,9n,80p,2772b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - UI.pdf" (46 pages, 6775393 bytes).
+Output written on "Bus4U - UI.pdf" (47 pages, 6776780 bytes).
 PDF statistics:
- 550 PDF objects out of 1000 (max. 8388607)
- 459 compressed objects within 5 object streams
- 120 named destinations out of 1000 (max. 500000)
+ 556 PDF objects out of 1000 (max. 8388607)
+ 464 compressed objects within 5 object streams
+ 121 named destinations out of 1000 (max. 500000)
  430 words of extra memory for PDF output out of 10000 (max. 10000000)
 

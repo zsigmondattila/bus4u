@@ -1,10 +1,22 @@
-Fő célunk egy olyan rendszer kialakítása, amely egyaránt hasznos a
-tömegközlekedést választó embereknek, illetve a busztársaságoknak. A végfelhasználó
-szempontjából egy olyan weboldal, illetve mobilalkalmazás elkészítése a cél, amelyben meg
-lehet tekinteni a menetrendet, jegyet lehet vásárolni a járatokra, meg lehet tekinteni ezek útvonalát és megállóit, valamint élőben lehet követni a buszok jelenlegi helyzetét, hogy tudni lehessen mikor érnek a hozzánk legközelebb eső megállóba.
+Fő célunk egy olyan rendszer kialakítása, amely egyaránt hasznos a tömegközlekedést választó embereknek, illetve a busztársaságoknak. A backend specifikus célok a Bus4U - Server \cite{bus4userver} dolgozatban vannak ismertetve, míg itt a frontend specifikus célok vannak inkább kiemelve. A teljes rendszer működése érdekében a következő célokat kell teljesíteni a felhasználók kiszolgálásának szempontjából:
 
-A busztársaságok szempontjából egy webes admin felület létrehozása a cél, ahol
-az adminisztrátorok teljeskörűen menedzselhetik cégük működését, egyéb szoftverek bevonása nélkül. Itt az adminisztrátor feltöltheti a cég járműveinek adatait és az útvonalaikat, megjelölheti a térképen a megállóikat, szerkesztheti a menetrendeket, és a jegyárakat is beállíthatja. Ugyanezen a platformon egy összegzést találhat a profitról, a felhasználók számáról illetve az eladott jegyekről, különböző időintervallumokra leosztva.
+\begin{itemize}
+  \item könnyen használható weboldal, illetve mobilalkalmazás elkészítése, amely gyors és egyszerű hozzáférést biztosít a tömegközlekedési információkhoz
+  \item egységes és jól kinéző felület biztosítása a különböző platformokon
+  \item útvonaltervezés és jegyvásárlás: a felhasználók megadhatják a kiindulópontjukat, a célállomásukat és az időpontot, majd a rendszer megmutatja a lehetséges járatokat és azok árait, valamint lehetőséget biztosít a jegyvásárlásra
+  \item menetrendek megtekintésének lehetősége: indulási időpontok megjelenítése, megállók és járatok szerint
+  \item buszok útvonalának és megállóinak megtekintése: az útvonalak és megállók térképen való megjelenítése, és szűrési lehetőség biztosítása városok és útvonalak szerint
+  \item buszok valós idejű követése: folyamatosan frissülő adatok megjelenítése a buszok pillanatnyi helyzetéről a térképen
+\end{itemize}
 
-Nem utolsó sorban egy második, kisebb alkalmazás létrehozása is a célok közé
-tartozik, amely a buszon lévő androidos POS terminálon fog futni, és ez szolgáltatja a buszok valós idejű helyzetét, illetve ezen lehet beszkennelni a jegyet a buszra való felszálláskor.
+A busztársaságok szempontjából további funkciókra is szükség van, amelyek biztosítják az adminisztrátorok számára a cég menedzseléséhez szükséges eszközöket. Ehhez a következő célok elérésére van szükség:
+
+\begin{itemize}
+  \item egy könnyen használható adminisztrációs felület létrehozása, amely csak a busztársaságok adminisztrátorai számára elérhető
+  \item menetrendek és megállók kezelése: menetrendek és megállók hozzáadása, módosítása és törlése
+  \item útvonalak feltöltése: útvonalak hozzáadása, módosítása, megállók hozzárendelése és törlése
+  \item jegyárak beállítása: útvonalakhoz, illetve útszakaszokhoz
+  \item alkalmazottak és buszok adatainak kezelése: alkalmazottak és buszok hozzáadása, módosítása és törlése
+  \item statisztikai adatok megtekintése: regisztrált felhasználók száma, eladott jegyek száma és bevétel, többféle bontásban
+  \item POS terminálon futó alkalmazás elkészítése és buszokra való kihelyezése, amely biztosítja a jegyvásárlást, a jegyek érvényesítését és valós időben figyeli a busz földrajzi pozícióját
+\end{itemize}

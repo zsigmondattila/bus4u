@@ -10,8 +10,8 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.2}Rendszerkövetelmények}{11}{section.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Funkcionális követelmények}{11}{subsection.3.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Nem funkcionális követelmények}{13}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {subsubsection}{Szervezéssel kapcsolatos követelmények}{13}{section*.3}%
-\select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{13}{section*.4}%
+\select@language {magyar} \contentsline {subsubsection}{Szervezéssel kapcsolatos követelmények}{13}{section*.5}%
+\select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{13}{section*.6}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}A rendszer architektúrája}{14}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Frontend}{15}{section.4.1}%
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Backend}{15}{section.4.2}%

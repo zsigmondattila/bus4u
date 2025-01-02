@@ -6,11 +6,11 @@ A felhasználói követelmények azokat a funkciókat írják le, amelyre a felh
 \begin{itemize}
   \item A felhasználó gyorsan és egyszerűen kell tudjon navigálni az oldalak között.
   \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenetek megjelenítése által.
-  \item A felhasználói felületnek reszponzívnak kell lennie, azaz minden eszközön jól használhatónak kell lennie, legyen az mobiltelefon, tablet vagy számítógép.
+  \item A felhasználói felületnek reszponzívnak kell lennie, azaz minden eszközön jól használhatónak kell lennie.
   \item A felhasználói felületnek egységesnek kell lennie, azaz minden oldalon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az oldalak közötti váltást.
 \end{itemize}
 
-A frontend három különböző felületet tartalmaz: mobilalkalmazás, felhasználói- és adminisztrátori weboldal, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek. A mobilapplikáció ugyanúgy működik, mint a felhasználóknak szánt weboldal, így ezeknek a követelményeit együtt fogom tárgyalni felhasználói felület néven. Ezzel szemben az adminisztrátori weboldal különálló egység, amelynek saját követelményei vannak.
+A rendszer két különböző felületet tartalmaz: felhasználói- és adminisztrátori felület, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek, így ezeket külön-külön fogom részletezni.
 
 \subsection{Felhasználói felület}
 A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. A fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. A felhasználói felület funkciói oldalanként csoportosítva a következők:
@@ -25,18 +25,16 @@ A felhasználói felület funkcióinak nagy része bejelentkezés nélkül haszn
 
 \subsection{Adminisztrátori felület}
 Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a
-cégek főnökei tudnak létrehozni, mindenik a saját busztársaságához. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat. Az adminfelület funkciói oldalanként csoportosítva:
+cégek főnökei tudnak létrehozni, mindenik a saját busztársaságához. Itt regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat. Az adminfelület funkciói oldalanként csoportosítva:
 
 \begin{itemize}
-  \item Főoldal: statisztikák az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervalumok szerint csoportosítva, értesítések megjelenítése
-  \item Megállók kezelése: megállók listázása, új megálló hozzáadása térkép segítségével, meglévő megálló szerkesztése, megállók törlése
+  \item Főoldal: statisztikák az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervalumok szerint csoportosítva, emlékeztetők megjelenítése
+  \item Megállók kezelése: megállók listázása, új megálló hozzáadása térkép segítségével, meglévő megállók szerkesztése, megállók törlése
   \item Járatok kezelése: buszjáratok listázása, új járat hozzáadása, meglévő járat szerkesztése: megállók hozzáadása és eltávolítása, járatok törlése
   \item Menetrendek kezelése: járatok indulási időpontjainak és jegyárainak megtekintése, szerkesztése és törlése
   \item Buszok kezelése: buszok listázása, új busz hozzáadása, meglévő busz szerkesztése: útadó, biztosítás és műszaki vizsga időpontok megadása, buszok törlése
   \item Alkalmazottak kezelése: alkalmazotti fiókok listázása, új alkalmazott hozzáadása, meglévő alkalmazott szerkesztése, alkalmazottak törlése
 \end{itemize}
-
-Belépés előtt bármely oldalra rákeresve, a rendszer átirányítja a felhasználót a bejelentkező felületre. Regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést.
 
 A teljes rendszer funkcionalitását leíró használati eset diagram a \ref{fig:use-case}-es ábrán látható.
 

@@ -869,6 +869,13 @@ INPUT ./Bus4U - UI.toc
 INPUT Bus4U - UI.toc
 INPUT Bus4U - UI.toc
 OUTPUT Bus4U - UI.toc
+INPUT ./chapters/introduction.tex
+INPUT ./chapters/introduction.tex
+INPUT ./chapters/introduction.tex
+INPUT chapters/introduction.tex
+INPUT ./chapters/introduction.tex
+INPUT ./chapters/introduction.tex
+INPUT chapters/introduction.tex
 INPUT ./chapters/goals.tex
 INPUT ./chapters/goals.tex
 INPUT ./chapters/goals.tex

@@ -962,11 +962,14 @@ INPUT ./figures/secvential-buy-ticket.jpeg
 INPUT figures/secvential-buy-ticket.jpeg
 INPUT ./figures/secvential-buy-ticket.jpeg
 INPUT ./figures/secvential-buy-ticket.jpeg
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
 INPUT ./figures/jira.png
 INPUT ./figures/jira.png
 INPUT figures/jira.png
 INPUT ./figures/jira.png
 INPUT ./figures/jira.png
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT ./figures/gitkraken.png
 INPUT ./figures/gitkraken.png
 INPUT figures/gitkraken.png
@@ -1092,9 +1095,6 @@ INPUT ./Bus4U - UI.bbl
 INPUT Bus4U - UI.bbl
 INPUT ./Bus4U - UI.bbl
 INPUT Bus4U - UI.bbl
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8t.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT Bus4U - UI.aux
 INPUT ./Bus4U - UI.out
 INPUT ./Bus4U - UI.out

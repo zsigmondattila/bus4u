@@ -21,21 +21,22 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}Vue.js}{21}{subsection.5.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Vuetify}{22}{subsection.5.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Flutter}{23}{subsection.5.4.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}A felhasználói felület tervezése}{25}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}Material Design}{25}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}Figma terv}{26}{section.6.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}Gyakorlati megvalósítás}{30}{chapter.7}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói weboldal és alkalmazás}{30}{section.7.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{30}{subsection.7.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{33}{subsection.7.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{34}{subsection.7.1.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és élő térkép}{36}{subsection.7.1.4}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrátori weboldal}{36}{section.7.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőoldal}{37}{subsection.7.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{37}{subsection.7.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{38}{subsection.7.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{40}{subsection.7.2.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{40}{subsection.7.2.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{43}{chapter.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.1}További fejlesztési lehetőségek}{44}{section.8.1}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{44}{section.8.1}%
+\select@language {magyar} \contentsline {section}{\numberline {5.5}Fejlesztői eszközök}{24}{section.5.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}A felhasználói felület tervezése}{27}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}Material Design}{27}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}Figma terv}{28}{section.6.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Gyakorlati megvalósítás}{32}{chapter.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói weboldal és alkalmazás}{32}{section.7.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{32}{subsection.7.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{35}{subsection.7.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{36}{subsection.7.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és élő térkép}{38}{subsection.7.1.4}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrátori weboldal}{38}{section.7.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőoldal}{39}{subsection.7.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{39}{subsection.7.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{40}{subsection.7.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{42}{subsection.7.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{42}{subsection.7.2.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{45}{chapter.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}További fejlesztési lehetőségek}{46}{section.8.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{46}{section.8.1}%

@@ -68,3 +68,23 @@ A funkció amely nagyban megkönnyíti a fejlesztést és a tesztelést, az a Ho
 A Flutterben való alkotás hatékonyságát tovább növeli az, hogy egy részletes online dokumentációval rendelkezik, és hogy a Pub Package Manager-t (Csomagkezelőt) használja, amely rengeteg előre elkészített csomagot tartalmaz, az egyszerű UI komponensektől kezdve, a komplex háttérfolyamatokig. Ehhez csak meg kell keresni a megfelelőt a \url{pub.dev} weboldalon és be kell illeszteni az alkalmazásba \cite{flutterinaction}.
 
 Jelen projekt esetében, mivel a webes felületet a Vue.js és a Vuetify keretrendszerekkel készítettem, a Flutter használatakor inkább a mobilos platformokra koncentráltam, tehát az Androidra és az iOS-re. Összességében így kijelenthető, hogy a legnépszerűbb platformok le lettek fedve és bárki, bármilyen eszközről el tudja érni a Bus4U-t.
+
+\section{Fejlesztői eszközök}
+
+A fejlesztés során számos eszközt használtam, amelyek segítették a munkámat és a hatékonyságomat. A legfontosabb ezek közül a kódszerkesztő, amelynek a Visual Studio Code-ot használtam, mert ez egy könnyű, gyors és hatékony eszköz, amely támogatja a Vue.js és a Flutter keretrendszereket is. A Visual Studio Code egyik legnagyobb előnye, hogy jól testreszabható a rengeteg letölthető kiegészítő által, amelyek segítségével a fejlesztők szinte bármilyen programozási nyelvet és keretrendszert használhatnak benne\footnote{Visual Studio Code: \url{https://code.visualstudio.com/}}.
+
+Mivel a projekten nem egyedül dolgoztam, hanem egy kollégámmal, így szükség volt egy eszközre amelyben vezetni tudjuk a feladatokat átlátható módon. Erre a Jira-t használtuk, amely egy online projektmenedzsment eszköz, amelynek segítségével könnyen lehet követni a feladatokat, a fejlesztés állapotát és a határidőket is egy kanban board-on.\footnote{A projekt Jira oldala: \url{https://bus4u.atlassian.net/jira}} Itt felbontottuk az egész projektet kisebb feladatokra, úgynevezett taszkokra, amelyekhez kódneveket rendeltünk hozzá. Ezeknek a formája BUS-XX volt, ahol az XX egy sorszám volt, amely a feladatok sorrendjét jelölte. A feladatok állapotát a Jira segítségével tudtuk követni, amelyek lehetnek: "To Do", "In Progress" és "Done". A taszkok nevei tartalmazták a feladat rövid leírását, de hozzá lehetett adni bővebb leírást és hozzászólásokat is. Az \ref{fig:jira} ábrán látható a Jira tábla, amelyen a feladatok vannak elhelyezve.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/jira.png}
+  \caption{Feladatok a Jira-ban}
+  \label{fig:jira}
+\end{figure}
+
+Verziókövetésre a Git-et használtuk, GitHub-al kiegészítve, így biztonságosan tudtuk tárolni a kódot és a változtatásokat is könnyen nyomon tudtuk követni. A GitHub abban is segített, hogy összehangoljuk a frontend és a backend fejlesztését a kollégámmal, valamint hogy több, különböző eszközről is tudjunk dolgozni. A munka során branch-ekre (ágakra) osztottuk a projektet, úgy hogy a fő ág mellett volt egy develop nevű ág és ebből váltak ki az egyes feladatok mellékágai, amelyek mind egy-egy Jira taszknak feleltek meg. A mellékágak nevei tartalmazták a taszk kódját, így össze lehetett hangolni a verziókövetést a kanban táblával. A branchek használata megkönnyítette és strukturáltabbá tette a közös munkát. A Git és a branch-ek egyszerűbb kezelésére a GitKraken nevű eszközt használtam, amely egy grafikus felületet biztosít a Git parancsokhoz, így átláthatóbbá válik a rendszer. A GitKraken kezelőfelülete a projekt ágrajzával az \ref{fig:gitkraken} ábrán látható.
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/gitkraken.png}
+  \caption{Verziókövetés GitKraken segítségével}
+  \label{fig:gitkraken}
+\end{figure}

@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex Bus4U - UI"] 1735907844 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1735907863
+["bibtex Bus4U - UI"] 1735984875 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1735988972
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - UI.aux" 1735907863 14301 b537eebffd16803444f343fcb05d3caf "pdflatex"
+  "Bus4U - UI.aux" 1735988972 14955 8fefb9c4998dde9eb0430d671817ed34 "pdflatex"
   "refs.bib" 1733255193 1251 f340cda1d736ec32b4277f57b55f002e ""
   (generated)
   "Bus4U - UI.bbl"
   "Bus4U - UI.blg"
-["pdflatex"] 1735907860 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1735907863
+["pdflatex"] 1735988969 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1735988972
   "/etc/texmf/web2c/texmf.cnf" 1720637560 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" 1735896887 2310 e40369e0491e0fc2e72551c760c5ab20 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -118,15 +118,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1724577942 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1724577949 2029682 13cb1828bfecc119c6af21688f84eda0 ""
-  "Bus4U - UI.aux" 1735907863 14301 b537eebffd16803444f343fcb05d3caf "pdflatex"
-  "Bus4U - UI.bbl" 1735907844 977 f4a9afff420256b62a8765d8c2921624 "bibtex Bus4U - UI"
-  "Bus4U - UI.out" 1735907863 5671 756427b144f328dcb4867f52212c0ace "pdflatex"
+  "Bus4U - UI.aux" 1735988972 14955 8fefb9c4998dde9eb0430d671817ed34 "pdflatex"
+  "Bus4U - UI.bbl" 1735984875 977 f4a9afff420256b62a8765d8c2921624 "bibtex Bus4U - UI"
+  "Bus4U - UI.out" 1735988972 5833 5e398d7bb412413f90cd3a6a61dfb1c3 "pdflatex"
   "Bus4U - UI.tex" 1735896887 2310 e40369e0491e0fc2e72551c760c5ab20 ""
-  "Bus4U - UI.toc" 1735907863 4454 5df1074c20537cc808f283d6968a4494 "pdflatex"
+  "Bus4U - UI.toc" 1735988972 4563 a9fc4d17cb996750976f4fda054ed070 "pdflatex"
   "chapters/abstract/en.tex" 1735814856 2179 8050fce38418f32799f2e5e24d8070a5 ""
   "chapters/abstract/hu.tex" 1735904155 2753 57f24c35537457659de8ebbf5c3df652 ""
   "chapters/abstract/ro.tex" 1735815020 2576 6aa48c36046369eedef322396e26c3c8 ""
-  "chapters/architecture.tex" 1735811536 14884 2a0f69ab47fae806ffdb3f07ff8106cf ""
+  "chapters/architecture.tex" 1735988968 17910 7a97283760bf19604ede31ca4515f669 ""
   "chapters/goals.tex" 1735399860 2633 1323818401a9d62bfb1e57bcc9256690 ""
   "chapters/implementation.tex" 1733261752 13522 aa7555d987eb6ba03a5ee28e28203819 ""
   "chapters/introduction.tex" 1735907860 4938 89762cd5488024056d7272a0ffae9c9e ""
@@ -139,7 +139,9 @@
   "figures/buses.png" 1731139275 136705 916c89291b01635387ac22d8759a5394 ""
   "figures/create-employee.png" 1731139275 33945 a4eccd5fcf71da8e815cf2f09369869b ""
   "figures/edit-bus.png" 1731139275 42709 8839638f3fba577b2b4e2e752d66f3fe ""
+  "figures/gitkraken.png" 1735983334 350529 35b5b3fc06fd6f7ee1249c33d9cf3b2f ""
   "figures/jegyvasarlas.jpg" 1731139275 361621 4a5e8ffc8883df29797e9c4f436284ec ""
+  "figures/jira.png" 1735984795 200982 17971542598fd40695e694e8877089b4 ""
   "figures/md-buttons.png" 1733072777 29668 97f5afa8e9d8602c400c7e92be9c1e87 ""
   "figures/mobile-home1.jpg" 1731139275 325706 7e4a7f89336cbadec4d230d9f9692f68 ""
   "figures/mobile-home2.jpg" 1731139275 377904 890ce71bcea6a676143a8bba668253c4 ""

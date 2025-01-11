@@ -1,45 +1,55 @@
 A rendszer két fő részre bontható fel: háttérfolyamatok és megjelenítés. Mivel én a megjelenítés résszel foglalkozom, amely magában foglalja a felhasználói weboldalt, az adminisztrátori weboldalt és a mobil applikációt, ezért a következőkben csak ezekre a részekre vonatkozó követelmények specifikációját fogom részletezni. A háttérfolyamatok követelményei Zsigmond Attila kollégám dolgozatában lesznek ismertetve \cite{bus4userver}.
 
 \section{Felhasználói követelmények}
-A felhasználói követelmények azokat a funkciókat írják le, amelyre a felhasználó szemszögéből szükség van. A szoftver általános felhasználói követelményei a következők:
+A felhasználói követelmények azokat a funkciókat írják le, amelyre a felhasználó szemszögéből szükség van. A szoftver felületének általános követelményei a következők:
 
 \begin{itemize}
-  \item A felhasználó gyorsan és egyszerűen kell tudjon navigálni az oldalak között.
+  \item A felület legyen logikusan felépítve, hogy felhasználó gyorsan és egyszerűen tudjon navigálni az oldalak között.
   \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenetek megjelenítése által.
-  \item A felhasználói felületnek reszponzívnak kell lennie, azaz minden eszközön jól használhatónak kell lennie.
-  \item A felhasználói felületnek egységesnek kell lennie, azaz minden oldalon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az oldalak közötti váltást.
+  \item A rendszernek reszponzívnak és hibatűrőnek kell lennie, azaz minden eszközön jól használhatónak kell lennie.
+  \item A felhasználói felületnek egységesnek kell lennie, azaz minden platformon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az eszközök közötti váltást.
+  \item Az ikonok és a gombok egyértelműen tükrözzék a funkciójukat, hogy a felhasználók könnyen megtalálják a keresett funkciókat.
+  \item A felhasználói felületnek gyorsnak kell lennie, azaz a kérésekre azonnal válaszolnia kell, hogy a felhasználók ne érezzék lassúnak a rendszert.
 \end{itemize}
 
 A rendszer két különböző felületet tartalmaz: felhasználói- és adminisztrátori felület, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek, így ezeket külön-külön fogom részletezni.
 
 \subsection{Felhasználói felület}
-A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. A fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. A felhasználói felület funkciói oldalanként csoportosítva a következők:
+A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. A fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. A felhasználói felület követelményei a következők:
 
 \begin{itemize}
-  \item Főoldal: járatokra való rákeresés dátum, idő, kezdő- és célállomás alapján, találatok listázása indulási idő szerinti növekvő sorrendben, jegyvásárlás (bejelentkezés szükséges)
-  \item Menetrendek: buszok és megállók órarendjeinek megtekintése, járatok útvonalának megjelenítése térképen
-  \item Megállók: megállók listázása térképen, szűrés település vagy buszjárat alapján
-  \item Élő térkép: buszok valós idejű pozícióinak megtekintése térképen
-  \item Jegyek (bejelentkezés szükséges): megvásárolt jegyek listázása QR-kódokkal
+  \item Legyen lehetőség utazást tervezni dátum, idő, kezdő- és célállomás alapján
+  \item A talált járatok jelenjenek meg indulási idő szerinti növekvő sorrendben
+  \item Legyen lehetősége a bejelentkezett felhasználónak jegyet vásárolni online a járatokra
+  \item A rendszer jelenítse meg a buszok és megállók menetrendjeit
+  \item A járatok útvonalait lehessen megtekinteni a térképen
+  \item Térképen megtekinthetőek legyenek a megállók és szűrni is lehessen közöttük település vagy buszjárat alapján
+  \item A rendszer biztosítsa a buszok valós idejű pozícióinak követését a térképen
+  \item A megvásárolt jegyek megtekinthetőek legyenek bejelentkezés után
+  \item A jegyek QR-kódokkal legyenek ellátva a könnyebb beolvasás érdekében
 \end{itemize}
 
 \subsection{Adminisztrátori felület}
-Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a
-cégek főnökei tudnak létrehozni, mindenik a saját busztársaságához. Itt regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat. Az adminfelület funkciói oldalanként csoportosítva:
+Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a cégek főnökei tudnak létrehozni, mindenik a saját busztársaságához. Itt regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat, amelyekkel hozzáférnek a felülethez. Az adminfelületre vonatkozó követelmények:
 
 \begin{itemize}
-  \item Főoldal: statisztikák az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervalumok szerint csoportosítva, emlékeztetők megjelenítése
-  \item Megállók kezelése: megállók listázása, új megálló hozzáadása térkép segítségével, meglévő megállók szerkesztése, megállók törlése
-  \item Járatok kezelése: buszjáratok listázása, új járat hozzáadása, meglévő járat szerkesztése: megállók hozzáadása és eltávolítása, járatok törlése
-  \item Menetrendek kezelése: járatok indulási időpontjainak és jegyárainak megtekintése, szerkesztése és törlése
-  \item Buszok kezelése: buszok listázása, új busz hozzáadása, meglévő busz szerkesztése: útadó, biztosítás és műszaki vizsga időpontok megadása, buszok törlése
-  \item Alkalmazottak kezelése: alkalmazotti fiókok listázása, új alkalmazott hozzáadása, meglévő alkalmazott szerkesztése, alkalmazottak törlése
+  \item A főoldalon statisztikák jelenjenek meg az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervalumok szerint csoportosítva
+  \item A rendszer jelenítse meg a felületen a fontos emlékeztetőket és értesítéseket
+  \item Lehessen megtekinteni a megállók listáját, új megállókat hozzáadni térképen való megjelölés segítségével, valamit a meglévő megállókat szerkeszteni vagy törölni
+  \item A rendszer listázza a buszjáratokat és biztosítson lehetőséget új járat létrehozására, meglévő járat szerkesztésére, valamint járatok törlésére
+  \item A járatokhoz lehessen csatolni és eltávolítani előre létrehozott megállókat
+  \item A járatok indulási időpontjait jelenítse meg a rendszer, ezek változtatásait és törlését pedig mentse el az adatbázisban
+  \item A buszjáratokhoz és az útvonalak különböző részeihez lehessen külön-külön jegyárat megadni
+  \item A rendszer jelenítse meg a buszok listáját és biztosítson lehetőséget új busz hozzáadására, meglévő busz szerkesztésére, valamint buszok törlésére
+  \item A buszokhoz lehessen megadni útadó, biztosítás és műszaki vizsga lejárati időpontokat
+  \item A buszokhoz hasonlóan lehessen kezelni az alkalmazotti fiókok listáját is, létrehozással, szerkesztéssel és törléssel
 \end{itemize}
 
 A teljes rendszer funkcionalitását leíró használati eset diagram a \ref{fig:use-case}-es ábrán látható.
 
 \begin{figure}[H]
-  \includegraphics[height=\textheight]{figures/use-case.png}
+  \centering
+  \includegraphics[height=0.96\textheight]{figures/use-case.png}
   \caption{Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}
   \label{fig:use-case}
 \end{figure}

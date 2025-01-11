@@ -952,6 +952,11 @@ INPUT ./figures/architecture.jpg
 INPUT figures/architecture.jpg
 INPUT ./figures/architecture.jpg
 INPUT ./figures/architecture.jpg
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt0800.tfm
 INPUT ./figures/secvential-navigation.jpeg
 INPUT ./figures/secvential-navigation.jpeg
 INPUT figures/secvential-navigation.jpeg
@@ -1099,6 +1104,7 @@ INPUT Bus4U - UI.aux
 INPUT ./Bus4U - UI.out
 INPUT ./Bus4U - UI.out
 INPUT /usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
+INPUT /home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb

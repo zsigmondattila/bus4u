@@ -21,7 +21,26 @@ Az adatok kiszolgálásának folyamatában az adatbázisnak csak az a feladata, 
 Részletesebb leírást a backend felépítéséről és működéséről Zsigmond Attila kollégám dolgozatában lehet találni \cite{bus4userver}, mivel ő foglalkozott ezzel a résszel.
 
 \section{Kommunikáció}
-A felek közötti kommunikációt szemlélteti a \ref{fig:secvential-navigation} ábrán megjelenített szekvencia diagram, amely az utazás megtervezésének folyamatát írja le. A felhasználó a frontend felületen keresztül kiválasztja az indulási és célállomást, valamint az utazás idejét, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend először ellenőrzi a kérést, majd a megfelelő adatokat lekérdezi az adatbázisból és a választ visszaküldi a frontendnek, ahol az megjelenik a felhasználó számára. Amennyiben valahol hiba történik, a rendszer a hiba okát is visszajelzi a felhasználónak.
+A felek közötti kommunikációt szemlélteti a \ref{fig:secvential-navigation} ábrán megjelenített szekvencia diagram, amely az utazás megtervezésének folyamatát írja le. A felhasználó a frontend felületen keresztül kiválasztja az indulási és célállomást, valamint az utazás idejét, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend először ellenőrzi a kérést, majd a megfelelő adatokat lekérdezi az adatbázisból és a választ visszaküldi a frontendnek, ahol az megjelenik a felhasználó számára. Amennyiben valahol hiba történik, a rendszer a hiba okát is visszajelzi a felhasználónak. A következő kódrészlet intézi a kérést a frontend oldalon:
+
+\begin{lstlisting}[language=JavaScript]
+  let params = {}
+  if(form.fromStation && form.toStation){
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}
+  } else {
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time}
+  }
+  axios.get('https://api.bus4u.online/v1/get_available_tickets', { params })
+  .then(rsp => {
+      if(rsp.status == 200) {
+        routes.value = rsp.data
+        if(routes.value.length) {
+          routes.value = routes.value.sort((a, b) => a.departure_time - b.departure_time)
+        }
+        isLoadingRoutes.value = false
+      }
+    }).catch(routes.value = null)
+\end{lstlisting}
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/secvential-navigation.jpeg}

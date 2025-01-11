@@ -23,7 +23,7 @@ A weboldalra rákeresve a kezdőoldal fogad, ahol lehetőség van egy utazás me
 \end{figure}
 
 \newpage
-A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
+A jegyvásárlás folyamata a \ref{fig:web-home} és \ref{fig:mobile-home} ábrákon látható. A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/jegyvasarlas.jpg}
@@ -32,7 +32,7 @@ A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat 
 \end{figure}
 
 Ahogy az ábrán is látható, miután a felhasználó megtalálta a megfelelő
-buszjáratot és rákattintott a jegy(ek) megvásárlására, a rendszer átirányítja őt a
+buszjáratot és rákattintott a jegy megvásárlására, a rendszer átirányítja őt a
 bejelentkezéshez, itt, ha van már fiókja, bejelentkezhet a meglévő adataival,
 amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol meg kell adnia a nevét,
 email címét, és egy új jelszót. A rendszer minden adatot ellenőriz és ha valamelyik
@@ -41,8 +41,11 @@ hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy ennek m
 \subsection{Jegyek}
 
 A megvásárolt jegyeket a rendszer elmenti a felhasználó gyűjteményébe, amely a Jegyek oldalon
-található, így ezek bármikor visszakereshetőek és felhasználhatóak lesznek, kivéve ha lejár az egy hónapos érvényesség. A jegyen megjelenített adatok között van a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség dátumai. A már elhasznált jegyek megvannak jelölve és el van rejtve a rajtuk lévő QR-kód így azokat nem lehet többször felhasználni. A jegyek a létrehozási idejük szerinti csökkenő sorrendben vannak listázva, így a legfrissebb jegyek mindig az elején vannak. \\
-A itt megjelenő jegyeket úgy lehet felhasználni, hogy a buszra való felszálláskor a sofőr mellett elhelyezett POS terminálra kell mutatni az aktuális jegy QR-kódját, az pedig leolvassa és elküldi a szervernek ellenőrzésre. Ha a kód érvényes és minden rendben van, akkor a felhasználó felszállhat a buszra, a jegy pedig invalidálódik.
+található, így ezek bármikor visszakereshetőek és felhasználhatóak lesznek, kivéve ha lejár az egy hónapos érvényesség. A jegyen megjelenített adatok között van a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség dátumai. A már elhasznált jegyek megvannak jelölve és el van rejtve a rajtuk lévő QR-kód így azokat nem lehet többször felhasználni. A jegyek a létrehozási idejük szerinti csökkenő sorrendben vannak listázva, így a legfrissebb jegyek mindig az elején vannak.
+
+A itt megjelenő jegyeket úgy lehet felhasználni, hogy a buszra való felszálláskor a sofőr mellett elhelyezett POS terminálra kell mutatni az aktuális jegy QR-kódját, az pedig beolvassa és elküldi a szervernek ellenőrzésre. Ha a kód érvényes és minden rendben van, akkor a felhasználó felszállhat a buszra, a jegy pedig érvénytelenítődik.
+
+A webfelületen listázott jegyek a \ref{fig:tickets} ábrán láthatóak.
 
 \begin{figure}[H]
   \frame{\includegraphics[width=\textwidth]{figures/tickets.png}}
@@ -53,7 +56,7 @@ A itt megjelenő jegyeket úgy lehet felhasználni, hogy a buszra való felszál
 \subsection{Menetrend}
 A következő oldal a Menetrend, amely hasonlóan az egyes buszmegállókban kihelyezett
 táblázatokhoz, megjeleníti a kiválasztott buszjárat indulási időpontjait, az adott
-megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett egy interaktív térképet is, ahol a felhasználó meg tudja tekinteni a kiválasztott járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok élő helyzeteit is, a saját pozíciója mellett.
+megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett egy interaktív térképet is, ahol a felhasználó meg tudja tekinteni a kiválasztott járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok élő helyzeteit is, a saját pozíciója mellett. Egy példa a menetrendre és a térképen megjelenő útvonalra a \ref{fig:schedule} ábrán látható.
 
 \begin{figure}[H]
   \frame{\includegraphics[width=\textwidth]{figures/schedule.png}}
@@ -73,13 +76,13 @@ megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett eg
 
 Ez a két oldal az előbb említett térképes funkciókat mutatják meg külön-külön,
 egyszerűbben. A Megállók oldal megjeleníti a térképen az összes megállót, és ezek között
-szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót.
+szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót. A térképen megjelenő megállókról példa a \ref{fig:stations-mobile} ábrán látható.
 
 
-Az élő térkép oldalon pedig egy-egy útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost és az útvonalat. Ezeket az adatokat a buszokon lévő POS terminálok szolgátatják, így biztosak lehetünk abban, hogy a buszok helyzetei valós időben jelennek meg. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet, illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet vele spórolni.
+Az élő térkép oldalon pedig egy-egy útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost és az útvonalat. Ezeket az adatokat a buszokon lévő POS terminálok szolgáltatják, így biztosak lehetünk abban, hogy a buszok helyzetei valós időben jelennek meg. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet, illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet vele spórolni.
 
 
-Mindkét oldalon megjelenik a felhasználó jelenlegi pozíciója, amennyiben engedélyezte az ehhez való hozzáférést a telefonján, így könnyen megtalálhatja a legközelebbi megállót vagy buszt.
+Mindkét oldalon megjelenik a felhasználó jelenlegi pozíciója egy kék gombostű formájában, amennyiben engedélyezte az ehhez való hozzáférést a telefonján, ezáltal könnyebben meg lehet találni a legközelebbi megállót vagy buszt.
 
 \section{Adminisztrátori weboldal}
 Az adminisztrátori felület csak bejelentkezéssel elérhető, ehhez pedig egy admin típusú
@@ -88,7 +91,7 @@ adatai el vannak különítve, így minden adminisztrátor csak a saját cégéh
 láthatja és módosíthatja. Egy cégnek végtelen számú admin fiókja lehet, viszont ezek között lehetnek különbségek, amelyet a szerepkörök határoznak meg. Egyes adminok csak bizonyos funkciókat érhetnek el, míg mások mindenhez hozzáférhetnek. A sofőr szerepkörben lévő felhasználó például csak a buszok adatait láthatja és kezelheti, míg a menedzser szerepkörű adminisztrátor minden egyéb funkcióhoz is hozzáfér.
 
 \subsection{Kezdőoldal}
-Sikeres bejelentkezés után a kezdőoldal jelenik meg, amelyen látható egy kis statisztika a regisztrált felhasználók számával, a megvásárolt jegyek számával és a bevétellel, mindezek havi, évi és mindenkori bontásban. Ez a statisztika segíthet a cégvezetőknek a tanulságok levonásában és a fontos döntések meghozatalában is. Ezen kívül itt jelennek meg az esetleges figyelmeztetések és értesítések is, mint például a buszok lejárt útadója vagy a közelgő műszaki vizsgálat, így biztosan nem felejtődnek el a karbantartással kapcsolatos események.
+Sikeres bejelentkezés után a kezdőoldal jelenik meg, amelyen látható egy kis statisztika a regisztrált felhasználók számával, a megvásárolt jegyek számával és a bevétellel, mindezek havi, évi és mindenkori bontásban. Ez a statisztika segíthet a cégvezetőknek a tanulságok levonásában és a fontos döntések meghozatalában is. Ezen kívül itt jelennek meg az esetleges figyelmeztetések és értesítések is, mint például a buszok lejárt útadója vagy a közelgő műszaki vizsgálat, így biztosan nem felejtődnek el a karbantartással kapcsolatos események. A kezdőoldal a \ref{fig:statistics} ábrán látható.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/statistics.png}
@@ -97,7 +100,7 @@ Sikeres bejelentkezés után a kezdőoldal jelenik meg, amelyen látható egy ki
 \end{figure}
 
 \subsection{Megállók}
-A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataival, mint a név, a hely és a földrajzi koordináták. Egy megállóra rákattintva ennek pontos helyzete megjelenik a lista mellett található interaktív térképen. A listaelemeken található egy törlés gomb is amellyel megszüntethetjük az adott megállót. A lista alatt létre lehet hozni új megállókat is, ehhez csak meg kell adni a megálló nevét, a várost, a címet és a koordinátákat. A rendszer képes automatikusan is kitölteni a néven kívül az összes adatot, ha a felhasználó a megálló tervezett helyére kattint a térképen, ahogy az \ref*{fig:stations} ábrán is látszik.
+A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataival, mint a név, a hely és a földrajzi koordináták. Egy megállóra rákattintva ennek pontos helyzete megjelenik a lista mellett található interaktív térképen. A lista elemein található egy törlés gomb is amellyel megszüntethetjük az adott megállót. A lista alatt létre lehet hozni új megállókat is, ehhez csak meg kell adni a megálló nevét, a várost, a címet és a koordinátákat. A rendszer képes automatikusan is kitölteni a néven kívül az összes adatot, ha a felhasználó a megálló helyére kattint a térképen, ahogy ez \ref*{fig:stations} ábrán is látszik.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/stations.png}
@@ -114,7 +117,6 @@ Az Útvonalak oldalon lehet szerkeszteni a buszjáratok útvonalait vagy újakat
   \label{fig:routes}
 \end{figure}
 
-\newpage
 \subsection{Menetrend}
 A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz lehet
 órarendeket hozzárendelni. Itt az útvonal és megálló kiválasztása után meg kell adni az órarendre érvényes napokat, a következő megállóig megszabott jegyárat és az indulási időpontokat. Egy megállóhoz hozzá lehet adni több ilyen órarendet is, így el lehet különíteni a hétvégét a hétköznapoktól, de akár minden napra lehet más-más órarendet is megadni, ha különböznek az indulási időpontok vagy akár a jegyárak. Az órarendeket egyesével lehet szerkeszteni és törölni is, csak az a fontos, hogy a módosításokat a felhasználó az oldal alján található gombbal mentse el, különben nem lesznek érvényesek. A \ref{fig:schedules-admin} ábrán látható egy példa a menetrend szerkesztésére.
@@ -126,11 +128,11 @@ A következő oldal a Menetrend, ahol a létrehozott útvonalak megállóihoz le
 \end{figure}
 
 \subsection{Buszok és alkalmazottak}
-Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Ez a két oldal hasonlóan néz ki és hasonlóan működik. Mindkét esetben látható egy lista a meglévő buszokkal vagy alkalmazottakkal, ahol minden elemet egy ú.n. kártya komponens reprezentál. A kártyák tartalmazzák az elemek összes tulajdonságát, és két gombot, amelyekkel lehet módosítani vagy törölni őket. Az utolsó kártya segítségével újabb példányt is lehet létrehozni az adott kategóriában. A buszok létrehozásánal meg kell adni a márkát, a rendszámot, a férőhelyek számát, a gyártási évet, valamint az útadó, a biztosítás és a műszaki engedély lejárati dátumait. Az utóbbiakról később emlékeztető fog megjelenni a weboldalon, amikor közeledik azok lejárati ideje. Új alkalmazott hozzáadásánál meg kell adni a nevet, e-mail címet, beosztást (ez adja majd meg a jogait a weboldalon), telefonszámot, lakcímet (ez opcionális), és egy új jelszavat. A buszok listája és a rajta szerepelő kártyák a \ref{fig:buses} ábrán láthatóak, míg a busz szerkesztésére és az alkalmazott létrehozására példa a \ref{fig:edit-bus} ábrán.
+Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Ez a két oldal hasonlóan néz ki és hasonlóan működik. Mindkét esetben látható egy lista a meglévő buszokkal vagy alkalmazottakkal, ahol minden elemet egy ú.n. kártya komponens reprezentál. A kártyák tartalmazzák az elemek összes tulajdonságát, és két gombot, amelyekkel lehet módosítani vagy törölni őket. Az utolsó kártya segítségével újabb példányt is lehet létrehozni az adott kategóriában. A buszok létrehozásánal meg kell adni a márkát, a rendszámot, a férőhelyek számát, a gyártási évet, valamint az útadó, a biztosítás és a műszaki engedély lejárati dátumát. Az utóbbiakról később emlékeztető fog megjelenni a weboldalon, amikor közeledik azok lejárati ideje. Új alkalmazott hozzáadásánál meg kell adni a nevet, e-mail címet, beosztást (ez adja majd meg a jogait a weboldalon), telefonszámot, lakcímet (ez opcionális), és egy új jelszavat. Az alkalmazottak listája és a rajta szereplő kártyák a \ref{fig:buses} ábrán láthatóak, míg a busz szerkesztésére és az alkalmazott létrehozására példa a \ref{fig:edit-bus} ábrán.
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{figures/buses.png}
-  \caption{Buszok listája}
+  \includegraphics[width=\textwidth]{figures/employees.png}
+  \caption{Az alkalmazottak listája}
   \label{fig:buses}
 \end{figure}
 

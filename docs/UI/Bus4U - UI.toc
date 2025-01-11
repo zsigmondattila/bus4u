@@ -36,8 +36,8 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőoldal}{39}{subsection.7.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{39}{subsection.7.2.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{40}{subsection.7.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{42}{subsection.7.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{41}{subsection.7.2.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{42}{subsection.7.2.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{45}{chapter.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.1}További fejlesztési lehetőségek}{46}{section.8.1}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{46}{section.8.1}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{44}{chapter.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}További fejlesztési lehetőségek}{45}{section.8.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{45}{section.8.1}%

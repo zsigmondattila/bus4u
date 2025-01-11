@@ -1069,11 +1069,11 @@ INPUT ./figures/schedules_admin.png
 INPUT figures/schedules_admin.png
 INPUT ./figures/schedules_admin.png
 INPUT ./figures/schedules_admin.png
-INPUT ./figures/buses.png
-INPUT ./figures/buses.png
-INPUT figures/buses.png
-INPUT ./figures/buses.png
-INPUT ./figures/buses.png
+INPUT ./figures/employees.png
+INPUT ./figures/employees.png
+INPUT figures/employees.png
+INPUT ./figures/employees.png
+INPUT ./figures/employees.png
 INPUT ./figures/edit-bus.png
 INPUT ./figures/edit-bus.png
 INPUT figures/edit-bus.png

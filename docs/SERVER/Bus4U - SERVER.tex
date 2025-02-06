@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt, twoside]{report}
 
 \usepackage[utf8]{inputenc}
 \def\magyarOptions{defaults=hu-min}
@@ -10,12 +10,17 @@
 \usepackage{graphicx}
 \usepackage{multicol}
 \usepackage{moresize}
+\usepackage{float}
+\usepackage{setspace}
 
 \title{Bus4U - Szerver oldal}
 \author{Zsigmond Attila}
 \date{}
 
 \begin{document}
+
+\raggedbottom
+
 
 \begin{titlepage}
   \centering
@@ -28,7 +33,7 @@
   \textbf{Bus4U - Szerver oldal} \\
   \vspace{0.5in}
   \Huge
-  Szakdolgozat \\
+  \textbf{DIPLOMADOLGOZAT} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -58,7 +63,7 @@
   \textbf{Bus4U - Partea de Server} \\
   \vspace{0.5in}
   \Huge
-  Lucrare finală \\
+  \textbf{PROIECT DE DIPLOMĂ} \\
   \vspace{2.5in}
   \Large
   \begin{multicols}{2}
@@ -77,21 +82,54 @@
   2024
 \end{titlepage}
 
+\onehalfspacing
+
 \begin{abstract}
-  A webalkalmazás a tömegközlekedés megkönnyítését szolgálja. Lehetőséget biztosít jegyvásárlásra egy megadott járatra, illetve megtekinthetőek a járatok időpontjai városokra és megállókra lebontva. Ezen kívül megtekinthetőek a buszmegállók lokációi városok, illetve útvonalak szerint szűrve. Egy live map funkcióban valós időben követhetőek az autóbuszok jelenlegi helyzete, hogy a felhasználó előre informálódni tudjon a menetrend változásáról. Utóbbihoz, illetve a jegykezeléshez szükség van egy alkalmazásra, ami a buszokon található POS terminálon fut. Ez biztosítja a jegyek érvényesítését, illetve az autóbuszok helyzetének megosztását.
-  \newline
-  Ezen felül a webalkalmazás biztosít egy adminisztrációs felületet a busztársaságok számára. Ebben lehetőség nyílik elsősorban a menetrendek kezelésére, megállók és útvonalak feltöltésére. Itt lehet kezelni az alkalmazottak információit, és az autóbuszok különböző adatait.
-  \newline
-  Ezen dolgozat a webalkalmazás szerver oldali komponenseire fókuszál.
+  \input{chapters/abstract_ro}
+\end{abstract}
+\begin{abstract}
+  \input{chapters/abstract_en}
+\end{abstract}
+\begin{abstract}
+  \input{chapters/abstract_hu}
 \end{abstract}
 
-\newpage
-
 \tableofcontents
-\newpage
+\listoffigures
 
-
+\chapter{Bevezető}
 \input{chapters/introduction}
+
+\chapter{Célkitűzések}
+\input{chapters/goals}
+
+\chapter{Elméleti megalapozás és bibliográfiai tanulmány}
+\input{chapters/theory}
+
+\chapter{Rendszer specifikációi}
 \input{chapters/requirements}
+
+\chapter{A rendszer részletes leírása}
+\input{chapters/detailed_description}
+
+\chapter{Infrastruktúra}
+\input{chapters/infrastructure}
+
+\chapter{Az alkalmazás működése}
+\input{chapters/operation}
+
+\chapter{A rendszer tesztelése}
+\input{chapters/testing}
+
+\chapter{Összefoglalás}
+\input{chapters/summary}
+
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{ieeetr}
+\bibliography{references}
+
+\appendix
+\chapter{Függelék}
+\input{chapters/appendix}
 
 \end{document}

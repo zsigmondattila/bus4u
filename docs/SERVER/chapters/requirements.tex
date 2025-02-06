@@ -1,45 +1,79 @@
-\section{Követelmény specifikációk}
 
-\subsection{Felhasználói követelmények}
-A felhasználói weboldal bejelentkezés nélkül használható. A főoldalon lehetőség nyílik rákeresni járatokra dátum, idő és cél alapján, a menetrendeknél megtekinthetőek a buszok és a megállók órarendjei. A megállók oldalon megjelenik az összes megálló a térképen, amelyek között szűrést is lehet alkalmazni. Az élőben frissülő térkép lapon követni lehet a buszok pozícióját percről percre. A jegyek oldalon vannak listázva az eddig megvásárolt jegyek QR-kódjai, a rólunk szóló oldalon pedig egy rövid leírás található a projektről. Fiókot létrehozni kizárólag a jegyvásárláshoz szükséges, ami a főoldalon lehetséges amennyiben a felhasználó megtalálta a neki megfelelő járatot és rálépett a vásárlás gombra. Fiók regisztrációjához meg kell adni a teljes nevet, egy meglévő email címet, egy új jelszót, majd egy ellenőrző kódot, amit a rendszer elküld a megadott email címre.
+\section{Felhasználói követelmények}
 
-Az admin felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak az adott cég főnöke tud létrehozni a saját busztársaságához, erre az alkalmazottak című lapon van lehetőség. Emellett az adminoknak lehetőségük van szerkeszteni a megállók listáját, valamint az útvonalak összes tulajdonságát is (meglátogatott megállók, indulási időpontok és jegyárak), ezeket a megállóknak és a járatoknak szóló oldalakon. A főoldalon egy statisztikát is láthatnak az eladott jegyek számáról, a megtett kilométerről és a bevételről, mindezt hónapos, éves és mindenkori bontásokban. Van még egy lap a buszok adatainak kezelésére is, ahol lehet konfigurálni az útadót, a biztosítást és a műszaki vizsgát is, valamit itt lehet buszokat kivonni forgalomból és hozzáadni újakat is.
+\subsection{Felhasználói weboldal}
+A felhasználói weboldal bejelentkezés nélkül használható. A főoldalon lehetőség nyílik járatokra keresni dátum, idő és cél alapján. A menetrendeknél megtekinthetőek a buszok és megállók órarendjei. A megállók oldalon az összes megálló térképen jelenik meg, és szűrést is lehet alkalmazni. Az élőben frissülő térképen a buszok pozícióját percről percre lehet követni. A jegyek oldalon listázva vannak az eddig megvásárolt jegyek QR-kódjai.
 
+Fiókot létrehozni kizárólag a jegyvásárláshoz szükséges. A főoldalon, ha a felhasználó megtalálta a megfelelő járatot, ráléphet a vásárlás gombra. A fiók regisztrációjához meg kell adni:
+\begin{itemize}
+    \item teljes név
+    \item email cím
+    \item új jelszó
+    \item ellenőrző kód (amit a rendszer elküld a megadott email címre)
+\end{itemize}
+
+\subsection{Admin felület}
+Az admin felület kizárólag bejelentkezéssel elérhető. Új fiókokat csak az adott cég vezetője tud létrehozni az "Alkalmazottak" oldalon. Az adminoknak lehetőségük van:
+\begin{itemize}
+    \item a megállók listájának szerkesztésére
+    \item az útvonalak összes tulajdonságának módosítására (meglátogatott megállók, indulási időpontok, jegyárak)
+    \item a főoldalon elérhető statisztikák megtekintésére (eladott jegyek száma, megtett kilométer, bevétel)
+    \item a buszok adatainak kezelésére (útadó, biztosítás, műszaki vizsga, buszok kivonása forgalomból, új buszok hozzáadása)
+\end{itemize}
+
+\subsection{Mobil applikáció}
 A Flutter alapú mobil applikáció ugyanúgy működik, mint a felhasználóknak szánt weboldal, így ugyanazok a követelmények vonatkoznak erre is.
 
-A POS terminál alkalmazás használatához szükség van egy sofőr szerepkörű admin fiókra. Bejelentkezés után lehetőség van egy adott busz követését, illetve a jegyszkennelő programot elindítani.
+\subsection{POS terminál alkalmazás}
+A POS terminál alkalmazás használatához szükség van egy sofőr szerepkörű admin fiókra. Bejelentkezés után lehetőség van egy adott busz követésének elindítására, valamint a jegyszkennelés működtetésére.
 
-\subsection{Rendszerkövetelmények}
+A rendszer használati eset diagramja az \ref{fig:use-case}-es ábrán látható.
 
-\subsubsection{Funkcionális követelmények}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth]{figures/use-case.jpg}
+  \caption{Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}
+  \label{fig:use-case}
+\end{figure}
+\section{Rendszerkövetelmények}
+
+\subsection{Funkcionális követelmények}
 A felhasználói felület minden oldalán van egy kis form, amelyet kitöltve le lehet kérni az adatbázisból az adott oldalon megjelenítendő adatokat. Ilyenre példa van a főoldalon is, ahol meg kell adni az indulás helyét, a cél helyét (települést) és opcionálisan az ezekhez tartozó megállót, egy-egy lenyíló listából kiválasztva az adatokat. A települések betöltődnek az oldallal együtt, a megállók listája viszont csak a város kiválasztása után, mindig csak az adott településen találhatóak jelennek meg. Ezen kívül a főoldalon van egy dátumválasztó és egy időválasztó is, ezek alapértelmezetten az aktuális dátummal és idővel vannak kitöltve. Ha a form ki van töltve, a keresés gomb lenyomására az oldal elküldi a bevitt adatokat a backend szerverre, amely válaszként elküld egy listát a megfelelő utazási lehetőségekkel. Ezek az adatok JSON formátumban, HTTP protokollon keresztül közlekednek a frontend és backend között. A többi oldal is hasonlóan működik, először az adatokat kell megadni, aztán a gomb lenyomására pillanatok alatt megjelenik a képernyőn a szerver válasza a bevitt adatokra.
 
 A különböző formokon kívül, a weboldalon található térképek is API hívásokkal működnek. A rendszer először betölti az alap térképet a MapBox API segítségével, aztán amint a felhasználó kiválasztotta a megtekinteni kívánt útvonalat a Menetrend vagy az Élő térkép lapon, a weboldal a saját adatbázisunkból kéri le a hozzá tartozó megállók koordinátáit, ezeket megjeleníti a térképen, végül ismét a MapBox API-t használva útvonal-tervet generáltat. Ez úgy működik, hogy a rendszer elküldi a megállók listáját és visszakap egy sok pontból álló új listát a MapBox-tól, ezeket összekötve sok kis vonallal, kirajzolódik a részletes útvonal a térképen.
 
-\subsubsection{Nem-funkcionális követelmények}
+\subsection{Nem-funkcionális követelmények}
 
 \paragraph{Szervezéssel kapcsolatos követelmények}
 \begin{itemize}
-    \item Programozási nyelvek: Ruby, Dart, HTML, CSS, JavaScript
-    \item Keretrendszerek: Ruby on Rails, Flutter, Vue.js
-    \item IDE: Visual Studio Code
-    \item Verziókövetés: Git és GitHub
-    \item Adatbázis: Postgres
-    \item Cloud Service: Azure
-    \item Webhost: Netlify
-    \item Csoportos kommunikáció: Slack
+    \item \textbf{Programozási nyelvek}: Ruby, Dart, HTML, CSS, JavaScript
+    \item \textbf{Keretrendszerek}: Ruby on Rails, Flutter, Vue.js
+    \item \textbf{IDE}: Visual Studio Code
+    \item \textbf{Verziókövetés}: Git és GitHub
+    \item \textbf{Adatbázis}: PostgreSQL
+    \item \textbf{Cloud szolgáltatás}: Azure
+    \item \textbf{Webhoszt}: Netlify
+    \item \textbf{Csoportos kommunikáció}: Slack
 \end{itemize}
 
 \paragraph{Termékkel kapcsolatos követelmények}
-A felhasználói weboldal és az admin felület használatához egy modern, internetezésre alkalmas eszközre van szükség. Ajánlott a 2018 után kiadott böngészők használata:
+A felhasználói weboldal és az admin felület használatához modern, internetezésre alkalmas eszközre van szükség, legalább 2018-as vagy frissebb böngészőkkel:
 \begin{itemize}
-    \item Chrome >= 87
-    \item Firefox >= 78
-    \item Safari >= 14
-    \item Edge >= 88
+    \item \textbf{Chrome}: 87 vagy újabb
+    \item \textbf{Firefox}: 78 vagy újabb
+    \item \textbf{Safari}: 14 vagy újabb
+    \item \textbf{Edge}: 88 vagy újabb
 \end{itemize}
 
-Az applikáció használatához szükség van egy okostelefonra, vagy tabletre, amelyen minimum Android 5 vagy iOS 8-as verzió van telepítve. Fontos, hogy legyen rajta helymeghatározás, internet elérés (3G, 4G, 5G) és legyen rajta minimum 120MB szabad tárhely és 516-1024 MB szabad memória.
+Az applikáció használatához internettel és GPS antennával rendelkező okostelefon vagy tablet szükséges, a következő minimális követelményekkel:
+\begin{itemize}
+    \item \textbf{Operációs rendszer}: Android 5.0 vagy iOS 8.0 és újabb
+    \item \textbf{Szabad tárhely}: minimum 120 MB
+    \item \textbf{Memória}: 516–1024 MB
+\end{itemize}
 
-A POS terminál alkalmazásához ideális esetben egy Sunmi V2 PRO típusú POS terminálra van szükség, de ha ez valamilyen oknál fogva nem áll rendelkezésre, akkor bármilyen, legalább Android 5.0-át, vagy iOS 8-at futtató, kamerával és GPS antennával rendelkező eszköz megteszi, illetve szükség van 100MB szabad tárhelyre és 510MB szabad memóriára.
+A POS terminál alkalmazás futtatásához egy Sunmi V2 PRO POS terminál ajánlott. Alternatívaként, ha nem áll rendelkezésre, bármely kamerával és GPS antennával ellátott, minimum Android 5.0 vagy iOS 8-at futtató eszköz is használható:
+\begin{itemize}
+    \item \textbf{Szabad tárhely}: legalább 100 MB
+    \item \textbf{Memória}: minimum 510 MB
+\end{itemize}
 

@@ -1,0 +1,50 @@
+\section{Technológiai háttér}
+A Bus4U alkalmazás digitális megoldásai mögött modern webtechnológiák állnak, amelyek lehetővé teszik a felhasználói élmény folyamatos fejlesztését és a szolgáltatások hatékony működését. Az alkalmazás backendje Ruby on Rails keretrendszert használ, amely az egyik legnépszerűbb választás webes alkalmazások fejlesztésére.
+
+\subsection{Ruby on Rails}
+A \textit{Ruby on Rails} egy népszerű és széles körben használt webes keretrendszer, amely a Ruby programozási nyelvre épül. A Rails két alapvető elv alapján működik: a „\textit{Convention over Configuration}” és a „\textit{Don’t Repeat Yourself}”. Ezek az elvek azt eredményezik, hogy a fejlesztőknek kevesebb kóddal kell dolgozniuk, mivel a Rails konvenciói automatikusan meghatározzák a konfigurációkat, így csökkentve a redundáns kódot és növelve a fejlesztési folyamat hatékonyságát \cite{hartl_rails, fernandez_rails}. Ez különösen hasznos nagyobb projektek esetén, mivel elősegíti a gyorsabb fejlesztést és az egyszerűbb karbantartást, amely a gyorsan változó üzleti igények mellett nélkülözhetetlen.
+
+A Rails \textit{MVC (Model-View-Controller)} architektúrára épül, amely logikailag elkülöníti az alkalmazás különböző részeit: az adatkezelést (Model), a felhasználói felületet (View), és az üzleti logikát (Controller). Ez a struktúra átláthatóbbá teszi a kódot, mivel a különböző funkciók külön-külön karbantarthatók, anélkül hogy zavarnák egymást, valamint megkönnyíti az új funkciók hozzáadását is. A Rails alkalmazásokhoz számos „\textit{gem}”, vagyis könyvtár érhető el, amelyek előre elkészített megoldásokat kínálnak, így még a komplexebb funkciók integrálása is könnyebb és biztonságosabb lehet \cite{hartl_rails}.
+
+A Rails további előnye, hogy natív módon támogatja \textit{RESTful API}-k létrehozását. A RESTful megközelítés egyértelmű, szabványosított formát biztosít az API-k számára, amely megkönnyíti az alkalmazások közötti integrációt, például egy mobilalkalmazás és a backend közötti kommunikáció során. Ennek a felépítésnek köszönhetően a Rails alkalmazások egyszerűen összekapcsolhatók más rendszerekkel és frontend megoldásokkal \cite{fernandez_rails}.
+
+Végül, a Rails beépített tesztelési eszközei lehetőséget adnak az automatizált tesztelésre, amely hozzájárul a szoftverek magasabb megbízhatóságához és a hibamentes működés biztosításához a fejlesztés minden szakaszában. Az ilyen automatizált tesztelési funkciók szintén csökkentik a karbantartási költségeket, hiszen a kódminőség magasabb szinten tartható, és gyorsan azonosíthatók a hibák \cite{hartl_rails, fernandez_rails}.
+
+\subsection{PostgreSQL}
+A \textit{PostgreSQL} egy \textit{nyílt forráskódú, objektum-relációs adatbázis-kezelő rendszer}, amely széles körben ismert teljesítményéről, rugalmasságáról, és különösen alkalmas komplex adatszerkezetek és nagy adattömegek kezelésére. Támogatja a fejlett adattípusokat, bonyolult lekérdezéseket, és párhuzamos műveleteket, amelyek különösen hasznosak a Bus4U-hoz hasonló, valós idejű adatokat feldolgozó rendszerekben \cite{douglas_postgresql, murrell_postgresql}.
+
+A PostgreSQL előnyei a Bus4U számára: \begin{itemize} \item \textbf{Teljesítmény optimalizálása és bonyolult lekérdezések kezelése}: A PostgreSQL kiválóan kezeli a párhuzamos lekérdezéseket és optimalizált módon képes kezelni nagy mennyiségű adatot és komplex lekérdezési struktúrákat. Ez biztosítja az alkalmazás gyors, megbízható működését, és lehetőséget nyújt az adatbázis hatékony méretezésére és finomhangolására az adatmennyiség növekedésével \cite{murrell_postgresql}. \item \textbf{Skálázhatóság}: Nagyobb adatmennyiség vagy felhasználói terhelés esetén a PostgreSQL támogatja a függőleges és vízszintes skálázást. Ezen túlmenően replikációval biztosítható a magas rendelkezésre állás, amely kritikus szempont a nagy terhelés alatt működő rendszerekben. Így a PostgreSQL hosszú távú, fenntartható teljesítményt és magas rendelkezésre állást biztosít, amely elengedhetetlen a Bus4U megbízható működéséhez \cite{douglas_postgresql}. \end{itemize}
+
+\subsection{Azure}
+Az \textit{Azure} egy olyan nagyvállalati szintű, biztonságos és skálázható felhőplatform, amely számos lehetőséget kínál modern alkalmazások fejlesztéséhez és működtetéséhez. Az Azure infrastruktúrája révén biztosítható a folyamatos és megbízható működés, míg a platform rugalmassága lehetővé teszi az erőforrások hatékony kezelését és a skálázhatóságot \cite{wilder_azure, collier_azure}. Az Azure használatával elkerülhetőek a hagyományos szerver infrastruktúrák fizikai korlátai, és olyan erőforrások válnak elérhetővé, amelyek az alkalmazás igényei szerint rugalmasan méretezhetők.
+
+Az Azure előnyei a Bus4U számára:
+
+\begin{itemize} 
+    \item \textbf{Skálázhatóság és rugalmasság}: Az Azure automatikusan alkalmazkodik a változó terheléshez, amely lehetővé teszi, hogy a rendszer gördülékenyen kezelje a megnövekedett felhasználói forgalmat. Ez az adaptív megközelítés egy modern, folyamatosan növekedő alkalmazás számára elengedhetetlen, különösen tömegközlekedési rendszerek esetében, ahol a felhasználói igények időben változhatnak \cite{wilder_azure}.
+    \item \textbf{Biztonság és adatvédelem}: Az Azure erőteljes adatvédelmi szabályokat és fejlett biztonsági protokollokat alkalmaz. Ezek közé tartozik a többfaktoros hitelesítés, a hálózati tűzfalak, valamint az adattitkosítás, amelyek biztosítják, hogy a Bus4U felhasználóinak adatai biztonságban legyenek. A platform megfelel a szigorú adatvédelmi szabványoknak, ami kulcsfontosságú egy olyan alkalmazás számára, amely szenzitív felhasználói adatokat kezel \cite{collier_azure}.
+\end{itemize}
+
+\section{A közlekedési rendszerek és a jövőbeli trendek}
+
+A közlekedési rendszerek jövőbeli fejlődése alapvetően meghatározza az olyan alkalmazások, mint a Bus4U sikerét. Levinson és Krizek \cite{levinson_transport} szerint a közlekedés jövője radikális változások elé néz, amelyek magukban foglalják a forgalom csökkenését és az új mobilitási megoldások elterjedését. A közlekedés jövőjére vonatkozó előrejelzések hangsúlyozzák az automatizálás, a megosztott közlekedési módok és az okos városok integrálását, amelyek mind hozzájárulnak a fenntarthatóbb és hatékonyabb közlekedési hálózatok kialakításához. A Bus4U alkalmazás azzal, hogy valós idejű információkat biztosít a közlekedési rendszerről, közvetlenül hozzájárulhat ezen trendek előmozdításához.
+
+Ceder \cite{ceder_transit} a közlekedési rendszerek tervezésében és üzemeltetésében alkalmazott eljárásokat és módszereket vizsgálja, különös figyelmet fordítva a tömegközlekedési rendszerek hatékonyságának és minőségének javítására. Az alkalmazás szempontjából kulcsfontosságú lehet, hogy a különböző típusú közlekedési eszközök integrálása és azok közötti interakciók optimalizálása révén a rendszer a lehető legjobb utazási élményt biztosítsa. Az automatizált jegyvásárlás és az utazási időszámítás optimalizálása mind hozzájárulhat a felhasználók elégedettségéhez.
+
+\section{Hasonló alkalmazások}
+
+A közlekedési alkalmazások, mint például a Budapest Go, jelentős hatással vannak a modern városi közlekedésre. A Budapest Go a magyarországi főváros tömegközlekedési rendszerének digitális megoldása, amely lehetővé teszi a felhasználók számára, hogy egyszerűen és gyorsan intézzék utazásaik szervezését. Az alkalmazás számos funkcióval rendelkezik, amelyek javítják a felhasználói élményt.
+
+A Budapest Go célja, hogy a város tömegközlekedését még hozzáférhetőbbé és felhasználóbarátabbá tegye. Az alkalmazás főbb jellemzői közé tartozik:
+
+\begin{itemize} \item Valós idejű menetrendek: Az alkalmazás folyamatosan frissíti a buszok, villamosok és metrók érkezési idejét, lehetővé téve a felhasználók számára, hogy pontosan tudják, mikor indul a következő járat. \item Online jegyvásárlás: A felhasználók az alkalmazáson belül jegyeket vásárolhatnak, ami gyorsítja a folyamatot és csökkenti a sorban állás szükségességét. \item Útvonaltervezés: Az alkalmazás lehetővé teszi a felhasználók számára, hogy megtervezzék utazásaikat, figyelembe véve a különböző közlekedési eszközöket és a lehető leghatékonyabb útvonalakat. \item Használati statisztikák: A Budapest Go elemzi a felhasználók utazási szokásait, lehetővé téve a szolgáltatók számára, hogy jobban megértsék a közlekedési igényeket és fejleszthessék szolgáltatásaikat. \end{itemize}
+
+\subsection{Felhasználói élmény és innovációk}
+
+A Budapest Go nemcsak a közlekedési információk egyszerűsítésére szolgál, hanem innovatív megoldásokat is kínál a felhasználók számára. Az alkalmazás intuitív felhasználói felülete lehetővé teszi a könnyű navigációt, így még a technológiához kevésbé értő felhasználók is könnyen el tudnak igazodni.
+
+\subsection{Hatások a közlekedési rendszerre}
+
+A Budapest Go alkalmazás bevezetése jelentős hatással volt a főváros közlekedési rendszerére. A digitális jegyvásárlás elterjedése csökkentette a készpénzes tranzakciók számát, így gyorsabbá téve a közlekedési folyamatokat. Ezenkívül a valós idejű információk elérhetősége segít a felhasználóknak a jobb döntéshozatalban, ami hozzájárul a város közlekedési hatékonyságának növeléséhez.
+
+A Budapest Go egy példa arra, hogyan lehet a digitális technológiát alkalmazni a városi közlekedés fejlesztésére. Az alkalmazás által kínált funkciók és a felhasználói élmény folyamatos javítása hozzájárul a közlekedési rendszerek modernizálásához és a fenntartható közlekedés népszerűsítéséhez.

@@ -1,93 +1,98 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.7.30)  25 AUG 2024 22:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.12)  3 DEC 2024 15:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **"/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex"
 (/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen138
+\c@part=\count187
+\c@chapter=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
 ) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2022/01/26 3.70 The Babel package
-\babel@savecnt=\count193
-\U@D=\dimen139
-\l@unhyphenated=\language35
+Package: babel 2024/01/07 v24.1 The Babel package
+\babel@savecnt=\count196
+\U@D=\dimen141
+\l@unhyphenated=\language37
  (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count194
+\bbl@dirlevel=\count197
  (./magyar.ldf
 Language: magyar 2019/01/14 v1.5c Magyar (Hungarian) support for babel
-\c@enumv=\count195
+\c@enumv=\count198
 Package babel Info: Making ; an active character on input line 2791.
 Package babel Info: Making ! an active character on input line 2793.
 Package babel Info: Making ? an active character on input line 2799.
 Package babel Info: Making : an active character on input line 2801.
 Package babel Info: Making ` an active character on input line 2819.
-\c@footnote@add=\count196
-\c@footnote@ch=\count197
-)) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
-Package: ragged2e 2021/12/15 v3.1 ragged2e Package
-\CenteringLeftskip=\skip49
-\RaggedLeftLeftskip=\skip50
-\RaggedRightLeftskip=\skip51
-\CenteringRightskip=\skip52
-\RaggedLeftRightskip=\skip53
-\RaggedRightRightskip=\skip54
-\CenteringParfillskip=\skip55
-\RaggedLeftParfillskip=\skip56
-\RaggedRightParfillskip=\skip57
-\JustifyingParfillskip=\skip58
-\CenteringParindent=\skip59
-\RaggedLeftParindent=\skip60
-\RaggedRightParindent=\skip61
-\JustifyingParindent=\skip62
+\c@footnote@add=\count199
+\c@footnote@ch=\count266
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/hu/babel-magyar.tex
+Package babel Info: Importing font and identification data for magyar
+(babel)             from babel-hu.ini. Reported on input line 11.
+) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip50
+\RaggedLeftLeftskip=\skip51
+\RaggedRightLeftskip=\skip52
+\CenteringRightskip=\skip53
+\RaggedLeftRightskip=\skip54
+\RaggedRightRightskip=\skip55
+\CenteringParfillskip=\skip56
+\RaggedLeftParfillskip=\skip57
+\RaggedRightParfillskip=\skip58
+\JustifyingParfillskip=\skip59
+\CenteringParindent=\skip60
+\RaggedLeftParindent=\skip61
+\RaggedRightParindent=\skip62
+\JustifyingParindent=\skip63
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.sty
 Package: t1enc 1994/06/01 Standard LaTeX package
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks18
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count198
-\Gm@cntv=\count199
-\c@Gm@tempcnt=\count266
-\Gm@bindingoffset=\dimen140
-\Gm@wd@mp=\dimen141
-\Gm@odd@mp=\dimen142
-\Gm@even@mp=\dimen143
-\Gm@layoutwidth=\dimen144
-\Gm@layoutheight=\dimen145
-\Gm@layouthoffset=\dimen146
-\Gm@layoutvoffset=\dimen147
-\Gm@dimlist=\toks19
+\Gm@cnth=\count267
+\Gm@cntv=\count268
+\c@Gm@tempcnt=\count269
+\Gm@bindingoffset=\dimen142
+\Gm@wd@mp=\dimen143
+\Gm@odd@mp=\dimen144
+\Gm@even@mp=\dimen145
+\Gm@layoutwidth=\dimen146
+\Gm@layoutheight=\dimen147
+\Gm@layouthoffset=\dimen148
+\Gm@layoutvoffset=\dimen149
+\Gm@dimlist=\toks20
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
@@ -95,35 +100,34 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen148
-\Gin@req@width=\dimen149
+\Gin@req@height=\dimen150
+\Gin@req@width=\dimen151
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
-\c@tracingmulticols=\count267
-\mult@box=\box50
-\multicol@leftmargin=\dimen150
-\c@unbalance=\count268
-\c@collectmore=\count269
-\doublecol@number=\count270
-\multicoltolerance=\count271
-\multicolpretolerance=\count272
-\full@width=\dimen151
-\page@free=\dimen152
-\premulticols=\dimen153
-\postmulticols=\dimen154
-\multicolsep=\skip63
-\multicolbaselineskip=\skip64
-\partial@page=\box51
-\last@line=\box52
-\maxbalancingoverflow=\dimen155
-\mult@rightbox=\box53
-\mult@grightbox=\box54
-\mult@firstbox=\box55
-\mult@gfirstbox=\box56
-\@tempa=\box57
-\@tempa=\box58
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count270
+\mult@box=\box51
+\multicol@leftmargin=\dimen152
+\c@unbalance=\count271
+\c@collectmore=\count272
+\doublecol@number=\count273
+\multicoltolerance=\count274
+\multicolpretolerance=\count275
+\full@width=\dimen153
+\page@free=\dimen154
+\premulticols=\dimen155
+\postmulticols=\dimen156
+\multicolsep=\skip64
+\multicolbaselineskip=\skip65
+\partial@page=\box52
+\last@line=\box53
+\mc@boxedresult=\box54
+\maxbalancingoverflow=\dimen157
+\mult@rightbox=\box55
+\mult@grightbox=\box56
+\mult@firstbox=\box57
+\mult@gfirstbox=\box58
 \@tempa=\box59
 \@tempa=\box60
 \@tempa=\box61
@@ -158,38 +162,49 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \@tempa=\box90
 \@tempa=\box91
 \@tempa=\box92
-\c@minrows=\count273
-\c@columnbadness=\count274
-\c@finalcolumnbadness=\count275
-\last@try=\dimen156
-\multicolovershoot=\dimen157
-\multicolundershoot=\dimen158
-\mult@nat@firstbox=\box93
-\colbreak@box=\box94
-\mc@col@check@num=\count276
+\@tempa=\box93
+\@tempa=\box94
+\c@minrows=\count276
+\c@columnbadness=\count277
+\c@finalcolumnbadness=\count278
+\last@try=\dimen158
+\multicolovershoot=\dimen159
+\multicolundershoot=\dimen160
+\mult@nat@firstbox=\box95
+\colbreak@box=\box96
+\mc@col@check@num=\count279
 ) (/usr/share/texlive/texmf-dist/tex/latex/moresize/moresize.sty
 Package: moresize 1999/07/26 v1.9 (more font sizes)
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count280
+\float@exts=\toks21
+\float@box=\box97
+\@float@everytoks=\toks22
+\@floatcapt=\box98
+) (/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count277
-\l__pdf_internal_box=\box95
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count281
+\l__pdf_internal_box=\box99
 ) (./Bus4U - SERVER.aux)
 \openout1 = `"Bus4U - SERVER.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -198,7 +213,7 @@ LaTeX Font Info:    ... okay on input line 18.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
+* modes: twoside 
 * h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
 * v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
 * \paperwidth=597.50787pt
@@ -212,7 +227,7 @@ LaTeX Font Info:    ... okay on input line 18.
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=44.0pt
+* \marginparwidth=95.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -220,63 +235,237 @@ LaTeX Font Info:    ... okay on input line 18.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count278
-\scratchdimen=\dimen159
-\scratchbox=\box96
-\nofMPsegments=\count279
-\nofMParguments=\count280
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count281
-\MPscratchDim=\dimen160
-\MPnumerator=\count282
-\makeMPintoPDFobject=\count283
-\everyMPtoPDFconversion=\toks21
+\scratchcounter=\count282
+\scratchdimen=\dimen161
+\scratchbox=\box100
+\nofMPsegments=\count283
+\nofMParguments=\count284
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count285
+\MPscratchDim=\dimen162
+\MPnumerator=\count286
+\makeMPintoPDFobject=\count287
+\everyMPtoPDFconversion=\toks24
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-LaTeX Info: Redefining \cal on input line 497.
-LaTeX Info: Redefining \mit on input line 498.
+)) (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+LaTeX Info: Redefining \cal on input line 577.
+LaTeX Info: Redefining \mit on input line 578.
 ) [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 54.
+(Font)              <17.28> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 54.
- [1] [1] (./Bus4U - SERVER.toc
+(Font)              <12> on input line 59.
+ [1] (./chapters/abstract_ro.tex
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 3.
+(Font)              <8> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 3.
-)
+(Font)              <6> on input line 2.
+) [1] (./chapters/abstract_en.tex) [1] (./chapters/abstract_hu.tex) [1] (./Bus4U - SERVER.toc [2
+
+])
 \tf@toc=\write3
 \openout3 = `"Bus4U - SERVER.toc"'.
 
- [2] (./chapters/introduction.tex) (./chapters/requirements.tex [3] [4]) [5] (./Bus4U - SERVER.aux) ) 
+ [3] (./Bus4U - SERVER.lof)
+\tf@lof=\write4
+\openout4 = `"Bus4U - SERVER.lof"'.
+
+ [4
+
+]
+1. fejezet.
+(./chapters/introduction.tex) [5
+
+]
+2. fejezet.
+(./chapters/goals.tex
+Overfull \hbox (2.376pt too wide) in paragraph at lines 13--14
+[]\T1/cmr/bx/n/12 Adminisztrációs Fe-lü-let: \T1/cmr/m/n/12 Lét-re-hoz-ni egy ad-mi-niszt-rá-ci-ós fe-lü-le-tet, ame-lyet a busz-
+ []
+
+) [6
+
+]
+3. fejezet.
+(./chapters/theory.tex [7
+
+] [8] [9]) [10]
+4. fejezet.
+(./chapters/requirements.tex [11
+
+]
+<figures/use-case.jpg, id=63, 1714.405pt x 2055.68pt>
+File: figures/use-case.jpg Graphic file (type jpg)
+<use figures/use-case.jpg>
+Package pdftex.def Info: figures/use-case.jpg  used on input line 33.
+(pdftex.def)             Requested size: 455.24411pt x 545.85046pt.
+ [12] [13 <./figures/use-case.jpg>] [14]) [15]
+5. fejezet.
+(./chapters/detailed_description.tex
+<figures/architecture.jpeg, id=78, 1311.90125pt x 737.75626pt>
+File: figures/architecture.jpeg Graphic file (type jpg)
+<use figures/architecture.jpeg>
+Package pdftex.def Info: figures/architecture.jpeg  used on input line 7.
+(pdftex.def)             Requested size: 455.24411pt x 256.01213pt.
+ [16
+
+]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 30.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+) [17 <./figures/architecture.jpeg>]
+Overfull \hbox (4.69623pt too wide) in paragraph at lines 63--64
+[]\T1/cmr/bx/n/12 Admins\T1/cmr/m/n/12 : Kü-lön-bö-z® cé-gek-hez tar-to-zó ad-mi-niszt-rá-to-rok ada-tai. Sze-re-pük le-het ^^Pboss^^Q
+ []
+
+[18]
+<figures/database.jpg, id=89, 1283.79625pt x 1507.6325pt>
+File: figures/database.jpg Graphic file (type jpg)
+<use figures/database.jpg>
+Package pdftex.def Info: figures/database.jpg  used on input line 78.
+(pdftex.def)             Requested size: 455.24411pt x 534.60367pt.
+ [19] [20 <./figures/database.jpg>]
+<figures/jira.jpg, id=96, 926.46124pt x 825.0825pt>
+File: figures/jira.jpg Graphic file (type jpg)
+<use figures/jira.jpg>
+Package pdftex.def Info: figures/jira.jpg  used on input line 101.
+(pdftex.def)             Requested size: 455.24411pt x 405.42705pt.
+ [21] [22 <./figures/jira.jpg>]
+<figures/github.jpg, id=104, 1176.395pt x 807.015pt>
+File: figures/github.jpg Graphic file (type jpg)
+<use figures/github.jpg>
+Package pdftex.def Info: figures/github.jpg  used on input line 120.
+(pdftex.def)             Requested size: 455.24411pt x 312.2964pt.
+) [23 <./figures/github.jpg>]
+6. fejezet.
+(./chapters/infrastructure.tex [24
+
+]
+<figures/deployment.jpg, id=111, 923.45pt x 657.45625pt>
+File: figures/deployment.jpg Graphic file (type jpg)
+<use figures/deployment.jpg>
+Package pdftex.def Info: figures/deployment.jpg  used on input line 33.
+(pdftex.def)             Requested size: 455.24411pt x 324.11261pt.
+) [25 <./figures/deployment.jpg>]
+7. fejezet.
+(./chapters/operation.tex
+<figures/activity.png, id=115, 956.57375pt x 1051.93pt>
+File: figures/activity.png Graphic file (type png)
+<use figures/activity.png>
+Package pdftex.def Info: figures/activity.png  used on input line 13.
+(pdftex.def)             Requested size: 455.24411pt x 500.61896pt.
+ [26
+
+]
+<figures/boughtticket.png, id=120, 1020.81375pt x 488.82625pt>
+File: figures/boughtticket.png Graphic file (type png)
+<use figures/boughtticket.png>
+Package pdftex.def Info: figures/boughtticket.png  used on input line 30.
+(pdftex.def)             Requested size: 455.24411pt x 218.00063pt.
+ [27 <./figures/activity.png>]
+<figures/listtickets.png, id=126, 954.56625pt x 592.2125pt>
+File: figures/listtickets.png Graphic file (type png)
+<use figures/listtickets.png>
+Package pdftex.def Info: figures/listtickets.png  used on input line 44.
+(pdftex.def)             Requested size: 455.24411pt x 282.43341pt.
+ [28 <./figures/boughtticket.png> <./figures/listtickets.png (PNG copy)>]
+<figures/tickets.png, id=131, 1020.81375pt x 488.82625pt>
+File: figures/tickets.png Graphic file (type png)
+<use figures/tickets.png>
+Package pdftex.def Info: figures/tickets.png  used on input line 56.
+(pdftex.def)             Requested size: 455.24411pt x 218.00063pt.
+<figures/buyticket.png, id=132, 844.15375pt x 610.28pt>
+File: figures/buyticket.png Graphic file (type png)
+<use figures/buyticket.png>
+Package pdftex.def Info: figures/buyticket.png  used on input line 68.
+(pdftex.def)             Requested size: 455.24411pt x 329.12724pt.
+ [29 <./figures/tickets.png>]
+<figures/departuretimes.png, id=137, 1020.81375pt x 1182.4175pt>
+File: figures/departuretimes.png Graphic file (type png)
+<use figures/departuretimes.png>
+Package pdftex.def Info: figures/departuretimes.png  used on input line 82.
+(pdftex.def)             Requested size: 455.24411pt x 527.31981pt.
+ [30 <./figures/buyticket.png (PNG copy)>] [31 <./figures/departuretimes.png>]
+<figures/checkdocuments.png, id=145, 942.52126pt x 548.0475pt>
+File: figures/checkdocuments.png Graphic file (type png)
+<use figures/checkdocuments.png>
+Package pdftex.def Info: figures/checkdocuments.png  used on input line 112.
+(pdftex.def)             Requested size: 455.24411pt x 264.71559pt.
+<figures/adminstops.png, id=146, 1017.8025pt x 488.82625pt>
+File: figures/adminstops.png Graphic file (type png)
+<use figures/adminstops.png>
+Package pdftex.def Info: figures/adminstops.png  used on input line 126.
+(pdftex.def)             Requested size: 455.24411pt x 218.64209pt.
+ [32 <./figures/checkdocuments.png (PNG copy)>]
+<figures/adminschedule.png, id=150, 1017.8025pt x 483.8075pt>
+File: figures/adminschedule.png Graphic file (type png)
+<use figures/adminschedule.png>
+Package pdftex.def Info: figures/adminschedule.png  used on input line 148.
+(pdftex.def)             Requested size: 455.24411pt x 216.39731pt.
+ [33 <./figures/adminstops.png>]
+<figures/adminbuses.png, id=156, 1020.81375pt x 458.71375pt>
+File: figures/adminbuses.png Graphic file (type png)
+<use figures/adminbuses.png>
+Package pdftex.def Info: figures/adminbuses.png  used on input line 164.
+(pdftex.def)             Requested size: 455.24411pt x 204.57144pt.
+ [34 <./figures/adminschedule.png> <./figures/adminbuses.png>]
+<figures/posmain.png, id=162, 526.96875pt x 820.06375pt>
+File: figures/posmain.png Graphic file (type png)
+<use figures/posmain.png>
+Package pdftex.def Info: figures/posmain.png  used on input line 186.
+(pdftex.def)             Requested size: 227.62206pt x 354.22223pt.
+<figures/posscan.png, id=163, 1005.7575pt x 340.27126pt>
+File: figures/posscan.png Graphic file (type png)
+<use figures/posscan.png>
+Package pdftex.def Info: figures/posscan.png  used on input line 207.
+(pdftex.def)             Requested size: 455.24411pt x 154.01888pt.
+ [35 <./figures/posmain.png>]) [36 <./figures/posscan.png>]
+8. fejezet.
+(./chapters/testing.tex [37
+
+] [38] [39]) [40]
+9. fejezet.
+(./chapters/summary.tex) [41
+
+] (./Bus4U - SERVER.bbl [42]) [43
+
+]
+A f\"uggel\'ek.
+(./chapters/appendix.tex) [44
+
+] (./Bus4U - SERVER.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+ ) 
 Here is how much of TeX's memory you used:
- 4174 strings out of 479574
- 72865 string characters out of 5877220
- 395978 words of memory out of 5000000
- 22134 multiletter control sequences out of 15000+600000
- 483922 words of font info for 55 fonts, out of 8000000 for 9000
+ 4727 strings out of 475509
+ 85647 string characters out of 5776663
+ 1940975 words of memory out of 5000000
+ 26688 multiletter control sequences out of 15000+600000
+ 575266 words of font info for 67 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
- 55i,6n,62p,1307b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2986.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Bus4U - SERVER.pdf" (7 pages, 121881 bytes).
+ 57i,6n,65p,1395b,383s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on "Bus4U - SERVER.pdf" (48 pages, 3084794 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
- 69 compressed objects within 1 object stream
+ 791 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

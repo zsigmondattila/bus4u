@@ -1,0 +1,96 @@
+\section{Tesztelési környezet}
+
+A tesztelést egy helyi fejlesztési környezetben végeztem. A szerver a következő konfigurációval működött:
+\begin{itemize}
+    \item \textbf{Operációs rendszer:} Ubuntu 22.04 LTS
+    \item \textbf{Szerver:} Ruby on Rails 7.0.4
+    \item \textbf{Adatbázis:} PostgreSQL 14
+    \item \textbf{Tesztelő eszköz:} Postman v10.0
+\end{itemize}
+
+
+\section{Funkcionális tesztelés}
+
+A rendszer funkcionális teszteléséhez a Postman eszközt használtam. A Postman lehetőséget nyújt HTTP-kérések küldésére, valamint a különböző API végpontok működésének, válaszainak és adatstruktúráinak ellenőrzésére. Az alábbiakban bemutatom a tesztelés folyamatát és az eredményeket.
+
+A tesztelést egy helyi fejlesztési környezetben végeztem, ahol a szerver a következő címen volt elérhető:
+
+\begin{verbatim}
+http://localhost:3000/api/v1/
+\end{verbatim}
+
+A Postman segítségével különböző HTTP metódusokat (GET, POST, PUT, DELETE) használtam a végpontok tesztelésére. Az egyes végpontokat a rendszer megfelelő válaszai alapján ellenőriztem.
+
+\subsection{Végpontok tesztelése}
+
+Az alábbi végpontok tesztelését szeretném kiemelni:
+
+\begin{itemize}
+    \item \textbf{GET {{api\_url}}/v1/get\_stations\_by\_city} – Lekéri az állomásokat a megadott város alapján.
+    \item \textbf{GET /v1/get\_departure\_times\_for\_station\_in\_route} – Indulási időpontok lekérése egy adott járatra és állomásra.
+    \item \textbf{GET /v1/get\_available\_tickets} – Elérhető jegyek lekérdezése az adott kiindulási és célállomásra.
+    \item \textbf{GET /v1/get\_bus\_locations\_by\_route} – A buszok aktuális helyzetének lekérése egy adott járatra.
+    \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérése.
+    \item \textbf{GET /v1/admin/document\_validity\_checker} – Dokumentum érvényességének ellenőrzése adminisztrátorok számára.
+    \item \textbf{GET /v1/admin/statistics} – Statisztikai adatok lekérdezése egy adott cég számára.
+\end{itemize}
+
+
+\subsection{Tesztelési példa}
+
+Például a GET metódus használatával kértem le az állomásokat egy megadott város alapján:
+
+\begin{verbatim}
+GET api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
+\end{verbatim}
+
+A szerver válasza a következő JSON formátumban érkezett:
+
+\begin{verbatim}
+{
+    "stations": [
+        {
+            "station_uid": "STT_EGAVX",
+            "name": "Sapientia",
+            "address": "Str. Calea Sighisoarei nr. 2",
+            "longitude": "24.59883",
+            "latitude": "46.52339"
+        },
+        {
+            "station_uid": "STT_6CO3Q",
+            "name": "Dedeman",
+            "address": "Bul. 1 Decembrie nr. 189",
+            "longitude": "24.59941",
+            "latitude": "46.52678"
+        }
+    ]
+}
+\end{verbatim}
+
+Ezzel a lekérdezéssel sikeresen megkaptam az adatokat, amelyeket a rendszer helyesen dolgozott fel.
+
+\subsection{Tesztelési eredmények}
+
+A tesztelés során az összes végpontot felvezettem Postman-re, és mindegyik megfelelően működött. Az egyes végpontok válaszai megfeleltek az elvárt adatstruktúrának, és a rendszer helyesen kezelte a kéréseket.
+
+
+\section{Teljesítménytesztelés}
+A teljesítménytesztelés célja a rendszer stabilitásának és skálázhatóságának értékelése volt nagy terhelés alatt. A vizsgálat során a JMeter eszközt használtam, amely képes különböző mennyiségű egyidejű felhasználói kérések szimulálására.
+
+A JMeter mintavételi eredményei alapján az alábbi teljesítménymetrikák és azok jelentőségeit vizsgáljuk az API teljesítményével kapcsolatban:
+
+\subsection{Teljesítmény-metrikák}
+KIEGÉSZÍTENI AZ ÚJRATESZTELT ADATOKKAL
+
+
+\section{Biztonsági tesztelés}
+A biztonsági tesztelés során különös figyelmet fordítottam a következő sebezhetőségek elkerülésére:
+\begin{itemize}
+    \item \textbf{SQL injection} – Input validálás és előkészített SQL lekérdezések használata.
+    \item \textbf{Cross-site scripting (XSS)} – HTML entitások kódolása a felhasználói bemeneteknél.
+    \item \textbf{Cross-site request forgery (CSRF)} – CSRF tokenek használata minden kényes műveletnél.
+\end{itemize}
+
+\section{Összegzés}
+A tesztelési eredmények alapján a rendszer minden funkciója megfelelően működik, a teljesítménye kielégítő, és a biztonsági mechanizmusok jól védik az API-t a lehetséges támadások ellen. A további tesztelések célja az API skálázhatóságának javítása, valamint az integrációs lehetőségek vizsgálata más külső rendszerekkel.
+

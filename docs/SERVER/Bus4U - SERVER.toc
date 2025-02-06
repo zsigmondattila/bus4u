@@ -5,11 +5,10 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Ruby on Rails}{7}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}PostgreSQL}{8}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.1.3}Azure}{8}{}%
-\select@language {magyar} \contentsline {section}{\numberline {3.2}Integráció és fejlesztési lehetőségek}{8}{}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Fenntarthatóság}{9}{}%
-\select@language {magyar} \contentsline {section}{\numberline {3.4}Hasonló alkalmazások}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.1}Felhasználói élmény és innovációk}{9}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.4.2}Hatások a közlekedési rendszerre}{10}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3.2}A közlekedési rendszerek és a jövőbeli trendek}{9}{}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Hasonló alkalmazások}{9}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}Felhasználói élmény és innovációk}{10}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Hatások a közlekedési rendszerre}{10}{}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Rendszer specifikációi}{11}{}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói követelmények}{11}{}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Felhasználói weboldal}{11}{}%
@@ -35,16 +34,31 @@
 \select@language {magyar} \contentsline {section}{\numberline {6.2}Domain konfiguráció}{24}{}%
 \select@language {magyar} \contentsline {section}{\numberline {6.3}Adatbázis telepítése és konfigurációja}{24}{}%
 \select@language {magyar} \contentsline {section}{\numberline {6.4}Szerver telepítése}{25}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}A rendszer tesztelése}{26}{}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}Tesztelési környezet}{26}{}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}Funkcionális tesztelés}{26}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Végpontok tesztelése}{27}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Tesztelési példa}{27}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Tesztelési eredmények}{28}{}%
-\select@language {magyar} \contentsline {section}{\numberline {7.3}Teljesítménytesztelés}{28}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.3.1}Teljesítmény-metrikák}{28}{}%
-\select@language {magyar} \contentsline {section}{\numberline {7.4}Biztonsági tesztelés}{28}{}%
-\select@language {magyar} \contentsline {section}{\numberline {7.5}Összegzés}{29}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{30}{}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{31}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {A\@gobble }Függelék}{33}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Az alkalmazás működése}{26}{}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói felület}{26}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{26}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{29}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{30}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és térkép}{31}{}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrációs felület}{32}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőlap}{32}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{32}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{33}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{33}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{34}{}%
+\select@language {magyar} \contentsline {section}{\numberline {7.3}POS terminál alkalmazása}{35}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.3.1}GPS oldal}{35}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.3.2}Jegyszkennelő oldal}{35}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}A rendszer tesztelése}{37}{}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}Tesztelési környezet}{37}{}%
+\select@language {magyar} \contentsline {section}{\numberline {8.2}Funkcionális tesztelés}{37}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}Végpontok tesztelése}{38}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Tesztelési példa}{38}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.3}Tesztelési eredmények}{39}{}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}Teljesítménytesztelés}{39}{}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}Teljesítmény-metrikák}{39}{}%
+\select@language {magyar} \contentsline {section}{\numberline {8.4}Biztonsági tesztelés}{39}{}%
+\select@language {magyar} \contentsline {section}{\numberline {8.5}Összegzés}{40}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{41}{}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{42}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {A\@gobble }Függelék}{44}{}%

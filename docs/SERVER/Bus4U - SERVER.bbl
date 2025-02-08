@@ -1,5 +1,13 @@
 \begin{thebibliography}{1}
 
+\bibitem{levinson_transport}
+D.~M. Levinson and K.~J. Krizek, {\em The End of Traffic and the Future of Transport}.
+\newblock Network Design Lab, 2016.
+
+\bibitem{ceder_transit}
+A.~Ceder, {\em Public Transit Planning and Operation}.
+\newblock Elsevier, 2016.
+
 \bibitem{hartl_rails}
 M.~Hartl, {\em Ruby on Rails Tutorial: Learn Web Development with Rails}.
 \newblock Addison-Wesley Professional, 2016.
@@ -23,13 +31,5 @@ B.~Wilder, {\em Cloud architecture patterns: using Microsoft Azure}.
 \bibitem{collier_azure}
 M.~Collier and R.~Shahan, {\em Microsoft Azure Essentials-Fundamentals of Azure}.
 \newblock Microsoft Press, 2015.
-
-\bibitem{levinson_transport}
-D.~M. Levinson and K.~J. Krizek, {\em The End of Traffic and the Future of Transport}.
-\newblock Network Design Lab, 2016.
-
-\bibitem{ceder_transit}
-A.~Ceder, {\em Public Transit Planning and Operation}.
-\newblock Elsevier, 2016.
 
 \end{thebibliography}

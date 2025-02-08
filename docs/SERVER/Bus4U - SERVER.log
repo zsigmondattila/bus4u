@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.12)  3 DEC 2024 15:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.11.12)  8 FEB 2025 20:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -276,182 +276,194 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 2.
 ) [1] (./chapters/abstract_en.tex) [1] (./chapters/abstract_hu.tex) [1] (./Bus4U - SERVER.toc [2
 
-])
+] [3])
 \tf@toc=\write3
 \openout3 = `"Bus4U - SERVER.toc"'.
 
- [3] (./Bus4U - SERVER.lof)
+ [4] (./Bus4U - SERVER.lof)
 \tf@lof=\write4
 \openout4 = `"Bus4U - SERVER.lof"'.
 
- [4
+ [5
 
 ]
 1. fejezet.
-(./chapters/introduction.tex) [5
+(./chapters/introduction.tex [6
 
-]
+]) [7]
 2. fejezet.
-(./chapters/goals.tex
-Overfull \hbox (2.376pt too wide) in paragraph at lines 13--14
-[]\T1/cmr/bx/n/12 Adminisztrációs Fe-lü-let: \T1/cmr/m/n/12 Lét-re-hoz-ni egy ad-mi-niszt-rá-ci-ós fe-lü-le-tet, ame-lyet a busz-
- []
+(./chapters/goals.tex [8
 
-) [6
-
-]
+]) [9]
 3. fejezet.
-(./chapters/theory.tex [7
+(./chapters/theory.tex [10
 
-] [8] [9]) [10]
+] [11]
+
+LaTeX Warning: Citation `fielding_rest' on page 12 undefined on input line 34.
+
+
+LaTeX Warning: Citation `monolithic_architecture' on page 12 undefined on input line 49.
+
+
+LaTeX Warning: Citation `microservices' on page 12 undefined on input line 51.
+
+
+LaTeX Warning: Citation `database_systems' on page 12 undefined on input line 54.
+
+[12]) [13]
 4. fejezet.
-(./chapters/requirements.tex [11
+(./chapters/requirements.tex [14
 
 ]
-<figures/use-case.jpg, id=63, 1714.405pt x 2055.68pt>
+<figures/use-case.jpg, id=71, 1714.405pt x 2055.68pt>
 File: figures/use-case.jpg Graphic file (type jpg)
 <use figures/use-case.jpg>
 Package pdftex.def Info: figures/use-case.jpg  used on input line 33.
 (pdftex.def)             Requested size: 455.24411pt x 545.85046pt.
- [12] [13 <./figures/use-case.jpg>] [14]) [15]
+ [15] [16 <./figures/use-case.jpg>] [17]) [18]
 5. fejezet.
 (./chapters/detailed_description.tex
-<figures/architecture.jpeg, id=78, 1311.90125pt x 737.75626pt>
+<figures/architecture.jpeg, id=86, 1311.90125pt x 737.75626pt>
 File: figures/architecture.jpeg Graphic file (type jpg)
 <use figures/architecture.jpeg>
 Package pdftex.def Info: figures/architecture.jpeg  used on input line 7.
 (pdftex.def)             Requested size: 455.24411pt x 256.01213pt.
- [16
+ [19
 
-]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 30.
+] [20 <./figures/architecture.jpeg>] [21]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 57.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [17 <./figures/architecture.jpeg>]
-Overfull \hbox (4.69623pt too wide) in paragraph at lines 63--64
+) [22]
+Overfull \hbox (4.69623pt too wide) in paragraph at lines 90--91
 []\T1/cmr/bx/n/12 Admins\T1/cmr/m/n/12 : Kü-lön-bö-z® cé-gek-hez tar-to-zó ad-mi-niszt-rá-to-rok ada-tai. Sze-re-pük le-het ^^Pboss^^Q
  []
 
-[18]
-<figures/database.jpg, id=89, 1283.79625pt x 1507.6325pt>
+[23]
+<figures/database.jpg, id=105, 1283.79625pt x 1507.6325pt>
 File: figures/database.jpg Graphic file (type jpg)
 <use figures/database.jpg>
-Package pdftex.def Info: figures/database.jpg  used on input line 78.
+Package pdftex.def Info: figures/database.jpg  used on input line 105.
 (pdftex.def)             Requested size: 455.24411pt x 534.60367pt.
- [19] [20 <./figures/database.jpg>]
-<figures/jira.jpg, id=96, 926.46124pt x 825.0825pt>
+ [24] [25 <./figures/database.jpg>]
+<figures/jira.jpg, id=112, 926.46124pt x 825.0825pt>
 File: figures/jira.jpg Graphic file (type jpg)
 <use figures/jira.jpg>
-Package pdftex.def Info: figures/jira.jpg  used on input line 101.
+Package pdftex.def Info: figures/jira.jpg  used on input line 128.
 (pdftex.def)             Requested size: 455.24411pt x 405.42705pt.
- [21] [22 <./figures/jira.jpg>]
-<figures/github.jpg, id=104, 1176.395pt x 807.015pt>
+ [26] [27 <./figures/jira.jpg>]
+<figures/github.jpg, id=120, 1176.395pt x 807.015pt>
 File: figures/github.jpg Graphic file (type jpg)
 <use figures/github.jpg>
-Package pdftex.def Info: figures/github.jpg  used on input line 120.
+Package pdftex.def Info: figures/github.jpg  used on input line 147.
 (pdftex.def)             Requested size: 455.24411pt x 312.2964pt.
-) [23 <./figures/github.jpg>]
+) [28 <./figures/github.jpg>]
 6. fejezet.
-(./chapters/infrastructure.tex [24
+(./chapters/infrastructure.tex [29
 
 ]
-<figures/deployment.jpg, id=111, 923.45pt x 657.45625pt>
+<figures/deployment.jpg, id=127, 923.45pt x 657.45625pt>
 File: figures/deployment.jpg Graphic file (type jpg)
 <use figures/deployment.jpg>
 Package pdftex.def Info: figures/deployment.jpg  used on input line 33.
 (pdftex.def)             Requested size: 455.24411pt x 324.11261pt.
-) [25 <./figures/deployment.jpg>]
+) [30 <./figures/deployment.jpg>]
 7. fejezet.
 (./chapters/operation.tex
-<figures/activity.png, id=115, 956.57375pt x 1051.93pt>
+<figures/activity.png, id=131, 956.57375pt x 1051.93pt>
 File: figures/activity.png Graphic file (type png)
 <use figures/activity.png>
 Package pdftex.def Info: figures/activity.png  used on input line 13.
 (pdftex.def)             Requested size: 455.24411pt x 500.61896pt.
- [26
+ [31
 
 ]
-<figures/boughtticket.png, id=120, 1020.81375pt x 488.82625pt>
+<figures/boughtticket.png, id=136, 1020.81375pt x 488.82625pt>
 File: figures/boughtticket.png Graphic file (type png)
 <use figures/boughtticket.png>
 Package pdftex.def Info: figures/boughtticket.png  used on input line 30.
 (pdftex.def)             Requested size: 455.24411pt x 218.00063pt.
- [27 <./figures/activity.png>]
-<figures/listtickets.png, id=126, 954.56625pt x 592.2125pt>
+ [32 <./figures/activity.png>]
+<figures/listtickets.png, id=141, 954.56625pt x 592.2125pt>
 File: figures/listtickets.png Graphic file (type png)
 <use figures/listtickets.png>
 Package pdftex.def Info: figures/listtickets.png  used on input line 44.
 (pdftex.def)             Requested size: 455.24411pt x 282.43341pt.
- [28 <./figures/boughtticket.png> <./figures/listtickets.png (PNG copy)>]
-<figures/tickets.png, id=131, 1020.81375pt x 488.82625pt>
+ [33 <./figures/boughtticket.png> <./figures/listtickets.png (PNG copy)>]
+<figures/tickets.png, id=147, 1020.81375pt x 488.82625pt>
 File: figures/tickets.png Graphic file (type png)
 <use figures/tickets.png>
 Package pdftex.def Info: figures/tickets.png  used on input line 56.
 (pdftex.def)             Requested size: 455.24411pt x 218.00063pt.
-<figures/buyticket.png, id=132, 844.15375pt x 610.28pt>
+<figures/buyticket.png, id=148, 844.15375pt x 610.28pt>
 File: figures/buyticket.png Graphic file (type png)
 <use figures/buyticket.png>
 Package pdftex.def Info: figures/buyticket.png  used on input line 68.
 (pdftex.def)             Requested size: 455.24411pt x 329.12724pt.
- [29 <./figures/tickets.png>]
-<figures/departuretimes.png, id=137, 1020.81375pt x 1182.4175pt>
+ [34 <./figures/tickets.png>]
+<figures/departuretimes.png, id=153, 1020.81375pt x 1182.4175pt>
 File: figures/departuretimes.png Graphic file (type png)
 <use figures/departuretimes.png>
 Package pdftex.def Info: figures/departuretimes.png  used on input line 82.
 (pdftex.def)             Requested size: 455.24411pt x 527.31981pt.
- [30 <./figures/buyticket.png (PNG copy)>] [31 <./figures/departuretimes.png>]
-<figures/checkdocuments.png, id=145, 942.52126pt x 548.0475pt>
+ [35 <./figures/buyticket.png (PNG copy)>] [36 <./figures/departuretimes.png>]
+<figures/checkdocuments.png, id=161, 942.52126pt x 548.0475pt>
 File: figures/checkdocuments.png Graphic file (type png)
 <use figures/checkdocuments.png>
 Package pdftex.def Info: figures/checkdocuments.png  used on input line 112.
 (pdftex.def)             Requested size: 455.24411pt x 264.71559pt.
-<figures/adminstops.png, id=146, 1017.8025pt x 488.82625pt>
+<figures/adminstops.png, id=162, 1017.8025pt x 488.82625pt>
 File: figures/adminstops.png Graphic file (type png)
 <use figures/adminstops.png>
 Package pdftex.def Info: figures/adminstops.png  used on input line 126.
 (pdftex.def)             Requested size: 455.24411pt x 218.64209pt.
- [32 <./figures/checkdocuments.png (PNG copy)>]
-<figures/adminschedule.png, id=150, 1017.8025pt x 483.8075pt>
+ [37 <./figures/checkdocuments.png (PNG copy)>]
+<figures/adminschedule.png, id=166, 1017.8025pt x 483.8075pt>
 File: figures/adminschedule.png Graphic file (type png)
 <use figures/adminschedule.png>
 Package pdftex.def Info: figures/adminschedule.png  used on input line 148.
 (pdftex.def)             Requested size: 455.24411pt x 216.39731pt.
- [33 <./figures/adminstops.png>]
-<figures/adminbuses.png, id=156, 1020.81375pt x 458.71375pt>
+ [38 <./figures/adminstops.png>]
+<figures/adminbuses.png, id=171, 1020.81375pt x 458.71375pt>
 File: figures/adminbuses.png Graphic file (type png)
 <use figures/adminbuses.png>
 Package pdftex.def Info: figures/adminbuses.png  used on input line 164.
 (pdftex.def)             Requested size: 455.24411pt x 204.57144pt.
- [34 <./figures/adminschedule.png> <./figures/adminbuses.png>]
-<figures/posmain.png, id=162, 526.96875pt x 820.06375pt>
+ [39 <./figures/adminschedule.png> <./figures/adminbuses.png>]
+<figures/posmain.png, id=178, 526.96875pt x 820.06375pt>
 File: figures/posmain.png Graphic file (type png)
 <use figures/posmain.png>
 Package pdftex.def Info: figures/posmain.png  used on input line 186.
 (pdftex.def)             Requested size: 227.62206pt x 354.22223pt.
-<figures/posscan.png, id=163, 1005.7575pt x 340.27126pt>
+<figures/posscan.png, id=179, 1005.7575pt x 340.27126pt>
 File: figures/posscan.png Graphic file (type png)
 <use figures/posscan.png>
 Package pdftex.def Info: figures/posscan.png  used on input line 207.
 (pdftex.def)             Requested size: 455.24411pt x 154.01888pt.
- [35 <./figures/posmain.png>]) [36 <./figures/posscan.png>]
+ [40 <./figures/posmain.png>]) [41 <./figures/posscan.png>]
 8. fejezet.
-(./chapters/testing.tex [37
+(./chapters/testing.tex [42
 
-] [38] [39]) [40]
+] [43] [44]) [45]
 9. fejezet.
-(./chapters/summary.tex) [41
+(./chapters/summary.tex) [46
 
-] (./Bus4U - SERVER.bbl [42]) [43
+] (./Bus4U - SERVER.bbl [47]) [48
 
 ]
 A f\"uggel\'ek.
-(./chapters/appendix.tex) [44
+(./chapters/appendix.tex) [49
 
 ] (./Bus4U - SERVER.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
  4727 strings out of 475509
@@ -462,10 +474,10 @@ Here is how much of TeX's memory you used:
  395 hyphenation exceptions out of 8191
  57i,6n,65p,1395b,383s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0600.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/zsigmond/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on "Bus4U - SERVER.pdf" (48 pages, 3084794 bytes).
+Output written on "Bus4U - SERVER.pdf" (53 pages, 3093500 bytes).
 PDF statistics:
- 791 PDF objects out of 1000 (max. 8388607)
- 168 compressed objects within 2 object streams
+ 813 PDF objects out of 1000 (max. 8388607)
+ 179 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

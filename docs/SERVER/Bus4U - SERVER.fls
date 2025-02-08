@@ -138,7 +138,6 @@ INPUT ./chapters/theory.tex
 INPUT chapters/theory.tex
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1440.tfm
-INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1200.tfm
 INPUT ./chapters/requirements.tex
 INPUT ./chapters/requirements.tex
 INPUT ./chapters/requirements.tex
@@ -160,6 +159,7 @@ INPUT ./figures/architecture.jpeg
 INPUT ./figures/architecture.jpeg
 INPUT ./figures/architecture.jpeg
 INPUT ./figures/architecture.jpeg
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1200.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd

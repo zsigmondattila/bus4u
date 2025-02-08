@@ -3,9 +3,13 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Bus4U - SERVER.aux
 The style file: ieeetr.bst
 Database file #1: references.bib
+Warning--I didn't find a database entry for "fielding_rest"
+Warning--I didn't find a database entry for "monolithic_architecture"
+Warning--I didn't find a database entry for "microservices"
+Warning--I didn't find a database entry for "database_systems"
 You've used 8 entries,
             1876 wiz_defined-function locations,
-            513 strings with 4226 characters,
+            517 strings with 4291 characters,
 and the built_in function-call counts, 1244 in all, are:
 = -- 115
 > -- 44
@@ -44,3 +48,4 @@ warning$ -- 0
 while$ -- 8
 width$ -- 9
 write$ -- 74
+(There were 4 warnings)

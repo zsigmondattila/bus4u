@@ -1,26 +1,27 @@
 \begin{thebibliography}{1}
 
 \bibitem{bus4userver}
-Z.~Attila, ``Bus4u - server,'' bachelor's thesis, Sapientia Hungarian
-  University of Transylvania, 2025.
+Z.~Attila, ``Bus4u - server,'' bachelor's thesis, Sapientia Hungarian University of Transylvania, 2025.
+
+\bibitem{orovsnjak2020bus}
+M.~Oro{\v{s}}njak, M.~Jocanovi{\'c}, B.~Gvozdenac-Uro{\v{s}}evi{\'c}, D.~{\v{S}}evi{\'c}, L.~Du{\dj}ak, and V.~Karanovi{\'c}, ``Bus fleet management--a systematic literature review,'' {\em Promet-Traffic\&Transportation}, vol.~32, no.~6, pp.~761--772, 2020.
+
+\bibitem{hounsell2012data}
+N.~Hounsell, B.~Shrestha, and A.~Wong, ``Data management and applications in a world-leading bus fleet,'' {\em Transportation Research Part C: Emerging Technologies}, vol.~22, pp.~76--87, 2012.
 
 \bibitem{rollandinfrastrukturalis}
-V.~ROLLAND and F.~G{\'A}BOR, ``Infrastruktur{\'a}lis vagy k{\"o}z{\"o}ss{\'e}gi
-  {\'e}rz{\'e}kel{\'e}s az okos v{\'a}rosokban?,''
+V.~ROLLAND and F.~G{\'A}BOR, ``Infrastruktur{\'a}lis vagy k{\"o}z{\"o}ss{\'e}gi {\'e}rz{\'e}kel{\'e}s az okos v{\'a}rosokban?,''
 
 \bibitem{vueinaction}
 E.~Hanchett and B.~Listwon, {\em Vue. js in Action}.
 \newblock Simon and Schuster, 2018.
 
 \bibitem{vue3}
-P.~D. Garaguso, {\em Vue. js 3 Design Patterns and Best Practices: Develop
-  scalable and robust applications with Vite, Pinia, and Vue Router}.
+P.~D. Garaguso, {\em Vue. js 3 Design Patterns and Best Practices: Develop scalable and robust applications with Vite, Pinia, and Vue Router}.
 \newblock Packt Publishing Ltd, 2023.
 
 \bibitem{materialdesign}
-R.~Desai, ``Google material design--the user interface development notion,'' in
-  {\em IJSRD National Conference on Advances in Computer Science Engineering \&
-  Technology}, pp.~125--7, 2017.
+R.~Desai, ``Google material design--the user interface development notion,'' in {\em IJSRD National Conference on Advances in Computer Science Engineering \& Technology}, pp.~125--7, 2017.
 
 \bibitem{flutterinaction}
 E.~Windmill, {\em Flutter in action}.

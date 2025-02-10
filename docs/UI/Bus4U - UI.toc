@@ -1,9 +1,9 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezető}{2}{chapter.1}%
 \select@language {magyar} \contentsline {chapter}{\numberline {2}Célkitűzések}{4}{chapter.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {3}Szakirodalmi tanulmány}{6}{chapter.3}%
-\select@language {magyar} \contentsline {section}{\numberline {3.1}Létező megoldások}{7}{section.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Moovit}{7}{subsection.3.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Budapest Go}{8}{subsection.3.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Létező megoldások}{8}{section.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Moovit}{8}{subsection.3.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Budapest Go}{9}{subsection.3.1.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}A rendszer specifikációi}{10}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói követelmények}{10}{section.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Felhasználói felület}{11}{subsection.4.1.1}%

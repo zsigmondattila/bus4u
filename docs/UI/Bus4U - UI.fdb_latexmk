@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - UI"] 1739110521.57312 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1739110726.56907 0
-  "./refs.bib" 1739109386.52038 2083 6cd04c3d1be93cb8d3f8ca6e8481cef2 ""
+["bibtex Bus4U - UI"] 1739205992.8626 "Bus4U - UI.aux" "Bus4U - UI.bbl" "Bus4U - UI" 1739206756.69328 0
+  "./refs.bib" 1739205976.20886 2843 133e38e379e7d66e33d4dcb135383010 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - UI.aux" 1739110726.38911 14709 37f11a99e101b5da6d98b54d0256a8c7 "pdflatex"
+  "Bus4U - UI.aux" 1739206756.55779 14848 bce8dd1a6681048d6bd089440977428f "pdflatex"
   (generated)
   "Bus4U - UI.bbl"
   "Bus4U - UI.blg"
   (rewritten before read)
-["pdflatex"] 1739110722.67837 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1739110726.56944 0
+["pdflatex"] 1739206752.84621 "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" "Bus4U - UI.pdf" "Bus4U - UI" 1739206756.69365 0
   "/etc/texmf/web2c/texmf.cnf" 1738748722.81132 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk" 1738762494.21947 15172 61b361a60646f081322fa674979f5b00 ""
   "/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex" 1738762588.7175 2310 e40369e0491e0fc2e72551c760c5ab20 ""
@@ -124,11 +124,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1738762392.57089 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738762406 7424887 465b4ef3abe1429f7a973e70b4d2d29f ""
-  "Bus4U - UI.aux" 1739110726.38911 14709 37f11a99e101b5da6d98b54d0256a8c7 "pdflatex"
-  "Bus4U - UI.bbl" 1739110521.59225 1475 79b88d85f0eaa56289d045b2269c46d6 "bibtex Bus4U - UI"
-  "Bus4U - UI.out" 1739110726.39113 5949 747524a648d1afea6fedac61baa8f0bf "pdflatex"
+  "Bus4U - UI.aux" 1739206756.55779 14848 bce8dd1a6681048d6bd089440977428f "pdflatex"
+  "Bus4U - UI.bbl" 1739205992.88527 2022 72319b2c30f04a1fc5f14cb847d5d011 "bibtex Bus4U - UI"
+  "Bus4U - UI.out" 1739206756.55971 5949 747524a648d1afea6fedac61baa8f0bf "pdflatex"
   "Bus4U - UI.tex" 1738762588.7175 2310 e40369e0491e0fc2e72551c760c5ab20 ""
-  "Bus4U - UI.toc" 1739110726.39229 4665 cc9d3bca75959604b64f1baa766b0390 "pdflatex"
+  "Bus4U - UI.toc" 1739206756.56051 4665 0cf7ae28a4c2085b565aba1a4644d28f "pdflatex"
   "chapters/abstract/en.tex" 1735814856.82965 2179 8050fce38418f32799f2e5e24d8070a5 ""
   "chapters/abstract/hu.tex" 1736614662.78765 2753 57f24c35537457659de8ebbf5c3df652 ""
   "chapters/abstract/ro.tex" 1735815020.60091 2576 6aa48c36046369eedef322396e26c3c8 ""
@@ -138,7 +138,7 @@
   "chapters/introduction.tex" 1736614816.29711 4935 a977d2ce20bad5731acf3b88172150c7 ""
   "chapters/summary.tex" 1736616978.42386 4121 8c3ae36c797c56473fc97d0d3a0ccc71 ""
   "chapters/system-requirements.tex" 1736615783.8902 12927 3c66ab4e0aca8ce9d4d9f05ff9d0ce0f ""
-  "chapters/theoretical-foundation.tex" 1739110722.43653 6981 deeab2db82a525816f1d828cf1514947 ""
+  "chapters/theoretical-foundation.tex" 1739206752.58656 9537 1a699e50b0d2281a2eab2a59de7f85f4 ""
   "chapters/ui-design.tex" 1736616262.34706 5151 e1769ce3e723732554e03d1c1d1d1d31 ""
   "figures/architecture.jpg" 1733044831.87502 42189 3593175527c46884c90243121cbe23f5 ""
   "figures/budapestgo.png" 1733303826.93035 483090 07ac7fc1f45985d934ea34ea3e547ad0 ""

@@ -21,39 +21,75 @@ Az adatok kiszolgálásának folyamatában az adatbázisnak csak az a feladata, 
 Részletesebb leírást a backend felépítéséről és működéséről Zsigmond Attila kollégám dolgozatában lehet találni \cite{bus4userver}, mivel ő foglalkozott ezzel a résszel.
 
 \section{Kommunikáció}
-A felek közötti kommunikációt szemlélteti a \ref{fig:secvential-navigation} ábrán megjelenített szekvencia diagram, amely az utazás megtervezésének folyamatát írja le. A felhasználó a frontend felületen keresztül kiválasztja az indulási és célállomást, valamint az utazás idejét, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend először ellenőrzi a kérést, majd a megfelelő adatokat lekérdezi az adatbázisból és a választ visszaküldi a frontendnek, ahol az megjelenik a felhasználó számára. Amennyiben valahol hiba történik, a rendszer a hiba okát is visszajelzi a felhasználónak. A következő kódrészlet intézi a kérést a frontend oldalon:
+A felek közötti kommunikáció REST API hívésokkal valósul meg, ezt szemlélteti az \ref{fig:secvential-tickets} ábrán megjelenített szekvencia diagram, amely a felhasználó által megvásárolt jegyek listázásának folyamatát írja le. Amikor a felhasználó a frontend felületen keresztül a My Tickets oldalra navigál, egy GET kérés indul el a szerver felé, amely tartalmazza a felhasználó adatait. A backend először ellenőrzi a kérést, majd a megfelelő jegyeket lekérdezi az adatbázisból és visszaküldi a frontendnek, ahol azok idő szerinti rendezés után megjelennek a felhasználó számára. A még érvényes jegyekhez generál a rendszer egy QR kódot is, hogy könnyű legyen majd innen beolvasni. Amennyiben valahol hiba történik, a rendszer informálja erről a felhasználót. A következő kódrészlet intézi a kérést a frontend oldalról:
 
 \begin{lstlisting}[language=JavaScript]
-  let params = {}
-  if(form.fromStation && form.toStation){
-    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}
-  } else {
-    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time}
-  }
-  axios.get('https://api.bus4u.online/v1/get_available_tickets', { params })
+isLoading.value = true
+axios.get('https://api.bus4u.online/v1/tickets_of_user', { headers: { Authorization: user.authorization }, params: { uid: user.uid }})
   .then(rsp => {
-      if(rsp.status == 200) {
-        routes.value = rsp.data
-        if(routes.value.length) {
-          routes.value = routes.value.sort((a, b) => a.departure_time - b.departure_time)
-        }
-        isLoadingRoutes.value = false
-      }
-    }).catch(routes.value = null)
+    isLoading.value = false
+    tickets.value = rsp.data.sort((a, b) => {
+      if(!a.is_valid && b.is_valid) return 1
+      if(!b.is_valid && a.is_valid) return -1
+      return b.date_of_purchase.localeCompare(a.date_of_purchase)
+    })
+    for(let i=0; i<tickets.value.length; i++) {
+      if(!tickets.value[i].is_valid) continue
+      QRCode.toDataURL(tickets.value[i].ticket_uid, { width: 250 }).then(rsp => tickets.value[i].qr = rsp)
+    }
+  }).catch(() => {
+    tickets.value = []
+    isLoading.value = false
+  })
+\end{lstlisting}
+
+Egy ilyen kérésre, a backend által adott válasz az \ref{fig:response-tickets} ábrán látható.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/response-tickets.png}
+  \caption{A jegyek listázásának válasza}
+  \label{fig:response-tickets}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/secvential-tickets.png}
+  \caption{A jegyek listázásának folyamata}
+  \label{fig:secvential-tickets}
+\end{figure}
+
+Ugyanígy leírható a regisztráció folyamata is, ahol a felhasználó megadja a nevét, az email címét és az új jelszót, majd a rendszer az adatok ellenőrzése után elküldi egyelőre csak az email címet a backend felé. A backend az email szerver segítségével küld egy 4 számjegyű kódot a felhasználó által megadott email címre. Ezután a felhasználó be kell írja ezt az ellenőrző kódot a felületen ennek megfelelő helyre. Ezt a kódot a backend ellenőrzi és amennyiben helyes, a frontend elküldi a felhasználó további adatait is, amelyet a backend elment az adatbázisban. Ha minden lépés sikeresen végrehajtódik, a frontend elmenti a bejelentkezési adatokat kliens oldalon is és átirányítja a felhasználót a főoldalra. Ellenkező esetben hibaüzenet jelenik meg a lépéssorozat azon pontján, ahol a hiba keletkezett. A regisztráció utolsó lépését (felhasználói adatok elküldése) megvalósító kódrészlet a következő:
+
+\begin{lstlisting}[language=JavaScript]
+async function sendForm() {
+  axios.post('https://api.bus4u.online/auth', form).then((rsp) => {
+    if(rsp.data.data.uid) {
+      router.replace({ name: 'home' })
+      user.signIn(rsp.data.data, rsp.headers)
+    } else {
+      isLoading.value = false;
+    }
+  }).catch((e) => {
+    if(e.response) error.value = e.response.data.error;
+    isLoading.value = false;
+  });
+}
 \end{lstlisting}
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{figures/secvential-navigation.jpeg}
-  \caption{Az utazás megtervezésének folyamata}
-  \label{fig:secvential-navigation}
+  \includegraphics[width=\textwidth]{figures/response-registration.png}
+  \caption{A regisztrációra adott válasz}
+  \label{fig:response-registration}
 \end{figure}
 
-Ugyanígy leírható a jegyvásárlás folyamata is, ahol a felhasználó a frontend felületen keresztül kiválasztja a megfelelő jegyeket, majd a rendszer a backend felé elküldi a kiválasztott adatokat. A backend ellenőrzi a kérést és ha az nem tartalmazza a bejelentkezett felhasználót, akkor visszaküldi a bejelentkezési kérést a frontendnek. Ha a kérés helyes, akkor a szerver létrehozza a jegyet vagy jegyeket az adatbázisban, majd küld egy e-mailt a felhasználónak és a frondendnek is visszaküldi a létrehozott jegyek azonosítóit. Ennek megfelelően a frontend megjeleníti a jegyeket, vagy adott esetben a hibaüzeneteket a felhasználó számára. Az ezt a folyamatot szemléltető szekvencia diagram a \ref{fig:secvential-buy-ticket} ábrán látható.
+\newpage
+A regisztrációs adatok elküldésére adott válasz az \ref{fig:response-registration} ábrán látható, míg a teljes regisztrációs folyamatot szemléltető szekvencia diagram az \ref{fig:secvential-registration} ábrán látható.
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{figures/secvential-buy-ticket.jpeg}
-  \caption{A jegyvásárlás folyamata}
-  \label{fig:secvential-buy-ticket}
+  \includegraphics[width=\textwidth]{figures/secvential-registration.png}
+  \caption{A regisztráció teljes folyamata}
+  \label{fig:secvential-registration}
 \end{figure}
 
 \section{Felhasznált technológiák}

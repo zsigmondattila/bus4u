@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(
                         horizontal: 25,
                         vertical: 14,

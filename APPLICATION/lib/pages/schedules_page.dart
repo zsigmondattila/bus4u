@@ -11,10 +11,10 @@ class SchedulesPage extends StatefulWidget {
   const SchedulesPage({super.key});
 
   @override
-  _SchedulesPageState createState() => _SchedulesPageState();
+  SchedulesPageState createState() => SchedulesPageState();
 }
 
-class _SchedulesPageState extends State<SchedulesPage> {
+class SchedulesPageState extends State<SchedulesPage> {
   final _formKey = GlobalKey<FormState>();
 
   String? selectedCity;

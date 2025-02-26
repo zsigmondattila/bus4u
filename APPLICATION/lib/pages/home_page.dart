@@ -12,10 +12,10 @@ class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
 
   String? selectedStartCity;
@@ -244,10 +244,11 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           },
-        ).then((value) => value == true
-            ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const MyHomePage(currentPage: 3)))
-            : null);
+        ).then((value) => {
+              if (value == true && context.mounted)
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const MyHomePage(currentPage: 3)))
+            });
       } else if (response.statusCode == 401) {
         logger.e('Failed to generate ticket');
         if (!context.mounted) return;

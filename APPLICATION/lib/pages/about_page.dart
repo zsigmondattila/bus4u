@@ -34,10 +34,6 @@ class _AboutPageState extends State<AboutPage> {
                 color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
           ),
           Text(
-            "   Bodo Balint",
-            style: TextStyle(color: Colors.black, fontSize: 18),
-          ),
-          Text(
             "   Portik Szabolcs",
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
@@ -47,7 +43,7 @@ class _AboutPageState extends State<AboutPage> {
           ),
           SizedBox(height: 25),
           Text(
-            "Sapientia EMTE 2023",
+            "Sapientia EMTE 2025",
             style: TextStyle(color: Colors.black, fontSize: 16),
           ),
         ]),

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData.from(
                 colorScheme: ColorScheme.fromSeed(
-                    seedColor: Colors.orange, background: Colors.white))
+                    seedColor: Colors.orange, surface: Colors.white))
             .copyWith(
           inputDecorationTheme: const InputDecorationTheme(
             contentPadding: EdgeInsets.all(10.0),
@@ -64,10 +64,10 @@ class MyHomePage extends StatefulWidget {
   });
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   late int currentPage;
 
   @override
@@ -85,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             if (context.watch<UserService>().isLoggedIn)
               IconButton(
                 onPressed: () async {
-                  if (mounted) {
+                  if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                         content: Text('Logging out...'),
@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   bool result =
                       await Provider.of<UserService>(context, listen: false)
                           .signOut();
-                  if (mounted) {
+                  if (context.mounted) {
                     ScaffoldMessenger.of(context).removeCurrentSnackBar();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(

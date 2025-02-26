@@ -11,10 +11,10 @@ class TrackingPage extends StatefulWidget {
   const TrackingPage({super.key});
 
   @override
-  _TrackingPageState createState() => _TrackingPageState();
+  TrackingPageState createState() => TrackingPageState();
 }
 
-class _TrackingPageState extends State<TrackingPage> {
+class TrackingPageState extends State<TrackingPage> {
   GoogleMapController? mapController;
   List<Marker> markers = [];
   LocationData? currentLocation;

@@ -11,10 +11,10 @@ class StationsPage extends StatefulWidget {
   const StationsPage({super.key});
 
   @override
-  _StationsPageState createState() => _StationsPageState();
+  StationsPageState createState() => StationsPageState();
 }
 
-class _StationsPageState extends State<StationsPage> {
+class StationsPageState extends State<StationsPage> {
   GoogleMapController? mapController;
   List<Marker> markers = [];
   LocationData? currentLocation;

@@ -5,7 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 
 class StationsPage extends StatefulWidget {
   const StationsPage({super.key});
@@ -27,7 +26,6 @@ class StationsPageState extends State<StationsPage> {
   String? selectedRoute;
   List<Map<String, String>> cities = [];
   List<Map<String, String>> routes = [];
-  var logger = Logger();
 
   @override
   void initState() {
@@ -52,7 +50,7 @@ class StationsPageState extends State<StationsPage> {
         );
       });
     } catch (e) {
-      logger.e("Error getting location, $e");
+      debugPrint("Error getting location, $e");
     }
   }
 
@@ -69,7 +67,7 @@ class StationsPageState extends State<StationsPage> {
         getLocation();
       }
     } catch (e) {
-      logger.e("Error checking permission: $e");
+      debugPrint("Error checking permission: $e");
     }
   }
 
@@ -129,7 +127,7 @@ class StationsPageState extends State<StationsPage> {
         });
       }
     } catch (e) {
-      logger.e("Error fetching stations: $e");
+      debugPrint("Error fetching stations: $e");
     }
   }
 
@@ -158,7 +156,7 @@ class StationsPageState extends State<StationsPage> {
         throw Exception('Failed to load cities');
       }
     } catch (e) {
-      logger.e("Error fetching cities: $e");
+      debugPrint("Error fetching cities: $e");
     }
   }
 
@@ -187,7 +185,7 @@ class StationsPageState extends State<StationsPage> {
         throw Exception('Failed to load routes');
       }
     } catch (e) {
-      logger.e("Error fetching routes: $e");
+      debugPrint("Error fetching routes: $e");
     }
   }
 
@@ -224,7 +222,7 @@ class StationsPageState extends State<StationsPage> {
       setState(() {
         markers.clear();
       });
-      logger.e("Error fetching stations: $e");
+      debugPrint("Error fetching stations: $e");
     } finally {
       setState(() {
         _isCitiesLoading = false;
@@ -266,7 +264,7 @@ class StationsPageState extends State<StationsPage> {
       setState(() {
         markers.clear();
       });
-      logger.e("Error fetching stations of route: $e");
+      debugPrint("Error fetching stations of route: $e");
     } finally {
       setState(() {
         _isRoutesLoading = false;

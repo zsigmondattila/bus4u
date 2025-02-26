@@ -1,4 +1,4 @@
-import 'package:bus4u/nav_bar.dart';
+import 'package:bus4u/components/nav_bar.dart';
 import 'package:bus4u/pages/about_page.dart';
 import 'package:bus4u/pages/login_page.dart';
 import 'package:bus4u/pages/register_page.dart';

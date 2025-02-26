@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:bus4u/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:logger/logger.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -20,7 +19,6 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController lastnameController = TextEditingController();
 
   bool isLoading = false;
-  var logger = Logger();
 
   void _showVerificationDialog(String email) {
     String verificationCode = '';
@@ -199,7 +197,7 @@ class _RegisterPageState extends State<RegisterPage> {
     } on SocketException {
       _showRegistrationFailureDialog('No internet connection');
     } catch (e) {
-      logger.e(e.toString());
+      debugPrint(e.toString());
       _showRegistrationFailureDialog('Failed to send verification email');
     } finally {
       setState(() {
@@ -231,7 +229,7 @@ class _RegisterPageState extends State<RegisterPage> {
     } catch (e) {
       _showRegistrationFailureDialog(
           'Failed to verify code due to a network error');
-      logger.e(e.toString());
+      debugPrint(e.toString());
     }
   }
 
@@ -249,12 +247,12 @@ class _RegisterPageState extends State<RegisterPage> {
       if (response.statusCode == 200) {
         _showRegistrationSuccessDialog();
       } else {
-        logger.e('failed');
+        debugPrint('failed');
         _showRegistrationFailureDialog(
             'Wrong email format or existing account');
       }
     } catch (e) {
-      logger.e(e.toString());
+      debugPrint(e.toString());
     }
   }
 

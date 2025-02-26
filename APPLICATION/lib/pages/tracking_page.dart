@@ -5,7 +5,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 
 class TrackingPage extends StatefulWidget {
   const TrackingPage({super.key});
@@ -27,7 +26,6 @@ class TrackingPageState extends State<TrackingPage> {
   String? selectedRoute;
   List<Map<String, String>> cities = [];
   List<Map<String, dynamic>> routes = [];
-  var logger = Logger();
   Set<Polyline> polylines = <Polyline>{};
 
   @override
@@ -51,7 +49,7 @@ class TrackingPageState extends State<TrackingPage> {
         );
       });
     } catch (e) {
-      logger.e("Error getting location, $e");
+      debugPrint("Error getting location, $e");
     }
   }
 
@@ -126,7 +124,7 @@ class TrackingPageState extends State<TrackingPage> {
         throw Exception('Failed to load cities');
       }
     } catch (e) {
-      logger.e("Error fetching cities: $e");
+      debugPrint("Error fetching cities: $e");
     }
   }
 
@@ -153,7 +151,7 @@ class TrackingPageState extends State<TrackingPage> {
         throw Exception('Failed to load routes');
       }
     } catch (e) {
-      logger.e("Error fetching routes by city: $e");
+      debugPrint("Error fetching routes by city: $e");
     } finally {
       _isStationsLoading = false;
     }
@@ -196,7 +194,7 @@ class TrackingPageState extends State<TrackingPage> {
         throw Exception('Failed to load buses on route');
       }
     } catch (e) {
-      logger.e("Error fetching buses on route: $e");
+      debugPrint("Error fetching buses on route: $e");
     } finally {
       _isBusesLoading = false;
     }
@@ -226,7 +224,7 @@ class TrackingPageState extends State<TrackingPage> {
         drawPolyline(stationData);
       }
     } catch (e) {
-      logger.e("Error fetching stations of route: $e");
+      debugPrint("Error fetching stations of route: $e");
     }
   }
 

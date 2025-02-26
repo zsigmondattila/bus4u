@@ -1,21 +1,20 @@
 import 'package:bus4u/main.dart';
 import 'package:bus4u/models/route_ticket.dart';
 import 'package:bus4u/pages/login_page.dart';
-import 'package:bus4u/utils/state_management.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-import 'package:logger/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
 
   String? selectedStartCity;
@@ -28,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   String? _tempSelectedDestinationStation;
   final String _tempSelectedDate = '';
   final String _tempSelectedTime = '';
-  var logger = Logger();
   String? token;
   String? userUid;
 
@@ -105,7 +103,7 @@ class _HomePageState extends State<HomePage> {
         selectedTime = DateFormat('HH:mm').format(selectedDateTime);
       });
     } catch (e) {
-      logger.e('Error loading cities: $e');
+      debugPrint('Error loading cities: $e');
     }
   }
 
@@ -113,7 +111,7 @@ class _HomePageState extends State<HomePage> {
     try {
       destinationCities = await getCities();
     } catch (e) {
-      logger.e('Error loading cities: $e');
+      debugPrint('Error loading cities: $e');
     }
     setState(() {});
   }
@@ -123,7 +121,7 @@ class _HomePageState extends State<HomePage> {
     try {
       stations = await getStationsByCity(cityUid);
     } catch (e) {
-      logger.e('Error loading stations: $e');
+      debugPrint('Error loading stations: $e');
     } finally {
       _isStartStationLoading = false;
     }
@@ -135,7 +133,7 @@ class _HomePageState extends State<HomePage> {
     try {
       destinationStations = await getStationsByCity(cityUid);
     } catch (e) {
-      logger.e('Error loading destination stations: $e');
+      debugPrint('Error loading destination stations: $e');
     } finally {
       _isDestStationLoading = false;
     }
@@ -144,7 +142,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchRoutes() async {
     if (selectedStartCity == null || selectedDestinationCity == null) {
-      logger.w('Please select all cities and stations');
+      debugPrint('Please select all cities and stations');
       return;
     }
     _isRoutesLoading = true;
@@ -184,7 +182,7 @@ class _HomePageState extends State<HomePage> {
         throw Exception('Failed to load tickets');
       }
     } catch (e) {
-      logger.e('Error fetching tickets: $e');
+      debugPrint('Error fetching tickets: $e');
     } finally {
       _isRoutesLoading = false;
     }
@@ -194,8 +192,9 @@ class _HomePageState extends State<HomePage> {
     try {
       final RouteTicket selectedRouteTicket =
           displayedRouteTickets[ticketIndex];
-      token = await readData('token');
-      userUid = await readData('user_uid');
+      final prefs = await SharedPreferences.getInstance();
+      String? token = prefs.getString('token');
+      String? userUid = prefs.getString('user_uid');
 
       final Map<String, dynamic> ticketData = {
         "quantity": selectedRouteTicket.quantity,
@@ -218,7 +217,7 @@ class _HomePageState extends State<HomePage> {
       );
 
       if (response.statusCode == 200) {
-        logger.i('Ticket generated successfully');
+        debugPrint('Ticket generated successfully');
         if (!context.mounted) return;
         showDialog<bool>(
           context: context,
@@ -244,12 +243,13 @@ class _HomePageState extends State<HomePage> {
               ],
             );
           },
-        ).then((value) => value == true
-            ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) => const MyHomePage(currentPage: 3)))
-            : null);
+        ).then((value) => {
+              if (value == true && context.mounted)
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const MyHomePage(currentPage: 3)))
+            });
       } else if (response.statusCode == 401) {
-        logger.e('Failed to generate ticket');
+        debugPrint('Failed to generate ticket');
         if (!context.mounted) return;
         showDialog(
           context: context,
@@ -278,7 +278,7 @@ class _HomePageState extends State<HomePage> {
         );
       }
     } catch (e) {
-      logger.e('Error buying ticket: $e');
+      debugPrint('Error buying ticket: $e');
     }
   }
 

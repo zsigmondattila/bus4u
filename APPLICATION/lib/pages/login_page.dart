@@ -2,7 +2,6 @@ import 'package:bus4u/pages/register_page.dart';
 import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:bus4u/main.dart';
-import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -18,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
   String email = "";
   String password = "";
   bool isLoading = false;
-  var logger = Logger();
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   },
                   style: ButtonStyle(
-                    padding: MaterialStateProperty.all<EdgeInsets>(
+                    padding: WidgetStateProperty.all<EdgeInsets>(
                       const EdgeInsets.symmetric(
                         horizontal: 25,
                         vertical: 14,

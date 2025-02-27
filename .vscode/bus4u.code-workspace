@@ -5,15 +5,19 @@
 			"path": ".."
 		},
 		{
+			"name": "DOCS",
+			"path": "../docs"
+		},
+		{
 			"name": "API",
 			"path": "../API"
 		},
 		{
-			"name": "Admin Frontend",
+			"name": "Admin Web",
 			"path": "../ADMIN_WEB"
 		},
 		{
-			"name": "User Frontend",
+			"name": "User Web",
 			"path": "../USER_WEB"
 		},
 		{

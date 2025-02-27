@@ -37,7 +37,6 @@ dependencies:
   location:
   url_launcher:
   qr_flutter:
-  flutter_secure_storage:
   shared_preferences:
   provider: ^6.1.2
   # The following adds the Cupertino Icons font to your application.

@@ -83,7 +83,9 @@ class _TicketPageState extends State<TicketPage> {
     } catch (e) {
       debugPrint('Error during getTickets: $e');
     } finally {
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

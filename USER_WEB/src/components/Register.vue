@@ -1,11 +1,16 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div v-if="hideOTP" class="inputs">
-      <v-text-field label="First Name" v-model="form.firstname" color="primary" :rules="name"></v-text-field>
-      <v-text-field label="Last Name" v-model="form.lastname" color="primary" :rules="name"></v-text-field>
-      <v-text-field label="Email" type="email" v-model="form.email" color="primary" :rules="email"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="eightChars"></v-text-field>
-      <v-text-field label="Password confirmation" type="password" v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
+      <v-text-field label="First Name" name="firstname" v-model="form.firstname" color="primary"
+        :rules="name"></v-text-field>
+      <v-text-field label="Last Name" name="lastname" v-model="form.lastname" color="primary"
+        :rules="name"></v-text-field>
+      <v-text-field label="Email" name="email" type="email" v-model="form.email" color="primary"
+        :rules="email"></v-text-field>
+      <v-text-field label="Password" name="password" type="password" v-model="form.password" color="primary"
+        :rules="eightChars"></v-text-field>
+      <v-text-field label="Password confirmation" name="password-confirm" type="password"
+        v-model="form.password_confirmation" color="primary" :rules="confirmation"></v-text-field>
       <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
     </div>
     <div v-else class="text-center">
@@ -70,16 +75,16 @@ const confirmation = [
 async function onSubmit(event) {
   error.value = ''
   let response = await event;
-  if(response.valid) {
+  if (response.valid) {
     isLoading.value = true
     axios.post('https://api.bus4u.online/v1/send_verification_email', { user_email: form.email })
       .then(rsp => {
-        if(rsp.status == 200) {
+        if (rsp.status == 200) {
           hideOTP.value = false
           isLoading.value = false
         }
       }).catch(e => {
-        if(e.response) error.value = e.response.data.errors[0];
+        if (e.response) error.value = e.response.data.errors[0];
         else error.value = e.message;
         isLoading.value = false
       });
@@ -89,14 +94,14 @@ async function onSubmit(event) {
 async function checkCode() {
   error.value = ''
   isLoading.value = true;
-  axios.get('https://api.bus4u.online/v1/verify_code_email', { params: { user_email: form.email , verification_code: code.value }})
+  axios.get('https://api.bus4u.online/v1/verify_code_email', { params: { user_email: form.email, verification_code: code.value } })
     .then(rsp => {
-      if(rsp.status == 200) sendForm();
+      if (rsp.status == 200) sendForm();
       else {
         isLoading.value = false;
       }
     }).catch(e => {
-      if(e.response) error.value = e.response.data.error;
+      if (e.response) error.value = e.response.data.error;
       else error.value = e.message;
       isLoading.value = false;
     });
@@ -104,14 +109,14 @@ async function checkCode() {
 
 async function sendForm() {
   axios.post('https://api.bus4u.online/auth', form).then((rsp) => {
-    if(rsp.data.data.uid) {
+    if (rsp.data.data.uid) {
       router.replace({ name: 'home' })
       user.signIn(rsp.data.data, rsp.headers)
     } else {
       isLoading.value = false;
     }
   }).catch((e) => {
-    if(e.response) error.value = e.response.data.error;
+    if (e.response) error.value = e.response.data.error;
     isLoading.value = false;
   });
 }
@@ -121,11 +126,13 @@ async function sendForm() {
 button {
   margin: 12px 0;
 }
-.link{
+
+.link {
   display: block;
   text-align: center;
   color: revert;
 }
+
 .inputs {
   margin: 15px 0;
 }

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  19 FEB 2025 18:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  3 MAR 2025 20:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -673,14 +673,14 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 ]) [5]
 3. fejezet.
-(./chapters/theoretical-foundation.tex [6
-
-]
+(./chapters/theoretical-foundation.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 7.
- [7]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+ [6
+
+] [7]
 Underfull \vbox (badness 5133) has occurred while \output is active []
 
  [8]
@@ -877,11 +877,11 @@ Package pdftex.def Info: figures/schedules_admin.png  used on input line 125.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44 <./figures/routes-admin.png (PNG copy)>]
-<figures/employees.png, id=623, 1382.91656pt x 698.61pt>
+<figures/employees.png, id=623, 1354.69377pt x 684.35265pt>
 File: figures/employees.png Graphic file (type png)
 <use figures/employees.png>
 Package pdftex.def Info: figures/employees.png  used on input line 134.
-(pdftex.def)             Requested size: 486.25761pt x 245.63644pt.
+(pdftex.def)             Requested size: 486.25761pt x 245.63579pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -896,7 +896,7 @@ File: figures/create-employee.png Graphic file (type png)
 <use figures/create-employee.png>
 Package pdftex.def Info: figures/create-employee.png  used on input line 141.
 (pdftex.def)             Requested size: 242.15681pt x 237.54295pt.
-) [46 <./figures/employees.png (PNG copy)> <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
+) [46 <./figures/employees.png> <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
 8. fejezet.
 (./chapters/summary.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -922,9 +922,9 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  82i,9n,84p,2773b,1288s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - UI.pdf" (56 pages, 7082298 bytes).
+Output written on "Bus4U - UI.pdf" (56 pages, 7067394 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
+ 778 PDF objects out of 1000 (max. 8388607)
  609 compressed objects within 7 object streams
  187 named destinations out of 1000 (max. 500000)
  474 words of extra memory for PDF output out of 10000 (max. 10000000)

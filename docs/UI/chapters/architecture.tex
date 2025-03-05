@@ -18,7 +18,7 @@ Ezzel szemben van egy API szerver, amely az összes felhasználói felületet ki
 
 Az adatok kiszolgálásának folyamatában az adatbázisnak csak az a feladata, hogy a felhasználók, buszok, járatok, megállók és jegyek adatait biztonságosan tárolja és azokat az API szerver számára elérhetővé tegye olvasásra és módosításra is.
 
-Részletesebb leírást a backend felépítéséről és működéséről Zsigmond Attila kollégám dolgozatában lehet találni \cite{bus4userver}, mivel ő foglalkozott ezzel a résszel.
+Részletesebb leírást a backend felépítéséről és működéséről a másik dolgozatban lehet találni \cite{bus4userver}.
 
 \section{Kommunikáció}
 A felek közötti kommunikáció REST API hívásokkal valósul meg, ezt szemlélteti az \ref{fig:secvential-tickets} ábrán megjelenített szekvencia diagram, amely a felhasználó által megvásárolt jegyek listázásának folyamatát írja le. Amikor a felhasználó a frontend felületen keresztül a My Tickets oldalra navigál, egy GET kérés indul el a szerver felé, amely tartalmazza a felhasználó adatait. A backend először ellenőrzi a kérést, majd a megfelelő jegyeket lekérdezi az adatbázisból és visszaküldi a frontendnek, ahol azok idő szerinti rendezés után megjelennek a felhasználó számára. A még érvényes jegyekhez generál a rendszer egy QR kódot is, hogy könnyű legyen majd innen beolvasni. Amennyiben valahol hiba történik, a rendszer informálja erről a felhasználót. A következő kódrészlet intézi a kérést a frontend oldalról:

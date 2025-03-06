@@ -15,6 +15,15 @@ Az ITS rendszerek általában a következő fő komponensekből állnak \cite{po
   \item Megállókban felszerelt információ jelző eszközök, amelyek az utasokat tájékoztatják a járatok állapotáról és a menetrendről.
 \end{enumerate}
 
+Az ITS rendszert és a benne lévő komponenseket szemlélteti a \ref{fig:its} ábra, ahol az egyes elemek számozása megegyezik az előbbi felsorolásban használt számozással.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{figures/its.png}
+  \caption{Intelligens Közlekedési Rendszer}
+  \label{fig:its}
+\end{figure}
+
 A buszok haladásának követésére többféle módszer is létezik, amelyek közül a legelterjedtebb a GPS alapú rendszerek használata, amelyben a buszokon levő GPS modulok határozzák meg a tartózkodási helyet és valamilyen más vezeték nélküli kommunikációs csatornán keresztül továbbítódik az adat a központi szerver felé. Sajnos a GPS működését számos tényező befolyásolhatja, mint az időjárás, vagy a műholdjel gyenge minősége. Erre jelenthet megoldást egy új technológia, amely Bluetooth Low Energy (BLE) alapú jeladókat használ, amely a GPS-hez képest pontosabb helymeghatározást tesz lehetővé, de a hatótávolsága korlátozott. Ennek lényege hogy a buszokon csak egy kis fogyasztású Bluetooth jeladó működik, amely a megállókban lévő vevőkkel kommunikál, és ezek a vevők továbbítják az adatokat a központi szerverre. Ezzel a módszerrel a buszok helyzete pontosabban meghatározható, mint a GPS alapú rendszerekben, de a hatótávolság miatt csak a megállókban lehet használni. További nehézséget jelenthet, hogy minden megállóban fel kell szerelni egy jelfeldolgozó egységet, amelyhez áramforrás is szükséges. Nagyvárosokban ez még megoldható lenne, viszont távolsági buszjáratok esetében, ahol a megállók között nagy a távolság és nincs áramforrás minden vidéki megállóban, ott a GPS-es megoldás a legoptimálisabb \cite{elijah2023transforming}.
 
 Ilyen rendszerrel rendelkezik néhány nagyváros tömegközlekedése is, mint például a Londoni iBus, amely GPS alapú helymeghatározással és GPRS alapú adatátvitellel működik. Az iBus lehetővé teszi több mint 8000 busz valós idejű követését 30 másodperces frissítési rátával, amelyek adataiból kinyert információkat a buszokon található kijelzőkön és a megállókban is megjeleníti \cite{hounsell2012data}.
@@ -39,8 +48,6 @@ Sajnos a kevés felhasználót számláló országok közé tartozik a miénk is
 
 \subsection{Budapest Go}
 
-\footnotetext{Budapest Go - Google Play Áruház: \url{https://play.google.com/store/apps/details?id=hu.webvalto.bkkfutar}}
-
 A másik alkalmazás a Budapest Go, amely egy általános közlekedési rendszer és a városi közlekedés minden elemét lefedi, így nem csak a buszokkal való közlekedésre használható, hanem majdnem az összes tömegközlekedési eszközzel a metrótól, a villamoson át, a hajóig, sőt az egyéni közlekedés megkönnyítése végett a gyalogos- és biciklis útvonalak is megtalálhatóak benne.
 Ez a megoldás talán közelebb áll a mi elképzeléseinkhez a funkcionalitás szempontjából, mert ugyanúgy biztosítja a jegyvásárlás lehetőségét, az útvonaltervezést és a valós idejű járatinformációkat, mint a Moovit, de a Budapest Go esetében ezek a funkciók sokkal részletesebbek és szélesebb körűek, emellett pedig rengeteg egyéb funkciót is biztosít. A \ref{fig:budapestgo} ábrán látható a Budapest Go alkalmazás kezdőképernyője.
 
@@ -55,3 +62,5 @@ Egy lényeges probléma a Budapest Go-val az, hogy nem használható fel univerz
   }
   \label{fig:budapestgo}
 \end{figure}
+
+\footnotetext{Budapest Go - Google Play Áruház: \url{https://play.google.com/store/apps/details?id=hu.webvalto.bkkfutar}}

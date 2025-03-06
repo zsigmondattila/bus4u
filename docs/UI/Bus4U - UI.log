@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  6 MAR 2025 22:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  6 MAR 2025 22:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -699,13 +699,13 @@ Package pdftex.def Info: figures/its.png  used on input line 22.
 File: figures/moovit.jpg Graphic file (type jpg)
 <use figures/moovit.jpg>
 Package pdftex.def Info: figures/moovit.jpg  used on input line 44.
-(pdftex.def)             Requested size: 133.71786pt x 269.04308pt.
+(pdftex.def)             Requested size: 194.50008pt x 391.32649pt.
  [10] [11 <./figures/moovit.jpg>]
-<figures/budapestgo.png, id=331, 813.0375pt x 1445.4pt>
+<figures/budapestgo.png, id=329, 813.0375pt x 1445.4pt>
 File: figures/budapestgo.png Graphic file (type png)
 <use figures/budapestgo.png>
 Package pdftex.def Info: figures/budapestgo.png  used on input line 58.
-(pdftex.def)             Requested size: 145.87875pt x 259.32268pt.
+(pdftex.def)             Requested size: 194.50008pt x 345.77829pt.
 ) [12 <./figures/budapestgo.png>]
 4. fejezet.
 (./chapters/system-requirements.tex [13
@@ -767,7 +767,7 @@ Package pdftex.def Info: figures/secvential-registration.png  used on input line
 File: figures/jwt.png Graphic file (type png)
 <use figures/jwt.png>
 Package pdftex.def Info: figures/jwt.png  used on input line 99.
-(pdftex.def)             Requested size: 291.75752pt x 167.6569pt.
+(pdftex.def)             Requested size: 340.37885pt x 195.59721pt.
  [27 <./figures/jwt.png>] [28] [29] [30]
 <figures/jira.png, id=507, 1186.5554pt x 641.58061pt>
 File: figures/jira.png Graphic file (type png)
@@ -852,16 +852,12 @@ File: figures/schedule.png Graphic file (type png)
 Package pdftex.def Info: figures/schedule.png  used on input line 62.
 (pdftex.def)             Requested size: 486.25761pt x 555.71848pt.
  [43 <./figures/tickets.png (PNG copy)>] [44 <./figures/schedule.png (PNG copy)>]
-Overfull \hbox (16.1269pt too wide) in paragraph at lines 77--78
-[]\T1/ptm/m/n/12 Mindkét ol-da-lon meg-je-le-nik a fel-hasz-ná-ló je-len-le-gi po-zí-ci-ó-ja egy kék gom-bos-t¶ for-má-já-ban, amennyi-
- []
-
 <figures/stations-mobile.jpg, id=621, 796.4449pt x 1597.31448pt>
 File: figures/stations-mobile.jpg Graphic file (type jpg)
 <use figures/stations-mobile.jpg>
 Package pdftex.def Info: figures/stations-mobile.jpg  used on input line 81.
 (pdftex.def)             Requested size: 133.71786pt x 268.17639pt.
-[45 <./figures/stations-mobile.jpg>]
+ [45 <./figures/stations-mobile.jpg>]
 <figures/statistics.png, id=628, 1415.90204pt x 682.87776pt>
 File: figures/statistics.png Graphic file (type png)
 <use figures/statistics.png>
@@ -924,7 +920,7 @@ Here is how much of TeX's memory you used:
  350 hyphenation exceptions out of 8191
  82i,9n,84p,2773b,1288s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - UI.pdf" (60 pages, 7134839 bytes).
+Output written on "Bus4U - UI.pdf" (60 pages, 7134777 bytes).
 PDF statistics:
  808 PDF objects out of 1000 (max. 8388607)
  630 compressed objects within 7 object streams

@@ -92,6 +92,15 @@ A regisztrációs adatok elküldésére adott válasz az \ref{fig:response-regis
   \label{fig:secvential-registration}
 \end{figure}
 
+A bejelentkezést igénylő funkciók API végpontjaihoz azonosítás szükséges, amelyet a frontend a felhasználó által megadott email cím és jelszó segítségével kér le a backendtől. Ez egy JWT\footnote{JSON Web Token} token formájában történik, amelyet a frontend elment és minden további kérésben elküld a backendnek. Erre egy példa a \ref{fig:jwt} ábrán látható, ahol az adminisztrátorok számára megjelenített statisztikát kéri le a rendszer a backendtől. Ez a kérés egy Authorization fejléccel van ellátva, amely tartalmazza a JWT tokent és amely alapján azonosítódik a bejelentkezett adminisztrátor.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figures/jwt.png}
+  \caption{Azonosítást tartalmazó API kérés}
+  \label{fig:jwt}
+\end{figure}
+
 \section{Felhasznált technológiák}
 A felhasználói és az admin weboldalak Vue.js keretrendszerben készültek, Vuetify komponenseket felhasználva. Azért esett a választásom erre a kombinációra, mert a Vue által gyors és hatékony weboldalakat lehet létrehozni, a Vuetify pedig felgyorsítja a fejlesztést előre elkészített, jól kinéző komponensek szolgáltatásával.
 A mobil platformokra szánt alkalmazás elkészítéséhez Flutter technológiát használtam, mert ennek segítségével egyetlen kódbázisból ki lehet generálni Android és iOS készülékekre is a natív alkalmazást, amely hatékonyan működik minden eszközön a keretrendszer optimalizációi miatt.

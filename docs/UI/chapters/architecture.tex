@@ -9,7 +9,16 @@ Az általunk tervezett rendszer architektúra diagramja a \ref{fig:architecture}
 \section{Frontend}
 A frontend a felhasználói felületet biztosítja, amelyen keresztül az emberek interakcióba léphetek a rendszerrel. Jelen esetben a frontend két weboldalból és egy mobilalkalmazásból áll. A két weboldal teljesen elkülönül egymástól, mivel az egyik az adminisztrátoroknak, míg a másik a végfelhasználóknak készült. A weboldalak működése eltér a klasszikustól, mivel ezek egyoldalas alkalmazások (Single Page Application), így kliens oldali feldolgozást használnak, azaz a felhasználói felületet a kliens oldalon generálja a böngésző, nem pedig a webszerverről érkezik készen. Jelen esetben a webszerver csak a statikus fájlokat szolgáltatja, a dinamikus tartalmakat a kliens oldali JavaScript illeszti be az oldalakba. Ebből a szempontból a weboldal és a mobilalkalmazás működése megegyezik, mivel mindkettő direkt módon az API szerverrel kommunikál, REST kéréseken keresztül. Az adatok JSON típusú szövegként közlekednek a végpontok között az egyszerű feldolgozhatóság végett.
 
-Fontos megemlíteni, hogy egyes API végpontokhoz azonosítás szükséges, ami úgynevezett tokonek segítségével valósul meg. Úgy a weboldalak, mint az alkalmazás eltárolják a szervertől kapott tokenet és hozzáfűzik minden API kéréshez, ezzel azonosítva a felhasználót. Egyes oldalakon térképek is megjelennek, amelyeket a web esetében a MapBox, míg a mobil esetében a Google Maps szolgáltat. Mindkét esetben az adott platformhoz és technológiához közelebb álló térképszolgáltatót választottam, hogy a legjobb felhasználói élményt biztosítsam.
+Fontos megemlíteni, hogy egyes API végpontokhoz azonosítás szükséges, ami úgynevezett JWT\footnote{JSON Web Token} tokonek segítségével valósul meg. Úgy a weboldalak, mint az alkalmazás eltárolják a szervertől kapott tokent és hozzáfűzik minden API kéréshez, ezzel azonosítva a felhasználót. Erre egy példa a \ref{fig:jwt} ábrán látható, ahol az adminisztrátorok számára megjelenített statisztikát kéri le a rendszer a backendtől. Ez a kérés egy Authorization fejléccel van ellátva, amely tartalmazza a JWT tokent.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figures/jwt.png}
+  \caption{Azonosítást tartalmazó API kérés}
+  \label{fig:jwt}
+\end{figure}
+
+Egyes oldalakon térképek is megjelennek, amelyeket a web esetében a MapBox, míg a mobil esetében a Google Maps szolgáltat. Mindkét esetben az adott platformhoz és technológiához közelebb álló térképszolgáltatót választottam, hogy a lehető legjobb felhasználói élményt biztosítsam. Az online fizetéshez a Stripe\footnote{Stripe: \url{https://stripe.com/en-ro}} szolgáltatást használtam, mert ez egy biztonságos és egyszerű fizetési megoldás, amelyet könnyen lehet integrálni a weboldalakba és az alkalmazásba is. A Stripe SDK rengeteg programozási nyelven elérhető, így JavaScript nyelvhez az npm\footnote{Node Package Manager: \url{https://www.npmjs.com/}} csomagkezelő segítségével is telepíthető, valamint a Flutterben is elérhető egy \url{pub.dev} csomag formájában.
 
 \section{Backend}
 A backend a szerveroldali logikát és az adatbázis elérést biztosítja. Ahogyan az előbbiekben említettem, a weboldalak API hívásokon keresztül kapják meg az adatokat és dinamikusan jelenítik meg őket, ezért nincs egy olyan webszerver, amely backend oldalon dolgozná ki a weboldalakat, csak egy olyan, amely statikus fájlokat szolgáltat. Ez azt eredményezi, hogy a webszerver nem tartalmaz üzleti logikát és az adatbázissal sincs összeköttetésben.
@@ -90,15 +99,6 @@ A regisztrációs adatok elküldésére adott válasz az \ref{fig:response-regis
   \includegraphics[width=\textwidth]{figures/secvential-registration.png}
   \caption{A regisztráció teljes folyamata}
   \label{fig:secvential-registration}
-\end{figure}
-
-A bejelentkezést igénylő funkciók API végpontjaihoz azonosítás szükséges, amelyet a frontend a felhasználó által megadott email cím és jelszó segítségével kér le a backendtől. Ez egy JWT\footnote{JSON Web Token} token formájában történik, amelyet a frontend elment és minden további kérésben elküld a backendnek. Erre egy példa a \ref{fig:jwt} ábrán látható, ahol az adminisztrátorok számára megjelenített statisztikát kéri le a rendszer a backendtől. Ez a kérés egy Authorization fejléccel van ellátva, amely tartalmazza a JWT tokent és amely alapján azonosítódik a bejelentkezett adminisztrátor.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{figures/jwt.png}
-  \caption{Azonosítást tartalmazó API kérés}
-  \label{fig:jwt}
 \end{figure}
 
 \section{Felhasznált technológiák}

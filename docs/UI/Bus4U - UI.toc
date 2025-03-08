@@ -15,11 +15,11 @@
 \select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{20}{section*.6}%
 \select@language {magyar} \contentsline {chapter}{\numberline {5}A rendszer architektúrája}{21}{chapter.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Frontend}{22}{section.5.1}%
-\select@language {magyar} \contentsline {section}{\numberline {5.2}Backend}{22}{section.5.2}%
-\select@language {magyar} \contentsline {section}{\numberline {5.3}Kommunikáció}{23}{section.5.3}%
-\select@language {magyar} \contentsline {section}{\numberline {5.4}Felhasznált technológiák}{27}{section.5.4}%
+\select@language {magyar} \contentsline {section}{\numberline {5.2}Backend}{23}{section.5.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.3}Kommunikáció}{24}{section.5.3}%
+\select@language {magyar} \contentsline {section}{\numberline {5.4}Felhasznált technológiák}{28}{section.5.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}Vue.js}{28}{subsection.5.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Vuetify}{29}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Vuetify}{30}{subsection.5.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Flutter}{30}{subsection.5.4.3}%
 \select@language {magyar} \contentsline {section}{\numberline {5.5}Fejlesztői eszközök}{31}{section.5.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.6}Kitelepítés}{33}{section.5.6}%

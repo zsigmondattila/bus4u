@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.3.3)  3 MAR 2025 18:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.3.3)  8 MAR 2025 12:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -24,15 +24,40 @@ File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
+) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2024/01/07 v24.1 The Babel package
+\babel@savecnt=\count196
+\U@D=\dimen141
+\l@unhyphenated=\language37
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count197
+ (./magyar.ldf
+Language: magyar 2019/01/14 v1.5c Magyar (Hungarian) support for babel
+\c@enumv=\count198
+Package babel Info: Making ; an active character on input line 2791.
+Package babel Info: Making ! an active character on input line 2793.
+Package babel Info: Making ? an active character on input line 2799.
+Package babel Info: Making : an active character on input line 2801.
+Package babel Info: Making ` an active character on input line 2819.
+\c@footnote@add=\count199
+\c@footnote@ch=\count266
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/hu/babel-magyar.tex
+Package babel Info: Importing font and identification data for magyar
+(babel)             from babel-hu.ini. Reported on input line 11.
 )
 
-LaTeX Warning: \include should only be used after \begin{document} on input line 3.
+LaTeX Warning: \include should only be used after \begin{document} on input line 7.
 
 (./preamble.tex (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks17
+\KV@toks@=\toks19
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
@@ -44,8 +69,8 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen141
-\Gin@req@width=\dimen142
+\Gin@req@height=\dimen142
+\Gin@req@width=\dimen143
 ) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -53,40 +78,20 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
  (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count196
-\Gm@cntv=\count197
-\c@Gm@tempcnt=\count198
-\Gm@bindingoffset=\dimen143
-\Gm@wd@mp=\dimen144
-\Gm@odd@mp=\dimen145
-\Gm@even@mp=\dimen146
-\Gm@layoutwidth=\dimen147
-\Gm@layoutheight=\dimen148
-\Gm@layouthoffset=\dimen149
-\Gm@layoutvoffset=\dimen150
-\Gm@dimlist=\toks18
-) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks19
-\inpenc@posthook=\toks20
+\Gm@cnth=\count267
+\Gm@cntv=\count268
+\c@Gm@tempcnt=\count269
+\Gm@bindingoffset=\dimen144
+\Gm@wd@mp=\dimen145
+\Gm@odd@mp=\dimen146
+\Gm@even@mp=\dimen147
+\Gm@layoutwidth=\dimen148
+\Gm@layoutheight=\dimen149
+\Gm@layouthoffset=\dimen150
+\Gm@layoutvoffset=\dimen151
+\Gm@dimlist=\toks20
 ) (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.sty
 Package: t1enc 1994/06/01 Standard LaTeX package
-) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2024/01/07 v24.1 The Babel package
-\babel@savecnt=\count199
-\U@D=\dimen151
-\l@unhyphenated=\language37
- (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@readstream=\read2
-\bbl@dirlevel=\count266
- (./magyar.ldf
-Language: magyar 2019/01/14 v1.5c Magyar (Hungarian) support for babel
-Package babel Info: Making ` an active character on input line 2819.
-\c@footnote@add=\count267
-\c@footnote@ch=\count268
-)) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/hu/babel-magyar.tex
-Package babel Info: Importing font and identification data for magyar
-(babel)             from babel-hu.ini. Reported on input line 11.
 ) (/usr/share/texlive/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box51
@@ -99,10 +104,10 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigbottomskip=\skip52
 \subfigcapmargin=\dimen154
 \subfiglabelskip=\skip53
-\c@subfigure=\count269
-\c@lofdepth=\count270
-\c@subtable=\count271
-\c@lotdepth=\count272
+\c@subfigure=\count270
+\c@lofdepth=\count271
+\c@subtable=\count272
+\c@lotdepth=\count273
 
 ****************************************
 * Local config file subfigure.cfg used *
@@ -112,21 +117,21 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfig@bottom=\skip55
 ) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count273
+\c@float@type=\count274
 \float@exts=\toks21
 \float@box=\box52
 \@float@everytoks=\toks22
 \@floatcapt=\box53
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
 Package: algorithm2e 2017/07/18 v5.2 algorithms environments
-\c@AlgoLine=\count274
+\c@AlgoLine=\count275
  (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
 \algocf@hangindent=\skip56
  (/usr/share/texlive/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
-\c@checkoddpage=\count275
+\c@checkoddpage=\count276
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 ) (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
@@ -162,9 +167,9 @@ Package: relsize 2013/03/29 ver 4.1
 \algoheightrule=\skip72
 \algotitleheightruledefault=\skip73
 \algotitleheightrule=\skip74
-\c@algocfline=\count276
-\c@algocfproc=\count277
-\c@algocf=\count278
+\c@algocfline=\count277
+\c@algocfproc=\count278
+\c@algocf=\count279
 \algocf@algoframe=\box60
 \algocf@algobox=\box61
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -184,14 +189,14 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count279
+\inf@bad=\count280
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count280
-\leftroot@=\count281
+\uproot@=\count281
+\leftroot@=\count282
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count282
-\DOTSCASE@=\count283
+\classnum@=\count283
+\DOTSCASE@=\count284
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -204,20 +209,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen163
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count284
+\macc@depth=\count285
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count285
+\c@MaxMatrixCols=\count286
 \dotsspace@=\muskip16
-\c@parentequation=\count286
-\dspbrk@lvl=\count287
+\c@parentequation=\count287
+\dspbrk@lvl=\count288
 \tag@help=\toks24
-\row@=\count288
-\column@=\count289
-\maxfields@=\count290
+\row@=\count289
+\column@=\count290
+\maxfields@=\count291
 \andhelp@=\toks25
 \eqnshift@=\dimen164
 \alignsep@=\dimen165
@@ -270,15 +275,15 @@ LaTeX Info: Redefining \hbar on input line 50.
 Package: pdfpages 2024/01/21 v0.5y Insert pages of external PDF documents (AM)
  (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count291
-\calc@Bcount=\count292
+\calc@Acount=\count292
+\calc@Bcount=\count293
 \calc@Adimen=\dimen170
 \calc@Bdimen=\dimen171
 \calc@Askip=\skip78
 \calc@Bskip=\skip79
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count293
+\calc@Ccount=\count294
 \calc@Cskip=\skip80
 ) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
 Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
@@ -307,14 +312,101 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
  (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
 File: pppdftex.def 2024/01/21 v0.5y Pdfpages driver for pdfTeX (AM)
 )
-\pdfpages@includegraphics@status=\count294
+\pdfpages@includegraphics@status=\count295
 \AM@pagebox=\box64
 \AM@global@opts=\toks28
-\AM@pagecnt=\count295
+\AM@pagecnt=\count296
 \AM@toc@title=\toks29
 \AM@lof@heading=\toks30
-\c@AM@survey=\count296
+\c@AM@survey=\count297
 \AM@templatesizebox=\box65
+) (./moresize.sty
+Package: moresize 1999/07/26 v1.9 (more font sizes)
+) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip81
+\RaggedLeftLeftskip=\skip82
+\RaggedRightLeftskip=\skip83
+\CenteringRightskip=\skip84
+\RaggedLeftRightskip=\skip85
+\RaggedRightRightskip=\skip86
+\CenteringParfillskip=\skip87
+\RaggedLeftParfillskip=\skip88
+\RaggedRightParfillskip=\skip89
+\JustifyingParfillskip=\skip90
+\CenteringParindent=\skip91
+\RaggedLeftParindent=\skip92
+\RaggedRightParindent=\skip93
+\JustifyingParindent=\skip94
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count298
+\mult@box=\box66
+\multicol@leftmargin=\dimen177
+\c@unbalance=\count299
+\c@collectmore=\count300
+\doublecol@number=\count301
+\multicoltolerance=\count302
+\multicolpretolerance=\count303
+\full@width=\dimen178
+\page@free=\dimen179
+\premulticols=\dimen180
+\postmulticols=\dimen181
+\multicolsep=\skip95
+\multicolbaselineskip=\skip96
+\partial@page=\box67
+\last@line=\box68
+\mc@boxedresult=\box69
+\maxbalancingoverflow=\dimen182
+\mult@rightbox=\box70
+\mult@grightbox=\box71
+\mult@firstbox=\box72
+\mult@gfirstbox=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\c@minrows=\count304
+\c@columnbadness=\count305
+\c@finalcolumnbadness=\count306
+\last@try=\dimen183
+\multicolovershoot=\dimen184
+\multicolundershoot=\dimen185
+\mult@nat@firstbox=\box110
+\colbreak@box=\box111
+\mc@col@check@num=\count307
 ) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
  (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
@@ -346,14 +438,14 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count297
+\c@section@level=\count308
 ) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count298
+\etb@tempcnta=\count309
 )
-\@linkdim=\dimen177
-\Hy@linkcounter=\count299
-\Hy@pagecounter=\count300
+\@linkdim=\dimen186
+\Hy@linkcounter=\count310
+\Hy@pagecounter=\count311
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
@@ -361,7 +453,7 @@ Now handling font encoding PD1 ...
 ) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count301
+\Hy@SavedSpaceFactor=\count312
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
@@ -374,21 +466,21 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count302
+\c@Hy@tempcnt=\count313
  (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen178
+\XeTeXLinkMargin=\dimen187
  (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count303
-\Field@Width=\dimen179
-\Fld@charsize=\dimen180
+\Fld@menulength=\count314
+\Field@Width=\dimen188
+\Fld@charsize=\dimen189
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -400,9 +492,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count304
-\c@Item=\count305
-\c@Hfootnote=\count306
+\Hy@abspage=\count315
+\c@Item=\count316
+\c@Hfootnote=\count317
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
@@ -411,8 +503,8 @@ File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
 )
-\Fld@listcount=\count307
-\c@bookmark@seq@number=\count308
+\Fld@listcount=\count318
+\c@bookmark@seq@number=\count319
  (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
  (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -420,119 +512,77 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
 )
-\Hy@SectionHShift=\skip81
+\Hy@SectionHShift=\skip97
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 27.
-Package hyperref Info: Option `unicode' set `true' on input line 27.
+Package hyperref Info: Option `colorlinks' set `true' on input line 34.
+Package hyperref Info: Option `unicode' set `true' on input line 34.
  (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count309
-\lst@gtempboxa=\box66
+\lst@mode=\count320
+\lst@gtempboxa=\box112
 \lst@token=\toks31
-\lst@length=\count310
-\lst@currlwidth=\dimen181
-\lst@column=\count311
-\lst@pos=\count312
-\lst@lostspace=\dimen182
-\lst@width=\dimen183
-\lst@newlines=\count313
-\lst@lineno=\count314
-\lst@maxwidth=\dimen184
+\lst@length=\count321
+\lst@currlwidth=\dimen190
+\lst@column=\count322
+\lst@pos=\count323
+\lst@lostspace=\dimen191
+\lst@width=\dimen192
+\lst@newlines=\count324
+\lst@lineno=\count325
+\lst@maxwidth=\dimen193
  (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count315
-\lst@skipnumbers=\count316
-\lst@framebox=\box67
+\c@lstnumber=\count326
+\lst@skipnumbers=\count327
+\lst@framebox=\box113
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
 ))
 Package: listings 2023/02/27 1.9 (Carsten Heinz)
 
 
-Package Listings Warning: Unknown column format `fullflexible sensitive' on input line 64.
+Package Listings Warning: Unknown column format `fullflexible sensitive' on input line 71.
 
-) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
-Package: ragged2e 2023/06/22 v3.6 ragged2e Package
-\CenteringLeftskip=\skip82
-\RaggedLeftLeftskip=\skip83
-\RaggedRightLeftskip=\skip84
-\CenteringRightskip=\skip85
-\RaggedLeftRightskip=\skip86
-\RaggedRightRightskip=\skip87
-\CenteringParfillskip=\skip88
-\RaggedLeftParfillskip=\skip89
-\RaggedRightParfillskip=\skip90
-\JustifyingParfillskip=\skip91
-\CenteringParindent=\skip92
-\RaggedLeftParindent=\skip93
-\RaggedRightParindent=\skip94
-\JustifyingParindent=\skip95
 )
-
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:12: LaTeX Error: Option clash for package geometry.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12 \usepackage
-                {float}
-The package geometry has already been loaded with options:
-  [left=2.5cm,right=2cm,top=2.5cm]
-There has now been an attempt to load it with options
-  [a4paper, margin=2.5cm]
-Adding the global options:
-  left=2.5cm,right=2cm,top=2.5cm,a4paper, margin=2.5cm
-to your \documentclass declaration may fix this.
-Try typing  <return>  to proceed.
-
-(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
-Package: setspace 2022/12/04 v6.7b set line spacing
-)
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 20.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 14.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count317
-\l__pdf_internal_box=\box68
-)
-
-LaTeX Warning: Unused global option(s):
-    [twosides].
-
-(./Bus4U - SERVER.aux)
+\l__color_backend_stack_int=\count328
+\l__pdf_internal_box=\box114
+) (./Bus4U - SERVER.aux)
 \openout1 = `"Bus4U - SERVER.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
-LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count318
-\scratchdimen=\dimen185
-\scratchbox=\box69
-\nofMPsegments=\count319
-\nofMParguments=\count320
+\scratchcounter=\count329
+\scratchdimen=\dimen194
+\scratchbox=\box115
+\nofMPsegments=\count330
+\nofMParguments=\count331
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count321
-\MPscratchDim=\dimen186
-\MPnumerator=\count322
-\makeMPintoPDFobject=\count323
+\MPscratchCnt=\count332
+\MPscratchDim=\dimen195
+\MPnumerator=\count333
+\makeMPintoPDFobject=\count334
 \everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -547,7 +597,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
+* modes: twoside 
 * h-part:(L,W,R)=(71.13188pt, 486.25761pt, 56.9055pt)
 * v-part:(T,H,B)=(71.13188pt, 628.44073pt, 95.39737pt)
 * \paperwidth=614.295pt
@@ -555,13 +605,13 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \textwidth=486.25761pt
 * \textheight=628.44073pt
 * \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
+* \evensidemargin=-15.36449pt
 * \topmargin=-38.1381pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=44.0pt
+* \marginparwidth=95.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -569,14 +619,10 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
-
-
-Package magyar.ldf Warning: No effect of \def\magyarOptions{...}
-(magyar.ldf)                please move it before \usepackage[magyar]{babel}.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -587,145 +633,55 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 20.
+Package hyperref Info: Link coloring ON on input line 14.
+ (./Bus4U - SERVER.out) (./Bus4U - SERVER.out)
 \@outlinefile=\write3
 \openout3 = `"Bus4U - SERVER.out"'.
 
-\c@lstlisting=\count324
+\c@lstlisting=\count335
  (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
-)
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:32: Undefined control sequence.
-l.32   \HUGE
-            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+) [1
 
 
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:39: LaTeX Error: Environment multicols undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.39   \begin{multicols}
-                        {2}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 42.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 36.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 42.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 42.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 42.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 42.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 42.
- [1
-
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:44: Undefined control sequence.
-l.44     \columnbreak
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:49: LaTeX Error: \begin{titlepage} on input line 25 ended by \end{multicols}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.49   \end{multicols}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[2]
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:62: Undefined control sequence.
-l.62   \HUGE
-            
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:69: LaTeX Error: Environment multicols undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.69   \begin{multicols}
-                        {2}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 36.
+ [2]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.73     \end{flushleft}
-                         [1]
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:74: Undefined control sequence.
-l.74     \columnbreak
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex:79: LaTeX Error: \begin{titlepage} on input line 55 ended by \end{multicols}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.79   \end{multicols}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
+l.64     \begin
+               {flushleft} [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.83 \end{titlepage}
+l.77 \end{titlepage}
                      [2] (./chapters/abstract_ro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
@@ -735,274 +691,220 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.90 \end{abstract}
-                    [1] (./chapters/abstract_en.tex)
+l.83 \end{abstract}
+                    [1]
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.83 \end{abstract}
+                    [2] (./chapters/abstract_en.tex)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.95 \end{abstract}
+l.88 \end{abstract}
                     [1] (./chapters/abstract_hu.tex)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.100 \end{abstract}
-                     [1]
-No file "Bus4U - SERVER".toc.
-\tf@toc=\write4
-\openout4 = `"Bus4U - SERVER.toc"'.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.104 \listoffigures
-                     [1
-
-]
-No file "Bus4U - SERVER".lof.
-\tf@lof=\write5
-\openout5 = `"Bus4U - SERVER.lof"'.
-
-
+l.93 \end{abstract}
+                    [1]
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.106 \chapter
-              {BevezetÅ‘} [2
+l.93 \end{abstract}
+                    [2] (./Bus4U - SERVER.toc [3
+
+] [4])
+\tf@toc=\write4
+\openout4 = `"Bus4U - SERVER.toc"'.
+
+ [5] (./Bus4U - SERVER.lof)
+\tf@lof=\write5
+\openout5 = `"Bus4U - SERVER.lof"'.
+
+ [6
 
 ]
 1. fejezet.
-(./chapters/introduction.tex [3
+(./chapters/introduction.tex [7
 
-]) [4]
+] [8]) [9]
 2. fejezet.
-(./chapters/goals.tex
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 5.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
-File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [5
-
-]) [6]
-3. fejezet.
-(./chapters/theory.tex
-
-LaTeX Warning: Citation `levinson_transport' on page 7 undefined on input line 7.
-
-
-LaTeX Warning: Citation `ceder_transit' on page 7 undefined on input line 9.
-
-[7
-
-] [8]
-
-LaTeX Warning: Citation `fielding_rest' on page 9 undefined on input line 34.
-
-
-LaTeX Warning: Citation `monolithic_architecture' on page 9 undefined on input line 49.
-
-
-LaTeX Warning: Citation `microservices' on page 9 undefined on input line 51.
-
-[9]
-
-LaTeX Warning: Citation `database_systems' on page 10 undefined on input line 54.
-
-) [10]
-4. fejezet.
-(./chapters/requirements.tex [11
+(./chapters/goals.tex [10
 
 ]
+Overfull \hbox (5.43817pt too wide) in paragraph at lines 15--16
+[]\T1/ptm/b/n/12 Felhasználói Él-mény és Rend-szer-ha-té-kony-ság: \T1/ptm/m/n/12 Az egész rend-szer ki-ala-kí-tá-sá-nál ki-emelt szem-
+ []
 
-LaTeX Warning: Reference `fig:use-case' on page 12 undefined on input line 30.
+) [11]
+3. fejezet.
+(./chapters/theory.tex [12
 
-<figures/use-case.jpg, id=91, 1714.405pt x 2055.68pt>
+] [13]
+
+LaTeX Warning: Citation `fielding_rest' on page 14 undefined on input line 34.
+
+[14]
+
+LaTeX Warning: Citation `monolithic_architecture' on page 15 undefined on input line 49.
+
+
+LaTeX Warning: Citation `microservices' on page 15 undefined on input line 51.
+
+
+LaTeX Warning: Citation `database_systems' on page 15 undefined on input line 54.
+
+) [15]
+4. fejezet.
+(./chapters/requirements.tex [16
+
+]
+<figures/use-case.jpg, id=475, 1714.405pt x 2055.68pt>
 File: figures/use-case.jpg Graphic file (type jpg)
 <use figures/use-case.jpg>
 Package pdftex.def Info: figures/use-case.jpg  used on input line 33.
 (pdftex.def)             Requested size: 486.25761pt x 583.05185pt.
-[12] [13 <./figures/use-case.jpg>] [14]) [15]
+ [17] [18 <./figures/use-case.jpg>] [19]) [20]
 5. fejezet.
 (./chapters/detailed_description.tex
-<figures/architecture.jpeg, id=117, 1311.90125pt x 737.75626pt>
+<figures/architecture.jpeg, id=496, 1311.90125pt x 737.75626pt>
 File: figures/architecture.jpeg Graphic file (type jpg)
 <use figures/architecture.jpeg>
 Package pdftex.def Info: figures/architecture.jpeg  used on input line 7.
 (pdftex.def)             Requested size: 486.25761pt x 273.4496pt.
- [16
+ [21
 
-]
-
-LaTeX Warning: Citation `hartl_rails' on page 17 undefined on input line 16.
-
-
-LaTeX Warning: Citation `fernandez_rails' on page 17 undefined on input line 16.
-
-
-LaTeX Warning: Citation `hartl_rails' on page 17 undefined on input line 18.
-
-[17 <./figures/architecture.jpeg>]
-
-LaTeX Warning: Citation `fernandez_rails' on page 18 undefined on input line 20.
-
-
-LaTeX Warning: Citation `hartl_rails' on page 18 undefined on input line 22.
-
-
-LaTeX Warning: Citation `fernandez_rails' on page 18 undefined on input line 22.
-
-
-LaTeX Warning: Citation `douglas_postgresql' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation `murrell_postgresql' on page 18 undefined on input line 25.
-
-
-LaTeX Warning: Citation `murrell_postgresql' on page 18 undefined on input line 27.
-
-
-LaTeX Warning: Citation `douglas_postgresql' on page 18 undefined on input line 27.
-
-[18]
-
-LaTeX Warning: Citation `wilder_azure' on page 19 undefined on input line 30.
-
-
-LaTeX Warning: Citation `collier_azure' on page 19 undefined on input line 30.
-
-
-LaTeX Warning: Citation `wilder_azure' on page 19 undefined on input line 35.
-
-
-LaTeX Warning: Citation `collier_azure' on page 19 undefined on input line 36.
-
-[19]
+] [22 <./figures/architecture.jpeg>] [23] [24]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 57.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [20{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-<figures/database.jpg, id=152, 1283.79625pt x 1507.6325pt>
+) [25{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}] [26]
+<figures/database.jpg, id=544, 1283.79625pt x 1507.6325pt>
 File: figures/database.jpg Graphic file (type jpg)
 <use figures/database.jpg>
 Package pdftex.def Info: figures/database.jpg  used on input line 105.
 (pdftex.def)             Requested size: 486.25761pt x 571.04294pt.
- [21] [22 <./figures/database.jpg>]
-<figures/jira.jpg, id=163, 926.46124pt x 825.0825pt>
+ [27] [28 <./figures/database.jpg>]
+<figures/jira.jpg, id=553, 926.46124pt x 825.0825pt>
 File: figures/jira.jpg Graphic file (type jpg)
 <use figures/jira.jpg>
 Package pdftex.def Info: figures/jira.jpg  used on input line 130.
 (pdftex.def)             Requested size: 486.25761pt x 433.0489pt.
- [23] [24 <./figures/jira.jpg>]
-<figures/github.jpg, id=178, 1176.395pt x 807.015pt>
+ [29] [30 <./figures/jira.jpg>]
+<figures/github.jpg, id=563, 1176.395pt x 807.015pt>
 File: figures/github.jpg Graphic file (type jpg)
 <use figures/github.jpg>
 Package pdftex.def Info: figures/github.jpg  used on input line 149.
 (pdftex.def)             Requested size: 486.25761pt x 333.57506pt.
- [25]) [26 <./figures/github.jpg>]
+ [31]) [32 <./figures/github.jpg>]
 6. fejezet.
-(./chapters/infrastructure.tex [27
+(./chapters/infrastructure.tex [33
 
 ]
-<figures/deployment.jpg, id=196, 923.45pt x 657.45625pt>
+<figures/deployment.jpg, id=576, 923.45pt x 657.45625pt>
 File: figures/deployment.jpg Graphic file (type jpg)
 <use figures/deployment.jpg>
 Package pdftex.def Info: figures/deployment.jpg  used on input line 33.
 (pdftex.def)             Requested size: 486.25761pt x 346.19296pt.
-) [28] [29 <./figures/deployment.jpg>]
+) [34] [35 <./figures/deployment.jpg>]
 7. fejezet.
 (./chapters/operation.tex
-<figures/activity.png, id=207, 956.57375pt x 1051.93pt>
+<figures/activity.png, id=586, 956.57375pt x 1051.93pt>
 File: figures/activity.png Graphic file (type png)
 <use figures/activity.png>
 Package pdftex.def Info: figures/activity.png  used on input line 13.
 (pdftex.def)             Requested size: 486.25761pt x 534.72763pt.
- [30
+ [36
 
-] [31 <./figures/activity.png>]
-<figures/boughtticket.png, id=223, 1020.81375pt x 488.82625pt>
+] [37 <./figures/activity.png>]
+<figures/boughtticket.png, id=598, 1020.81375pt x 488.82625pt>
 File: figures/boughtticket.png Graphic file (type png)
 <use figures/boughtticket.png>
 Package pdftex.def Info: figures/boughtticket.png  used on input line 30.
 (pdftex.def)             Requested size: 486.25761pt x 232.85126pt.
-<figures/listtickets.png, id=224, 954.56625pt x 592.2125pt>
+<figures/listtickets.png, id=599, 954.56625pt x 592.2125pt>
 File: figures/listtickets.png Graphic file (type png)
 <use figures/listtickets.png>
 Package pdftex.def Info: figures/listtickets.png  used on input line 44.
 (pdftex.def)             Requested size: 486.25761pt x 301.67195pt.
- [32 <./figures/boughtticket.png>]
-<figures/tickets.png, id=231, 1020.81375pt x 488.82625pt>
+ [38 <./figures/boughtticket.png>]
+<figures/tickets.png, id=605, 1020.81375pt x 488.82625pt>
 File: figures/tickets.png Graphic file (type png)
 <use figures/tickets.png>
 Package pdftex.def Info: figures/tickets.png  used on input line 56.
 (pdftex.def)             Requested size: 486.25761pt x 232.85126pt.
- [33 <./figures/listtickets.png (PNG copy)>]
-<figures/buyticket.png, id=238, 844.15375pt x 610.28pt>
+ [39 <./figures/listtickets.png (PNG copy)>]
+<figures/buyticket.png, id=610, 844.15375pt x 610.28pt>
 File: figures/buyticket.png Graphic file (type png)
 <use figures/buyticket.png>
 Package pdftex.def Info: figures/buyticket.png  used on input line 68.
 (pdftex.def)             Requested size: 486.25761pt x 351.54149pt.
- [34 <./figures/tickets.png>]
-<figures/departuretimes.png, id=245, 1020.81375pt x 1182.4175pt>
+ [40 <./figures/tickets.png>]
+<figures/departuretimes.png, id=616, 1020.81375pt x 1182.4175pt>
 File: figures/departuretimes.png Graphic file (type png)
 <use figures/departuretimes.png>
 Package pdftex.def Info: figures/departuretimes.png  used on input line 82.
 (pdftex.def)             Requested size: 486.25761pt x 563.24187pt.
- [35 <./figures/buyticket.png (PNG copy)>] [36 <./figures/departuretimes.png>]
-<figures/checkdocuments.png, id=259, 942.52126pt x 548.0475pt>
+ [41 <./figures/buyticket.png (PNG copy)>] [42 <./figures/departuretimes.png>]
+<figures/checkdocuments.png, id=627, 942.52126pt x 548.0475pt>
 File: figures/checkdocuments.png Graphic file (type png)
 <use figures/checkdocuments.png>
 Package pdftex.def Info: figures/checkdocuments.png  used on input line 112.
 (pdftex.def)             Requested size: 486.25761pt x 282.74518pt.
- [37]
-<figures/adminstops.png, id=267, 1017.8025pt x 488.82625pt>
+ [43]
+<figures/adminstops.png, id=632, 1017.8025pt x 488.82625pt>
 File: figures/adminstops.png Graphic file (type png)
 <use figures/adminstops.png>
 Package pdftex.def Info: figures/adminstops.png  used on input line 126.
 (pdftex.def)             Requested size: 486.25761pt x 233.53748pt.
- [38 <./figures/checkdocuments.png (PNG copy)>]
-<figures/adminschedule.png, id=274, 1017.8025pt x 483.8075pt>
+ [44 <./figures/checkdocuments.png (PNG copy)>]
+<figures/adminschedule.png, id=637, 1017.8025pt x 483.8075pt>
 File: figures/adminschedule.png Graphic file (type png)
 <use figures/adminschedule.png>
 Package pdftex.def Info: figures/adminschedule.png  used on input line 148.
 (pdftex.def)             Requested size: 486.25761pt x 231.13976pt.
- [39 <./figures/adminstops.png>]
-<figures/adminbuses.png, id=284, 1020.81375pt x 458.71375pt>
+ [45 <./figures/adminstops.png>]
+<figures/adminbuses.png, id=643, 1020.81375pt x 458.71375pt>
 File: figures/adminbuses.png Graphic file (type png)
 <use figures/adminbuses.png>
 Package pdftex.def Info: figures/adminbuses.png  used on input line 164.
 (pdftex.def)             Requested size: 486.25761pt x 218.50723pt.
- [40 <./figures/adminschedule.png>]
-<figures/posmain.png, id=292, 526.96875pt x 820.06375pt>
+ [46 <./figures/adminschedule.png>]
+<figures/posmain.png, id=649, 526.96875pt x 820.06375pt>
 File: figures/posmain.png Graphic file (type png)
 <use figures/posmain.png>
 Package pdftex.def Info: figures/posmain.png  used on input line 186.
 (pdftex.def)             Requested size: 243.1288pt x 378.36009pt.
- [41 <./figures/adminbuses.png>]
-<figures/posscan.png, id=301, 1005.7575pt x 340.27126pt>
+ [47 <./figures/adminbuses.png>]
+<figures/posscan.png, id=655, 1005.7575pt x 340.27126pt>
 File: figures/posscan.png Graphic file (type png)
 <use figures/posscan.png>
 Package pdftex.def Info: figures/posscan.png  used on input line 207.
 (pdftex.def)             Requested size: 486.25761pt x 164.51215pt.
-) [42 <./figures/posmain.png>] [43 <./figures/posscan.png>]
+) [48 <./figures/posmain.png>] [49 <./figures/posscan.png>]
 8. fejezet.
-(./chapters/testing.tex [44
+(./chapters/testing.tex [50
 
 ]
 Overfull \hbox (0.32408pt too wide) in paragraph at lines 34--35
 []\T1/ptm/b/n/12 GET /v1/admin/document_validity_checker \T1/ptm/m/n/12 ^^U Do-ku-men-tum ér-vé-nyes-sé-gé-nek el-len-®r-zé-se ad-
  []
 
-[45] [46]) [47]
+[51] [52]) [53]
 9. fejezet.
 (./chapters/summary.tex
-Overfull \hbox (34.2805pt too wide) in paragraph at lines 11--12
+Overfull \hbox (33.06387pt too wide) in paragraph at lines 11--12
 []\T1/ptm/m/n/12 4. Dep-loy-ment: A rend-szer te-le-pí-té-se az Azu-re fel-h®-szol-gál-ta-tás-ra tör-tént, ahol az API az api.bus4u.online
  []
 
-) [48
+[54
 
-] (./Bus4U - SERVER.bbl) [49]
-A. f\"uggel\'ek.
-(./chapters/appendix.tex) [50
+]) (./Bus4U - SERVER.bbl [55]) [56
+
+]
+A f\"uggel\'ek.
+(./chapters/appendix.tex) [57
 
 ] (./Bus4U - SERVER.aux)
  ***********
@@ -1013,31 +915,22 @@ L3 programming layer <2024-01-22>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `"Bus4U - SERVER".out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `"Bus4U - SERVER".out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  408325CD430F2DC602BCEB18F7FAD3F4;11293.
+Package rerunfilecheck Info: File `"Bus4U - SERVER".out' has not changed.
+(rerunfilecheck)             Checksum: 408325CD430F2DC602BCEB18F7FAD3F4;11293.
  ) 
 Here is how much of TeX's memory you used:
- 16270 strings out of 475509
- 262301 string characters out of 5776665
+ 16593 strings out of 475509
+ 267405 string characters out of 5776665
  1940975 words of memory out of 5000000
- 37898 multiletter control sequences out of 15000+600000
- 607069 words of font info for 94 fonts, out of 8000000 for 9000
+ 38196 multiletter control sequences out of 15000+600000
+ 615854 words of font info for 100 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
- 82i,7n,84p,1395b,613s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - SERVER.pdf" (57 pages, 2984600 bytes).
+ 82i,7n,84p,1395b,666s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "Bus4U - SERVER.pdf" (64 pages, 3009242 bytes).
 PDF statistics:
- 411 PDF objects out of 1000 (max. 8388607)
- 313 compressed objects within 4 object streams
- 139 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 764 PDF objects out of 1000 (max. 8388607)
+ 654 compressed objects within 7 object streams
+ 155 named destinations out of 1000 (max. 500000)
+ 627 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - SERVER"] 1741433709.25513 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1741433710.94485 0
-  "./references.bib" 1741432412.378 2499 83218cedd4eb2d9665388315b66c48bf ""
+["bibtex Bus4U - SERVER"] 1741433949.41886 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1741433951.19397 0
+  "./references.bib" 1741433949.10072 2500 895e17bd6d1ee6c5e353b4db9970ba1f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - SERVER.aux" 1741433710.72983 18092 f2d78e7ab4567eeea36ad2ba16bd1cb0 "pdflatex"
+  "Bus4U - SERVER.aux" 1741433950.96574 18092 f2d78e7ab4567eeea36ad2ba16bd1cb0 "pdflatex"
   (generated)
   "Bus4U - SERVER.bbl"
   "Bus4U - SERVER.blg"
   (rewritten before read)
-["pdflatex"] 1741433709.31919 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1741433710.9451 0
+["pdflatex"] 1741433949.5207 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1741433951.19422 0
   "/etc/texmf/web2c/texmf.cnf" 1741013916.20445 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" 1741428790.21291 2599 cc91b820f3de20037629a475dfb7a685 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -127,12 +127,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1741017730.00927 5352258 625d145f3708f99ff2144a56c0e20fa1 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1741014211 7453362 f08e4cc00325dd43ff9ca42e4c052dff ""
-  "Bus4U - SERVER.aux" 1741433710.72983 18092 f2d78e7ab4567eeea36ad2ba16bd1cb0 "pdflatex"
-  "Bus4U - SERVER.bbl" 1741433709.31381 1709 571dd02713ee0d71395f19e25be5347d "bibtex Bus4U - SERVER"
-  "Bus4U - SERVER.lof" 1741433710.73183 2980 bc1a40559ce517ca33ccda92e0e8ebf3 "pdflatex"
-  "Bus4U - SERVER.out" 1741433710.73183 11514 76cd7f959369e2cdf184f832c4e9cc97 "pdflatex"
+  "Bus4U - SERVER.aux" 1741433950.96574 18092 f2d78e7ab4567eeea36ad2ba16bd1cb0 "pdflatex"
+  "Bus4U - SERVER.bbl" 1741433949.49772 1712 2fee30926abaa6a54e98b85797ad3b07 "bibtex Bus4U - SERVER"
+  "Bus4U - SERVER.lof" 1741433950.96774 2980 bc1a40559ce517ca33ccda92e0e8ebf3 "pdflatex"
+  "Bus4U - SERVER.out" 1741433950.96774 11514 76cd7f959369e2cdf184f832c4e9cc97 "pdflatex"
   "Bus4U - SERVER.tex" 1741428790.21291 2599 cc91b820f3de20037629a475dfb7a685 ""
-  "Bus4U - SERVER.toc" 1741433710.73183 7978 00eca366934ce5ed0831bd8108f6424f "pdflatex"
+  "Bus4U - SERVER.toc" 1741433950.96774 7978 00eca366934ce5ed0831bd8108f6424f "pdflatex"
   "chapters/abstract_en.tex" 1741427075.33497 2233 bcdf3790a2dc976d14e2603e3ebd6eff ""
   "chapters/abstract_hu.tex" 1741428876.05701 2565 efe2d5372f321b7ab0cb2a16e969e997 ""
   "chapters/abstract_ro.tex" 1741428909.93004 2514 00b7db7bd513b166537af07cefae3b08 ""

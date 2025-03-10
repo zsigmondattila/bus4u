@@ -18,8 +18,6 @@
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Rendszerkövetelmények}{19}{section.4.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Funkcionális követelmények}{19}{subsection.4.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Nem-funkcionális követelmények}{19}{subsection.4.2.2}%
-\select@language {magyar} \contentsline {paragraph}{Szervezéssel kapcsolatos követelmények}{19}{section*.3}%
-\select@language {magyar} \contentsline {paragraph}{Termékkel kapcsolatos követelmények}{20}{section*.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {5}A rendszer részletes leírása}{21}{chapter.5}%
 \select@language {magyar} \contentsline {section}{\numberline {5.1}Technológiai háttér}{22}{section.5.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.1.1}Ruby on Rails}{22}{subsection.5.1.1}%

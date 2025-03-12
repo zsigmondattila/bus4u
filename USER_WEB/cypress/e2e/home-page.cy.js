@@ -1,9 +1,15 @@
 describe("Home Page", () => {
   it("Buying 2 tickets without login", () => {
+    cy.intercept("GET", "/v1/get_cities").as("getCities");
+    cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
+
     cy.visit("localhost:5173/");
+    cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='startStation']").type("Sapientia{enter}");
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
@@ -24,6 +30,9 @@ describe("Home Page", () => {
   });
 
   it("Buying ticket with login (server error)", () => {
+    cy.intercept("GET", "/v1/get_cities").as("getCities");
+    cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
+
     cy.visit("localhost:5173/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
@@ -31,9 +40,12 @@ describe("Home Page", () => {
     cy.get("input").last().type("password{enter}");
     cy.location("pathname").should("eq", "/");
     cy.get(".v-toolbar__content").should("contain", "Szabolcs");
+    cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='startStation']").type("Sapientia{enter}");
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
@@ -46,6 +58,9 @@ describe("Home Page", () => {
   });
 
   it("Buying ticket with login (successful)", () => {
+    cy.intercept("GET", "/v1/get_cities").as("getCities");
+    cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
+
     cy.visit("localhost:5173/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
@@ -53,9 +68,12 @@ describe("Home Page", () => {
     cy.get("input").last().type("password{enter}");
     cy.location("pathname").should("eq", "/");
     cy.get(".v-toolbar__content").should("contain", "Szabolcs");
+    cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='startStation']").type("Sapientia{enter}");
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
+    cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();

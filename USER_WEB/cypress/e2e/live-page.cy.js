@@ -7,7 +7,18 @@ describe("Live map page", () => {
   it("Search for a live bus", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_routes_by_city*").as("getRoutes");
-    cy.intercept("GET", "/v1/get_bus_locations_by_route*").as("getBuses");
+    cy.intercept("GET", "/v1/get_bus_locations_by_route*", {
+      statusCode: 200,
+      body: [
+        {
+          license_plate: "MS-01-ABC",
+          brand: "Mercedes Benz Citaro",
+          capacity: 52,
+          longitude: "24.582",
+          latitude: "46.536",
+        },
+      ],
+    }).as("getBuses");
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("getRouteStations");
     cy.visit("http://localhost:5173/live");
     cy.wait("@getCities");

@@ -31,7 +31,7 @@ import { userStore } from '@/stores/userStore';
 
 const user = userStore();
 const props = defineProps(['trip'])
-const emit = defineEmits(['purchased'])
+const emit = defineEmits(['purchased', 'error'])
 
 const count = ref(1)
 const isLoading = ref(false)

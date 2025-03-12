@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@mdi/font": "^7.3.67",
+    "@types/qrcode": "^1.5.5",
     "@vitejs/plugin-vue": "^4.3.4",
     "cypress": "^14.1.0",
     "eslint": "^8.49.0",

@@ -14,4 +14,9 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+
+before(() => {
+  cy.intercept("https://api.mapbox.com/**", { log: false });
+  cy.intercept("https://events.mapbox.com/**", { log: false });
+});

@@ -10,10 +10,14 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="cities" :item-props="getName" label="City" :disabled="!!form.bus" :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" @update:modelValue="getBuses" clearable></v-autocomplete>
+            <v-autocomplete :items="cities" :item-props="getName" label="City" name="city" :disabled="!!form.bus"
+              :loading="!cities.length" v-model="form.city" class="text-field" hide-details="auto" auto-select-first
+              @update:modelValue="getBuses" clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="buses" :item-props="getName" label="Route" :disabled="!!form.city" :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto" clearable></v-autocomplete>
+            <v-autocomplete :items="buses" :item-props="getName" label="Route" name="route" :disabled="!!form.city"
+              :loading="!buses.length && !!form.city" v-model="form.bus" class="text-field" hide-details="auto"
+              auto-select-first clearable></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Filter </v-btn>
@@ -22,7 +26,7 @@
       </v-container>
     </v-form>
 
-    <Map ref="mapBox" :stations="stations"/>
+    <Map ref="mapBox" :stations="stations" />
   </AppLayout>
 </template>
 
@@ -43,62 +47,62 @@ const cities = ref([])
 const buses = ref([])
 const stations = ref([])
 
-function getName(item){
+function getName(item) {
   return { title: item.name };
 }
 
 function onSubmit() {
-  if(form.city && !form.bus) {
-    axios.get('https://api.bus4u.online/v1/get_stations_by_city', {params: { city_uid: form.city.city_uid }})
-    .then(rsp => {
-      if(rsp.status == 200) {
-        stations.value = rsp.data.stations
-        if(stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
-      }
-    }).catch(() => stations.value = [])
-  } else if(form.bus) {
-    axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', {params: { route_uid: form.bus.route_uid }})
-    .then(rsp => {
-      if(rsp.status == 200) {
-        stations.value = rsp.data.stations
-        if(stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
-      }
-    }).catch(() => stations.value = [])
+  if (form.city && !form.bus) {
+    axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: form.city.city_uid } })
+      .then(rsp => {
+        if (rsp.status == 200) {
+          stations.value = rsp.data.stations
+          if (stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
+        }
+      }).catch(() => stations.value = [])
+  } else if (form.bus) {
+    axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: form.bus.route_uid } })
+      .then(rsp => {
+        if (rsp.status == 200) {
+          stations.value = rsp.data.stations
+          if (stations.value.length) mapBox.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
+        }
+      }).catch(() => stations.value = [])
   } else {
     axios.get('https://api.bus4u.online/v1/get_stations')
       .then(rsp => {
-          if(rsp.status == 200) stations.value = rsp.data.stations
-        }).catch(() => stations.value = [])
+        if (rsp.status == 200) stations.value = rsp.data.stations
+      }).catch(() => stations.value = [])
   }
 }
 
 async function getBuses() {
   axios.get('https://api.bus4u.online/v1/get_routes')
     .then(rsp => {
-      if(rsp.status == 200) buses.value = rsp.data.routes
+      if (rsp.status == 200) buses.value = rsp.data.routes
     }).catch(() => buses.value = [])
 }
 
 onMounted(() => {
   axios.get('https://api.bus4u.online/v1/get_stations')
-  .then(rsp => {
-      if(rsp.status == 200) stations.value = rsp.data.stations
+    .then(rsp => {
+      if (rsp.status == 200) stations.value = rsp.data.stations
     }).catch(() => stations.value = [])
 
   axios.get('https://api.bus4u.online/v1/get_cities')
     .then(rsp => {
-      if(rsp.status == 200) cities.value = rsp.data.cities
+      if (rsp.status == 200) cities.value = rsp.data.cities
     }).catch(() => cities.value = [])
   axios.get('https://api.bus4u.online/v1/get_routes')
     .then(rsp => {
-      if(rsp.status == 200) buses.value = rsp.data.routes
+      if (rsp.status == 200) buses.value = rsp.data.routes
     }).catch(() => buses.value = [])
 })
 </script>
 
 <style scoped>
-@media (min-width: 600px){
-  .v-btn{
+@media (min-width: 600px) {
+  .v-btn {
     height: 100%;
     width: 100%;
     font-size: medium;

@@ -1,8 +1,11 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
-      <v-text-field label="Email" v-model="form.email" color="primary" :rules="email" :hide-details="false"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password" :error-messages="errors" :hide-details="false"></v-text-field>
+      <v-text-field label="Email" name="email" v-model="form.email" color="primary" :rules="email"
+        :hide-details="false"></v-text-field>
+      <v-text-field label="Password" name="password" type="password" v-model="form.password" color="primary"
+        :rules="password" :hide-details="false"></v-text-field>
+      <p v-if="errors.length" class="text-error text-center mb-2"> {{ errors }} </p>
     </div>
     <v-btn type="submit" size="40" block color="primary" :loading="isLoading"> Log In </v-btn>
   </v-form>
@@ -34,10 +37,10 @@ const email = [
 async function onSubmit(event) {
   errors.value = []
   let response = await event;
-  if(response.valid) {
+  if (response.valid) {
     isLoading.value = true
     axios.post('https://api.bus4u.online/admin/sign_in', form).then((rsp) => {
-      if(rsp.status == 200 && rsp.data.data.role === 'boss') {
+      if (rsp.status == 200 && rsp.data.data.role === 'boss') {
         sessionStorage.setItem('auth', JSON.stringify({ uid: rsp.headers.uid, accessToken: rsp.headers['access-token'], client: rsp.headers.client }))
         user.signIn(rsp.data.data)
         user.checkDocuments(rsp.data.data.company_uid)
@@ -47,7 +50,7 @@ async function onSubmit(event) {
         errors.value = ['Unathorized user, permission denied.'];
       }
     }).catch((e) => {
-      if(e.response) errors.value = e.response.data.errors
+      if (e.response) errors.value = e.response.data.errors[0];
       isLoading.value = false
     });
   }
@@ -58,11 +61,13 @@ async function onSubmit(event) {
 button {
   margin: 12px 0;
 }
-.link{
+
+.link {
   display: block;
   text-align: center;
   color: revert;
 }
+
 .inputs {
   margin: 20px 0;
 }

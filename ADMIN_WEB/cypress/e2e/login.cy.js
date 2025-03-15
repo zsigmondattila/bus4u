@@ -1,10 +1,12 @@
 describe("Login", () => {
-  it("with correct data", () => {
+  it("log in and log out", () => {
     cy.visit("localhost:5173/");
     cy.get('input[name="email"]').type("office@vandortrans.ro");
     cy.get('input[name="password"]').last().type("aaaaaaaa{enter}");
     cy.url().should("include", "/home");
     cy.get(".v-toolbar__content").should("contain", "Kecskeméti");
+    cy.get(".v-toolbar__content").find("button[title='Logout']").click();
+    cy.location("pathname").should("eq", "/");
   });
   it("with invalid data", () => {
     cy.visit("localhost:5173/");

@@ -11,10 +11,11 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" :sm="route ? 9 : 10">
-            <v-autocomplete label="Route" :items="routes" :item-props="getProps" :disabled="routeCreation" v-model="route" :rules="rules" @update:modelValue="getStations"></v-autocomplete>
+            <v-autocomplete label="Route" name="route" :items="routes" :item-props="getProps" :disabled="routeCreation"
+              v-model="route" :rules="rules" @update:modelValue="getStations" auto-select-first></v-autocomplete>
           </v-col>
           <v-col cols="6" sm="3">
-              <v-btn class="form-button" color="primary" @click="createRoute"> New Route </v-btn>
+            <v-btn class="form-button" color="primary" @click="createRoute"> New Route </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -26,22 +27,26 @@
         <v-container>
           <v-row dense>
             <v-col cols="12" sm="9" xl="6">
-              <v-text-field label="Name" v-model="route.name" :rules="nameRules" hint="It can include start and finish cities or a unique route name"></v-text-field>
+              <v-text-field label="Name" name="name" v-model="route.name" :rules="nameRules"
+                hint="It can include start and finish cities or a unique route name"></v-text-field>
             </v-col>
             <v-col cols="12" sm="3" xl="2">
-              <v-text-field label="Basic fare" v-model="route.basic_fare" suffix="Lei" hint="Fare applied once in a travel"></v-text-field>
+              <v-text-field label="Basic fare" name="fare" v-model="route.basic_fare" suffix="Lei"
+                hint="Fare applied once in a travel"></v-text-field>
             </v-col>
             <v-col cols="12" xl="4">
-              <v-autocomplete label="Station" :items="allStations" :item-props="getProps" v-model="newStation" :error="emptyStation">
-              <template #append>
-                <v-btn class="form-button" @click="addStation"> Add station </v-btn>
-              </template>
+              <v-autocomplete label="Station" name="station" :items="allStations" :item-props="getProps"
+                v-model="newStation" :error="emptyStation" auto-select-first>
+                <template #append>
+                  <v-btn class="form-button" @click="addStation"> Add station </v-btn>
+                </template>
               </v-autocomplete>
             </v-col>
           </v-row>
           <v-list border class="py-0 my-3">
             <v-list-subheader class="border"> Stations ({{ stations.length }}) </v-list-subheader>
-            <v-list-item v-for="station in stations" :key="station.route_station_uid" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
+            <v-list-item v-for="station in stations" :key="station.route_station_uid" :title="station.name"
+              prepend-icon="mdi-map-marker-outline" border>
               <template #subtitle>
                 {{ station.address }}&nbsp;&nbsp;►&nbsp;&nbsp;{{ station.longitude }} · {{ station.latitude }}
               </template>
@@ -96,11 +101,11 @@ const nameRules = [
   (v) => !!v || 'This can\'t be empty!'
 ]
 
-function getProps(route){
+function getProps(route) {
   return { title: route.name, value: route }
 }
 
-function createRoute(){
+function createRoute() {
   routeCreation.value = true
   route.value = {
     name: null,
@@ -109,13 +114,13 @@ function createRoute(){
   stations.value = []
 }
 
-function deleteStation(station){
+function deleteStation(station) {
   let i = stations.value.indexOf(station)
   stations.value.splice(i, 1)
 }
 
-function addStation(){
-  if(newStation.value) {
+function addStation() {
+  if (newStation.value) {
     emptyStation.value = false
     stations.value.push(newStation.value)
     newStation.value = ''
@@ -124,11 +129,11 @@ function addStation(){
 
 async function saveRoute(e) {
   let rsp = await e;
-  if(rsp.valid) {
+  if (rsp.valid) {
     isLoading.value = true
-    if(route.value.route_uid){
+    if (route.value.route_uid) {
       try {
-        await axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
+        await axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
       } catch {
         isLoading.value = false
         notification.value.message = 'Something went wrong, try again later.'
@@ -137,59 +142,59 @@ async function saveRoute(e) {
       }
     }
     axios.post('https://api.bus4u.online/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
-    .then(async (rsp) => {
-      for(let i=0; i<stations.value.length; i++) {
-        await axios.post('https://api.bus4u.online/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i+1 })
-      }
-      axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
-        .then(rsp => {
-          if(rsp.status == 200) routes.value = rsp.data.routes
-        }).catch(() => routes.value = [])
-      isLoading.value = false
-      notification.value.message = 'Route saved successfully. Don\'t forget to update the timetable for this route too.'
-      route.value = null
-      routeCreation.value = false
-    }).catch(() => {
-      isLoading.value = false
-      notification.value.message = 'Something went wrong, try again later.'
-    }).finally(() => {notification.value.show = true})
+      .then(async (rsp) => {
+        for (let i = 0; i < stations.value.length; i++) {
+          await axios.post('https://api.bus4u.online/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i + 1 })
+        }
+        axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+          .then(rsp => {
+            if (rsp.status == 200) routes.value = rsp.data.routes
+          }).catch(() => routes.value = [])
+        isLoading.value = false
+        notification.value.message = 'Route saved successfully. Don\'t forget to update the timetable for this route too.'
+        route.value = null
+        routeCreation.value = false
+      }).catch(() => {
+        isLoading.value = false
+        notification.value.message = 'Something went wrong, try again later.'
+      }).finally(() => { notification.value.show = true })
   }
 }
 
 function deleteRoute() {
-  if(!route.value.route_uid) {
+  if (!route.value.route_uid) {
     route.value = null
     stations.value = []
     routeCreation.value = false
     return
   }
-  axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid }})
-  .then(() => {
-    notification.value.message = 'Route deleted successfully'
-    route.value = null
-    routeCreation.value = false
-    axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
-      .then(rsp => {
-        if(rsp.status == 200) routes.value = rsp.data.routes
-      }).catch(() => routes.value = [])
-  }).catch(() => notification.value.message = 'Cannot delete route')
-  .finally(() => notification.value.show = true)
+  axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
+    .then(() => {
+      notification.value.message = 'Route deleted successfully'
+      route.value = null
+      routeCreation.value = false
+      axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+        .then(rsp => {
+          if (rsp.status == 200) routes.value = rsp.data.routes
+        }).catch(() => routes.value = [])
+    }).catch(() => notification.value.message = 'Cannot delete route')
+    .finally(() => notification.value.show = true)
 }
 
-function getStations(route){
-  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: route.route_uid }})
+function getStations(route) {
+  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: route.route_uid } })
     .then(rsp => {
-      if(rsp.status == 200) stations.value = rsp.data.stations
+      if (rsp.status == 200) stations.value = rsp.data.stations
     }).catch(() => stations.value = [])
 }
 
-axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid }})
+axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
   .then(rsp => {
-    if(rsp.status == 200) routes.value = rsp.data.routes
+    if (rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])
 axios.get('https://api.bus4u.online/v1/get_stations')
   .then(rsp => {
-    if(rsp.status == 200) allStations.value = rsp.data.stations
+    if (rsp.status == 200) allStations.value = rsp.data.stations
   }).catch(() => allStations.value = [])
 </script>
 

@@ -1,10 +1,10 @@
 <template>
-    <SectionTitle v-if="bus">
-      Edit bus
-      <template #description>
-        Update existing bus
-      </template>
-    </SectionTitle>
+  <SectionTitle v-if="bus">
+    Edit bus
+    <template #description>
+      Update existing bus
+    </template>
+  </SectionTitle>
   <SectionTitle v-else>
     Add bus
     <template #description>
@@ -15,25 +15,32 @@
     <v-container>
       <v-row justify="center">
         <v-col cols="12">
-          <v-text-field label="Brand" v-model="form.brand" color="primary-light" :rules="name"></v-text-field>
+          <v-text-field label="Brand" name="brand" v-model="form.brand" color="primary-light"
+            :rules="name"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="License plate" v-model="form.license_plate" color="primary-light" :rules="license"></v-text-field>
+          <v-text-field label="License plate" name="license-plate" v-model="form.license_plate" color="primary-light"
+            :rules="license"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="Capacity" type="number" min="5" max="80" v-model="form.capacity" color="primary-light" :rules="required"></v-text-field>
+          <v-text-field label="Capacity" name="capacity" type="number" min="5" max="80" v-model="form.capacity"
+            color="primary-light" :rules="required"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="Manufacturing date" type="month" v-model="form.manufacturing_year" color="primary-light" :rules="required"></v-text-field>
+          <v-text-field label="Manufacturing date" name="manufactured" type="month" v-model="form.manufacturing_year"
+            color="primary-light" :rules="required"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="Road tax valid until" type="date" v-model="form.road_tax" color="primary-light" :rules="required"></v-text-field>
+          <v-text-field label="Road tax valid until" name="road-tax" type="date" v-model="form.road_tax"
+            color="primary-light" :rules="required"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="Insurance valid until" type="date" v-model="form.insurance" color="primary-light" :rules="required"></v-text-field>
+          <v-text-field label="Insurance valid until" name="insurance" type="date" v-model="form.insurance"
+            color="primary-light" :rules="required"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-text-field label="Technical exam valid until" type="date" v-model="form.technical_exam" color="primary-light" :rules="required"></v-text-field>
+          <v-text-field label="Technical exam valid until" name="technical-exam" type="date"
+            v-model="form.technical_exam" color="primary-light" :rules="required"></v-text-field>
         </v-col>
         <v-col cols="12">
           <p v-if="error" class="text-error text-center mb-2"> {{ error }} </p>
@@ -80,41 +87,41 @@ const license = [
   (v) => v.length > 6 || 'Too few characters'
 ]
 const required = [
-(v) => !!v || 'The field is required'
+  (v) => !!v || 'The field is required'
 ]
 
-if(props.bus) {
-  axios.get('https://api.bus4u.online/v1/admin/get_bus_by_id', { params: { bus_uid: props.bus.toUpperCase() }})
-  .then(rsp => {
+if (props.bus) {
+  axios.get('https://api.bus4u.online/v1/admin/get_bus_by_id', { params: { bus_uid: props.bus.toUpperCase() } })
+    .then(rsp => {
       form.value = rsp.data
       form.value.manufacturing_year = `${rsp.data.manufacturing_year}-01`
       form.value.road_tax = rsp.data.road_tax.substr(0, 10)
       form.value.insurance = rsp.data.insurance.substr(0, 10)
       form.value.technical_exam = rsp.data.technical_exam.substr(0, 10)
-  }).catch(() => error.value = 'Bus not found')
+    }).catch(() => error.value = 'Bus not found')
 }
 
 async function onSubmit(event) {
   error.value = ''
   let response = await event;
-  if(!response.valid) return
+  if (!response.valid) return
   isLoading.value = true
-  if(props.bus) {
+  if (props.bus) {
     let data = { brand: form.value.brand, license_plate: form.value.license_plate, capacity: form.value.capacity, manufacturing_year: form.value.manufacturing_year, road_tax: form.value.road_tax, technical_exam: form.value.technical_exam, insurance: form.value.insurance }
-    axios.put('https://api.bus4u.online/v1/admin/update_bus', data, { params: { bus_uid: props.bus.toUpperCase() }})
-    .then((rsp) => {
-      if(rsp.status === 200) {
-        router.replace({ name: 'buses' })
-      } else {
+    axios.put('https://api.bus4u.online/v1/admin/update_bus', data, { params: { bus_uid: props.bus.toUpperCase() } })
+      .then((rsp) => {
+        if (rsp.status === 200) {
+          router.replace({ name: 'buses' })
+        } else {
+          isLoading.value = false
+        }
+      }).catch((err) => {
         isLoading.value = false
-      }
-    }).catch((err) => {
-      isLoading.value = false
-      error.value = err.response.data.errors.full_messages[0]
-    });
+        error.value = err.response.data.errors.full_messages[0]
+      });
   } else {
     axios.post('https://api.bus4u.online/v1/admin/create_bus', form.value).then((rsp) => {
-      if(rsp.status === 200) {
+      if (rsp.status === 200) {
         router.replace({ name: 'buses' })
       } else {
         isLoading.value = false
@@ -127,6 +134,4 @@ async function onSubmit(event) {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

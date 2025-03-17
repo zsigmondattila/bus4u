@@ -28,11 +28,12 @@
           <v-row dense>
             <v-col cols="12" sm="9" xl="6">
               <v-text-field label="Name" name="name" v-model="route.name" :rules="nameRules"
-                hint="It can include start and finish cities or a unique route name"></v-text-field>
+                hint="It can include start and finish cities or a unique route name"
+                @keydown.enter.prevent></v-text-field>
             </v-col>
             <v-col cols="12" sm="3" xl="2">
-              <v-text-field label="Basic fare" name="fare" v-model="route.basic_fare" suffix="Lei"
-                hint="Fare applied once in a travel"></v-text-field>
+              <v-text-field label="Basic fare" name="fare" v-model="route.basic_fare" suffix="Lei" :rules="fareRules"
+                type="number" min="0" hint="Fare applied once in a travel" @keydown.enter.prevent></v-text-field>
             </v-col>
             <v-col cols="12" xl="4">
               <v-autocomplete label="Station" name="station" :items="allStations" :item-props="getProps"
@@ -100,6 +101,9 @@ const rules = [
 const nameRules = [
   (v) => !!v || 'This can\'t be empty!'
 ]
+const fareRules = [
+  (v) => v >= 0 || 'Fare must be a positive number!'
+]
 
 function getProps(route) {
   return { title: route.name, value: route }
@@ -130,6 +134,11 @@ function addStation() {
 async function saveRoute(e) {
   let rsp = await e;
   if (rsp.valid) {
+    if (stations.value.length < 2) {
+      notification.value.message = 'A route must have at least two stations.'
+      notification.value.show = true
+      return
+    }
     isLoading.value = true
     if (route.value.route_uid) {
       try {

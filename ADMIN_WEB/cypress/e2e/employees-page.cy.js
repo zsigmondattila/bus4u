@@ -4,6 +4,24 @@ describe("Employees page", () => {
     cy.visit("localhost:5173/employees");
     cy.get(".v-card").should("have.length.greaterThan", 1);
   });
+
+  it("trying to create with invalid data", () => {
+    cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
+    cy.intercept("POST", "/admin").as("create");
+    cy.login();
+    cy.visit("localhost:5173/employees");
+    cy.wait("@employees");
+    cy.get(".v-card").last().contains("Add new").click();
+    cy.get("input[name='firstname']").type("invalid");
+    cy.get("input[name='lastname']").type("name");
+    cy.get("input[name='email']").type("invalid.email");
+    cy.get("input[name='phone']").type("invalid phone");
+    cy.get("input[name='password']").type("aaa");
+    cy.get("input[name='password-confirmation']").type("bbb");
+    cy.get("button[type='submit']").click();
+    cy.get(".v-form").find(".v-input--error").should("have.length.gt", 1);
+  });
+
   it("create employee", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("POST", "/admin").as("create");
@@ -23,6 +41,7 @@ describe("Employees page", () => {
     cy.wait("@create");
     cy.get(".v-card").contains("Test Employee");
   });
+
   it("edit employee", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("PUT", "/v1/admin/update_driver*").as("update");
@@ -45,6 +64,7 @@ describe("Employees page", () => {
       .siblings()
       .contains("0733333333");
   });
+
   it("delete employee", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("DELETE", "/v1/admin/delete_driver*").as("delete");

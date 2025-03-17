@@ -135,7 +135,7 @@ async function saveRoute(e) {
   let rsp = await e;
   if (rsp.valid) {
     if (stations.value.length < 2) {
-      notification.value.message = 'A route must have at least two stations.'
+      notification.value.message = 'A route must have at least 2 stations.'
       notification.value.show = true
       return
     }

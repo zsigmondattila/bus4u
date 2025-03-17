@@ -8,6 +8,7 @@ describe("Login", () => {
     cy.get(".v-toolbar__content").find("button[title='Logout']").click();
     cy.location("pathname").should("eq", "/");
   });
+
   it("with invalid data", () => {
     cy.visit("localhost:5173/");
     cy.get('input[name="email"]').type("office@vandortrans.ro");
@@ -15,6 +16,7 @@ describe("Login", () => {
     cy.get('button[type="submit"]').click();
     cy.get(".text-error").not("be.empty");
   });
+
   it("with incorrect data", () => {
     cy.visit("localhost:5173/");
     cy.get('input[name="email"]').type("office.vandortrans.ro");
@@ -22,6 +24,7 @@ describe("Login", () => {
     cy.get('button[type="submit"]').click();
     cy.get(".v-messages__message").not("be.empty");
   });
+
   it("authguard", () => {
     cy.visit("localhost:5173/stations");
     cy.location("pathname").should("eq", "/");

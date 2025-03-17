@@ -5,6 +5,16 @@ describe("template spec", () => {
     cy.get(".v-list > :nth-child(9)").click();
     cy.get(".mapboxgl-marker").find("path[fill='#bc1251']");
   });
+
+  it("trying to add station without data", () => {
+    cy.intercept("GET", "https://api.mapbox.com/map-sessions/v1*").as("map");
+    cy.login();
+    cy.visit("localhost:5173/stations");
+    cy.get(".d-flex > .v-btn").click();
+    cy.get("button[type='submit']").click();
+    cy.get(".v-form").find(".v-input--error").should("exist");
+  });
+
   it("add new station and remove it", () => {
     cy.intercept("GET", "https://api.mapbox.com/map-sessions/v1*").as("map");
     cy.login();

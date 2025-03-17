@@ -24,7 +24,7 @@
         </v-col>
         <v-col cols="12" sm="6">
           <v-text-field label="Capacity" name="capacity" type="number" min="5" max="80" v-model="form.capacity"
-            color="primary-light" :rules="required"></v-text-field>
+            color="primary-light" :rules="capacityRules"></v-text-field>
         </v-col>
         <v-col cols="12" sm="6">
           <v-text-field label="Manufacturing date" name="manufactured" type="month" v-model="form.manufacturing_year"
@@ -88,6 +88,11 @@ const license = [
 ]
 const required = [
   (v) => !!v || 'The field is required'
+]
+const capacityRules = [
+  (v) => !!v || 'The field is required',
+  (v) => v >= 5 || 'The capacity must be at least 5',
+  (v) => v <= 80 || 'The capacity must be at most 80'
 ]
 
 if (props.bus) {

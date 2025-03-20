@@ -1,4 +1,5 @@
-Rendszerünk egy Ruby on Rails keretrendszerben írt API-ból, egy Vue.js alapú webes felhasználói- és admin felületből, egy Flutter alkalmazásból a felhasználók számára, valamint egy Flutter keretrendszerben készült POS terminál alkalmazásból. Az API a REST architektúrát követi, lehetővé téve a különböző erőforrások, például buszok, járatok és jegyek kezelését. A felhasználói és admin weboldal Vue-ban készült, a Vuetify elemek felhasználásával, ami lehetővé tette az egyszerű és hatékony felhasználói felületek gyors fejlesztését. A Vue.js keretrendszer előnye, hogy komponensekből áll, így átlátható és jól rendszerezett webalkalmazás felépítést tesz lehetővé. Ezen kívül a Vuetify komponens-készlete megkönnyítette az UI elemek létrehozását, gyorsítva ezzel a fejlesztési folyamatot. Az alkalmazás Flutterben készült, Dart programozási nyelvet használva, amely lehetővé teszi, hogy ugyanazt a kódbázist használjuk iOS és Android platformokra is, így jelentősen csökkentve a fejlesztési időt és költségeket. A POS terminál alkalmazása is Flutter keretrendszerben készült, biztosítva a hatékony és egységes megoldást a különböző platformok számára.
+Rendszerünk egy Ruby on Rails keretrendszerben írt API-ból, egy Vue.js alapú webes felhasználói- és admin felületből, egy Flutter alkalmazásból a felhasználók számára, 
+valamint egy Flutter keretrendszerben készült POS terminál alkalmazásból. Az API a REST architektúrát követi, lehetővé téve a különböző erőforrások, például buszok, járatok és jegyek kezelését. A felhasználói és admin weboldal Vue-ban készült, a Vuetify elemek felhasználásával, ami lehetővé tette az egyszerű és hatékony felhasználói felületek gyors fejlesztését. A Vue.js keretrendszer előnye, hogy komponensekből áll, így átlátható és jól rendszerezett webalkalmazás felépítést tesz lehetővé. Ezen kívül a Vuetify komponens-készlete megkönnyítette az UI elemek létrehozását, gyorsítva ezzel a fejlesztési folyamatot. Az alkalmazás Flutterben készült, Dart programozási nyelvet használva, amely lehetővé teszi, hogy ugyanazt a kódbázist használjuk iOS és Android platformokra is, így jelentősen csökkentve a fejlesztési időt és költségeket. A POS terminál alkalmazása eredetileg Flutterben készült, de végül natív Android alkalmazásként lett implementálva a nagyobb kompatibilitás érdekében. Ez biztosítja, hogy a rendszer megfelelően működjön a POS terminálokkal, valamint minden szükséges tanúsítvánnyal kompatibilis legyen.
 A Vue.js alapú weboldalakat, illetve a felhasználóknak szánt Flutter alkalmazást Portik Szabolcs kollegám mutatja be részletesebben egy másik dolgozat 
 keretein belül.
 
@@ -80,6 +81,26 @@ GET https://api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
 }
 \end{verbatim}
 
+\subsection{Hitelesítés és jogosultságkezelés}
+
+Az API biztonságos használata érdekében JWT (JSON Web Token) alapú token-hitelesítést alkalmazunk. A JWT egy nyílt szabványú (RFC 7519) token-formátum, amely biztonságos adatátvitelt biztosít a kliens és a szerver között. 
+
+A JWT tokenek segítségével a felhasználók és adminisztrátorok azonosítása gyorsan és biztonságosan történik, anélkül, hogy minden kérésnél újbóli bejelentkezés szükséges lenne. Az alkalmazott Rails könyvtárak a következők:
+
+\begin{itemize}
+    \item \textbf{devise}: biztosítja az alapvető hitelesítési logikát, beleértve a regisztrációt, bejelentkezést, jelszókezelést.
+    \item \textbf{devise\_token\_auth}: kiegészíti a devise-t JWT alapú tokenkezelési funkciókkal, amely lehetővé teszi a stateless (állapotmentes) authentikációt API-k számára.
+\end{itemize}
+
+A JWT token alapú autentikáció folyamata:
+
+\begin{enumerate}
+    \item A kliens elküldi a bejelentkezési adatokat (e-mail, jelszó) a szervernek.
+    \item A szerver a sikeres autentikáció után egy JWT tokent generál, amely tartalmazza a felhasználóhoz kapcsolódó alapvető információkat, valamint a token érvényességi idejét.
+    \item A kliens a további kérései során a kapott tokent a HTTP fejlécben, \texttt{Authorization: Bearer <JWT\_TOKEN>} formátumban küldi el a szervernek.
+    \item A szerver ellenőrzi a tokent, és ha érvényes, feldolgozza a kérést, visszaküldi a választ.
+\end{enumerate}
+
 \section{Adatkezelés és adatbázis kapcsolat}
 Az API végpontjai a \textbf{PostgreSQL} adatbázissal kommunikálnak. Az adatbázis tranzakciókat az \textbf{ActiveRecord} ORM segítségével kezeljük, amely lehetővé teszi az adatok egyszerű és hatékony lekérését, beszúrását és frissítését.
 
@@ -107,6 +128,20 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
     \label{fig:database-diagram}
   \end{figure}
 
+  \subsection{Objektum-relációs leképzés (ORM)}
+
+  A backend API adatbázis-kezelése a Ruby on Rails keretrendszer beépített \textbf{ActiveRecord} objektum-relációs leképzőjével (ORM) történik. Az ORM lehetővé teszi az alkalmazás számára, hogy közvetlenül Ruby osztályok és objektumok formájában kezelje az adatbázis tábláit, így egyszerűsítve az adatbázis-műveleteket és csökkentve a fejlesztési időt.
+  
+  Az ActiveRecord fő előnyei közé tartozik:
+  \begin{itemize}
+      \item \textbf{Egyszerű adatlekérdezés:} A komplex SQL utasítások helyett Ruby nyelven írhatók a lekérdezések.
+      \item \textbf{Adatkapcsolatok automatikus kezelése:} Egyértelművé teszi az adatok közötti kapcsolatokat (például \texttt{belongs\_to}, \texttt{has\_many}, \texttt{has\_one}).
+      \item \textbf{Validációk és tranzakciók egyszerű kezelése:} Adatvalidáció, tranzakciókezelés és hibaüzenetek egyszerű integrációja az üzleti logikába.
+      \item \textbf{Migrációk támogatása:} Könnyű adatbázis-struktúra módosítás a migrációs fájlokon keresztül.
+  \end{itemize}
+  
+  Az ActiveRecord használata jelentősen egyszerűsíti a fejlesztési folyamatot, lehetővé téve, hogy a fejlesztők elsősorban az üzleti logikára összpontosítsanak, miközben a rendszer hatékonyan és biztonságosan kommunikál a PostgreSQL adatbázissal.
+  
   \section{Projektmenedzsment és verziókövetés}
 
   A projekt fejlesztése során több eszközt alkalmaztunk a feladatok nyomon követésére, a fejlesztési folyamat szervezésére és a forráskód verziókövetésére.

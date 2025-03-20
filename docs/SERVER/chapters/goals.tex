@@ -8,11 +8,14 @@ A projekt célja egy modern, hatékony és könnyen használható rendszer létr
     
     \item \textbf{Menetrendek és Útvonalak Elérhetősége:} Fontos, hogy a járatok menetrendjei mindig naprakészen és könnyen hozzáférhető módon álljanak rendelkezésre. A megállókban elhelyezett információkon túl online is biztosítani kell a menetrendi adatok lekérdezését és a különböző járatok közötti átszállási lehetőségek áttekintését.
     
-    \item \textbf{Interaktív Térkép:} Egy olyan vizuális megoldásra van szükség, amely megkönnyíti a tájékozódást a város tömegközlekedési hálózatán. A felhasználók számára elérhetővé kell tenni a megállók és útvonalak részletes információit, így segítve az utazások előzetes megtervezését.
+    \item \textbf{Interaktív Térkép és Adatszolgáltatás:} Az API-nak biztosítania kell a térképes felületek által megjelenített adatok (megállók, járatok, útvonalak) strukturált és hatékony lekérdezhetőségét. Az adatok JSON formátumban, RESTful elvek szerint érhetőek el, támogatva a frontend gyors és dinamikus megjelenítését.
     
-    \item \textbf{Adminisztrációs Felület:} A busztársaságok számára biztosítani kell egy olyan kezelőfelületet, amely megkönnyíti az üzemeltetéshez szükséges adatok kezelését. Ide tartozik a járatok, útvonalak, menetrendek és a járműpark naprakészen tartása, valamint az alkalmazottak jogosultságainak kezelése.
+    \item \textbf{Adminisztrációs és Jogosultságkezelő Felület:} Az API támogatja az adminisztrációs funkciók (például járatok, útvonalak, menetrendek, járműpark) adatkezelését, a felhasználók jogosultságainak kezelését és a hozzáférési szintek kontrollját. Biztosítja az adatok validációját, az autentikációt, valamint a naplózási funkciókat a későbbi auditálhatóság érdekében.
     
     \item \textbf{Felhasználói Élmény és Rendszerhatékonyság:} Az egész rendszer kialakításánál kiemelt szempont a gyors és stabil működés, valamint az átlátható és egyszerű kezelhetőség. A végpontok megfelelő szervezése biztosítja, hogy az utasok számára készült alkalmazások gördülékenyen és késedelem nélkül működjenek.
+
+    \item \textbf{Biztonság és Adatvédelem:} A backend rendszer fontos célja, hogy magas szinten biztosítsa az adatbiztonságot és adatvédelmet. Az API megfelelő hitelesítési és jogosultságellenőrzési mechanizmusokat alkalmaz, valamint támogatja a titkosított kommunikációt az érzékeny adatok védelme érdekében.
+
 \end{itemize}
 
 Ezek a célkitűzések biztosítják, hogy a rendszer egyaránt megfeleljen az utasok és az üzemeltetők igényeinek. A háttérben működő megoldás felelős a jegyvásárlás, a buszok helyzetének követése és a menetrendi adatok biztosításáért, míg a felhasználók számára fejlesztett felületek a könnyű elérhetőséget és intuitív használatot garantálják. Az átlátható struktúra és a megbízható adatkezelés együttesen járul hozzá a modern, digitális tömegközlekedési rendszer kialakításához.

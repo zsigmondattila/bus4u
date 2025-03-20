@@ -10,8 +10,8 @@ jobs:
       - name: Cypress test ADMIN
         uses: cypress-io/github-action@v6
         with:
-          project: ./ADMIN_WEB
+          working-directory: ADMIN_WEB
       - name: Cypress test USER
         uses: cypress-io/github-action@v6
         with:
-          project: ./USER_WEB
+          working-directory: USER_WEB

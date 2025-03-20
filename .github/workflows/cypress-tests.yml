@@ -10,10 +10,10 @@ jobs:
       - name: Cypress test ADMIN
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
+          start: VITE_MAPBOX_TOKEN=${{ secrets.VITE_MAPBOX_TOKEN }} npm run dev
           working-directory: ADMIN_WEB
       - name: Cypress test USER
         uses: cypress-io/github-action@v6
         with:
-          start: npm run dev
+          start: VITE_MAPBOX_TOKEN=${{ secrets.VITE_MAPBOX_TOKEN }} npm run dev
           working-directory: USER_WEB

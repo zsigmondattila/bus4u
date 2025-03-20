@@ -7,13 +7,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up secrets
+        run: export VITE_MAPBOX_TOKEN=${{ secrets.VITE_MAPBOX_TOKEN }}
       - name: Cypress test ADMIN
         uses: cypress-io/github-action@v6
         with:
-          start: VITE_MAPBOX_TOKEN=${{ secrets.VITE_MAPBOX_TOKEN }} npm run dev
+          start: npm run dev
           working-directory: ADMIN_WEB
       - name: Cypress test USER
         uses: cypress-io/github-action@v6
         with:
-          start: VITE_MAPBOX_TOKEN=${{ secrets.VITE_MAPBOX_TOKEN }} npm run dev
+          start: npm run dev
           working-directory: USER_WEB

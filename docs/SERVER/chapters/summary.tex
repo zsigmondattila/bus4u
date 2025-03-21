@@ -1,0 +1,15 @@
+Ez a fejezet összefoglalja a Bus4U rendszer API-jának tervezését, megvalósítását és tesztelését, valamint bemutatja a legfontosabb megállapításokat és javaslatokat a jövőbeli fejlesztésekhez.
+
+A dolgozat célja egy hatékony busz menedzselő rendszer API létrehozása volt, amely lehetővé teszi a felhasználók számára a buszjáratok, jegyek és bérletek kezelését, valamint a rendszeres frissítéseket és karbantartásokat. A projekt során a következő lépéseket tettük:
+
+1. Követelmények és tervezés: A rendszer funkcionális és nem funkcionális követelményeinek részletes elemzése és a legfontosabb funkciók prioritásának meghatározása. A követelmények alapján a rendszer architektúráját és az API felépítését terveztük meg.
+
+2. API megvalósítása: Az API endpointok megvalósítása során külön figyelmet fordítottunk a RESTful architektúra elveinek betartására, biztosítva ezzel a könnyű használhatóságot és a skálázhatóságot. A végpontok különböző erőforrásokat (buszok, járatok, jegyek, bérletek) kezelnek, lehetővé téve a felhasználók számára, hogy egyszerűen hozzáférjenek az információkhoz és végrehajtsanak műveleteket.
+
+3. Tesztelés: A rendszer tesztelését Postman segítségével végeztük, ahol különböző kéréseket küldtünk az API végpontokhoz, hogy ellenőrizzük azok működését, a válaszok helyességét és a teljesítményt. A tesztelési folyamat során sikerült azonosítani és javítani a hibákat, így a rendszer stabil és megbízható lett.
+
+4. Deployment: A rendszer telepítése az Azure felhőszolgáltatásra történt, ahol az API az api.bus4u.online domainen érhető el. A PostgreSQL adatbázis és a virtuális gép (VM) külön szolgáltatásként működik, biztosítva a skálázhatóságot és a megbízhatóságot.
+
+5. Jövőbeli fejlesztések: A jövőbeli fejlesztések között szerepel a rendszer funkcionalitásának bővítése, például új szolgáltatások bevezetése, a felhasználói élmény javítása érdekében. További cél a rendszer biztonságának növelése, például a hitelesítési és jogosultsági mechanizmusok fejlesztésével.
+
+Összességében a Bus4U API megvalósítása sikeres volt, és a dolgozat során végrehajtott lépések hozzájárultak a hatékony és megbízható busz menedzselő rendszer kialakításához. A projekt során szerzett tapasztalatok és tanulságok értékes alapot jelentenek a jövőbeli fejlesztésekhez és a hasonló rendszerek tervezéséhez.

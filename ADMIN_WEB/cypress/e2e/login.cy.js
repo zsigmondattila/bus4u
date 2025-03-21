@@ -1,0 +1,32 @@
+describe("Login", () => {
+  it("log in and log out", () => {
+    cy.visit("/");
+    cy.get('input[name="email"]').type("office@vandortrans.ro");
+    cy.get('input[name="password"]').last().type("aaaaaaaa{enter}");
+    cy.url().should("include", "/home");
+    cy.get(".v-toolbar__content").should("contain", "Kecskeméti");
+    cy.get(".v-toolbar__content").find("button[title='Logout']").click();
+    cy.location("pathname").should("eq", "/");
+  });
+
+  it("with invalid data", () => {
+    cy.visit("/");
+    cy.get('input[name="email"]').type("office@vandortrans.ro");
+    cy.get('input[name="password"]').last().type("bbbbbbbb");
+    cy.get('button[type="submit"]').click();
+    cy.get(".text-error").not("be.empty");
+  });
+
+  it("with incorrect data", () => {
+    cy.visit("/");
+    cy.get('input[name="email"]').type("office.vandortrans.ro");
+    cy.get('input[name="password"]').last().type("aaaaaaaa");
+    cy.get('button[type="submit"]').click();
+    cy.get(".v-messages__message").not("be.empty");
+  });
+
+  it("authguard", () => {
+    cy.visit("/stations");
+    cy.location("pathname").should("eq", "/");
+  });
+});

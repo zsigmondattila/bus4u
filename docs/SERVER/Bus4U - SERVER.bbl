@@ -1,0 +1,44 @@
+\begin{thebibliography}{10}
+
+\bibitem{bus4uui}
+P.~Szabolcs, ``Bus4u - ui,'' bachelor's thesis, Sapientia Hungarian University of Transylvania, 2025.
+
+\bibitem{levinson_transport}
+D.~M. Levinson and K.~J. Krizek, {\em The End of Traffic and the Future of Transport}.
+\newblock Network Design Lab, 2016.
+
+\bibitem{ceder_transit}
+A.~Ceder, {\em Public Transit Planning and Operation}.
+\newblock Elsevier, 2016.
+
+\bibitem{zhou2014rest}
+W.~Zhou, L.~Li, M.~Luo, and W.~Chou, ``Rest api design patterns for sdn northbound api,'' in {\em 2014 28th international conference on advanced information networking and applications workshops}, pp.~358--365, IEEE, 2014.
+
+\bibitem{al2018comparative}
+O.~Al-Debagy and P.~Martinek, ``A comparative review of microservices and monolithic architectures,'' in {\em 2018 IEEE 18th International Symposium on Computational Intelligence and Informatics (CINTI)}, pp.~000149--000154, IEEE, 2018.
+
+\bibitem{hartl_rails}
+M.~Hartl, {\em Ruby on Rails Tutorial: Learn Web Development with Rails}.
+\newblock Addison-Wesley Professional, 2016.
+
+\bibitem{fernandez_rails}
+O.~Fernandez, {\em The Rails Way}.
+\newblock Addison-Wesley Professional, 2017.
+
+\bibitem{douglas_postgresql}
+K.~Douglas and S.~Douglas, {\em PostgreSQL: Up and Running}.
+\newblock O'Reilly Media, 2015.
+
+\bibitem{murrell_postgresql}
+J.~Murrell, {\em PostgreSQL 12 High Availability Cookbook}.
+\newblock Packt Publishing, 2019.
+
+\bibitem{wilder_azure}
+B.~Wilder, {\em Cloud architecture patterns: using Microsoft Azure}.
+\newblock O'Reilly Media, Inc., 2012.
+
+\bibitem{collier_azure}
+M.~Collier and R.~Shahan, {\em Microsoft Azure Essentials-Fundamentals of Azure}.
+\newblock Microsoft Press, 2015.
+
+\end{thebibliography}

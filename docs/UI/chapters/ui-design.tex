@@ -1,22 +1,43 @@
-Az egyik legfontosabb része a projektnek a UI, amelynek megtervezésére a Figma segédprogramot használtuk, amelyben megépítettük az első elképzelésünket a felületekről. Ezt a wireframe-et követve már egyszerűbb volt a fejlesztés. Munka közben jöttek jobb ötletek is, mint a kezdeti, így nem minden egyezik a végső termékkel, de iránymutatásnak megfelelt:
+Az egyik legfontosabb része a projektnek a UI, mert ezt a részét látják a felhasználók és ezzel fognak interakcióba lépni. Emiatt kiemelkedően fontos, hogy az jól meg legyen tervezve. Szerencsére ennek a feladatnak a megkönnyítésére léteznek jól bevált módszerek, amelyek nagyban felgyorsítják és megkönnyítik a munkát. Az én választásom a Figma tervezőprogramra és a Material Design 3 irányelveire esett, amelyeket a következőkben fogok bemutatni.
+
+\section{Material Design}
+Mivel nehéz egy olyan felhasználói felületi stílust kitalálni, ami tökéletesen működik, egységes és jól is néz ki, ezért a Google Material Design irányelveit követve terveztem meg a felületeket. A Material Design egy olyan nyílt forráskódú dizájn nyelv, amelyet követve egységes, jól kinéző és könnyen használható felületeket lehet készíteni. Ez tartalmazza mindazokat a felületi elemeket, amelyekre szükség lehet egy modern weboldal vagy mobilalkalmazás elkészítésekor, mint például a gombok, ikonok, szövegek, színek, betűtípusok, stb. Mindenről precíz leírás van a hivatalos dokumentációban, így könnyű követni az irányelveket és a felhasználói felület egységességét is biztosítani. Minden komponenshez elérhető egy előre elkészített Figma elem, így ezeket csak be kell húzni a tervezőfelületre, nem kell kézzel létrehozni. Emellett az elemekhez tartozik implementáció is, amely elérhető Flutterben, Androidban és weben is, így a fejlesztés során nem kell lekódolni őket, csak be kell importálni a projektbe. Ezáltal a fejlesztés gyorsabb lesz és a felhasználói felület egységessége is garantált \footnote{Material Design 3: \url{https://m3.material.io/}}.
+
+Én a legújabb, 3-as verzióját használom a Material Design-nak, amely a legmodernebb és a legnagyobb támogatással rendelkezik. Ez egy jól bevált UI-t eredményez, amelyet már sok alkalmazás használ, köztük a Google összes alkalmazása is, így már szinte mindenki találkozhatott vele. Egy példa az Material Design 3-as gomb stílusokra a \ref{fig:md3-buttons} ábrán látható. Ilyen és ehhez hasonló komponensekből épül fel az általam tervezett UI is.
 
 \begin{figure}[H]
-  \includegraphics[width=\textwidth]{figures/ui-mobile.png}
-  \caption{A mobilalkalmazás terve}
-  \label{fig:ui-mobile}
+  \centering
+  \includegraphics[width=\textwidth]{figures/md-buttons.png}
+  \caption[A Material Design 3 gomb stílusai]{A Material Design 3 gomb stílusai \footnotemark}
+  \label{fig:md3-buttons}
 \end{figure}
 
+\footnotetext{Forrás: \url{https://m3.material.io/components/buttons}}
+
+\section{Figma terv}
+A UI terv vizuális elkészítésére a Figma segédprogram a legmegfelelőbb választás rengeteg szempontból. A Figma egy online és offline egyaránt használható felülettervező program, amely lehetővé teszi több felhasználó együttműködését is, például a dizájner és a fejlesztő közös munkáját. A Figmában egyszerűen, fogd és vidd módszerrel lehet hozzáadni elemeket a munkavászonhoz, de aki pontosabban szeretne tervezni, annak az oldalsávban van lehetősége pixel pontossággal megadni az elemek tulajdonságait is. Mint említettem, a Figmában elérhetőek előre elkészített Material Design 3-as felületi elemek is, amelyek használata sokszorosan lerövidíti a tervezéshez szükséges időt. A felületi elemekhez funkcionalitást is lehet rendelni, például ha egy gombra kattint a felhasználó, akkor egy másik oldalra navigáljon. A vizuális tervezés mellett lehetőség van a UI terv programozására is, de akár a fejlesztéshez szükséges kódot is kigenerálhatjuk az elkészített tervekből. A Figma egy nagyon hasznos eszköz, amely segítségével gyorsan és egyszerűen lehet elkészíteni egy felhasználói felületet, amelyet a fejlesztők is tudnak használni a fejlesztés során \footnote{Figma: \url{https://www.figma.com}}.
+
+Jelen esetben én vagyok a tervező és a fejlesztő is egyben, így az én feladatom a UI terv elkészítése, de a Figma-t használva, tervezői szaktudás nélkül is sikerült megoldani a feladatot. Az itt létrejött wireframe-eket (drótvázakat) követve már gyorsabb volt a fejlesztés. Munka közben jöttek további ötletek is, így a végső termék nem teljesen egyezik a tervvel, de iránymutatásnak megfelelt. A Material Design irányelvei alapján Figma-ban elkészített felhasználói weboldal terve a \ref{fig:ui-web} ábrán, az adminfelület terve a \ref{fig:ui-admin} ábrán, míg a mobilalkalmazás terve a \ref{fig:ui-mobile} ábrán látható.
+
+\newpage
 \begin{multicols*}{2}
   \begin{figure}[H]
     \centering
-    \includegraphics[height=23cm]{figures/ui-web.png}
+    \includegraphics[height=0.9\textheight]{figures/ui-web.png}
     \caption{A felhasználói weboldal terve}
     \label{fig:ui-web}
   \end{figure}
   \begin{figure}[H]
     \centering
-    \includegraphics[height=23cm]{figures/ui-admin.png}
+    \includegraphics[height=0.9\textheight]{figures/ui-admin.png}
     \caption{Az admin weboldal terve}
     \label{fig:ui-admin}
   \end{figure}
 \end{multicols*}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=\textwidth]{figures/ui-mobile.png}
+  \caption{A mobilalkalmazás terve}
+  \label{fig:ui-mobile}
+\end{figure}

@@ -10,10 +10,14 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="cities" :item-props="getName" label="City" :loading="!cities.length" v-model="form.city" :rules="required" class="text-field" hide-details="auto" @update:modelValue="getRoutes"></v-autocomplete>
+            <v-autocomplete :items="cities" :item-props="getName" label="City" name="city" :loading="!cities.length"
+              v-model="form.city" :rules="required" class="text-field" hide-details="auto" auto-select-first
+              @update:modelValue="getRoutes"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="5">
-            <v-autocomplete :items="routes" :item-props="getName" label="Route" :disabled="!form.city" :loading="!routes.length && !!form.city" v-model="form.route" :rules="required" class="text-field" hide-details="auto"></v-autocomplete>
+            <v-autocomplete :items="routes" :item-props="getName" label="Route" name="route" :disabled="!form.city"
+              :loading="!routes.length && !!form.city" v-model="form.route" :rules="required" class="text-field"
+              auto-select-first hide-details="auto"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="2" style="text-align: center;">
             <v-btn type="submit" color="primary"> Show </v-btn>
@@ -21,7 +25,7 @@
         </v-row>
       </v-container>
     </v-form>
-    <Map ref="map" :stations="stations" :enableRoute="true" :hide-stations="true" controls="true" :buses="buses"/>
+    <Map ref="map" :stations="stations" :enableRoute="true" :hide-stations="true" controls="true" :buses="buses" />
   </AppLayout>
 </template>
 
@@ -44,7 +48,7 @@ const stations = ref([])
 const buses = ref([])
 let updateInterval = null
 
-function getName(item){
+function getName(item) {
   return { title: item.name };
 }
 
@@ -54,13 +58,13 @@ const required = [
 
 async function onSubmit(e) {
   let validation = await e
-  if(!validation.valid) return
+  if (!validation.valid) return
   clearInterval(updateInterval)
-    axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', {params: { route_uid: form.route.route_uid }}) /// or on a route?
+  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: form.route.route_uid } }) /// or on a route?
     .then(rsp => {
-      if(rsp.status == 200) {
+      if (rsp.status == 200) {
         stations.value = rsp.data.stations
-        if(stations.value.length) map.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
+        if (stations.value.length) map.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
         getBuses(form.route)
         updateInterval = setInterval(() => getBuses(form.route), 30000);
       }
@@ -70,11 +74,11 @@ async function onSubmit(e) {
 }
 
 function getBuses(route) {
-  axios.get('https://api.bus4u.online/v1/get_bus_locations_by_route', {params: { route_uid: route.route_uid }})
+  axios.get('https://api.bus4u.online/v1/get_bus_locations_by_route', { params: { route_uid: route.route_uid } })
     .then(rsp => {
-      if(rsp.status == 200) {
+      if (rsp.status == 200) {
         buses.value = rsp.data
-        if(buses.value.length) map.value.panTo([buses.value[0].longitude, buses.value[0].latitude])
+        if (buses.value.length) map.value.panTo([buses.value[0].longitude, buses.value[0].latitude])
       }
     }).catch(() => {
       buses.value = []
@@ -84,16 +88,16 @@ function getBuses(route) {
 
 async function getRoutes(city) {
   form.route = null
-  axios.get('https://api.bus4u.online/v1/get_routes_by_city', { params: { city_uid: city.city_uid }})
+  axios.get('https://api.bus4u.online/v1/get_routes_by_city', { params: { city_uid: city.city_uid } })
     .then(rsp => {
-      if(rsp.status == 200) routes.value = rsp.data
+      if (rsp.status == 200) routes.value = rsp.data
     }).catch(() => routes.value = [])
 }
 
 onMounted(() => {
   axios.get('https://api.bus4u.online/v1/get_cities')
     .then(rsp => {
-      if(rsp.status == 200) cities.value = rsp.data.cities
+      if (rsp.status == 200) cities.value = rsp.data.cities
     }).catch(() => cities.value = [])
 })
 onBeforeUnmount(() => {
@@ -102,8 +106,8 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
-@media (min-width: 600px){
-  .v-btn{
+@media (min-width: 600px) {
+  .v-btn {
     height: 100%;
     width: 100%;
     font-size: medium;

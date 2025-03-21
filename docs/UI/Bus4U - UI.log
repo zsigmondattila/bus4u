@@ -1,94 +1,40 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.8.25)  26 AUG 2024 09:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  8 MAR 2025 12:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **"/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex"
 (/mnt/Adatok/IT/bus4u/docs/UI/Bus4U - UI.tex
-LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+File: size12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@chapter=\count186
-\c@section=\count187
-\c@subsection=\count188
-\c@subsubsection=\count189
-\c@paragraph=\count190
-\c@subparagraph=\count191
-\c@figure=\count192
-\c@table=\count193
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen138
-) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2021/02/14 v1.3d Input encoding file
-\inpenc@prehook=\toks16
-\inpenc@posthook=\toks17
-) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2022/01/26 3.70 The Babel package
-\babel@savecnt=\count194
-\U@D=\dimen139
-\l@unhyphenated=\language31
- (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
-\bbl@readstream=\read2
-\bbl@dirlevel=\count195
- (./magyar.ldf
-Language: magyar 2019/01/14 v1.5c Magyar (Hungarian) support for babel
-\c@enumv=\count196
-Package babel Info: Making ; an active character on input line 2791.
-Package babel Info: Making ! an active character on input line 2793.
-Package babel Info: Making ? an active character on input line 2799.
-Package babel Info: Making : an active character on input line 2801.
-Package babel Info: Making ` an active character on input line 2819.
-\c@footnote@add=\count197
-\c@footnote@ch=\count198
-)) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
-Package: ragged2e 2021/12/15 v3.1 ragged2e Package
-\CenteringLeftskip=\skip49
-\RaggedLeftLeftskip=\skip50
-\RaggedRightLeftskip=\skip51
-\CenteringRightskip=\skip52
-\RaggedLeftRightskip=\skip53
-\RaggedRightRightskip=\skip54
-\CenteringParfillskip=\skip55
-\RaggedLeftParfillskip=\skip56
-\RaggedRightParfillskip=\skip57
-\JustifyingParfillskip=\skip58
-\CenteringParindent=\skip59
-\RaggedLeftParindent=\skip60
-\RaggedRightParindent=\skip61
-\JustifyingParindent=\skip62
-) (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.sty
-Package: t1enc 1994/06/01 Standard LaTeX package
-) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks18
-) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
-Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
-))
-\Gm@cnth=\count199
-\Gm@cntv=\count266
-\c@Gm@tempcnt=\count267
-\Gm@bindingoffset=\dimen140
-\Gm@wd@mp=\dimen141
-\Gm@odd@mp=\dimen142
-\Gm@even@mp=\dimen143
-\Gm@layoutwidth=\dimen144
-\Gm@layoutheight=\dimen145
-\Gm@layouthoffset=\dimen146
-\Gm@layoutvoffset=\dimen147
-\Gm@dimlist=\toks19
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+\c@part=\count187
+\c@chapter=\count188
+\c@section=\count189
+\c@subsection=\count190
+\c@subsubsection=\count191
+\c@paragraph=\count192
+\c@subparagraph=\count193
+\c@figure=\count194
+\c@table=\count195
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+
+LaTeX Warning: \include should only be used after \begin{document} on input line 3.
+
+(./preamble.tex (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
@@ -96,44 +42,413 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen148
-\Gin@req@width=\dimen149
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+))
+\Gm@cnth=\count196
+\Gm@cntv=\count197
+\c@Gm@tempcnt=\count198
+\Gm@bindingoffset=\dimen143
+\Gm@wd@mp=\dimen144
+\Gm@odd@mp=\dimen145
+\Gm@even@mp=\dimen146
+\Gm@layoutwidth=\dimen147
+\Gm@layoutheight=\dimen148
+\Gm@layouthoffset=\dimen149
+\Gm@layoutvoffset=\dimen150
+\Gm@dimlist=\toks18
+) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks19
+\inpenc@posthook=\toks20
+) (/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.sty
+Package: t1enc 1994/06/01 Standard LaTeX package
+) (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2024/01/07 v24.1 The Babel package
+\babel@savecnt=\count199
+\U@D=\dimen151
+\l@unhyphenated=\language33
+ (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count266
+ (./magyar.ldf
+Language: magyar 2019/01/14 v1.5c Magyar (Hungarian) support for babel
+Package babel Info: Making ` an active character on input line 2819.
+\c@footnote@add=\count267
+\c@footnote@ch=\count268
+)) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/hu/babel-magyar.tex
+Package babel Info: Importing font and identification data for magyar
+(babel)             from babel-hu.ini. Reported on input line 11.
+) (/usr/share/texlive/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box51
+\fn@width=\dimen152
+) (/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip50
+\subfigcapskip=\skip51
+\subfigcaptopadj=\dimen153
+\subfigbottomskip=\skip52
+\subfigcapmargin=\dimen154
+\subfiglabelskip=\skip53
+\c@subfigure=\count269
+\c@lofdepth=\count270
+\c@subtable=\count271
+\c@lotdepth=\count272
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip54
+\subfig@bottom=\skip55
+) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count273
+\float@exts=\toks21
+\float@box=\box52
+\@float@everytoks=\toks22
+\@floatcapt=\box53
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2023/05/13 v2.17o AMS math features
+\@mathmargin=\skip56
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks23
+\ex@=\dimen155
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen156
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count274
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count275
+\leftroot@=\count276
+LaTeX Info: Redefining \overline on input line 399.
+LaTeX Info: Redefining \colon on input line 410.
+\classnum@=\count277
+\DOTSCASE@=\count278
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box54
+\strutbox@=\box55
+LaTeX Info: Redefining \big on input line 722.
+LaTeX Info: Redefining \Big on input line 723.
+LaTeX Info: Redefining \bigg on input line 724.
+LaTeX Info: Redefining \Bigg on input line 725.
+\big@size=\dimen157
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count279
+LaTeX Info: Redefining \bmod on input line 905.
+LaTeX Info: Redefining \pmod on input line 910.
+LaTeX Info: Redefining \smash on input line 940.
+LaTeX Info: Redefining \relbar on input line 970.
+LaTeX Info: Redefining \Relbar on input line 971.
+\c@MaxMatrixCols=\count280
+\dotsspace@=\muskip16
+\c@parentequation=\count281
+\dspbrk@lvl=\count282
+\tag@help=\toks24
+\row@=\count283
+\column@=\count284
+\maxfields@=\count285
+\andhelp@=\toks25
+\eqnshift@=\dimen158
+\alignsep@=\dimen159
+\tagshift@=\dimen160
+\tagwidth@=\dimen161
+\totwidth@=\dimen162
+\lineht@=\dimen163
+\@envbody=\toks26
+\multlinegap=\skip57
+\multlinetaggap=\skip58
+\mathdisplay@stack=\toks27
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/mathptmx.sty
+Package: mathptmx 2020/03/25 PSNFSS-v9.3 Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup4
+\symitalic=\mathgroup5
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+) (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pdfpages.sty
+Package: pdfpages 2024/01/21 v0.5y Insert pages of external PDF documents (AM)
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count286
+\calc@Bcount=\count287
+\calc@Adimen=\dimen164
+\calc@Bdimen=\dimen165
+\calc@Askip=\skip59
+\calc@Bskip=\skip60
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count288
+\calc@Cskip=\skip61
+) (/usr/share/texlive/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen166
+\ESO@tempdimb=\dimen167
+ (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+))
+\AM@pagewidth=\dimen168
+\AM@pageheight=\dimen169
+\AM@fboxrule=\dimen170
+ (/usr/share/texlive/texmf-dist/tex/latex/pdfpages/pppdftex.def
+File: pppdftex.def 2024/01/21 v0.5y Pdfpages driver for pdfTeX (AM)
+)
+\pdfpages@includegraphics@status=\count289
+\AM@pagebox=\box56
+\AM@global@opts=\toks28
+\AM@pagecnt=\count290
+\AM@toc@title=\toks29
+\AM@lof@heading=\toks30
+\c@AM@survey=\count291
+\AM@templatesizebox=\box57
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+ (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)) (/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+ (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count292
+) (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count293
+)
+\@linkdim=\dimen171
+\Hy@linkcounter=\count294
+\Hy@pagecounter=\count295
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+) (/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count296
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4179.
+Package hyperref Info: Link nesting OFF on input line 4184.
+Package hyperref Info: Hyper index ON on input line 4187.
+Package hyperref Info: Plain pages OFF on input line 4194.
+Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4446.
+\c@Hy@tempcnt=\count297
+ (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4784.
+\XeTeXLinkMargin=\dimen172
+ (/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
+))
+\Fld@menulength=\count298
+\Field@Width=\dimen173
+\Fld@charsize=\dimen174
+Package hyperref Info: Hyper figures OFF on input line 6063.
+Package hyperref Info: Link nesting OFF on input line 6068.
+Package hyperref Info: Hyper index ON on input line 6071.
+Package hyperref Info: backreferencing OFF on input line 6078.
+Package hyperref Info: Link coloring OFF on input line 6083.
+Package hyperref Info: Link coloring with OCG OFF on input line 6088.
+Package hyperref Info: PDF/A mode OFF on input line 6093.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count299
+\c@Item=\count300
+\c@Hfootnote=\count301
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+ (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+ (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
+with kernel methods
+)
+\Fld@listcount=\count302
+\c@bookmark@seq@number=\count303
+ (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 285.
+)
+\Hy@SectionHShift=\skip62
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 26.
+Package hyperref Info: Option `unicode' set `true' on input line 26.
+ (/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2023/07/05 v6.0f a miscellany of footnote facilities
+\FN@temptoken=\toks31
+\footnotemargin=\dimen175
+\@outputbox@depth=\dimen176
+Package footmisc Info: Declaring symbol style bringhurst on input line 696.
+Package footmisc Info: Declaring symbol style chicago on input line 704.
+Package footmisc Info: Declaring symbol style wiley on input line 713.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 724.
+Package footmisc Info: Declaring symbol style lamport* on input line 744.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 765.
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count304
+\lst@gtempboxa=\box58
+\lst@token=\toks32
+\lst@length=\count305
+\lst@currlwidth=\dimen177
+\lst@column=\count306
+\lst@pos=\count307
+\lst@lostspace=\dimen178
+\lst@width=\dimen179
+\lst@newlines=\count308
+\lst@lineno=\count309
+\lst@maxwidth=\dimen180
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
+\c@lstnumber=\count310
+\lst@skipnumbers=\count311
+\lst@framebox=\box59
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2023/02/27 1.9 listings configuration
+))
+Package: listings 2023/02/27 1.9 (Carsten Heinz)
+) (/usr/share/texlive/texmf-dist/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip63
+\RaggedLeftLeftskip=\skip64
+\RaggedRightLeftskip=\skip65
+\CenteringRightskip=\skip66
+\RaggedLeftRightskip=\skip67
+\RaggedRightRightskip=\skip68
+\CenteringParfillskip=\skip69
+\RaggedLeftParfillskip=\skip70
+\RaggedRightParfillskip=\skip71
+\JustifyingParfillskip=\skip72
+\CenteringParindent=\skip73
+\RaggedLeftParindent=\skip74
+\RaggedRightParindent=\skip75
+\JustifyingParindent=\skip76
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
-Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
-\c@tracingmulticols=\count268
-\mult@box=\box50
-\multicol@leftmargin=\dimen150
-\c@unbalance=\count269
-\c@collectmore=\count270
-\doublecol@number=\count271
-\multicoltolerance=\count272
-\multicolpretolerance=\count273
-\full@width=\dimen151
-\page@free=\dimen152
-\premulticols=\dimen153
-\postmulticols=\dimen154
-\multicolsep=\skip63
-\multicolbaselineskip=\skip64
-\partial@page=\box51
-\last@line=\box52
-\maxbalancingoverflow=\dimen155
-\mult@rightbox=\box53
-\mult@grightbox=\box54
-\mult@firstbox=\box55
-\mult@gfirstbox=\box56
-\@tempa=\box57
-\@tempa=\box58
-\@tempa=\box59
-\@tempa=\box60
-\@tempa=\box61
-\@tempa=\box62
-\@tempa=\box63
-\@tempa=\box64
-\@tempa=\box65
-\@tempa=\box66
-\@tempa=\box67
+Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
+\c@tracingmulticols=\count312
+\mult@box=\box60
+\multicol@leftmargin=\dimen181
+\c@unbalance=\count313
+\c@collectmore=\count314
+\doublecol@number=\count315
+\multicoltolerance=\count316
+\multicolpretolerance=\count317
+\full@width=\dimen182
+\page@free=\dimen183
+\premulticols=\dimen184
+\postmulticols=\dimen185
+\multicolsep=\skip77
+\multicolbaselineskip=\skip78
+\partial@page=\box61
+\last@line=\box62
+\mc@boxedresult=\box63
+\maxbalancingoverflow=\dimen186
+\mult@rightbox=\box64
+\mult@grightbox=\box65
+\mult@firstbox=\box66
+\mult@gfirstbox=\box67
 \@tempa=\box68
 \@tempa=\box69
 \@tempa=\box70
@@ -159,62 +474,97 @@ Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
 \@tempa=\box90
 \@tempa=\box91
 \@tempa=\box92
-\c@minrows=\count274
-\c@columnbadness=\count275
-\c@finalcolumnbadness=\count276
-\last@try=\dimen156
-\multicolovershoot=\dimen157
-\multicolundershoot=\dimen158
-\mult@nat@firstbox=\box93
-\colbreak@box=\box94
-\mc@col@check@num=\count277
-) (./moresize.sty
-Package: moresize 1999/07/26 v1.9 (more font sizes)
-) (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count278
-\float@exts=\toks20
-\float@box=\box95
-\@float@everytoks=\toks21
-\@floatcapt=\box96
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\c@minrows=\count318
+\c@columnbadness=\count319
+\c@finalcolumnbadness=\count320
+\last@try=\dimen187
+\multicolovershoot=\dimen188
+\multicolundershoot=\dimen189
+\mult@nat@firstbox=\box104
+\colbreak@box=\box105
+\mc@col@check@num=\count321
+) (/usr/share/texlive/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen190
+\WF@size=\dimen191
+\c@WF@wrappedlines=\count322
+\WF@box=\box106
+\WF@everypar=\toks33
+Package: wrapfig 2003/01/31  v 3.6
+)
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 13.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
+File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count279
-\l__pdf_internal_box=\box97
+File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count323
+\l__pdf_internal_box=\box107
 ) (./Bus4U - UI.aux)
 \openout1 = `"Bus4U - UI.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
-LaTeX Font Info:    ... okay on input line 19.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+ (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count324
+\scratchdimen=\dimen192
+\scratchbox=\box108
+\nofMPsegments=\count325
+\nofMParguments=\count326
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count327
+\MPscratchDim=\dimen193
+\MPnumerator=\count328
+\makeMPintoPDFobject=\count329
+\everyMPtoPDFconversion=\toks35
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: a4paper
+* paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
-* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=702.78308pt
+* h-part:(L,W,R)=(71.13188pt, 486.25761pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 628.44073pt, 95.39737pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=486.25761pt
+* \textheight=628.44073pt
 * \oddsidemargin=-1.1381pt
-* \evensidemargin=-1.1381pt
+* \evensidemargin=-15.36449pt
 * \topmargin=-38.1381pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -233,106 +583,346 @@ LaTeX Font Info:    ... okay on input line 19.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count280
-\scratchdimen=\dimen159
-\scratchbox=\box98
-\nofMPsegments=\count281
-\nofMParguments=\count282
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count283
-\MPscratchDim=\dimen160
-\MPnumerator=\count284
-\makeMPintoPDFobject=\count285
-\everyMPtoPDFconversion=\toks23
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
- (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
-)) (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
+(/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+ (/usr/share/texlive/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
+Package hyperref Info: Link coloring ON on input line 13.
+ (./Bus4U - UI.out) (./Bus4U - UI.out)
+\@outlinefile=\write3
+\openout3 = `"Bus4U - UI.out"'.
+
+\c@lstlisting=\count330
+ (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
-) [1
-
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <17.28> on input line 55.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 55.
- [1] (./chapters/abstract.tex) [1] (./Bus4U - UI.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 3.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 3.
 )
-\tf@toc=\write3
-\openout3 = `"Bus4U - UI.toc"'.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 19.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 19.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 19.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 19.
+ [1
 
- [2
 
-]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}] (./chapters/abstract/ro.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+) [2]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.77 \end{titlepage}
+                     [1] (./chapters/abstract/hu.tex) (./chapters/abstract/en.tex [1])
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.87 \tableofcontents
+                      [2] (./Bus4U - UI.toc
+pdfTeX warning (ext4): destination with the same identifier (name{page.}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.23 ...line {5.4.3}Flutter}{30}{subsection.5.4.3}
+                                                  % [3
+
+])
+\tf@toc=\write4
+\openout4 = `"Bus4U - UI.toc"'.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.91 \chapter
+             {Bevezető} [1]
 1. fejezet.
-(./chapters/goals.tex) [3
+(./chapters/introduction.tex
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.8 
+     [2
+
+]) [3]
+2. fejezet.
+(./chapters/goals.tex
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 4.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
+File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
+) [4
+
+]) [5]
+3. fejezet.
+(./chapters/theoretical-foundation.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+ [6
+
+] [7]
+<figures/its.png, id=292, 376.40625pt x 376.40625pt>
+File: figures/its.png Graphic file (type png)
+<use figures/its.png>
+Package pdftex.def Info: figures/its.png  used on input line 22.
+(pdftex.def)             Requested size: 437.62888pt x 437.65962pt.
+ [8 <./figures/its.png>] [9]
+<figures/moovit.jpg, id=314, 796.4449pt x 1602.47664pt>
+File: figures/moovit.jpg Graphic file (type jpg)
+<use figures/moovit.jpg>
+Package pdftex.def Info: figures/moovit.jpg  used on input line 44.
+(pdftex.def)             Requested size: 194.50008pt x 391.32649pt.
+ [10] [11 <./figures/moovit.jpg>]
+<figures/budapestgo.png, id=329, 813.0375pt x 1445.4pt>
+File: figures/budapestgo.png Graphic file (type png)
+<use figures/budapestgo.png>
+Package pdftex.def Info: figures/budapestgo.png  used on input line 58.
+(pdftex.def)             Requested size: 194.50008pt x 345.77829pt.
+) [12 <./figures/budapestgo.png>]
+4. fejezet.
+(./chapters/system-requirements.tex [13
+
+] [14]
+<figures/use-case-user.png, id=351, 597.33368pt x 488.19122pt>
+File: figures/use-case-user.png Graphic file (type png)
+<use figures/use-case-user.png>
+Package pdftex.def Info: figures/use-case-user.png  used on input line 52.
+(pdftex.def)             Requested size: 486.25761pt x 397.42166pt.
+ [15]
+<figures/use-case-admin.png, id=358, 597.33368pt x 351.02571pt>
+File: figures/use-case-admin.png Graphic file (type png)
+<use figures/use-case-admin.png>
+Package pdftex.def Info: figures/use-case-admin.png  used on input line 59.
+(pdftex.def)             Requested size: 486.25761pt x 285.75937pt.
+ [16 <./figures/use-case-user.png>] [17 <./figures/use-case-admin.png>] [18] [19]) [20]
+5. fejezet.
+(./chapters/architecture.tex
+<figures/architecture.jpg, id=385, 973.78236pt x 542.025pt>
+File: figures/architecture.jpg Graphic file (type jpg)
+<use figures/architecture.jpg>
+Package pdftex.def Info: figures/architecture.jpg  used on input line 4.
+(pdftex.def)             Requested size: 486.25761pt x 270.66446pt.
+ [21
+
+ <./figures/architecture.jpg>]
+<figures/jwt.png, id=393, 429.93275pt x 247.04541pt>
+File: figures/jwt.png Graphic file (type png)
+<use figures/jwt.png>
+Package pdftex.def Info: figures/jwt.png  used on input line 16.
+(pdftex.def)             Requested size: 340.37885pt x 195.59721pt.
+ [22 <./figures/jwt.png>] [23]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 35.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 36.
+<figures/response-tickets.png, id=415, 579.66562pt x 228.10219pt>
+File: figures/response-tickets.png Graphic file (type png)
+<use figures/response-tickets.png>
+Package pdftex.def Info: figures/response-tickets.png  used on input line 59.
+(pdftex.def)             Requested size: 437.62888pt x 172.21086pt.
+ [24]
+<figures/secvential-tickets.png, id=442, 727.71875pt x 592.2125pt>
+File: figures/secvential-tickets.png Graphic file (type png)
+<use figures/secvential-tickets.png>
+Package pdftex.def Info: figures/secvential-tickets.png  used on input line 66.
+(pdftex.def)             Requested size: 437.62888pt x 356.15254pt.
+ [25 <./figures/response-tickets.png> <./figures/secvential-tickets.png (PNG copy)>]
+<figures/response-registration.png, id=449, 559.33969pt x 218.31563pt>
+File: figures/response-registration.png Graphic file (type png)
+<use figures/response-registration.png>
+Package pdftex.def Info: figures/response-registration.png  used on input line 90.
+(pdftex.def)             Requested size: 486.25761pt x 189.79646pt.
+ [26 <./figures/response-registration.png>]
+<figures/secvential-registration.png, id=472, 765.86125pt x 855.195pt>
+File: figures/secvential-registration.png Graphic file (type png)
+<use figures/secvential-registration.png>
+Package pdftex.def Info: figures/secvential-registration.png  used on input line 99.
+(pdftex.def)             Requested size: 486.25761pt x 542.97755pt.
+ [27 <./figures/secvential-registration.png (PNG copy)>] [28] [29] [30] [31]
+<figures/jira.png, id=522, 1186.5554pt x 641.58061pt>
+File: figures/jira.png Graphic file (type png)
+<use figures/jira.png>
+Package pdftex.def Info: figures/jira.png  used on input line 143.
+(pdftex.def)             Requested size: 486.25761pt x 262.92249pt.
+<figures/gitkraken.png, id=524, 1365.01807pt x 718.2753pt>
+File: figures/gitkraken.png Graphic file (type png)
+<use figures/gitkraken.png>
+Package pdftex.def Info: figures/gitkraken.png  used on input line 151.
+(pdftex.def)             Requested size: 486.25761pt x 255.8718pt.
+ [32 <./figures/jira.png (PNG copy)>]) [33 <./figures/gitkraken.png (PNG copy)>]
+6. fejezet.
+(./chapters/ui-design.tex [34
 
 ]
-2. fejezet.
-(./chapters/system-requirements.tex
-<figures/use-case.jpg, id=28, 1714.405pt x 2055.68pt>
-File: figures/use-case.jpg Graphic file (type jpg)
-<use figures/use-case.jpg>
-Package pdftex.def Info: figures/use-case.jpg  used on input line 36.
-(pdftex.def)             Requested size: 455.24411pt x 545.85046pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4
-
-] [5 <./figures/use-case.jpg>]) [6] [7]
-3. fejezet.
-(./chapters/ui-design.tex
-<figures/ui-mobile.png, id=43, 1510.29552pt x 1204.25418pt>
-File: figures/ui-mobile.png Graphic file (type png)
-<use figures/ui-mobile.png>
-Package pdftex.def Info: figures/ui-mobile.png  used on input line 4.
-(pdftex.def)             Requested size: 455.24411pt x 362.98796pt.
- [8
-
- <./figures/ui-mobile.png>]
-<figures/ui-web.png, id=47, 1441.385pt x 5673.195pt>
+<figures/md-buttons.png, id=544, 1027.84pt x 301.125pt>
+File: figures/md-buttons.png Graphic file (type png)
+<use figures/md-buttons.png>
+Package pdftex.def Info: figures/md-buttons.png  used on input line 10.
+(pdftex.def)             Requested size: 486.25761pt x 142.4615pt.
+ [35 <./figures/md-buttons.png>] [36]
+<figures/ui-web.png, id=569, 1441.385pt x 5673.195pt>
 File: figures/ui-web.png Graphic file (type png)
 <use figures/ui-web.png>
-Package pdftex.def Info: figures/ui-web.png  used on input line 12.
-(pdftex.def)             Requested size: 166.25064pt x 654.41338pt.
-<figures/ui-admin.png, id=49, 1449.415pt x 6279.46pt>
+Package pdftex.def Info: figures/ui-web.png  used on input line 26.
+(pdftex.def)             Requested size: 143.68507pt x 565.59282pt.
+<figures/ui-admin.png, id=570, 1449.415pt x 6279.46pt>
 File: figures/ui-admin.png Graphic file (type png)
 <use figures/ui-admin.png>
-Package pdftex.def Info: figures/ui-admin.png  used on input line 18.
-(pdftex.def)             Requested size: 151.03195pt x 654.41338pt.
- [9 <./figures/ui-web.png> <./figures/ui-admin.png>])
-4. fejezet.
-(./chapters/implementation.tex) [10
+Package pdftex.def Info: figures/ui-admin.png  used on input line 32.
+(pdftex.def)             Requested size: 130.53018pt x 565.59282pt.
+ [37 <./figures/ui-web.png> <./figures/ui-admin.png>]
+<figures/ui-mobile.png, id=578, 1653.17625pt x 1661.20625pt>
+File: figures/ui-mobile.png Graphic file (type png)
+<use figures/ui-mobile.png>
+Package pdftex.def Info: figures/ui-mobile.png  used on input line 40.
+(pdftex.def)             Requested size: 486.25761pt x 488.60677pt.
+) [38 <./figures/ui-mobile.png>]
+7. fejezet.
+(./chapters/implementation.tex
+<figures/ticket_bought.png, id=584, 1405.57776pt x 671.81602pt>
+File: figures/ticket_bought.png Graphic file (type png)
+<use figures/ticket_bought.png>
+Package pdftex.def Info: figures/ticket_bought.png  used on input line 11.
+(pdftex.def)             Requested size: 447.35611pt x 213.8169pt.
+ [39
 
 ]
-5. fejezet.
-(./chapters/summary.tex) [11
+<figures/mobile-home1.jpg, id=589, 1084.05pt x 2409.0pt>
+File: figures/mobile-home1.jpg Graphic file (type jpg)
+<use figures/mobile-home1.jpg>
+Package pdftex.def Info: figures/mobile-home1.jpg  used on input line 18.
+(pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
+<figures/mobile-home2.jpg, id=590, 1084.05pt x 2409.0pt>
+File: figures/mobile-home2.jpg Graphic file (type jpg)
+<use figures/mobile-home2.jpg>
+Package pdftex.def Info: figures/mobile-home2.jpg  used on input line 19.
+(pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
+<figures/mobile-home3.jpg, id=591, 1084.05pt x 2409.0pt>
+File: figures/mobile-home3.jpg Graphic file (type jpg)
+<use figures/mobile-home3.jpg>
+Package pdftex.def Info: figures/mobile-home3.jpg  used on input line 20.
+(pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
+ [40 <./figures/ticket_bought.png (PNG copy)> <./figures/mobile-home1.jpg> <./figures/mobile-home2.jpg> <./figures/mobile-home3.jpg>]
+<figures/jegyvasarlas.jpg, id=601, 2269.47874pt x 2507.3675pt>
+File: figures/jegyvasarlas.jpg Graphic file (type jpg)
+<use figures/jegyvasarlas.jpg>
+Package pdftex.def Info: figures/jegyvasarlas.jpg  used on input line 29.
+(pdftex.def)             Requested size: 486.25761pt x 537.1988pt.
+ [41 <./figures/jegyvasarlas.jpg>]
+<figures/tickets.png, id=609, 1404.8403pt x 671.81602pt>
+File: figures/tickets.png Graphic file (type png)
+<use figures/tickets.png>
+Package pdftex.def Info: figures/tickets.png  used on input line 51.
+(pdftex.def)             Requested size: 486.25761pt x 232.53535pt.
+ [42]
+<figures/schedule.png, id=616, 774.32143pt x 884.93878pt>
+File: figures/schedule.png Graphic file (type png)
+<use figures/schedule.png>
+Package pdftex.def Info: figures/schedule.png  used on input line 62.
+(pdftex.def)             Requested size: 486.25761pt x 555.71848pt.
+ [43 <./figures/tickets.png (PNG copy)>] [44 <./figures/schedule.png (PNG copy)>]
+<figures/stations-mobile.jpg, id=628, 796.4449pt x 1597.31448pt>
+File: figures/stations-mobile.jpg Graphic file (type jpg)
+<use figures/stations-mobile.jpg>
+Package pdftex.def Info: figures/stations-mobile.jpg  used on input line 81.
+(pdftex.def)             Requested size: 133.71786pt x 268.17639pt.
+ [45 <./figures/stations-mobile.jpg>]
+<figures/statistics.png, id=635, 1415.90204pt x 682.87776pt>
+File: figures/statistics.png Graphic file (type png)
+<use figures/statistics.png>
+Package pdftex.def Info: figures/statistics.png  used on input line 95.
+(pdftex.def)             Requested size: 486.25761pt x 234.51984pt.
+ [46 <./figures/statistics.png (PNG copy)>]
+<figures/stations.png, id=641, 813.0375pt x 547.2947pt>
+File: figures/stations.png Graphic file (type png)
+<use figures/stations.png>
+Package pdftex.def Info: figures/stations.png  used on input line 104.
+(pdftex.def)             Requested size: 486.25761pt x 327.31876pt.
+ [47 <./figures/stations.png (PNG copy)>]
+<figures/routes-admin.png, id=648, 1415.90204pt x 796.4449pt>
+File: figures/routes-admin.png Graphic file (type png)
+<use figures/routes-admin.png>
+Package pdftex.def Info: figures/routes-admin.png  used on input line 113.
+(pdftex.def)             Requested size: 486.25761pt x 273.52205pt.
+ [48 <./figures/routes-admin.png (PNG copy)>]
+<figures/schedules_admin.png, id=655, 1404.8403pt x 663.70409pt>
+File: figures/schedules_admin.png Graphic file (type png)
+<use figures/schedules_admin.png>
+Package pdftex.def Info: figures/schedules_admin.png  used on input line 123.
+(pdftex.def)             Requested size: 486.25761pt x 229.72757pt.
+<figures/employees.png, id=658, 1354.69377pt x 684.35265pt>
+File: figures/employees.png Graphic file (type png)
+<use figures/employees.png>
+Package pdftex.def Info: figures/employees.png  used on input line 132.
+(pdftex.def)             Requested size: 486.25761pt x 245.63579pt.
+ [49 <./figures/schedules_admin.png (PNG copy)>]
+<figures/edit-bus.png, id=666, 697.62674pt x 683.6152pt>
+File: figures/edit-bus.png Graphic file (type png)
+<use figures/edit-bus.png>
+Package pdftex.def Info: figures/edit-bus.png  used on input line 138.
+(pdftex.def)             Requested size: 242.15681pt x 237.28699pt.
+<figures/create-employee.png, id=667, 697.62674pt x 684.35265pt>
+File: figures/create-employee.png Graphic file (type png)
+<use figures/create-employee.png>
+Package pdftex.def Info: figures/create-employee.png  used on input line 139.
+(pdftex.def)             Requested size: 242.15681pt x 237.54295pt.
+) [50 <./figures/employees.png> <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
+8. fejezet.
+(./chapters/summary.tex [51
 
-] (./Bus4U - UI.aux) ) 
+]) (./Bus4U - UI.bbl [52] [53
+
+]) [54] (./Bus4U - UI.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+ ***********
+Package rerunfilecheck Info: File `"Bus4U - UI".out' has not changed.
+(rerunfilecheck)             Checksum: 747524A648D1AFEA6FEDAC61BAA8F0BF;5949.
+ ) 
 Here is how much of TeX's memory you used:
- 4327 strings out of 479647
- 75317 string characters out of 5878802
- 395829 words of memory out of 5000000
- 22258 multiletter control sequences out of 15000+600000
- 484488 words of font info for 55 fonts, out of 8000000 for 9000
+ 16195 strings out of 475582
+ 258590 string characters out of 5778247
+ 2065975 words of memory out of 5000000
+ 37762 multiletter control sequences out of 15000+600000
+ 619658 words of font info for 111 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 55i,6n,62p,947b,383s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm2074.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1728.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2986.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx3583.600pk> </home/pszabi/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk>
-Output written on "Bus4U - UI.pdf" (13 pages, 3691727 bytes).
+ 82i,9n,84p,2773b,1288s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "Bus4U - UI.pdf" (60 pages, 7135259 bytes).
 PDF statistics:
- 399 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 815 PDF objects out of 1000 (max. 8388607)
+ 637 compressed objects within 7 object streams
+ 197 named destinations out of 1000 (max. 500000)
+ 489 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,16 +1,43 @@
-\select@language {magyar} \contentsline {chapter}{\numberline {1}Célkitűzések}{3}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {2}A rendszer specifikációi}{4}{}%
-\select@language {magyar} \contentsline {section}{\numberline {2.1}Felhasználói követelmények}{4}{}%
-\select@language {magyar} \contentsline {section}{\numberline {2.2}Rendszer követelmények}{5}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.1}Funkcionális követelmények}{5}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {2.2.2}Nem funkcionális követelmények}{6}{}%
-\select@language {magyar} \contentsline {subsubsection}{Szervezéssel kapcsolatos követelmények}{6}{}%
-\select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{6}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {3}A felhasználói felület tervezése}{8}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {4}Gyakorlati megvalósítás}{10}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói weboldal}{10}{}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Főoldal}{10}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.2}Adminisztrátori weboldal}{10}{}%
-\select@language {magyar} \contentsline {section}{\numberline {4.3}Felhasználói applikáció}{10}{}%
-\select@language {magyar} \contentsline {chapter}{\numberline {5}Összefoglalás}{11}{}%
-\select@language {magyar} \contentsline {section}{\numberline {5.1}További fejlesztési lehetőségek}{11}{}%
+\select@language {magyar} \contentsline {chapter}{\numberline {1}Bevezető}{2}{chapter.1}%
+\select@language {magyar} \contentsline {chapter}{\numberline {2}Célkitűzések}{4}{chapter.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {3}Szakirodalmi tanulmány}{6}{chapter.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.1}Létező megoldások}{10}{section.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.1}Moovit}{10}{subsection.3.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.1.2}Budapest Go}{11}{subsection.3.1.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {4}A rendszer specifikációi}{13}{chapter.4}%
+\select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói követelmények}{13}{section.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Felhasználói felület}{14}{subsection.4.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}Adminisztrátori felület}{15}{subsection.4.1.2}%
+\select@language {magyar} \contentsline {section}{\numberline {4.2}Rendszerkövetelmények}{17}{section.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.1}Funkcionális követelmények}{17}{subsection.4.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.2.2}Nem funkcionális követelmények}{19}{subsection.4.2.2}%
+\select@language {magyar} \contentsline {subsubsection}{Szervezéssel kapcsolatos követelmények}{19}{section*.5}%
+\select@language {magyar} \contentsline {subsubsection}{Termékkel kapcsolatos követelmények}{20}{section*.6}%
+\select@language {magyar} \contentsline {chapter}{\numberline {5}A rendszer architektúrája}{21}{chapter.5}%
+\select@language {magyar} \contentsline {section}{\numberline {5.1}Frontend}{22}{section.5.1}%
+\select@language {magyar} \contentsline {section}{\numberline {5.2}Backend}{23}{section.5.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.3}Kommunikáció}{24}{section.5.3}%
+\select@language {magyar} \contentsline {section}{\numberline {5.4}Felhasznált technológiák}{28}{section.5.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}Vue.js}{28}{subsection.5.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Vuetify}{30}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.3}Flutter}{30}{subsection.5.4.3}%
+\select@language {magyar} \contentsline {section}{\numberline {5.5}Fejlesztői eszközök}{31}{section.5.5}%
+\select@language {magyar} \contentsline {section}{\numberline {5.6}Kitelepítés}{33}{section.5.6}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}A felhasználói felület tervezése}{34}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}Material Design}{34}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}Figma terv}{35}{section.6.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Gyakorlati megvalósítás}{39}{chapter.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói weboldal és alkalmazás}{39}{section.7.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{39}{subsection.7.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{42}{subsection.7.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{43}{subsection.7.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és élő térkép}{45}{subsection.7.1.4}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrátori weboldal}{46}{section.7.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőoldal}{46}{subsection.7.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{47}{subsection.7.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{47}{subsection.7.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{48}{subsection.7.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{49}{subsection.7.2.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {8}Összefoglalás}{51}{chapter.8}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}További fejlesztési lehetőségek}{52}{section.8.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{52}{section.8.1}%

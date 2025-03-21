@@ -1,20 +1,20 @@
 import 'dart:io';
 
+import 'package:bus4u/components/departure_timetable.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:convert';
 import 'package:location/location.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 
 class SchedulesPage extends StatefulWidget {
   const SchedulesPage({super.key});
 
   @override
-  _SchedulesPageState createState() => _SchedulesPageState();
+  SchedulesPageState createState() => SchedulesPageState();
 }
 
-class _SchedulesPageState extends State<SchedulesPage> {
+class SchedulesPageState extends State<SchedulesPage> {
   final _formKey = GlobalKey<FormState>();
 
   String? selectedCity;
@@ -25,7 +25,6 @@ class _SchedulesPageState extends State<SchedulesPage> {
   LocationData? currentLocation;
   final Location location = Location();
   bool _permission = false;
-  var logger = Logger();
   bool _isRouteLoading = false;
   bool _isStationLoading = false;
   bool _isScheduleLoading = false;
@@ -145,7 +144,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
         cities = fetchedCities;
       });
     } catch (e) {
-      logger.e('Error loading cities: $e');
+      debugPrint('Error loading cities: $e');
     }
   }
 
@@ -160,7 +159,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
         routes = fetchedRoutes;
       });
     } catch (e) {
-      logger.e('Error loading routes: $e');
+      debugPrint('Error loading routes: $e');
     } finally {
       setState(() {
         _isRouteLoading = false;
@@ -178,7 +177,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
         stations = s;
       });
     } catch (e) {
-      logger.e('Error loading stations: $e');
+      debugPrint('Error loading stations: $e');
     } finally {
       setState(() {
         _isStationLoading = false;
@@ -277,7 +276,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
         );
       });
     } catch (e) {
-      logger.e("Error getting location, $e");
+      debugPrint("Error getting location, $e");
     }
   }
 
@@ -292,32 +291,6 @@ class _SchedulesPageState extends State<SchedulesPage> {
     } else {
       getLocation();
     }
-  }
-
-  Widget buildDepartureTimesTable() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        dataRowMaxHeight: double.infinity,
-        columnSpacing: 20,
-        horizontalMargin: 0,
-        columns: departureTimes
-            .map((e) => DataColumn(label: Text(e['name'])))
-            .toList(),
-        rows: [
-          DataRow(
-            cells: departureTimes.map((time) {
-              return DataCell(Column(
-                mainAxisSize: MainAxisSize.min,
-                children: time['departure_times']
-                    .map<Widget>((value) => Text(value))
-                    .toList(),
-              ));
-            }).toList(),
-          ),
-        ],
-      ),
-    );
   }
 
   Future<void> _showMapDialog({String? route}) async {
@@ -470,7 +443,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                               List<dynamic> data = json.decode(response.body);
                               dt = List<Map<String, dynamic>>.from(data);
                             } else {
-                              logger.e('Failed to load departure times');
+                              debugPrint('Failed to load departure times');
                             }
                             setState(() {
                               departureTimes = dt;
@@ -489,7 +462,7 @@ class _SchedulesPageState extends State<SchedulesPage> {
                         style: const TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       )),
-                  buildDepartureTimesTable(),
+                  DepartureTimetable(departureTimes: departureTimes),
                   const SizedBox(height: 16),
                   ElevatedButton(
                       onPressed: () async {

@@ -1,0 +1,23 @@
+name: Cypress tests
+on: push
+jobs:
+  cypress-run:
+    name: Cypress run
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress test USER
+        uses: cypress-io/github-action@v6
+        env:
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+        with:
+          start: npm run dev
+          working-directory: USER_WEB
+      - name: Cypress test ADMIN
+        uses: cypress-io/github-action@v6
+        env:
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+        with:
+          start: npm run dev
+          working-directory: ADMIN_WEB

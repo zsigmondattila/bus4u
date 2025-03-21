@@ -10,22 +10,32 @@
       <v-container class="px-0">
         <v-row justify="center">
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Start city" :item-props="getName" :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getStartStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Start city" name="startCity" :item-props="getName"
+              :loading="!cities.length" v-model="form.fromCity" class="text-field" hide-details="auto" :rules="cityRule"
+              auto-select-first @update:modelValue="getStartStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="startStations" label="Start station" :item-props="getName" :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation" class="text-field" hide-details="auto"></v-autocomplete>
+            <v-autocomplete :items="startStations" label="Start station" name="startStation" :item-props="getName"
+              :disabled="!form.fromCity" :loading="!startStations.length && !!form.fromCity" v-model="form.fromStation"
+              auto-select-first class="text-field" hide-details="auto"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="cities" label="Destination city" :item-props="getName" :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="cityRule" @update:modelValue="getDestStation"></v-autocomplete>
+            <v-autocomplete :items="cities" label="Destination city" name="destCity" :item-props="getName"
+              :loading="!cities.length" v-model="form.toCity" class="text-field" hide-details="auto" :rules="cityRule"
+              auto-select-first @update:modelValue="getDestStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-autocomplete :items="destStations" label="Destination station" :item-props="getName" :disabled="!form.toCity" :loading="!destStations.length && !!form.toCity" v-model="form.toStation" class="text-field" hide-details="auto" :rules="uniqueStation"></v-autocomplete>
+            <v-autocomplete :items="destStations" label="Destination station" name="destStation" :item-props="getName"
+              :disabled="!form.toCity" :loading="!destStations.length && !!form.toCity" v-model="form.toStation"
+              auto-select-first class="text-field" hide-details="auto" :rules="uniqueStation"></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-text-field label="Date" type="date" v-model="form.date" class="text-field" hide-details="auto"></v-text-field>
+            <v-text-field label="Date" name="date" type="date" v-model="form.date" class="text-field"
+              hide-details="auto"></v-text-field>
           </v-col>
           <v-col cols="12" sm="6">
-            <v-text-field label="Time" type="time" v-model="form.time" class="text-field" hide-details="auto"></v-text-field>
+            <v-text-field label="Time" name="time" type="time" v-model="form.time" class="text-field"
+              hide-details="auto"></v-text-field>
           </v-col>
           <v-col cols="12" style="text-align: center;">
             <v-btn type="submit" color="primary" size="large"> Search </v-btn>
@@ -36,10 +46,14 @@
     <v-container class="px-0">
       <v-list lines="two" border rounded class="py-0">
         <div v-if="!routes">
-          <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2" :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
+          <v-skeleton-loader v-for="index in 3" type="avatar, list-item-two-line, button@2"
+            :boilerplate="!isLoadingRoutes"></v-skeleton-loader>
         </div>
-        <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found after the specified time between the selected stations. </p>
-        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @purchased="ticketBought"></RouteListElement>
+        <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found after the
+          specified time between the selected stations. </p>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @purchased="ticketBought"
+          @error="newTicket.isFailed = true">
+        </RouteListElement>
       </v-list>
     </v-container>
     <v-dialog v-model="newTicket.isPurchased" persistent max-width="300">
@@ -47,10 +61,24 @@
         <v-img :src="newTicket.qr"></v-img>
         <v-card-title class="text-center"> Transaction successful </v-card-title>
         <v-card-subtitle class="text-center">Code: <b>{{ newTicket.id }}</b></v-card-subtitle>
-        <v-card-text>Ticket(s) successfully saved to your collection. Scan the QR code when you get on the bus.</v-card-text>
+        <v-card-text>Ticket(s) successfully saved to your collection. Scan the QR code when you get on the
+          bus.</v-card-text>
         <v-card-actions class="justify-space-evenly">
           <v-btn @click="newTicket.isPurchased = false"> Close </v-btn>
-          <v-btn :to="{name: 'tickets'}" class="text-orange-darken-4"> All tickets </v-btn>
+          <v-btn :to="{ name: 'tickets' }" class="text-orange-darken-4"> All tickets </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="newTicket.isFailed" persistent max-width="300">
+      <v-card color="red-lighten-5">
+        <div class="h-100 d-flex justify-center bg-white">
+          <v-icon size="250" icon="mdi-ticket-confirmation-outline"
+            class="align-self-center text-medium-emphasis"></v-icon>
+        </div>
+        <v-card-title class="text-center"> Transaction failed </v-card-title>
+        <v-card-text>Something went wrong with the ticket generation. Try again later.</v-card-text>
+        <v-card-actions class="justify-space-evenly">
+          <v-btn @click="newTicket.isFailed = false"> Close </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -68,6 +96,7 @@ import RouteListElement from '@/components/RouteListElement.vue';
 const isLoadingRoutes = ref(false)
 const newTicket = reactive({
   isPurchased: false,
+  isFailed: false,
   id: null,
   qr: null
 })
@@ -95,7 +124,7 @@ const uniqueStation = [
 ]
 
 const lastData = sessionStorage.getItem('home-form')
-if(lastData) {
+if (lastData) {
   const data = JSON.parse(lastData)
   form.fromCity = data.fromCity
   form.toCity = data.toCity
@@ -107,38 +136,38 @@ if(lastData) {
   form.time = data.time
 }
 
-function getDateStr(){
+function getDateStr() {
   let month = date.getMonth() + 1;
   let day = date.getDate();
-  return `${date.getFullYear()}-${month>9 ? month : '0'+month}-${day>9 ? day : '0'+day}`
+  return `${date.getFullYear()}-${month > 9 ? month : '0' + month}-${day > 9 ? day : '0' + day}`
 }
-function getTimeStr(){
+function getTimeStr() {
   let hours = date.getHours();
   let mins = date.getMinutes();
   return `${hours > 9 ? hours : '0' + hours}:${mins > 9 ? mins : '0' + mins}`
 }
 
-async function ticketBought(ticket){
+async function ticketBought(ticket) {
   newTicket.id = ticket[0]
   newTicket.qr = await QRCode.toDataURL(ticket[0], { width: 300 })
   newTicket.isPurchased = true
 }
 
 async function onSubmit(e) {
-  if(!(await e).valid) return
+  if (!(await e).valid) return
   sessionStorage.setItem('home-form', JSON.stringify(form))
   isLoadingRoutes.value = true
   let params = {}
-  if(form.fromStation && form.toStation){
-    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time}
+  if (form.fromStation && form.toStation) {
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, start_station_uid: form.fromStation.station_uid, destination_station_uid: form.toStation.station_uid, date: form.date, time: form.time }
   } else {
-    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time}
+    params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time }
   }
   axios.get('https://api.bus4u.online/v1/get_available_tickets', { params })
-  .then(rsp => {
-      if(rsp.status == 200) {
+    .then(rsp => {
+      if (rsp.status == 200) {
         routes.value = rsp.data
-        if(routes.value.length) {
+        if (routes.value.length) {
           routes.value = routes.value.sort((a, b) => a.departure_time - b.departure_time)
         }
         isLoadingRoutes.value = false
@@ -146,25 +175,25 @@ async function onSubmit(e) {
     }).catch(routes.value = null)
 }
 
-function getName(item){
+function getName(item) {
   return { title: item.name };
 }
 
-async function getStartStation(city){
+async function getStartStation(city) {
   form.fromStation = null
-  if(!city) return
-  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
+  if (!city) return
+  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
     .then(rsp => {
-      if(rsp.status == 200) startStations.value = rsp.data.stations
+      if (rsp.status == 200) startStations.value = rsp.data.stations
     }).catch(() => startStations.value = [])
 }
 
-async function getDestStation(city){
+async function getDestStation(city) {
   form.toStation = null
-  if(!city) return
-  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid }})
+  if (!city) return
+  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
     .then(rsp => {
-      if(rsp.status == 200) destStations.value = rsp.data.stations
+      if (rsp.status == 200) destStations.value = rsp.data.stations
     }).catch(() => destStations.value = [])
 }
 
@@ -174,6 +203,4 @@ axios.get('https://api.bus4u.online/v1/get_cities')
   }).catch(() => cities.value = [])
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

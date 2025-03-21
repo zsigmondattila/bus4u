@@ -1,0 +1,189 @@
+Rendszerünk egy Ruby on Rails keretrendszerben írt API-ból, egy Vue.js alapú webes felhasználói- és admin felületből, egy Flutter alkalmazásból a felhasználók számára, 
+valamint egy Flutter keretrendszerben készült POS terminál alkalmazásból. Az API a REST architektúrát követi, lehetővé téve a különböző erőforrások, például buszok, járatok és jegyek kezelését. A felhasználói és admin weboldal Vue-ban készült, a Vuetify elemek felhasználásával, ami lehetővé tette az egyszerű és hatékony felhasználói felületek gyors fejlesztését. A Vue.js keretrendszer előnye, hogy komponensekből áll, így átlátható és jól rendszerezett webalkalmazás felépítést tesz lehetővé. Ezen kívül a Vuetify komponens-készlete megkönnyítette az UI elemek létrehozását, gyorsítva ezzel a fejlesztési folyamatot. Az alkalmazás Flutterben készült, Dart programozási nyelvet használva, amely lehetővé teszi, hogy ugyanazt a kódbázist használjuk iOS és Android platformokra is, így jelentősen csökkentve a fejlesztési időt és költségeket. A POS terminál alkalmazása eredetileg Flutterben készült, de végül natív Android alkalmazásként lett implementálva a nagyobb kompatibilitás érdekében. Ez biztosítja, hogy a rendszer megfelelően működjön a POS terminálokkal, valamint minden szükséges tanúsítvánnyal kompatibilis legyen.
+A Vue.js alapú weboldalakat, illetve a felhasználóknak szánt Flutter alkalmazást Portik Szabolcs kollegám mutatja be részletesebben egy másik dolgozat 
+keretein belül.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/architecture.jpeg}
+    \caption{A rendszer architektúra diagramja}
+    \label{fig:architecture-diagram}
+\end{figure}
+
+\section{Technológiai háttér}
+A Bus4U alkalmazás digitális megoldásai mögött modern webtechnológiák állnak, amelyek lehetővé teszik a felhasználói élmény folyamatos fejlesztését és a szolgáltatások hatékony működését. Az alkalmazás backendje Ruby on Rails keretrendszert használ, amely az egyik legnépszerűbb választás webes alkalmazások fejlesztésére.
+
+\subsection{Ruby on Rails}
+A \textit{Ruby on Rails} egy népszerű és széles körben használt webes keretrendszer, amely a Ruby programozási nyelvre épül. A Rails két alapvető elv alapján működik: a „\textit{Convention over Configuration}” és a „\textit{Don’t Repeat Yourself}”. Ezek az elvek azt eredményezik, hogy a fejlesztőknek kevesebb kóddal kell dolgozniuk, mivel a Rails konvenciói automatikusan meghatározzák a konfigurációkat, így csökkentve a redundáns kódot és növelve a fejlesztési folyamat hatékonyságát \cite{hartl_rails, fernandez_rails}. Ez különösen hasznos nagyobb projektek esetén, mivel elősegíti a gyorsabb fejlesztést és az egyszerűbb karbantartást, amely a gyorsan változó üzleti igények mellett nélkülözhetetlen.
+
+A Rails \textit{MVC (Model-View-Controller)} architektúrára épül, amely logikailag elkülöníti az alkalmazás különböző részeit: az adatkezelést (Model), a felhasználói felületet (View), és az üzleti logikát (Controller). Ez a struktúra átláthatóbbá teszi a kódot, mivel a különböző funkciók külön-külön karbantarthatók, anélkül hogy zavarnák egymást, valamint megkönnyíti az új funkciók hozzáadását is. A Rails alkalmazásokhoz számos „\textit{gem}”, vagyis könyvtár érhető el, amelyek előre elkészített megoldásokat kínálnak, így még a komplexebb funkciók integrálása is könnyebb és biztonságosabb lehet \cite{hartl_rails}.
+
+A Rails további előnye, hogy natív módon támogatja \textit{RESTful API}-k létrehozását. A RESTful megközelítés egyértelmű, szabványosított formát biztosít az API-k számára, amely megkönnyíti az alkalmazások közötti integrációt, például egy mobilalkalmazás és a backend közötti kommunikáció során. Ennek a felépítésnek köszönhetően a Rails alkalmazások egyszerűen összekapcsolhatók más rendszerekkel és frontend megoldásokkal \cite{fernandez_rails}.
+
+Végül, a Rails beépített tesztelési eszközei lehetőséget adnak az automatizált tesztelésre, amely hozzájárul a szoftverek magasabb megbízhatóságához és a hibamentes működés biztosításához a fejlesztés minden szakaszában. Az ilyen automatizált tesztelési funkciók szintén csökkentik a karbantartási költségeket, hiszen a kódminőség magasabb szinten tartható, és gyorsan azonosíthatók a hibák \cite{hartl_rails, fernandez_rails}.
+
+\subsection{PostgreSQL}
+A \textit{PostgreSQL} egy \textit{nyílt forráskódú, objektum-relációs adatbázis-kezelő rendszer}, amely széles körben ismert teljesítményéről, rugalmasságáról, és különösen alkalmas komplex adatszerkezetek és nagy adattömegek kezelésére. Támogatja a fejlett adattípusokat, bonyolult lekérdezéseket, és párhuzamos műveleteket, amelyek különösen hasznosak a Bus4U-hoz hasonló, valós idejű adatokat feldolgozó rendszerekben \cite{douglas_postgresql, murrell_postgresql}.
+
+A PostgreSQL előnyei a Bus4U számára: \begin{itemize} \item \textbf{Teljesítmény optimalizálása és bonyolult lekérdezések kezelése}: A PostgreSQL kiválóan kezeli a párhuzamos lekérdezéseket és optimalizált módon képes kezelni nagy mennyiségű adatot és komplex lekérdezési struktúrákat. Ez biztosítja az alkalmazás gyors, megbízható működését, és lehetőséget nyújt az adatbázis hatékony méretezésére és finomhangolására az adatmennyiség növekedésével \cite{murrell_postgresql}. \item \textbf{Skálázhatóság}: Nagyobb adatmennyiség vagy felhasználói terhelés esetén a PostgreSQL támogatja a függőleges és vízszintes skálázást. Ezen túlmenően replikációval biztosítható a magas rendelkezésre állás, amely kritikus szempont a nagy terhelés alatt működő rendszerekben. Így a PostgreSQL hosszú távú, fenntartható teljesítményt és magas rendelkezésre állást biztosít, amely elengedhetetlen a Bus4U megbízható működéséhez \cite{douglas_postgresql}. \end{itemize}
+
+\subsection{Azure}
+Az \textit{Azure} egy olyan nagyvállalati szintű, biztonságos és skálázható felhőplatform, amely számos lehetőséget kínál modern alkalmazások fejlesztéséhez és működtetéséhez. Az Azure infrastruktúrája révén biztosítható a folyamatos és megbízható működés, míg a platform rugalmassága lehetővé teszi az erőforrások hatékony kezelését és a skálázhatóságot \cite{wilder_azure, collier_azure}. Az Azure használatával elkerülhetőek a hagyományos szerver infrastruktúrák fizikai korlátai, és olyan erőforrások válnak elérhetővé, amelyek az alkalmazás igényei szerint rugalmasan méretezhetők.
+
+Az Azure előnyei a Bus4U számára:
+
+\begin{itemize} 
+    \item \textbf{Skálázhatóság és rugalmasság}: Az Azure automatikusan alkalmazkodik a változó terheléshez, amely lehetővé teszi, hogy a rendszer gördülékenyen kezelje a megnövekedett felhasználói forgalmat. Ez az adaptív megközelítés egy modern, folyamatosan növekedő alkalmazás számára elengedhetetlen, különösen tömegközlekedési rendszerek esetében, ahol a felhasználói igények időben változhatnak \cite{wilder_azure}.
+    \item \textbf{Biztonság és adatvédelem}: Az Azure erőteljes adatvédelmi szabályokat és fejlett biztonsági protokollokat alkalmaz. Ezek közé tartozik a többfaktoros hitelesítés, a hálózati tűzfalak, valamint az adattitkosítás, amelyek biztosítják, hogy a Bus4U felhasználóinak adatai biztonságban legyenek. A platform megfelel a szigorú adatvédelmi szabványoknak, ami kulcsfontosságú egy olyan alkalmazás számára, amely szenzitív felhasználói adatokat kezel \cite{collier_azure}.
+\end{itemize}
+
+
+\section{Az API felépítése}
+A Bus4U API a REST architektúrát követi, és számos végpontot biztosít a különböző erőforrások kezeléséhez, mint például:
+\begin{itemize}
+    \item \textbf{Buszok kezelése}: buszok létrehozása, frissítése, törlése.
+    \item \textbf{Járatok menedzselése}: járatok lekérése és ütemezése.
+    \item \textbf{Jegyek és bérletek}: jegyek és bérletek vásárlása és kezelése.
+\end{itemize}
+
+\section{Endpointok részletes leírása}
+
+\subsection{GET /get\_stations\_by\_city}
+Ez az endpoint lehetővé teszi a megállók listájának lekérését egy adott város alapján. A kérés a következő paramétert használja:
+\begin{itemize}
+    \item \textbf{city\_uid}: A város egyedi azonosítója.
+\end{itemize}
+
+\textbf{Példa kérés}:
+\begin{verbatim}
+GET https://api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
+\end{verbatim}
+
+\textbf{Válasz formátum}:
+\begin{verbatim}
+{
+    "stations": [
+        {
+            "station_uid": "STT_EGAVX",
+            "name": "Sapientia",
+            "address": "Str. Calea Sighisoarei nr. 2",
+            "longitude": "24.59883",
+            "latitude": "46.52339"
+        },
+        {
+            "station_uid": "STT_6CO3Q",
+            "name": "Dedeman",
+            "address": "Bul. 1 Decembrie nr. 189",
+            "longitude": "24.59941",
+            "latitude": "46.52678"
+        }
+    ]
+}
+\end{verbatim}
+
+\subsection{Hitelesítés és jogosultságkezelés}
+
+Az API biztonságos használata érdekében JWT (JSON Web Token) alapú token-hitelesítést alkalmazunk. A JWT egy nyílt szabványú (RFC 7519) token-formátum, amely biztonságos adatátvitelt biztosít a kliens és a szerver között. 
+
+A JWT tokenek segítségével a felhasználók és adminisztrátorok azonosítása gyorsan és biztonságosan történik, anélkül, hogy minden kérésnél újbóli bejelentkezés szükséges lenne. Az alkalmazott Rails könyvtárak a következők:
+
+\begin{itemize}
+    \item \textbf{devise}: biztosítja az alapvető hitelesítési logikát, beleértve a regisztrációt, bejelentkezést, jelszókezelést.
+    \item \textbf{devise\_token\_auth}: kiegészíti a devise-t JWT alapú tokenkezelési funkciókkal, amely lehetővé teszi a stateless (állapotmentes) authentikációt API-k számára.
+\end{itemize}
+
+A JWT token alapú autentikáció folyamata:
+
+\begin{enumerate}
+    \item A kliens elküldi a bejelentkezési adatokat (e-mail, jelszó) a szervernek.
+    \item A szerver a sikeres autentikáció után egy JWT tokent generál, amely tartalmazza a felhasználóhoz kapcsolódó alapvető információkat, valamint a token érvényességi idejét.
+    \item A kliens a további kérései során a kapott tokent a HTTP fejlécben, \texttt{Authorization: Bearer <JWT\_TOKEN>} formátumban küldi el a szervernek.
+    \item A szerver ellenőrzi a tokent, és ha érvényes, feldolgozza a kérést, visszaküldi a választ.
+\end{enumerate}
+
+\section{Adatkezelés és adatbázis kapcsolat}
+Az API végpontjai a \textbf{PostgreSQL} adatbázissal kommunikálnak. Az adatbázis tranzakciókat az \textbf{ActiveRecord} ORM segítségével kezeljük, amely lehetővé teszi az adatok egyszerű és hatékony lekérését, beszúrását és frissítését.
+
+\subsection{Adatbázis táblák}
+A PostgreSQL adatbázisunk a következő táblákból áll:
+\begin{itemize}
+    \item \textbf{Companies}: Azon cégek adatai, akikkel szerződést kötött a Bus4U.
+    \item \textbf{Admins}: Különböző cégekhez tartozó adminisztrátorok adatai. Szerepük lehet “boss” vagy “driver”.
+    \item \textbf{Buses}: A cégekhez tartozó autóbuszok adatai.
+    \item \textbf{Routes}: A cégek saját útvonalai.
+    \item \textbf{Stations}: A rendszerben található buszmegállók összessége.
+    \item \textbf{Route\_stations}: Egy cég adott útvonalán keresztülhaladó megállók.
+    \item \textbf{Timetables}: Egy útvonal megállójának indulási időpontjai és ára nap szerinti felosztásban.
+    \item \textbf{Cities}: Az összes város, amelyen áthaladnak útvonalak.
+    \item \textbf{Users}: A Bus4U felhasználói a fontosabb adataikkal.
+    \item \textbf{Email\_verifications}: Az adott email címekhez tartozó regisztrációkor felhasználandó kódok.
+    \item \textbf{Tickets}: A felhasználókhoz tartozó jegyek.
+    \item \textbf{Payments}: Stripe fizetések eltárolása.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/database.jpg}
+    \caption{Az rendszer adatbázisdiagramja}
+    \label{fig:database-diagram}
+  \end{figure}
+
+  \subsection{Objektum-relációs leképzés (ORM)}
+
+  A backend API adatbázis-kezelése a Ruby on Rails keretrendszer beépített \textbf{ActiveRecord} objektum-relációs leképzőjével (ORM) történik. Az ORM lehetővé teszi az alkalmazás számára, hogy közvetlenül Ruby osztályok és objektumok formájában kezelje az adatbázis tábláit, így egyszerűsítve az adatbázis-műveleteket és csökkentve a fejlesztési időt.
+  
+  Az ActiveRecord fő előnyei közé tartozik:
+  \begin{itemize}
+      \item \textbf{Egyszerű adatlekérdezés:} A komplex SQL utasítások helyett Ruby nyelven írhatók a lekérdezések.
+      \item \textbf{Adatkapcsolatok automatikus kezelése:} Egyértelművé teszi az adatok közötti kapcsolatokat (például \texttt{belongs\_to}, \texttt{has\_many}, \texttt{has\_one}).
+      \item \textbf{Validációk és tranzakciók egyszerű kezelése:} Adatvalidáció, tranzakciókezelés és hibaüzenetek egyszerű integrációja az üzleti logikába.
+      \item \textbf{Migrációk támogatása:} Könnyű adatbázis-struktúra módosítás a migrációs fájlokon keresztül.
+  \end{itemize}
+  
+  Az ActiveRecord használata jelentősen egyszerűsíti a fejlesztési folyamatot, lehetővé téve, hogy a fejlesztők elsősorban az üzleti logikára összpontosítsanak, miközben a rendszer hatékonyan és biztonságosan kommunikál a PostgreSQL adatbázissal.
+  
+  \section{Projektmenedzsment és verziókövetés}
+
+  A projekt fejlesztése során több eszközt alkalmaztunk a feladatok nyomon követésére, a fejlesztési folyamat szervezésére és a forráskód verziókövetésére.
+  
+  \subsection{Jira}
+
+  A projektmenedzsment során a \textbf{Jira} kanban boardját használtuk, amely az Atlassian által fejlesztett projekt-követő platform. A Jirát választottuk, mert egy olyan hatékony eszköz, amely egyszerre letisztult, ám funkciókban komplex, így könnyedén igazítható a projekt igényeihez. 
+  
+  A Kanban tábla három fő oszlopból állt:
+  \begin{itemize}
+      \item \textbf{To do}: Ide kerültek azok a feladatok, amelyeket még nem kezdtünk el.
+      \item \textbf{In progress}: Ebben az oszlopban azok a feladatok szerepeltek, amelyek éppen folyamatban voltak.
+      \item \textbf{Done}: Az elvégzett feladatok ebbe az oszlopba kerültek, jelezve azok befejezését.
+  \end{itemize}
+  
+  Minden feladatot hozzárendeltünk egy konkrét tulajdonoshoz, valamint címkékkel láttunk el, amelyek megjelölték, hogy a munka épp a rendszer melyik komponensére vonatkozik: \textbf{API}, \textbf{felhasználói felület}, \textbf{admin felület}, vagy \textbf{mobil alkalmazás}. A feladatok ilyen címkézése segített abban, hogy pontosan tudjuk, ki mivel foglalkozik, illetve milyen állapotban van a fejlesztés különböző területein végzett munka.
+
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{figures/jira.jpg}
+    \caption{A Jira kanban board áttekintése}
+    \label{fig:jira}
+  \end{figure}
+      
+  \subsection{Git és GitHub}
+
+  A projekt forráskódjának verziókezelését a \textbf{Git} verziókezelő rendszer segítségével oldottuk meg, míg a kód tárolására a \textbf{GitHub} platformot használtuk. A GitHub lehetőséget biztosított a pull request-ek hatékony kezelésére, amelyekkel minden változtatást egyszerűen tudtunk jóváhagyni. Ez a megközelítés a kód visszakövethetőségét és dokumentálását is jelentősen megkönnyítette, hozzájárulva a kód minőségének javításához és a fejlesztési folyamat átláthatóságához.
+  
+  A projekt struktúráját három fő \textbf{branch} köré szerveztük:
+  \begin{itemize}
+      \item \textbf{main branch}: Ebbe az ágba kizárólag a már teljesen tesztelt és stabil kódrészletek kerültek be, amelyeket időszakosan publikáltunk. Ez az ág szolgált a hivatalos, működőképes verzió tárolására.
+      \item \textbf{develop branch}: A develop branch-et a fejlesztés és tesztelés helyszíneként használtuk. Az ide feltöltött kódok még tesztelés alatt álltak, de a fejlesztési idő alatt mindig a develop verzióját futtattuk az Azure környezetben, ezzel biztosítva, hogy az aktuális fejlesztések folyamatosan elérhetők és tesztelhetők legyenek.
+      \item \textbf{feature branchek}: Az új funkciók fejlesztését különálló, ún. feature branchekben végeztük, amelyek a konkrét feladatokra vagy kódrészletekre koncentráltak. Például kisebb munkaigényű kódok, mint az általános API lekérések fejlesztése külön branchekben történt, míg az összetettebb funkciókat külön feature branch-ekben dolgoztuk ki.
+  \end{itemize}
+  
+  A branch-ek ilyen felosztása lehetővé tette a párhuzamos fejlesztést, és biztosította, hogy a különböző fejlesztési szakaszok kódjai elkülönítve és rendezetten legyenek tárolva. A GitHub pull request funkciójának köszönhetően minden változtatást felül tudtunk vizsgálni, így minden módosítás előtt biztosak lehettünk annak minőségében és kompatibilitásában.
+
+  \begin{figure}[H]
+    \includegraphics[width=\textwidth]{figures/github.jpg}
+    \caption{A GitHub repository áttekintése}
+    \label{fig:github}
+  \end{figure}
+  
+  
+  Ezek az eszközök hozzájárultak a projekt sikeres és hatékony fejlesztéséhez, elősegítve a feladatok egyértelműsítését, priorizálását és a csapat tagjai közötti együttműködést.
+  

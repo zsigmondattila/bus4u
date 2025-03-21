@@ -1,52 +1,16 @@
 \documentclass[12pt, twoside]{report}
 
-\usepackage[utf8]{inputenc}
-\def\magyarOptions{defaults=hu-min}
-\usepackage[magyar]{babel}
+\include{preamble}
 
 \usepackage{ragged2e}
-\usepackage{t1enc}
-\usepackage[a4paper, margin=2.5cm]{geometry}
-\usepackage{graphicx}
 \usepackage{multicol}
-\usepackage{moresize}
-\usepackage{float}
+\usepackage{wrapfig}
 
 \title{Bus4U - UI}
 \author{Portik Szabolcs}
-\date{}
+\date{2025}
 
 \begin{document}
-
-\begin{titlepage}
-  \center
-  \Large
-  Sapientia Erdélyi Magyar Tudományegyetem \\
-  Marosvásárhelyi Kar \\
-  Számítástechnika szak \\
-  \vspace{2,5in}
-  \HUGE
-  \textbf{Bus4U - UI} \\
-  \vspace{0.5in}
-  \Huge
-  \textbf{DIPLOMADOLGOZAT} \\
-  \vspace{2.5in}
-  \Large
-  \begin{multicols}{2}
-    \begin{flushleft}
-      \textbf{Témavezető:} \\
-      Dr. Szántó Zoltán
-    \end{flushleft}
-    \columnbreak
-    \begin{flushright}
-      \textbf{Hallgató:} \\
-      Portik Szabolcs
-    \end{flushright}
-  \end{multicols}
-  \vspace{1in}
-  \LARGE
-  2024
-\end{titlepage}
 
 \begin{titlepage}
   \center
@@ -54,41 +18,90 @@
   Universitatea „Sapientia” din Cluj-Napoca \\
   Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
   Specializarea Calculatoare \\
-  \vspace{2,5in}
-  \HUGE
-  \textbf{Bus4U - UI} \\
-  \vspace{0.5in}
+  \vspace{1.5in}
   \Huge
+  \textbf{Bus4U - UI} \\
+  \vspace{0.6in}
+  \LARGE
   \textbf{PROIECT DE DIPLOMĂ} \\
-  \vspace{2.5in}
+  \vspace{1.5in}
   \Large
   \begin{multicols}{2}
     \begin{flushleft}
       \textbf{Coordonator științific:} \\
-      Dr. Szántó Zoltán
+      Ș.l.dr.ing. Szántó Zoltán
     \end{flushleft}
     \columnbreak
     \begin{flushright}
-      \textbf{Student:} \\
+      \textbf{Absolvent:} \\
       Portik Szabolcs
     \end{flushright}
   \end{multicols}
   \vspace{1in}
-  \LARGE
-  2024
+  \Huge
+  \textbf{2025}
 \end{titlepage}
 
-\begin{abstract}
-  \input{chapters/abstract}
-\end{abstract}
+\section*{Extras}
+\input{chapters/abstract/ro}
+
+\begin{titlepage}
+  \center
+  \Large
+  Sapientia Erdélyi Magyar Tudományegyetem \\
+  Marosvásárhelyi Kar \\
+  Számítástechnika szak \\
+  \vspace{1.5in}
+  \Huge
+  \textbf{Bus4U - UI} \\
+  \vspace{0.6in}
+  \LARGE
+  \textbf{DIPLOMADOLGOZAT} \\
+  \vspace{1.5in}
+  \Large
+  \begin{multicols}{2}
+    \begin{flushleft}
+      \textbf{Témavezető:} \\
+      Dr. Szántó Zoltán \\
+      Egyetemi adjunktus
+    \end{flushleft}
+    \columnbreak
+    \begin{flushright}
+      \textbf{Hallgató:} \\
+      Portik Szabolcs
+    \end{flushright}
+  \end{multicols}
+  \vspace{0.6in}
+  \Huge
+  \textbf{2025}
+\end{titlepage}
+
+\pagenumbering{gobble}
+
+\section*{Kivonat}
+\input{chapters/abstract/hu}
+
+\section*{Abstract}
+\input{chapters/abstract/en}
 
 \tableofcontents
+
+\pagenumbering{arabic}
+
+\chapter{Bevezető}
+\input{chapters/introduction}
 
 \chapter{Célkitűzések}
 \input{chapters/goals}
 
+\chapter{Szakirodalmi tanulmány}
+\input{chapters/theoretical-foundation}
+
 \chapter{A rendszer specifikációi}
 \input{chapters/system-requirements}
+
+\chapter{A rendszer architektúrája}
+\input{chapters/architecture}
 
 \chapter{A felhasználói felület tervezése}
 \input{chapters/ui-design}
@@ -98,5 +111,9 @@
 
 \chapter{Összefoglalás}
 \input{chapters/summary}
+
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{ieeetr}
+\bibliography{refs}
 
 \end{document}

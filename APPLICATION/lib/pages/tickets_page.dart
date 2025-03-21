@@ -1,11 +1,11 @@
 import 'dart:convert';
+import 'package:bus4u/components/ticket_card.dart';
 import 'package:bus4u/models/owned_ticket.dart';
 import 'package:bus4u/pages/login_page.dart';
 import 'package:bus4u/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 class TicketPage extends StatefulWidget {
   const TicketPage({super.key});
@@ -51,47 +51,7 @@ class _TicketPageState extends State<TicketPage> {
             )
           : Column(
               children: tickets.reversed
-                  .map((ticket) => Card(
-                        elevation: 2.0,
-                        margin: const EdgeInsets.only(bottom: 32.0),
-                        clipBehavior: Clip.hardEdge,
-                        child: Column(children: [
-                          Container(
-                              padding: const EdgeInsets.all(32.0),
-                              color: Colors.white,
-                              child: Center(
-                                  child: QrImageView(data: ticket.ticketUID))),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    ticket.ticketUID,
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary),
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text("Route: ${ticket.routeName}"),
-                                Text("From: ${ticket.startStation}"),
-                                Text("To: ${ticket.destinationStation}"),
-                                Text("Price: ${ticket.ticketPrice} lei"),
-                                Text(
-                                    "Purchased: ${ticket.createdAt?.year}. ${ticket.createdAt?.month}. ${ticket.createdAt?.day}"),
-                                Text(
-                                    "Valid until: ${ticket.validUntil?.year}. ${ticket.validUntil?.month}. ${ticket.validUntil?.day}"),
-                              ],
-                            ),
-                          )
-                        ]),
-                      ))
+                  .map((ticket) => TicketCard(ticket: ticket))
                   .toList()),
     );
   }
@@ -123,7 +83,9 @@ class _TicketPageState extends State<TicketPage> {
     } catch (e) {
       debugPrint('Error during getTickets: $e');
     } finally {
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 }

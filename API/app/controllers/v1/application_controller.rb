@@ -252,7 +252,7 @@ class V1::ApplicationController < ApplicationController
     user = User.find_by(email: user_email)
 
     if user
-      render json: { error: "User exists" }, status: :accepted
+      render json: { error: "User exists" }, status: :conflict
     else
       email_verification = EmailVerification.new
       email_verification.email  = user_email
@@ -263,7 +263,7 @@ class V1::ApplicationController < ApplicationController
         VerificationMailer.verification_mailer(user_email, code).deliver_now
         render json: { success: "Email sent succesfully" }, status: :ok
       else
-        render json: { error: "Error generating the code" }, status: :accepted
+        render json: { error: "Error generating the code" }, status: :conflict
       end    
     end  
   end  

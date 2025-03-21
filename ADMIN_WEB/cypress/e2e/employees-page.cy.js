@@ -44,6 +44,7 @@ describe("Employees page", () => {
 
   it("edit employee", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
+    cy.intercept("GET", "/v1/admin/get_driver_by_id*").as("employee");
     cy.intercept("PUT", "/v1/admin/update_driver*").as("update");
     cy.login();
     cy.visit("localhost:5173/employees");
@@ -54,6 +55,7 @@ describe("Employees page", () => {
       .find("button")
       .contains("Edit")
       .click();
+    cy.wait("@employee");
     cy.get("input[name='phone']").clear().type("0733333333");
     cy.get("input[name='password']").type("aaaaaaaa");
     cy.get("input[name='password-confirmation']").type("aaaaaaaa");

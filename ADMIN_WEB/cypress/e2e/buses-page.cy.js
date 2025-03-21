@@ -40,6 +40,7 @@ describe("Buses page", () => {
 
   it("edit bus", () => {
     cy.intercept("GET", "/v1/admin/get_buses_of_a_company*").as("buses");
+    cy.intercept("GET", "/v1/admin/get_bus_by_id*").as("bus");
     cy.intercept("PUT", "/v1/admin/update_bus*").as("update");
     cy.login();
     cy.visit("localhost:5173/buses");
@@ -50,6 +51,7 @@ describe("Buses page", () => {
       .find("button")
       .contains("Edit")
       .click();
+    cy.wait("@bus");
     cy.get("input[name='capacity']").clear().type("62");
     cy.get("button[type='submit']").click();
     cy.wait("@update");

@@ -1,6 +1,6 @@
 describe("Tickets page", () => {
   it("Accessing without login", () => {
-    cy.visit("http://localhost:5173/tickets");
+    cy.visit("/tickets");
     cy.get(".v-container .v-card")
       .should("not.contain", "TIC_")
       .and("contain", "Login");
@@ -8,7 +8,7 @@ describe("Tickets page", () => {
   it("Accessing with login", () => {
     cy.intercept("/auth/sign_in").as("login");
     cy.intercept("/v1/tickets_of_user*").as("tickets");
-    cy.visit("http://localhost:5173/tickets");
+    cy.visit("/tickets");
     cy.get(".content").find("a[href='/login']").click();
     cy.url().should("include", "/login");
     cy.get("input").first().type("portik.szabolcs.02@gmail.com");
@@ -30,7 +30,7 @@ describe("Tickets page", () => {
       statusCode: 200,
       body: [],
     }).as("tickets");
-    cy.visit("http://localhost:5173/tickets");
+    cy.visit("/tickets");
     cy.get(".content").find("a[href='/login']").click();
     cy.url().should("include", "/login");
     cy.get("input").first().type("portik.szabolcs.02@gmail.com");

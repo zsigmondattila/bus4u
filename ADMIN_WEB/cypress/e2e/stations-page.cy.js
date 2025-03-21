@@ -1,7 +1,7 @@
 describe("template spec", () => {
   it("highlight station", () => {
     cy.login();
-    cy.visit("localhost:5173/stations");
+    cy.visit("/stations");
     cy.get(".v-list > :nth-child(9)").click();
     cy.get(".mapboxgl-marker").find("path[fill='#bc1251']");
   });
@@ -9,7 +9,7 @@ describe("template spec", () => {
   it("trying to add station without data", () => {
     cy.intercept("GET", "https://api.mapbox.com/map-sessions/v1*").as("map");
     cy.login();
-    cy.visit("localhost:5173/stations");
+    cy.visit("/stations");
     cy.get(".d-flex > .v-btn").click();
     cy.get("button[type='submit']").click();
     cy.get(".v-form").find(".v-input--error").should("exist");
@@ -18,7 +18,7 @@ describe("template spec", () => {
   it("add new station and remove it", () => {
     cy.intercept("GET", "https://api.mapbox.com/map-sessions/v1*").as("map");
     cy.login();
-    cy.visit("localhost:5173/stations");
+    cy.visit("/stations");
     cy.get(".d-flex > .v-btn").click();
     cy.wait("@map");
     cy.get(".mapboxgl-canvas").click(320, 500);

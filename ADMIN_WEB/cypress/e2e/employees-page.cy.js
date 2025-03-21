@@ -1,7 +1,7 @@
 describe("Employees page", () => {
   it("show list", () => {
     cy.login();
-    cy.visit("localhost:5173/employees");
+    cy.visit("/employees");
     cy.get(".v-card").should("have.length.greaterThan", 1);
   });
 
@@ -9,7 +9,7 @@ describe("Employees page", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("POST", "/admin").as("create");
     cy.login();
-    cy.visit("localhost:5173/employees");
+    cy.visit("/employees");
     cy.wait("@employees");
     cy.get(".v-card").last().contains("Add new").click();
     cy.get("input[name='firstname']").type("invalid");
@@ -26,7 +26,7 @@ describe("Employees page", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("POST", "/admin").as("create");
     cy.login();
-    cy.visit("localhost:5173/employees");
+    cy.visit("/employees");
     cy.wait("@employees");
     cy.get(".v-card").last().contains("Add new").click();
     cy.get("input[name='firstname']").type("Test");
@@ -47,7 +47,7 @@ describe("Employees page", () => {
     cy.intercept("GET", "/v1/admin/get_driver_by_id*").as("employee");
     cy.intercept("PUT", "/v1/admin/update_driver*").as("update");
     cy.login();
-    cy.visit("localhost:5173/employees");
+    cy.visit("/employees");
     cy.wait("@employees");
     cy.get(".v-card")
       .contains("Test Employee")
@@ -71,7 +71,7 @@ describe("Employees page", () => {
     cy.intercept("GET", "/v1/admin/list_of_drivers*").as("employees");
     cy.intercept("DELETE", "/v1/admin/delete_driver*").as("delete");
     cy.login();
-    cy.visit("localhost:5173/employees");
+    cy.visit("/employees");
     cy.wait("@employees");
     cy.get(".v-card")
       .contains("Test Employee")

@@ -1,6 +1,6 @@
 describe("Live map page", () => {
   it("Click on the show without data", () => {
-    cy.visit("http://localhost:5173/live");
+    cy.visit("/live");
     cy.get("button[type='submit']").click();
     cy.get(".v-form").find(".v-field--error");
   });
@@ -20,7 +20,7 @@ describe("Live map page", () => {
       ],
     }).as("getBuses");
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("getRouteStations");
-    cy.visit("http://localhost:5173/live");
+    cy.visit("/live");
     cy.wait("@getCities");
     cy.get("input[name='city']").type("Marosvásárhely{enter}");
     cy.wait("@getRoutes");

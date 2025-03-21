@@ -3,7 +3,7 @@ describe("Home Page", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
 
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
@@ -33,7 +33,7 @@ describe("Home Page", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
 
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
     cy.get("input").first().type("portik.szabolcs.02@gmail.com");
@@ -61,7 +61,7 @@ describe("Home Page", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
 
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
     cy.get("input").first().type("portik.szabolcs.02@gmail.com");

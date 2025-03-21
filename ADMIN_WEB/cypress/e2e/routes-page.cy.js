@@ -1,7 +1,7 @@
 describe("Routes page", () => {
   it("trying to create with invalid data", () => {
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.get(".v-btn").contains("New Route").click();
     cy.get("input[name='station']").type("Sapientia{enter}");
     cy.get(".v-btn").contains("Add station").click();
@@ -11,7 +11,7 @@ describe("Routes page", () => {
 
   it("trying to create without stations", () => {
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.get(".v-btn").contains("New Route").click();
     cy.get("input[name='name']").type("Test Route");
     cy.get("input[name='fare']").clear().type("5");
@@ -22,7 +22,7 @@ describe("Routes page", () => {
   it("create route", () => {
     cy.intercept("POST", "/v1/admin/create_route").as("create");
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.get(".v-btn").contains("New Route").click();
     cy.get("input[name='name']").type("Test Route");
     cy.get("input[name='fare']").clear().type("5");
@@ -45,7 +45,7 @@ describe("Routes page", () => {
     cy.intercept("DELETE", "/v1/admin/delete_route*").as("delete");
     cy.intercept("POST", "/v1/admin/create_route*").as("create");
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test Route{enter}");
     cy.get("input[name='fare']").clear().type("10");
@@ -68,7 +68,7 @@ describe("Routes page", () => {
     cy.intercept("GET", "/v1/admin/get_routes*").as("routes");
     cy.intercept("DELETE", "/v1/admin/delete_route*").as("delete");
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test Route{enter}");
     cy.get("button").contains("Delete").click();

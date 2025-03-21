@@ -1,7 +1,7 @@
 describe("Schedule page", () => {
   it("Click on the search without data", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("/schedule");
     cy.get("button[type='submit']").click();
     cy.get("tr").should("not.exist");
     cy.get(".v-skeleton-loader").should("exist");
@@ -13,7 +13,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_routes_by_station*").as("getRoutes");
     cy.intercept("GET", "/v1/get_departure_times_for_station*").as("getTimes");
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("getRouteStations");
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("/schedule");
     cy.wait("@getCities");
     cy.get("input[name='city']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");

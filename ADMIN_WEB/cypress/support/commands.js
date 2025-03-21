@@ -27,7 +27,7 @@
 Cypress.Commands.add("login", () => {
   cy.intercept("POST", "/admin/sign_in").as("login");
   cy.intercept("GET", "/admin/validate_token*").as("validation");
-  cy.visit("localhost:5173/");
+  cy.visit("/");
   cy.get('input[name="email"]').type("office@vandortrans.ro");
   cy.get('input[name="password"]').last().type("aaaaaaaa{enter}");
   cy.wait("@login");

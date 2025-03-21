@@ -1,7 +1,7 @@
 describe("Buses page", () => {
   it("show list", () => {
     cy.login();
-    cy.visit("localhost:5173/buses");
+    cy.visit("buses");
     cy.get(".v-card").should("have.length.greaterThan", 1);
   });
 
@@ -9,7 +9,7 @@ describe("Buses page", () => {
     cy.intercept("GET", "/v1/admin/get_buses_of_a_company*").as("buses");
     cy.intercept("POST", "/v1/admin/create_bus").as("create");
     cy.login();
-    cy.visit("localhost:5173/buses");
+    cy.visit("/buses");
     cy.wait("@buses");
     cy.get(".v-card").last().contains("Add new").click();
     cy.get("input[name='brand']").type("invalid.brand");
@@ -23,7 +23,7 @@ describe("Buses page", () => {
     cy.intercept("GET", "/v1/admin/get_buses_of_a_company*").as("buses");
     cy.intercept("POST", "/v1/admin/create_bus").as("create");
     cy.login();
-    cy.visit("localhost:5173/buses");
+    cy.visit("/buses");
     cy.wait("@buses");
     cy.get(".v-card").last().contains("Add new").click();
     cy.get("input[name='brand']").type("Test Bus");
@@ -43,7 +43,7 @@ describe("Buses page", () => {
     cy.intercept("GET", "/v1/admin/get_bus_by_id*").as("bus");
     cy.intercept("PUT", "/v1/admin/update_bus*").as("update");
     cy.login();
-    cy.visit("localhost:5173/buses");
+    cy.visit("/buses");
     cy.wait("@buses");
     cy.get(".v-card")
       .contains("Test Bus")
@@ -62,7 +62,7 @@ describe("Buses page", () => {
     cy.intercept("GET", "/v1/admin/get_buses_of_a_company*").as("buses");
     cy.intercept("DELETE", "/v1/admin/delete_bus*").as("delete");
     cy.login();
-    cy.visit("localhost:5173/buses");
+    cy.visit("/buses");
     cy.wait("@buses");
     cy.get(".v-card")
       .contains("Test Bus")

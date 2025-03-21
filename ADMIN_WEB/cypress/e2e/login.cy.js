@@ -1,6 +1,6 @@
 describe("Login", () => {
   it("log in and log out", () => {
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('input[name="email"]').type("office@vandortrans.ro");
     cy.get('input[name="password"]').last().type("aaaaaaaa{enter}");
     cy.url().should("include", "/home");
@@ -10,7 +10,7 @@ describe("Login", () => {
   });
 
   it("with invalid data", () => {
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('input[name="email"]').type("office@vandortrans.ro");
     cy.get('input[name="password"]').last().type("bbbbbbbb");
     cy.get('button[type="submit"]').click();
@@ -18,7 +18,7 @@ describe("Login", () => {
   });
 
   it("with incorrect data", () => {
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('input[name="email"]').type("office.vandortrans.ro");
     cy.get('input[name="password"]').last().type("aaaaaaaa");
     cy.get('button[type="submit"]').click();
@@ -26,7 +26,7 @@ describe("Login", () => {
   });
 
   it("authguard", () => {
-    cy.visit("localhost:5173/stations");
+    cy.visit("/stations");
     cy.location("pathname").should("eq", "/");
   });
 });

@@ -2,7 +2,7 @@ describe("Schedule page", () => {
   it("create test route", () => {
     cy.intercept("POST", "/v1/admin/create_route").as("create");
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.get(".v-btn").contains("New Route").click();
     cy.get("input[name='name']").type("Test2 Route");
     cy.get("input[name='fare']").clear().type("5");
@@ -25,7 +25,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("stations");
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.login();
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("http:///schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -46,7 +46,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("stations");
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.login();
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("http:///schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -69,7 +69,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.intercept("POST", "/v1/admin/add_timetable_to_route").as("create");
     cy.login();
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("http:///schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -86,7 +86,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.intercept("POST", "/v1/admin/add_timetable_to_route").as("create");
     cy.login();
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("http:///schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -117,7 +117,7 @@ describe("Schedule page", () => {
       "delete"
     );
     cy.login();
-    cy.visit("http://localhost:5173/schedule");
+    cy.visit("http:///schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -134,7 +134,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/admin/get_routes*").as("routes");
     cy.intercept("DELETE", "/v1/admin/delete_route*").as("delete");
     cy.login();
-    cy.visit("localhost:5173/routes");
+    cy.visit("/routes");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.get("button").contains("Delete").click();

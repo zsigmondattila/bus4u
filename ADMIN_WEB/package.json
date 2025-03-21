@@ -1,9 +1,10 @@
 {
   "name": "bus4u-admin",
   "version": "0.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=5174",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"

@@ -1,6 +1,6 @@
 describe("Register", () => {
   it("With correct data", () => {
-    cy.visit("localhost:5173/register");
+    cy.visit("/register");
     cy.get('input[name="firstname"]').type("Cypress");
     cy.get('input[name="lastname"]').type("Test");
     cy.get('input[name="email"]').type("cypress@test.tst");
@@ -10,7 +10,7 @@ describe("Register", () => {
     cy.contains("verification code");
   });
   it("With incorrect data", () => {
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('[title="Register"]').click();
     cy.url().should("include", "/register");
     cy.get('input[name="firstname"]').type("Cypress");
@@ -25,7 +25,7 @@ describe("Register", () => {
       .should("have.class", "v-input--error");
   });
   it("With invalid data", () => {
-    cy.visit("localhost:5173/");
+    cy.visit("/");
     cy.get('[title="Register"]').click();
     cy.url().should("include", "/register");
     cy.get('input[name="firstname"]').type("Cypress");

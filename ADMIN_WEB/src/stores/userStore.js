@@ -1,62 +1,84 @@
-import { defineStore } from 'pinia'
-import router from '../router'
-import { ref } from 'vue'
-import axios from 'axios'
+import { defineStore } from "pinia";
+import router from "../router";
+import { ref } from "vue";
+import axios from "axios";
 
-export const userStore = defineStore('user', () => {
-  const firstName = ref('')
-  const lastName = ref('')
-  const email = ref('')
-  const company_uid = ref('')
-  const documents = ref(null)
+export const userStore = defineStore("user", () => {
+  const firstName = ref("");
+  const lastName = ref("");
+  const email = ref("");
+  const company_uid = ref("");
+  const documents = ref(null);
 
-  const usr = sessionStorage.getItem('user')
-  if(usr) signIn(JSON.parse(usr))
+  const usr = sessionStorage.getItem("user");
+  if (usr) signIn(JSON.parse(usr));
 
   function signIn(user) {
-    firstName.value = user.firstname
-    lastName.value = user.lastname
-    email.value = user.email
-    company_uid.value = user.company_uid
+    firstName.value = user.firstname;
+    lastName.value = user.lastname;
+    email.value = user.email;
+    company_uid.value = user.company_uid;
   }
   function signOut() {
-    sessionStorage.removeItem('user')
-    const auth = sessionStorage.getItem('auth')
-    if(auth) {
-      let data = JSON.parse(auth)
-      axios.delete('https://api.bus4u.online/admin/sign_out', { params: { 'uid': data.uid, 'client': data.client, 'access-token': data.accessToken}})
-        .then(() => {
-          firstName.value = ''
-          lastName.value = ''
-          email.value = ''
-          company_uid.value = ''
-          documents.value = null
-          delete axios.defaults.headers.common['Authorization']
-          sessionStorage.removeItem('auth')
-          router.replace({name: 'login'})
+    sessionStorage.removeItem("user");
+    const auth = sessionStorage.getItem("auth");
+    if (auth) {
+      let data = JSON.parse(auth);
+      axios
+        .delete("https://api.bus4u.online/admin/sign_out", {
+          params: {
+            uid: data.uid,
+            client: data.client,
+            "access-token": data.accessToken,
+          },
         })
-        .catch((err) => console.error(err))
+        .then(() => {
+          firstName.value = "";
+          lastName.value = "";
+          email.value = "";
+          company_uid.value = "";
+          documents.value = null;
+          delete axios.defaults.headers.common["Authorization"];
+          sessionStorage.removeItem("auth");
+          router.replace({ name: "login" });
+        })
+        .catch((err) => console.error(err));
     } else {
-      firstName.value = ''
-      lastName.value = ''
-      email.value = ''
-      company_uid.value = ''
-      documents.value = null
-      router.replace({name: 'login'})
+      firstName.value = "";
+      lastName.value = "";
+      email.value = "";
+      company_uid.value = "";
+      documents.value = null;
+      router.replace({ name: "login" });
     }
   }
-  function checkDocuments(company) {
-    axios.get('https://api.bus4u.online/v1/admin/document_validity_checker', { params: { company_uid: company }})
-    .then(rsp => {
-      documents.value = Object.assign(rsp.data, { show: {
-        road_taxes: !!rsp.data.road_taxes,
-        insurances: !!rsp.data.insurances,
-        technical_exams: !!rsp.data.technical_exams
-      }})
-    }).catch(() => {
-      documents.value = null
-    })
+  function checkDocuments(company, auth) {
+    axios
+      .get("https://api.bus4u.online/v1/admin/document_validity_checker", {
+        headers: { Authorization: auth },
+        params: { company_uid: company },
+      })
+      .then((rsp) => {
+        documents.value = Object.assign(rsp.data, {
+          show: {
+            road_taxes: !!rsp.data.road_taxes,
+            insurances: !!rsp.data.insurances,
+            technical_exams: !!rsp.data.technical_exams,
+          },
+        });
+      })
+      .catch(() => {
+        documents.value = null;
+      });
   }
-  return { firstName, lastName, email, company_uid, documents, signIn, signOut, checkDocuments }
-  }
-)
+  return {
+    firstName,
+    lastName,
+    email,
+    company_uid,
+    documents,
+    signIn,
+    signOut,
+    checkDocuments,
+  };
+});

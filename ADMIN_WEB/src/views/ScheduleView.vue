@@ -10,13 +10,18 @@
       <v-container>
         <v-row justify="center">
           <v-col cols="12" lg="4">
-            <v-autocomplete :items="routes" :item-props="getProps" label="Route" v-model="mainForm.route" class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getStations"></v-autocomplete>
+            <v-autocomplete :items="routes" :item-props="getProps" label="Route" name="route" v-model="mainForm.route"
+              class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getStations"
+              auto-select-first></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
-            <v-autocomplete :items="stations" :item-props="getProps" label="From station" :disabled="!mainForm.route" v-model="mainForm.station" class="text-field" hide-details="auto" :error-messages="noStationError" @update:modelValue="getTimetable"></v-autocomplete>
+            <v-autocomplete :items="stations" :item-props="getProps" label="From station" name="start"
+              :disabled="!mainForm.route" v-model="mainForm.station" class="text-field" hide-details="auto"
+              :error-messages="noStationError" @update:modelValue="getTimetable" auto-select-first></v-autocomplete>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
-            <v-text-field label="To station"  :disabled="!mainForm.route" readonly v-model="toStation" class="text-field" hide-details="auto"></v-text-field>
+            <v-text-field label="To station" name="destination" :disabled="!mainForm.route" readonly v-model="toStation"
+              class="text-field" hide-details="auto"></v-text-field>
           </v-col>
         </v-row>
       </v-container>
@@ -26,7 +31,8 @@
         <v-container class="border">
           <v-row justify="center" dense>
             <v-col cols="12">
-              <v-combobox :items="days" label="Day(s)" v-model="elem.names" multiple hide-details="auto" density="comfortable"></v-combobox>
+              <v-combobox :items="days" label="Day(s)" v-model="elem.names" multiple hide-details="auto"
+                density="comfortable" auto-select-firts></v-combobox>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field label="Fare" type="number" v-model="elem.fare" suffix="Lei"></v-text-field>
@@ -48,24 +54,29 @@
         </v-container>
       </v-form>
     </div>
-    <v-form v-if="remainingDays.length" :disabled="!mainForm.station" class="my-3" @submit.prevent="saveTimetable" validate-on="submit" @reset="resetTimetable">
+    <v-form v-if="remainingDays.length" :disabled="!mainForm.station" class="my-3" @submit.prevent="saveTimetable"
+      validate-on="submit" @reset="resetTimetable">
       <v-container class="border bg-grey-darken-4">
         <v-row justify="center">
           <v-col cols="12" lg="10" order="0">
-            <v-combobox :items="remainingDays" label="Day(s)" v-model="tempForm.names" multiple hide-details="auto" density="comfortable" :rules="dayRules" hint="Departure days"></v-combobox>
+            <v-combobox :items="remainingDays" label="Day(s)" name="days" v-model="tempForm.names" multiple
+              hide-details="auto" density="comfortable" :rules="dayRules" hint="Departure days"></v-combobox>
           </v-col>
           <v-col cols="12" sm="6" lg="5" order="1" order-lg="3">
-            <v-text-field label="Fare" type="number" v-model="tempForm.fare" suffix="Lei" :rules="required" :hint="fareHint"></v-text-field>
+            <v-text-field label="Fare" name="fare" type="number" min="0" v-model="tempForm.fare" suffix="Lei"
+              :rules="positive" :hint="fareHint"></v-text-field>
           </v-col>
           <v-col cols="12" sm="6" lg="5" order="2" order-lg="4">
-            <v-text-field ref="timeInput" label="Time" v-model="tempTime" type="time" @keydown.enter.prevent="addTimeToArray" :error-messages="noTimesError" :hint="timeHint">
+            <v-text-field ref="timeInput" label="Time" name="time" v-model="tempTime" type="time"
+              @keydown.enter.prevent="addTimeToArray" :error-messages="noTimesError" :hint="timeHint">
               <template #append>
                 <v-btn @click="addTimeToArray" class="h-100"> Add time </v-btn>
               </template>
             </v-text-field>
           </v-col>
           <v-col cols="12" order="3" order-lg="6">
-            <v-chip v-for="(time, index) in tempForm.departure_times" :key="time" closable @click:close="deleteTimeFromArray(index)" class="mr-2 mb-2">{{ time }}</v-chip>
+            <v-chip v-for="(time, index) in tempForm.departure_times" :key="time" closable
+              @click:close="deleteTimeFromArray(index)" class="mr-2 mb-2">{{ time }}</v-chip>
           </v-col>
           <v-col cols="6" md="3" lg="2" order="4" order-lg="2">
             <v-btn type="reset" color="red" variant="outlined" block> Clear </v-btn>
@@ -76,13 +87,14 @@
         </v-row>
       </v-container>
     </v-form>
-    <v-container v-if="timetable.length">
+    <v-container>
       <v-row justify="center" justify-md="end">
         <v-col cols="12" sm="6" md=3 xl="2">
           <v-btn @click="deleteSchedule" block> Cancel editing </v-btn>
         </v-col>
         <v-col cols="12" sm="6" md="3" xl=2>
-          <v-btn @click="sendSchedule" color="primary" block :disabled="tempForm.names.length > 0"> Save schedule </v-btn>
+          <v-btn @click="sendSchedule" color="primary" block :disabled="tempForm.names.length > 0"> Save schedule
+          </v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -118,17 +130,17 @@ const remainingDays = computed(() => {
   timetable.value.forEach(elem => {
     elem.names.forEach(name => {
       let i = arr.indexOf(name)
-      if(i > -1) arr.splice(i, 1)
+      if (i > -1) arr.splice(i, 1)
     })
   })
   return arr
 })
 const toStation = computed(() => {
-  if(!mainForm.station) return null
-  for(let i = 0; i < stations.value.length; i++) {
-    if(mainForm.station.station_uid == stations.value[i].station_uid) {
-      if(i+1 == stations.value.length) return stations.value[0].name
-      else return stations.value[i+1].name
+  if (!mainForm.station) return null
+  for (let i = 0; i < stations.value.length; i++) {
+    if (mainForm.station.station_uid == stations.value[i].station_uid) {
+      if (i + 1 == stations.value.length) return stations.value[0].name
+      else return stations.value[i + 1].name
     }
   }
   return null
@@ -150,8 +162,9 @@ const tempTime = ref('')
 const dayRules = [
   (v) => !!v.length || 'Please select at least one day!'
 ]
-const required = [
-  (v) => v == '0' || !!v || 'This field cannot be empty!'
+const positive = [
+  (v) => /[0-9]+/.test(v) || 'This field must be a number!',
+  (v) => v >= 0 || 'This field must be positive!'
 ]
 
 const mainForm = reactive({
@@ -160,7 +173,7 @@ const mainForm = reactive({
 })
 
 function addTimeToArray() {
-  if(!tempTime.value) return
+  if (!tempTime.value) return
   noTimesError.value = null
   tempForm.value.departure_times.push(tempTime.value)
   tempForm.value.departure_times.sort()
@@ -174,14 +187,14 @@ function deleteTimeFromArray(index) {
 }
 
 function saveTimetable() {
-  if(!tempForm.value.departure_times.length){
+  if (!tempForm.value.departure_times.length) {
     noTimesError.value = 'Please add at least one departure time.'
     return
   }
   timetable.value.push(tempForm.value)
   tempForm.value = {
     names: [],
-    fare: 0,
+    fare: '0',
     departure_times: []
   }
 }
@@ -200,22 +213,22 @@ function deleteSchedule() {
   timetable.value = []
   tempForm.value = {
     names: [],
-    fare: 0,
+    fare: '0',
     departure_times: []
   }
   mainForm.route = null
   mainForm.station = null
 }
 
-function sendSchedule(){
+function sendSchedule() {
   noStationError.value = []
-  if(!mainForm.station) {
+  if (!mainForm.station) {
     noStationError.value = ['Please select an option.']
     return
   }
-  axios.delete('https://api.bus4u.online/v1/admin/delete_timetables_from_route', { params: {route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid }})
+  axios.delete('https://api.bus4u.online/v1/admin/delete_timetables_from_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
     .then(() => {
-      timetable.value.forEach(async(schedule) => {
+      timetable.value.forEach(async (schedule) => {
         let data = Object.assign(schedule, { route_uid: mainForm.route.route_uid }, { station_uid: mainForm.station.station_uid });
         await axios.post('https://api.bus4u.online/v1/admin/add_timetable_to_route', data)
         mainForm.route = null
@@ -231,33 +244,33 @@ function sendSchedule(){
     })
 }
 
-function getProps(route){
+function getProps(route) {
   return { title: route.name, value: route }
 }
 
 function getStations(v) {
   mainForm.station = null
-  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: v.route_uid }})
-  .then(rsp => {
-    if(rsp.status == 200) stations.value = rsp.data.stations
-  }).catch(() => stations.value = [])
+  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: v.route_uid } })
+    .then(rsp => {
+      if (rsp.status == 200) stations.value = rsp.data.stations
+    }).catch(() => stations.value = [])
 }
 
 function getTimetable() {
-  axios.get('https://api.bus4u.online/v1/get_departure_times_for_station_in_route', { params: {route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid }})
-  .then(rsp => {
-    if(rsp.status == 200) {
-      timetable.value = []
-      rsp.data.forEach(elem => {
-        timetable.value.push({names: [elem.name], fare: elem.fare, departure_times: elem.departure_times})
-      })
-    }
-  }).catch(() => timetable.value = [])
+  axios.get('https://api.bus4u.online/v1/get_departure_times_for_station_in_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
+    .then(rsp => {
+      if (rsp.status == 200) {
+        timetable.value = []
+        rsp.data.forEach(elem => {
+          timetable.value.push({ names: [elem.name], fare: elem.fare, departure_times: elem.departure_times })
+        })
+      }
+    }).catch(() => timetable.value = [])
 }
 
-axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: {company_uid: user.company_uid }})
+axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
   .then(rsp => {
-    if(rsp.status == 200) routes.value = rsp.data.routes
+    if (rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])
 </script>
 

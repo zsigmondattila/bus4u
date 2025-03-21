@@ -1,8 +1,10 @@
 <template>
   <v-form validate-on="blur" @submit.prevent="onSubmit">
     <div class="inputs">
-      <v-text-field label="Email" v-model="form.email" type="email" color="primary" :rules="email"></v-text-field>
-      <v-text-field label="Password" type="password" v-model="form.password" color="primary" :rules="password"></v-text-field>
+      <v-text-field label="Email" name="email" v-model="form.email" type="email" color="primary"
+        :rules="email"></v-text-field>
+      <v-text-field label="Password" name="password" type="password" v-model="form.password" color="primary"
+        :rules="password"></v-text-field>
       <p v-if="errors.length" class="text-error text-center mb-2"> {{ errors }} </p>
     </div>
     <RouterLink :to="{ name: 'register' }" class="link"> Not yet registered? </RouterLink>
@@ -39,17 +41,17 @@ const email = [
 async function onSubmit(event) {
   errors.value = []
   let response = await event;
-  if(response.valid) {
+  if (response.valid) {
     isLoading.value = true;
     axios.post('https://api.bus4u.online/auth/sign_in', form).then((rsp) => {
-      if(rsp.data.data.uid) {
+      if (rsp.data.data.uid) {
         router.replace({ name: 'home' })
         user.signIn(rsp.data.data, rsp.headers)
       } else {
         isLoading.value = false;
       }
     }).catch((e) => {
-      if(e.response) errors.value = e.response.data.errors[0];
+      if (e.response) errors.value = e.response.data.errors[0];
       else errors.value = e.message;
       isLoading.value = false;
     });
@@ -61,11 +63,13 @@ async function onSubmit(event) {
 button {
   margin: 12px 0;
 }
-.link{
+
+.link {
   display: block;
   text-align: center;
   color: revert;
 }
+
 .inputs {
   margin: 20px 0;
 }

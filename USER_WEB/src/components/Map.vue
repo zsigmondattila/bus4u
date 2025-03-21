@@ -36,8 +36,8 @@ let currentLocation = null;
 let waypoints = [];
 
 function panTo(coord, zoom) {
-  if(!map) return
-  if(zoom !== undefined) map.setZoom(zoom).panTo(coord)
+  if (!map) return
+  if (zoom !== undefined) map.setZoom(zoom).panTo(coord)
   else map.panTo(coord);
 }
 
@@ -50,22 +50,22 @@ function resetRoute() {
       'coordinates': waypoints
     }
   }
-  if(map.getSource('route')) map.getSource('route').setData(data)
+  if (map.getSource('route')) map.getSource('route').setData(data)
 }
 
 function addStations(array) {
-  if(!showStations.value) return
+  if (!showStations.value) return
   array.forEach(station => {
-    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([station.longitude, station.latitude]).setMaxWidth("300px")
+    const popup = new mapboxgl.Popup({ className: 'my-popup' }).setLngLat([station.longitude, station.latitude]).setMaxWidth("300px")
       .setHTML(`<h3>${station.name}</h3><a href="https://google.com/maps/search/?api=1&query=${station.latitude},${station.longitude}" target="_blank">${station.address}<a>`);
     stationMarkers.push(new mapboxgl.Marker({ color: "#EF6C00" }).setLngLat([station.longitude, station.latitude]).setPopup(popup).addTo(map));
   })
 }
 
 function addBuses(array) {
-  if(!showBuses.value) return
+  if (!showBuses.value) return
   array.forEach(bus => {
-    const popup = new mapboxgl.Popup({className: 'my-popup'}).setLngLat([bus.longitude, bus.latitude])
+    const popup = new mapboxgl.Popup({ className: 'my-popup' }).setLngLat([bus.longitude, bus.latitude])
       .setHTML(`<h3>${bus.license_plate}</h3><p>${bus.brand}</p><p>Capacity: ${bus.capacity}</p>`).setMaxWidth("300px");
     busMarkers.push(new mapboxgl.Marker({ color: "#bc1251" }).setLngLat([bus.longitude, bus.latitude]).setPopup(popup).addTo(map));
   })
@@ -73,26 +73,26 @@ function addBuses(array) {
 
 async function addRoute() {
   waypoints = []
-  if(props.stations.length < 2) return
-  if(props.stations.length > 100) {
+  if (props.stations.length < 2) return
+  if (props.stations.length > 100) {
     props.stations.forEach(station => {
       waypoints.push([station.longitude, station.latitude]);
     })
   } else {
     let base = 'https://api.mapbox.com/directions/v5/mapbox/driving/'
     let str = ''
-    for(let i=0; i<props.stations.length; i++){
+    for (let i = 0; i < props.stations.length; i++) {
       str += `${props.stations[i].longitude},${props.stations[i].latitude}`
-      if(i > 0 && i % 20 === 0){
-        if(i+1 < props.stations.length) str += `;${props.stations[i+1].longitude},${props.stations[i+1].latitude}`
-        let way = await axios.get(`${base}${str}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
-        if(way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
+      if (i > 0 && i % 20 === 0) {
+        if (i + 1 < props.stations.length) str += `;${props.stations[i + 1].longitude},${props.stations[i + 1].latitude}`
+        let way = await axios.get(`${base}${str}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN } })
+        if (way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
         str = ''
       } else str += ';'
     }
-    if(str.length > 0) {
-      let way = await axios.get(`${base}${str.slice(0, -1)}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN }})
-      if(way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
+    if (str.length > 0) {
+      let way = await axios.get(`${base}${str.slice(0, -1)}`, { params: { geometries: 'geojson', 'access_token': import.meta.env.VITE_MAPBOX_TOKEN } })
+      if (way.data) waypoints = waypoints.concat(way.data.routes[0].geometry.coordinates)
     }
   }
 
@@ -104,14 +104,14 @@ async function addRoute() {
       'coordinates': waypoints
     }
   }
-  if(map.getSource('route')){
+  if (map.getSource('route')) {
     map.getSource('route').setData(data)
   }
 }
 
 watch(showLocation, () => {
-  if(showLocation.value) {
-    if(navigator.geolocation && !props.hideLocation) {
+  if (showLocation.value) {
+    if (navigator.geolocation && !props.hideLocation) {
       navigator.geolocation.getCurrentPosition((p) => {
         let current = [p.coords.longitude, p.coords.latitude]
         currentLocation = new mapboxgl.Marker({ color: "#297bFF" }).setLngLat(current).addTo(map);
@@ -125,9 +125,9 @@ watch(showLocation, () => {
 })
 
 watch(showStations, () => {
-  if(showStations.value && props.stations) {
+  if (showStations.value && props.stations) {
     addStations(props.stations)
-    if(props.enableRoute) addRoute()
+    if (props.enableRoute) addRoute()
   } else {
     stationMarkers.forEach(marker => marker.remove())
     stationMarkers = []
@@ -136,7 +136,7 @@ watch(showStations, () => {
 })
 
 watch(showBuses, () => {
-  if(showBuses.value && props.buses) {
+  if (showBuses.value && props.buses) {
     addBuses(props.buses)
   } else {
     busMarkers.forEach(marker => marker.remove())
@@ -144,7 +144,7 @@ watch(showBuses, () => {
   }
 })
 
-if(navigator.geolocation) {
+if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition((p) => {
     let current = [p.coords.longitude, p.coords.latitude]
     currentLocation = new mapboxgl.Marker({ color: "#297bFF" }).setLngLat(current).addTo(map);
@@ -175,9 +175,9 @@ onMounted(() => {
       }
     });
     map.addControl(new mapboxgl.NavigationControl());
-    if(props.stations) addStations(props.stations)
-    if(props.buses) addBuses(props.buses)
-    if(props.enableRoute){
+    if (props.stations) addStations(props.stations)
+    if (props.buses) addBuses(props.buses)
+    if (props.enableRoute) {
       map.addLayer({
         'id': 'route',
         'type': 'line',
@@ -191,6 +191,7 @@ onMounted(() => {
           'line-width': 5
         }
       });
+      if (props.stations.length) addRoute()
     }
   });
 })
@@ -200,12 +201,12 @@ onBeforeUpdate(() => {
   stationMarkers = []
   busMarkers.forEach(marker => marker.remove())
   busMarkers = []
-  if(!props.stations.length) resetRoute();
+  if (!props.stations.length) resetRoute();
   else {
     addStations(props.stations)
-    if(props.enableRoute) addRoute()
+    if (props.enableRoute) addRoute()
   }
-  if(props.buses) addBuses(props.buses)
+  if (props.buses) addBuses(props.buses)
 })
 
 onUnmounted(() => {
@@ -218,6 +219,7 @@ onUnmounted(() => {
 .map {
   height: 480px;
 }
+
 .container {
   height: 100%;
 }

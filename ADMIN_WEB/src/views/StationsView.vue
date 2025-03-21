@@ -9,7 +9,8 @@
     <v-row class="mt-1">
       <v-col cols="12" md="6">
         <v-list border class="py-0 mb-5" :max-height="formIsOpen ? 320 : 600" @click:select="panMap">
-          <v-list-item v-for="station in stations" :key="station.station_uid" :value="station" :title="station.name" prepend-icon="mdi-map-marker-outline" border>
+          <v-list-item v-for="station in stations" :key="station.station_uid" :value="station" :title="station.name"
+            prepend-icon="mdi-map-marker-outline" border>
             <template #subtitle>
               {{ station.address }}&nbsp;&nbsp;►&nbsp;&nbsp;{{ station.longitude }} · {{ station.latitude }}
             </template>
@@ -25,32 +26,40 @@
           <p class="text-subtitle-1"> Create new Station </p>
           <v-row justify="center" class="mt-0" dense>
             <v-col cols="12" order="1">
-              <v-text-field label="Station name" v-model="newStation.name" :rules="nameRule" hide-details="auto" density="compact"></v-text-field>
+              <v-text-field label="Station name" name="name" v-model="newStation.name" :rules="nameRule"
+                hide-details="auto" density="compact"></v-text-field>
             </v-col>
             <v-col cols="12" sm="5" order="2">
-              <v-text-field label="City" v-model="newStation.city" hide-details="auto"></v-text-field>
+              <v-text-field label="City" name="city" v-model="newStation.city" hide-details="auto"></v-text-field>
             </v-col>
             <v-col cols="12" sm="5" order="3">
-              <v-text-field label="Address" v-model="newStation.address" hide-details="auto"></v-text-field>
+              <v-text-field label="Address" name="address" v-model="newStation.address"
+                hide-details="auto"></v-text-field>
             </v-col>
             <v-col cols="12" sm="2" order="7" order-sm="4">
-              <v-btn type="reset" color="primary" variant="outlined" class="form-button" block @click="resetForm"> Cancel </v-btn>
+              <v-btn type="reset" color="primary" variant="outlined" class="form-button" block @click="resetForm">
+                Cancel
+              </v-btn>
             </v-col>
             <v-col cols="12" sm="5" order="5">
-              <v-text-field label="Longitude" type="number" v-model="newStation.coordinates[0]" :rules="coordinateRule" hide-details="auto"></v-text-field>
+              <v-text-field label="Longitude" name="longitude" type="number" v-model="newStation.coordinates[0]"
+                :rules="coordinateRule" hide-details="auto"></v-text-field>
             </v-col>
             <v-col cols="12" sm="5" order="6">
-              <v-text-field label="Latitude" type="number" v-model="newStation.coordinates[1]" :rules="coordinateRule" hide-details="auto"></v-text-field>
+              <v-text-field label="Latitude" name="latitude" type="number" v-model="newStation.coordinates[1]"
+                :rules="coordinateRule" hide-details="auto"></v-text-field>
             </v-col>
             <v-col cols="12" sm="2" order="8">
               <v-btn type="submit" color="primary" class="form-button" block> Save </v-btn>
             </v-col>
           </v-row>
-          <p class="text-caption text-disabled pa-1 opacity-5"> Click on the map to fill the coordinates, city and address. </p>
+          <p class="text-caption text-disabled pa-1 opacity-5"> Click on the map to fill the coordinates, city and
+            address.
+          </p>
         </v-form>
       </v-col>
       <v-col cols="12" md="6">
-        <MapBox ref="mapBox" :stations="stations" v-model:pointer="newStation"/>
+        <MapBox ref="mapBox" :stations="stations" v-model:pointer="newStation" />
       </v-col>
     </v-row>
     <v-snackbar v-model="notification.show">
@@ -92,7 +101,7 @@ const coordinateRule = [
 ]
 
 function panMap(station) {
-  if(mapBox.value) {
+  if (mapBox.value) {
     mapBox.value.setCustomPointer([station.id.longitude, station.id.latitude])
     newStation.name = ''
     newStation.coordinates = []
@@ -102,8 +111,8 @@ function panMap(station) {
   }
 }
 
-function deleteStation(station){
-  axios.delete('https://api.bus4u.online/v1/admin/delete_station', { params: { station_uid: station.station_uid }})
+function deleteStation(station) {
+  axios.delete('https://api.bus4u.online/v1/admin/delete_station', { params: { station_uid: station.station_uid } })
     .then(() => {
       notification.value.message = 'Station deleted successfully'
       notification.value.show = true
@@ -120,11 +129,11 @@ function resetForm() {
   formIsOpen.value = false
 }
 
-async function addStation(e){
+async function addStation(e) {
   let rsp = await e;
-  if(!rsp.valid) return;
+  if (!rsp.valid) return;
 
-  let createRsp = await axios.post('https://api.bus4u.online/v1/admin/create_station', 
+  let createRsp = await axios.post('https://api.bus4u.online/v1/admin/create_station',
     { name: newStation.name, latitude: newStation.coordinates[1], longitude: newStation.coordinates[0], city: newStation.city, address: newStation.address, zip_code: newStation.postcode })
   if (createRsp.status == 200) {
     notification.value.message = 'Station created successfully';
@@ -136,11 +145,11 @@ async function addStation(e){
 
 function updateStations() {
   axios.get('https://api.bus4u.online/v1/get_stations')
-  .then(rsp => {
-    if (rsp.status == 200) {
-      stations.value = rsp.data.stations
-    }
-  })
+    .then(rsp => {
+      if (rsp.status == 200) {
+        stations.value = rsp.data.stations
+      }
+    })
 }
 
 axios.get('https://api.bus4u.online/v1/get_stations')

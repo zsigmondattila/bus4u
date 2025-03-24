@@ -76,7 +76,7 @@ describe("Home Page", () => {
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
     cy.get("input[name='time']").type("10:00");
-    cy.get("button[type='submit'").click();
+    cy.get("button[type='submit']").click();
     cy.intercept("POST", "/v1/generate_a_ticket", {
       statusCode: 200,
       body: ["TEST01"],

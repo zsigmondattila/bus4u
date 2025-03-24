@@ -12,6 +12,31 @@ A Cypress\footnote{Cypress: \url{https://www.cypress.io/}} egy JavaScript alapú
 \end{itemize}
 
 \section{Megvalósított tesztek}
+A weboldalak komponenseinek teszteléséhez 5 komponens tesztet készítettem, amelyek a térképet és a különböző listaelemeket tesztelik, mint például a buszok, a jegyek, vagy az elérhető járatok listájának elemei. Csak azokat a komponenseket teszteltem, amelyek interakciót biztosítanak, tehát adott események hatására változik az állapotuk. Ezek összesen 13 tesztesetet eredményeznek, amelyek a komponensek helyes működését ellenőrzik.
+
+A másik teszttípus az end-to-end teszt, vagy végponttól-végpontig tartó tesztelés, amely során a teljes alkalmazást teszteljük. Ebben az esetben konkrét használati eseteket teszteltem le, mint például a jegyvásárlás egy kiválasztott buszjáratra. 15 ilyen tesztet készítettem, amelyek összesen 52 tesztesetet tartalmaznak. Ezek letesztelik a rendszer összes használati esetének folyamatát, amelyeket korábban megfogalmaztam és amelyek a \ref{fig:use-case-user} és a \ref{fig:use-case-admin} ábrákon is láthatóak.
+Egy példa a végponttól-végpontig tartó tesztre, amely az admin felületen történő megálló hozzáadását és eltávolítását teszteli:
+\begin{lstlisting}[language=JavaScript]
+  it("add new station and remove it", () => {
+    cy.intercept("GET", "https://api.mapbox.com/map-sessions/v1*").as("map");
+    cy.login();
+    cy.visit("/stations");
+    cy.get(".d-flex > .v-btn").click();
+    cy.wait("@map");
+    cy.get(".mapboxgl-canvas").click(320, 500);
+    cy.get("input[name='name']").type("test station");
+    cy.get("button[type='submit']").click();
+    cy.get(".v-snackbar__content").contains("Station created");
+    cy.get(".v-list > .v-list-item")
+      .contains("test station")
+      .parent()
+      .siblings()
+      .find("button")
+      .click();
+    cy.get(".v-snackbar__content").contains("Station deleted");
+    cy.get(".v-list > .v-list-item").should("not.contain", "test station");
+  });
+\end{lstlisting}
 
 \section{Automatizált tesztelés}
 A tesztek futtatásának automatizálását a GitHub Actions segítségével valósítottam meg. A GitHub Actions egy olyan funkció a GitHubon, amely lehetővé teszi előre definiált feladatok automatikus végrehajtását a kód változásának alkalmával. A Cypress biztosít egy előre megírt GitHub Actions konfigurációt, amelyet csak be kell állítani a projektünkben, és a tesztek automatikusan lefutnak minden egyes változtatás után. Az én esetemben 2 ilyen feladatra van szükség: az egyik a felhasználói, míg a másik az admin weboldal tesztjeinek futtatására. Mindkét tesztelési feladat a "Cypress tests" nevű Action része, amelynek konfigurációs kódja a következő:

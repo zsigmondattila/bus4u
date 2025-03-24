@@ -1,0 +1,51 @@
+A szoftverrendszerek tesztelése egy nagyon fontos lépés a megfelelő minőség és megbízhatóság biztosításának szempontjából. Célja minimálisra csökkenteni a hibák számát, és biztosítani, hogy a szoftver a tervezett módon működjön.
+
+A projekthez tartozó felhasználói és admin weboldalak tesztelésére a Cypress keretrendszert használtam, mivel nagyon jól integrálható a Vue keretrendszerbe. Ennek segítségével 5 komponens tesztet és 15 end-to-end tesztet készítettem, amelyek összesen 65 tesztesetet fednek le. A komponens tesztek során az egyes komponenseket teszteltem külön egységekként, míg az end-to-end tesztek során a teljes alkalmazást teszteltem, azaz a komponensekből felépített felhasználói felületet. A tesztek futtatása automatizálva van a GitHub Actions segítségével, így minden egyes változtatás után lefutnak a tesztek, és azonnal értesítést kapok a hibákról.
+
+\section{Cypress}
+A Cypress\footnote{Cypress: \url{https://www.cypress.io/}} egy JavaScript alapú tesztelési keretrendszer, amely a böngészőben fut, és lehetővé teszi a felhasználói felületek tesztelését. Elérhető Windows, macOS és Linux operációs rendszerekre és támogatja a legnépszerűbb böngészőket, de rendelkezik saját beépített böngészővel is. A keretrendszer alkalmas end-to-end tesztek írására és a gyakrabban használt JavaScript keretrendszerek esetében, mint amilyen a Vue is, komponens tesztek is futtathatóak benne. Főbb funkciói a következők:
+\begin{itemize}
+    \item \textbf{Időutazás:} A Cypress minden egyes lépésről képernyőképet készít és elmenti az adott időponthoz tartozó állapotot, így lehetőség van visszalépni az időben a tesztek lefutása után is.
+    \item \textbf{Hálózati forgalom vezérlése:} A Cypressben lehetőség van a hálózati forgalom figyelésére és manipulálására is, így akár backend nélkül is futtathatóak a tesztek.
+    \item \textbf{Kémfunkciók:} Figyelhetőek és módosíthatóak belső függvények, változók és események is a tesztek során.
+    \item \textbf{Egyszerűség és hatékonyság:} A Cypress egyszerűen telepíthető és használható a Node Package Manager (NPM) által, és a tesztek gyorsan futnak, mivel a tesztelés a böngészőben történik.
+\end{itemize}
+
+\section{Megvalósított tesztek}
+
+\section{Automatizált tesztelés}
+A tesztek futtatásának automatizálását a GitHub Actions segítségével valósítottam meg. A GitHub Actions egy olyan funkció a GitHubon, amely lehetővé teszi előre definiált feladatok automatikus végrehajtását a kód változásának alkalmával. A Cypress biztosít egy előre megírt GitHub Actions konfigurációt, amelyet csak be kell állítani a projektünkben, és a tesztek automatikusan lefutnak minden egyes változtatás után. Az én esetemben 2 ilyen feladatra van szükség: az egyik a felhasználói, míg a másik az admin weboldal tesztjeinek futtatására. Mindkét tesztelési feladat a "Cypress tests" nevű Action része, amelynek konfigurációs kódja a következő:
+\begin{lstlisting}
+name: Cypress tests
+on: push
+jobs:
+  cypress-run:
+    name: Cypress run
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Cypress test USER
+        uses: cypress-io/github-action@v6
+        env:
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+        with:
+          start: npm run dev
+          working-directory: USER_WEB
+      - name: Cypress test ADMIN
+        uses: cypress-io/github-action@v6
+        env:
+          VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
+        with:
+          start: npm run dev
+          working-directory: ADMIN_WEB
+\end{lstlisting}
+
+A tesztek lefutása után a GitHub Actions értesítést küld az eredményekről email-ben, és a webfelületen is megjeleníti ezeket táblázatos formában. Ezt szemlélteti a \ref{fig:github-actions} ábra.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/cypress-failed.png}
+    \caption{A GitHub Actions által generált teszteredmények}
+    \label{fig:github-actions}
+\end{figure}

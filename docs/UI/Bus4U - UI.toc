@@ -39,9 +39,9 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{48}{subsection.7.2.4}%
 \select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{49}{subsection.7.2.5}%
 \select@language {magyar} \contentsline {chapter}{\numberline {8}Tesztelés}{51}{chapter.8}%
-\select@language {magyar} \contentsline {section}{\numberline {8.1}Cypress}{51}{section.8.1}%
+\select@language {magyar} \contentsline {section}{\numberline {8.1}Cypress}{52}{section.8.1}%
 \select@language {magyar} \contentsline {section}{\numberline {8.2}Megvalósított tesztek}{52}{section.8.2}%
-\select@language {magyar} \contentsline {section}{\numberline {8.3}Automatizált tesztelés}{53}{section.8.3}%
-\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{55}{chapter.9}%
-\select@language {magyar} \contentsline {section}{\numberline {9.1}További fejlesztési lehetőségek}{56}{section.9.1}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{56}{section.9.1}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}Automatizált tesztelés}{54}{section.8.3}%
+\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{56}{chapter.9}%
+\select@language {magyar} \contentsline {section}{\numberline {9.1}További fejlesztési lehetőségek}{57}{section.9.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{57}{section.9.1}%

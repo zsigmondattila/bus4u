@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  24 MAR 2025 21:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  26 MAR 2025 14:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -900,19 +900,25 @@ Package pdftex.def Info: figures/create-employee.png  used on input line 139.
 8. fejezet.
 (./chapters/testing.tex [51
 
-] [52] [53]
-<figures/cypress-failed.png, id=757, 488.92868pt x 148.96469pt>
-File: figures/cypress-failed.png Graphic file (type png)
-<use figures/cypress-failed.png>
-Package pdftex.def Info: figures/cypress-failed.png  used on input line 73.
-(pdftex.def)             Requested size: 486.25761pt x 148.1551pt.
-) [54 <./figures/cypress-failed.png>]
+] [52]
+<figures/cypress-user.png, id=709, 871.66469pt x 439.51959pt>
+File: figures/cypress-user.png Graphic file (type png)
+<use figures/cypress-user.png>
+Package pdftex.def Info: figures/cypress-user.png  used on input line 25.
+(pdftex.def)             Requested size: 486.25761pt x 245.18367pt.
+ [53 <./figures/cypress-user.png>]
+<figures/cypress-passed.png, id=732, 796.4449pt x 471.96735pt>
+File: figures/cypress-passed.png Graphic file (type png)
+<use figures/cypress-passed.png>
+Package pdftex.def Info: figures/cypress-passed.png  used on input line 80.
+(pdftex.def)             Requested size: 486.25761pt x 288.15172pt.
+) [54] [55 <./figures/cypress-passed.png>]
 9. fejezet.
-(./chapters/summary.tex [55
+(./chapters/summary.tex [56
 
-]) (./Bus4U - UI.bbl [56] [57
+]) (./Bus4U - UI.bbl [57] [58
 
-]) [58] (./Bus4U - UI.aux)
+]) [59] (./Bus4U - UI.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -921,18 +927,18 @@ Package rerunfilecheck Info: File `"Bus4U - UI".out' has not changed.
 (rerunfilecheck)             Checksum: CA7F4A6831EBA8FF0725C5F52101DB56;6474.
  ) 
 Here is how much of TeX's memory you used:
- 16317 strings out of 475582
- 260323 string characters out of 5778247
- 2137975 words of memory out of 5000000
- 37827 multiletter control sequences out of 15000+600000
- 621302 words of font info for 112 fonts, out of 8000000 for 9000
+ 16321 strings out of 475582
+ 260487 string characters out of 5778247
+ 2084975 words of memory out of 5000000
+ 37834 multiletter control sequences out of 15000+600000
+ 619658 words of font info for 111 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 82i,9n,84p,2773b,2036s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 82i,9n,84p,2773b,1288s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - UI.pdf" (64 pages, 7167551 bytes).
+Output written on "Bus4U - UI.pdf" (65 pages, 7241427 bytes).
 PDF statistics:
- 938 PDF objects out of 1000 (max. 8388607)
+ 941 PDF objects out of 1000 (max. 8388607)
  733 compressed objects within 8 object streams
- 251 named destinations out of 1000 (max. 500000)
- 526 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 248 named destinations out of 1000 (max. 500000)
+ 531 words of extra memory for PDF output out of 10000 (max. 10000000)
 

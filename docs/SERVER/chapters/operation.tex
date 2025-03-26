@@ -51,13 +51,6 @@ A megvásárolt jegyeket a rendszer elmenti a gyűjteménybe, ami a Jegyek oldal
 található, így a jegyek bármikor visszakereshetőek és felhasználhatóak lesznek,
 kivéve ha lejár az egy hónapos érvényesség.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/tickets.png}
-    \caption{Felhasználó megvásárolt jegyei}
-    \label{fig:ticket-list}
-\end{figure}
-
 A jegyen megjelenített adatok között van
 a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség
 dátumai. A már elhasznált jegyek megvannak jelölve így azokat nem lehet többször
@@ -76,14 +69,6 @@ táblázatokhoz, megjeleníti a kiválasztott buszjárat indulási időpontjait,
 megállóból. A mi megoldásunk viszont tartalmaz emellett egy térképet is, ahol meg
 lehet nézni a járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok
 élő pozícióját is.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/departuretimes.png}
-    \caption{Listázott menetrend és az útvonal térképe}
-    \label{fig:departure-times}
-\end{figure}
-
 
 \subsection{Megállók és térkép}
 Ez a két oldal a fent említett térképes funkciókat mutatják meg külön-külön,
@@ -121,14 +106,6 @@ nevét, a címet és a koordinátákat. A néven kívül, a többi adatot automa
 rendszer, ha a térképen a megálló helyére kattint a felhasználó, de manuálisan is meg
 lehet adni.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/adminstops.png}
-    \caption{Megállók létrehozása/törlése}
-    \label{fig:admin-schedule}
-\end{figure}
-
-
 \subsection{Útvonalak}
 Ezen az oldalon lehet felépíteni útvonalakat a létrehozott megállókból és itt lehet
 megadni az alap jegyárat is, abban az esetben, ha a jegyek ára nem függ a megtett
@@ -143,13 +120,6 @@ hozzá lehet adni több ilyen órarendet is, ha különböző napokra különbö
 érvényes. Így el lehet választani a hétvégét a hétköznapoktól, ha mások az indulási
 időpontok, vagy ha például hétvégén drágább a jegy.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/adminschedule.png}
-    \caption{Menetrend létrehozása/törlése}
-    \label{fig:schedule}
-\end{figure}
-
 \subsection{Buszok és alkalmazottak}
 Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Hasonlóan
 működnek, mindkettőn található egy lista a meglévő elemekkel, ahol bármelyiket lehet
@@ -159,12 +129,6 @@ biztosítás és a műszaki engedély lejárati dátumát. Új alkalmazott hozz�
 kell adni a nevet, e-mail címet, beosztást, telefonszámot, lakcímet (opcionális), és egy
 új jelszavat.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{figures/adminbuses.png}
-    \caption{Buszok és alkalmazottak kezelése}
-    \label{fig:buses-employees}
-\end{figure}
 
 \section{POS terminál alkalmazása}
 \subsection{GPS oldal}

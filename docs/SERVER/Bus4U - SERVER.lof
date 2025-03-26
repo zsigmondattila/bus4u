@@ -2,27 +2,29 @@
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {4.1}{\ignorespaces Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}}{18}{figure.4.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {4.1}{\ignorespaces Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}}{19}{figure.4.1}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {5.1}{\ignorespaces A rendszer architektúra diagramja}}{22}{figure.5.1}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.2}{\ignorespaces Az rendszer adatbázisdiagramja}}{29}{figure.5.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.3}{\ignorespaces A Jira kanban board áttekintése}}{32}{figure.5.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.4}{\ignorespaces A GitHub repository áttekintése}}{34}{figure.5.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.1}{\ignorespaces A rendszer architektúra diagramja}}{23}{figure.5.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.2}{\ignorespaces Az rendszer adatbázisdiagramja}}{30}{figure.5.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.3}{\ignorespaces A Jira kanban board áttekintése}}{33}{figure.5.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.4}{\ignorespaces A GitHub repository áttekintése}}{35}{figure.5.4}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {6.1}{\ignorespaces Telepítési diagram}}{37}{figure.6.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {6.1}{\ignorespaces Telepítési diagram}}{38}{figure.6.1}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {7.1}{\ignorespaces Aktivitás diagram az utazás tervezésének folyamatáról}}{39}{figure.7.1}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.2}{\ignorespaces Megvásárolt jegy}}{40}{figure.7.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.3}{\ignorespaces Szekvencia diagram az útvonaltervezés folyamatáról}}{41}{figure.7.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces Felhasználó megvásárolt jegyei}}{42}{figure.7.4}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces Szekvencia diagram a jegyvásárlás folyamatáról}}{43}{figure.7.5}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Listázott menetrend és az útvonal térképe}}{44}{figure.7.6}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Szekvencia diagram a dokumentumok ellenőrzéséről}}{46}{figure.7.7}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.8}{\ignorespaces Megállók létrehozása/törlése}}{47}{figure.7.8}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.9}{\ignorespaces Menetrend létrehozása/törlése}}{48}{figure.7.9}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.10}{\ignorespaces Buszok és alkalmazottak kezelése}}{49}{figure.7.10}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.11}{\ignorespaces Busz kiválasztása és GPS követés}}{50}{figure.7.11}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.12}{\ignorespaces Jegy szkennelése}}{51}{figure.7.12}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.1}{\ignorespaces Aktivitás diagram az utazás tervezésének folyamatáról}}{40}{figure.7.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.2}{\ignorespaces Megvásárolt jegy}}{41}{figure.7.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.3}{\ignorespaces Szekvencia diagram az útvonaltervezés folyamatáról}}{42}{figure.7.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces Szekvencia diagram a jegyvásárlás folyamatáról}}{43}{figure.7.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces Szekvencia diagram a dokumentumok ellenőrzéséről}}{45}{figure.7.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Busz kiválasztása és GPS követés}}{47}{figure.7.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Jegy szkennelése}}{48}{figure.7.7}%
 \select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {8.1}{\ignorespaces A \texttt {GET /v1/get\_stations\_by\_city} végpont kérésének paraméterei és válasza}}{50}{figure.8.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.2}{\ignorespaces A \texttt {GET /v1/get\_departure\_times\_for\_station\_in\_route} végpont kérésének paraméterei és válasza}}{51}{figure.8.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.3}{\ignorespaces A \texttt {GET /v1/get\_available\_tickets} végpont kérésének paraméterei és válasza}}{51}{figure.8.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.4}{\ignorespaces A \texttt {GET /v1/get\_bus\_locations\_by\_route} végpont kérésének paraméterei és válasza}}{52}{figure.8.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.5}{\ignorespaces A \texttt {GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}}{52}{figure.8.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.6}{\ignorespaces A \texttt {GET /v1/admin/document\_validity\_checker} végpont kérésének paraméterei és válasza}}{53}{figure.8.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.7}{\ignorespaces A \texttt {POST /v1/admin/add\_station\_to\_route} végpont kérésének paraméterei és válasza}}{53}{figure.8.7}%
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }

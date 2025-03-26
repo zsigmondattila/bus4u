@@ -5,69 +5,107 @@ A tesztelést egy helyi fejlesztési környezetben végeztem. A szerver a követ
     \item \textbf{Operációs rendszer:} Ubuntu 22.04 LTS
     \item \textbf{Szerver:} Ruby on Rails 7.0.4
     \item \textbf{Adatbázis:} PostgreSQL 14
-    \item \textbf{Tesztelő eszköz:} Postman v10.0
+    \item \textbf{Tesztelő eszköz:} RSpec, Postman v10.0
 \end{itemize}
 
 
 \section{Funkcionális tesztelés}
 
-A rendszer funkcionális teszteléséhez a Postman eszközt használtam. A Postman lehetőséget nyújt HTTP-kérések küldésére, valamint a különböző API végpontok működésének, válaszainak és adatstruktúráinak ellenőrzésére. Az alábbiakban bemutatom a tesztelés folyamatát és az eredményeket.
+A funkcionális tesztelés során unit teszteket végeztem az RSpec keretrendszer segítségével, valamint az API végpontok működését manuálisan is teszteltem Postman segítségével. Az RSpec lehetőséget biztosít az egyes alkalmazáskomponensek (modellek, kontroller akciók, szolgáltatások) helyességének ellenőrzésére, míg a Postman a különböző API végpontok, azok válaszainak és adatstruktúráinak ellenőrzésére szolgált.
 
-A tesztelést egy helyi fejlesztési környezetben végeztem, ahol a szerver a következő címen volt elérhető:
+\subsection{Postman tesztelés}
 
-\begin{verbatim}
-http://localhost:3000/api/v1/
-\end{verbatim}
+A funkcionális tesztelés egyes részeiben a Postman alkalmazást használtam, amely lehetőséget ad HTTP-kérések küldésére, és az API válaszainak kényelmes ellenőrzésére.
 
-A Postman segítségével különböző HTTP metódusokat (GET, POST, PUT, DELETE) használtam a végpontok tesztelésére. Az egyes végpontokat a rendszer megfelelő válaszai alapján ellenőriztem.
-
-\subsection{Végpontok tesztelése}
-
-Az alábbi végpontok tesztelését szeretném kiemelni:
+Fontosabb végpontok, amelyeket teszteltem:
 
 \begin{itemize}
-    \item \textbf{GET {{api\_url}}/v1/get\_stations\_by\_city} – Lekéri az állomásokat a megadott város alapján.
-    \item \textbf{GET /v1/get\_departure\_times\_for\_station\_in\_route} – Indulási időpontok lekérése egy adott járatra és állomásra.
-    \item \textbf{GET /v1/get\_available\_tickets} – Elérhető jegyek lekérdezése az adott kiindulási és célállomásra.
-    \item \textbf{GET /v1/get\_bus\_locations\_by\_route} – A buszok aktuális helyzetének lekérése egy adott járatra.
-    \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérése.
-    \item \textbf{GET /v1/admin/document\_validity\_checker} – Dokumentum érvényességének ellenőrzése adminisztrátorok számára.
-    \item \textbf{GET /v1/admin/statistics} – Statisztikai adatok lekérdezése egy adott cég számára.
+    \item \textbf{GET /v1/get\_stations\_by\_city} – Ez az API végpont lehetővé teszi, hogy egy adott városhoz tartozó állomásokat kérjünk le. Ezen végpont segítségével a felhasználók gyorsan megtalálhatják azokat az állomásokat, amelyek egy meghatározott városhoz tartoznak. A kérés paraméterei tartalmazzák a város nevét, és a válasz egy listát ad vissza az állomásokról.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_stations_by_city.png}
+        \caption{A \texttt{GET /v1/get\_stations\_by\_city} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_get_stations_by_city}
+    \end{figure}
+
+    \item \textbf{GET /v1/get\_departure\_times\_for\_station\_in\_route} – Ezen végpont segítségével lekérhetjük egy adott járat indulási időpontjait egy specifikus állomásról. A kérés tartalmazza az állomás és a járat azonosítóját, és a válasz a járat indulási időpontjait adja vissza.
+    
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_departure_times.png}
+        \caption{A \texttt{GET /v1/get\_departure\_times\_for\_station\_in\_route} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_get_departure_times}
+    \end{figure}
+
+    \item \textbf{GET /v1/get\_available\_tickets} – Ez a végpont lehetővé teszi az elérhető jegyek lekérdezését egy adott kiindulási és célállomás között. A kérés paraméterei a kiindulási és célállomás, valamint egy opcionális időpont. A megállók is opcionálisak, a csak a város megadása esetén minden megállóhoz láthatjuk a jegyeket. A válasz tartalmazza az elérhető jegyek listáját, és ezek árai, valamint egyéb információkat.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_available_tickets.png}
+        \caption{A \texttt{GET /v1/get\_available\_tickets} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_get_available_tickets}
+    \end{figure}
+
+    \item \textbf{GET /v1/get\_bus\_locations\_by\_route} – Ezen API végpont segítségével lekérhetjük a buszok aktuális helyzetét egy adott járatra vonatkozóan. A kérés tartalmazza a járat azonosítóját, és a válasz egy koordinátákkal mutatja a buszok aktuális pozícióit.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_bus_locations.png}
+        \caption{A \texttt{GET /v1/get\_bus\_locations\_by\_route} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_get_bus_locations}
+    \end{figure}
+
+    \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérésére szolgáló végpont. A kérés nem tartalmaz paramétereket, mivel az aktuális felhasználó jegyeit kérdezi le. A válaszban szereplő jegyek információi tartalmazzák a jegyek típusát, érvényességüket és egyéb fontos adatokat.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
+        \caption{A \texttt{GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_get_tickets_of_user}
+    \end{figure}
+
+    \item \textbf{GET /v1/admin/document\_validity\_checker} – Ezen végpont segítségével az adminisztrátorok ellenőrizhetik egy dokumentum érvényességét. A kérés tartalmazza az adott cég azonosítóját, és a válasz egy érvényességi időpontot ad vissza különböző dokumentumokról.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
+        \caption{A \texttt{GET /v1/admin/document\_validity\_checker} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_document_validity_checker}
+    \end{figure}
+
+    \item \textbf{POST /v1/admin/add\_station\_to\_route} – Ez az adminisztrátorok számára elérhető végpont lehetővé teszi egy állomás hozzárendelését egy adott útvonalhoz. A kérés tartalmazza az útvonal és az állomás azonosítóját, és a válasz megerősíti a sikeres műveletet.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
+        \caption{A \texttt{POST /v1/admin/add\_station\_to\_route} végpont kérésének paraméterei és válasza}
+        \label{fig:postman_add_station_to_route}
+    \end{figure}
 \end{itemize}
 
+A Postman segítségével végzett tesztelés eredményeként az összes API végpont sikeresen válaszolt a kérésekre, és az adatstruktúrák megfeleltek az elvárt formátumnak.
 
-\subsection{Tesztelési példa}
+\subsection{RSpec Tesztelés}
 
-Például a GET metódus használatával kértem le az állomásokat egy megadott város alapján:
-
-\begin{verbatim}
-GET api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
-\end{verbatim}
-
-A szerver válasza a következő JSON formátumban érkezett:
+Az RSpec segítségével végzett unit tesztelés során az alkalmazás különböző komponenseit, mint például a modelleket, kontrollereket és akciókat teszteltem. Az alábbiakban bemutatok egy példát az RSpec tesztre, amely a \texttt{GET /v1/get\_stations\_by\_city} végpontot teszteli:
 
 \begin{verbatim}
-{
-    "stations": [
-        {
-            "station_uid": "STT_EGAVX",
-            "name": "Sapientia",
-            "address": "Str. Calea Sighisoarei nr. 2",
-            "longitude": "24.59883",
-            "latitude": "46.52339"
-        },
-        {
-            "station_uid": "STT_6CO3Q",
-            "name": "Dedeman",
-            "address": "Bul. 1 Decembrie nr. 189",
-            "longitude": "24.59941",
-            "latitude": "46.52678"
-        }
-    ]
-}
+describe 'GET /v1/get_stations_by_city' do
+  let(:city_uid) { 'CTY_N11XH' }
+  let(:valid_url) { "/v1/get_stations_by_city?city_uid=#{city_uid}" }
+  
+  it 'returns a list of stations' do
+    get valid_url
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('stations')
+  end
+  
+  it 'returns valid station data' do
+    get valid_url
+    expect(response.body).to include('station_uid')
+    expect(response.body).to include('name')
+    expect(response.body).to include('address')
+  end
+end
 \end{verbatim}
 
-Ezzel a lekérdezéssel sikeresen megkaptam az adatokat, amelyeket a rendszer helyesen dolgozott fel.
+Ez a tesztellenőrzi, hogy a \texttt{GET /v1/get\_stations\_by\_city} végpont megfelelően válaszol-e a kért városra vonatkozóan, és hogy az adatok (pl. \texttt{station\_uid}, \texttt{name}, \texttt{address}) jelen vannak-e a válaszban.
+
 
 \subsection{Tesztelési eredmények}
 
@@ -84,13 +122,29 @@ KIEGÉSZÍTENI AZ ÚJRATESZTELT ADATOKKAL
 
 
 \section{Biztonsági tesztelés}
+
 A biztonsági tesztelés során különös figyelmet fordítottam a következő sebezhetőségek elkerülésére:
+
 \begin{itemize}
     \item \textbf{SQL injection} – Input validálás és előkészített SQL lekérdezések használata.
     \item \textbf{Cross-site scripting (XSS)} – HTML entitások kódolása a felhasználói bemeneteknél.
     \item \textbf{Cross-site request forgery (CSRF)} – CSRF tokenek használata minden kényes műveletnél.
 \end{itemize}
 
-\section{Összegzés}
+A biztonsági teszteléshez az \textbf{OWASP ZAP} (Zed Attack Proxy) eszközt használtam, amely egy nyílt forráskódú, automatizált webalkalmazás biztonsági tesztelő eszköz. A ZAP segítségével alaposan átvizsgáltam az API-t és annak különböző végpontjait a fent említett sebezhetőségek szempontjából.
+
+\subsection{SQL Injection}
+
+Az SQL injection sebezhetőségek elleni védelem érdekében minden felhasználói bemenetet megfelelően validáltam és szűrtem. Az alkalmazásban használt ActiveRecord ORM automatikusan védi az alkalmazást az SQL injection támadásokkal szemben, mivel előkészített SQL lekérdezéseket alkalmaz, amelyek biztosítják, hogy a felhasználói adatok ne manipulálják az SQL parancsokat. A ZAP automatizált szkennelő funkcióját használtam, hogy szimuláljam a különböző SQL injection támadásokat, például az \texttt{OR 1=1} típusú támadásokat. A szkenner jelzései alapján megerősítettem, hogy minden SQL lekérdezés biztonságosan van előkészítve, és semmilyen dinamikusan generált SQL parancs nem futtatható a bemeneti értékek alapján.
+
+\subsection{XSS (Cross-Site Scripting) Tesztelés}
+
+A cross-site scripting (XSS) támadások megelőzése érdekében minden felhasználói bemenetet úgy kezeltem, hogy ne engedje a HTML vagy JavaScript kódok végrehajtását. A ZAP XSS szkenner funkciója során észleltem, hogy a rendszer megfelelően kódolja az összes HTML entitást, és semmilyen felhasználói bemenetet nem engedett közvetlenül a HTML válaszba. A ZAP által futtatott támadások eredményeként biztosítottam, hogy az API nem engedélyezi a szkriptek vagy más veszélyes elemek beágyazását az oldalakba.
+
+\subsection{CSRF (Cross-Site Request Forgery) Tesztelés}
+
+A CSRF támadások megelőzése érdekében minden olyan műveletnél, amely adatváltozást hajt végre (pl. adatbázisba történő írás), kötelezővé tettem a CSRF tokenek használatát. A ZAP segített feltérképezni, hogy minden ilyen művelet megfelelő védelmet élvez-e, és biztosítottam, hogy minden kényes API végpontnál a felhasználónak érvényes CSRF tokennel kell rendelkeznie a kérés küldése előtt. Az eszköz a tesztelés során jelezte, hogy minden védett művelet megfelelő CSRF mechanizmusokat használ, és nem voltak felfedezhetőek gyenge pontok ezen a téren.
+
+\section{Tesztelés végeredménye}
 A tesztelési eredmények alapján a rendszer minden funkciója megfelelően működik, a teljesítménye kielégítő, és a biztonsági mechanizmusok jól védik az API-t a lehetséges támadások ellen. A további tesztelések célja az API skálázhatóságának javítása, valamint az integrációs lehetőségek vizsgálata más külső rendszerekkel.
 

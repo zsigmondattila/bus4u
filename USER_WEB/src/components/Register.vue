@@ -84,7 +84,7 @@ async function onSubmit(event) {
           isLoading.value = false
         }
       }).catch(e => {
-        if (e.response) error.value = e.response.data.errors[0];
+        if (e.response) error.value = e.response.data.error;
         else error.value = e.message;
         isLoading.value = false
       });

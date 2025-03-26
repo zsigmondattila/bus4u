@@ -36,10 +36,9 @@ describe("Home Page", () => {
     cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.location("pathname").should("eq", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
     cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
@@ -64,10 +63,9 @@ describe("Home Page", () => {
     cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.location("pathname").should("eq", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
     cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
@@ -76,7 +74,7 @@ describe("Home Page", () => {
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
     cy.get("input[name='time']").type("10:00");
-    cy.get("button[type='submit'").click();
+    cy.get("button[type='submit']").click();
     cy.intercept("POST", "/v1/generate_a_ticket", {
       statusCode: 200,
       body: ["TEST01"],

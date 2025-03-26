@@ -1246,6 +1246,9 @@ end
 #CREATE A USER
 
 user = User.create(email: "attila.zsigmond2002@gmail.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+user = User.create(email: "teszt@gmail.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+user = User.create(email: "elemer@gmail.com", password: "aaaaaaaa", password_confirmation: "aaaaaaaa")
+
 
 #CREATING TICKETS
 

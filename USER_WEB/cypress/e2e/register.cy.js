@@ -30,10 +30,10 @@ describe("Register", () => {
     cy.url().should("include", "/register");
     cy.get('input[name="firstname"]').type("Cypress");
     cy.get('input[name="lastname"]').type("Test");
-    cy.get('input[name="email"]').type("portik.szabolcs.02@gmail.com");
-    cy.get('input[name="password"]').type("password");
-    cy.get('input[name="password-confirm"]').type("password");
+    cy.get('input[name="email"]').type("teszt@gmail.com");
+    cy.get('input[name="password"]').type("aaaaaaaa");
+    cy.get('input[name="password-confirm"]').type("aaaaaaaa");
     cy.get('button[type="submit"]').click();
-    cy.get(".v-messages__message").not("be.empty");
+    cy.get(".text-error").not("be.empty");
   });
 });

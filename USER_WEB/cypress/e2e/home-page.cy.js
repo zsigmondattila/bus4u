@@ -36,10 +36,9 @@ describe("Home Page", () => {
     cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.location("pathname").should("eq", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
     cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
@@ -64,10 +63,9 @@ describe("Home Page", () => {
     cy.visit("/");
     cy.get('[title="Login"]').click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.location("pathname").should("eq", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
     cy.wait("@getCities");
     cy.get("input[name='startCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");

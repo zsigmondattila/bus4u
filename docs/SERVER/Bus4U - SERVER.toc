@@ -56,16 +56,18 @@
 \select@language {magyar} \contentsline {chapter}{\numberline {8}A rendszer tesztelése}{49}{chapter.8}%
 \select@language {magyar} \contentsline {section}{\numberline {8.1}Tesztelési környezet}{49}{section.8.1}%
 \select@language {magyar} \contentsline {section}{\numberline {8.2}Funkcionális tesztelés}{49}{section.8.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}Postman tesztelés}{50}{subsection.8.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}RSpec Tesztelés}{54}{subsection.8.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.3}Tesztelési eredmények}{54}{subsection.8.2.3}%
-\select@language {magyar} \contentsline {section}{\numberline {8.3}Teljesítménytesztelés}{55}{section.8.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}Teljesítmény-metrikák}{55}{subsection.8.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {8.4}Biztonsági tesztelés}{55}{section.8.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.4.1}SQL Injection}{55}{subsection.8.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.4.2}XSS (Cross-Site Scripting) Tesztelés}{56}{subsection.8.4.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.4.3}CSRF (Cross-Site Request Forgery) Tesztelés}{56}{subsection.8.4.3}%
-\select@language {magyar} \contentsline {section}{\numberline {8.5}Tesztelés végeredménye}{56}{section.8.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}API végpontok tesztelése}{50}{subsection.8.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}RSpec Tesztelés}{53}{subsection.8.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}Biztonsági tesztelés}{54}{section.8.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}SQL Injection}{55}{subsection.8.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.2}XSS (Cross-Site Scripting) Tesztelés}{55}{subsection.8.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.3}CSRF (Cross-Site Request Forgery) Tesztelés}{55}{subsection.8.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.4}Felfedezett sebezhetőségek}{56}{subsection.8.3.4}%
+\select@language {magyar} \contentsline {subsubsection}{Format String Error}{56}{section*.3}%
+\select@language {magyar} \contentsline {subsubsection}{Timestamp Disclosure}{56}{section*.4}%
+\select@language {magyar} \contentsline {subsubsection}{Anti-MIME-Sniffing és X-Content-Type-Options}{57}{section*.5}%
+\select@language {magyar} \contentsline {subsubsection}{robots.txt}{57}{section*.6}%
+\select@language {magyar} \contentsline {section}{\numberline {8.4}Tesztelés végeredménye}{57}{section.8.4}%
 \select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{58}{chapter.9}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{59}{chapter.9}%
 \select@language {magyar} \contentsline {chapter}{\numberline {A\@gobble }Függelék}{62}{appendix.A}%

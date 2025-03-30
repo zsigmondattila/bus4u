@@ -13,7 +13,7 @@ A tesztelést egy helyi fejlesztési környezetben végeztem. A szerver a követ
 
 A funkcionális tesztelés során unit teszteket végeztem az RSpec keretrendszer segítségével, valamint az API végpontok működését manuálisan is teszteltem Postman segítségével. Az RSpec lehetőséget biztosít az egyes alkalmazáskomponensek (modellek, kontroller akciók, szolgáltatások) helyességének ellenőrzésére, míg a Postman a különböző API végpontok, azok válaszainak és adatstruktúráinak ellenőrzésére szolgált.
 
-\subsection{Postman tesztelés}
+\subsection{API végpontok tesztelése}
 
 A funkcionális tesztelés egyes részeiben a Postman alkalmazást használtam, amely lehetőséget ad HTTP-kérések küldésére, és az API válaszainak kényelmes ellenőrzésére.
 
@@ -56,7 +56,7 @@ Fontosabb végpontok, amelyeket teszteltem:
     \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérésére szolgáló végpont. A kérés nem tartalmaz paramétereket, mivel az aktuális felhasználó jegyeit kérdezi le. A válaszban szereplő jegyek információi tartalmazzák a jegyek típusát, érvényességüket és egyéb fontos adatokat.
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_document_validity_checker.png}
         \caption{A \texttt{GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}
         \label{fig:postman_get_tickets_of_user}
     \end{figure}
@@ -72,7 +72,7 @@ Fontosabb végpontok, amelyeket teszteltem:
     \item \textbf{POST /v1/admin/add\_station\_to\_route} – Ez az adminisztrátorok számára elérhető végpont lehetővé teszi egy állomás hozzárendelését egy adott útvonalhoz. A kérés tartalmazza az útvonal és az állomás azonosítóját, és a válasz megerősíti a sikeres műveletet.
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_add_station_to_route.png}
         \caption{A \texttt{POST /v1/admin/add\_station\_to\_route} végpont kérésének paraméterei és válasza}
         \label{fig:postman_add_station_to_route}
     \end{figure}
@@ -82,7 +82,7 @@ A Postman segítségével végzett tesztelés eredményeként az összes API vé
 
 \subsection{RSpec Tesztelés}
 
-Az RSpec segítségével végzett unit tesztelés során az alkalmazás különböző komponenseit, mint például a modelleket, kontrollereket és akciókat teszteltem. Az alábbiakban bemutatok egy példát az RSpec tesztre, amely a \texttt{GET /v1/get\_stations\_by\_city} végpontot teszteli:
+Az RSpec segítségével végzett unit tesztelés során az alkalmazás különböző komponenseit, mint például a modelleket, illetve kontrollereket teszteltem. Az alábbiakban bemutatok egy példát az RSpec tesztre, amely a \texttt{GET /v1/get\_stations\_by\_city} végpontot teszteli:
 
 \begin{verbatim}
 describe 'GET /v1/get_stations_by_city' do
@@ -104,22 +104,7 @@ describe 'GET /v1/get_stations_by_city' do
 end
 \end{verbatim}
 
-Ez a tesztellenőrzi, hogy a \texttt{GET /v1/get\_stations\_by\_city} végpont megfelelően válaszol-e a kért városra vonatkozóan, és hogy az adatok (pl. \texttt{station\_uid}, \texttt{name}, \texttt{address}) jelen vannak-e a válaszban.
-
-
-\subsection{Tesztelési eredmények}
-
-A tesztelés során az összes végpontot felvezettem Postman-re, és mindegyik megfelelően működött. Az egyes végpontok válaszai megfeleltek az elvárt adatstruktúrának, és a rendszer helyesen kezelte a kéréseket.
-
-
-\section{Teljesítménytesztelés}
-A teljesítménytesztelés célja a rendszer stabilitásának és skálázhatóságának értékelése volt nagy terhelés alatt. A vizsgálat során a JMeter eszközt használtam, amely képes különböző mennyiségű egyidejű felhasználói kérések szimulálására.
-
-A JMeter mintavételi eredményei alapján az alábbi teljesítménymetrikák és azok jelentőségeit vizsgáljuk az API teljesítményével kapcsolatban:
-
-\subsection{Teljesítmény-metrikák}
-KIEGÉSZÍTENI AZ ÚJRATESZTELT ADATOKKAL
-
+Ez a teszt ellenőrzi, hogy a \texttt{GET /v1/get\_stations\_by\_city} végpont megfelelően válaszol-e a kért városra vonatkozóan, és hogy az adatok (pl. \texttt{station\_uid}, \texttt{name}, \texttt{address}) jelen vannak-e a válaszban.
 
 \section{Biztonsági tesztelés}
 
@@ -144,6 +129,53 @@ A cross-site scripting (XSS) támadások megelőzése érdekében minden felhasz
 \subsection{CSRF (Cross-Site Request Forgery) Tesztelés}
 
 A CSRF támadások megelőzése érdekében minden olyan műveletnél, amely adatváltozást hajt végre (pl. adatbázisba történő írás), kötelezővé tettem a CSRF tokenek használatát. A ZAP segített feltérképezni, hogy minden ilyen művelet megfelelő védelmet élvez-e, és biztosítottam, hogy minden kényes API végpontnál a felhasználónak érvényes CSRF tokennel kell rendelkeznie a kérés küldése előtt. Az eszköz a tesztelés során jelezte, hogy minden védett művelet megfelelő CSRF mechanizmusokat használ, és nem voltak felfedezhetőek gyenge pontok ezen a téren.
+
+\subsection{Felfedezett sebezhetőségek}
+
+\subsubsection{Format String Error}
+
+A \textbf{Format String Error} akkor fordul elő, amikor a bemeneti adatokat az alkalmazás parancsként értékeli ki, különösen formátumú stringek esetén (pl. \texttt{\%s}, \texttt{\%d}, stb.). Az ilyen típusú hibák lehetőséget adnak támadók számára, hogy manipulálják az alkalmazás működését, például memóriát írjanak felül vagy kódfuttatási hibákat okozzanak.
+
+A következő URL-t teszteltem, amely format string karaktereket tartalmazott:
+
+\texttt{http://127.0.0.1:3000/v1/get\_available\_tickets}
+
+A bemeneti értékekben szereplő formátum karakterek (pl. \%s, \%n) potenciálisan kihasználhatók arra, hogy a támadó manipulálja az alkalmazás működését vagy hibás adatokat szerezzen. Az alkalmazás minden bemenetet megfelelően validál és a dinamikus formázást nem engedélyezi, biztosítva a védekezést a format string hibák ellen.
+
+\subsubsection{Timestamp Disclosure}
+
+A \textbf{Timestamp Disclosure} azt jelenti, hogy az alkalmazás vagy a webkiszolgáló olyan érzékeny információkat, mint a rendszer időbélyege (Unix timestamp), kiszivárogtat a válaszban. Ez az információ segíthet a támadóknak abban, hogy pontosabb támadásokat hajtsanak végre, például brute-force támadásokkal.
+
+Az alábbi URL-ben észleltem, hogy az alkalmazás Unix timestampet szolgáltatott:
+
+\texttt{http://127.0.0.1:3000/v1/get\_available\_tickets}
+
+Ez az információ potenciálisan érzékeny, és elárulhatja a rendszer belső működését, lehetőséget adva támadóknak arra, hogy pontosabb támadásokat hajtsanak végre, mint például brute-force támadások. Az alkalmazásban ezt az információt nem szabadna kiszivárogtatni, és biztosítani kell, hogy minden érzékeny adat titkosítva vagy megfelelően elrejtve legyen a válaszokban.
+
+\subsubsection{Anti-MIME-Sniffing és X-Content-Type-Options}
+
+A \texttt{X-Content-Type-Options} fejléc beállítása elengedhetetlen a MIME típusok szaglásának megakadályozására. A MIME szaglás lehetővé teszi a böngészők számára, hogy egy nem várt tartalom típust próbáljanak kitalálni, ha nem találják meg a \texttt{Content-Type} fejlécet, amely segíthet sérülékenységeket kihasználó támadásokban, mint például a XSS támadások.
+
+A következő konfigurációt alkalmaztam a webalkalmazásban a MIME típusok pontos meghatározására:
+
+\begin{quote}
+X-Content-Type-Options: nosniff
+\end{quote}
+
+Ez biztosítja, hogy a böngészők ne végezzenek MIME-szaglást, és ne próbáljanak kitalálni más tartalom típust, ami növeli a webalkalmazás biztonságát.
+
+\subsubsection{robots.txt}
+
+A \texttt{robots.txt} fájlban is megtettem a szükséges intézkedéseket a biztonság érdekében, biztosítva, hogy a webalkalmazás ne adjon ki érzékeny információkat a keresőrobotoknak. A következő beállításokat alkalmaztam:
+
+\begin{quote}
+User-agent: *
+Disallow: /admin/
+Disallow: /config/
+\end{quote}
+
+Ez a konfiguráció biztosítja, hogy a keresőrobotok ne indexeljék a bizalmas oldalak és fájlok tartalmát, amelyek a felhasználók adatainak védelmét szolgálják.
+
 
 \section{Tesztelés végeredménye}
 A tesztelési eredmények alapján a rendszer minden funkciója megfelelően működik, a teljesítménye kielégítő, és a biztonsági mechanizmusok jól védik az API-t a lehetséges támadások ellen. A további tesztelések célja az API skálázhatóságának javítása, valamint az integrációs lehetőségek vizsgálata más külső rendszerekkel.

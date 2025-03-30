@@ -310,8 +310,8 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ectt1200.tfm
-INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 OUTPUT Bus4U - SERVER.lof
+INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8t.tfm
 INPUT ./chapters/introduction.tex
@@ -433,11 +433,6 @@ INPUT ./figures/postman_request_get_stations_by_city.png
 INPUT ./figures/postman_request_get_stations_by_city.png
 INPUT ./figures/postman_request_get_stations_by_city.png
 INPUT ./figures/postman_request_get_stations_by_city.png
-INPUT ./figures/postman_request_get_departure_times.png
-INPUT ./figures/postman_request_get_departure_times.png
-INPUT ./figures/postman_request_get_departure_times.png
-INPUT ./figures/postman_request_get_departure_times.png
-INPUT ./figures/postman_request_get_departure_times.png
 INPUT ./figures/postman_request_get_available_tickets.png
 INPUT ./figures/postman_request_get_available_tickets.png
 INPUT ./figures/postman_request_get_available_tickets.png
@@ -448,11 +443,6 @@ INPUT ./figures/postman_request_get_bus_locations.png
 INPUT ./figures/postman_request_get_bus_locations.png
 INPUT ./figures/postman_request_get_bus_locations.png
 INPUT ./figures/postman_request_get_bus_locations.png
-INPUT ./figures/postman_request_document_validity_checker.png
-INPUT ./figures/postman_request_document_validity_checker.png
-INPUT ./figures/postman_request_document_validity_checker.png
-INPUT ./figures/postman_request_document_validity_checker.png
-INPUT ./figures/postman_request_document_validity_checker.png
 INPUT ./figures/postman_request_get_tickets_of_user.png
 INPUT ./figures/postman_request_get_tickets_of_user.png
 INPUT ./figures/postman_request_get_tickets_of_user.png
@@ -463,6 +453,11 @@ INPUT ./figures/postman_request_add_station_to_route.png
 INPUT ./figures/postman_request_add_station_to_route.png
 INPUT ./figures/postman_request_add_station_to_route.png
 INPUT ./figures/postman_request_add_station_to_route.png
+INPUT ./figures/zap.png
+INPUT ./figures/zap.png
+INPUT ./figures/zap.png
+INPUT ./figures/zap.png
+INPUT ./figures/zap.png
 INPUT ./chapters/summary.tex
 INPUT ./chapters/summary.tex
 INPUT ./chapters/summary.tex

@@ -28,15 +28,6 @@ Fontosabb végpontok, amelyeket teszteltem:
         \label{fig:postman_get_stations_by_city}
     \end{figure}
 
-    \item \textbf{GET /v1/get\_departure\_times\_for\_station\_in\_route} – Ezen végpont segítségével lekérhetjük egy adott járat indulási időpontjait egy specifikus állomásról. A kérés tartalmazza az állomás és a járat azonosítóját, és a válasz a járat indulási időpontjait adja vissza.
-    
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_departure_times.png}
-        \caption{A \texttt{GET /v1/get\_departure\_times\_for\_station\_in\_route} végpont kérésének paraméterei és válasza}
-        \label{fig:postman_get_departure_times}
-    \end{figure}
-
     \item \textbf{GET /v1/get\_available\_tickets} – Ez a végpont lehetővé teszi az elérhető jegyek lekérdezését egy adott kiindulási és célállomás között. A kérés paraméterei a kiindulási és célállomás, valamint egy opcionális időpont. A megállók is opcionálisak, a csak a város megadása esetén minden megállóhoz láthatjuk a jegyeket. A válasz tartalmazza az elérhető jegyek listáját, és ezek árai, valamint egyéb információkat.
     \begin{figure}[h!]
         \centering
@@ -56,17 +47,9 @@ Fontosabb végpontok, amelyeket teszteltem:
     \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérésére szolgáló végpont. A kérés nem tartalmaz paramétereket, mivel az aktuális felhasználó jegyeit kérdezi le. A válaszban szereplő jegyek információi tartalmazzák a jegyek típusát, érvényességüket és egyéb fontos adatokat.
     \begin{figure}[h!]
         \centering
-        \includegraphics[width=0.8\textwidth]{figures/postman_request_document_validity_checker.png}
+        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
         \caption{A \texttt{GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}
         \label{fig:postman_get_tickets_of_user}
-    \end{figure}
-
-    \item \textbf{GET /v1/admin/document\_validity\_checker} – Ezen végpont segítségével az adminisztrátorok ellenőrizhetik egy dokumentum érvényességét. A kérés tartalmazza az adott cég azonosítóját, és a válasz egy érvényességi időpontot ad vissza különböző dokumentumokról.
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
-        \caption{A \texttt{GET /v1/admin/document\_validity\_checker} végpont kérésének paraméterei és válasza}
-        \label{fig:postman_document_validity_checker}
     \end{figure}
 
     \item \textbf{POST /v1/admin/add\_station\_to\_route} – Ez az adminisztrátorok számára elérhető végpont lehetővé teszi egy állomás hozzárendelését egy adott útvonalhoz. A kérés tartalmazza az útvonal és az állomás azonosítóját, és a válasz megerősíti a sikeres műveletet.
@@ -108,14 +91,6 @@ Ez a teszt ellenőrzi, hogy a \texttt{GET /v1/get\_stations\_by\_city} végpont 
 
 \section{Biztonsági tesztelés}
 
-A biztonsági tesztelés során különös figyelmet fordítottam a következő sebezhetőségek elkerülésére:
-
-\begin{itemize}
-    \item \textbf{SQL injection} – Input validálás és előkészített SQL lekérdezések használata.
-    \item \textbf{Cross-site scripting (XSS)} – HTML entitások kódolása a felhasználói bemeneteknél.
-    \item \textbf{Cross-site request forgery (CSRF)} – CSRF tokenek használata minden kényes műveletnél.
-\end{itemize}
-
 A biztonsági teszteléshez az \textbf{OWASP ZAP} (Zed Attack Proxy) eszközt használtam, amely egy nyílt forráskódú, automatizált webalkalmazás biztonsági tesztelő eszköz. A ZAP segítségével alaposan átvizsgáltam az API-t és annak különböző végpontjait a fent említett sebezhetőségek szempontjából.
 
 \subsection{SQL Injection}
@@ -131,6 +106,13 @@ A cross-site scripting (XSS) támadások megelőzése érdekében minden felhasz
 A CSRF támadások megelőzése érdekében minden olyan műveletnél, amely adatváltozást hajt végre (pl. adatbázisba történő írás), kötelezővé tettem a CSRF tokenek használatát. A ZAP segített feltérképezni, hogy minden ilyen művelet megfelelő védelmet élvez-e, és biztosítottam, hogy minden kényes API végpontnál a felhasználónak érvényes CSRF tokennel kell rendelkeznie a kérés küldése előtt. Az eszköz a tesztelés során jelezte, hogy minden védett művelet megfelelő CSRF mechanizmusokat használ, és nem voltak felfedezhetőek gyenge pontok ezen a téren.
 
 \subsection{Felfedezett sebezhetőségek}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/zap.png}
+    \caption{A ZAP által felfedezett sebezhetőségek listája}
+    \label{fig:zap}
+\end{figure}
 
 \subsubsection{Format String Error}
 
@@ -175,8 +157,3 @@ Disallow: /config/
 \end{quote}
 
 Ez a konfiguráció biztosítja, hogy a keresőrobotok ne indexeljék a bizalmas oldalak és fájlok tartalmát, amelyek a felhasználók adatainak védelmét szolgálják.
-
-
-\section{Tesztelés végeredménye}
-A tesztelési eredmények alapján a rendszer minden funkciója megfelelően működik, a teljesítménye kielégítő, és a biztonsági mechanizmusok jól védik az API-t a lehetséges támadások ellen. A további tesztelések célja az API skálázhatóságának javítása, valamint az integrációs lehetőségek vizsgálata más külső rendszerekkel.
-

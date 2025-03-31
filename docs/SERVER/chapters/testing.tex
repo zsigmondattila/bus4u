@@ -5,7 +5,7 @@ A tesztelést egy helyi fejlesztési környezetben végeztem. A szerver a követ
     \item \textbf{Operációs rendszer:} Ubuntu 22.04 LTS
     \item \textbf{Szerver:} Ruby on Rails 7.0.4
     \item \textbf{Adatbázis:} PostgreSQL 14
-    \item \textbf{Tesztelő eszköz:} RSpec, Postman v10.0
+    \item \textbf{Tesztelő eszközök:} RSpec, Postman v10.0, ZAProxy v2.16
 \end{itemize}
 
 
@@ -63,7 +63,7 @@ Fontosabb végpontok, amelyeket teszteltem:
 
 A Postman segítségével végzett tesztelés eredményeként az összes API végpont sikeresen válaszolt a kérésekre, és az adatstruktúrák megfeleltek az elvárt formátumnak.
 
-\subsection{RSpec Tesztelés}
+\subsection{Unit tesztek}
 
 Az RSpec segítségével végzett unit tesztelés során az alkalmazás különböző komponenseit, mint például a modelleket, illetve kontrollereket teszteltem. Az alábbiakban bemutatok egy példát az RSpec tesztre, amely a \texttt{GET /v1/get\_stations\_by\_city} végpontot teszteli:
 
@@ -100,10 +100,6 @@ Az SQL injection sebezhetőségek elleni védelem érdekében minden felhasznál
 \subsection{XSS (Cross-Site Scripting) Tesztelés}
 
 A cross-site scripting (XSS) támadások megelőzése érdekében minden felhasználói bemenetet úgy kezeltem, hogy ne engedje a HTML vagy JavaScript kódok végrehajtását. A ZAP XSS szkenner funkciója során észleltem, hogy a rendszer megfelelően kódolja az összes HTML entitást, és semmilyen felhasználói bemenetet nem engedett közvetlenül a HTML válaszba. A ZAP által futtatott támadások eredményeként biztosítottam, hogy az API nem engedélyezi a szkriptek vagy más veszélyes elemek beágyazását az oldalakba.
-
-\subsection{CSRF (Cross-Site Request Forgery) Tesztelés}
-
-A CSRF támadások megelőzése érdekében minden olyan műveletnél, amely adatváltozást hajt végre (pl. adatbázisba történő írás), kötelezővé tettem a CSRF tokenek használatát. A ZAP segített feltérképezni, hogy minden ilyen művelet megfelelő védelmet élvez-e, és biztosítottam, hogy minden kényes API végpontnál a felhasználónak érvényes CSRF tokennel kell rendelkeznie a kérés küldése előtt. Az eszköz a tesztelés során jelezte, hogy minden védett művelet megfelelő CSRF mechanizmusokat használ, és nem voltak felfedezhetőek gyenge pontok ezen a téren.
 
 \subsection{Felfedezett sebezhetőségek}
 

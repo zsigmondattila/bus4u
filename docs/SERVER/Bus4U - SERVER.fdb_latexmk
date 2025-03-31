@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - SERVER"] 1743331887.79749 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1743331893.24432 0
+["bibtex Bus4U - SERVER"] 1743420918.99443 "Bus4U - SERVER.aux" "Bus4U - SERVER.bbl" "Bus4U - SERVER" 1743420920.74445 0
   "./references.bib" 1743331294.82399 2499 8630b7d47dac318531a2b92f6d3c1240 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - SERVER.aux" 1743331893.02934 19326 902caceaa2f7eddf12cbffc3c9581240 "pdflatex"
+  "Bus4U - SERVER.aux" 1743420920.51548 19141 2485a9408b8b608701503735aa92f99e "pdflatex"
   (generated)
   "Bus4U - SERVER.bbl"
   "Bus4U - SERVER.blg"
   (rewritten before read)
-["pdflatex"] 1743331891.60545 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1743331893.24453 0
+["pdflatex"] 1743420919.07116 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" "Bus4U - SERVER.pdf" "Bus4U - SERVER" 1743420920.74469 0
   "/etc/texmf/web2c/texmf.cnf" 1741013916.20445 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/SERVER/Bus4U - SERVER.tex" 1743331294.79999 2599 cc91b820f3de20037629a475dfb7a685 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -125,12 +125,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1741017730.00927 5352258 625d145f3708f99ff2144a56c0e20fa1 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1741014211 7453362 f08e4cc00325dd43ff9ca42e4c052dff ""
-  "Bus4U - SERVER.aux" 1743331893.02934 19326 902caceaa2f7eddf12cbffc3c9581240 "pdflatex"
-  "Bus4U - SERVER.bbl" 1743331887.85933 1711 1953c90dbbdb2a40afef245f142f96c1 "bibtex Bus4U - SERVER"
-  "Bus4U - SERVER.lof" 1743331893.03134 3407 df60488134f3e67f9620c9bd71be8304 "pdflatex"
-  "Bus4U - SERVER.out" 1743331893.03134 11791 50715f21372f6772b18551f2cad112ef "pdflatex"
+  "Bus4U - SERVER.aux" 1743420920.51548 19141 2485a9408b8b608701503735aa92f99e "pdflatex"
+  "Bus4U - SERVER.bbl" 1743420919.06547 1711 1953c90dbbdb2a40afef245f142f96c1 "bibtex Bus4U - SERVER"
+  "Bus4U - SERVER.lof" 1743420920.51748 3407 5b39b278627103af1ac29586eb66db46 "pdflatex"
+  "Bus4U - SERVER.out" 1743420920.51748 11475 a0d2dbf0927f7e1551e913a25658392d "pdflatex"
   "Bus4U - SERVER.tex" 1743331294.79999 2599 cc91b820f3de20037629a475dfb7a685 ""
-  "Bus4U - SERVER.toc" 1743331893.03134 8214 155fea3fba659dbf813131bf58adf637 "pdflatex"
+  "Bus4U - SERVER.toc" 1743420920.51748 8069 4d65864fe2e689219d23fec465914ade "pdflatex"
   "chapters/abstract_en.tex" 1743331294.79999 2233 bcdf3790a2dc976d14e2603e3ebd6eff ""
   "chapters/abstract_hu.tex" 1743331294.79999 2565 efe2d5372f321b7ab0cb2a16e969e997 ""
   "chapters/abstract_ro.tex" 1743331294.79999 2514 00b7db7bd513b166537af07cefae3b08 ""
@@ -142,7 +142,7 @@
   "chapters/operation.tex" 1743331294.80099 8458 46a2a5840f19db9d8f541955c589321a ""
   "chapters/requirements.tex" 1743331294.80199 6057 848c3b7ea0a1ac309221c06a7f85a1f2 ""
   "chapters/summary.tex" 1743331294.80199 2576 d7b5c36b492816f8e1015639e15097f5 ""
-  "chapters/testing.tex" 1743331891.37234 11719 a80971458e938220f49b0d3e17e40cdc ""
+  "chapters/testing.tex" 1743420917.08546 11070 a17a3791273740d332e03b18fd308ff2 ""
   "chapters/theory.tex" 1743331294.80299 9804 168722f25ddc5ff6da47ede4a59d24db ""
   "figures/activity.png" 1743331294.80399 152900 e582335bb475c5a54f0af89d52c76713 ""
   "figures/architecture.jpeg" 1743331294.80999 45865 49549e6602926be15e44551a29fda144 ""

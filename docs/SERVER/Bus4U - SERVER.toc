@@ -57,15 +57,14 @@
 \select@language {magyar} \contentsline {section}{\numberline {8.1}Tesztelési környezet}{49}{section.8.1}%
 \select@language {magyar} \contentsline {section}{\numberline {8.2}Funkcionális tesztelés}{49}{section.8.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}API végpontok tesztelése}{50}{subsection.8.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}RSpec Tesztelés}{52}{subsection.8.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Unit tesztek}{52}{subsection.8.2.2}%
 \select@language {magyar} \contentsline {section}{\numberline {8.3}Biztonsági tesztelés}{53}{section.8.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}SQL Injection}{53}{subsection.8.3.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {8.3.2}XSS (Cross-Site Scripting) Tesztelés}{54}{subsection.8.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.3.3}CSRF (Cross-Site Request Forgery) Tesztelés}{54}{subsection.8.3.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.3.4}Felfedezett sebezhetőségek}{54}{subsection.8.3.4}%
-\select@language {magyar} \contentsline {subsubsection}{Format String Error}{54}{section*.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.3}Felfedezett sebezhetőségek}{54}{subsection.8.3.3}%
+\select@language {magyar} \contentsline {subsubsection}{Format String Error}{55}{section*.3}%
 \select@language {magyar} \contentsline {subsubsection}{Timestamp Disclosure}{55}{section*.4}%
-\select@language {magyar} \contentsline {subsubsection}{Anti-MIME-Sniffing és X-Content-Type-Options}{56}{section*.5}%
+\select@language {magyar} \contentsline {subsubsection}{Anti-MIME-Sniffing és X-Content-Type-Options}{55}{section*.5}%
 \select@language {magyar} \contentsline {subsubsection}{robots.txt}{56}{section*.6}%
 \select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{57}{chapter.9}%
 \select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{58}{chapter.9}%

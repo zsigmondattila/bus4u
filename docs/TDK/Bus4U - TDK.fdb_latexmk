@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - TDK"] 1743442207.75501 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743444118.95241 0
+["bibtex Bus4U - TDK"] 1743447518.28708 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743447686.35008 0
   "./refs.bib" 1743432347.16797 3337 10189e0e9dbac3789279aa9aa24f365b ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - TDK.aux" 1743444118.76073 15530 5ba91023e6eb70162768e1cbc286ecac "pdflatex"
+  "Bus4U - TDK.aux" 1743447686.16583 15507 d2fff6b62214df853be03a9f788c9269 "pdflatex"
   (generated)
   "Bus4U - TDK.bbl"
   "Bus4U - TDK.blg"
   (rewritten before read)
-["pdflatex"] 1743444113.28112 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743444118.95291 0
+["pdflatex"] 1743447680.83967 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743447686.35059 0
   "/etc/texmf/web2c/texmf.cnf" 1738748722.81132 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk" 1738762494.21947 15172 61b361a60646f081322fa674979f5b00 ""
   "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" 1743430996.49444 1505 35edb3c833bc2b86b4abad93dafe0003 ""
@@ -125,17 +125,17 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1738762392.57089 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738762406 7424887 465b4ef3abe1429f7a973e70b4d2d29f ""
-  "Bus4U - TDK.aux" 1743444118.76073 15530 5ba91023e6eb70162768e1cbc286ecac "pdflatex"
-  "Bus4U - TDK.bbl" 1743442207.78055 2308 179745471bfed3b99bc6ed4f6b8cabe6 "bibtex Bus4U - TDK"
-  "Bus4U - TDK.out" 1743444118.76339 5711 faa4da9179d3289180757711fcbd648d "pdflatex"
+  "Bus4U - TDK.aux" 1743447686.16583 15507 d2fff6b62214df853be03a9f788c9269 "pdflatex"
+  "Bus4U - TDK.bbl" 1743447518.3166 2308 e9fa3a3f2149760af9e83d93e008d5b3 "bibtex Bus4U - TDK"
+  "Bus4U - TDK.out" 1743447686.16922 5711 faa4da9179d3289180757711fcbd648d "pdflatex"
   "Bus4U - TDK.tex" 1743430996.49444 1505 35edb3c833bc2b86b4abad93dafe0003 ""
-  "Bus4U - TDK.toc" 1743444118.76445 4624 1d254c0844aa390eeec4a14248d88167 "pdflatex"
+  "Bus4U - TDK.toc" 1743447686.17051 4624 1d254c0844aa390eeec4a14248d88167 "pdflatex"
   "chapters/abstract.tex" 1743430946.33243 2616 ea9fe9bcb59ac14187deac2d1af5f7f7 ""
   "chapters/architecture.tex" 1743439826.39523 15255 5c1bbd129daaf9120a0a1b1755c4bfd9 ""
   "chapters/goals.tex" 1743440100.65406 2399 63aca9ea212d9a9039cf592e93eae037 ""
   "chapters/implementation.tex" 1743444109.55245 12737 016e5a08f1658cd64fe7fc25ff407223 ""
-  "chapters/introduction.tex" 1743430080.34177 4932 6fb9d72e02f5c198da3c76d93803e06f ""
-  "chapters/summary.tex" 1743430080.34236 4121 8c3ae36c797c56473fc97d0d3a0ccc71 ""
+  "chapters/introduction.tex" 1743447600.64655 4097 b8a60aba072ce10c0f77122ea9f050e5 ""
+  "chapters/summary.tex" 1743447680.49013 4115 796add535d009a01023b21207ffa686c ""
   "chapters/system-requirements.tex" 1743432100.60477 13002 c4e9e926e3dfb3caf2849bfe2e2c10c7 ""
   "chapters/theoretical-foundation.tex" 1743430080.34636 12054 287e526c0d89dbd3cde44bb05a44c942 ""
   "chapters/ui-design.tex" 1743432061.98504 2183 cb2755836c3a73d0a6ff686e436d8105 ""

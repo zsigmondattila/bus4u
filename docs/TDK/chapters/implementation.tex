@@ -1,17 +1,10 @@
+% Leroviditve
 \section{Felhasználói weboldal és alkalmazás}
-
-A felhasználói felület működése megegyezik a weboldalon és a mobilalkalmazásban is, azonban a megjelenésük kicsit eltér egymástól, mivel a weboldal a böngészőben fut, míg az alkalmazás a mobil eszközön. Ettől függetlenül a weboldal is tökéletesen használható az okostelefonokon, mivel reszponzívra terveztem és alkalmazkodik bármilyen kijelzőmérethez, így aki nem szeretne alkalmazást telepíteni, az is könnyen hozzáférhet a Bus4U-hoz böngészőből. A felületek létrehozásakor törekedtem a hasonlóságra, így a navigációs menü, a UI komponensek és a színpaletta is megegyezik, így a felhasználó könnyen átláthatja és használhatja mindkét platformot.
+A felhasználói felület működése megegyezik a weboldalon és a mobilalkalmazásban is, azonban a megjelenésük kicsit eltér egymástól, mivel a weboldal a böngészőben fut, míg az alkalmazás a mobil eszközön. Ettől függetlenül a weboldal is tökéletesen használható az okostelefonokon, mivel alkalmazkodik bármilyen kijelzőmérethez, így aki nem szeretne alkalmazást telepíteni, az is könnyen hozzáférhet a Bus4U-hoz böngészőből. A felületek törekednek a hasonlóságra, így a navigációs menü, a UI komponensek és a színpaletta is megegyezik, ezáltal a felhasználók könnyen átláthatják és használhatják mindkét platformot.
 
 \subsection{Főoldal}
 
-A weboldalra rákeresve a kezdőoldal fogad, ahol lehetőség van egy utazás megtervezésére. Ehhez ki kell választani a kiindulási helyet és megállót, majd a cél helyét és a megállóját, végül pedig az utazás dátumát és időpontját. Ekkor a rendszer lekéri a szerverről a megadott megállók közötti, az adott napon és a megadott időpont után közlekedő járatokat, valamint azok jegyárát. Minden egyes megjelenő járatnál ki lehet választani a jegyek számát, amely alapértelmezetten egy jegyre van beállítva. Ezt követően a felhasználó, a vásárlás gombra kattintva megszerezheti a jegyet vagy jegyeit az adott buszjáratra, amennyiben be van jelentkezve, ellenkező esetben a rendszer átirányítja a bejelentkezéshez.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.92\textwidth]{figures/ticket_bought.png}
-  \caption{Jegyvásárlás a weboldalon}
-  \label{fig:web-home}
-\end{figure}
+A weboldalra rákeresve a kezdőoldal fogad, ahol lehetőség van egy utazás megtervezésére. Ehhez ki kell választani a kiindulási helyet és megállót, majd a cél helyét és a megállóját, végül pedig az utazás dátumát és időpontját. Ekkor a rendszer lekéri a szerverről a megadott megállók közötti, az adott napon és a megadott időpont után közlekedő járatokat, valamint azok jegyárát. Minden egyes megjelenő járatnál ki lehet választani a jegyek számát, amely alapértelmezetten egy jegyre van beállítva. Ezt követően a felhasználó, a vásárlás gombra kattintva megszerezheti a jegy(ei)t az adott buszjáratra, amennyiben be van jelentkezve, ellenkező esetben a rendszer átirányítja a bejelentkezéshez.
 
 \begin{figure}[H]
   \centering
@@ -22,8 +15,7 @@ A weboldalra rákeresve a kezdőoldal fogad, ahol lehetőség van egy utazás me
   \label{fig:mobile-home}
 \end{figure}
 
-\newpage
-A jegyvásárlás folyamata a \ref{fig:web-home} és \ref{fig:mobile-home} ábrákon látható. A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
+A jegyvásárlás folyamata a \ref{fig:mobile-home} ábrán látható. A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamatot szemlélteti a \ref{fig:activity-diagram} ábrán lévő aktivitás diagram. Ahogy ott látható, miután a felhasználó megtalálta a megfelelő buszjáratot és rálépett a jegy megvásárlására, a rendszer átirányítja őt a bejelentkezéshez. Ha van már fiókja, bejelentkezhet a meglévő adataival, amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol új fiókot hozhat létre. A regisztráció során a rendszer minden adatot ellenőriz és ha valamelyik hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy ennek megfelelő hibaüzenetet ír ki. Ez addig ismétlődik, amíg minden adat megfelelő lesz, aztán a szerver küld egy 4 számjegyből álló ellenőrző kódot a megadott e-mail címre, amelyet a felhasználó be kell írjon az alkalmazásban megjelenő szövegmezőbe. Ha ez a kód helytelen, akkor a folyamat kezdődik elölről. Amennyiben a regisztráció sikeres és az ellenőrzőkód helyes, akkor a rendszer átirányítja a felhasználót a bankkártyás fizetéses oldalra, ami jelenleg nincs implementálva, ez a jövőbeli tervek között szerepel. Végül a backend generál egy egyedi kódot a megvásárolt jegyhez és megjelenik a kijelzőn a sikeres vásárlás visszaigazolása.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/jegyvasarlas.jpg}
@@ -31,21 +23,11 @@ A jegyvásárlás folyamata a \ref{fig:web-home} és \ref{fig:mobile-home} ábr�
   \label{fig:activity-diagram}
 \end{figure}
 
-Ahogy az ábrán is látható, miután a felhasználó megtalálta a megfelelő
-buszjáratot és rákattintott a jegy megvásárlására, a rendszer átirányítja őt a
-bejelentkezéshez, itt, ha van már fiókja, bejelentkezhet a meglévő adataival,
-amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol meg kell adnia a nevét,
-email címét, és egy új jelszót. A rendszer minden adatot ellenőriz és ha valamelyik
-hibás (pl. érvénytelen email cím vagy túl rövid jelszó) akkor egy ennek megfelelő hibaüzenetet ír ki. Ez addig ismétlődik, amíg minden adat megfelelő lesz, aztán a szerver automatikusan küld egy 4 számjegyből álló ellenőrző kódot a megadott e-mail címre, amelyet a felhasználó be kell írjon az alkalmazásban megjelenő szövegmezőbe. Ha ez a kód helytelen, akkor a folyamat kezdődik elölről, a felhasználónak új adatokat kell megadnia. Ha regisztráció sikeres és az ellenőrzőkód helyes, akkor a rendszer átirányítja a felhasználót a bankkártyás fizetéses oldalra, ami jelenleg nincs implementálva, ez a jövőbeli tervek között szerepel. Ezután már csak az maradt, hogy a backend generál egy egyedi kódot a megvásárolt jegyhez és megjelenik a kijelzőn a sikeres vásárlás visszaigazolása. Az itt megvásárolt jegye(ke)t a felhasználó a Jegyek nevű oldalon találja meg szöveges és QR-kódos formátumokban.
-
 \subsection{Jegyek}
 
-A megvásárolt jegyeket a rendszer elmenti a felhasználó gyűjteményébe, amely a Jegyek oldalon
-található, így ezek bármikor visszakereshetőek és felhasználhatóak lesznek, kivéve ha lejár az egy hónapos érvényesség. A jegyen megjelenített adatok között van a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség dátumai. A már elhasznált jegyek megvannak jelölve és el van rejtve a rajtuk lévő QR-kód így azokat nem lehet többször felhasználni. A jegyek a létrehozási idejük szerinti csökkenő sorrendben vannak listázva, így a legfrissebb jegyek mindig az elején vannak.
+A megvásárolt jegyeket a rendszer elmenti a felhasználó gyűjteményébe, amely a Jegyek oldalon található, így ezek bármikor visszakereshetőek és felhasználhatóak lesznek, kivéve ha lejár az egy hónapos érvényesség. A jegyen megjelenített adatok között van a járat neve, a kiinduló- és célállomás, az ár, valamint a vásárlás és az érvényesség dátumai. A már elhasznált jegyek megvannak jelölve és el van rejtve a rajtuk lévő QR-kód így azokat nem lehet többször felhasználni. A jegyek a létrehozási idejük szerinti csökkenő sorrendben vannak listázva, így a legfrissebb jegyek mindig az elején vannak. A webfelületen listázott jegyek a \ref{fig:tickets} ábrán láthatóak.
 
 A itt megjelenő jegyeket úgy lehet felhasználni, hogy a buszra való felszálláskor a sofőr mellett elhelyezett POS terminálra kell mutatni az aktuális jegy QR-kódját, az pedig beolvassa és elküldi a szervernek ellenőrzésre. Ha a kód érvényes és minden rendben van, akkor a felhasználó felszállhat a buszra, a jegy pedig érvénytelenítődik.
-
-A webfelületen listázott jegyek a \ref{fig:tickets} ábrán láthatóak.
 
 \begin{figure}[H]
   \frame{\includegraphics[width=\textwidth]{figures/tickets.png}}
@@ -56,11 +38,12 @@ A webfelületen listázott jegyek a \ref{fig:tickets} ábrán láthatóak.
 \subsection{Menetrend}
 A következő oldal a Menetrend, amely hasonlóan az egyes buszmegállókban kihelyezett
 táblázatokhoz, megjeleníti a kiválasztott buszjárat indulási időpontjait, az adott
-megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett egy interaktív térképet is, ahol a felhasználó meg tudja tekinteni a kiválasztott járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok élő helyzeteit is, a saját pozíciója mellett. Egy példa a menetrendre és a térképen megjelenő útvonalra a \ref{fig:schedule} ábrán látható.
+megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz egy interaktív térképet is, ahol a felhasználó meg tudja nézni a kiválasztott járat útvonalát, az érintett megállókat és az útvonalon közlekedő buszok élő helyzeteit is. Egy példa a menetrendre és a térképen megjelenő útvonalra a \ref{fig:schedule} ábrán látható.
 
 \begin{figure}[H]
-  \frame{\includegraphics[width=\textwidth]{figures/schedule.png}}
-  \caption{Listázott menetrend és az útvonal térképe}
+  \centering
+  \frame{\includegraphics[width=0.9\textwidth]{figures/schedule.png}}
+  \caption{Listázott menetrend és az útvonal térképe a webfelületen}
   \label{fig:schedule}
 \end{figure}
 
@@ -69,8 +52,7 @@ megállóból, napokra lebontva. A mi megoldásunk viszont tartalmaz emellett eg
 \subsection{Megállók és élő térkép}
 
 Ez a két oldal az előbb említett térképes funkciókat mutatják meg külön-külön,
-egyszerűbben. A Megállók oldal megjeleníti a térképen az összes megállót, és ezek között
-szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót. A térképen megjelenő megállókról példa a \ref{fig:stations-mobile} ábrán látható.
+egyszerűbben. A Megállók oldal megjeleníti a térképen az összes megállót, és ezek között szűrést is biztosít város vagy buszjárat szerint. Az egyes megállókra kattintva, a térképen megjelenik egy kis buborék a kiválasztott megálló adataival, mint a név és a cím, így könnyebb megtalálni a keresett megállót. A térképen megjelenő megállókról példa a \ref{fig:stations-mobile} ábrán látható.
 
 Az élő térkép oldalon pedig egy-egy útvonalon közlekedő buszok élő pozícióját lehet követni, miután kiválasztottuk a várost és az útvonalat. Ezeket az adatokat a buszokon lévő POS terminálok szolgáltatják, így biztosak lehetünk abban, hogy a buszok helyzetei valós időben jelennek meg. Ez a funkció abban segít, hogy ne maradjunk le, ha egy busz siet, illetve ne várakozzunk feleslegesen a megállóban, ha egy busz késik, így időt lehet vele spórolni.
 
@@ -98,7 +80,7 @@ Sikeres bejelentkezés után a kezdőoldal jelenik meg, amelyen látható egy ki
 \end{figure}
 
 \subsection{Megállók}
-A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataival, mint a név, a hely és a földrajzi koordináták. Egy megállóra rákattintva ennek pontos helyzete megjelenik a lista mellett található interaktív térképen. A lista elemein található egy törlés gomb is amellyel megszüntethetjük az adott megállót. A lista alatt létre lehet hozni új megállókat is, ehhez csak meg kell adni a megálló nevét, a várost, a címet és a koordinátákat. A rendszer képes automatikusan is kitölteni a néven kívül az összes adatot, ha a felhasználó a megálló helyére kattint a térképen, ahogy ez \ref*{fig:stations} ábrán is látszik.
+Ezen az oldalon egy lista fogad a létező megállókkal és ezok adataival, mint a név, a hely és a földrajzi koordináták. Egy megállóra kattintva, megjelenik annak pontos helyzete a térképen. A lista elemei törölhetőek, de az oldal alján létre lehet hozni új megállókat is. Ehhez csak meg kell adni a megálló nevét, a címet és a koordinátákat. A rendszer képes automatikusan is kitölteni majdnem az összes adatot, ha a felhasználó kijelöl egy helyet a térképen, ahogy ez \ref*{fig:stations} ábrán is látszik.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/stations.png}
@@ -107,7 +89,7 @@ A Megállók oldalon egy lista fogad a meglévő megállókkal és azok adataiva
 \end{figure}
 
 \subsection{Útvonalak}
-Az Útvonalak oldalon lehet szerkeszteni a buszjáratok útvonalait vagy újakat összerakni a létező megállókból és itt lehet megszabni a járatok alap jegyárát is. Először ki kell választani egy lenyíló listából a szerkeszteni kívánt útvonalat vagy a mellette lévő gombbal újat lehet hozzáadni. Ezután megjelenik az útvonal-szerkesztő, ahol meg lehet adni a nevet, az alap jegyárat és egy lenyíló listából egyesével ki lehet választani az előző oldalon létrehozott megállókat. A járatok alap jegyára kezdésből 0.0 értékű, mert ez csak olyan esetekben használatos, ahol nem a megállók közötti távolság alapján számolják a jegyárat, hanem fix áron. Ilyen esetben ez az ár minden jegyre érvényes, indulási és érkezési helytől függetlenül. Alább megjelenik a hozzáadott megállók listája, az oldal legalján pedig el lehet menteni a kiválasztott útvonalat vagy akár ki is lehet törölni, ha már nem használják. Az útvonal-szerkesztő és egy betöltött útvonal a mellékelt \ref{fig:routes} ábrán látható.
+Az Útvonalak oldal a járatok útvonalainak szerkesztésére szolgál. Kezdésnek ki kell választani egy létező járatot, de akár újat is lehet létrehozni. Ezután megjelenik az útvonal-szerkesztő, ahol meg kell adni a nevet, az alap jegyárat és ki kell választani az érintett megállókat. Alább megjelenik az eddig hozzáadott megállók listája, az oldal legalján pedig el lehet menteni a kiválasztott útvonalat vagy akár ki is lehet törölni, ha már nem használják. Az útvonal-szerkesztő, benne egy betöltött útvonallal a mellékelt \ref{fig:routes} ábrán látható.
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/routes-admin.png}

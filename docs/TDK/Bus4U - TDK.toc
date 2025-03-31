@@ -31,13 +31,13 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {8.1.1}Főoldal}{34}{subsection.8.1.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {8.1.2}Jegyek}{37}{subsection.8.1.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {8.1.3}Menetrend}{38}{subsection.8.1.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.1.4}Megállók és élő térkép}{40}{subsection.8.1.4}%
-\select@language {magyar} \contentsline {section}{\numberline {8.2}Adminisztrátori weboldal}{41}{section.8.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}Kezdőoldal}{41}{subsection.8.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Megállók}{42}{subsection.8.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.3}Útvonalak}{42}{subsection.8.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.4}Menetrend}{43}{subsection.8.2.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.5}Buszok és alkalmazottak}{44}{subsection.8.2.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{46}{chapter.9}%
-\select@language {magyar} \contentsline {section}{\numberline {9.1}További fejlesztési lehetőségek}{47}{section.9.1}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{47}{section.9.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.1.4}Megállók és élő térkép}{39}{subsection.8.1.4}%
+\select@language {magyar} \contentsline {section}{\numberline {8.2}Adminisztrátori weboldal}{40}{section.8.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}Kezdőoldal}{40}{subsection.8.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Megállók}{41}{subsection.8.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.3}Útvonalak}{41}{subsection.8.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.4}Menetrend}{42}{subsection.8.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.5}Buszok és alkalmazottak}{43}{subsection.8.2.5}%
+\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{45}{chapter.9}%
+\select@language {magyar} \contentsline {section}{\numberline {9.1}További fejlesztési lehetőségek}{46}{section.9.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{46}{section.9.1}%

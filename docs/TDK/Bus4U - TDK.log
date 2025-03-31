@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  31 MAR 2025 17:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.2.5)  31 MAR 2025 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -724,7 +724,7 @@ Package pdftex.def Info: figures/use-case-admin.png  used on input line 59.
 <figures/architecture.jpg, id=364, 973.78236pt x 542.025pt>
 File: figures/architecture.jpg Graphic file (type jpg)
 <use figures/architecture.jpg>
-Package pdftex.def Info: figures/architecture.jpg  used on input line 4.
+Package pdftex.def Info: figures/architecture.jpg  used on input line 5.
 (pdftex.def)             Requested size: 486.25761pt x 270.66446pt.
  [21
 
@@ -732,167 +732,162 @@ Package pdftex.def Info: figures/architecture.jpg  used on input line 4.
 <figures/jwt.png, id=373, 429.93275pt x 247.04541pt>
 File: figures/jwt.png Graphic file (type png)
 <use figures/jwt.png>
-Package pdftex.def Info: figures/jwt.png  used on input line 16.
+Package pdftex.def Info: figures/jwt.png  used on input line 17.
 (pdftex.def)             Requested size: 340.37885pt x 195.59721pt.
- [22 <./figures/jwt.png>] [23]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 35.
+ [22 <./figures/jwt.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 30.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <8> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 36.
-<figures/response-tickets.png, id=395, 579.66562pt x 228.10219pt>
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 31.
+<figures/response-tickets.png, id=384, 579.66562pt x 228.10219pt>
 File: figures/response-tickets.png Graphic file (type png)
 <use figures/response-tickets.png>
-Package pdftex.def Info: figures/response-tickets.png  used on input line 59.
+Package pdftex.def Info: figures/response-tickets.png  used on input line 54.
 (pdftex.def)             Requested size: 437.62888pt x 172.21086pt.
- [24]
-<figures/secvential-tickets.png, id=421, 727.71875pt x 592.2125pt>
+ [23]
+<figures/secvential-tickets.png, id=410, 727.71875pt x 592.2125pt>
 File: figures/secvential-tickets.png Graphic file (type png)
 <use figures/secvential-tickets.png>
-Package pdftex.def Info: figures/secvential-tickets.png  used on input line 66.
+Package pdftex.def Info: figures/secvential-tickets.png  used on input line 61.
 (pdftex.def)             Requested size: 437.62888pt x 356.15254pt.
- [25 <./figures/response-tickets.png> <./figures/secvential-tickets.png (PNG copy)>]
-<figures/response-registration.png, id=428, 559.33969pt x 218.31563pt>
+ [24 <./figures/response-tickets.png> <./figures/secvential-tickets.png (PNG copy)>]
+<figures/response-registration.png, id=416, 559.33969pt x 218.31563pt>
 File: figures/response-registration.png Graphic file (type png)
 <use figures/response-registration.png>
-Package pdftex.def Info: figures/response-registration.png  used on input line 90.
+Package pdftex.def Info: figures/response-registration.png  used on input line 85.
 (pdftex.def)             Requested size: 486.25761pt x 189.79646pt.
- [26 <./figures/response-registration.png>]
-<figures/secvential-registration.png, id=451, 765.86125pt x 855.195pt>
+ [25 <./figures/response-registration.png>]
+<figures/secvential-registration.png, id=440, 765.86125pt x 855.195pt>
 File: figures/secvential-registration.png Graphic file (type png)
 <use figures/secvential-registration.png>
-Package pdftex.def Info: figures/secvential-registration.png  used on input line 99.
+Package pdftex.def Info: figures/secvential-registration.png  used on input line 94.
 (pdftex.def)             Requested size: 486.25761pt x 542.97755pt.
- [27 <./figures/secvential-registration.png (PNG copy)>] [28] [29] [30] [31]
-<figures/jira.png, id=502, 1186.5554pt x 641.58061pt>
+ [26 <./figures/secvential-registration.png (PNG copy)>] [27] [28]
+<figures/jira.png, id=474, 1186.5554pt x 641.58061pt>
 File: figures/jira.png Graphic file (type png)
 <use figures/jira.png>
-Package pdftex.def Info: figures/jira.png  used on input line 145.
+Package pdftex.def Info: figures/jira.png  used on input line 130.
 (pdftex.def)             Requested size: 486.25761pt x 262.92249pt.
-<figures/gitkraken.png, id=504, 1365.01807pt x 678.45306pt>
-File: figures/gitkraken.png Graphic file (type png)
-<use figures/gitkraken.png>
-Package pdftex.def Info: figures/gitkraken.png  used on input line 153.
-(pdftex.def)             Requested size: 486.25761pt x 241.68588pt.
- [32 <./figures/jira.png (PNG copy)>]) [33 <./figures/gitkraken.png (PNG copy)>]
+ [29 <./figures/jira.png (PNG copy)>]) [30]
 7. fejezet.
-(./chapters/ui-design.tex [34
+(./chapters/ui-design.tex [31
 
 ]
-<figures/ui-web.png, id=531, 1441.385pt x 5673.195pt>
+<figures/ui-web.png, id=502, 1441.385pt x 5673.195pt>
 File: figures/ui-web.png Graphic file (type png)
 <use figures/ui-web.png>
 Package pdftex.def Info: figures/ui-web.png  used on input line 13.
 (pdftex.def)             Requested size: 143.68507pt x 565.59282pt.
-<figures/ui-admin.png, id=532, 1449.415pt x 6279.46pt>
+<figures/ui-admin.png, id=503, 1449.415pt x 6279.46pt>
 File: figures/ui-admin.png Graphic file (type png)
 <use figures/ui-admin.png>
 Package pdftex.def Info: figures/ui-admin.png  used on input line 19.
 (pdftex.def)             Requested size: 130.53018pt x 565.59282pt.
- [35 <./figures/ui-web.png> <./figures/ui-admin.png>]
-<figures/ui-mobile.png, id=539, 1653.17625pt x 1661.20625pt>
+ [32 <./figures/ui-web.png> <./figures/ui-admin.png>]
+<figures/ui-mobile.png, id=510, 1653.17625pt x 1661.20625pt>
 File: figures/ui-mobile.png Graphic file (type png)
 <use figures/ui-mobile.png>
 Package pdftex.def Info: figures/ui-mobile.png  used on input line 27.
 (pdftex.def)             Requested size: 486.25761pt x 488.60677pt.
-) [36 <./figures/ui-mobile.png>]
+) [33 <./figures/ui-mobile.png>]
 8. fejezet.
 (./chapters/implementation.tex
-<figures/ticket_bought.png, id=545, 1405.57776pt x 671.81602pt>
+<figures/ticket_bought.png, id=517, 1405.57776pt x 671.81602pt>
 File: figures/ticket_bought.png Graphic file (type png)
 <use figures/ticket_bought.png>
 Package pdftex.def Info: figures/ticket_bought.png  used on input line 11.
 (pdftex.def)             Requested size: 447.35611pt x 213.8169pt.
- [37
+ [34
 
 ]
-<figures/mobile-home1.jpg, id=551, 1084.05pt x 2409.0pt>
+<figures/mobile-home1.jpg, id=522, 1084.05pt x 2409.0pt>
 File: figures/mobile-home1.jpg Graphic file (type jpg)
 <use figures/mobile-home1.jpg>
 Package pdftex.def Info: figures/mobile-home1.jpg  used on input line 18.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
-<figures/mobile-home2.jpg, id=552, 1084.05pt x 2409.0pt>
+<figures/mobile-home2.jpg, id=523, 1084.05pt x 2409.0pt>
 File: figures/mobile-home2.jpg Graphic file (type jpg)
 <use figures/mobile-home2.jpg>
 Package pdftex.def Info: figures/mobile-home2.jpg  used on input line 19.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
-<figures/mobile-home3.jpg, id=553, 1084.05pt x 2409.0pt>
+<figures/mobile-home3.jpg, id=524, 1084.05pt x 2409.0pt>
 File: figures/mobile-home3.jpg Graphic file (type jpg)
 <use figures/mobile-home3.jpg>
 Package pdftex.def Info: figures/mobile-home3.jpg  used on input line 20.
 (pdftex.def)             Requested size: 145.87875pt x 324.17174pt.
- [38 <./figures/ticket_bought.png (PNG copy)> <./figures/mobile-home1.jpg> <./figures/mobile-home2.jpg> <./figures/mobile-home3.jpg>]
-<figures/jegyvasarlas.jpg, id=563, 2269.47874pt x 2507.3675pt>
+ [35 <./figures/ticket_bought.png (PNG copy)> <./figures/mobile-home1.jpg> <./figures/mobile-home2.jpg> <./figures/mobile-home3.jpg>]
+<figures/jegyvasarlas.jpg, id=534, 2269.47874pt x 2507.3675pt>
 File: figures/jegyvasarlas.jpg Graphic file (type jpg)
 <use figures/jegyvasarlas.jpg>
 Package pdftex.def Info: figures/jegyvasarlas.jpg  used on input line 29.
 (pdftex.def)             Requested size: 486.25761pt x 537.1988pt.
- [39 <./figures/jegyvasarlas.jpg>]
-<figures/tickets.png, id=572, 1404.8403pt x 671.81602pt>
+ [36 <./figures/jegyvasarlas.jpg>]
+<figures/tickets.png, id=542, 1404.8403pt x 671.81602pt>
 File: figures/tickets.png Graphic file (type png)
 <use figures/tickets.png>
 Package pdftex.def Info: figures/tickets.png  used on input line 51.
 (pdftex.def)             Requested size: 486.25761pt x 232.53535pt.
- [40]
-<figures/schedule.png, id=579, 774.32143pt x 884.93878pt>
+ [37]
+<figures/schedule.png, id=549, 774.32143pt x 884.93878pt>
 File: figures/schedule.png Graphic file (type png)
 <use figures/schedule.png>
 Package pdftex.def Info: figures/schedule.png  used on input line 62.
 (pdftex.def)             Requested size: 486.25761pt x 555.71848pt.
- [41 <./figures/tickets.png (PNG copy)>] [42 <./figures/schedule.png (PNG copy)>]
-<figures/stations-mobile.jpg, id=590, 796.4449pt x 1597.31448pt>
+ [38 <./figures/tickets.png (PNG copy)>] [39 <./figures/schedule.png (PNG copy)>]
+<figures/stations-mobile.jpg, id=562, 796.4449pt x 1597.31448pt>
 File: figures/stations-mobile.jpg Graphic file (type jpg)
 <use figures/stations-mobile.jpg>
 Package pdftex.def Info: figures/stations-mobile.jpg  used on input line 81.
 (pdftex.def)             Requested size: 133.71786pt x 268.17639pt.
- [43 <./figures/stations-mobile.jpg>]
-<figures/statistics.png, id=597, 1415.90204pt x 682.87776pt>
+ [40 <./figures/stations-mobile.jpg>]
+<figures/statistics.png, id=569, 1415.90204pt x 682.87776pt>
 File: figures/statistics.png Graphic file (type png)
 <use figures/statistics.png>
 Package pdftex.def Info: figures/statistics.png  used on input line 95.
 (pdftex.def)             Requested size: 486.25761pt x 234.51984pt.
- [44 <./figures/statistics.png (PNG copy)>]
-<figures/stations.png, id=603, 813.0375pt x 547.2947pt>
+ [41 <./figures/statistics.png (PNG copy)>]
+<figures/stations.png, id=575, 813.0375pt x 547.2947pt>
 File: figures/stations.png Graphic file (type png)
 <use figures/stations.png>
 Package pdftex.def Info: figures/stations.png  used on input line 104.
 (pdftex.def)             Requested size: 486.25761pt x 327.31876pt.
- [45 <./figures/stations.png (PNG copy)>]
-<figures/routes-admin.png, id=611, 1415.90204pt x 796.4449pt>
+ [42 <./figures/stations.png (PNG copy)>]
+<figures/routes-admin.png, id=582, 1415.90204pt x 796.4449pt>
 File: figures/routes-admin.png Graphic file (type png)
 <use figures/routes-admin.png>
 Package pdftex.def Info: figures/routes-admin.png  used on input line 113.
 (pdftex.def)             Requested size: 486.25761pt x 273.52205pt.
- [46 <./figures/routes-admin.png (PNG copy)>]
-<figures/schedules_admin.png, id=618, 1404.8403pt x 663.70409pt>
+ [43 <./figures/routes-admin.png (PNG copy)>]
+<figures/schedules_admin.png, id=589, 1404.8403pt x 663.70409pt>
 File: figures/schedules_admin.png Graphic file (type png)
 <use figures/schedules_admin.png>
 Package pdftex.def Info: figures/schedules_admin.png  used on input line 123.
 (pdftex.def)             Requested size: 486.25761pt x 229.72757pt.
-<figures/employees.png, id=621, 1354.69377pt x 684.35265pt>
+<figures/employees.png, id=592, 1354.69377pt x 684.35265pt>
 File: figures/employees.png Graphic file (type png)
 <use figures/employees.png>
 Package pdftex.def Info: figures/employees.png  used on input line 132.
 (pdftex.def)             Requested size: 486.25761pt x 245.63579pt.
- [47 <./figures/schedules_admin.png (PNG copy)>]
-<figures/edit-bus.png, id=628, 697.62674pt x 683.6152pt>
+ [44 <./figures/schedules_admin.png (PNG copy)>]
+<figures/edit-bus.png, id=599, 697.62674pt x 683.6152pt>
 File: figures/edit-bus.png Graphic file (type png)
 <use figures/edit-bus.png>
 Package pdftex.def Info: figures/edit-bus.png  used on input line 138.
 (pdftex.def)             Requested size: 242.15681pt x 237.28699pt.
-<figures/create-employee.png, id=629, 697.62674pt x 684.35265pt>
+<figures/create-employee.png, id=600, 697.62674pt x 684.35265pt>
 File: figures/create-employee.png Graphic file (type png)
 <use figures/create-employee.png>
 Package pdftex.def Info: figures/create-employee.png  used on input line 139.
 (pdftex.def)             Requested size: 242.15681pt x 237.54295pt.
-) [48 <./figures/employees.png> <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
+) [45 <./figures/employees.png> <./figures/edit-bus.png (PNG copy)> <./figures/create-employee.png (PNG copy)>]
 9. fejezet.
-(./chapters/summary.tex [49
+(./chapters/summary.tex [46
 
-]) (./Bus4U - TDK.bbl [50] [51
+]) (./Bus4U - TDK.bbl [47] [48
 
-]) [52] (./Bus4U - TDK.aux)
+]) [49] (./Bus4U - TDK.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -901,18 +896,18 @@ Package rerunfilecheck Info: File `"Bus4U - TDK".out' has not changed.
 (rerunfilecheck)             Checksum: FAA4DA9179D3289180757711FCBD648D;5711.
  ) 
 Here is how much of TeX's memory you used:
- 16141 strings out of 475582
- 257545 string characters out of 5778247
- 2065975 words of memory out of 5000000
- 37728 multiletter control sequences out of 15000+600000
+ 16125 strings out of 475582
+ 257258 string characters out of 5778247
+ 2066975 words of memory out of 5000000
+ 37720 multiletter control sequences out of 15000+600000
  606976 words of font info for 98 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  82i,9n,84p,2775b,1288s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - TDK.pdf" (56 pages, 7085538 bytes).
+Output written on "Bus4U - TDK.pdf" (53 pages, 6743446 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 605 compressed objects within 7 object streams
- 188 named destinations out of 1000 (max. 500000)
- 468 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 744 PDF objects out of 1000 (max. 8388607)
+ 577 compressed objects within 6 object streams
+ 180 named destinations out of 1000 (max. 500000)
+ 463 words of extra memory for PDF output out of 10000 (max. 10000000)
 

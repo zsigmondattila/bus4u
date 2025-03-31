@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - TDK"] 1743432519.43915 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743432646.20177 0
+["bibtex Bus4U - TDK"] 1743439683.19914 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743439832.82219 0
   "./refs.bib" 1743432347.16797 3337 10189e0e9dbac3789279aa9aa24f365b ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - TDK.aux" 1743432646.07411 16203 e810bdea329f6ccb9a719b3e15b8c847 "pdflatex"
+  "Bus4U - TDK.aux" 1743439832.56397 15773 1703f67999760aa1ddbeab3e41ec2d3b "pdflatex"
   (generated)
   "Bus4U - TDK.bbl"
   "Bus4U - TDK.blg"
   (rewritten before read)
-["pdflatex"] 1743432642.56382 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743432646.2022 0
+["pdflatex"] 1743439826.72429 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743439832.8229 0
   "/etc/texmf/web2c/texmf.cnf" 1738748722.81132 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk" 1738762494.21947 15172 61b361a60646f081322fa674979f5b00 ""
   "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" 1743430996.49444 1505 35edb3c833bc2b86b4abad93dafe0003 ""
@@ -125,13 +125,13 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1738762392.57089 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738762406 7424887 465b4ef3abe1429f7a973e70b4d2d29f ""
-  "Bus4U - TDK.aux" 1743432646.07411 16203 e810bdea329f6ccb9a719b3e15b8c847 "pdflatex"
-  "Bus4U - TDK.bbl" 1743432519.45563 2308 179745471bfed3b99bc6ed4f6b8cabe6 "bibtex Bus4U - TDK"
-  "Bus4U - TDK.out" 1743432646.07696 5711 faa4da9179d3289180757711fcbd648d "pdflatex"
+  "Bus4U - TDK.aux" 1743439832.56397 15773 1703f67999760aa1ddbeab3e41ec2d3b "pdflatex"
+  "Bus4U - TDK.bbl" 1743439683.22718 2308 179745471bfed3b99bc6ed4f6b8cabe6 "bibtex Bus4U - TDK"
+  "Bus4U - TDK.out" 1743439832.56774 5711 faa4da9179d3289180757711fcbd648d "pdflatex"
   "Bus4U - TDK.tex" 1743430996.49444 1505 35edb3c833bc2b86b4abad93dafe0003 ""
-  "Bus4U - TDK.toc" 1743432646.07784 4694 474ddbb3937340cf9a3b8d2d691ee308 "pdflatex"
+  "Bus4U - TDK.toc" 1743439832.56908 4624 6d7fb77e00f212218abb71e30a21c080 "pdflatex"
   "chapters/abstract.tex" 1743430946.33243 2616 ea9fe9bcb59ac14187deac2d1af5f7f7 ""
-  "chapters/architecture.tex" 1743432515.49356 21621 d5cef3fd7002b60e7e3f7e205a2caa07 ""
+  "chapters/architecture.tex" 1743439826.39523 15255 5c1bbd129daaf9120a0a1b1755c4bfd9 ""
   "chapters/goals.tex" 1743430080.34054 2633 1323818401a9d62bfb1e57bcc9256690 ""
   "chapters/implementation.tex" 1743430080.34117 13869 c1f069b486a1e84d91acf25deb26596c ""
   "chapters/introduction.tex" 1743430080.34177 4932 6fb9d72e02f5c198da3c76d93803e06f ""
@@ -144,7 +144,6 @@
   "figures/create-employee.png" 1743430184.64802 33945 a4eccd5fcf71da8e815cf2f09369869b ""
   "figures/edit-bus.png" 1743430184.65366 42709 8839638f3fba577b2b4e2e752d66f3fe ""
   "figures/employees.png" 1743430184.65535 96131 71a615c5cd48cabdef7d121929ccff15 ""
-  "figures/gitkraken.png" 1743432642.05555 334780 ced748dc50f51c6b0d31e04a0d4d88a9 ""
   "figures/its.png" 1743430184.66102 113389 bd23c7cc5df644b680beaa6ff793bdb2 ""
   "figures/jegyvasarlas.jpg" 1743430184.66506 361621 4a5e8ffc8883df29797e9c4f436284ec ""
   "figures/jira.png" 1743430184.66785 200982 17971542598fd40695e694e8877089b4 ""

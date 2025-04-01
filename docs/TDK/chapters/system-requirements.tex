@@ -1,21 +1,9 @@
-A rendszer két fő részre bontható fel: háttérfolyamatok és megjelenítés. Mivel én a megjelenítés résszel foglalkozom, amely magában foglalja a felhasználói weboldalt, az adminisztrátori weboldalt és a mobil applikációt, ezért a következőkben csak ezekre a részekre vonatkozó követelmények specifikációját fogom részletezni. A háttérfolyamatok követelményei a kollégám dolgozatában lesznek ismertetve \cite{bus4userver}.
-
+% Leroviditve
 \section{Felhasználói követelmények}
-A felhasználói követelmények azokat a funkciókat írják le, amelyre a felhasználó szemszögéből szükség van. A szoftver felületeinek általános követelményei a következők:
-
-\begin{itemize}
-  \item A felület legyen logikusan felépítve, hogy felhasználó gyorsan és egyszerűen tudjon navigálni az oldalak között.
-  \item Minden felhasználói bevitel esetén a rendszernek biztosítania kell a kényelmes használatot, valamint a megadott adatok helyességéről visszajelzést kell biztosítania beszédes hibaüzenetek megjelenítése által.
-  \item A rendszernek reszponzívnak és hibatűrőnek kell lennie, azaz minden eszközön jól használhatónak kell lennie.
-  \item A felhasználói felületnek egységesnek kell lennie, azaz minden platformon ugyanazok a színek és felületi elemek jelennek meg, hogy a felhasználók ne érezzék zavarónak az eszközök közötti váltást.
-  \item Az ikonok és a gombok egyértelműen tükrözzék a funkciójukat, hogy a felhasználók könnyen megtalálják a keresett funkciókat.
-  \item A felhasználói felületnek gyorsnak kell lennie, azaz a kérésekre azonnal válaszolnia kell, hogy a felhasználók ne érezzék lassúnak a rendszert.
-\end{itemize}
-
-A rendszer két különböző felületet tartalmaz: felhasználói- és adminisztrátori felület, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek, így ezeket külön-külön fogom részletezni.
+A felhasználói követelmények azokat a funkciókat írják le, amelyre a felhasználó szemszögéből szükség van. A rendszer két különböző felületet tartalmaz: felhasználói- és adminisztrátori felület, ezek pedig különböző felhasználói követelményekkel rendelkezhetnek, így ezeket külön-külön részletezzük.
 
 \subsection{Felhasználói felület}
-A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható. A fiókot igénylő funkciók a jegyvásárlás és a jegyek listázása. Az ezek eléréséhez szükséges regisztráció és bejelentkezés bármely oldalról elérhető. A felhasználói felület követelményei a következők:
+A felhasználói felület funkcióinak nagy része bejelentkezés nélkül használható, kivételt képez a jegyvásárlás és a jegyek listázása. A felhasználói felület követelményei a következők:
 
 \begin{itemize}
   \item Legyen lehetőség utazást tervezni dátum, idő, kezdő- és célállomás alapján
@@ -25,40 +13,29 @@ A felhasználói felület funkcióinak nagy része bejelentkezés nélkül haszn
   \item A járatok útvonalait lehessen megtekinteni a térképen
   \item Térképen megtekinthetőek legyenek a megállók és szűrni is lehessen közöttük település vagy buszjárat alapján
   \item A rendszer biztosítsa a buszok valós idejű pozícióinak követését a térképen
-  \item A megvásárolt jegyek megtekinthetőek legyenek bejelentkezés után
-  \item A jegyek QR-kódokkal legyenek ellátva a könnyebb beolvasás érdekében
+  \item A QR-kódokkal ellátott megvásárolt jegyek megtekinthetőek legyenek bejelentkezés után
 \end{itemize}
 
 \subsection{Adminisztrátori felület}
 Az adminisztrátori felület kizárólag bejelentkezéssel elérhető, új fiókokat pedig csak a cégek főnökei tudnak létrehozni, mindenki a saját busztársaságához. Itt regisztrációs lehetőség nincs, így meg lehet akadályozni az adminfelülethez való illetéktelen hozzáférést. A társult vállalatok főnökei a partnerség kezdetekor megkapják az admin jogú fiókjaikat, amelyekkel hozzáférnek a felülethez. Az adminfelületre vonatkozó követelmények:
 
 \begin{itemize}
-  \item A főoldalon statisztikák jelenjenek meg az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervallumok szerint csoportosítva
-  \item A rendszer jelenítse meg a felületen a fontos emlékeztetőket és értesítéseket
+  \item A főoldalon emlékeztetők, értesítések, valamint statisztikák jelenjenek meg az eladott jegyek számáról, a megtett kilométerről és a bevételről, időintervallumok szerint csoportosítva
   \item Lehessen megtekinteni a megállók listáját, új megállókat hozzáadni térképen való megjelölés segítségével, valamit a meglévő megállókat szerkeszteni vagy törölni
   \item A rendszer listázza a buszjáratokat és biztosítson lehetőséget új járat létrehozására, meglévő járat szerkesztésére, valamint járatok törlésére
-  \item A járatokhoz lehessen csatolni és eltávolítani előre létrehozott megállókat
-  \item A járatok indulási időpontjait jelenítse meg a rendszer, ezek változtatásait és törlését pedig mentse el az adatbázisban
+  \item A járatok indulási időpontjait lehessen megtekinteni, szerkeszteni és törölni is
   \item A buszjáratokhoz és az útvonalak különböző részeihez lehessen külön-külön jegyárat megadni
   \item A rendszer jelenítse meg a buszok listáját és biztosítson lehetőséget új busz hozzáadására, meglévő busz szerkesztésére, valamint buszok törlésére
-  \item A buszokhoz lehessen megadni útadó, biztosítás és műszaki vizsga lejárati időpontokat
-  \item A buszokhoz hasonlóan lehessen kezelni az alkalmazotti fiókok listáját is, létrehozással, szerkesztéssel és törléssel
+  \item A buszokhoz hasonlóan lehessen kezelni az alkalmazotti fiókok listáját is
 \end{itemize}
 
-A rendszer funkcionalitását leíró használati eset diagramok a \ref{fig:use-case-user} és \ref{fig:use-case-admin} ábrákon láthatóak.
+A rendszer funkcionalitását leíró használati eset diagram a \ref{fig:use-case} ábrán látható.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=\textwidth]{figures/use-case-user.png}
-  \caption{Use-case diagram a végfelhasználók lehetőségeiről}
-  \label{fig:use-case-user}
-\end{figure}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=\textwidth]{figures/use-case-admin.png}
-  \caption{Use-case diagram az adminisztrátorok lehetőségeiről}
-  \label{fig:use-case-admin}
+  \includegraphics[height=0.92\textheight]{figures/use-case.png}
+  \caption{Use-case diagram a felhasználók lehetőségeiről}
+  \label{fig:use-case}
 \end{figure}
 
 \section{Rendszerkövetelmények}
@@ -68,9 +45,9 @@ A funkcionális követelmények a felületen megjelenő funkciók működését 
 
 A felhasználói weboldalon és a mobilalkalmazásban bejelentkezés nélkül hozzá lehet férni a főoldalhoz, a menetrendekhez, a megállókhoz és az élő térképhez. Az egyetlen oldal, ami nem jeleníthető meg azonosítás nélkül az a jegyek oldal, innen a rendszernek át kell irányítania a bejelentkezési felületre. Itt biztosítani kell a regisztráció lehetőségét is, amennyiben a felhasználó még nem rendelkezik fiókkal. A regisztráció során a rendszer le kell ellenőrizzen minden megadott adatot, még az email tulajdonjogát is, azáltal hogy egy ellenőrző kódot küld a megadott email címre, amelyet be kell írni a felületen megjelenő szövegmezőbe. Sikeres regisztráció vagy bejelentkezés után a rendszernek minden adatot biztonságosan el kell mentenie, a jelszavat hash-elt formában és át kell irányítania a felhasználót a főoldalra.
 
-A főoldalon lévő szövegmezőkben megadott adatok alapján a rendszernek le kell kérnie a szerverről néhány lehetséges járatot, amelyek indulnak az adott településről, adott időben, a megadott célállomásra. A megjelenített találatokhoz tartoznia kell egy jegyvásárlási lehetőségnek is, amelyben meg kell adni a jegyek számát és véglegesíteni kell a vásárlást. A jegyvásárlás is bejelentkezést igényel, így az azonosítatlan felhasználót a rendszer vásárlás előtt átirányítja a bejelentkezéshez. A vásárlás csak az erre kijelölt oldalon történő kifizetés után véglegesítődhet, ezt követi a jegy kódjának kigenerálása és elmentése. Ezek után a felhasználók megtekinthetik a megvásárolt jegyeket a Jegyek oldalon. A menetrendek oldalon a felhasználóknak lehetőségük van a buszok és megállók közötti választásra lenyíló listákból, amelyet követően a rendszer kilistázza az adott járat megállóhoz kötött időpontjait egy táblázatban. Ugyanitt a rendszernek lehetőséget kell biztosítania a buszok útvonalának megjelenítésére térképen. A megállók oldalon a felhasználóknak lehetőségük van az összes megálló megtekintésére térképen, valamint lenyíló listákat használva, a megállók szűrésére település vagy buszjárat alapján is. A térképnek interaktívnak kell lennie, így a megjelölt megállókra való kattintás után meg kell jelennie az adott megálló adatainak egy kis előugró ablakban. Az élő térkép oldalon a felhasználóknak lehetőségük van a buszok valós idejű pozícióinak követésére térképen. A megjelenített buszokat a rendszernek valós időben kell frissítenie, legalább félpercenként, hogy a felhasználók pontos információkat kapjanak a buszok helyzetéről. Az összes térképes oldalon a felhasználóknak lehetőségük van a térkép nagyítására és kicsinyítésére, valamint a térkép mozgatására is, egérrel vagy érintéses gesztusok segítségével. A felhasználónak meg kell tudnia tekinteni a saját pozícióját is a térképeken, amennyiben engedélyezte a helymeghatározáshoz való hozzáférést.
+A főoldalon lévő szövegmezőkben megadott adatok alapján a rendszernek le kell kérnie a szerverről néhány lehetséges járatot, amelyek indulnak az adott településről, adott időben, a megadott célállomásra. A megjelenített találatokhoz tartoznia kell egy jegyvásárlási lehetőségnek is, amelyben meg kell adni a jegyek számát és véglegesíteni kell a vásárlást. A jegyvásárlás is bejelentkezést igényel, így az azonosítatlan felhasználót a rendszer vásárlás előtt átirányítja a bejelentkezéshez. A sikeres vásárlást követi a jegy kódjának kigenerálása és elmentése. Ezek után a felhasználók megtekinthetik a megvásárolt jegyeket a Jegyek oldalon. A menetrendek oldalon a felhasználóknak lehetőségük van a buszok és megállók közötti választásra lenyíló listákból, amelyet követően a rendszer kilistázza az adott járat megállóhoz kötött időpontjait egy táblázatban. Ugyanitt a rendszernek lehetőséget kell biztosítania a buszok útvonalának megjelenítésére térképen. A megállók oldalon a felhasználóknak lehetőségük van az összes megálló megtekintésére térképen, valamint lenyíló listákat használva, a megállók szűrésére település vagy buszjárat alapján is. A térképen megjelölt megállókra való kattintás után meg kell jelennie az adott megálló adatainak egy boborékban. Az élő térkép oldalon a felhasználóknak lehetőségük van a buszok valós idejű pozícióinak követésére térképen. A megjelenített buszokat a rendszernek valós időben kell frissítenie, hogy a felhasználók pontos információkat kapjanak a buszok helyzetéről. A térképek alapfunkciói közé tartoznak a nagyítás, a kicsinyítés és a mozgatás. A felhasználónak látnia kell a saját pozícióját is a térképeken, amennyiben engedélyezte a helymeghatározáshoz való hozzáférést.
 
-Az adminisztrátori weboldalon szükség van azonosításra, anélkül a rendszer minden oldalról átirányít a bejelentkezéshez. Itt a regisztráció nem lehetséges, így külső, admin szerepkörrel nem rendelkező felhasználók nem tudnak hozzáférni az adminisztrátori felülethez. A főoldalon található statisztikák között szerepel az eladott jegyek száma, a megtett kilométerek száma és a bevétel összege, időintervallumok szerint csoportosítva, táblázatos formában. Mivel minden busztársaságnak el kell legyenek különítve az adatai, ezért a szerver mindig a bejelentkezett adminhoz tartozó cég adataiból számolja ki a statisztikákat. A főoldalon a rendszernek meg kell jelenítenie az esetleges értesítéseket is, előugró "Toast" üzenetek segítségével. A megállók oldalon az adminisztrátoroknak lehetőségük van a megállók listázására, az ezekre való egyenkénti kattintás után pedig a szerkesztésükre is. Emellett megállók törlésére és új megállók hozzáadására is lehetőség van egy interaktív térkép segítségével. A térképre kattintva a hely koordinátáit a rendszer beilleszti az űrlapba, ahol meg kell adni még a megálló nevét és a címet is. Utóbbit, amennyiben elérhető, le kell kérnie a rendszernek a térképszolgáltatótól, hogy ezzel is gyorsítsa a létrehozást. A járatok oldalon az adminisztrátoroknak lehetőségük van a buszjáratok kiválasztására egy lenyíló menüből, ezt követően pedig meg kell jelennie a járatszerkesztő űrlapnak. Ugyanitt lehetőség lesz járatok hozzáadására és törlésére is. A menetrendek oldalon az adminisztrátoroknak lehetőségük van a járatok indulási időpontjainak és jegyárainak megtekintésére, szerkesztésére és törlésére. Az órarendek bevitelét le kell lehessen bontani napokra, ezeket pedig dinamikusan megjeleníteni, hogy minél kevesebb helyet foglaljon az oldalon. A buszok és alkalmazottak oldalakon a rendszernek biztosítania kell egy egységes felületet, amelyben lehetőség nyílik az elemek listázására, új elemek hozzáadására, meglévő elemek szerkesztésére és ezek törlésére is. A buszoknál fontos megadni az útadó, biztosítás és műszaki vizsga időpontjait, mert a rendszer ezek alapján fog emlékeztetőket megjeleníteni a felületre való belépések alkalmával. Az alkalmazottaknál meg kell adni a nevet, a beosztást és a telefonszámot, valamint az emailt és a jelszót is, amelyet a rendszer hash-elt formában tárol. Utóbbiak az alkalmazott bejelentkezéséhez lesznek szükségesek, így a rendszernek ellenőriznie kell őket.
+Az adminisztrátori weboldalon szükség van azonosításra, anélkül a rendszer minden oldalról átirányít a bejelentkezéshez. Itt a regisztráció nem lehetséges, így külső, admin szerepkörrel nem rendelkező felhasználók nem tudnak hozzáférni az adminisztrátori felülethez. A főoldalon található statisztikák között szerepel az eladott jegyek száma, a megtett kilométerek száma és a bevétel összege, időintervallumok szerint csoportosítva, táblázatos formában. Mivel minden busztársaságnak el kell legyenek különítve az adatai, ezért a szerver mindig a bejelentkezett adminhoz tartozó cég adataiból számolja ki a statisztikákat. A főoldalon a rendszernek meg kell jelenítenie az esetleges értesítéseket is, előugró "Toast" üzenetek segítségével. A megállók oldalon az adminisztrátoroknak lehetőségük van a megállók listázására, az ezekre való egyenkénti kattintás után pedig a szerkesztésükre is. Emellett megállók törlésére és új megállók hozzáadására is lehetőség van egy interaktív térkép segítségével. A térképre kattintva a hely koordinátáit a rendszer beilleszti az űrlapba, ahol meg kell adni még a megálló nevét és a címet is. Utóbbit, amennyiben elérhető, le kell kérnie a rendszernek a térképszolgáltatótól, hogy ezzel is gyorsítsa a folyamatot. A járatok oldalon az adminisztrátoroknak lehetőségük van a buszjáratok kiválasztására egy lenyíló menüből, ezt követően pedig meg kell jelennie a járatszerkesztő űrlapnak. Ugyanitt lehetőség lesz járatok hozzáadására és törlésére is. A menetrendek oldalon az adminisztrátoroknak lehetőségük van a járatok indulási időpontjainak és jegyárainak megtekintésére, szerkesztésére és törlésére. Az órarendek bevitelét le kell lehessen bontani napokra, ezeket pedig dinamikusan megjeleníteni, hogy minél kevesebb helyet foglaljon az oldalon. A buszok és alkalmazottak oldalakon a rendszernek biztosítania kell egy egységes felületet, amelyben lehetőség nyílik az elemek listázására, új elemek hozzáadására, meglévő elemek szerkesztésére és ezek törlésére is. A buszoknál fontos megadni az útadó, biztosítás és műszaki vizsga időpontjait, mert a rendszer ezek alapján fog emlékeztetőket megjeleníteni a felületre való belépések alkalmával. Az alkalmazottaknál meg kell adni a nevet, a beosztást és a telefonszámot, valamint az emailt és a jelszót is. Utóbbiak az alkalmazott bejelentkezéséhez lesznek szükségesek, így a rendszernek ellenőriznie kell őket.
 
 \subsection{Nem funkcionális követelmények}
 \subsubsection{Szervezéssel kapcsolatos követelmények}

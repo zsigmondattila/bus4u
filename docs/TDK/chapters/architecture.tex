@@ -22,7 +22,15 @@ Fontos megemlíteni, hogy egyes API végpontokhoz azonosítás szükséges, ami 
 Egyes oldalakon térképek is megjelennek, amelyeket a web esetében a MapBox, míg a mobil esetében a Google Maps szolgáltat. Mindkét esetben az adott platformhoz és technológiához közelebb álló térképszolgáltatót választottuk, hogy a lehető legjobb felhasználói élményt tudjuk biztosítani.
 
 \section{Backend}
-Részletesebb leírást a backend felépítéséről és működéséről a másik dolgozatban lehet találni \cite{bus4userver}.
+A backend a rendszer azon része, amely a kliens oldali felületek mögött fut, és biztosítja az adatok kezelését, tárolását, valamint az üzleti logika végrehajtását. A jelenlegi rendszerben a backend egy REST architektúrát követő API szerverként működik, amely Ruby on Rails technológiával készült. Ez az API szerver szolgálja ki mind a két weboldalt (adminisztrátori és végfelhasználói), valamint a mobilalkalmazást is.
+
+A kliens oldali alkalmazások közvetlenül kommunikálnak a backend API végpontjaival, mindenféle köztes logika nélkül, így a rendszer architektúrája egyértelműen a kliens-szerver modellre épül.
+
+A token alapú hitelesítést a rendszer a Devise felhasználókezelő könyvtár kiegészítéseként a devise-jwt gem segítségével valósítja meg. Ez lehetővé teszi a biztonságos, állapotmentes (stateless) autentikációt az API-n keresztül, anélkül hogy a szervernek külön munkameneteket (session-öket) kellene tárolnia.
+
+A backend további feladatai közé tartozik az útvonalak, jegyek, bérletek, felhasználók, járművek és egyéb erőforrások adatainak kezelése, validálása és naprakészen tartása. A backend az adatokat egy PostgreSQL alapú relációs adatbázisban tárolja. Az adatok integritását és konzisztenciáját az ActiveRecord ORM réteg biztosítja, amely a Rails keretrendszer része.
+
+A rendszer biztonsága érdekében az API végpontokhoz való hozzáférést szerepkör-alapú jogosultságkezeléssel szabályozzuk. Az adminisztrátorok számára elérhető végpontok például statisztikákat, jelentéseket és különféle menedzsment funkciókat biztosítanak, míg a végfelhasználók csak a saját jegyeikhez, bérleteikhez és a releváns útvonal-információkhoz férhetnek hozzá.
 
 \section{Kommunikáció}
 A felek közötti kommunikáció REST API hívásokkal valósul meg, ezt szemlélteti az \ref{fig:secvential-tickets} ábrán megjelenített szekvencia diagram, amely a felhasználó által megvásárolt jegyek listázásának folyamatát írja le. Amikor a felhasználó a frontend felületen keresztül a My Tickets oldalra navigál, egy GET kérés indul el a szerver felé, amely tartalmazza a felhasználó adatait. A backend először ellenőrzi a kérést, majd a megfelelő jegyeket lekérdezi az adatbázisból és visszaküldi a frontendnek, ahol azok idő szerinti rendezés után megjelennek a felhasználó számára. A még érvényes jegyekhez generál a rendszer egy QR kódot is, hogy könnyű legyen majd innen beolvasni. Amennyiben valahol hiba történik, a rendszer informálja erről a felhasználót. A következő kódrészlet intézi a kérést a frontend oldalról:

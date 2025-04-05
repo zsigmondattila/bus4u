@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex Bus4U - TDK"] 1743846499.66698 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743846654.12066 0
+["bibtex Bus4U - TDK"] 1743847029.38181 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1743847148.61909 0
   "./refs.bib" 1743845536.52479 5838 713b653c2c22d5196933860e9bf45d26 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - TDK.aux" 1743846653.90916 16126 bd414a18c3fa81fd1e72ffcc8f6942f8 "pdflatex"
+  "Bus4U - TDK.aux" 1743847148.41116 17006 05073f95401639a1f6acd4fc1c836a48 "pdflatex"
   (generated)
   "Bus4U - TDK.bbl"
   "Bus4U - TDK.blg"
   (rewritten before read)
-["pdflatex"] 1743846650.33318 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743846654.12088 0
+["pdflatex"] 1743847144.73904 "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1743847148.61931 0
   "/etc/texmf/web2c/texmf.cnf" 1741013916.20445 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/zsigmond/SAPIENTIA/THESIS/bus4u/docs/TDK/Bus4U - TDK.tex" 1743841965.85479 1505 35edb3c833bc2b86b4abad93dafe0003 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -132,13 +132,13 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1741017730.00927 5352258 625d145f3708f99ff2144a56c0e20fa1 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1741014211 7453362 f08e4cc00325dd43ff9ca42e4c052dff ""
-  "Bus4U - TDK.aux" 1743846653.90916 16126 bd414a18c3fa81fd1e72ffcc8f6942f8 "pdflatex"
-  "Bus4U - TDK.bbl" 1743846499.72647 2948 20cca6cbe0d9cb5364cc34024f479c06 "bibtex Bus4U - TDK"
-  "Bus4U - TDK.out" 1743846653.91016 5808 0c6ec89bc3b258281120b674a2c02933 "pdflatex"
+  "Bus4U - TDK.aux" 1743847148.41116 17006 05073f95401639a1f6acd4fc1c836a48 "pdflatex"
+  "Bus4U - TDK.bbl" 1743847029.4437 2948 20cca6cbe0d9cb5364cc34024f479c06 "bibtex Bus4U - TDK"
+  "Bus4U - TDK.out" 1743847148.41216 6630 cf6194dafd5883baa421500d90cc77ea "pdflatex"
   "Bus4U - TDK.tex" 1743841965.85479 1505 35edb3c833bc2b86b4abad93dafe0003 ""
-  "Bus4U - TDK.toc" 1743846653.91116 4981 4353b88b6c50e4d38f1bd7bec6ad96f6 "pdflatex"
+  "Bus4U - TDK.toc" 1743847148.41316 5459 d2bf7d08fa5a1712e010474b01fcdad4 "pdflatex"
   "chapters/abstract.tex" 1743841965.85479 2616 ea9fe9bcb59ac14187deac2d1af5f7f7 ""
-  "chapters/architecture.tex" 1743846650.07414 22611 75329821db24b273981bd657e485c8cf ""
+  "chapters/architecture.tex" 1743847144.50014 25289 db0e91454a8ca4a0a550af12155487c9 ""
   "chapters/goals.tex" 1743841965.85579 2399 63aca9ea212d9a9039cf592e93eae037 ""
   "chapters/implementation.tex" 1743841965.85579 12737 016e5a08f1658cd64fe7fc25ff407223 ""
   "chapters/introduction.tex" 1743841965.85579 4097 b8a60aba072ce10c0f77122ea9f050e5 ""
@@ -149,6 +149,7 @@
   "figures/architecture.jpg" 1743841965.85579 42189 3593175527c46884c90243121cbe23f5 ""
   "figures/budapestgo.png" 1743841965.85779 483090 07ac7fc1f45985d934ea34ea3e547ad0 ""
   "figures/create-employee.png" 1743841965.85779 33945 a4eccd5fcf71da8e815cf2f09369869b ""
+  "figures/deployment.jpg" 1743847018.79266 43792 c597a13b8e357360bec69eb2905e44e3 ""
   "figures/edit-bus.png" 1743841965.85779 42709 8839638f3fba577b2b4e2e752d66f3fe ""
   "figures/employees.png" 1743841965.85879 96131 71a615c5cd48cabdef7d121929ccff15 ""
   "figures/its.png" 1743841965.85979 113389 bd23c7cc5df644b680beaa6ff793bdb2 ""

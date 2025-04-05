@@ -169,4 +169,42 @@ Mivel a projekten ketten dolgoztunk, szükség volt egy eszközre amelyben vezet
 Verziókövetésre a Git-et használtuk, GitHub-al kiegészítve, így biztonságosan tudtuk tárolni a kódot és a változtatásokat is könnyen nyomon tudtuk követni. A GitHub abban is segített, hogy összehangoljuk a frontend és a backend fejlesztését, valamint hogy több, különböző eszközről is tudjunk dolgozni. A munka során branch-ekre (ágakra) osztottuk a projektet, úgy hogy a fő ág mellett volt egy develop nevű ág és ebből váltak ki az egyes feladatok mellékágai, amelyek mind egy-egy Jira taszknak feleltek meg. A mellékágak nevei tartalmazták a taszk kódját, így össze lehetett hangolni a verziókövetést a kanban táblával. A branchek használata megkönnyítette és strukturáltabbá tette a közös munkát.
 
 \section{Kitelepítés}
+
+\subsection{Azure infrastruktúra áttekintése}
+A Bus4U rendszer a Microsoft Azure felhőalapú platformján került telepítésre. Az Azure szolgáltatások skálázhatóságot és megbízhatóságot biztosítanak a rendszer számára. A telepítéshez az alábbi főbb szolgáltatásokat használtuk:
+\begin{itemize}
+    \item Azure Virtual Machines (VM): A szerver hosztolása.
+    \item Azure Database for PostgreSQL: Az adatbázis-szolgáltatás biztosítása.
+\end{itemize}
+
+\section{Domain konfiguráció}
+A rendszer végpontjai az api.bus4u.online domainen érhetőek el, amelyet a Cloudflare platformján konfiguráltam. A domain hozzárendelése során a virtuális gép (VM) IP címét használtam. A következő beállításokat végeztem el:
+\begin{itemize}
+    \item DNS beállítások: A Cloudflare-en elvégeztem a domain névhez tartozó A és CNAME rekordok konfigurálását.
+    \item SSL tanúsítványok: A HTTPS alapú kapcsolat biztonságának érdekében a Cloudflare szolgáltatásait alkalmazzuk, amelyek védelmet nyújtanak a felhasználók számára.
+\end{itemize}
+
+
+\section{Adatbázis telepítése és konfigurációja}
+A rendszer adatbázisa egy Azure Database for PostgreSQL szolgáltatáson keresztül került telepítésre, amely lehetővé teszi az adatbázis automatikus méretezését és a folyamatos biztonsági mentések készítését. A következő beállításokat alkalmaztuk:
+\begin{itemize}
+    \item Titkosított kapcsolatok: A PostgreSQL adatbázis SSL tanúsítványokat használ a biztonságos kommunikációhoz.
+    \item Backup és recovery: Automatikus biztonsági mentések kerülnek tárolásra az adatvesztés elkerülése érdekében.
+\end{itemize}
+
+\section{Szerver telepítése}
+A szerver az Azure Virtual Machines szolgáltatásban került telepítésre, ahol a Ruby on Rails alapú API-t futtatjuk. A telepítés során a következő lépéseket hajtottuk végre:
+\begin{itemize}
+    \item Környezeti változók beállítása: A szükséges konfigurációs változók (pl. adatbázis kapcsolatok) a Ruby on Rails beépített credentials funkciójában lettek biztonságosan tárolva és kezelve.
+    \item Verziókezelés: Az asdf verziókezelő használatával a Ruby és egyéb nyelvek verzióit könnyen kezelhetjük, ami megkönnyíti a fejlesztési környezet fenntartását.
+    \item CI/CD pipeline: Az alkalmazás automatikus telepítése és frissítése a GitHub Actions integrációjával valósult meg.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/deployment.jpg}
+    \caption{Telepítési diagram}
+    \label{fig:deployment-diagram}
+  \end{figure}
+
 A weboldalak ki lettek telepítve Netlify-ra, hogy könnyebben tesztelhetőek és bemutathatóak legyenek. A Netlify egy olyan szolgáltatás, amely lehetővé teszi a statikus weboldalak gyors és egyszerű kiszolgálását a GitHub repository-ból, így a változtatások a \textit{git push} parancs után azonnal megjelennek a weben. A felhasználói weboldal a \url{https://bus4u.online}, az adminisztrátori weboldal pedig a \url{https://admin.bus4u.online} címen érhető el.

@@ -1,0 +1,40 @@
+Az API végpontjai a PostgreSQL adatbázissal kommunikálnak. Az adatbázis tranzakciókat az ActiveRecord ORM segítségével kezeljük, amely lehetővé teszi az adatok egyszerű és hatékony lekérését, beszúrását és frissítését.
+
+\subsection{Adatbázis táblák}
+A PostgreSQL adatbázisunk a következő táblákból áll:
+\begin{itemize}
+    \item \textbf{Companies}: Azon cégek adatai, akikkel szerződést kötött a Bus4U.
+    \item \textbf{Admins}: Különböző cégekhez tartozó adminisztrátorok adatai. Szerepük lehet “boss” vagy “driver”.
+    \item \textbf{Buses}: A cégekhez tartozó autóbuszok adatai.
+    \item \textbf{Routes}: A cégek saját útvonalai.
+    \item \textbf{Stations}: A rendszerben található buszmegállók összessége.
+    \item \textbf{Route\_stations}: Egy cég adott útvonalán keresztülhaladó megállók.
+    \item \textbf{Timetables}: Egy útvonal megállójának indulási időpontjai és ára nap szerinti felosztásban.
+    \item \textbf{Cities}: Az összes város, amelyen áthaladnak útvonalak.
+    \item \textbf{Users}: A Bus4U felhasználói a fontosabb adataikkal.
+    \item \textbf{Email\_verifications}: Az adott email címekhez tartozó regisztrációkor felhasználandó kódok.
+    \item \textbf{Tickets}: A felhasználókhoz tartozó jegyek.
+    \item \textbf{Payments}: Stripe fizetések eltárolása.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/database.jpg}
+    \caption{Az rendszer adatbázisdiagramja}
+    \label{fig:database-diagram}
+  \end{figure}
+
+  \subsection{Objektum-relációs leképzés (ORM)}
+
+  A backend API adatbázis-kezelése a Ruby on Rails keretrendszer beépített ActiveRecord objektum-relációs leképzőjével (ORM) történik. Az ORM lehetővé teszi az alkalmazás számára, hogy közvetlenül Ruby osztályok és objektumok formájában kezelje az adatbázis tábláit, így egyszerűsítve az adatbázis-műveleteket és csökkentve a fejlesztési időt.
+  
+  Az ActiveRecord fő előnyei közé tartozik:
+  \begin{itemize}
+      \item \textbf{Egyszerű adatlekérdezés:} A komplex SQL utasítások helyett Ruby nyelven írhatók a lekérdezések.
+      \item \textbf{Adatkapcsolatok automatikus kezelése:} Egyértelművé teszi az adatok közötti kapcsolatokat (például \texttt{belongs\_to}, \texttt{has\_many}, \texttt{has\_one}).
+      \item \textbf{Validációk és tranzakciók egyszerű kezelése:} Adatvalidáció, tranzakciókezelés és hibaüzenetek egyszerű integrációja az üzleti logikába.
+      \item \textbf{Migrációk támogatása:} Könnyű adatbázis-struktúra módosítás a migrációs fájlokon keresztül.
+  \end{itemize}
+  
+  Az ActiveRecord használata jelentősen egyszerűsíti a fejlesztési folyamatot, lehetővé téve, hogy a fejlesztők elsősorban az üzleti logikára összpontosítsanak, miközben a rendszer hatékonyan és biztonságosan kommunikál a PostgreSQL adatbázissal.
+  

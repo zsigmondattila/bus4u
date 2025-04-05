@@ -37,4 +37,28 @@ P.~D. Garaguso, {\em Vue. js 3 Design Patterns and Best Practices: Develop scala
 E.~Windmill, {\em Flutter in action}.
 \newblock Simon and Schuster, 2020.
 
+\bibitem{hartl_rails}
+M.~Hartl, {\em Ruby on Rails Tutorial: Learn Web Development with Rails}.
+\newblock Addison-Wesley Professional, 2016.
+
+\bibitem{fernandez_rails}
+O.~Fernandez, {\em The Rails Way}.
+\newblock Addison-Wesley Professional, 2017.
+
+\bibitem{douglas_postgresql}
+K.~Douglas and S.~Douglas, {\em PostgreSQL: Up and Running}.
+\newblock O'Reilly Media, 2015.
+
+\bibitem{murrell_postgresql}
+J.~Murrell, {\em PostgreSQL 12 High Availability Cookbook}.
+\newblock Packt Publishing, 2019.
+
+\bibitem{wilder_azure}
+B.~Wilder, {\em Cloud architecture patterns: using Microsoft Azure}.
+\newblock O'Reilly Media, Inc., 2012.
+
+\bibitem{collier_azure}
+M.~Collier and R.~Shahan, {\em Microsoft Azure Essentials-Fundamentals of Azure}.
+\newblock Microsoft Press, 2015.
+
 \end{thebibliography}

@@ -41,9 +41,12 @@
   \textbf{2025}
 \end{titlepage}
 
+\pagenumbering{gobble}
+
 \tableofcontents
 
-\chapter{Kivonat}
+\newpage
+\section*{Kivonat}
 \input{chapters/abstract}
 
 \pagenumbering{arabic}
@@ -75,6 +78,7 @@
 \chapter{Összefoglalás}
 \input{chapters/summary}
 
+\newpage
 \addcontentsline{toc}{chapter}{Irodalomjegyzék}
 \bibliographystyle{ieeetr}
 \bibliography{refs}

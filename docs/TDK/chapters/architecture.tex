@@ -158,9 +158,9 @@ Az Azure erőteljes adatvédelmi szabályokat és fejlett biztonsági protokollo
 
 A fejlesztés során számos eszközt használtunk, amelyek segítették a a hatékonyságot. A legfontosabb ezek közül a kódszerkesztő, amelynek a Visual Studio Code-ot használtuk, mert ez egy könnyű, gyors és hatékony eszköz, amely jól testreszabható a rengeteg letölthető kiegészítő által, amelyeknek köszönhetően támogat szinte bármilyen programozási nyelvet és keretrendszert\footnote{Visual Studio Code: \url{https://code.visualstudio.com/}}.
 
-Mivel a projekten ketten dolgoztunk, szükség volt egy eszközre amelyben vezetni tudjuk a feladatokat átlátható módon. Erre a Jira-t használtuk, amely egy online projektmenedzsment eszköz, amelynek segítségével könnyen lehet követni a feladatokat, a fejlesztés állapotát és a határidőket is egy kanban board-on.\footnote{A projekt Jira oldala: \url{https://bus4u.atlassian.net/jira}} Itt felbontottuk az egész projektet kisebb feladatokra, úgynevezett taszkokra, amelyekhez kódneveket rendeltünk hozzá. Ezeknek a formája \textit{BUS-XX} volt, ahol az \textit{XX} egy sorszám, amely a feladatok sorrendjét jelöli. A taszkok nevei tartalmazták a feladat rövid leírását, de hozzá lehetett adni bővebb leírást és hozzászólásokat is. Az \ref{fig:jira} ábrán látható az általunk használt Jira tábla.
+Mivel a projekten ketten dolgoztunk, szükség volt egy eszközre amelyben vezetni tudjuk a feladatokat átlátható módon. Erre a Jira-t használtuk, amely egy online projektmenedzsment eszköz, amelynek segítségével könnyen lehet követni a feladatokat, a fejlesztés állapotát és a határidőket is egy kanban board-on.\footnote{A projekt Jira oldala: \url{https://bus4u.atlassian.net/jira}} Itt felbontottuk az egész projektet kisebb feladatokra, úgynevezett taszkokra, amelyekhez kódneveket rendeltünk hozzá. Ezeknek a formája \textit{BUS-XX} volt, ahol az \textit{XX} egy sorszám, amely a feladatok sorrendjét jelöli. A taszkok nevei tartalmazták a feladat rövid leírását, de hozzá lehetett adni bővebb leírást és hozzászólásokat is. A \ref{fig:jira} ábrán látható az általunk használt Jira tábla.
 
-\begin{figure}[H]
+\begin{figure}[ht]
   \includegraphics[width=\textwidth]{figures/jira.png}
   \caption{Feladatok a Jira-ban}
   \label{fig:jira}
@@ -177,7 +177,7 @@ A Bus4U rendszer a Microsoft Azure felhőalapú platformján került telepítés
     \item Azure Database for PostgreSQL: Az adatbázis-szolgáltatás biztosítása.
 \end{itemize}
 
-\section{Domain konfiguráció}
+\subsection{Domain konfiguráció}
 A rendszer végpontjai az api.bus4u.online domainen érhetőek el, amelyet a Cloudflare platformján konfiguráltam. A domain hozzárendelése során a virtuális gép (VM) IP címét használtam. A következő beállításokat végeztem el:
 \begin{itemize}
     \item DNS beállítások: A Cloudflare-en elvégeztem a domain névhez tartozó A és CNAME rekordok konfigurálását.
@@ -185,14 +185,14 @@ A rendszer végpontjai az api.bus4u.online domainen érhetőek el, amelyet a Clo
 \end{itemize}
 
 
-\section{Adatbázis telepítése és konfigurációja}
+\subsection{Adatbázis telepítése és konfigurációja}
 A rendszer adatbázisa egy Azure Database for PostgreSQL szolgáltatáson keresztül került telepítésre, amely lehetővé teszi az adatbázis automatikus méretezését és a folyamatos biztonsági mentések készítését. A következő beállításokat alkalmaztuk:
 \begin{itemize}
     \item Titkosított kapcsolatok: A PostgreSQL adatbázis SSL tanúsítványokat használ a biztonságos kommunikációhoz.
     \item Backup és recovery: Automatikus biztonsági mentések kerülnek tárolásra az adatvesztés elkerülése érdekében.
 \end{itemize}
 
-\section{Szerver telepítése}
+\subsection{Szerver telepítése}
 A szerver az Azure Virtual Machines szolgáltatásban került telepítésre, ahol a Ruby on Rails alapú API-t futtatjuk. A telepítés során a következő lépéseket hajtottuk végre:
 \begin{itemize}
     \item Környezeti változók beállítása: A szükséges konfigurációs változók (pl. adatbázis kapcsolatok) a Ruby on Rails beépített credentials funkciójában lettek biztonságosan tárolva és kezelve.

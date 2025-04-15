@@ -125,7 +125,7 @@ Az utolsó két oldalon a buszokat és az alkalmazottakat lehet kezelni. Ez a k�
 
 \section{POS terminál alkalmazása}
 \subsection{GPS oldal}
-Miután a sofőr bejelentkezett, ezen az oldalon lehetőség nyílik kiválasztani az aktuális buszt, amelyiket jelenleg a sofőr vezet, illetve azt az útvonalat, amelyet éppenséggel végrehajt. Található egy kapcsoló, amellyel el lehet indítani az autóbusz lokációjának követését. Ez félpercenként küldi fel az API-ra a busz lokációját, ezáltal lehet a weboldalon és az alkalmazásban élőben követni a busz helyzetét. Legalul egy Ticket scanner gomb fedezhető fel, amely átirányít a jegyszkennelő oldalra
+Miután a sofőr bejelentkezett, ezen az oldalon lehetőség nyílik kiválasztani az aktuális buszt, amelyiket jelenleg a sofőr vezet, illetve azt az útvonalat, amelyet éppenséggel végrehajt. Található egy kapcsoló, amellyel el lehet indítani az autóbusz lokációjának követését. Ez félpercenként küldi fel az API-ra a busz lokációját, ezáltal lehet a weboldalon és az alkalmazásban élőben követni a busz helyzetét. Legalul egy Ticket scanner gomb fedezhető fel, amely átirányít a jegyszkennelő oldalra. A főmenü elrendezése a \ref{fig:gps} ábrán látható. 
 
 \begin{figure}[H]
     \centering
@@ -136,6 +136,7 @@ Miután a sofőr bejelentkezett, ezen az oldalon lehetőség nyílik kiválaszta
 
 \subsection{Jegyszkennelő oldal}
 Ez az oldal a kamerát jeleníti meg. Itt kell beszkennelni a jegyet. Szkennelés után egy felugró ablak jelenik meg 5 másodpercig, három üzenetet hordozhat: Ha sikeresen érvényesítve van a jegy, akkor zöld háttérrel kiírja hogy sikeres érvényesítés és jó utazást kíván az alkalamzás. Ha a jegy már érvényesítve volt, vagy érvénytelen a QR kód, ezt egy piros hibaüzenettel jelzi. Illetőleg ha az API valamilyen oknál fogva leáll, akkor ennek a hibájáról is üzenetet kapunk.
+A lehetséges üzenetek tartalma a \ref{fig:scanner} ábrán látható. 
 
 \begin{figure}[H]
     \centering

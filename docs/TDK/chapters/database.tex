@@ -3,7 +3,7 @@
 A backend végpontjait a Postman alkalmazás segítségével követtük nyomon, amely lehetővé teszi HTTP-alapú API-k vizuális kezelését, tesztelését és dokumentálását. A fejlesztés során a Postmant nemcsak hibakeresésre, hanem a végpontok működésének gyors ellenőrzésére és az API tervezés vizualizálására is használtuk. Lehetőséget ad az egyes kérések testreszabására (pl. fejlécek, paraméterek, autentikáció), valamint az API válaszainak könnyű értelmezésére.
 
 \begin{itemize}
-    \item \textbf{GET /v1/get\_stations\_by\_city} – Ez az API végpont lehetővé teszi, hogy egy adott városhoz tartozó állomásokat kérjünk le. Ezen végpont segítségével a felhasználók gyorsan megtalálhatják azokat az állomásokat, amelyek egy meghatározott városhoz tartoznak. A kérés paraméterei tartalmazzák a város nevét, és a válasz egy listát ad vissza az állomásokról.
+    \item \textbf{GET /v1/get\_stations\_by\_city} – Ez az API végpont lehetővé teszi, hogy egy adott városhoz tartozó állomásokat kérjünk le. Ezen végpont segítségével a felhasználók gyorsan megtalálhatják azokat az állomásokat, amelyek egy meghatározott városhoz tartoznak. A kérés paraméterei tartalmazzák a város nevét, és a válasz egy listát ad vissza az állomásokró, amint azt a \ref{fig:postman_get_stations_by_city} ábra is mutatja.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{figures/postman_request_get_stations_by_city.png}
@@ -11,7 +11,7 @@ A backend végpontjait a Postman alkalmazás segítségével követtük nyomon, 
         \label{fig:postman_get_stations_by_city}
     \end{figure}
 
-    \item \textbf{GET /v1/get\_available\_tickets} – Ez a végpont lehetővé teszi az elérhető jegyek lekérdezését egy adott kiindulási és célállomás között. A kérés paraméterei a kiindulási és célállomás, valamint egy opcionális időpont. A megállók is opcionálisak, a csak a város megadása esetén minden megállóhoz láthatjuk a jegyeket. A válasz tartalmazza az elérhető jegyek listáját, és ezek árai, valamint egyéb információkat.
+    \item \textbf{GET /v1/get\_available\_tickets} – A \ref{fig:postman_get_available_tickets} ábrán is látható módon ez végpont lehetővé teszi az elérhető jegyek lekérdezését egy adott kiindulási és célállomás között. A kérés paraméterei a kiindulási és célállomás, valamint egy opcionális időpont. A megállók is opcionálisak, a csak a város megadása esetén minden megállóhoz láthatjuk a jegyeket. A válasz tartalmazza az elérhető jegyek listáját, és ezek árai.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{figures/postman_request_get_available_tickets.png}
@@ -19,7 +19,7 @@ A backend végpontjait a Postman alkalmazás segítségével követtük nyomon, 
         \label{fig:postman_get_available_tickets}
     \end{figure}
 
-    \item \textbf{GET /v1/get\_bus\_locations\_by\_route} – Ezen API végpont segítségével lekérhetjük a buszok aktuális helyzetét egy adott járatra vonatkozóan. A kérés tartalmazza a járat azonosítóját, és a válasz egy koordinátákkal mutatja a buszok aktuális pozícióit.
+    \item \textbf{GET /v1/get\_bus\_locations\_by\_route} – Ezen API végpont segítségével lekérhetjük a buszok aktuális helyzetét egy adott járatra vonatkozóan. A kérés tartalmazza a járat azonosítóját, és a válasz egy koordinátákkal mutatja a buszok aktuális pozícióit, amint azt a \ref{fig:postman_get_bus_locations} ábra is mutatja.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{figures/postman_request_get_bus_locations.png}
@@ -27,7 +27,7 @@ A backend végpontjait a Postman alkalmazás segítségével követtük nyomon, 
         \label{fig:postman_get_bus_locations}
     \end{figure}
 
-    \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérésére szolgáló végpont. A kérés nem tartalmaz paramétereket, mivel az aktuális felhasználó jegyeit kérdezi le. A válaszban szereplő jegyek információi tartalmazzák a jegyek típusát, érvényességüket és egyéb fontos adatokat.
+    \item \textbf{GET /v1/tickets\_of\_user} – Az aktuális felhasználó jegyeinek lekérésére szolgáló végpont. A kérés nem tartalmaz paramétereket, mivel az aktuális felhasználó jegyeit kérdezi le. A válaszban szereplő jegyek információi tartalmazzák a jegyek típusát, érvényességüket és egyéb fontos adatokat, a \ref{fig:postman_get_tickets_of_user} ábrán látható módon.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{figures/postman_request_get_tickets_of_user.png}
@@ -35,7 +35,7 @@ A backend végpontjait a Postman alkalmazás segítségével követtük nyomon, 
         \label{fig:postman_get_tickets_of_user}
     \end{figure}
 
-    \item \textbf{POST /v1/admin/add\_station\_to\_route} – Ez az adminisztrátorok számára elérhető végpont lehetővé teszi egy állomás hozzárendelését egy adott útvonalhoz. A kérés tartalmazza az útvonal és az állomás azonosítóját, és a válasz megerősíti a sikeres műveletet.
+    \item \textbf{POST /v1/admin/add\_station\_to\_route} – Ez az adminisztrátorok számára elérhető végpont lehetővé teszi egy állomás hozzárendelését egy adott útvonalhoz. A kérés tartalmazza az útvonal és az állomás azonosítóját, és a válasz megerősíti a sikeres műveletet, amint a \ref{fig:postman_add_station_to_route} ábrán is látható.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.8\textwidth]{figures/postman_request_add_station_to_route.png}
@@ -64,6 +64,8 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
     \item \textbf{Tickets}: A felhasználókhoz tartozó jegyek.
     \item \textbf{Payments}: Stripe fizetések eltárolása.
 \end{itemize}
+
+A táblák közötti kapcsolatokat a \ref{fig:database-diagram} ábra szemlélteti.
 
 \begin{figure}[H]
     \centering

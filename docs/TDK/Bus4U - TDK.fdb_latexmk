@@ -1,17 +1,17 @@
 # Fdb version 4
-["bibtex Bus4U - TDK"] 1744734569.93434 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1744734830.09876 0
+["bibtex Bus4U - TDK"] 1744902482.86509 "Bus4U - TDK.aux" "Bus4U - TDK.bbl" "Bus4U - TDK" 1744902553.55968 0
   "./refs.bib" 1743924074.10552 5838 713b653c2c22d5196933860e9bf45d26 ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/ieeetr.bst" 1292289607 18361 1a00e58565e7f19bf2b3e1bfb82254ae ""
-  "Bus4U - TDK.aux" 1744734829.90433 20882 f1f7b7bd89dce78ef85e0eea97abfffc "pdflatex"
+  "Bus4U - TDK.aux" 1744902553.39545 20882 f1f7b7bd89dce78ef85e0eea97abfffc "pdflatex"
   (generated)
   "Bus4U - TDK.bbl"
   "Bus4U - TDK.blg"
   (rewritten before read)
-["pdflatex"] 1744734824.21626 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1744734830.0993 0
+["pdflatex"] 1744902547.9685 "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" "Bus4U - TDK.pdf" "Bus4U - TDK" 1744902553.56016 0
   "/etc/texmf/web2c/texmf.cnf" 1738748722.81132 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt0800.600pk" 1738762494.21947 15172 61b361a60646f081322fa674979f5b00 ""
   "/home/pszabi/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.600pk" 1742839389.00509 24132 20d138be0d20c2da825f07741e348b6f ""
-  "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" 1743926058.56428 1598 18b17f9faa83f44ba6fa26b3e558d224 ""
+  "/mnt/Adatok/IT/bus4u/docs/TDK/Bus4U - TDK.tex" 1744902547.65078 1627 90119285b16b479684e7f3793acc1c0b ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/symbol/psyr.tfm" 1136768653 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -133,11 +133,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1738762392.57089 131070 447c6667b36c37152a1d6cda7e01a5d0 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1738762406 7424887 465b4ef3abe1429f7a973e70b4d2d29f ""
-  "Bus4U - TDK.aux" 1744734829.90433 20882 f1f7b7bd89dce78ef85e0eea97abfffc "pdflatex"
-  "Bus4U - TDK.bbl" 1744734569.95802 2948 20cca6cbe0d9cb5364cc34024f479c06 "bibtex Bus4U - TDK"
-  "Bus4U - TDK.out" 1744734829.90737 7933 9c397783569afb13cde4da1a0f742e9a "pdflatex"
-  "Bus4U - TDK.tex" 1743926058.56428 1598 18b17f9faa83f44ba6fa26b3e558d224 ""
-  "Bus4U - TDK.toc" 1744734829.90858 6311 c8a21a539b226104e70e6c552f0e5084 "pdflatex"
+  "Bus4U - TDK.aux" 1744902553.39545 20882 f1f7b7bd89dce78ef85e0eea97abfffc "pdflatex"
+  "Bus4U - TDK.bbl" 1744902482.88353 2948 20cca6cbe0d9cb5364cc34024f479c06 "bibtex Bus4U - TDK"
+  "Bus4U - TDK.out" 1744902553.39935 7933 9c397783569afb13cde4da1a0f742e9a "pdflatex"
+  "Bus4U - TDK.tex" 1744902547.65078 1627 90119285b16b479684e7f3793acc1c0b ""
+  "Bus4U - TDK.toc" 1744902553.40058 6311 c8a21a539b226104e70e6c552f0e5084 "pdflatex"
   "chapters/abstract.tex" 1743430946.33243 2616 ea9fe9bcb59ac14187deac2d1af5f7f7 ""
   "chapters/architecture.tex" 1744722272.4937 25596 0806e1f9c25c40a4a42de8e27dbc04c9 ""
   "chapters/database.tex" 1744722272.4937 7487 60256d58946265b745edb2d33963b463 ""

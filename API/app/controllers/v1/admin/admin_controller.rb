@@ -486,4 +486,123 @@ class V1::Admin::AdminController < ApplicationController
         end
     end
 
+
+    def demo
+        start = params[:start].to_i == 1
+        index = params[:step].to_i
+        route = Route.find_by(route_uid: params[:route_uid])
+      
+        if route.nil?
+          return render json: { error: "Route not found" }, status: :not_found
+        end
+      
+        buses = Bus.where(license_plate: BUS_OFFSETS.keys)
+      
+        if buses.size != 3
+          return render json: { error: "3 demo buses (DEMO-001, DEMO-002, DEMO-003) are required" }, status: :unprocessable_entity
+        end
+      
+        if start
+          bus_data = []
+          buses.each do |bus|
+            offset = BUS_OFFSETS[bus.license_plate]
+            coord_index = (index + offset) % DEMO_COORDINATES.size
+            coord = DEMO_COORDINATES[coord_index]
+      
+            step = rand(1..2)
+            coord_index = (coord_index + step) % DEMO_COORDINATES.size
+            coord = DEMO_COORDINATES[coord_index]
+      
+            bus.update(
+              latitude: coord[:lat],
+              longitude: coord[:lon],
+              current_route_uid: route.route_uid,
+              tracked: true
+            )
+
+            bus_data << {
+                license_plate: bus.license_plate,
+                latitude: coord[:lat],
+                longitude: coord[:lon],
+                is_tracked: bus.tracked
+            }
+          end
+      
+          render json: bus_data
+        else
+          buses.each do |bus|
+            bus.update(
+              latitude: nil,
+              longitude: nil,
+              current_route_uid: nil,
+              tracked: false
+            )
+          end
+          render json: { success: "Demo stopped" }
+        end
+    end
+
+    DEMO_COORDINATES = [
+    { lat: 46.5316799666731, lon: 24.593080009632455 },
+    { lat: 46.53175336455556, lon: 24.5927975933084 },
+    { lat: 46.53180517409915, lon: 24.59252145234771 },
+    { lat: 46.531780119327365, lon: 24.59259920045371 },
+    { lat: 46.53201568016492, lon: 24.59196507733543 },
+    { lat: 46.53221633557478, lon: 24.591216808480976 },
+    { lat: 46.532432852567204, lon: 24.590612870595564 },
+    { lat: 46.53268610845549, lon: 24.589760199617253 },
+    { lat: 46.53324593912245, lon: 24.588267989617616 },
+    { lat: 46.5334215828212, lon: 24.587663602582914 },
+    { lat: 46.53391480030208, lon: 24.586520366484148 },
+    { lat: 46.534114747086036, lon: 24.585609641825716 },
+    { lat: 46.53474317877152, lon: 24.584176881182444 },
+    { lat: 46.53469564326548, lon: 24.58302591104387 },
+    { lat: 46.534236397975995, lon: 24.582496495310092 },
+    { lat: 46.533713827504826, lon: 24.582105015681165 },
+    { lat: 46.53331241093025, lon: 24.581001638091237 },
+    { lat: 46.53325170415162, lon: 24.580268507715772 },
+    { lat: 46.53317230617071, lon: 24.578876920730472 },
+    { lat: 46.53312092424087, lon: 24.578007996036206 },
+    { lat: 46.53308825254485, lon: 24.57691509071048 },
+    { lat: 46.533032220545834, lon: 24.576039410306702 },
+    { lat: 46.53302755070138, lon: 24.575299495571805 },
+    { lat: 46.53306956606456, lon: 24.57388754631798 },
+    { lat: 46.53320967899449, lon: 24.57311367512691 },
+    { lat: 46.53341981226323, lon: 24.57210901899149 },
+    { lat: 46.53361595955478, lon: 24.5707377792569 },
+    { lat: 46.53361127935567, lon: 24.56951590986489 },
+    { lat: 46.533620618492975, lon: 24.568192199911152 },
+    { lat: 46.533242356249744, lon: 24.56758806866186 },
+    { lat: 46.532471836883786, lon: 24.567323366223434 },
+    { lat: 46.53237479944871, lon: 24.568766727429516 },
+    { lat: 46.53207214653947, lon: 24.570107812551043 },
+    { lat: 46.53154354483258, lon: 24.571504218123376 },
+    { lat: 46.531063782423125, lon: 24.572641445277473 },
+    { lat: 46.53063569946044, lon: 24.574207859585023 },
+    { lat: 46.53048807170914, lon: 24.57513050448397 },
+    { lat: 46.53036995472417, lon: 24.576246258647455 },
+    { lat: 46.530244439584585, lon: 24.577522935768087 },
+    { lat: 46.530110026203616, lon: 24.57877364336074 },
+    { lat: 46.53008055321431, lon: 24.580404375260784 },
+    { lat: 46.53004367452241, lon: 24.58193854650256 },
+    { lat: 46.52974844303078, lon: 24.583440527451565 },
+    { lat: 46.52951223916066, lon: 24.584888853270854 },
+    { lat: 46.52923173957735, lon: 24.58601531661067 },
+    { lat: 46.528943834509086, lon: 24.587463618496862 },
+    { lat: 46.52926864801136, lon: 24.589287599881704 },
+    { lat: 46.52966717430989, lon: 24.59054284223179 },
+    { lat: 46.529873964500176, lon: 24.591058028965676 },
+    { lat: 46.53014705162454, lon: 24.591948475263116 },
+    { lat: 46.530612026169905, lon: 24.593182243684556 },
+    { lat: 46.53104007628577, lon: 24.59464132966481 },
+    { lat: 46.53136484871923, lon: 24.59396545169108 }
+    ]
+
+      
+    BUS_OFFSETS = {
+        "DEMO-001" => 0,
+        "DEMO-002" => 20,
+        "DEMO-003" => 45
+    }
+
 end

@@ -21,6 +21,9 @@ Bus.create(company_uid: transloc.company_uid, license_plate: "MS12TGM", brand: "
 Bus.create(company_uid: transloc.company_uid, license_plate: "MS23MUI", brand: "Volvo B12B", manufacturing_year: 2011, capacity: 70, road_tax: "2024-05-15", insurance: "2024-05-25", technical_exam: "2024-05-05")
 Bus.create(company_uid: transloc.company_uid, license_plate: "MS22UZI", brand: "Mercedes Tourismo", manufacturing_year: 2017, capacity: 75, road_tax: "2024-06-15", insurance: "2024-06-25",technical_exam: "2024-06-05")
 Bus.create(company_uid: transloc.company_uid, license_plate: "MS33ALS", brand: "Neoplan Starliner", manufacturing_year: 2019, capacity: 80, road_tax: "2024-01-15", insurance: "2024-07-25",technical_exam: "2024-07-05")
+Bus.create(company_uid: transloc.company_uid, license_plate: "DEMO-001", brand: "Neoplan Tourliner", manufacturing_year: 2018, capacity: 60, road_tax: "2024-01-01", insurance: "2024-06-01", technical_exam: "2024-07-01")
+Bus.create(company_uid: transloc.company_uid, license_plate: "DEMO-002", brand: "Mercedes-Benz Travego", manufacturing_year: 2017, capacity: 55, road_tax: "2024-02-15", insurance: "2024-08-10", technical_exam: "2024-07-15")
+Bus.create(company_uid: transloc.company_uid, license_plate: "DEMO-003", brand: "MAN Lion's Coach", manufacturing_year: 2020, capacity: 65, road_tax: "2024-03-10", insurance: "2024-09-05", technical_exam: "2024-07-20")
 
 
 #CREATING ADMINS FOR THE COMPANIES

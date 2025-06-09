@@ -6,8 +6,8 @@
 \usepackage{multicol}
 \usepackage{wrapfig}
 
-\title{Bus4U - UI}
-\author{Portik Szabolcs}
+\title{Bus4U}
+\author{Portik Szabolcs, Zsigmond Attila}
 \date{2025}
 
 \begin{document}
@@ -15,48 +15,13 @@
 \begin{titlepage}
   \center
   \Large
-  Universitatea „Sapientia” din Cluj-Napoca \\
-  Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
-  Specializarea Calculatoare \\
-  \vspace{1.5in}
-  \Huge
-  \textbf{Bus4U - UI} \\
-  \vspace{0.6in}
-  \LARGE
-  \textbf{PROIECT DE DIPLOMĂ} \\
-  \vspace{1.5in}
-  \Large
-  \begin{multicols}{2}
-    \begin{flushleft}
-      \textbf{Coordonator științific:} \\
-      Ș.l.dr.ing. Szántó Zoltán
-    \end{flushleft}
-    \columnbreak
-    \begin{flushright}
-      \textbf{Absolvent:} \\
-      Portik Szabolcs
-    \end{flushright}
-  \end{multicols}
-  \vspace{1in}
-  \Huge
-  \textbf{2025}
-\end{titlepage}
-
-\section*{Extras}
-\input{chapters/abstract/ro}
-
-\begin{titlepage}
-  \center
-  \Large
   Sapientia Erdélyi Magyar Tudományegyetem \\
   Marosvásárhelyi Kar \\
-  Számítástechnika szak \\
-  \vspace{1.5in}
+  \vspace{2in}
   \Huge
-  \textbf{Bus4U - UI} \\
-  \vspace{0.6in}
-  \LARGE
-  \textbf{DIPLOMADOLGOZAT} \\
+  \textbf{Bus4U} \\
+  \vspace{0.5in}
+  \textbf{TDK Dolgozat} \\
   \vspace{1.5in}
   \Large
   \begin{multicols}{2}
@@ -67,24 +32,23 @@
     \end{flushleft}
     \columnbreak
     \begin{flushright}
-      \textbf{Hallgató:} \\
-      Portik Szabolcs
+      \textbf{Hallgatók:} \\
+      Portik Szabolcs \\
+      Zsigmond Attila \\
+      Számítástechnika IV.
     \end{flushright}
   \end{multicols}
-  \vspace{0.6in}
   \Huge
   \textbf{2025}
 \end{titlepage}
 
 \pagenumbering{gobble}
 
-\section*{Kivonat}
-\input{chapters/abstract/hu}
-
-\section*{Abstract}
-\input{chapters/abstract/en}
-
 \tableofcontents
+
+\newpage
+\section*{Kivonat}
+\input{chapters/abstract}
 
 \pagenumbering{arabic}
 
@@ -103,18 +67,19 @@
 \chapter{A rendszer architektúrája}
 \input{chapters/architecture}
 
+\chapter{Adatkezelés}
+\input{chapters/database}
+
 \chapter{A felhasználói felület tervezése}
 \input{chapters/ui-design}
 
 \chapter{Gyakorlati megvalósítás}
 \input{chapters/implementation}
 
-\chapter{Tesztelés}
-\input{chapters/testing}
-
 \chapter{Összefoglalás}
 \input{chapters/summary}
 
+\newpage
 \addcontentsline{toc}{chapter}{Irodalomjegyzék}
 \bibliographystyle{ieeetr}
 \bibliography{refs}

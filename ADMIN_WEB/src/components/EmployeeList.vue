@@ -8,10 +8,10 @@
   <v-container>
     <v-row>
       <v-col v-for="employee in employees" :key="employee.uid" cols="12" sm="6" md="4" lg="3" xl="2">
-        <EmployeeCard :employee="employee" @delete="deleteEmployee(employee)" @edit="editEmployee(employee)"/>
+        <EmployeeCard :employee="employee" @delete="deleteEmployee(employee)" @edit="editEmployee(employee)" />
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-        <v-card :to="{name: 'create-employee'}" height="100%" class="d-flex flex-column text-center" min-width="200">
+        <v-card :to="{ name: 'create-employee' }" height="100%" class="d-flex flex-column text-center" min-width="200">
           <v-sheet class="text-center" color="adjacent">
             <v-icon size="120" icon="mdi-plus-circle-outline"></v-icon>
           </v-sheet>
@@ -44,26 +44,24 @@ const isDeleted = ref(false)
 const error = ref(false)
 
 function deleteEmployee(employee) {
-  axios.delete('https://api.bus4u.online/v1/admin/delete_driver', { params: { company_uid: user.company_uid, admin_uid: employee.uid }})
-  .then(() => {
-    isDeleted.value = true
-    axios.get('https://api.bus4u.online/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
-      .then(rsp => {
-        employees.value = rsp.data
-      }).catch(() => employees.value = [])
-  }).catch(() => error.value = true)
+  axios.delete('/v1/admin/delete_driver', { params: { company_uid: user.company_uid, admin_uid: employee.uid } })
+    .then(() => {
+      isDeleted.value = true
+      axios.get('/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid } })
+        .then(rsp => {
+          employees.value = rsp.data
+        }).catch(() => employees.value = [])
+    }).catch(() => error.value = true)
 }
 
 function editEmployee(employee) {
-  router.push({ name: 'edit-employee', params: { employee: employee.uid.replaceAll('.', '/') }})
+  router.push({ name: 'edit-employee', params: { employee: employee.uid.replaceAll('.', '/') } })
 }
 
-axios.get('https://api.bus4u.online/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid }})
+axios.get('/v1/admin/list_of_drivers', { params: { company_uid: user.company_uid } })
   .then(rsp => {
     employees.value = rsp.data
   }).catch(() => employees.value = [])
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

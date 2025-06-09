@@ -53,7 +53,7 @@ function getName(item) {
 
 function onSubmit() {
   if (form.city && !form.bus) {
-    axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: form.city.city_uid } })
+    axios.get('/v1/get_stations_by_city', { params: { city_uid: form.city.city_uid } })
       .then(rsp => {
         if (rsp.status == 200) {
           stations.value = rsp.data.stations
@@ -61,7 +61,7 @@ function onSubmit() {
         }
       }).catch(() => stations.value = [])
   } else if (form.bus) {
-    axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: form.bus.route_uid } })
+    axios.get('/v1/get_stations_of_a_route', { params: { route_uid: form.bus.route_uid } })
       .then(rsp => {
         if (rsp.status == 200) {
           stations.value = rsp.data.stations
@@ -69,7 +69,7 @@ function onSubmit() {
         }
       }).catch(() => stations.value = [])
   } else {
-    axios.get('https://api.bus4u.online/v1/get_stations')
+    axios.get('/v1/get_stations')
       .then(rsp => {
         if (rsp.status == 200) stations.value = rsp.data.stations
       }).catch(() => stations.value = [])
@@ -77,23 +77,23 @@ function onSubmit() {
 }
 
 async function getBuses() {
-  axios.get('https://api.bus4u.online/v1/get_routes')
+  axios.get('/v1/get_routes')
     .then(rsp => {
       if (rsp.status == 200) buses.value = rsp.data.routes
     }).catch(() => buses.value = [])
 }
 
 onMounted(() => {
-  axios.get('https://api.bus4u.online/v1/get_stations')
+  axios.get('/v1/get_stations')
     .then(rsp => {
       if (rsp.status == 200) stations.value = rsp.data.stations
     }).catch(() => stations.value = [])
 
-  axios.get('https://api.bus4u.online/v1/get_cities')
+  axios.get('/v1/get_cities')
     .then(rsp => {
       if (rsp.status == 200) cities.value = rsp.data.cities
     }).catch(() => cities.value = [])
-  axios.get('https://api.bus4u.online/v1/get_routes')
+  axios.get('/v1/get_routes')
     .then(rsp => {
       if (rsp.status == 200) buses.value = rsp.data.routes
     }).catch(() => buses.value = [])

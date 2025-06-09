@@ -163,7 +163,7 @@ async function onSubmit(e) {
   } else {
     params = { start_city_uid: form.fromCity.city_uid, destination_city_uid: form.toCity.city_uid, date: form.date, time: form.time }
   }
-  axios.get('https://api.bus4u.online/v1/get_available_tickets', { params })
+  axios.get('/v1/get_available_tickets', { params })
     .then(rsp => {
       if (rsp.status == 200) {
         routes.value = rsp.data
@@ -182,7 +182,7 @@ function getName(item) {
 async function getStartStation(city) {
   form.fromStation = null
   if (!city) return
-  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
+  axios.get('/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
     .then(rsp => {
       if (rsp.status == 200) startStations.value = rsp.data.stations
     }).catch(() => startStations.value = [])
@@ -191,13 +191,13 @@ async function getStartStation(city) {
 async function getDestStation(city) {
   form.toStation = null
   if (!city) return
-  axios.get('https://api.bus4u.online/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
+  axios.get('/v1/get_stations_by_city', { params: { city_uid: city.city_uid } })
     .then(rsp => {
       if (rsp.status == 200) destStations.value = rsp.data.stations
     }).catch(() => destStations.value = [])
 }
 
-axios.get('https://api.bus4u.online/v1/get_cities')
+axios.get('/v1/get_cities')
   .then((rsp) => {
     cities.value = rsp.data.cities
   }).catch(() => cities.value = [])

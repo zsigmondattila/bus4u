@@ -62,3 +62,6 @@ API/tmp/*
 API/tmp/pids/*
 
 API/Bus4U-VM_key.pem
+API/Bus4U-VM-key.pem
+API/Bus4U-VM_key2.pem
+API/Bus4U-VM_key2.pem.pub

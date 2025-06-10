@@ -25,7 +25,7 @@ export const userStore = defineStore("user", () => {
     if (auth) {
       let data = JSON.parse(auth);
       axios
-        .delete("https://api.bus4u.online/admin/sign_out", {
+        .delete("/admin/sign_out", {
           params: {
             uid: data.uid,
             client: data.client,
@@ -54,7 +54,7 @@ export const userStore = defineStore("user", () => {
   }
   function checkDocuments(company, auth) {
     axios
-      .get("https://api.bus4u.online/v1/admin/document_validity_checker", {
+      .get("/v1/admin/document_validity_checker", {
         headers: { Authorization: auth },
         params: { company_uid: company },
       })

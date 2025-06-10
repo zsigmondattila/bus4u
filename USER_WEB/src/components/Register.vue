@@ -77,14 +77,14 @@ async function onSubmit(event) {
   let response = await event;
   if (response.valid) {
     isLoading.value = true
-    axios.post('https://api.bus4u.online/v1/send_verification_email', { user_email: form.email })
+    axios.post('/v1/send_verification_email', { user_email: form.email })
       .then(rsp => {
         if (rsp.status == 200) {
           hideOTP.value = false
           isLoading.value = false
         }
       }).catch(e => {
-        if (e.response) error.value = e.response.data.errors[0];
+        if (e.response) error.value = e.response.data.error;
         else error.value = e.message;
         isLoading.value = false
       });
@@ -94,7 +94,7 @@ async function onSubmit(event) {
 async function checkCode() {
   error.value = ''
   isLoading.value = true;
-  axios.get('https://api.bus4u.online/v1/verify_code_email', { params: { user_email: form.email, verification_code: code.value } })
+  axios.get('/v1/verify_code_email', { params: { user_email: form.email, verification_code: code.value } })
     .then(rsp => {
       if (rsp.status == 200) sendForm();
       else {
@@ -108,7 +108,7 @@ async function checkCode() {
 }
 
 async function sendForm() {
-  axios.post('https://api.bus4u.online/auth', form).then((rsp) => {
+  axios.post('/auth', form).then((rsp) => {
     if (rsp.data.data.uid) {
       router.replace({ name: 'home' })
       user.signIn(rsp.data.data, rsp.headers)

@@ -1,49 +1,52 @@
-import './assets/main.css'
-import '@mdi/font/css/materialdesignicons.css'
+import "./assets/main.css";
+import "@mdi/font/css/materialdesignicons.css";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import colors from 'vuetify/lib/util/colors'
+import App from "./App.vue";
+import router from "./router";
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import { aliases, mdi } from "vuetify/iconsets/mdi";
+import colors from "vuetify/lib/util/colors";
+import axios from "axios";
+
+axios.defaults.baseURL = "https://api.bus4u.online";
 
 const appColor = colors.deepOrange;
 
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
-      density: 'comfortable',
+      density: "comfortable",
       color: appColor.darken1,
-      hideDetails: 'auto'
+      hideDetails: "auto",
     },
     VSelect: {
-      density: 'comfortable',
-      hideDetails: 'auto'
+      density: "comfortable",
+      hideDetails: "auto",
     },
     VAutocomplete: {
-      density: 'comfortable',
-      hideDetails: 'auto'
+      density: "comfortable",
+      hideDetails: "auto",
     },
     VSnackbar: {
       color: appColor.darken3,
-      location: 'bottom',
-      variant: 'elevated',
-      timeout: 5000
-    }
+      location: "bottom",
+      variant: "elevated",
+      timeout: 5000,
+    },
   },
   icons: {
-    defaultSet: 'mdi',
+    defaultSet: "mdi",
     aliases,
     sets: {
       mdi,
     },
   },
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: "dark",
     themes: {
       light: {
         dark: false,
@@ -51,8 +54,8 @@ const vuetify = createVuetify({
           primary: colors.deepOrange.darken2,
           secondary: colors.deepOrange.lighten3,
           accent: colors.deepOrange.accent2,
-          adjacent: '#bc1251'
-        }
+          adjacent: "#bc1251",
+        },
       },
       dark: {
         dark: true,
@@ -60,17 +63,17 @@ const vuetify = createVuetify({
           adjacent: colors.deepOrange.darken3,
           secondary: colors.deepOrange.lighten1,
           accent: colors.deepOrange.accent3,
-          primary: '#bc1251',
-          'primary-light': '#ce3870'
-        }
+          primary: "#bc1251",
+          "primary-light": "#ce3870",
+        },
       },
     },
   },
-})
-const app = createApp(App)
+});
+const app = createApp(App);
 
-app.use(createPinia())
-app.use(router)
-app.use(vuetify)
+app.use(createPinia());
+app.use(router);
+app.use(vuetify);
 
-app.mount('#app')
+app.mount("#app");

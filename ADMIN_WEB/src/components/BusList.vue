@@ -8,10 +8,10 @@
   <v-container>
     <v-row>
       <v-col v-for="bus in buses" :key="bus.bus_uid" cols="12" sm="6" md="4" lg="3" xl="2">
-        <BusCard :bus="bus" @delete="deleteBus(bus)" @edit="editBus(bus)"/>
+        <BusCard :bus="bus" @delete="deleteBus(bus)" @edit="editBus(bus)" />
       </v-col>
       <v-col cols="12" sm="6" md="4" lg="3" xl="2">
-        <v-card :to="{name: 'create-bus'}" height="100%" class="d-flex flex-column text-center" min-width="200">
+        <v-card :to="{ name: 'create-bus' }" height="100%" class="d-flex flex-column text-center" min-width="200">
           <v-sheet class="text-center" color="adjacent">
             <v-icon size="120" icon="mdi-plus-circle-outline"></v-icon>
           </v-sheet>
@@ -44,26 +44,24 @@ const isDeleted = ref(false)
 const error = ref(false)
 
 function deleteBus(bus) {
-  axios.delete('https://api.bus4u.online/v1/admin/delete_bus', { params: { company_uid: user.company_uid, bus_uid: bus.bus_uid }})
-  .then(() => {
-    isDeleted.value = true
-    axios.get('https://api.bus4u.online/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
-      .then(rsp => {
-        buses.value = rsp.data
-      }).catch(() => buses.value = [])
-  }).catch(() => error.value = true)
+  axios.delete('/v1/admin/delete_bus', { params: { company_uid: user.company_uid, bus_uid: bus.bus_uid } })
+    .then(() => {
+      isDeleted.value = true
+      axios.get('/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid } })
+        .then(rsp => {
+          buses.value = rsp.data
+        }).catch(() => buses.value = [])
+    }).catch(() => error.value = true)
 }
 
 function editBus(bus) {
-  router.push({ name: 'edit-bus', params: { bus: bus.bus_uid }})
+  router.push({ name: 'edit-bus', params: { bus: bus.bus_uid } })
 }
 
-axios.get('https://api.bus4u.online/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid }})
+axios.get('/v1/admin/get_buses_of_a_company', { params: { company_uid: user.company_uid } })
   .then(rsp => {
     buses.value = rsp.data
   }).catch(() => buses.value = [])
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -15,7 +15,7 @@
           <StatSheet label="Tickets sold" :value="stats.month_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.month_income/100" />
+          <StatSheet label="LEI income" :value="stats.month_income / 100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -29,7 +29,7 @@
           <StatSheet label="Tickets sold" :value="stats.year_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.year_income/100" />
+          <StatSheet label="LEI income" :value="stats.year_income / 100" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -43,7 +43,7 @@
           <StatSheet label="Tickets sold" :value="stats.all_tickets" />
         </v-col>
         <v-col cols="12" sm="6" md="4" xl="3">
-          <StatSheet label="LEI income" :value="stats.all_income/100" />
+          <StatSheet label="LEI income" :value="stats.all_income / 100" />
         </v-col>
       </v-row>
     </v-container>
@@ -71,11 +71,11 @@ const stats = ref({
   year_users: 0
 })
 
-axios.get('https://api.bus4u.online/v1/admin/statistics', { params: { company_uid: user.company_uid }})
+axios.get('/v1/admin/statistics', { params: { company_uid: user.company_uid } })
   .then(rsp => {
     stats.value = rsp.data
   }).catch(() => {
-      stats.value = {
+    stats.value = {
       all_income: 0,
       all_tickets: 0,
       all_users: 0,
@@ -89,6 +89,4 @@ axios.get('https://api.bus4u.online/v1/admin/statistics', { params: { company_ui
   })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

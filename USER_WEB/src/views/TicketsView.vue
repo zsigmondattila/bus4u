@@ -62,7 +62,7 @@ const tickets = ref([])
 watchEffect(() => {
   if (user.uid) {
     isLoading.value = true
-    axios.get('https://api.bus4u.online/v1/tickets_of_user', { headers: { Authorization: user.authorization }, params: { uid: user.uid } })
+    axios.get('/v1/tickets_of_user', { headers: { Authorization: user.authorization }, params: { uid: user.uid } })
       .then(rsp => {
         isLoading.value = false
         tickets.value = rsp.data.sort((a, b) => {

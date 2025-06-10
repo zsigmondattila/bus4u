@@ -96,7 +96,7 @@ const capacityRules = [
 ]
 
 if (props.bus) {
-  axios.get('https://api.bus4u.online/v1/admin/get_bus_by_id', { params: { bus_uid: props.bus.toUpperCase() } })
+  axios.get('/v1/admin/get_bus_by_id', { params: { bus_uid: props.bus.toUpperCase() } })
     .then(rsp => {
       form.value = rsp.data
       form.value.manufacturing_year = `${rsp.data.manufacturing_year}-01`
@@ -113,7 +113,7 @@ async function onSubmit(event) {
   isLoading.value = true
   if (props.bus) {
     let data = { brand: form.value.brand, license_plate: form.value.license_plate, capacity: form.value.capacity, manufacturing_year: form.value.manufacturing_year, road_tax: form.value.road_tax, technical_exam: form.value.technical_exam, insurance: form.value.insurance }
-    axios.put('https://api.bus4u.online/v1/admin/update_bus', data, { params: { bus_uid: props.bus.toUpperCase() } })
+    axios.put('/v1/admin/update_bus', data, { params: { bus_uid: props.bus.toUpperCase() } })
       .then((rsp) => {
         if (rsp.status === 200) {
           router.replace({ name: 'buses' })
@@ -125,7 +125,7 @@ async function onSubmit(event) {
         error.value = err.response.data.errors.full_messages[0]
       });
   } else {
-    axios.post('https://api.bus4u.online/v1/admin/create_bus', form.value).then((rsp) => {
+    axios.post('/v1/admin/create_bus', form.value).then((rsp) => {
       if (rsp.status === 200) {
         router.replace({ name: 'buses' })
       } else {

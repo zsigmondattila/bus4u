@@ -25,7 +25,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("stations");
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.login();
-    cy.visit("http:///schedule");
+    cy.visit("/schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -46,7 +46,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_stations_of_a_route*").as("stations");
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.login();
-    cy.visit("http:///schedule");
+    cy.visit("/schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -69,7 +69,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.intercept("POST", "/v1/admin/add_timetable_to_route").as("create");
     cy.login();
-    cy.visit("http:///schedule");
+    cy.visit("/schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -86,7 +86,7 @@ describe("Schedule page", () => {
     cy.intercept("GET", "/v1/get_departure_times*").as("times");
     cy.intercept("POST", "/v1/admin/add_timetable_to_route").as("create");
     cy.login();
-    cy.visit("http:///schedule");
+    cy.visit("/schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");
@@ -117,7 +117,7 @@ describe("Schedule page", () => {
       "delete"
     );
     cy.login();
-    cy.visit("http:///schedule");
+    cy.visit("/schedule");
     cy.wait("@routes");
     cy.get("input[name='route']").type("Test2 Route{enter}");
     cy.wait("@stations");

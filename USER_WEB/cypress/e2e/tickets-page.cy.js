@@ -1,4 +1,20 @@
 describe("Tickets page", () => {
+  const tickets = [
+    {
+      ticket_uid: "TIC_C7QQK",
+      date_of_purchase: "2025-03-26T10:32:31.876+02:00",
+      expiration_date: "2025-04-26T11:32:31.876+03:00",
+      from_station_uid: "STT_IHC2Z",
+      to_station_uid: "STT_G43LF",
+      from_station_name: "Sapientia",
+      to_station_name: "Cocosul de Aur",
+      is_valid: true,
+      route_uid: "ROU_PG1A4",
+      route_name: "26",
+      ticket_price: "200.0",
+    },
+  ];
+
   it("Accessing without login", () => {
     cy.visit("/tickets");
     cy.get(".v-container .v-card")
@@ -7,15 +23,17 @@ describe("Tickets page", () => {
   });
   it("Accessing with login", () => {
     cy.intercept("/auth/sign_in").as("login");
-    cy.intercept("/v1/tickets_of_user*").as("tickets");
+    cy.intercept("/v1/tickets_of_user*", {
+      statusCode: 200,
+      body: tickets,
+    }).as("tickets");
     cy.visit("/tickets");
     cy.get(".content").find("a[href='/login']").click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.wait("@login");
-    cy.url().should("include", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
+    cy.location("pathname").should("eq", "/");
     cy.get(".v-app-bar-nav-icon").click();
     cy.get("a[href='/tickets']").click();
     cy.wait("@tickets");
@@ -33,11 +51,10 @@ describe("Tickets page", () => {
     cy.visit("/tickets");
     cy.get(".content").find("a[href='/login']").click();
     cy.url().should("include", "/login");
-    cy.get("input").first().type("portik.szabolcs.02@gmail.com");
-    cy.get("input").last().type("password{enter}");
+    cy.get("input").first().type("teszt@gmail.com");
+    cy.get("input").last().type("aaaaaaaa{enter}");
     cy.wait("@login");
-    cy.url().should("include", "/");
-    cy.get(".v-toolbar__content").should("contain", "Szabolcs");
+    cy.location("pathname").should("eq", "/");
     cy.get(".v-app-bar-nav-icon").click();
     cy.get("a[href='/tickets']").click();
     cy.wait("@tickets");

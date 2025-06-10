@@ -1,0 +1,87 @@
+\documentclass[12pt, twoside]{report}
+
+\include{preamble}
+
+\usepackage{ragged2e}
+\usepackage{multicol}
+\usepackage{wrapfig}
+
+\title{Bus4U}
+\author{Portik Szabolcs, Zsigmond Attila}
+\date{2025}
+
+\begin{document}
+
+\begin{titlepage}
+  \center
+  \Large
+  Sapientia Erdélyi Magyar Tudományegyetem \\
+  Marosvásárhelyi Kar \\
+  \vspace{2in}
+  \Huge
+  \textbf{Bus4U} \\
+  \vspace{0.5in}
+  \textbf{TDK Dolgozat} \\
+  \vspace{1.5in}
+  \Large
+  \begin{multicols}{2}
+    \begin{flushleft}
+      \textbf{Témavezető:} \\
+      Dr. Szántó Zoltán \\
+      Egyetemi adjunktus
+    \end{flushleft}
+    \columnbreak
+    \begin{flushright}
+      \textbf{Hallgatók:} \\
+      Portik Szabolcs \\
+      Zsigmond Attila \\
+      Számítástechnika IV.
+    \end{flushright}
+  \end{multicols}
+  \Huge
+  \textbf{2025}
+\end{titlepage}
+
+\pagenumbering{gobble}
+
+\tableofcontents
+
+\newpage
+\section*{Kivonat}
+\input{chapters/abstract}
+
+\pagenumbering{arabic}
+
+\chapter{Bevezető}
+\input{chapters/introduction}
+
+\chapter{Célkitűzések}
+\input{chapters/goals}
+
+\chapter{Szakirodalmi tanulmány}
+\input{chapters/theoretical-foundation}
+
+\chapter{A rendszer specifikációi}
+\input{chapters/system-requirements}
+
+\chapter{A rendszer architektúrája}
+\input{chapters/architecture}
+
+\chapter{Adatkezelés}
+\input{chapters/database}
+
+\chapter{A felhasználói felület tervezése}
+\input{chapters/ui-design}
+
+\chapter{Gyakorlati megvalósítás}
+\input{chapters/implementation}
+
+\chapter{Összefoglalás}
+\input{chapters/summary}
+
+\newpage
+\addcontentsline{toc}{chapter}{Irodalomjegyzék}
+\bibliographystyle{ieeetr}
+\bibliography{refs}
+
+\end{document}

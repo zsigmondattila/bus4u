@@ -1,0 +1,61 @@
+\begin{thebibliography}{10}
+
+\bibitem{cropper2024measuring}
+M.~Cropper and P.~Suri, ``Measuring the air pollution benefits of public transport projects,'' {\em Regional Science and Urban Economics}, vol.~107, p.~103976, 2024.
+
+\bibitem{le2016encouraging}
+T.~P.~L. Le and T.~A. Trinh, ``Encouraging public transport use to reduce traffic congestion and air pollutant: A case study of ho chi minh city, vietnam,'' {\em Procedia engineering}, vol.~142, pp.~236--243, 2016.
+
+\bibitem{orovsnjak2020bus}
+M.~Oro{\v{s}}njak, M.~Jocanovi{\'c}, B.~Gvozdenac-Uro{\v{s}}evi{\'c}, D.~{\v{S}}evi{\'c}, L.~Du{\dj}ak, and V.~Karanovi{\'c}, ``Bus fleet management--a systematic literature review,'' {\em Promet-Traffic\&Transportation}, vol.~32, no.~6, pp.~761--772, 2020.
+
+\bibitem{polyviou2011modelling}
+P.~Polyviou, {\em Modelling traffic incidents to support dynamic bus fleets management for sustainable transport}.
+\newblock PhD thesis, University of Southampton, 2011.
+
+\bibitem{elijah2023transforming}
+O.~Elijah, S.~L. Keoh, S.~K. bin Abdul~Rahim, C.~K. Seow, Q.~Cao, M.~A. bin Sarijari, N.~F. Ibrahim, and A.~Basuki, ``Transforming urban mobility with internet of things: public bus fleet tracking using proximity-based bluetooth beacons,'' {\em Frontiers in the Internet of Things}, vol.~2, p.~1255995, 2023.
+
+\bibitem{hounsell2012data}
+N.~Hounsell, B.~Shrestha, and A.~Wong, ``Data management and applications in a world-leading bus fleet,'' {\em Transportation Research Part C: Emerging Technologies}, vol.~22, pp.~76--87, 2012.
+
+\bibitem{rollandinfrastrukturalis}
+V.~ROLLAND and F.~G{\'A}BOR, ``Infrastruktur{\'a}lis vagy k{\"o}z{\"o}ss{\'e}gi {\'e}rz{\'e}kel{\'e}s az okos v{\'a}rosokban?,'' {\em Híradástechnika}, vol.~71, no.~1, pp.~47--51, 2016.
+
+\bibitem{vueinaction}
+E.~Hanchett and B.~Listwon, {\em Vue. js in Action}.
+\newblock Simon and Schuster, 2018.
+
+\bibitem{vue3}
+P.~D. Garaguso, {\em Vue. js 3 Design Patterns and Best Practices: Develop scalable and robust applications with Vite, Pinia, and Vue Router}.
+\newblock Packt Publishing Ltd, 2023.
+
+\bibitem{flutterinaction}
+E.~Windmill, {\em Flutter in action}.
+\newblock Simon and Schuster, 2020.
+
+\bibitem{hartl_rails}
+M.~Hartl, {\em Ruby on Rails Tutorial: Learn Web Development with Rails}.
+\newblock Addison-Wesley Professional, 2016.
+
+\bibitem{fernandez_rails}
+O.~Fernandez, {\em The Rails Way}.
+\newblock Addison-Wesley Professional, 2017.
+
+\bibitem{douglas_postgresql}
+K.~Douglas and S.~Douglas, {\em PostgreSQL: Up and Running}.
+\newblock O'Reilly Media, 2015.
+
+\bibitem{murrell_postgresql}
+J.~Murrell, {\em PostgreSQL 12 High Availability Cookbook}.
+\newblock Packt Publishing, 2019.
+
+\bibitem{wilder_azure}
+B.~Wilder, {\em Cloud architecture patterns: using Microsoft Azure}.
+\newblock O'Reilly Media, Inc., 2012.
+
+\bibitem{collier_azure}
+M.~Collier and R.~Shahan, {\em Microsoft Azure Essentials-Fundamentals of Azure}.
+\newblock Microsoft Press, 2015.
+
+\end{thebibliography}

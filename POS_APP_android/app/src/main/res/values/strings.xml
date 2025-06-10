@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Bus4U POS</string>
+    <string-array name="bus_list_placeholder">
+        <item>ABC-123</item>
+        <item>DEF-456</item>
+        <item>GHI-789</item>
+    </string-array>
+
+    <string-array name="route_list_placeholder">
+        <item>1-es útvonal</item>
+        <item>2-es útvonal</item>
+        <item>3-as útvonal</item>
+    </string-array>
+</resources>

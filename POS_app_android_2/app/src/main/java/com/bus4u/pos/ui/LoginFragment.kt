@@ -19,6 +19,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val emailEditText = view.findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = view.findViewById<EditText>(R.id.passwordEditText)
         val loginButton = view.findViewById<Button>(R.id.loginButton)
+        val loginProgressBar = view.findViewById<View>(R.id.loginProgressBar)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
@@ -29,13 +30,23 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 return@setOnClickListener
             }
 
+            loginButton.text = ""
+            loginButton.isEnabled = false
+            loginProgressBar.visibility = View.VISIBLE
+
             viewModel.login(
                 email,
                 password,
                 onSuccess = {
+                    loginProgressBar.visibility = View.GONE
+                    loginButton.isEnabled = true
+                    loginButton.text = "Log in"
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
                 },
                 onError = { errorMessage ->
+                    loginProgressBar.visibility = View.GONE
+                    loginButton.isEnabled = true
+                    loginButton.text = "Log in"
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_LONG).show()
                 }
             )

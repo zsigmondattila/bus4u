@@ -10,8 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.OptIn
+import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
@@ -21,12 +25,10 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import com.bus4u.pos.MainActivity
 import com.bus4u.pos.R
 import com.bus4u.pos.domain.viewmodel.TicketScanViewModel
-import com.bus4u.pos.util.ApiService
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
@@ -43,6 +45,9 @@ class TicketScanFragment : Fragment() {
     private lateinit var previewView: PreviewView
     private lateinit var validationStatusTextView: TextView
     private lateinit var exitButton: Button
+    private lateinit var rootLayout: View
+    private lateinit var statusIcon: ImageView
+    private lateinit var onBackPressedCallback: OnBackPressedCallback
 
     private var cameraExecutor: ExecutorService? = null
 
@@ -68,10 +73,19 @@ class TicketScanFragment : Fragment() {
         previewView = view.findViewById(R.id.previewView)
         validationStatusTextView = view.findViewById(R.id.validationStatusTextView)
         exitButton = view.findViewById(R.id.exitButton)
+        rootLayout = view.findViewById(R.id.rootLayout)
+        statusIcon = view.findViewById(R.id.statusIconImageView)
 
         exitButton.setOnClickListener {
-            findNavController().popBackStack()
+            showPinDialog()
         }
+
+        onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                showPinDialog()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         if (allPermissionsGranted()) {
             startCamera()
@@ -168,11 +182,15 @@ class TicketScanFragment : Fragment() {
             validationStatusTextView.visibility = View.VISIBLE
 
             if (result.success != null) {
-                validationStatusTextView.text = "Sikeres jegyérvényesítés!"
+                validationStatusTextView.text = "Successful ticket validation!"
                 validationStatusTextView.setBackgroundResource(R.drawable.bg_success)
+                statusIcon.setImageResource(R.drawable.ic_success)
+                statusIcon.visibility = View.VISIBLE
             } else {
-                validationStatusTextView.text = "Sikertelen jegyérvényesítés: ${result.error ?: "Ismeretlen hiba"}"
+                validationStatusTextView.text = "Error during validation: ${result.error ?: "Unknown error"}"
                 validationStatusTextView.setBackgroundResource(R.drawable.bg_error)
+                statusIcon.setImageResource(R.drawable.ic_error)
+                statusIcon.visibility = View.VISIBLE
             }
 
             Handler(Looper.getMainLooper()).postDelayed({
@@ -182,6 +200,7 @@ class TicketScanFragment : Fragment() {
 
             validationStatusTextView.postDelayed({
                 validationStatusTextView.visibility = View.GONE
+                statusIcon.visibility = View.GONE
             }, 5000)
         }
     }
@@ -203,4 +222,35 @@ class TicketScanFragment : Fragment() {
             }
         }
     }
+
+    private fun showPinDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_pin_entry, null)
+        val pinEditText = dialogView.findViewById<EditText>(R.id.pinEditText)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setCancelable(false)
+            .setPositiveButton("OK", null)
+            .setNegativeButton("Cancel") { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .create()
+
+        dialog.setOnShowListener {
+            val okButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            okButton.setOnClickListener {
+                val enteredPin = pinEditText.text.toString()
+                if (enteredPin == "0000") {
+                    dialog.dismiss()
+                    onBackPressedCallback.isEnabled = false
+                    requireActivity().onBackPressed()
+                } else {
+                    pinEditText.error = "Incorrect PIN"
+                }
+            }
+        }
+
+        dialog.show()
+    }
+
 }

@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +28,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.switchmaterial.SwitchMaterial
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -40,8 +40,8 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
 
     private lateinit var viewModel: MainViewModel
 
-    private lateinit var busSpinner: Spinner
-    private lateinit var routeSpinner: Spinner
+    private lateinit var busAutoComplete: AutoCompleteTextView
+    private lateinit var routeAutoComplete: AutoCompleteTextView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var locationUpdateJob: Job? = null
@@ -69,14 +69,15 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
         mapView.onDestroy()
     }
 
-    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    @SuppressLint("UseSwitchCompatOrMaterialCode", "ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        busSpinner = view.findViewById(R.id.busSpinner)
-        routeSpinner = view.findViewById(R.id.routeSpinner)
-        val trackSwitch = view.findViewById<Switch>(R.id.trackSwitch)
+        busAutoComplete = view.findViewById(R.id.busAutoComplete)
+        routeAutoComplete = view.findViewById(R.id.routeAutoComplete)
+        val trackSwitch = view.findViewById<SwitchMaterial>(R.id.trackSwitch)
         val ticketScanButton = view.findViewById<Button>(R.id.ticketScannerButton)
+        val logoImageView = view.findViewById<ImageView>(R.id.logoImageView)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
@@ -93,9 +94,21 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
             onSuccess = { buses, routes ->
                 val busNames = buses.map { it.license_plate }
                 val routeNames = routes.map { it.name }
+
                 requireActivity().runOnUiThread {
-                    busSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, busNames)
-                    routeSpinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, routeNames)
+                    val busAdapter = ArrayAdapter(
+                        requireContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        busNames
+                    )
+                    busAutoComplete.setAdapter(busAdapter)
+
+                    val routeAdapter = ArrayAdapter(
+                        requireContext(),
+                        R.layout.dropdown_menu_popup_item,
+                        routeNames
+                    )
+                    routeAutoComplete.setAdapter(routeAdapter)
                 }
             },
             onError = { message ->
@@ -110,16 +123,16 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
         mapView.getMapAsync(this)
 
         trackSwitch.setOnCheckedChangeListener { _, isChecked ->
-            val selectedBusLicensePlate = busSpinner.selectedItem as? String
-            val selectedRouteName = routeSpinner.selectedItem as? String
+            val selectedBusLicensePlate = busAutoComplete.text?.toString()
+            val selectedRouteName = routeAutoComplete.text?.toString()
 
-            if (selectedBusLicensePlate == null) {
+            if (selectedBusLicensePlate.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), "No bus selected!", Toast.LENGTH_SHORT).show()
                 trackSwitch.isChecked = !isChecked
                 return@setOnCheckedChangeListener
             }
 
-            if (selectedRouteName == null) {
+            if (selectedRouteName.isNullOrEmpty()) {
                 Toast.makeText(requireContext(), "No route selected!", Toast.LENGTH_SHORT).show()
                 trackSwitch.isChecked = !isChecked
                 return@setOnCheckedChangeListener
@@ -141,6 +154,8 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
                 viewModel.setBusTracked(token, selectedBusLicensePlate) { success, errorMessage ->
                     requireActivity().runOnUiThread {
                         if (success) {
+                            mapView.visibility = View.VISIBLE
+                            logoImageView.visibility = View.INVISIBLE
                             startLocationUpdates(token, selectedBusLicensePlate, selectedRoute.route_uid)
                         } else {
                             trackSwitch.isChecked = false
@@ -152,6 +167,8 @@ class MainFragment : Fragment(R.layout.fragment_main), OnMapReadyCallback {
                 viewModel.setBusUntracked(token, selectedBusLicensePlate) { success, errorMessage ->
                     requireActivity().runOnUiThread {
                         if (success) {
+                            mapView.visibility = View.GONE
+                            logoImageView.visibility = View.VISIBLE
                             stopLocationUpdates()
                         } else {
                             trackSwitch.isChecked = true

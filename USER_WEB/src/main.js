@@ -12,8 +12,8 @@ import { aliases, mdi } from "vuetify/iconsets/mdi";
 import colors from "vuetify/lib/util/colors";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000";
-// axios.defaults.baseURL = "https://api.bus4u.online";
+//axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://api.bus4u.online";
 
 const appColor = colors.orange;
 

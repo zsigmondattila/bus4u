@@ -35,6 +35,10 @@ class CheckoutController < ApplicationController
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
     end
 
+    route = Route.find_by(uid: params[:route_uid])
+    from_station = Station.find_by(uid: params[:from_station_uid])
+    to_station = Station.find_by(uid: params[:to_station_uid])
+
     session = Stripe::Checkout::Session.create({
       customer_email: current_user.email,
       line_items: [{
@@ -42,8 +46,7 @@ class CheckoutController < ApplicationController
           currency: 'ron',
           product_data: {
             name: 'Bus4U Ticket',
-            # TODO: majd az id-k helyett a valodi neveket kellene hasznalni
-            description: "Ticket(s) for route #{params[:route_uid]} from #{params[:from_station_uid]} to #{params[:to_station_uid]}",
+            description: "Ticket(s) for route #{route.name} from #{from_station.name} to #{to_station.name}",
             metadata: {
               tickets: bought_tickets.join(', '),
               user_uid: current_user.uid,
@@ -55,8 +58,8 @@ class CheckoutController < ApplicationController
       }],
       mode: 'payment',
       ui_mode: 'embedded',
-      return_url: 'http://localhost:5173/home?session_id={CHECKOUT_SESSION_ID}'
-      # return_url: 'https://bus4u.online/home?session_id={CHECKOUT_SESSION_ID}'
+      # return_url: 'http://localhost:5173/home?session_id={CHECKOUT_SESSION_ID}'
+      return_url: 'https://bus4u.online/home?session_id={CHECKOUT_SESSION_ID}'
     })
 
     render json: { clientSecret: session.client_secret }

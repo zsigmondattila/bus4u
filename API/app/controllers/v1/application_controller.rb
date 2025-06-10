@@ -223,6 +223,10 @@ class V1::ApplicationController < ApplicationController
           tostation = Station.find_by(station_uid: ticket.to_station_uid)
           fromstation = Station.find_by(station_uid: ticket.from_station_uid)
           route = Route.find_by(route_uid: ticket.route_uid)
+          # Utolag valahogy torolni is kellene a kifizetetlen jegyeket
+          if !ticket.is_paid
+            next
+          end
           results << {
             ticket_uid: ticket.ticket_uid,
             date_of_purchase: ticket.date_of_purchase,

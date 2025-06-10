@@ -58,6 +58,10 @@ Rails.application.routes.draw do
     get '/get_bus_locations_by_route', to: 'application#get_bus_locations_by_route'
   end
 
+  # Stripe
+  post '/create-checkout', to: 'checkout#create'
+  get '/session-status', to: 'checkout#status'
+
   # Defines the root path route ("/")
   get '/', to: "home#index"
 end

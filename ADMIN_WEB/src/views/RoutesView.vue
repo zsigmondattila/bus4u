@@ -142,7 +142,7 @@ async function saveRoute(e) {
     isLoading.value = true
     if (route.value.route_uid) {
       try {
-        await axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
+        await axios.delete('/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
       } catch {
         isLoading.value = false
         notification.value.message = 'Something went wrong, try again later.'
@@ -150,12 +150,12 @@ async function saveRoute(e) {
         return
       }
     }
-    axios.post('https://api.bus4u.online/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
+    axios.post('/v1/admin/create_route', Object.assign(route.value, { company_uid: user.company_uid }))
       .then(async (rsp) => {
         for (let i = 0; i < stations.value.length; i++) {
-          await axios.post('https://api.bus4u.online/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i + 1 })
+          await axios.post('/v1/admin/add_station_to_route', { route_uid: rsp.data.route_uid, station_uid: stations.value[i].station_uid, sequence: i + 1 })
         }
-        axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+        axios.get('/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
           .then(rsp => {
             if (rsp.status == 200) routes.value = rsp.data.routes
           }).catch(() => routes.value = [])
@@ -177,12 +177,12 @@ function deleteRoute() {
     routeCreation.value = false
     return
   }
-  axios.delete('https://api.bus4u.online/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
+  axios.delete('/v1/admin/delete_route', { params: { route_uid: route.value.route_uid } })
     .then(() => {
       notification.value.message = 'Route deleted successfully'
       route.value = null
       routeCreation.value = false
-      axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+      axios.get('/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
         .then(rsp => {
           if (rsp.status == 200) routes.value = rsp.data.routes
         }).catch(() => routes.value = [])
@@ -191,17 +191,17 @@ function deleteRoute() {
 }
 
 function getStations(route) {
-  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: route.route_uid } })
+  axios.get('/v1/get_stations_of_a_route', { params: { route_uid: route.route_uid } })
     .then(rsp => {
       if (rsp.status == 200) stations.value = rsp.data.stations
     }).catch(() => stations.value = [])
 }
 
-axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+axios.get('/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
   .then(rsp => {
     if (rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])
-axios.get('https://api.bus4u.online/v1/get_stations')
+axios.get('/v1/get_stations')
   .then(rsp => {
     if (rsp.status == 200) allStations.value = rsp.data.stations
   }).catch(() => allStations.value = [])

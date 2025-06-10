@@ -226,11 +226,11 @@ function sendSchedule() {
     noStationError.value = ['Please select an option.']
     return
   }
-  axios.delete('https://api.bus4u.online/v1/admin/delete_timetables_from_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
+  axios.delete('/v1/admin/delete_timetables_from_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
     .then(() => {
       timetable.value.forEach(async (schedule) => {
         let data = Object.assign(schedule, { route_uid: mainForm.route.route_uid }, { station_uid: mainForm.station.station_uid });
-        await axios.post('https://api.bus4u.online/v1/admin/add_timetable_to_route', data)
+        await axios.post('/v1/admin/add_timetable_to_route', data)
         mainForm.route = null
         mainForm.station = null
       })
@@ -250,14 +250,14 @@ function getProps(route) {
 
 function getStations(v) {
   mainForm.station = null
-  axios.get('https://api.bus4u.online/v1/get_stations_of_a_route', { params: { route_uid: v.route_uid } })
+  axios.get('/v1/get_stations_of_a_route', { params: { route_uid: v.route_uid } })
     .then(rsp => {
       if (rsp.status == 200) stations.value = rsp.data.stations
     }).catch(() => stations.value = [])
 }
 
 function getTimetable() {
-  axios.get('https://api.bus4u.online/v1/get_departure_times_for_station_in_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
+  axios.get('/v1/get_departure_times_for_station_in_route', { params: { route_uid: mainForm.route.route_uid, station_uid: mainForm.station.station_uid } })
     .then(rsp => {
       if (rsp.status == 200) {
         timetable.value = []
@@ -268,7 +268,7 @@ function getTimetable() {
     }).catch(() => timetable.value = [])
 }
 
-axios.get('https://api.bus4u.online/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
+axios.get('/v1/admin/get_routes_of_a_company', { params: { company_uid: user.company_uid } })
   .then(rsp => {
     if (rsp.status == 200) routes.value = rsp.data.routes
   }).catch(() => routes.value = [])

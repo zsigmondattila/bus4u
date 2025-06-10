@@ -1,42 +1,46 @@
-import './assets/main.css'
-import '@mdi/font/css/materialdesignicons.css'
+import "./assets/main.css";
+import "@mdi/font/css/materialdesignicons.css";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
-import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi'
-import colors from 'vuetify/lib/util/colors'
+import App from "./App.vue";
+import router from "./router";
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import { aliases, mdi } from "vuetify/iconsets/mdi";
+import colors from "vuetify/lib/util/colors";
+import axios from "axios";
+
+//axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL = "https://api.bus4u.online";
 
 const appColor = colors.orange;
 
 const vuetify = createVuetify({
   defaults: {
     VTextField: {
-      density: 'comfortable',
-      color: appColor.darken3
+      density: "comfortable",
+      color: appColor.darken3,
     },
     VSelect: {
-      density: 'comfortable'
+      density: "comfortable",
     },
     VAutocomplete: {
-      density: 'comfortable'
+      density: "comfortable",
     },
     VSnackbar: {
       color: appColor.darken3,
-      location: 'bottom',
-      variant: 'elevated',
-      timeout: 6000
+      location: "bottom",
+      variant: "elevated",
+      timeout: 6000,
     },
     VCheckbox: {
-      density: 'compact'
-    }
+      density: "compact",
+    },
   },
   icons: {
-    defaultSet: 'mdi',
+    defaultSet: "mdi",
     aliases,
     sets: {
       mdi,
@@ -49,24 +53,24 @@ const vuetify = createVuetify({
         colors: {
           primary: appColor.darken3,
           secondary: appColor.lighten3,
-          accent: appColor.accent2
-        }
+          accent: appColor.accent2,
+        },
       },
       dark: {
         dark: true,
         colors: {
           primary: appColor.darken4,
           secondary: appColor.lighten1,
-          accent: appColor.accent3
-        }
+          accent: appColor.accent3,
+        },
       },
     },
   },
-})
-const app = createApp(App)
+});
+const app = createApp(App);
 
-app.use(createPinia())
-app.use(router)
-app.use(vuetify)
+app.use(createPinia());
+app.use(router);
+app.use(vuetify);
 
-app.mount('#app')
+app.mount("#app");

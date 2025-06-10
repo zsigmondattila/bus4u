@@ -51,12 +51,10 @@
         </div>
         <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found after the
           specified time between the selected stations. </p>
-        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @purchased="ticketBought"
-          @error="newTicket.isFailed = true">
-        </RouteListElement>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
       </v-list>
     </v-container>
-    <v-dialog v-model="newTicket.isPurchased" persistent max-width="300">
+    <v-dialog v-model="newTicket.isPurchased" persistent max-width="300" @after-leave="deleteTicket">
       <v-card color="orange-lighten-5">
         <v-img :src="newTicket.qr"></v-img>
         <v-card-title class="text-center"> Transaction successful </v-card-title>
@@ -65,18 +63,18 @@
           bus.</v-card-text>
         <v-card-actions class="justify-space-evenly">
           <v-btn @click="newTicket.isPurchased = false"> Close </v-btn>
-          <v-btn :to="{ name: 'tickets' }" class="text-orange-darken-4"> All tickets </v-btn>
+          <v-btn :to="{ name: 'tickets' }" class="text-orange-darken-4" replace> All tickets </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="newTicket.isFailed" persistent max-width="300">
+    <v-dialog v-model="newTicket.isFailed" persistent max-width="300" @after-leave="deleteTicket">
       <v-card color="red-lighten-5">
         <div class="h-100 d-flex justify-center bg-white">
           <v-icon size="250" icon="mdi-ticket-confirmation-outline"
             class="align-self-center text-medium-emphasis"></v-icon>
         </div>
         <v-card-title class="text-center"> Transaction failed </v-card-title>
-        <v-card-text>Something went wrong with the ticket generation. Try again later.</v-card-text>
+        <v-card-text>Something went wrong with the payment or the ticket generation. Try again later.</v-card-text>
         <v-card-actions class="justify-space-evenly">
           <v-btn @click="newTicket.isFailed = false"> Close </v-btn>
         </v-card-actions>
@@ -89,9 +87,21 @@
 import { ref, reactive } from 'vue';
 import axios from 'axios';
 import QRCode from 'qrcode';
+import router from '@/router';
 import AppLayout from '@/components/AppLayout.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
 import RouteListElement from '@/components/RouteListElement.vue';
+import { userStore } from '@/stores/userStore';
+import { watchEffect } from 'vue';
+
+const user = userStore();
+
+const props = defineProps({
+  session: {
+    type: String,
+    default: null
+  }
+})
 
 const isLoadingRoutes = ref(false)
 const newTicket = reactive({
@@ -148,8 +158,8 @@ function getTimeStr() {
 }
 
 async function ticketBought(ticket) {
-  newTicket.id = ticket[0]
-  newTicket.qr = await QRCode.toDataURL(ticket[0], { width: 300 })
+  newTicket.id = ticket
+  newTicket.qr = await QRCode.toDataURL(ticket, { width: 300 })
   newTicket.isPurchased = true
 }
 
@@ -196,6 +206,35 @@ async function getDestStation(city) {
       if (rsp.status == 200) destStations.value = rsp.data.stations
     }).catch(() => destStations.value = [])
 }
+
+function deleteTicket() {
+  newTicket.isPurchased = false
+  newTicket.isFailed = false
+  newTicket.id = null
+  newTicket.qr = null
+  sessionStorage.removeItem('home-form');
+  router.replace({ name: 'home' });
+}
+
+watchEffect(() => {
+  if (props.session && user.authorization) {
+    axios.get('/session-status', { headers: { Authorization: user.authorization }, params: { session_id: props.session } })
+      .then(rsp => {
+        if (rsp.status == 200) {
+          const sessionData = rsp.data
+          if (sessionData.status === 'complete') {
+            console.log('session complete', sessionData.ticket);
+
+            ticketBought(sessionData.ticket)
+          } else {
+            newTicket.isFailed = true
+          }
+        }
+      }).catch(() => {
+        newTicket.isFailed = true
+      })
+  }
+})
 
 axios.get('/v1/get_cities')
   .then((rsp) => {

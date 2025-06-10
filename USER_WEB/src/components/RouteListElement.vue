@@ -26,12 +26,11 @@
 <script setup>
 import { computed, ref } from 'vue';
 import router from '@/router';
-import axios from 'axios';
 import { userStore } from '@/stores/userStore';
+import axios from 'axios';
 
 const user = userStore();
 const props = defineProps(['trip'])
-const emit = defineEmits(['purchased', 'error'])
 
 const count = ref(1)
 const isLoading = ref(false)
@@ -46,15 +45,26 @@ const departureTime = computed(() => {
   return `${d.getUTCHours()}:${minutes > 9 ? minutes : '0' + minutes}`
 })
 
-function buy() {
-  if (!user.uid) router.push({ name: 'login' });
+async function buy() {
+  if (!user.uid) {
+    router.push({ name: 'login' });
+    return;
+  }
   isLoading.value = true
-  axios.post('/v1/generate_a_ticket',
+
+  const response = await axios.post("/create-checkout",
     { quantity: count.value, ticket_price: props.trip.ticket_price, type: 'normal', route_uid: props.trip.route_uid, from_station_uid: props.trip.from_station_uid, to_station_uid: props.trip.to_station_uid, company_uid: props.trip.company_uid },
-    { headers: { Authorization: user.authorization } })
-    .then(rsp => emit('purchased', rsp.data))
-    .catch(() => emit('error'))
-    .finally(() => isLoading.value = false)
+    { headers: { Authorization: user.authorization } });
+  if (response.status !== 200) {
+    isLoading.value = false;
+    console.error('Failed to create checkout session:', response);
+    return;
+  }
+  const { clientSecret } = response.data;
+  router.push({
+    name: 'checkout',
+    query: { client: clientSecret }
+  });
 }
 </script>
 

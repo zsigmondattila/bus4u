@@ -141,26 +141,34 @@ indítani az autóbusz lokációjának
 követését. Ez félpercenként küldi fel az
 API-ra a busz lokációját, ezáltal lehet a
 weboldalon és az alkalmazásban élőben
-követni a busz helyzetét. Legalul egy
-Ticket scanner gomb fedezhető fel,
+követni a busz helyzetét. Illetve ezen opció bekapcsolásakor megjelenik egy térkép is, amelyen élőben láthatjuk a busz pontos helyzetét.
+Legalul egy Ticket scanner gomb fedezhető fel,
 amely átirányít a jegyszkennelő oldalra
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{figures/posmain.png}
-    \caption{Busz kiválasztása és GPS követés}
-    \label{fig:gps}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pos_1.png}
+        \caption{Busz kiválasztása és GPS követés}
+        \label{fig:gps1}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pos_2.png}
+        \caption{Elindított GPS követés}
+        \label{fig:gps2}
+    \end{minipage}
 \end{figure}
 
 \subsection{Jegyszkennelő oldal}
 Ez az oldal a kamerát jeleníti meg.
 Itt kell beszkennelni a jegyet. Szkennelés
-után egy felugró ablak jelenik meg 5
+után egy szöveges üzenet jelenik meg 5
 másodpercig, három üzenetet hordozhat:
 Ha sikeresen érvényesítve van a jegy,
 akkor zöld háttérrel kiírja hogy sikeres
-érvényesítés és jó utazást kíván az
-alkalamzás. Ha a jegy már érvényesítve
+érvényesítés. Ha a jegy már érvényesítve
 volt, vagy érvénytelen a QR kód, ezt egy
 piros hibaüzenettel jelzi. Illetőleg ha az
 API valamilyen oknál fogva leáll, akkor
@@ -168,7 +176,16 @@ ennek a hibájáról is üzenetet kapunk.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{figures/posscan.png}
-    \caption{Jegy szkennelése}
-    \label{fig:scanner}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pos_3.png}
+        \caption{Sikeres jegy érvényesítés}
+        \label{fig:pos_success}
+    \end{minipage}\hfill
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/pos_4.png}
+        \caption{Sikertelen jegy érvényesítés}
+        \label{fig:pos_error}
+    \end{minipage}
 \end{figure}

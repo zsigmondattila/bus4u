@@ -17,7 +17,9 @@
 \select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces Szekvencia diagram a jegyvásárlás folyamatáról}}{43}{figure.7.4}%
 \select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces Szekvencia diagram a dokumentumok ellenőrzéséről}}{45}{figure.7.5}%
 \select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Busz kiválasztása és GPS követés}}{47}{figure.7.6}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Jegy szkennelése}}{48}{figure.7.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Elindított GPS követés}}{47}{figure.7.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.8}{\ignorespaces Sikeres jegy érvényesítés}}{48}{figure.7.8}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.9}{\ignorespaces Sikertelen jegy érvényesítés}}{48}{figure.7.9}%
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \contentsline {figure}{\numberline {8.1}{\ignorespaces A \texttt {GET /v1/get\_stations\_by\_city} végpont kérésének paraméterei és válasza}}{50}{figure.8.1}%
 \select@language {magyar} \contentsline {figure}{\numberline {8.2}{\ignorespaces A \texttt {GET /v1/get\_available\_tickets} végpont kérésének paraméterei és válasza}}{51}{figure.8.2}%

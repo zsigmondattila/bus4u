@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.Pos" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/primary_light</item>
+
+        <item name="android:statusBarColor">@color/primary_dark</item>
+    </style>
+</resources>

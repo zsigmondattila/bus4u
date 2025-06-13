@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <SectionTitle>
-      Plan your travel
+      Plan your trip
       <template #description>
         Fill the form to get available buses
       </template>
@@ -51,10 +51,16 @@
         </div>
         <p v-else-if="!routes.length" class="text-medium-emphasis text-center ma-5"> No available trips found after the
           specified time between the selected stations. </p>
-        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route"></RouteListElement>
+        <RouteListElement v-else v-for="route in routes" :key="route.route_name" :trip="route" @clicked="buyTicket" />
       </v-list>
     </v-container>
-    <v-dialog v-model="newTicket.isPurchased" persistent max-width="300" @after-leave="deleteTicket">
+    <v-dialog v-model="newTicket.isLoading" max-width="250">
+      <v-card>
+        <v-card-title class="text-center"> Processing payment </v-card-title>
+        <v-infinite-scroll height="100" color="orange"></v-infinite-scroll>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="newTicket.isPurchased" max-width="300" @after-leave="deleteTicket">
       <v-card color="orange-lighten-5">
         <v-img :src="newTicket.qr"></v-img>
         <v-card-title class="text-center"> Transaction successful </v-card-title>
@@ -67,7 +73,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-dialog v-model="newTicket.isFailed" persistent max-width="300" @after-leave="deleteTicket">
+    <v-dialog v-model="newTicket.isFailed" max-width="300" @after-leave="deleteTicket">
       <v-card color="red-lighten-5">
         <div class="h-100 d-flex justify-center bg-white">
           <v-icon size="250" icon="mdi-ticket-confirmation-outline"
@@ -107,6 +113,7 @@ const isLoadingRoutes = ref(false)
 const newTicket = reactive({
   isPurchased: false,
   isFailed: false,
+  isLoading: false,
   id: null,
   qr: null
 })
@@ -158,6 +165,7 @@ function getTimeStr() {
 }
 
 async function ticketBought(ticket) {
+  newTicket.isLoading = false
   newTicket.id = ticket
   newTicket.qr = await QRCode.toDataURL(ticket, { width: 300 })
   newTicket.isPurchased = true
@@ -183,6 +191,29 @@ async function onSubmit(e) {
         isLoadingRoutes.value = false
       }
     }).catch(routes.value = null)
+}
+
+async function buyTicket(trip, count) {
+  if (!user.uid) {
+    router.push({ name: 'login' });
+    return;
+  }
+  trip.isLoading = true
+
+  try {
+    const response = await axios.post("/create-checkout",
+      { quantity: count, ticket_price: trip.ticket_price, type: 'normal', route_uid: trip.route_uid, from_station_uid: trip.from_station_uid, to_station_uid: trip.to_station_uid, company_uid: trip.company_uid },
+      { headers: { Authorization: user.authorization } });
+    const { clientSecret } = response.data;
+    router.push({
+      name: 'checkout',
+      query: { client: clientSecret }
+    });
+  } catch (error) {
+    console.error('Error during checkout:', error);
+    trip.isLoading = false;
+    newTicket.isFailed = true;
+  }
 }
 
 function getName(item) {
@@ -218,19 +249,20 @@ function deleteTicket() {
 
 watchEffect(() => {
   if (props.session && user.authorization) {
+    newTicket.isLoading = true
     axios.get('/session-status', { headers: { Authorization: user.authorization }, params: { session_id: props.session } })
       .then(rsp => {
         if (rsp.status == 200) {
           const sessionData = rsp.data
           if (sessionData.status === 'complete') {
-            console.log('session complete', sessionData.ticket);
-
             ticketBought(sessionData.ticket)
           } else {
+            newTicket.isLoading = false
             newTicket.isFailed = true
           }
         }
       }).catch(() => {
+        newTicket.isLoading = false
         newTicket.isFailed = true
       })
   }

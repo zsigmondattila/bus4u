@@ -14,45 +14,16 @@ const trip = {
 };
 
 describe("<RouteListElement />", () => {
-  it("purchasing failed", () => {
-    const onError = cy.spy().as("onErrorSpy");
-    const onPurchased = cy.spy().as("onPurchasedSpy");
-    cy.intercept("POST", "https://api.bus4u.online/v1/generate_a_ticket", {
-      statusCode: 401,
-      body: "error",
-    }).as("generateTicket");
-
-    cy.mount(RouteListElement, {
-      props: {
-        trip,
-        onPurchased: onPurchased,
-        onError: onError,
-      },
-    });
-    cy.get(".v-btn").click();
-    cy.wait("@generateTicket");
-    cy.get("@onPurchasedSpy").should("not.called");
-    cy.get("@onErrorSpy").should("be.called");
-  });
   it("purchasing 3 tickets", () => {
-    const onError = cy.spy().as("onErrorSpy");
-    const onPurchased = cy.spy().as("onPurchasedSpy");
-    cy.intercept("POST", "https://api.bus4u.online/v1/generate_a_ticket", {
-      statusCode: 200,
-      body: "test",
-    }).as("generateTicket");
-
+    const onClicked = cy.spy().as("onClickSpy");
     cy.mount(RouteListElement, {
       props: {
         trip,
-        onPurchased: onPurchased,
-        onError: onError,
+        onClicked: onClicked,
       },
     });
     cy.get("input[type='number']").type("{backspace}3");
     cy.get(".v-btn").click();
-    cy.wait("@generateTicket");
-    cy.get("@onPurchasedSpy").should("be.called");
-    cy.get("@onErrorSpy").should("not.called");
+    cy.get("@onClickSpy").should("have.been.calledWith", trip, "3");
   });
 });

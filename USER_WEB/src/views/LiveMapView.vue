@@ -25,7 +25,8 @@
         </v-row>
       </v-container>
     </v-form>
-    <Map ref="map" :stations="stations" :enableRoute="true" :hide-stations="true" controls="true" :buses="buses" />
+    <Map ref="map" :stations="stations" :enableRoute="true" :hide-stations="true" controls="true" :buses="buses"
+      :simulation="stations.length" />
   </AppLayout>
 </template>
 
@@ -65,20 +66,20 @@ async function onSubmit(e) {
       if (rsp.status == 200) {
         stations.value = rsp.data.stations
         if (stations.value.length) map.value.panTo([stations.value[0].longitude, stations.value[0].latitude])
-        getBuses(form.route)
-        updateInterval = setInterval(() => getBuses(form.route), 30000);
+        getBuses(form.route, true)
+        updateInterval = setInterval(() => getBuses(form.route), 15000);
       }
     }).catch((e) => {
       stations.value = []
     })
 }
 
-function getBuses(route) {
+function getBuses(route, pan = false) {
   axios.get('/v1/get_bus_locations_by_route', { params: { route_uid: route.route_uid } })
     .then(rsp => {
       if (rsp.status == 200) {
         buses.value = rsp.data
-        if (buses.value.length) map.value.panTo([buses.value[0].longitude, buses.value[0].latitude])
+        if (pan && buses.value.length) map.value.panTo([buses.value[0].longitude, buses.value[0].latitude])
       }
     }).catch(() => {
       buses.value = []

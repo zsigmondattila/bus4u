@@ -3,14 +3,17 @@
     <div ref="mapRef" class="map rounded"></div>
     <div v-if="controls" class="pa-2">
       <v-row dense>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" :sm="simulation ? 3 : 4">
           <v-checkbox label="Current location" v-model="showLocation" color="#297bFF" hide-details="auto"></v-checkbox>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" :sm="simulation ? 3 : 4">
           <v-checkbox label="Live bus location" v-model="showBuses" color="#bc1251" hide-details="auto"></v-checkbox>
         </v-col>
-        <v-col cols="12" sm="4">
+        <v-col cols="12" :sm="simulation ? 3 : 4">
           <v-checkbox label="Stations" v-model="showStations" color="#EF6C00" hide-details="auto"></v-checkbox>
+        </v-col>
+        <v-col v-if="simulation" cols="12" sm="3">
+          <v-checkbox label="Simulation" v-model="showSimulation" color="#3FB1CE" hide-details="auto"></v-checkbox>
         </v-col>
       </v-row>
     </div>
@@ -23,8 +26,9 @@ import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import { watch } from 'vue';
 
-const props = defineProps(['stations', 'buses', 'enableRoute', 'hideStations', 'controls'])
+const props = defineProps(['stations', 'buses', 'enableRoute', 'hideStations', 'controls', 'simulation'])
 const mapRef = ref(null);
+const showSimulation = ref(false);
 const showStations = ref(!props.hideStations);
 const showLocation = ref(true);
 const showBuses = ref(true);
@@ -151,6 +155,33 @@ if (navigator.geolocation) {
     map.panTo(current)
   });
 }
+
+let simulationInterval = null;
+let currentSimPoint = 0;
+let simulationMarker = null;
+
+watch(showSimulation, () => {
+  if (showSimulation.value) {
+    const bus = waypoints[0];
+    const popup = new mapboxgl.Popup({ className: 'my-popup' }).setLngLat(bus)
+      .setHTML(`<h3>Simulation</h3><p>Demo bus</p><p>Capacity: 0</p>`).setMaxWidth("300px");
+    simulationMarker = new mapboxgl.Marker().setLngLat(bus).setPopup(popup).addTo(map);
+
+    simulationInterval = setInterval(() => {
+      if (waypoints.length) {
+        currentSimPoint = (currentSimPoint + 1) % waypoints.length;
+        const bus = waypoints[currentSimPoint];
+        simulationMarker.setLngLat(bus);
+        simulationMarker.addTo(map);
+        simulationMarker.getPopup().setLngLat(bus);
+      }
+    }, 1000);
+  } else {
+    clearInterval(simulationInterval);
+    currentSimPoint = 0;
+    if (simulationMarker) simulationMarker.remove();
+  }
+})
 
 defineExpose({ panTo })
 

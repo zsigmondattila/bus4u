@@ -15,7 +15,8 @@
           </div>
         </template>
         <template #append>
-          <v-btn color="primary" type="secondary" height="44" variant="outlined" @click="buy" :loading="isLoading"> Buy
+          <v-btn color="primary" type="secondary" height="44" variant="outlined" @click="emit('clicked', trip, count)"
+            :loading="trip.isLoading"> Buy
           </v-btn>
         </template>
       </v-text-field>
@@ -25,15 +26,11 @@
 
 <script setup>
 import { computed, ref } from 'vue';
-import router from '@/router';
-import { userStore } from '@/stores/userStore';
-import axios from 'axios';
 
-const user = userStore();
 const props = defineProps(['trip'])
+const emit = defineEmits(['clicked'])
 
 const count = ref(1)
-const isLoading = ref(false)
 
 const ticketRules = [
   (n) => n <= 50 || 'Too much',
@@ -44,28 +41,6 @@ const departureTime = computed(() => {
   const minutes = d.getUTCMinutes()
   return `${d.getUTCHours()}:${minutes > 9 ? minutes : '0' + minutes}`
 })
-
-async function buy() {
-  if (!user.uid) {
-    router.push({ name: 'login' });
-    return;
-  }
-  isLoading.value = true
-
-  const response = await axios.post("/create-checkout",
-    { quantity: count.value, ticket_price: props.trip.ticket_price, type: 'normal', route_uid: props.trip.route_uid, from_station_uid: props.trip.from_station_uid, to_station_uid: props.trip.to_station_uid, company_uid: props.trip.company_uid },
-    { headers: { Authorization: user.authorization } });
-  if (response.status !== 200) {
-    isLoading.value = false;
-    console.error('Failed to create checkout session:', response);
-    return;
-  }
-  const { clientSecret } = response.data;
-  router.push({
-    name: 'checkout',
-    query: { client: clientSecret }
-  });
-}
 </script>
 
 <style scoped></style>

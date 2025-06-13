@@ -241,6 +241,7 @@ onBeforeUpdate(() => {
 })
 
 onUnmounted(() => {
+  clearInterval(simulationInterval);
   map.remove();
   map = null;
 })

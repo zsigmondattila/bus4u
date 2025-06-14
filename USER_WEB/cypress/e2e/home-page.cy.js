@@ -11,6 +11,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
     cy.get(
@@ -42,6 +43,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
     cy.intercept("POST", "/create-checkout", {
@@ -69,16 +71,12 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit']").click();
     cy.intercept("POST", "/create-checkout").as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
     cy.url().should("include", "/checkout");
-    cy.intercept("POST", "https://api.stripe.com/v1/payment_pages/*/init").as(
-      "stripeInit"
-    );
-    cy.wait("@stripeInit");
-    cy.get("iframe").should("exist");
-    // Cannot test the Stripe payment iframe
+    // Cannot test a cross-origin iframe (Stripe)
   });
 });

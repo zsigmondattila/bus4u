@@ -1,4 +1,3 @@
-
 <a name="readme-top"></a>
 
 <!-- PROJECT LOGO -->
@@ -22,8 +21,6 @@
     <a href="https://github.com/zsigmondattila/bus4u/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -53,33 +50,29 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
-
-
 One of the most environmentally friendly ways to travel is to choose public transport. The more people choose this form of travel, the cleaner environment we can live in, and the less congested the roads would be. Unfortunately, the choice of public transport also comes with many disadvantages.
-* From the point of view of passengers, it is relatively difficult to choose the right bus for us, because it is not easy to find the timetables of the different companies anywhere. Even if we find this, there is still the possibility that the buses will be late, or worse, leave earlier.
-* From the point of view of companies, it is often not easy to monitor the condition of the buses, the costs, and to keep track of the profit.
+
+- From the point of view of passengers, it is relatively difficult to choose the right bus for us, because it is not easy to find the timetables of the different companies anywhere. Even if we find this, there is still the possibility that the buses will be late, or worse, leave earlier.
+- From the point of view of companies, it is often not easy to monitor the condition of the buses, the costs, and to keep track of the profit.
 
 By creating the application, we offer solutions to all these problems.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
 Our API is based on Ruby on Rails, which is installed on an Azure virtual machine. The websites for both users and companies were created in the Vue.js framework, and the application was written in Flutter. The former are deployed using netlify.
 
-* [![Ruby][Ruby]][Ruby-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Flutter][Flutter]][Flutter-url]
+- [![Ruby][Ruby]][Ruby-url]
+- [![Vue][Vue.js]][Vue-url]
+- [![Flutter][Flutter]][Flutter-url]
 
-* [![Azure][Azure]][Azure-url]
-* [![Netlify][Netlify]][Netlify-url]
+- [![Azure][Azure]][Azure-url]
+- [![Netlify][Netlify]][Netlify-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -87,60 +80,76 @@ Our API is based on Ruby on Rails, which is installed on an Azure virtual machin
 
 Depending on which part of the project you want to work on, you need to install Ruby on Rails, Vue or Flutter.
 
-
 ### Prerequisites
-* <b>Ruby on rails</b> <br>
-To modify the api, it is necessary to install a ruby version manager and rails from the following link: https://gorails.com/setup/
 
-* <b>Vue</b> <br>
-In order to start developing web interfaces, it is necessary to install npm and vite. Useful links for this: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+- <b>Ruby on rails</b> <br>
+  To modify the api, it is necessary to install a ruby version manager and rails from the following link: https://gorails.com/setup/
 
-* <b>Flutter</b> <br>
-If you want to work with the application, flutter can be installed from here: https://docs.flutter.dev/get-started/install/ <br>
-NOTE: The application can be tested using an emulator during development, but it is strongly recommended to connect a phone and the computer with a USB cable. In this way, the computer is not overloaded unnecessarily, and the input is also more realistic.
-  
+- <b>Vue</b> <br>
+  In order to start developing web interfaces, it is necessary to install npm and vite. Useful links for this: https://docs.npmjs.com/downloading-and-installing-node-js-and-npm
+
+- <b>Flutter</b> <br>
+  If you want to work with the application, flutter can be installed from here: https://docs.flutter.dev/get-started/install/ <br>
+  NOTE: The application can be tested using an emulator during development, but it is strongly recommended to connect a phone and the computer with a USB cable. In this way, the computer is not overloaded unnecessarily, and the input is also more realistic.
+
 ### Installation and setting up
 
 You have to clone the project to your computer by using the following command:
+
 ```
   git clone https://github.com/zsigmondattila/bus4u.git
 ```
 
 #### API
+
 To refresh the dependencies in the project, type
+
 ```
   bundle install
 ```
+
 Then you can start the server by typing
+
 ```
   rails s
 ```
+
 You can then reach the endpoints at the address 127.0.0.1:3000 and start making api calls.
 
 #### Webpages
 
 The dependencies of the website must be installed with the following command:
+
 ```
   npm install
 ```
 
 Now you can run the web pages with this command:
+
 ```
   npm run dev
 ```
+
 #### Application
+
 The dependencies for the application are updated with the following command:
+
 ```
 flutter pub get
 ```
+
 Testing can be started with the following command:
+
 ```
 flutter run
 ```
+
 If there is a phone connected to the computer, the application will automatically start on it. Otherwise, you must select the emulator from the list provided.
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
+
 Homepage where you can buy a ticket for a suitable route
 ![Homepage](docs/homepage)
 
@@ -150,50 +159,44 @@ On the Schedule page you van view the actual timetable in a given station
 On the Stations page you can find any station in a given city or route with its address
 ![Station](docs/stations)
 
-
 _For more examples, please refer to the [Documentation](https://github.com/zsigmondattila/bus4u/tree/main/docs)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
-Bodó Bálint - [@zsigmond.attila1](https://www.facebook.com/zsigmond.attila1) - zsigmond.attila@student.ms.sapientia.ro
+Zsigmond Attila - [@zsigmond.attila1](https://www.facebook.com/zsigmond.attila1) - zsigmond.attila@student.ms.sapientia.ro
 
 Portik Szabolcs - [@portik.szabolcs.94](https://www.facebook.com/portik.szabolcs.94) - portik.szabolcs@student.ms.sapientia.ro
-
-Zsigmond Attila - [@balint.bodo.98](https://www.facebook.com/balint.bodo.98) - bodo.balint@student.ms.sapientia.ro
 
 Project Link: [https://github.com/zsigmondattila/bus4u](https://github.com/zsigmondattila/bus4u)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
+
 ## Acknowledgments
 
-* [Devise token auth](https://devise-token-auth.gitbook.io/devise-token-auth/)
-* [PostreSQL](https://www.postgresql.org/)
-* [Puma web server](https://puma.io/)
-* [Stripe](https://stripe.com/en-ro)
+- [Devise token auth](https://devise-token-auth.gitbook.io/devise-token-auth/)
+- [PostreSQL](https://www.postgresql.org/)
+- [Puma web server](https://puma.io/)
+- [Stripe](https://stripe.com/en-ro)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
 [Ruby]: https://img.shields.io/badge/Ruby_on_Rails-CC0000?style=for-the-badge&logo=ruby-on-rails&logoColor=white
@@ -202,7 +205,7 @@ Project Link: [https://github.com/zsigmondattila/bus4u](https://github.com/zsigm
 [Flutter-url]: https://flutter.dev
 [Postgres]: https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 [Postgres-url]: https://postgresql.org
-[Netlify]:https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white
+[Netlify]: https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white
 [Netlify-url]: https://netlify.com
 [Azure]: https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white
-[Azure-url]:https://azure.microsoft.com
+[Azure-url]: https://azure.microsoft.com

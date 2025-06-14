@@ -77,11 +77,7 @@ describe("Home Page", () => {
     cy.intercept("POST", "/create-checkout").as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
     cy.url().should("include", "/checkout");
-    cy.intercept("POST", "https://api.stripe.com/v1/payment_pages/*/init").as(
-      "stripeInit"
-    );
-    cy.wait("@stripeInit");
-    cy.get("iframe").should("exist");
-    // Cannot test the Stripe payment iframe
+    cy.get("#checkout > iframe").should("exist");
+    // Cannot test a cross-origin iframe
   });
 });

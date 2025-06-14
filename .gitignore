@@ -1,8 +1,10 @@
 # FRONTEND
 USER_WEB/node_modules
 USER_WEB/.env
+USER_WEB/cypress/screenshots
 ADMIN_WEB/node_modules
 ADMIN_WEB/.env
+ADMIN_WEB/cypress/screenshots
 
 # APP
 # Miscellaneous

@@ -16,8 +16,18 @@ jobs:
           working-directory: USER_WEB
       - name: Cypress test ADMIN
         uses: cypress-io/github-action@v6
+        if: success() || failure()
         env:
           VITE_MAPBOX_TOKEN: ${{ secrets.VITE_MAPBOX_TOKEN }}
         with:
           start: npm run dev
           working-directory: ADMIN_WEB
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: |
+            USER_WEB/cypress/screenshots
+            ADMIN_WEB/cypress/screenshots
+          overwrite: true

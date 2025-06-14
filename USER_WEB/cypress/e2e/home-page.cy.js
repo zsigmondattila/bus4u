@@ -11,6 +11,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
     cy.get(
@@ -42,6 +43,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
     cy.intercept("POST", "/create-checkout", {
@@ -69,6 +71,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit']").click();
     cy.intercept("POST", "/create-checkout").as("generateTicket");

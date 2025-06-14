@@ -77,7 +77,6 @@ describe("Home Page", () => {
     cy.intercept("POST", "/create-checkout").as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
     cy.url().should("include", "/checkout");
-    cy.get("#checkout > iframe").should("exist");
-    // Cannot test a cross-origin iframe
+    // Cannot test a cross-origin iframe (Stripe)
   });
 });

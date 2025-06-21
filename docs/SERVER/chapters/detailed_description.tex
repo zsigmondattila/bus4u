@@ -1,7 +1,9 @@
 Rendszerünk egy Ruby on Rails keretrendszerben írt API-ból, egy Vue.js alapú webes felhasználói- és admin felületből, egy Flutter alkalmazásból a felhasználók számára, 
-valamint egy Flutter keretrendszerben készült POS terminál alkalmazásból. Az API a REST architektúrát követi, lehetővé téve a különböző erőforrások, például buszok, járatok és jegyek kezelését. A felhasználói és admin weboldal Vue-ban készült, a Vuetify elemek felhasználásával, ami lehetővé tette az egyszerű és hatékony felhasználói felületek gyors fejlesztését. A Vue.js keretrendszer előnye, hogy komponensekből áll, így átlátható és jól rendszerezett webalkalmazás felépítést tesz lehetővé. Ezen kívül a Vuetify komponens-készlete megkönnyítette az UI elemek létrehozását, gyorsítva ezzel a fejlesztési folyamatot. Az alkalmazás Flutterben készült, Dart programozási nyelvet használva, amely lehetővé teszi, hogy ugyanazt a kódbázist használjuk iOS és Android platformokra is, így jelentősen csökkentve a fejlesztési időt és költségeket. A POS terminál alkalmazása eredetileg Flutterben készült, de végül natív Android alkalmazásként lett implementálva a nagyobb kompatibilitás érdekében. Ez biztosítja, hogy a rendszer megfelelően működjön a POS terminálokkal, valamint minden szükséges tanúsítvánnyal kompatibilis legyen.
+valamint egy Flutter keretrendszerben készült, de végül natív Androidként implementált POS terminál alkalmazásból áll. Az API a REST architektúrát követi, lehetővé téve a különböző erőforrások, például buszok, járatok és jegyek kezelését. A felhasználói és admin weboldal Vue-ban készült, a Vuetify elemek felhasználásával, ami lehetővé tette az egyszerű és hatékony felhasználói felületek gyors fejlesztését. A Vue.js keretrendszer előnye, hogy komponensekből áll, így átlátható és jól rendszerezett webalkalmazás felépítést tesz lehetővé. Ezen kívül a Vuetify komponens-készlete megkönnyítette az UI elemek létrehozását, gyorsítva ezzel a fejlesztési folyamatot. Az alkalmazás Flutterben készült, Dart programozási nyelvet használva, amely lehetővé teszi, hogy ugyanazt a kódbázist használjuk iOS és Android platformokra is, így jelentősen csökkentve a fejlesztési időt és költségeket. A POS terminál alkalmazása eredetileg Flutterben készült, de végül natív Android alkalmazásként lett implementálva a nagyobb kompatibilitás érdekében. Ez biztosítja, hogy a rendszer megfelelően működjön a POS terminálokkal, valamint minden szükséges tanúsítvánnyal kompatibilis legyen.
 A Vue.js alapú weboldalakat, illetve a felhasználóknak szánt Flutter alkalmazást Portik Szabolcs kollegám mutatja be részletesebben egy másik dolgozat 
 keretein belül.
+
+A rendszer komponenseinek kapcsolatát az \ref{fig:architecture-diagram} ábra szemlélteti.
 
 \begin{figure}[H]
     \centering
@@ -25,7 +27,7 @@ Végül, a Rails beépített tesztelési eszközei lehetőséget adnak az automa
 \subsection{PostgreSQL}
 A \textit{PostgreSQL} egy \textit{nyílt forráskódú, objektum-relációs adatbázis-kezelő rendszer}, amely széles körben ismert teljesítményéről, rugalmasságáról, és különösen alkalmas komplex adatszerkezetek és nagy adattömegek kezelésére. Támogatja a fejlett adattípusokat, bonyolult lekérdezéseket, és párhuzamos műveleteket, amelyek különösen hasznosak a Bus4U-hoz hasonló, valós idejű adatokat feldolgozó rendszerekben \cite{douglas_postgresql, murrell_postgresql}.
 
-A PostgreSQL előnyei a Bus4U számára: \begin{itemize} \item \textbf{Teljesítmény optimalizálása és bonyolult lekérdezések kezelése}: A PostgreSQL kiválóan kezeli a párhuzamos lekérdezéseket és optimalizált módon képes kezelni nagy mennyiségű adatot és komplex lekérdezési struktúrákat. Ez biztosítja az alkalmazás gyors, megbízható működését, és lehetőséget nyújt az adatbázis hatékony méretezésére és finomhangolására az adatmennyiség növekedésével \cite{murrell_postgresql}. \item \textbf{Skálázhatóság}: Nagyobb adatmennyiség vagy felhasználói terhelés esetén a PostgreSQL támogatja a függőleges és vízszintes skálázást. Ezen túlmenően replikációval biztosítható a magas rendelkezésre állás, amely kritikus szempont a nagy terhelés alatt működő rendszerekben. Így a PostgreSQL hosszú távú, fenntartható teljesítményt és magas rendelkezésre állást biztosít, amely elengedhetetlen a Bus4U megbízható működéséhez \cite{douglas_postgresql}. \end{itemize}
+A PostgreSQL előnyei a Bus4U számára: \begin{itemize} \item Teljesítmény optimalizálása és bonyolult lekérdezések kezelése: A PostgreSQL kiválóan kezeli a párhuzamos lekérdezéseket és optimalizált módon képes kezelni nagy mennyiségű adatot és komplex lekérdezési struktúrákat. Ez biztosítja az alkalmazás gyors, megbízható működését, és lehetőséget nyújt az adatbázis hatékony méretezésére és finomhangolására az adatmennyiség növekedésével \cite{murrell_postgresql}. \item Skálázhatóság: Nagyobb adatmennyiség vagy felhasználói terhelés esetén a PostgreSQL támogatja a függőleges és vízszintes skálázást. Ezen túlmenően replikációval biztosítható a magas rendelkezésre állás, amely kritikus szempont a nagy terhelés alatt működő rendszerekben. Így a PostgreSQL hosszú távú, fenntartható teljesítményt és magas rendelkezésre állást biztosít, amely elengedhetetlen a Bus4U megbízható működéséhez \cite{douglas_postgresql}. \end{itemize}
 
 \subsection{Azure}
 Az \textit{Azure} egy olyan nagyvállalati szintű, biztonságos és skálázható felhőplatform, amely számos lehetőséget kínál modern alkalmazások fejlesztéséhez és működtetéséhez. Az Azure infrastruktúrája révén biztosítható a folyamatos és megbízható működés, míg a platform rugalmassága lehetővé teszi az erőforrások hatékony kezelését és a skálázhatóságot \cite{wilder_azure, collier_azure}. Az Azure használatával elkerülhetőek a hagyományos szerver infrastruktúrák fizikai korlátai, és olyan erőforrások válnak elérhetővé, amelyek az alkalmazás igényei szerint rugalmasan méretezhetők.
@@ -33,25 +35,29 @@ Az \textit{Azure} egy olyan nagyvállalati szintű, biztonságos és skálázhat
 Az Azure előnyei a Bus4U számára:
 
 \begin{itemize} 
-    \item \textbf{Skálázhatóság és rugalmasság}: Az Azure automatikusan alkalmazkodik a változó terheléshez, amely lehetővé teszi, hogy a rendszer gördülékenyen kezelje a megnövekedett felhasználói forgalmat. Ez az adaptív megközelítés egy modern, folyamatosan növekedő alkalmazás számára elengedhetetlen, különösen tömegközlekedési rendszerek esetében, ahol a felhasználói igények időben változhatnak \cite{wilder_azure}.
-    \item \textbf{Biztonság és adatvédelem}: Az Azure erőteljes adatvédelmi szabályokat és fejlett biztonsági protokollokat alkalmaz. Ezek közé tartozik a többfaktoros hitelesítés, a hálózati tűzfalak, valamint az adattitkosítás, amelyek biztosítják, hogy a Bus4U felhasználóinak adatai biztonságban legyenek. A platform megfelel a szigorú adatvédelmi szabványoknak, ami kulcsfontosságú egy olyan alkalmazás számára, amely szenzitív felhasználói adatokat kezel \cite{collier_azure}.
+    \item Skálázhatóság és rugalmasság: Az Azure automatikusan alkalmazkodik a változó terheléshez, amely lehetővé teszi, hogy a rendszer gördülékenyen kezelje a megnövekedett felhasználói forgalmat. Ez az adaptív megközelítés egy modern, folyamatosan növekedő alkalmazás számára elengedhetetlen, különösen tömegközlekedési rendszerek esetében, ahol a felhasználói igények időben változhatnak \cite{wilder_azure}.
+    \item Biztonság és adatvédelem: Az Azure erőteljes adatvédelmi szabályokat és fejlett biztonsági protokollokat alkalmaz. Ezek közé tartozik a többfaktoros hitelesítés, a hálózati tűzfalak, valamint az adattitkosítás, amelyek biztosítják, hogy a Bus4U felhasználóinak adatai biztonságban legyenek. A platform megfelel a szigorú adatvédelmi szabványoknak, ami kulcsfontosságú egy olyan alkalmazás számára, amely szenzitív felhasználói adatokat kezel \cite{collier_azure}.
 \end{itemize}
 
 
 \section{Az API felépítése}
 A Bus4U API a REST architektúrát követi, és számos végpontot biztosít a különböző erőforrások kezeléséhez, mint például:
 \begin{itemize}
-    \item \textbf{Buszok kezelése}: buszok létrehozása, frissítése, törlése.
-    \item \textbf{Járatok menedzselése}: járatok lekérése és ütemezése.
-    \item \textbf{Jegyek és bérletek}: jegyek és bérletek vásárlása és kezelése.
+    \item Buszok kezelése: buszok létrehozása, frissítése, törlése.
+    \item  menedzselése: járatok lekérése és ütemezése.
+    \item Jegyek és bérletek: jegyek és bérletek vásárlása és kezelése.
 \end{itemize}
 
-\section{Endpointok részletes leírása}
+\section{Fontosabb endpointok részletes leírása}
 
-\subsection{GET /get\_stations\_by\_city}
-Ez az endpoint lehetővé teszi a megállók listájának lekérését egy adott város alapján. A kérés a következő paramétert használja:
+\subsection{GET /v1/get\_stations\_by\_city}
+Ez az endpoint lehetővé teszi a megállók listájának lekérését egy adott város alapján.
+
+\textbf{HTTP metódus}: \verb|GET|
+
+\textbf{Kérés paraméterei}:
 \begin{itemize}
-    \item \textbf{city\_uid}: A város egyedi azonosítója.
+    \item \textbf{city\_uid} (\textit{string}, \textit{kötelező}): A város egyedi azonosítója, amely alapján a megállók lekérdezése történik.
 \end{itemize}
 
 \textbf{Példa kérés}:
@@ -59,7 +65,7 @@ Ez az endpoint lehetővé teszi a megállók listájának lekérését egy adott
 GET https://api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
 \end{verbatim}
 
-\textbf{Válasz formátum}:
+\textbf{Sikeres válasz (HTTP 200)}:
 \begin{verbatim}
 {
     "stations": [
@@ -80,6 +86,264 @@ GET https://api.bus4u.online/v1/get_stations_by_city?city_uid=CTY_N11XH
     ]
 }
 \end{verbatim}
+
+\textbf{Hibás válasz (például ismeretlen city\_uid esetén) – HTTP 404}:
+\begin{verbatim}
+{
+    "error": "Could not find the city!"
+}
+\end{verbatim}
+
+\textbf{Lehetséges válaszkódok}:
+\begin{itemize}
+    \item \textbf{200 OK} – A megállók sikeresen lekérdezve.
+    \item \textbf{404 Not Found} – A megadott \texttt{city\_uid} nem létezik, vagy nincs ilyen város az adatbázisban.
+\end{itemize}
+
+\subsection{GET /v1/get\_departure\_times\_for\_station\_in\_route}
+Ez az endpoint lekérdezi az indulási időpontokat egy adott megállóra, egy adott útvonal mentén.
+
+\textbf{HTTP metódus}: \verb|GET|
+
+\textbf{Kérés paraméterei}:
+\begin{itemize}
+    \item \textbf{route\_uid} (\textit{string}, \textit{kötelező}): Az útvonal egyedi azonosítója.
+    \item \textbf{station\_uid} (\textit{string}, \textit{kötelező}): A megálló egyedi azonosítója.
+\end{itemize}
+
+\textbf{Példa kérés}:
+\begin{verbatim}
+GET https://api.bus4u.online/v1/get_departure_times_for_station_in_route?
+route_uid=RTE_123ABC&station_uid=STT_XYZ456
+\end{verbatim}
+
+\textbf{Sikeres válasz (HTTP 200)}:
+\begin{verbatim}
+[
+    {
+        "name": "Munkanap",
+        "fare": 6.0,
+        "departure_times": ["06:30", "07:15", "08:00"]
+    },
+    {
+        "name": "Szombat",
+        "fare": 6.0,
+        "departure_times": ["07:00", "09:30", "11:00"]
+    }
+]
+\end{verbatim}
+
+\textbf{Hibás válaszok}:
+
+\begin{itemize}
+    \item \textbf{HTTP 404} – Ha a megadott útvonal vagy megálló nem található:
+    \begin{verbatim}
+    {
+        "error": "Station or route not found!"
+    }
+    \end{verbatim}
+
+    \item \textbf{HTTP 404} – Ha az adott útvonal nem érinti a megállót:
+    \begin{verbatim}
+    {
+        "error": "The bus does not stop at the 
+        specified stop on the specified route"
+    }
+    \end{verbatim}
+
+    \item \textbf{HTTP 404} – Ha nincs menetrend az adott kombinációhoz:
+    \begin{verbatim}
+    {
+        "error": "No departure times found for the 
+        specified station on the specified route"
+    }
+    \end{verbatim}
+\end{itemize}
+
+\textbf{Lehetséges válaszkódok}:
+\begin{itemize}
+    \item \textbf{200 OK} – Az indulási időpontok sikeresen lekérdezve.
+    \item \textbf{404 Not Found} – A megadott paraméterek alapján nem található adat (útvonal, megálló, kapcsolat, vagy menetrend).
+\end{itemize}
+
+\subsection{POST /generate\_a\_ticket}
+Ez az endpoint lehetővé teszi új jegy vagy jegyek generálását egy felhasználó számára. A jegyek mentésre kerülnek az adatbázisban, és a vásárló értesítést kap emailben. A generált jegyek alapértelmezetten érvényesek, de még nem fizetettek.
+
+\textbf{HTTP metódus}: \verb|POST|
+
+\textbf{Hitelesítés szükséges}: Igen (bejelentkezett felhasználó)
+
+\textbf{Kérés törzse (\texttt{application/json})}:
+\begin{verbatim}
+{
+    "company_uid": "CMP_123456",
+    "route_uid": "RTE_ABC123",
+    "from_station_uid": "STT_START",
+    "to_station_uid": "STT_END",
+    "type": "standard",
+    "ticket_price": 15,
+    "quantity": 2
+}
+\end{verbatim}
+
+\textbf{Paraméterek}:
+\begin{itemize}
+    \item \texttt{company\_uid} (\textit{string}, kötelező): A társaság azonosítója.
+    \item \texttt{route\_uid} (\textit{string}, kötelező): Az útvonal azonosítója.
+    \item \texttt{from\_station\_uid} (\textit{string}, kötelező): A felszállási megálló azonosítója.
+    \item \texttt{to\_station\_uid} (\textit{string}, kötelező): A leszállási megálló azonosítója.
+    \item \texttt{type} (\textit{string}, kötelező): A jegytípus (pl. \texttt{standard}, \texttt{student} stb.).
+    \item \texttt{ticket\_price} (\textit{double}, kötelező): A jegy ára.
+    \item \texttt{quantity} (\textit{integer}, kötelező): A generálandó jegyek száma.
+\end{itemize}
+
+\textbf{Sikeres válasz (HTTP 200)}:
+\begin{verbatim}
+[
+    "TCK_1A2B3C",
+    "TCK_4D5E6F"
+]
+\end{verbatim}
+A válaszban a sikeresen létrehozott jegyek egyedi azonosítói szerepelnek.
+
+\textbf{Hibás válaszok}:
+
+\begin{itemize}
+    \item \textbf{HTTP 401 Unauthorized} – Ha a felhasználó nincs bejelentkezve:
+    \begin{verbatim}
+    {
+        "error": "The user is not logged in"
+    }
+    \end{verbatim}
+
+    \item \textbf{HTTP 422 Unprocessable Entity} – Ha legalább egy jegy mentése sikertelen:
+    \begin{verbatim}
+    {
+        "error": "Cannot create one or more tickets"
+    }
+    \end{verbatim}
+\end{itemize}
+
+\textbf{Jegyek létrehozásának logikája}:
+\begin{itemize}
+    \item A jegyek \texttt{is\_valid} attribútuma \texttt{true} lesz.
+    \item A \texttt{ticket\_price} értékét \textbf{100-zal felszorozza}, hogy baniban legyen tárolva. Ezt a Stripe működése követeli meg.
+    \item A \texttt{expiration\_date} automatikusan 1 hónap a vásárlástól számítva.
+    \item A felhasználó email-címére értesítés kerül kiküldésre a vásárlásról.
+\end{itemize}
+
+\subsection{GET /admin/statistics}
+Ez az endpoint statisztikai adatokat szolgáltat az adott társasághoz tartozó eladott jegyek alapján, különböző időintervallumokra (havi, éves, összesített). Az adatokat az adminisztrációs felület jeleníti meg a főoldalon.
+
+\textbf{HTTP metódus}: \verb|GET|
+
+\textbf{Hitelesítés szükséges}: Igen (adminisztrátor jogosultság)
+
+\textbf{Lekérdezési paraméterek}:
+\begin{itemize}
+    \item \texttt{company\_uid} (\textit{string}, kötelező): A lekérdezni kívánt társaság egyedi azonosítója.
+\end{itemize}
+
+\textbf{Példa kérés}:
+\begin{verbatim}
+GET https://api.bus4u.online/v1/admin/statistics?company_uid=CMP_123456
+\end{verbatim}
+
+\textbf{Sikeres válasz (HTTP 200)}:
+\begin{verbatim}
+{
+    "month_tickets": 142,
+    "month_income": 217500,
+    "month_users": 89,
+    "year_tickets": 1123,
+    "year_income": 1723000,
+    "year_users": 456,
+    "all_tickets": 5238,
+    "all_income": 7932000,
+    "all_users": 2031
+}
+\end{verbatim}
+
+\textbf{Válaszmezők}:
+\begin{itemize}
+    \item \texttt{month\_tickets}: Az adott hónapban eladott jegyek száma.
+    \item \texttt{month\_income}: Az adott hónapban befolyt összeg.
+    \item \texttt{month\_users}: Az adott hónapban vásárló egyedi felhasználók száma.
+    \item \texttt{year\_tickets}: Az idei évben eladott jegyek száma.
+    \item \texttt{year\_income}: Az idei év bevétele.
+    \item \texttt{year\_users}: Az idei évben vásárló egyedi felhasználók száma.
+    \item \texttt{all\_tickets}: Az összes eladott jegy száma a társaság fennállása óta.
+    \item \texttt{all\_income}: Az összes bevétel.
+    \item \texttt{all\_users}: Az összes vásárló egyedi felhasználók száma.
+\end{itemize}
+
+\textbf{Hibás válaszok}:
+
+\begin{itemize}
+    \item \textbf{HTTP 422 Unprocessable Entity} – Ha nem található a társaság, vagy nincs jegy:
+    \begin{verbatim}
+    {
+        "error": "Invalid company uid!"
+    }
+    \end{verbatim}
+
+    \item \textbf{HTTP 422 Unprocessable Entity} – Ha nincs jegy az adott társasághoz:
+    \begin{verbatim}
+    {
+        "error": "No tickets found"
+    }
+    \end{verbatim}
+\end{itemize}
+
+\subsection{POST /use\_ticket}
+Ez az endpoint lehetővé teszi egy jegy érvényesítését. A jegy csak egyszer használható, és csak a lejárati dátumán belül.
+
+\textbf{HTTP metódus}: \verb|POST|
+
+\textbf{Hitelesítés szükséges}: Igen
+
+\textbf{Törzstesti paraméterek (JSON)}:
+\begin{itemize}
+    \item \texttt{ticket\_uid} (\textit{string}, kötelező): A jegy egyedi azonosítója.
+\end{itemize}
+
+\textbf{Példa kérés}:
+\begin{verbatim}
+POST https://api.bus4u.online/v1/admin/use_ticket
+Content-Type: application/json
+
+{
+    "ticket_uid": "TCK_98AF3"
+}
+\end{verbatim}
+
+\textbf{Sikeres válasz (HTTP 202)}:
+\begin{verbatim}
+{
+    "success": "The ticket is validated successfully"
+}
+\end{verbatim}
+
+\textbf{Hibás válaszok}:
+\begin{itemize}
+    \item \textbf{HTTP 404 Not Found} – Ha nem található jegy az adott UID alapján:
+    \begin{verbatim}
+    {
+        "error": "The ticket UID is invalid"
+    }
+    \end{verbatim}
+
+    \item \textbf{HTTP 422 Unprocessable Entity} – Ha a jegy már lejárt vagy már érvénytelenített:
+    \begin{verbatim}
+    {
+        "error": "The ticket is used or expired"
+    }
+    \end{verbatim}
+\end{itemize}
+
+\textbf{Megjegyzés}:
+Sikeres érvényesítés esetén a rendszer beállítja a jegyet felhasználtnak (\texttt{is\_valid = false}), így az később nem használható újra.
+
 
 \subsection{Hitelesítés és jogosultságkezelés}
 
@@ -102,10 +366,11 @@ A JWT token alapú autentikáció folyamata:
 \end{enumerate}
 
 \section{Adatkezelés és adatbázis kapcsolat}
-Az API végpontjai a \textbf{PostgreSQL} adatbázissal kommunikálnak. Az adatbázis tranzakciókat az \textbf{ActiveRecord} ORM segítségével kezeljük, amely lehetővé teszi az adatok egyszerű és hatékony lekérését, beszúrását és frissítését.
+Az API végpontjai a PostgreSQL adatbázissal kommunikálnak. Az adatbázis tranzakciókat az ActiveRecord ORM (Object-Relational Mapping) segítségével kezeljük, amely lehetővé teszi az adatok egyszerű és hatékony lekérését, beszúrását és frissítését.
 
 \subsection{Adatbázis táblák}
-A PostgreSQL adatbázisunk a következő táblákból áll:
+A PostgreSQL adatbázisunk több, egymással összefüggő táblából áll, amelyek a rendszer különböző entitásait és azok kapcsolatait modellezik. Ezek a táblák a következők:
+
 \begin{itemize}
     \item \textbf{Companies}: Azon cégek adatai, akikkel szerződést kötött a Bus4U.
     \item \textbf{Admins}: Különböző cégekhez tartozó adminisztrátorok adatai. Szerepük lehet “boss” vagy “driver”.
@@ -121,6 +386,8 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
     \item \textbf{Payments}: Stripe fizetések eltárolása.
 \end{itemize}
 
+A rendszer adatbázis-struktúráját és a táblák közötti kapcsolatokat az \ref{fig:database-diagram} ábra mutatja be részletesen.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/database.jpg}
@@ -130,14 +397,14 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
 
   \subsection{Objektum-relációs leképzés (ORM)}
 
-  A backend API adatbázis-kezelése a Ruby on Rails keretrendszer beépített \textbf{ActiveRecord} objektum-relációs leképzőjével (ORM) történik. Az ORM lehetővé teszi az alkalmazás számára, hogy közvetlenül Ruby osztályok és objektumok formájában kezelje az adatbázis tábláit, így egyszerűsítve az adatbázis-műveleteket és csökkentve a fejlesztési időt.
+  A backend API adatbázis-kezelése a Ruby on Rails keretrendszer beépített ActiveRecord objektum-relációs leképzőjével (ORM) történik. Az ORM lehetővé teszi az alkalmazás számára, hogy közvetlenül Ruby osztályok és objektumok formájában kezelje az adatbázis tábláit, így egyszerűsítve az adatbázis-műveleteket és csökkentve a fejlesztési időt.
   
   Az ActiveRecord fő előnyei közé tartozik:
   \begin{itemize}
-      \item \textbf{Egyszerű adatlekérdezés:} A komplex SQL utasítások helyett Ruby nyelven írhatók a lekérdezések.
-      \item \textbf{Adatkapcsolatok automatikus kezelése:} Egyértelművé teszi az adatok közötti kapcsolatokat (például \texttt{belongs\_to}, \texttt{has\_many}, \texttt{has\_one}).
-      \item \textbf{Validációk és tranzakciók egyszerű kezelése:} Adatvalidáció, tranzakciókezelés és hibaüzenetek egyszerű integrációja az üzleti logikába.
-      \item \textbf{Migrációk támogatása:} Könnyű adatbázis-struktúra módosítás a migrációs fájlokon keresztül.
+      \item Egyszerű adatlekérdezés: A komplex SQL utasítások helyett Ruby nyelven írhatók a lekérdezések.
+      \item Adatkapcsolatok automatikus kezelése: Egyértelművé teszi az adatok közötti kapcsolatokat (például \texttt{belongs\_to}, \texttt{has\_many}, \texttt{has\_one}).
+      \item Validációk és tranzakciók egyszerű kezelése: Adatvalidáció, tranzakciókezelés és hibaüzenetek egyszerű integrációja az üzleti logikába.
+      \item Migrációk támogatása: Könnyű adatbázis-struktúra módosítás a migrációs fájlokon keresztül.
   \end{itemize}
   
   Az ActiveRecord használata jelentősen egyszerűsíti a fejlesztési folyamatot, lehetővé téve, hogy a fejlesztők elsősorban az üzleti logikára összpontosítsanak, miközben a rendszer hatékonyan és biztonságosan kommunikál a PostgreSQL adatbázissal.
@@ -148,16 +415,16 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
   
   \subsection{Jira}
 
-  A projektmenedzsment során a \textbf{Jira} kanban boardját használtuk, amely az Atlassian által fejlesztett projekt-követő platform. A Jirát választottuk, mert egy olyan hatékony eszköz, amely egyszerre letisztult, ám funkciókban komplex, így könnyedén igazítható a projekt igényeihez. 
+  A projektmenedzsment során a Jira kanban boardját használtuk, amely az Atlassian által fejlesztett projekt-követő platform. A Jirát választottuk, mert egy olyan hatékony eszköz, amely egyszerre letisztult, ám funkciókban komplex, így könnyedén igazítható a projekt igényeihez. 
   
-  A Kanban tábla három fő oszlopból állt:
+  A Kanban tábla három fő oszlopból állt, amelyeket az \ref{fig:jira} ábra szemléltet:
   \begin{itemize}
-      \item \textbf{To do}: Ide kerültek azok a feladatok, amelyeket még nem kezdtünk el.
-      \item \textbf{In progress}: Ebben az oszlopban azok a feladatok szerepeltek, amelyek éppen folyamatban voltak.
-      \item \textbf{Done}: Az elvégzett feladatok ebbe az oszlopba kerültek, jelezve azok befejezését.
+      \item To do: Ide kerültek azok a feladatok, amelyeket még nem kezdtünk el.
+      \item In progress: Ebben az oszlopban azok a feladatok szerepeltek, amelyek éppen folyamatban voltak.
+      \item Done: Az elvégzett feladatok ebbe az oszlopba kerültek, jelezve azok befejezését.
   \end{itemize}
   
-  Minden feladatot hozzárendeltünk egy konkrét tulajdonoshoz, valamint címkékkel láttunk el, amelyek megjelölték, hogy a munka épp a rendszer melyik komponensére vonatkozik: \textbf{API}, \textbf{felhasználói felület}, \textbf{admin felület}, vagy \textbf{mobil alkalmazás}. A feladatok ilyen címkézése segített abban, hogy pontosan tudjuk, ki mivel foglalkozik, illetve milyen állapotban van a fejlesztés különböző területein végzett munka.
+  Minden feladatot hozzárendeltünk egy konkrét tulajdonoshoz, valamint címkékkel láttunk el, amelyek megjelölték, hogy a munka épp a rendszer melyik komponensére vonatkozik: API, felhasználói felület, admin felület, vagy mobil alkalmazás. A feladatok ilyen címkézése segített abban, hogy pontosan tudjuk, ki mivel foglalkozik, illetve milyen állapotban van a fejlesztés különböző területein végzett munka.
 
   \begin{figure}[H]
     \includegraphics[width=\textwidth]{figures/jira.jpg}
@@ -167,13 +434,14 @@ A PostgreSQL adatbázisunk a következő táblákból áll:
       
   \subsection{Git és GitHub}
 
-  A projekt forráskódjának verziókezelését a \textbf{Git} verziókezelő rendszer segítségével oldottuk meg, míg a kód tárolására a \textbf{GitHub} platformot használtuk. A GitHub lehetőséget biztosított a pull request-ek hatékony kezelésére, amelyekkel minden változtatást egyszerűen tudtunk jóváhagyni. Ez a megközelítés a kód visszakövethetőségét és dokumentálását is jelentősen megkönnyítette, hozzájárulva a kód minőségének javításához és a fejlesztési folyamat átláthatóságához.
+  A projekt forráskódjának verziókezelését a Git verziókezelő rendszer segítségével oldottuk meg, míg a kód tárolására a GitHub platformot használtuk. A GitHub lehetőséget biztosított a pull request-ek hatékony kezelésére, amelyekkel minden változtatást egyszerűen tudtunk jóváhagyni. Ez a megközelítés a kód visszakövethetőségét és dokumentálását is jelentősen megkönnyítette, hozzájárulva a kód minőségének javításához és a fejlesztési folyamat átláthatóságához.
+  A \ref{fig:github} ábra bemutatja a GitHub repository áttekintését, ahol látható a main branch mappaszerkezete.
   
-  A projekt struktúráját három fő \textbf{branch} köré szerveztük:
+  A projekt struktúráját három fő branch köré szerveztük:
   \begin{itemize}
-      \item \textbf{main branch}: Ebbe az ágba kizárólag a már teljesen tesztelt és stabil kódrészletek kerültek be, amelyeket időszakosan publikáltunk. Ez az ág szolgált a hivatalos, működőképes verzió tárolására.
-      \item \textbf{develop branch}: A develop branch-et a fejlesztés és tesztelés helyszíneként használtuk. Az ide feltöltött kódok még tesztelés alatt álltak, de a fejlesztési idő alatt mindig a develop verzióját futtattuk az Azure környezetben, ezzel biztosítva, hogy az aktuális fejlesztések folyamatosan elérhetők és tesztelhetők legyenek.
-      \item \textbf{feature branchek}: Az új funkciók fejlesztését különálló, ún. feature branchekben végeztük, amelyek a konkrét feladatokra vagy kódrészletekre koncentráltak. Például kisebb munkaigényű kódok, mint az általános API lekérések fejlesztése külön branchekben történt, míg az összetettebb funkciókat külön feature branch-ekben dolgoztuk ki.
+      \item main branch: Ebbe az ágba kizárólag a már teljesen tesztelt és stabil kódrészletek kerültek be, amelyeket időszakosan publikáltunk. Ez az ág szolgált a hivatalos, működőképes verzió tárolására.
+      \item develop branch: A develop branch-et a fejlesztés és tesztelés helyszíneként használtuk. Az ide feltöltött kódok még tesztelés alatt álltak, de a fejlesztési idő alatt mindig a develop verzióját futtattuk az Azure környezetben, ezzel biztosítva, hogy az aktuális fejlesztések folyamatosan elérhetők és tesztelhetők legyenek.
+      \item feature branchek: Az új funkciók fejlesztését különálló, ún. feature branchekben végeztük, amelyek a konkrét feladatokra vagy kódrészletekre koncentráltak. Például kisebb munkaigényű kódok, mint az általános API lekérések fejlesztése külön branchekben történt, míg az összetettebb funkciókat külön feature branch-ekben dolgoztuk ki.
   \end{itemize}
   
   A branch-ek ilyen felosztása lehetővé tette a párhuzamos fejlesztést, és biztosította, hogy a különböző fejlesztési szakaszok kódjai elkülönítve és rendezetten legyenek tárolva. A GitHub pull request funkciójának köszönhetően minden változtatást felül tudtunk vizsgálni, így minden módosítás előtt biztosak lehettünk annak minőségében és kompatibilitásában.

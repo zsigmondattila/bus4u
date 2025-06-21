@@ -5,27 +5,27 @@
 \select@language {magyar} \contentsline {figure}{\numberline {4.1}{\ignorespaces Use-case diagram a felhasználók és az adminisztrátorok lehetőségeiről}}{19}{figure.4.1}%
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \contentsline {figure}{\numberline {5.1}{\ignorespaces A rendszer architektúra diagramja}}{23}{figure.5.1}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.2}{\ignorespaces Az rendszer adatbázisdiagramja}}{30}{figure.5.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.3}{\ignorespaces A Jira kanban board áttekintése}}{33}{figure.5.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {5.4}{\ignorespaces A GitHub repository áttekintése}}{35}{figure.5.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.2}{\ignorespaces Az rendszer adatbázisdiagramja}}{37}{figure.5.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.3}{\ignorespaces A Jira kanban board áttekintése}}{40}{figure.5.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.4}{\ignorespaces A GitHub repository áttekintése}}{42}{figure.5.4}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {6.1}{\ignorespaces Telepítési diagram}}{38}{figure.6.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {6.1}{\ignorespaces Telepítési diagram}}{45}{figure.6.1}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {7.1}{\ignorespaces Aktivitás diagram az utazás tervezésének folyamatáról}}{40}{figure.7.1}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.2}{\ignorespaces Megvásárolt jegy}}{41}{figure.7.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.3}{\ignorespaces Szekvencia diagram az útvonaltervezés folyamatáról}}{42}{figure.7.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces Szekvencia diagram a jegyvásárlás folyamatáról}}{43}{figure.7.4}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces Szekvencia diagram a dokumentumok ellenőrzéséről}}{45}{figure.7.5}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Busz kiválasztása és GPS követés}}{47}{figure.7.6}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Elindított GPS követés}}{47}{figure.7.7}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.8}{\ignorespaces Sikeres jegy érvényesítés}}{48}{figure.7.8}%
-\select@language {magyar} \contentsline {figure}{\numberline {7.9}{\ignorespaces Sikertelen jegy érvényesítés}}{48}{figure.7.9}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.1}{\ignorespaces Aktivitás diagram az utazás tervezésének folyamatáról}}{47}{figure.7.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.2}{\ignorespaces Megvásárolt jegy}}{48}{figure.7.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.3}{\ignorespaces Szekvencia diagram az útvonaltervezés folyamatáról}}{49}{figure.7.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces Szekvencia diagram a jegyvásárlás folyamatáról}}{50}{figure.7.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces Szekvencia diagram a dokumentumok ellenőrzéséről}}{52}{figure.7.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Busz kiválasztása és GPS követés}}{54}{figure.7.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Elindított GPS követés}}{54}{figure.7.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.8}{\ignorespaces Sikeres jegy érvényesítés}}{55}{figure.7.8}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.9}{\ignorespaces Sikertelen jegy érvényesítés}}{55}{figure.7.9}%
 \select@language {magyar} \addvspace {10\p@ }
-\select@language {magyar} \contentsline {figure}{\numberline {8.1}{\ignorespaces A \texttt {GET /v1/get\_stations\_by\_city} végpont kérésének paraméterei és válasza}}{50}{figure.8.1}%
-\select@language {magyar} \contentsline {figure}{\numberline {8.2}{\ignorespaces A \texttt {GET /v1/get\_available\_tickets} végpont kérésének paraméterei és válasza}}{51}{figure.8.2}%
-\select@language {magyar} \contentsline {figure}{\numberline {8.3}{\ignorespaces A \texttt {GET /v1/get\_bus\_locations\_by\_route} végpont kérésének paraméterei és válasza}}{51}{figure.8.3}%
-\select@language {magyar} \contentsline {figure}{\numberline {8.4}{\ignorespaces A \texttt {GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}}{52}{figure.8.4}%
-\select@language {magyar} \contentsline {figure}{\numberline {8.5}{\ignorespaces A \texttt {POST /v1/admin/add\_station\_to\_route} végpont kérésének paraméterei és válasza}}{52}{figure.8.5}%
-\select@language {magyar} \contentsline {figure}{\numberline {8.6}{\ignorespaces A ZAP által felfedezett sebezhetőségek listája}}{54}{figure.8.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.1}{\ignorespaces A \texttt {GET /v1/get\_stations\_by\_city} végpont kérésének paraméterei és válasza}}{57}{figure.8.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.2}{\ignorespaces A \texttt {GET /v1/get\_available\_tickets} végpont kérésének paraméterei és válasza}}{58}{figure.8.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.3}{\ignorespaces A \texttt {GET /v1/get\_bus\_locations\_by\_route} végpont kérésének paraméterei és válasza}}{58}{figure.8.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.4}{\ignorespaces A \texttt {GET /v1/tickets\_of\_user} végpont kérésének paraméterei és válasza}}{59}{figure.8.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.5}{\ignorespaces A \texttt {POST /v1/admin/add\_station\_to\_route} végpont kérésének paraméterei és válasza}}{59}{figure.8.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.6}{\ignorespaces A ZAP által felfedezett sebezhetőségek listája}}{61}{figure.8.6}%
 \select@language {magyar} \addvspace {10\p@ }
 \select@language {magyar} \addvspace {10\p@ }

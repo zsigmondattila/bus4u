@@ -8,22 +8,22 @@ A weboldalra rákeresve a kezdőoldal fogad, ahol lehetőség van egy utazás me
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.92\textwidth]{figures/ticket_bought.png}
+  \includegraphics[width=\textwidth]{figures/ticket_bought.png}
   \caption{Jegyvásárlás a weboldalon}
   \label{fig:web-home}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \frame{\includegraphics[width=0.3\textwidth]{figures/mobile-home1.jpg}}
-  \frame{\includegraphics[width=0.3\textwidth]{figures/mobile-home2.jpg}}
-  \frame{\includegraphics[width=0.3\textwidth]{figures/mobile-home3.jpg}}
+  \frame{\includegraphics[width=0.32\textwidth]{figures/mobile-home1.jpg}}
+  \frame{\includegraphics[width=0.32\textwidth]{figures/mobile-home2.jpg}}
+  \frame{\includegraphics[width=0.32\textwidth]{figures/mobile-home3.jpg}}
   \caption{Jegyvásárlás a mobilalkalmazásban}
   \label{fig:mobile-home}
 \end{figure}
 
 \newpage
-A jegyvásárlás folyamata a \ref{fig:web-home} és \ref{fig:mobile-home} ábrákon látható. A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
+A jegyvásárlás folyamata weben a \ref{fig:web-home} és mobilon a \ref{fig:mobile-home} ábrán látható. A könnyebb megértés végett, a jegyvásárlási és bejelentkezési folyamat szemléltetésére elkészítettem a \ref{fig:activity-diagram} ábrán lévő aktivitás diagramot:
 
 \begin{figure}[H]
   \includegraphics[width=\textwidth]{figures/jegyvasarlas.jpg}
@@ -31,6 +31,7 @@ A jegyvásárlás folyamata a \ref{fig:web-home} és \ref{fig:mobile-home} ábr�
   \label{fig:activity-diagram}
 \end{figure}
 
+\newpage
 Ahogy az ábrán is látható, miután a felhasználó megtalálta a megfelelő
 buszjáratot és rákattintott a jegy megvásárlására, a rendszer átirányítja őt a bejelentkezéshez, ahol, ha van már fiókja, bejelentkezhet a meglévő adataival, amennyiben nincs, úgy átléphet a regisztrációs oldalra, ahol meg kell adnia a nevét, email címét, és egy új jelszót. A rendszer minden adatot ellenőriz és ha valamelyik hibás (pl. érvénytelen email cím vagy túl rövid jelszó), akkor egy ennek megfelelő hibaüzenetet ír ki. Ez addig ismétlődik, amíg minden adat megfelelő lesz, aztán a szerver automatikusan küld egy 4 számjegyből álló ellenőrző kódot a megadott e-mail címre, amelyet a felhasználó be kell írjon az alkalmazásban megjelenő szövegmezőbe. Ha ez a kód helytelen, akkor a folyamat kezdődik elölről, a felhasználónak új adatokat kell megadnia. Ha a regisztráció sikeres és az ellenőrző kód helyes, akkor a főoldalra való visszatérés és a jegyvásárlásra kattintás után, a rendszer átirányítja a felhasználót az online fizetéses oldalra. A rendszer ott is addig kéri az újrapróbálkozást, amíg minden fizetési adat helyesen lesz megadva. Sikeres kifizetés után a backend generál egy egyedi kódot a megvásárolt jegyhez és megjelenik a kijelzőn a sikeres vásárlás visszaigazolása. Az itt megvásárolt jegye(ke)t a felhasználó a Jegyek nevű oldalon találja meg szöveges és QR-kódos formátumokban.
 
@@ -72,7 +73,7 @@ Mindkét oldalon megjelenik a felhasználó jelenlegi pozíciója egy kék gombo
 
 \begin{figure}[h]
   \centering
-  \frame{\includegraphics[width=0.275\textwidth]{figures/stations-mobile.jpg}}
+  \frame{\includegraphics[width=0.33\textwidth]{figures/stations-mobile.jpg}}
   \caption{Megállók oldal}
   \label{fig:stations-mobile}
 \end{figure}

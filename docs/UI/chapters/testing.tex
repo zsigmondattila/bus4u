@@ -78,7 +78,7 @@ A teszthez tartozó programkód a következőképpen néz ki:
 \end{lstlisting}
 
 \section{Automatizált tesztelés}
-A tesztek futtatásának automatizálását a GitHub Actions segítségével valósítottam meg. A GitHub Actions egy olyan funkció a GitHubon, amely lehetővé teszi előre definiált feladatok automatikus végrehajtását a kód változásának alkalmával. A Cypress biztosít egy előre megírt GitHub Actions konfigurációt, amelyet csak be kell állítani a projektünkben, és a tesztek automatikusan lefutnak minden egyes változtatás után. Az én esetemben 2 ilyen feladatra van szükség: az egyik a felhasználói, míg a másik az admin weboldal tesztjeinek futtatására. Ezekhez hozzáadtam még egy extra lépést, amely hiba esetén lementi a tesztek által készített képernyőképeket utólagos elemzés céljából. Mindhárom tesztelési feladat a "Cypress tests" nevű Action része, amelynek konfigurációs kódja a következő:
+A tesztek futtatásának automatizálását a GitHub Actions segítségével valósítottam meg. A GitHub Actions egy olyan funkció a GitHubon, amely lehetővé teszi előre definiált feladatok automatikus végrehajtását a kód változásának alkalmával. A Cypress biztosít egy GitHub Actions konfigurációt, amelyet csak be kell állítani a projektben, és a tesztek automatikusan lefutnak minden egyes változtatás után. Az én esetemben 2 ilyen feladatra van szükség: az egyik a felhasználói, míg a másik az admin weboldal tesztjeinek futtatására. Ezekhez hozzáadtam még egy extra lépést, amely hiba esetén lementi a tesztek által készített képernyőképeket utólagos elemzés céljából. Mindhárom tesztelési feladat a "Cypress tests" nevű Action része, amelynek konfigurációja a következő:
 \begin{lstlisting}
 name: Cypress tests
 on: push
@@ -117,7 +117,7 @@ A tesztek lefutása után a GitHub Actions értesítést küld az eredményekrő
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{figures/cypress-passed.png}
+    \includegraphics[width=\textwidth]{figures/cypress-passed.png}
     \caption{A GitHub Actions által generált teszteredmények}
     \label{fig:github-actions}
 \end{figure}

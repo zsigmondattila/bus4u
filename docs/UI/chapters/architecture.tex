@@ -29,15 +29,16 @@ Ezzel szemben van egy API szerver, amely az összes felhasználói felületet ki
 
 Az adatok kiszolgálásának folyamatában az adatbázisnak az a feladata, hogy a felhasználók, buszok, járatok, megállók és jegyek adatait biztonságosan tárolja és azokat az API szerver számára elérhetővé tegye olvasásra és módosításra is.
 
-Részletesebb leírást a backend felépítéséről és működéséről a másik dolgozatban lehet találni \cite{bus4userver}.
+Részletesebb leírást a backend működéséről a másik dolgozatban lehet találni \cite{bus4userver}.
 
 \section{Kommunikáció}
 A felek közötti kommunikáció HTTP alapú REST API hívásokkal valósul meg, ezt szemlélteti az \ref{fig:secvential-tickets} ábrán megjelenített szekvencia diagram, amely a felhasználó által megvásárolt jegyek listázásának folyamatát írja le. Amikor a felhasználó a frontend felületen keresztül a My Tickets oldalra navigál, egy GET kérés indul el a szerver felé, amely tartalmazza a felhasználó adatait. A backend először ellenőrzi a kérést, majd a megfelelő jegyeket lekérdezi az adatbázisból és visszaküldi a frontendnek, ahol azok idő szerinti rendezés után megjelennek a felhasználó számára. A még érvényes jegyekhez generál a rendszer egy QR kódot is, hogy könnyű legyen majd innen beolvasni. Amennyiben valahol hiba történik, a rendszer informálja erről a felhasználót. A következő kódrészlet intézi a kérést a frontend oldalról:
 
 \begin{lstlisting}[language=JavaScript]
 isLoading.value = true
-axios.get('https://api.bus4u.online/v1/tickets_of_user', { headers: { Authorization: user.authorization }, params: { uid: user.uid }})
-  .then(rsp => {
+axios.get('https://api.bus4u.online/v1/tickets_of_user',
+    { headers: { Authorization: user.authorization }, params: { uid: user.uid } }
+  ).then(rsp => {
     isLoading.value = false
     tickets.value = rsp.data.sort((a, b) => {
       if(!a.is_valid && b.is_valid) return 1
@@ -46,7 +47,8 @@ axios.get('https://api.bus4u.online/v1/tickets_of_user', { headers: { Authorizat
     })
     for(let i=0; i<tickets.value.length; i++) {
       if(!tickets.value[i].is_valid) continue
-      QRCode.toDataURL(tickets.value[i].ticket_uid, { width: 250 }).then(rsp => tickets.value[i].qr = rsp)
+      QRCode.toDataURL(tickets.value[i].ticket_uid, { width: 250 })
+        .then(rsp => tickets.value[i].qr = rsp)
     }
   }).catch(() => {
     tickets.value = []
@@ -58,14 +60,14 @@ Egy ilyen kérésre, a backend által adott válasz az \ref{fig:response-tickets
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/response-tickets.png}
+  \includegraphics[width=\textwidth]{figures/response-tickets.png}
   \caption{A jegyek listázásának válasza}
   \label{fig:response-tickets}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{figures/secvential-tickets.png}
+  \includegraphics[width=\textwidth]{figures/secvential-tickets.png}
   \caption{A jegyek listázásának folyamata}
   \label{fig:secvential-tickets}
 \end{figure}
@@ -111,7 +113,7 @@ Mindkét implementáció a Material Design irányelveit követi, mert ez egy sz�
 \subsection{Vue.js}
 A Vue.js egy progresszív JavaScript keretrendszer, amelyet azért hoztak létre, hogy a webes felhasználói felületek fejlesztése egyszerűbb és gyorsabb legyen. A JavaScript keretrendszerek célja, hogy megkönnyítsék a webprogramozást, azáltal hogy előre megírt osztály- és függvénykönyvtárakat szolgáltatnak, amelyek segítenek lerövidíteni a fejlesztési időt. Első ilyen keretrendszer a jQuery volt, amely a DOM (Document Object Model) manipulációt és az AJAX (Asynchronous JavaScript And XML) hívásokat tette egyszerűbbé, majd később a React és az Angular keretrendszerek jöttek, amelyek a komponens alapú fejlesztést tették lehetővé. Ez a fejlődés viszont mind nagyobb és nagyobb kiterjedésű csomagokat eredményezett, ami kissé csökkentette a weboldalak teljesítményét. A Vue.js ezt a problémát próbálja megoldani azzal, hogy egy könnyű, gyors és hatékony keretrendszert kínál, amely egy Virtuális DOM modell segítségével gyorsítja a futást és amelynek a forráskódja akár 24 Kb-ra is zsugorítható, így viszonylag gyors a betöltése is \cite{vueinaction}.
 
-A Vue.js két alapköve a deklaratív UI felépítés és a reaktivitás. A deklaratív UI azt jelenti hogy az alap HTML kódot a Vue kiegészíti egy saját sablon-szintaxissal, amely lehetővé teszi a változók beékelődését a HTML kódba. A reaktivitás azt jelenti, hogy amikor a HTML sablonban felhasznált JavaScript változók értéke megváltozik, akkor a Vue érzékeli ezt és automatikusan megváltoztatja a megjelenített HTML kódot, így mindig a legfrissebb adatokat látja a felhasználó. Ugyanez végbemegy fordított irányban is, mert a felhasználói interakciók eredményeképpen a Vue automatikusan frissíti a háttérben lévő változókat is, így lesz a kommunikáció a DOM és a Vue között kétirányú \cite{vueinaction,vue3}.
+A Vue.js két alapköve a deklaratív UI felépítés és a reaktivitás. A deklaratív UI azt jelenti hogy az alap HTML kódot a Vue kiegészíti egy saját sablon-szintaxissal, amely lehetővé teszi a változók beékelődését a HTML kódba. A reaktivitás azt jelenti, hogy amikor a HTML sablonban felhasznált JavaScript változók értéke megváltozik, akkor a Vue érzékeli ezt és automatikusan megváltoztatja a megjelenített HTML kódot, így mindig a legfrissebb adatokat látja a felhasználó. Ugyanez végbemegy fordított irányban is, mert a felhasználói interakciók eredményeképpen a Vue automatikusan frissíti a háttérben lévő változókat is, így lesz a kommunikáció kétirányú \cite{vueinaction,vue3}.
 
 A Vue keretrendszer egyik legnagyobb előnye, hogy könnyen tanulható és alkalmazható, így gyorsan lehet vele fejleszteni. Ennek egyik oka, hogy komponens alapú, amely lehetővé teszi a weboldalak felépítését újrafelhasználható, különálló komponensekből, amelyeket később össze lehet fűzni egy nagyobb alkalmazássá. Ezek úgynevezett Single-File Component-ek (egyfájlos-komponensek) formájában jelennek meg, amely azt jelenti, hogy az adott komponens HTML, CSS és JavaScript kódja mind egy fájlon belül található, ezzel egy átlátható és moduláris alkalmazásfelépítést eredményezve \cite{vue3}. Emellett a Vue nagyon jó online dokumentációval rendelkezik, amelyben minden funkció részletesen le van írva, de különleges problémákkal és kérdésekkel a dinamikusan növekvő fejlesztői közösséghez is lehet fordulni, így mindig könnyen meg lehet találni az éppen szükséges információt és nagyon gyorsan el lehet sajátítani a keretrendszer használatát \cite{vueinaction}.
 
@@ -156,4 +158,4 @@ Verziókövetésre a Git-et használtuk, GitHub-al kiegészítve, így biztonsá
 \end{figure}
 
 \section{Kitelepítés}
-A weboldalak ki lettek telepítve Netlify-ra, hogy könnyebben tesztelhetőek és bemutathatóak legyenek. A Netlify egy olyan szolgáltatás, amely lehetővé teszi a statikus weboldalak gyors és egyszerű kiszolgálását a GitHub repository-ból automatikusan, így a változtatások a \textit{git push} parancs kiadása után pillanatokon belül megjelennek a weben. A felhasználói weboldal a \url{https://bus4u.online}, az adminisztrátori weboldal pedig a \url{https://admin.bus4u.online} címen érhető el.
+A weboldalak ki lettek telepítve Netlify-ra, hogy könnyebben tesztelhetőek és bemutathatóak legyenek. A Netlify egy ingyenes online szolgáltatás, amely lehetővé teszi a statikus weboldalak gyors és egyszerű kiszolgálását a GitHub repository-ból automatikusan, így minden változtatás a \textit{git push} parancs kiadása után pillanatokon belül meg is jelenik a weben. A felhasználói weboldal a \url{https://bus4u.online} címen, az adminisztrátori weboldal pedig a \url{https://admin.bus4u.online} címen érhető el.

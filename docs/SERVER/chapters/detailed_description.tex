@@ -352,8 +352,8 @@ Az API biztonságos használata érdekében JWT (JSON Web Token) alapú token-hi
 A JWT tokenek segítségével a felhasználók és adminisztrátorok azonosítása gyorsan és biztonságosan történik, anélkül, hogy minden kérésnél újbóli bejelentkezés szükséges lenne. Az alkalmazott Rails könyvtárak a következők:
 
 \begin{itemize}
-    \item \textbf{devise}: biztosítja az alapvető hitelesítési logikát, beleértve a regisztrációt, bejelentkezést, jelszókezelést.
-    \item \textbf{devise\_token\_auth}: kiegészíti a devise-t JWT alapú tokenkezelési funkciókkal, amely lehetővé teszi a stateless (állapotmentes) authentikációt API-k számára.
+    \item devise: biztosítja az alapvető hitelesítési logikát, beleértve a regisztrációt, bejelentkezést, jelszókezelést.
+    \item devise\_token\_auth: kiegészíti a devise-t JWT alapú tokenkezelési funkciókkal, amely lehetővé teszi a stateless (állapotmentes) authentikációt API-k számára.
 \end{itemize}
 
 A JWT token alapú autentikáció folyamata:

@@ -1,4 +1,5 @@
-\documentclass[12pt, twoside]{report}
+\documentclass[12pt, a4paper, oneside]{report}             % Single-side
+%\documentclass[12pt, a4paper, twoside, openright]{report}   % Duplex   
 
 \include{preamble}
 
@@ -6,22 +7,25 @@
 \usepackage{multicol}
 \usepackage{wrapfig}
 
-\title{Bus4U - UI}
+\title{Bus4U: Modern tömegközlekedési rendszer - UI}
 \author{Portik Szabolcs}
 \date{2025}
 
 \begin{document}
 
+\pagenumbering{gobble}
+
 \begin{titlepage}
   \center
-  \Large
-  Universitatea „Sapientia” din Cluj-Napoca \\
-  Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
-  Specializarea Calculatoare \\
+  \fontsize{18}{22}\selectfont
+  \textbf{UNIVERSITATEA „SAPIENTIA” DIN CLUJ-NAPOCA} \\
+  \fontsize{16}{20}\selectfont
+  \textbf{FACULTATEA DE ȘTIINȚE TEHNICE ȘI UMANISTE, TÎRGU-MUREȘ} \\
+  \textbf{SPECIALIZAREA CALCULATOARE} \\
   \vspace{1.5in}
   \Huge
-  \textbf{Bus4U - UI} \\
-  \vspace{0.6in}
+  \textbf{BUS4U: Sistem modern de transport public - UI} \\
+  \vspace{0.2in}
   \LARGE
   \textbf{PROIECT DE DIPLOMĂ} \\
   \vspace{1.5in}
@@ -42,19 +46,26 @@
   \textbf{2025}
 \end{titlepage}
 
+\includepdf{chapters/fisa-proiectului.pdf}
+
+\begin{center}
+  \LARGE
+  \textbf{BUS4U: Sistem modern de transport public - UI} \\
+\end{center}
 \section*{Extras}
 \input{chapters/abstract/ro}
 
 \begin{titlepage}
   \center
-  \Large
-  Sapientia Erdélyi Magyar Tudományegyetem \\
-  Marosvásárhelyi Kar \\
-  Számítástechnika szak \\
+  \fontsize{18}{22}\selectfont
+  \textbf{SAPIENTIA ERDÉLYI MAGYAR TUDOMÁNYEGYETEM} \\
+  \fontsize{16}{20}\selectfont
+  \textbf{MAROSVÁSÁRHELYI KAR} \\
+  \textbf{SZÁMÍTÁSTECHNIKA SZAK} \\
   \vspace{1.5in}
   \Huge
-  \textbf{Bus4U - UI} \\
-  \vspace{0.6in}
+  \textbf{Bus4U: Modern tömegközlekedési rendszer - UI} \\
+  \vspace{0.2in}
   \LARGE
   \textbf{DIPLOMADOLGOZAT} \\
   \vspace{1.5in}
@@ -67,16 +78,14 @@
     \end{flushleft}
     \columnbreak
     \begin{flushright}
-      \textbf{Hallgató:} \\
+      \textbf{Végzős hallgató:} \\
       Portik Szabolcs
     \end{flushright}
   \end{multicols}
-  \vspace{0.6in}
+  \vspace{0.4in}
   \Huge
   \textbf{2025}
 \end{titlepage}
-
-\pagenumbering{gobble}
 
 \section*{Kivonat}
 \input{chapters/abstract/hu}
@@ -86,8 +95,10 @@
 
 \tableofcontents
 
-\pagenumbering{arabic}
+\listoffigures
+\newpage
 
+\pagenumbering{arabic}
 \chapter{Bevezető}
 \input{chapters/introduction}
 
@@ -115,6 +126,7 @@
 \chapter{Összefoglalás}
 \input{chapters/summary}
 
+\newpage
 \addcontentsline{toc}{chapter}{Irodalomjegyzék}
 \bibliographystyle{ieeetr}
 \bibliography{refs}

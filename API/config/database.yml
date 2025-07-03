@@ -4,6 +4,13 @@ default: &default
 
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+test:
+  <<: *default
+  host: localhost
+  database: bus4u_test
+  username: bus4u
+  password: thesisdb123.
+
 development:
   <<: *default
   host: <%= Rails.application.credentials.dig(:db_host) %>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.3.3)  10 MAR 2025 19:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.3.3)  2 JUL 2025 15:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -543,7 +543,7 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 Package Listings Warning: Unknown column format `fullflexible sensitive' on input line 71.
 
 )
-LaTeX Font Info:    Trying to load font information for T1+ptm on input line 14.
+LaTeX Font Info:    Trying to load font information for T1+ptm on input line 15.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
@@ -553,24 +553,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 ) (./Bus4U - SERVER.aux)
 \openout1 = `"Bus4U - SERVER.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
  (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count329
@@ -594,16 +594,16 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
-* paper: <default>
+* paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(71.13188pt, 486.25761pt, 56.9055pt)
-* v-part:(T,H,B)=(71.13188pt, 628.44073pt, 95.39737pt)
-* \paperwidth=614.295pt
-* \paperheight=794.96999pt
-* \textwidth=486.25761pt
-* \textheight=628.44073pt
+* h-part:(L,W,R)=(71.13188pt, 469.47049pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 672.50832pt, 101.40665pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=469.47049pt
+* \textheight=672.50832pt
 * \oddsidemargin=-1.1381pt
 * \evensidemargin=-15.36449pt
 * \topmargin=-38.1381pt
@@ -611,7 +611,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=95.0pt
+* \marginparwidth=85.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -633,7 +633,7 @@ Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 14.
+Package hyperref Info: Link coloring ON on input line 15.
  (./Bus4U - SERVER.out) (./Bus4U - SERVER.out)
 \@outlinefile=\write3
 \openout3 = `"Bus4U - SERVER.out"'.
@@ -643,73 +643,126 @@ Package hyperref Info: Link coloring ON on input line 14.
 LaTeX Info: Redefining \cal on input line 577.
 LaTeX Info: Redefining \mit on input line 578.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 35.
+LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ztmcm.fd
 File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 35.
+LaTeX Font Info:    Trying to load font information for OML+ztmcm on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlztmcm.fd
 File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 35.
+LaTeX Font Info:    Trying to load font information for OMS+ztmcm on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsztmcm.fd
 File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 35.
+LaTeX Font Info:    Trying to load font information for OMX+ztmcm on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omxztmcm.fd
 File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 35.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 23.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 23.
  [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}]
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.76 \end{titlepage}
-                     [1] (./chapters/abstract_ro.tex
+<figures/fp.pdf, id=295, 597.31157pt x 844.83629pt>
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf>
+Package pdftex.def Info: figures/fp.pdf  used on input line 50.
+(pdftex.def)             Requested size: 597.3101pt x 844.83423pt.
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf>
+Package pdftex.def Info: figures/fp.pdf  used on input line 50.
+(pdftex.def)             Requested size: 597.3101pt x 844.83423pt.
+<figures/fp.pdf, id=298, page=1, 597.31157pt x 844.83629pt>
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf, page 1>
+Package pdftex.def Info: figures/fp.pdf , page1 used on input line 50.
+(pdftex.def)             Requested size: 597.3101pt x 844.83423pt.
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf, page 1>
+Package pdftex.def Info: figures/fp.pdf , page1 used on input line 50.
+(pdftex.def)             Requested size: 597.81139pt x 845.54323pt.
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf, page 1>
+Package pdftex.def Info: figures/fp.pdf , page1 used on input line 50.
+(pdftex.def)             Requested size: 597.81139pt x 845.54323pt.
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf, page 1>
+Package pdftex.def Info: figures/fp.pdf , page1 used on input line 50.
+(pdftex.def)             Requested size: 597.81139pt x 845.54323pt.
+File: figures/fp.pdf Graphic file (type pdf)
+<use figures/fp.pdf, page 1>
+Package pdftex.def Info: figures/fp.pdf , page1 used on input line 50.
+(pdftex.def)             Requested size: 597.81139pt x 845.54323pt.
+ [2
+
+ <./figures/fp.pdf>] (./chapters/abstract_ro.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 2.
-)
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.82 \end{abstract}
-                    [1] (./chapters/abstract_en.tex)
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.87 \end{abstract}
-                    [1] (./chapters/abstract_hu.tex)
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.92 \end{abstract}
-                    [1] (./Bus4U - SERVER.toc [2
 
-] [3])
+Overfull \hbox (7.68867pt too wide) in paragraph at lines 10--11
+[]\T1/ptm/m/n/12 Tema cent-ral  a lucr -rii de dip-lom  es-te desc-ri-e-rea de-ta-lia-t  a com-po-nent-elor ser-ve-ru-lui aplica[]iei
+ []
+
+) [3]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.88 \end{titlepage}
+                     [1] (./chapters/abstract_hu.tex) (./chapters/abstract_en.tex
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3 
+     [2])
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.98 \clearpage
+                [3] (./Bus4U - SERVER.toc
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.21 ...dszer rÃ©szletes leÃ­rÃ¡sa}{21}{chapter.5}
+                                                  % [1
+
+
+]
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.52 ...ne {7.2.1}KezdÅ‘lap}{48}{subsection.7.2.1}
+                                                  % [2])
 \tf@toc=\write4
 \openout4 = `"Bus4U - SERVER.toc"'.
 
- [4] (./Bus4U - SERVER.lof)
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.103 \listoffigures
+                     [3] (./Bus4U - SERVER.lof
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 24.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+) [4
+
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}])
 \tf@lof=\write5
 \openout5 = `"Bus4U - SERVER.lof"'.
 
- [5
-
-]
+ [5]
 1. fejezet.
 (./chapters/introduction.tex [6
 
@@ -717,12 +770,7 @@ l.92 \end{abstract}
 2. fejezet.
 (./chapters/goals.tex [9
 
-]
-Overfull \hbox (5.43817pt too wide) in paragraph at lines 15--16
-[]\T1/ptm/b/n/12 Felhasználói Él-mény és Rend-szer-ha-té-kony-ság: \T1/ptm/m/n/12 Az egész rend-szer ki-ala-kí-tá-sá-nál ki-emelt szem-
- []
-
-) [10]
+]) [10]
 3. fejezet.
 (./chapters/theory.tex [11
 
@@ -731,151 +779,181 @@ Overfull \hbox (5.43817pt too wide) in paragraph at lines 15--16
 (./chapters/requirements.tex [16
 
 ]
-<figures/use-case.jpg, id=477, 1714.405pt x 2055.68pt>
+<figures/use-case.jpg, id=517, 1714.405pt x 2055.68pt>
 File: figures/use-case.jpg Graphic file (type jpg)
 <use figures/use-case.jpg>
 Package pdftex.def Info: figures/use-case.jpg  used on input line 33.
-(pdftex.def)             Requested size: 486.25761pt x 583.05185pt.
+(pdftex.def)             Requested size: 469.47049pt x 562.91417pt.
  [17] [18 <./figures/use-case.jpg>] [19]) [20]
 5. fejezet.
 (./chapters/detailed_description.tex
-<figures/architecture.jpeg, id=494, 1311.90125pt x 737.75626pt>
+<figures/architecture.jpeg, id=536, 1311.90125pt x 737.75626pt>
 File: figures/architecture.jpeg Graphic file (type jpg)
 <use figures/architecture.jpeg>
-Package pdftex.def Info: figures/architecture.jpeg  used on input line 8.
-(pdftex.def)             Requested size: 486.25761pt x 273.4496pt.
+Package pdftex.def Info: figures/architecture.jpeg  used on input line 10.
+(pdftex.def)             Requested size: 469.47049pt x 264.00478pt.
  [21
 
-] [22 <./figures/architecture.jpeg>] [23] [24]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 58.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-) [25{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}] [26] [27]
-<figures/database.jpg, id=551, 1283.79625pt x 1507.6325pt>
+] [22 <./figures/architecture.jpeg>] [23] [24] [25] [26] [27]
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 176.
+ [28] [29] [30] [31]
+Overfull \hbox (0.93182pt too wide) in paragraph at lines 344--346
+[]\T1/ptm/b/n/12 Megjegyzés\T1/ptm/m/n/12 : Si-ke-res ér-vé-nye-sí-tés ese-tén a rend-szer be-ál-lít-ja a je-gyet fel-hasz-nált-nak (\T1/cmtt/m/n/12 is_valid
+ []
+
+[32]
+Overfull \hbox (4.11095pt too wide) in paragraph at lines 364--365
+[]\T1/ptm/m/n/12 A kli-ens a to-váb-bi ké-ré-sei so-rán a ka-pott to-kent a HTTP fej-léc-ben, \T1/cmtt/m/n/12 Authorization: Bearer
+ []
+
+[33]
+<figures/database.jpg, id=618, 1283.79625pt x 1507.6325pt>
 File: figures/database.jpg Graphic file (type jpg)
 <use figures/database.jpg>
-Package pdftex.def Info: figures/database.jpg  used on input line 126.
-(pdftex.def)             Requested size: 486.25761pt x 571.04294pt.
- [28] [29 <./figures/database.jpg>] [30]
-<figures/jira.jpg, id=564, 926.46124pt x 825.0825pt>
+Package pdftex.def Info: figures/database.jpg  used on input line 393.
+(pdftex.def)             Requested size: 469.47049pt x 551.328pt.
+ [34]
+Overfull \hbox (1.97945pt too wide) in paragraph at lines 400--401
+\T1/ptm/m/n/12 A bac-kend API adatbázis-kezelése a Ruby on Ra-ils ke-ret-rend-szer be-épí-tett Ac-ti-ve-Re-cord objektum-
+ []
+
+[35 <./figures/database.jpg>] [36]
+<figures/jira.jpg, id=632, 926.46124pt x 825.0825pt>
 File: figures/jira.jpg Graphic file (type jpg)
 <use figures/jira.jpg>
-Package pdftex.def Info: figures/jira.jpg  used on input line 163.
-(pdftex.def)             Requested size: 486.25761pt x 433.0489pt.
- [31] [32 <./figures/jira.jpg>]
-<figures/github.jpg, id=573, 1176.395pt x 807.015pt>
+Package pdftex.def Info: figures/jira.jpg  used on input line 430.
+(pdftex.def)             Requested size: 469.47049pt x 418.1049pt.
+ [37 <./figures/jira.jpg>]
+<figures/github.jpg, id=639, 1176.395pt x 807.015pt>
 File: figures/github.jpg Graphic file (type jpg)
 <use figures/github.jpg>
-Package pdftex.def Info: figures/github.jpg  used on input line 182.
-(pdftex.def)             Requested size: 486.25761pt x 333.57506pt.
- [33]) [34 <./figures/github.jpg>]
+Package pdftex.def Info: figures/github.jpg  used on input line 450.
+(pdftex.def)             Requested size: 469.47049pt x 322.06143pt.
+ [38]) [39 <./figures/github.jpg>]
 6. fejezet.
-(./chapters/infrastructure.tex [35
+(./chapters/infrastructure.tex [40
 
 ]
-<figures/deployment.jpg, id=588, 923.45pt x 657.45625pt>
+Overfull \hbox (0.4351pt too wide) in paragraph at lines 29--30
+[]\T1/ptm/m/n/12 Verziókezelés: Az asdf ver-zió-ke-ze-l® hasz-ná-la-tá-val a Ruby és egyéb nyel-vek ver-zi-ó-it könnyen
+ []
+
+<figures/deployment.jpg, id=653, 923.45pt x 657.45625pt>
 File: figures/deployment.jpg Graphic file (type jpg)
 <use figures/deployment.jpg>
-Package pdftex.def Info: figures/deployment.jpg  used on input line 33.
-(pdftex.def)             Requested size: 486.25761pt x 346.19296pt.
-) [36] [37 <./figures/deployment.jpg>]
+Package pdftex.def Info: figures/deployment.jpg  used on input line 35.
+(pdftex.def)             Requested size: 469.47049pt x 334.2449pt.
+) [41] [42 <./figures/deployment.jpg>]
 7. fejezet.
 (./chapters/operation.tex
-<figures/activity.png, id=597, 956.57375pt x 1051.93pt>
+<figures/activity.png, id=662, 956.57375pt x 1051.93pt>
 File: figures/activity.png Graphic file (type png)
 <use figures/activity.png>
 Package pdftex.def Info: figures/activity.png  used on input line 13.
-(pdftex.def)             Requested size: 486.25761pt x 534.72763pt.
- [38
+(pdftex.def)             Requested size: 469.47049pt x 516.26881pt.
+ [43
 
-] [39 <./figures/activity.png>]
-<figures/boughtticket.png, id=609, 1020.81375pt x 488.82625pt>
+] [44 <./figures/activity.png>]
+<figures/boughtticket.png, id=675, 1020.81375pt x 488.82625pt>
 File: figures/boughtticket.png Graphic file (type png)
 <use figures/boughtticket.png>
 Package pdftex.def Info: figures/boughtticket.png  used on input line 30.
-(pdftex.def)             Requested size: 486.25761pt x 232.85126pt.
-<figures/listtickets.png, id=610, 954.56625pt x 592.2125pt>
+(pdftex.def)             Requested size: 469.47049pt x 224.81058pt.
+<figures/listtickets.png, id=676, 954.56625pt x 592.2125pt>
 File: figures/listtickets.png Graphic file (type png)
 <use figures/listtickets.png>
 Package pdftex.def Info: figures/listtickets.png  used on input line 44.
-(pdftex.def)             Requested size: 486.25761pt x 301.67195pt.
- [40 <./figures/boughtticket.png>]
-<figures/tickets.png, id=616, 1020.81375pt x 488.82625pt>
-File: figures/tickets.png Graphic file (type png)
-<use figures/tickets.png>
-Package pdftex.def Info: figures/tickets.png  used on input line 56.
-(pdftex.def)             Requested size: 486.25761pt x 232.85126pt.
- [41 <./figures/listtickets.png (PNG copy)>]
-<figures/buyticket.png, id=621, 844.15375pt x 610.28pt>
+(pdftex.def)             Requested size: 469.47049pt x 291.25296pt.
+ [45 <./figures/boughtticket.png>]
+<figures/buyticket.png, id=683, 844.15375pt x 610.28pt>
 File: figures/buyticket.png Graphic file (type png)
 <use figures/buyticket.png>
-Package pdftex.def Info: figures/buyticket.png  used on input line 68.
-(pdftex.def)             Requested size: 486.25761pt x 351.54149pt.
- [42 <./figures/tickets.png>]
-<figures/departuretimes.png, id=627, 1020.81375pt x 1182.4175pt>
-File: figures/departuretimes.png Graphic file (type png)
-<use figures/departuretimes.png>
-Package pdftex.def Info: figures/departuretimes.png  used on input line 82.
-(pdftex.def)             Requested size: 486.25761pt x 563.24187pt.
- [43 <./figures/buyticket.png (PNG copy)>] [44 <./figures/departuretimes.png>]
-<figures/checkdocuments.png, id=637, 942.52126pt x 548.0475pt>
+Package pdftex.def Info: figures/buyticket.png  used on input line 62.
+(pdftex.def)             Requested size: 469.47049pt x 339.4078pt.
+ [46 <./figures/listtickets.png (PNG copy)>] [47 <./figures/buyticket.png (PNG copy)>]
+<figures/checkdocuments.png, id=692, 942.52126pt x 548.0475pt>
 File: figures/checkdocuments.png Graphic file (type png)
 <use figures/checkdocuments.png>
-Package pdftex.def Info: figures/checkdocuments.png  used on input line 112.
-(pdftex.def)             Requested size: 486.25761pt x 282.74518pt.
- [45]
-<figures/adminstops.png, id=643, 1017.8025pt x 488.82625pt>
-File: figures/adminstops.png Graphic file (type png)
-<use figures/adminstops.png>
-Package pdftex.def Info: figures/adminstops.png  used on input line 126.
-(pdftex.def)             Requested size: 486.25761pt x 233.53748pt.
- [46 <./figures/checkdocuments.png (PNG copy)>]
-<figures/adminschedule.png, id=648, 1017.8025pt x 483.8075pt>
-File: figures/adminschedule.png Graphic file (type png)
-<use figures/adminschedule.png>
-Package pdftex.def Info: figures/adminschedule.png  used on input line 148.
-(pdftex.def)             Requested size: 486.25761pt x 231.13976pt.
- [47 <./figures/adminstops.png>]
-<figures/adminbuses.png, id=654, 1020.81375pt x 458.71375pt>
-File: figures/adminbuses.png Graphic file (type png)
-<use figures/adminbuses.png>
-Package pdftex.def Info: figures/adminbuses.png  used on input line 164.
-(pdftex.def)             Requested size: 486.25761pt x 218.50723pt.
- [48 <./figures/adminschedule.png>]
-<figures/posmain.png, id=660, 526.96875pt x 820.06375pt>
-File: figures/posmain.png Graphic file (type png)
-<use figures/posmain.png>
-Package pdftex.def Info: figures/posmain.png  used on input line 186.
-(pdftex.def)             Requested size: 243.1288pt x 378.36009pt.
- [49 <./figures/adminbuses.png>]
-<figures/posscan.png, id=666, 1005.7575pt x 340.27126pt>
-File: figures/posscan.png Graphic file (type png)
-<use figures/posscan.png>
-Package pdftex.def Info: figures/posscan.png  used on input line 207.
-(pdftex.def)             Requested size: 486.25761pt x 164.51215pt.
-) [50 <./figures/posmain.png>] [51 <./figures/posscan.png>]
+Package pdftex.def Info: figures/checkdocuments.png  used on input line 98.
+(pdftex.def)             Requested size: 469.47049pt x 272.98611pt.
+ [48 <./figures/checkdocuments.png (PNG copy)>] [49]
+<figures/pos_1.png, id=703, 722.7pt x 1284.8pt>
+File: figures/pos_1.png Graphic file (type png)
+<use figures/pos_1.png>
+Package pdftex.def Info: figures/pos_1.png  used on input line 153.
+(pdftex.def)             Requested size: 225.34383pt x 400.61682pt.
+<figures/pos_2.png, id=704, 722.7pt x 1284.8pt>
+File: figures/pos_2.png Graphic file (type png)
+<use figures/pos_2.png>
+Package pdftex.def Info: figures/pos_2.png  used on input line 159.
+(pdftex.def)             Requested size: 225.34383pt x 400.61682pt.
+ [50 <./figures/pos_1.png> <./figures/pos_2.png>]
+<figures/pos_3.png, id=711, 722.7pt x 1284.8pt>
+File: figures/pos_3.png Graphic file (type png)
+<use figures/pos_3.png>
+Package pdftex.def Info: figures/pos_3.png  used on input line 182.
+(pdftex.def)             Requested size: 225.34383pt x 400.61682pt.
+<figures/pos_4.png, id=712, 722.7pt x 1284.8pt>
+File: figures/pos_4.png Graphic file (type png)
+<use figures/pos_4.png>
+Package pdftex.def Info: figures/pos_4.png  used on input line 188.
+(pdftex.def)             Requested size: 225.34383pt x 400.61682pt.
+) [51 <./figures/pos_3.png> <./figures/pos_4.png>]
 8. fejezet.
 (./chapters/testing.tex [52
 
 ]
-Overfull \hbox (0.32408pt too wide) in paragraph at lines 34--35
-[]\T1/ptm/b/n/12 GET /v1/admin/document_validity_checker \T1/ptm/m/n/12 ^^U Do-ku-men-tum ér-vé-nyes-sé-gé-nek el-len-®r-zé-se ad-
- []
+<figures/postman_request_get_stations_by_city.png, id=724, 1016.79875pt x 400.49625pt>
+File: figures/postman_request_get_stations_by_city.png Graphic file (type png)
+<use figures/postman_request_get_stations_by_city.png>
+Package pdftex.def Info: figures/postman_request_get_stations_by_city.png  used on input line 26.
+(pdftex.def)             Requested size: 375.57782pt x 147.93073pt.
+<figures/postman_request_get_available_tickets.png, id=726, 1016.79875pt x 667.49374pt>
+File: figures/postman_request_get_available_tickets.png Graphic file (type png)
+<use figures/postman_request_get_available_tickets.png>
+Package pdftex.def Info: figures/postman_request_get_available_tickets.png  used on input line 34.
+(pdftex.def)             Requested size: 375.57782pt x 246.55122pt.
 
-[53] [54]) [55]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/postman_request_get_bus_locations.png, id=728, 1016.79875pt x 318.18875pt>
+File: figures/postman_request_get_bus_locations.png Graphic file (type png)
+<use figures/postman_request_get_bus_locations.png>
+Package pdftex.def Info: figures/postman_request_get_bus_locations.png  used on input line 42.
+(pdftex.def)             Requested size: 375.57782pt x 117.52892pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/postman_request_get_tickets_of_user.png, id=730, 1016.79875pt x 457.71pt>
+File: figures/postman_request_get_tickets_of_user.png Graphic file (type png)
+<use figures/postman_request_get_tickets_of_user.png>
+Package pdftex.def Info: figures/postman_request_get_tickets_of_user.png  used on input line 50.
+(pdftex.def)             Requested size: 375.57782pt x 169.0637pt.
+[53 <./figures/postman_request_get_stations_by_city.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<figures/postman_request_add_station_to_route.png, id=737, 1016.79875pt x 294.09875pt>
+File: figures/postman_request_add_station_to_route.png Graphic file (type png)
+<use figures/postman_request_add_station_to_route.png>
+Package pdftex.def Info: figures/postman_request_add_station_to_route.png  used on input line 58.
+(pdftex.def)             Requested size: 375.57782pt x 108.63083pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[54 <./figures/postman_request_get_available_tickets.png> <./figures/postman_request_get_bus_locations.png>] [55 <./figures/postman_request_get_tickets_of_user.png> <./figures/postman_request_add_station_to_route.png>] [56]
+<figures/zap.png, id=755, 1445.4pt x 866.23625pt>
+File: figures/zap.png Graphic file (type png)
+<use figures/zap.png>
+Package pdftex.def Info: figures/zap.png  used on input line 108.
+(pdftex.def)             Requested size: 375.57782pt x 225.08394pt.
+ [57 <./figures/zap.png>] [58]) [59]
 9. fejezet.
-(./chapters/summary.tex
-Overfull \hbox (33.06387pt too wide) in paragraph at lines 11--12
-[]\T1/ptm/m/n/12 4. Dep-loy-ment: A rend-szer te-le-pí-té-se az Azu-re fel-h®-szol-gál-ta-tás-ra tör-tént, ahol az API az api.bus4u.online
- []
+(./chapters/summary.tex [60
 
-[56
-
-]) (./Bus4U - SERVER.bbl [57] [58
-
-]) [59]
-A f\"uggel\'ek.
-(./chapters/appendix.tex) [60
+] [61]) (./Bus4U - SERVER.bbl [62]) [63
 
 ] (./Bus4U - SERVER.aux)
  ***********
@@ -883,21 +961,21 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `"Bus4U - SERVER".out' has not changed.
-(rerunfilecheck)             Checksum: 76CD7F959369E2CDF184F832C4E9CC97;11514.
+(rerunfilecheck)             Checksum: 25D2FAC480B13FC386D8C008C7976E93;12496.
  ) 
 Here is how much of TeX's memory you used:
- 16611 strings out of 475509
- 267655 string characters out of 5776665
+ 16661 strings out of 475509
+ 269517 string characters out of 5776665
  1940975 words of memory out of 5000000
- 38206 multiletter control sequences out of 15000+600000
- 615649 words of font info for 99 fonts, out of 8000000 for 9000
+ 38243 multiletter control sequences out of 15000+600000
+ 611202 words of font info for 96 fonts, out of 8000000 for 9000
  395 hyphenation exceptions out of 8191
- 82i,7n,84p,1357b,668s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 82i,17n,84p,1408b,691s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "Bus4U - SERVER.pdf" (64 pages, 3007618 bytes).
+Output written on "Bus4U - SERVER.pdf" (69 pages, 3012673 bytes).
 PDF statistics:
- 777 PDF objects out of 1000 (max. 8388607)
- 669 compressed objects within 7 object streams
- 164 named destinations out of 1000 (max. 500000)
- 635 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 854 PDF objects out of 1000 (max. 8388607)
+ 729 compressed objects within 8 object streams
+ 180 named destinations out of 1000 (max. 500000)
+ 694 words of extra memory for PDF output out of 10000 (max. 10000000)
 

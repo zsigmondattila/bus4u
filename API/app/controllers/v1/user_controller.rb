@@ -1,5 +1,5 @@
-class V1::ApplicationController < ApplicationController
-
+class V1::UserController < ApplicationController
+  
   #List of all cities
   def get_cities 
     cities = City.all

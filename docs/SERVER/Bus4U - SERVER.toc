@@ -5,14 +5,14 @@
 \select@language {magyar} \contentsline {section}{\numberline {3.2}Hasonló alkalmazások}{12}{section.3.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.1}Hatások a közlekedési rendszerre}{12}{subsection.3.2.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.2.2}Moovit backend struktúra}{13}{subsection.3.2.2}%
-\select@language {magyar} \contentsline {section}{\numberline {3.3}Backend architektúra és technológiai háttér}{14}{section.3.3}%
+\select@language {magyar} \contentsline {section}{\numberline {3.3}Backend architektúra és technológiai háttér}{13}{section.3.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.1}REST API és HTTP működése}{14}{subsection.3.3.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {3.3.2}Backend architektúrák}{14}{subsection.3.3.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Adatbázis-kezelés és skálázhatóság}{15}{subsection.3.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {3.3.3}Adatbázis-kezelés és skálázhatóság}{14}{subsection.3.3.3}%
 \select@language {magyar} \contentsline {chapter}{\numberline {4}Rendszer specifikációi}{16}{chapter.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.1}Felhasználói követelmények}{16}{section.4.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.1}Felhasználói weboldal}{16}{subsection.4.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}Admin felület}{17}{subsection.4.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {4.1.2}Admin felület}{16}{subsection.4.1.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.3}Mobil applikáció}{17}{subsection.4.1.3}%
 \select@language {magyar} \contentsline {subsection}{\numberline {4.1.4}POS terminál alkalmazás}{17}{subsection.4.1.4}%
 \select@language {magyar} \contentsline {section}{\numberline {4.2}Rendszerkövetelmények}{19}{section.4.2}%
@@ -23,46 +23,53 @@
 \select@language {magyar} \contentsline {subsection}{\numberline {5.1.1}Ruby on Rails}{22}{subsection.5.1.1}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.1.2}PostgreSQL}{23}{subsection.5.1.2}%
 \select@language {magyar} \contentsline {subsection}{\numberline {5.1.3}Azure}{24}{subsection.5.1.3}%
-\select@language {magyar} \contentsline {section}{\numberline {5.2}Az API felépítése}{25}{section.5.2}%
-\select@language {magyar} \contentsline {section}{\numberline {5.3}Endpointok részletes leírása}{25}{section.5.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.3.1}GET /get\_stations\_by\_city}{25}{subsection.5.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.3.2}Hitelesítés és jogosultságkezelés}{26}{subsection.5.3.2}%
-\select@language {magyar} \contentsline {section}{\numberline {5.4}Adatkezelés és adatbázis kapcsolat}{27}{section.5.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}Adatbázis táblák}{27}{subsection.5.4.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Objektum-relációs leképzés (ORM)}{30}{subsection.5.4.2}%
-\select@language {magyar} \contentsline {section}{\numberline {5.5}Projektmenedzsment és verziókövetés}{30}{section.5.5}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.5.1}Jira}{30}{subsection.5.5.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {5.5.2}Git és GitHub}{32}{subsection.5.5.2}%
-\select@language {magyar} \contentsline {chapter}{\numberline {6}Infrastruktúra}{35}{chapter.6}%
-\select@language {magyar} \contentsline {section}{\numberline {6.1}Azure infrastruktúra áttekintése}{35}{section.6.1}%
-\select@language {magyar} \contentsline {section}{\numberline {6.2}Domain konfiguráció}{35}{section.6.2}%
-\select@language {magyar} \contentsline {section}{\numberline {6.3}Adatbázis telepítése és konfigurációja}{36}{section.6.3}%
-\select@language {magyar} \contentsline {section}{\numberline {6.4}Szerver telepítése}{36}{section.6.4}%
-\select@language {magyar} \contentsline {chapter}{\numberline {7}Az alkalmazás működése}{38}{chapter.7}%
-\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói felület}{38}{section.7.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{38}{subsection.7.1.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{41}{subsection.7.1.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{43}{subsection.7.1.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és térkép}{45}{subsection.7.1.4}%
-\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrációs felület}{45}{section.7.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőlap}{45}{subsection.7.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{46}{subsection.7.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{47}{subsection.7.2.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{47}{subsection.7.2.4}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{48}{subsection.7.2.5}%
-\select@language {magyar} \contentsline {section}{\numberline {7.3}POS terminál alkalmazása}{49}{section.7.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.3.1}GPS oldal}{49}{subsection.7.3.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {7.3.2}Jegyszkennelő oldal}{50}{subsection.7.3.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.2}Az API felépítése}{24}{section.5.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.3}Fontosabb endpointok részletes leírása}{25}{section.5.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.1}GET /v1/get\_stations\_by\_city}{25}{subsection.5.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.2}GET /v1/get\_departure\_times\_for\_station\_in\_route}{26}{subsection.5.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.3}POST /generate\_a\_ticket}{28}{subsection.5.3.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.4}GET /admin/statistics}{30}{subsection.5.3.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.5}POST /use\_ticket}{31}{subsection.5.3.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.3.6}Hitelesítés és jogosultságkezelés}{32}{subsection.5.3.6}%
+\select@language {magyar} \contentsline {section}{\numberline {5.4}Adatkezelés és adatbázis kapcsolat}{33}{section.5.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.1}Adatbázis táblák}{33}{subsection.5.4.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.4.2}Objektum-relációs leképzés (ORM)}{36}{subsection.5.4.2}%
+\select@language {magyar} \contentsline {section}{\numberline {5.5}Projektmenedzsment és verziókövetés}{36}{section.5.5}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.5.1}Jira}{36}{subsection.5.5.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {5.5.2}Git és GitHub}{38}{subsection.5.5.2}%
+\select@language {magyar} \contentsline {chapter}{\numberline {6}Infrastruktúra}{40}{chapter.6}%
+\select@language {magyar} \contentsline {section}{\numberline {6.1}Azure infrastruktúra áttekintése}{40}{section.6.1}%
+\select@language {magyar} \contentsline {section}{\numberline {6.2}Domain konfiguráció}{40}{section.6.2}%
+\select@language {magyar} \contentsline {section}{\numberline {6.3}Adatbázis telepítése és konfigurációja}{41}{section.6.3}%
+\select@language {magyar} \contentsline {section}{\numberline {6.4}Szerver telepítése}{41}{section.6.4}%
+\select@language {magyar} \contentsline {chapter}{\numberline {7}Az alkalmazás működése}{43}{chapter.7}%
+\select@language {magyar} \contentsline {section}{\numberline {7.1}Felhasználói felület}{43}{section.7.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.1}Főoldal}{43}{subsection.7.1.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.2}Jegyek}{46}{subsection.7.1.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.3}Menetrend}{47}{subsection.7.1.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.1.4}Megállók és térkép}{47}{subsection.7.1.4}%
+\select@language {magyar} \contentsline {section}{\numberline {7.2}Adminisztrációs felület}{48}{section.7.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.1}Kezdőlap}{48}{subsection.7.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.2}Megállók}{49}{subsection.7.2.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.3}Útvonalak}{49}{subsection.7.2.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.4}Menetrend}{49}{subsection.7.2.4}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.2.5}Buszok és alkalmazottak}{49}{subsection.7.2.5}%
+\select@language {magyar} \contentsline {section}{\numberline {7.3}POS terminál alkalmazása}{50}{section.7.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.3.1}GPS oldal}{50}{subsection.7.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {7.3.2}Jegyszkennelő oldal}{51}{subsection.7.3.2}%
 \select@language {magyar} \contentsline {chapter}{\numberline {8}A rendszer tesztelése}{52}{chapter.8}%
 \select@language {magyar} \contentsline {section}{\numberline {8.1}Tesztelési környezet}{52}{section.8.1}%
 \select@language {magyar} \contentsline {section}{\numberline {8.2}Funkcionális tesztelés}{52}{section.8.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}Végpontok tesztelése}{53}{subsection.8.2.1}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Tesztelési példa}{53}{subsection.8.2.2}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.2.3}Tesztelési eredmények}{54}{subsection.8.2.3}%
-\select@language {magyar} \contentsline {section}{\numberline {8.3}Teljesítménytesztelés}{55}{section.8.3}%
-\select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}Teljesítmény-metrikák}{55}{subsection.8.3.1}%
-\select@language {magyar} \contentsline {section}{\numberline {8.4}Biztonsági tesztelés}{55}{section.8.4}%
-\select@language {magyar} \contentsline {section}{\numberline {8.5}Összegzés}{55}{section.8.5}%
-\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{56}{chapter.9}%
-\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{57}{chapter.9}%
-\select@language {magyar} \contentsline {chapter}{\numberline {A\@gobble }Függelék}{60}{appendix.A}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.1}API végpontok tesztelése}{53}{subsection.8.2.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.2.2}Unit tesztek}{55}{subsection.8.2.2}%
+\select@language {magyar} \contentsline {section}{\numberline {8.3}Biztonsági tesztelés}{56}{section.8.3}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.1}SQL Injection}{56}{subsection.8.3.1}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.2}XSS (Cross-Site Scripting) Tesztelés}{57}{subsection.8.3.2}%
+\select@language {magyar} \contentsline {subsection}{\numberline {8.3.3}Felfedezett sebezhetőségek}{57}{subsection.8.3.3}%
+\select@language {magyar} \contentsline {subsubsection}{Format String Error}{57}{section*.6}%
+\select@language {magyar} \contentsline {subsubsection}{Timestamp Disclosure}{58}{section*.7}%
+\select@language {magyar} \contentsline {subsubsection}{Anti-MIME-Sniffing és X-Content-Type-Options}{58}{section*.8}%
+\select@language {magyar} \contentsline {subsubsection}{robots.txt}{59}{section*.9}%
+\select@language {magyar} \contentsline {chapter}{\numberline {9}Összefoglalás}{60}{chapter.9}%
+\select@language {magyar} \contentsline {section}{\numberline {9.1}Továbbfejlesztési lehetőségek}{61}{section.9.1}%
+\select@language {magyar} \contentsline {chapter}{Irodalomjegyzék}{62}{section.9.1}%

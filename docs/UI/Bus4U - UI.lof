@@ -1,0 +1,40 @@
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {3.1}{\ignorespaces Intelligens Közlekedési Rendszer (ITS)}}{7}{figure.3.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.2}{\ignorespaces Moovit alkalmazás}}{10}{figure.3.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {3.3}{\ignorespaces Budapest Go alkalmazás \footnotemark }}{11}{figure.3.3}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {4.1}{\ignorespaces Use-case diagram a végfelhasználók lehetőségeiről}}{15}{figure.4.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {4.2}{\ignorespaces Use-case diagram az adminisztrátorok lehetőségeiről}}{16}{figure.4.2}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {5.1}{\ignorespaces A rendszer architektúrája}}{20}{figure.5.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.2}{\ignorespaces Azonosítást tartalmazó API kérés}}{21}{figure.5.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.3}{\ignorespaces A jegyek listázásának válasza}}{24}{figure.5.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.4}{\ignorespaces A jegyek listázásának folyamata}}{24}{figure.5.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.5}{\ignorespaces A regisztrációra adott válasz}}{25}{figure.5.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.6}{\ignorespaces A regisztráció teljes folyamata}}{26}{figure.5.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.7}{\ignorespaces Feladatok a Jira-ban}}{31}{figure.5.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {5.8}{\ignorespaces Verziókövetés GitKraken segítségével}}{32}{figure.5.8}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {6.1}{\ignorespaces A Material Design 3 gomb stílusai}}{34}{figure.6.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {6.2}{\ignorespaces A mobilalkalmazás terve}}{35}{figure.6.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {6.3}{\ignorespaces A felhasználói weboldal terve}}{36}{figure.6.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {6.4}{\ignorespaces Az admin weboldal terve}}{36}{figure.6.4}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {7.1}{\ignorespaces Jegyvásárlás a weboldalon}}{38}{figure.7.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.2}{\ignorespaces Jegyvásárlás a mobilalkalmazásban}}{38}{figure.7.2}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.3}{\ignorespaces A jegyvásárlás folyamata}}{39}{figure.7.3}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.4}{\ignorespaces A felhasználó megvásárolt jegyei}}{41}{figure.7.4}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.5}{\ignorespaces A menetrend táblázata és az útvonal a térképen}}{42}{figure.7.5}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.6}{\ignorespaces Megállók oldal}}{43}{figure.7.6}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.7}{\ignorespaces Kezdőoldal statisztikával és értesítéssel}}{44}{figure.7.7}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.8}{\ignorespaces Adminisztrátori megállók oldal}}{45}{figure.7.8}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.9}{\ignorespaces Útvonal létrehozása}}{46}{figure.7.9}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.10}{\ignorespaces Menetrend szerkesztése}}{47}{figure.7.10}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.11}{\ignorespaces Alkalmazottak listája}}{48}{figure.7.11}%
+\select@language {magyar} \contentsline {figure}{\numberline {7.12}{\ignorespaces Busz szerkesztése és alkalmazott létrehozása}}{48}{figure.7.12}%
+\select@language {magyar} \addvspace {10\p@ }
+\select@language {magyar} \contentsline {figure}{\numberline {8.1}{\ignorespaces A felhasználói weboldal tesztjei}}{51}{figure.8.1}%
+\select@language {magyar} \contentsline {figure}{\numberline {8.2}{\ignorespaces A GitHub Actions által generált teszteredmények}}{54}{figure.8.2}%
+\select@language {magyar} \addvspace {10\p@ }

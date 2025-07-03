@@ -1,5 +1,5 @@
-class V1::ApplicationController < ApplicationController
-
+class V1::UserController < ApplicationController
+  
   #List of all cities
   def get_cities 
     cities = City.all
@@ -194,7 +194,7 @@ class V1::ApplicationController < ApplicationController
         ticket.expiration_date = Time.now + 1.months
         ticket.ticket_price = ticket_price * 100
         ticket.is_valid = true 
-        ticket.is_paid = false
+        ticket.is_paid = true
     
         success = success && ticket.save
         puts "#{ticket.errors} succ"

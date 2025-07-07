@@ -35,9 +35,9 @@ class CheckoutController < ApplicationController
       render json: { error: "Cannot create one or more tickets" }, status: :unprocessable_entity
     end
 
-    route = Route.find_by(uid: params[:route_uid])
-    from_station = Station.find_by(uid: params[:from_station_uid])
-    to_station = Station.find_by(uid: params[:to_station_uid])
+    route = Route.find_by(route_uid: params[:route_uid])
+    from_station = Station.find_by(station_uid: params[:from_station_uid])
+    to_station = Station.find_by(station_uid: params[:to_station_uid])
 
     session = Stripe::Checkout::Session.create({
       customer_email: current_user.email,

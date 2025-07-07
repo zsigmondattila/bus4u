@@ -1,4 +1,4 @@
-\documentclass[12pt, twoside]{report}
+\documentclass[a4paper, 12pt, twoside]{report}
 
 \usepackage[utf8]{inputenc}
 \def\magyarOptions{defaults=hu-min}
@@ -6,6 +6,7 @@
 
 \include{preamble}
 
+\pagestyle{empty}
 
 \title{Bus4U - Szerver oldal}
 \author{Zsigmond Attila}
@@ -18,42 +19,13 @@
 \begin{titlepage}
   \centering
   \Large
-  Sapientia Erdélyi Magyar Tudományegyetem \\
-  Marosvásárhelyi Kar \\
-  Számítástechnika szak \\
-  \vspace{1.5in}
-  \HUGE
-  \textbf{Bus4U - Szerver oldal} \\
-  \vspace{0.5in}
-  \Huge
-  \textbf{DIPLOMADOLGOZAT} \\
-  \vspace{1.5in}
-  \Large
-  \begin{multicols}{2}
-    \begin{flushleft}
-      \textbf{Témavezető:} \\
-      Ș.l.dr.ing. Szántó Zoltán
-    \end{flushleft}
-    \columnbreak
-    \begin{flushright}
-      \textbf{Hallgató:} \\
-      Zsigmond Attila
-    \end{flushright}
-  \end{multicols}
-  \vspace{0.5in}
-  \LARGE
-  2025
-\end{titlepage}
-
-\begin{titlepage}
-  \centering
-  \Large
   Universitatea „Sapientia” din Cluj-Napoca \\
-  Facultatea de Științe Tehnice și Umaniste din Târgu-Mureș \\
+  Facultatea de Științe Tehnice și Umaniste,
+  Târgu-Mureș \\
   Specializarea Calculatoare \\
   \vspace{1.5in}
-  \HUGE
-  \textbf{Bus4U - Partea de Server} \\
+  \Huge
+  \textbf{BUS4U: Sistem modern de transport public - SERVER} \\
   \vspace{0.5in}
   \Huge
   \textbf{PROIECT DE DIPLOMĂ} \\
@@ -66,7 +38,7 @@
     \end{flushleft}
     \columnbreak
     \begin{flushright}
-      \textbf{Student:} \\
+      \textbf{Absolvent:} \\
       Zsigmond Attila
     \end{flushright}
   \end{multicols}
@@ -75,22 +47,57 @@
   2025
 \end{titlepage}
 
+\includepdf[pages=-]{figures/fp.pdf}
+
+\begin{center}
+  {\Large \textbf{BUS4U: Sistem modern de transport public - SERVER}}
+\end{center}
 
 \renewcommand{\abstractname}{Extras}
-\begin{abstract}
-  \input{chapters/abstract_ro}
-\end{abstract}
+\section*{\abstractname}
+\input{chapters/abstract_ro}
 
-\renewcommand{\abstractname}{Abstract}
-\begin{abstract}
-  \input{chapters/abstract_en}
-\end{abstract}
+\begin{titlepage}
+  \centering
+  \Large
+  Sapientia Erdélyi Magyar Tudományegyetem \\
+  Marosvásárhelyi Kar \\
+  Számítástechnika szak \\
+  \vspace{1.5in}
+  \Huge
+  \textbf{Bus4U: Modern tömegközlekedési rendszer - SZERVER} \\
+  \vspace{0.5in}
+  \Huge
+  \textbf{DIPLOMADOLGOZAT} \\
+  \vspace{1in}
+  \Large
+  \begin{multicols}{2}
+    \begin{flushleft}
+      \textbf{Témavezető:} \\
+      Dr. Szántó Zoltán \\ egyetemi adjunktus
+    \end{flushleft}
+    \columnbreak
+    \begin{flushright}
+      \textbf{Végzős hallgató:} \\
+      Zsigmond Attila
+    \end{flushright}
+  \end{multicols}
+  \vspace{0.5in}
+  \LARGE
+  2025
+\end{titlepage}
 
 \renewcommand{\abstractname}{Kivonat}
-\begin{abstract}
-  \input{chapters/abstract_hu}
-\end{abstract}
+\section*{\abstractname}
+\input{chapters/abstract_hu}
 
+\renewcommand{\abstractname}{Abstract}
+\section*{\abstractname}
+\input{chapters/abstract_en}
+
+\clearpage
+\pagestyle{plain}
+\pagenumbering{arabic}
 
 \tableofcontents
 \listoffigures
@@ -126,8 +133,8 @@
 \bibliographystyle{ieeetr}
 \bibliography{references}
 
-\appendix
-\chapter{Függelék}
-\input{chapters/appendix}
+%\appendix
+%\chapter{Függelék}
+%\input{chapters/appendix}
 
 \end{document}

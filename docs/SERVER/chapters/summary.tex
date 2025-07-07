@@ -10,6 +10,24 @@ A dolgozat célja egy hatékony busz menedzselő rendszer API létrehozása volt
 
 4. Deployment: A rendszer telepítése az Azure felhőszolgáltatásra történt, ahol az API az api.bus4u.online domainen érhető el. A PostgreSQL adatbázis és a virtuális gép (VM) külön szolgáltatásként működik, biztosítva a skálázhatóságot és a megbízhatóságot.
 
-5. Jövőbeli fejlesztések: A jövőbeli fejlesztések között szerepel a rendszer funkcionalitásának bővítése, például új szolgáltatások bevezetése, a felhasználói élmény javítása érdekében. További cél a rendszer biztonságának növelése, például a hitelesítési és jogosultsági mechanizmusok fejlesztésével.
-
 Összességében a Bus4U API megvalósítása sikeres volt, és a dolgozat során végrehajtott lépések hozzájárultak a hatékony és megbízható busz menedzselő rendszer kialakításához. A projekt során szerzett tapasztalatok és tanulságok értékes alapot jelentenek a jövőbeli fejlesztésekhez és a hasonló rendszerek tervezéséhez.
+
+\section{Továbbfejlesztési lehetőségek}
+
+A Bus4U rendszer jelenlegi verziója egy stabil és megbízható buszmenedzselő API-t valósít meg, azonban számos fejlesztési irány áll még rendelkezésre, amelyek tovább növelhetik a rendszer értékét és használhatóságát mind a felhasználók, mind a busztársaságok számára.
+
+Az egyik legfontosabb további funkció a buszok telítettségének valós idejű követése lehetne. Ez a fejlesztés lehetővé tenné, hogy az utasok előre tájékozódjanak arról, mennyire zsúfoltak a járatok, így elkerülhetővé válna a túlzsúfoltság és javulna a tömegközlekedés komfortja és minősége. A telítettségi adatok elemzésével a szolgáltató hatékonyabban optimalizálhatná az erőforrásokat és a járatok menetrendjét.
+
+A felhasználói élmény javítása érdekében érdemes lenne bevezetni az optimális útvonaltervezést, amely a hagyományos buszjáratok mellett gyalogos navigációt is kínálna. Így az alkalmazás nem csupán az adott járathoz vezetné az utast, hanem a legkedvezőbb távolság, idő és forgalmi helyzet alapján ajánlana útvonalakat, ezzel megkönnyítve a napi közlekedést.
+
+Az értesítési rendszer fejlesztése szintén kiemelt jelentőségű. A felhasználók valós időben értesülhetnének a járatok késéséről, útvonalváltozásokról vagy egyéb fontos információkról, így időben tudnának alkalmazkodni a változó helyzetekhez.
+
+A kényelmi funkciók bővítése érdekében megfontolandó egy játékosítási rendszer kialakítása is. Ez lehetővé tenné, hogy az utazók pontokat gyűjtsenek az utazásaik után, amelyeket később kedvezményekre válthatnak be. A pontgyűjtés mellett mérföldköveket is be lehetne vezetni, amelyek elérésekor a felhasználók elismerést kapnának, valamint akár versenyezhetnének is egymással. Ez a megközelítés növelhetné az alkalmazás iránti elköteleződést és ösztönözné a rendszer aktív használatát.
+
+A busztársaságok szempontjából jelentős előrelépés lehetne a rendszer egyedi testreszabása az egyes partnerek igényei szerint. Így nemcsak általános használatra optimalizált megoldásként működhetne, hanem a cégek speciális funkciókkal és megjelenéssel is kiegészíthetnék azt. További hasznos fejlesztésként megfontolandó a busztársaságok könyvelési folyamatait integrálni a rendszerbe. Ennek keretében automatizálhatóvá válhatna az alkalmazottak munkaóráinak nyilvántartása, az autóbuszok tankolásainak összesítése, valamint a járműveken lévő POS terminálok GPS modulja segítségével a menetlevelek vezetése is. Az ilyen integrációval további kimutatások és elemzések készíthetők, amelyek elősegítik a hatékonyabb gazdálkodást.
+
+Végül, a jelenlegi VM-alapú architektúra helyett érdemes lehet áttérni modern, felhőalapú, serverless megoldásokra, mint például az Azure Functions vagy más hasonló platformok. Ez a váltás csökkentheti az üzemeltetési költségeket, növelheti a rendszer skálázhatóságát és rugalmasságát, valamint gyorsabb fejlesztést és karbantartást tesz lehetővé.
+
+Összességében ezek a továbbfejlesztési irányok jelentősen hozzájárulhatnak ahhoz, hogy a Bus4U rendszer a jövőben még hatékonyabb, felhasználóbarátabb és üzletileg értékesebb megoldássá váljon.
+
+

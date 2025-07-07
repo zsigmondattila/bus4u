@@ -25,15 +25,15 @@ A Budapest Go egy példa arra, hogyan lehet a digitális technológiát alkalmaz
 A Moovit, mint globális mobilitási szolgáltatás, backend rendszere modern felhőalapú technológiákra épül. Backend architektúrájának alapját Amazon Web Services (AWS) szolgáltatások adják:
 
 \begin{itemize}
-    \item \textbf{Adattárolás:} Az adatok tárolására relációs (például PostgreSQL) és NoSQL adatbázisokat (pl. Amazon S3, DynamoDB) használnak. Ez biztosítja az adatok gyors elérését, skálázhatóságát és a szolgáltatások megbízhatóságát.
+    \item Adattárolás: Az adatok tárolására relációs (például PostgreSQL) és NoSQL adatbázisokat (pl. Amazon S3, DynamoDB) használnak. Ez biztosítja az adatok gyors elérését, skálázhatóságát és a szolgáltatások megbízhatóságát.
     
-    \item \textbf{Alkalmazásszerverek:} Az alkalmazásszerverek futtatására Amazon EC2 példányokat használnak, amelyek rugalmas skálázási lehetőséget biztosítanak a felhasználói igények függvényében.
+    \item Alkalmazásszerverek: Az alkalmazásszerverek futtatására Amazon EC2 példányokat használnak, amelyek rugalmas skálázási lehetőséget biztosítanak a felhasználói igények függvényében.
     
-    \item \textbf{AI-alapú szolgáltatások:} A Moovit a szolgáltatásfigyelmeztetések automatikus osztályozásához Apache Airflow-val integrált Amazon SageMaker szolgáltatást használ. A SageMaker segítségével BERT-alapú NLP modelleket képeznek ki, amelyek lehetővé teszik a szöveges információk pontos automatikus feldolgozását, ezáltal növelve a szolgáltatások pontosságát és sebességét.
+    \item AI-alapú szolgáltatások: A Moovit a szolgáltatásfigyelmeztetések automatikus osztályozásához Apache Airflow-val integrált Amazon SageMaker szolgáltatást használ. A SageMaker segítségével BERT-alapú NLP modelleket képeznek ki, amelyek lehetővé teszik a szöveges információk pontos automatikus feldolgozását, ezáltal növelve a szolgáltatások pontosságát és sebességét.
     
-    \item \textbf{Infrastruktúra és skálázhatóság:} Az Amazon Elastic Compute Cloud (EC2) és az Amazon API Gateway technológiák révén a backend környezet képes nagy terhelés kezelésére, valamint alacsony késleltetésű válaszidők biztosítására globális felhasználói bázis számára is.
+    \item Infrastruktúra és skálázhatóság: Az Amazon Elastic Compute Cloud (EC2) és az Amazon API Gateway technológiák révén a backend környezet képes nagy terhelés kezelésére, valamint alacsony késleltetésű válaszidők biztosítására globális felhasználói bázis számára is.
     
-    \item \textbf{Folyamatok automatizálása:} A Moovit backend folyamatait (adatgenerálás, modelltréning, ellenőrzés, deployment) Apache Airflow workflow-kezelő eszközzel automatizálták. Ezáltal a rendszer skálázhatóbb, könnyebben karbantartható és gyorsabban adaptálható új igényekhez.
+    \item Folyamatok automatizálása: A Moovit backend folyamatait (adatgenerálás, modelltréning, ellenőrzés, deployment) Apache Airflow workflow-kezelő eszközzel automatizálták. Ezáltal a rendszer skálázhatóbb, könnyebben karbantartható és gyorsabban adaptálható új igényekhez.
 \end{itemize}
 
 A Moovit backendjének fejlett struktúrája példaértékű a tömegközlekedési alkalmazások számára, biztosítva a felhasználók számára a stabil, gyors és precíz működést még nagy felhasználószám esetén is.
@@ -47,10 +47,10 @@ A modern webalkalmazások működésének alapját az API-k és az azok által b
 A REST (Representational State Transfer) architektúra az egyik legelterjedtebb webszolgáltatási megközelítés, amely az erőforrás-alapú kommunikációt helyezi előtérbe \cite{zhou2014rest}. Az API-k HTTP protokollt használnak, amely négy alapvető metódust biztosít:
 
 \begin{itemize}
-    \item \textbf{GET} - Erőforrás lekérése.
-    \item \textbf{POST} - Új erőforrás létrehozása.
-    \item \textbf{PUT} - Meglévő erőforrás módosítása.
-    \item \textbf{DELETE} - Erőforrás törlése.
+    \item GET - Erőforrás lekérése.
+    \item POST - Új erőforrás létrehozása.
+    \item PUT - Meglévő erőforrás módosítása.
+    \item DELETE - Erőforrás törlése.
 \end{itemize}
 
 A REST API-k állapotmentesek, így minden egyes kérés önálló, nem igényel szerveroldali állapotmegőrzést. Az adatok általában JSON formátumban kerülnek továbbításra, biztosítva a platformfüggetlenséget és az egyszerű feldolgozást.
@@ -59,24 +59,24 @@ A REST API-k állapotmentesek, így minden egyes kérés önálló, nem igényel
 
 A backend rendszerek fejlesztése során két fő architekturális megközelítést különböztetünk meg:
 
-\textbf{Monolitikus architektúra:} Egyetlen egységként működik, amely minden üzleti logikát és adatkezelést magában foglal. Egyszerűbb fejlesztési és telepítési folyamatokkal rendelkezik, de nehezen skálázható \cite{al2018comparative}.
+Monolitikus architektúra: Egyetlen egységként működik, amely minden üzleti logikát és adatkezelést magában foglal. Egyszerűbb fejlesztési és telepítési folyamatokkal rendelkezik, de nehezen skálázható \cite{al2018comparative}.
 
-\textbf{Mikroszolgáltatás-architektúra:} Az alkalmazás kisebb, egymástól független szolgáltatásokból áll, amelyek különálló komponensekként működnek. Ez lehetővé teszi a jobb skálázhatóságot és karbantarthatóságot, de nagyobb fejlesztési és üzemeltetési komplexitással jár.
+Mikroszolgáltatás-architektúra: Az alkalmazás kisebb, egymástól független szolgáltatásokból áll, amelyek különálló komponensekként működnek. Ez lehetővé teszi a jobb skálázhatóságot és karbantarthatóságot, de nagyobb fejlesztési és üzemeltetési komplexitással jár.
 
 \subsection{Adatbázis-kezelés és skálázhatóság}
 
 A backend rendszer egyik kulcsfontosságú eleme az adatbázis-kezelés, amely biztosítja az adatok hatékony tárolását, lekérdezhetőségét és integritását. A megfelelő adatbázis kiválasztásánál két fő típust különböztetünk meg:
 
 \begin{itemize}
-    \item \textbf{Relációs adatbázisok:} Strukturált adatok tárolására használatosak, biztosítják az adatintegritást és a konzisztens tranzakciókezelést. A Bus4U projektben például PostgreSQL került alkalmazásra, amely magas fokú megbízhatóságot, tranzakcióbiztonságot, valamint könnyű karbantarthatóságot biztosít nagyobb adatmennyiségek kezelése esetén is.
+    \item Relációs adatbázisok: Strukturált adatok tárolására használatosak, biztosítják az adatintegritást és a konzisztens tranzakciókezelést. A Bus4U projektben például PostgreSQL került alkalmazásra, amely magas fokú megbízhatóságot, tranzakcióbiztonságot, valamint könnyű karbantarthatóságot biztosít nagyobb adatmennyiségek kezelése esetén is.
     
-    \item \textbf{NoSQL adatbázisok:} Dinamikusan változó vagy kevésbé strukturált adatok tárolására optimálisak. Rugalmasságot biztosítanak az adatok tárolási módjában, továbbá kiválóan skálázhatók horizontálisan. Gyakran alkalmazott megoldások közé tartozik például az Amazon DynamoDB, amelyet nagy adatmennyiség és gyors elérhetőség esetén használnak.
+    \item NoSQL adatbázisok: Dinamikusan változó vagy kevésbé strukturált adatok tárolására optimálisak. Rugalmasságot biztosítanak az adatok tárolási módjában, továbbá kiválóan skálázhatók horizontálisan. Gyakran alkalmazott megoldások közé tartozik például az Amazon DynamoDB, amelyet nagy adatmennyiség és gyors elérhetőség esetén használnak.
 \end{itemize}
 
 A backend rendszerek skálázhatósága különösen fontos kritérium, amely biztosítja a rendszer hatékony működését változó felhasználószám mellett is. A skálázhatóság két fő módszerrel valósítható meg:
 
 \begin{itemize}
-    \item \textbf{Vertikális skálázás:} A rendszer teljesítményének növelése nagyobb erőforrásokkal (például több memória, erősebb CPU biztosítása). Ez egyszerűbb, de hosszabb távon korlátozott megoldás, mivel a fizikai korlátok határt szabhatnak az erőforrásbővítésnek.
+    \item Vertikális skálázás: A rendszer teljesítményének növelése nagyobb erőforrásokkal (például több memória, erősebb CPU biztosítása). Ez egyszerűbb, de hosszabb távon korlátozott megoldás, mivel a fizikai korlátok határt szabhatnak az erőforrásbővítésnek.
     
-    \item \textbf{Horizontális skálázás:} Több, párhuzamosan működő szerver használatával valósul meg. Az így kialakított rendszer terheléselosztás révén képes kezelni a megnövekedett adatforgalmat, rugalmasan alkalmazkodva a változó igényekhez. Ez a megoldás nagyobb rendelkezésre állást, jobb hibakezelést, valamint egyszerűbb kapacitásnövelési lehetőségeket kínál, ugyanakkor komplexebb rendszerfelügyeletet igényel.
+    \item Horizontális skálázás: Több, párhuzamosan működő szerver használatával valósul meg. Az így kialakított rendszer terheléselosztás révén képes kezelni a megnövekedett adatforgalmat, rugalmasan alkalmazkodva a változó igényekhez. Ez a megoldás nagyobb rendelkezésre állást, jobb hibakezelést, valamint egyszerűbb kapacitásnövelési lehetőségeket kínál, ugyanakkor komplexebb rendszerfelügyeletet igényel.
 \end{itemize}

@@ -1,5 +1,5 @@
 describe("Home Page", () => {
-  it("Buying 2 tickets without login", () => {
+  it("Trying to buy 2 tickets without login", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
 
@@ -11,6 +11,7 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
     cy.get(
@@ -21,11 +22,7 @@ describe("Home Page", () => {
       .type("a")
       .not("be.eq", "a")
       .type("{backspace}2");
-    cy.intercept("POST", "/v1/generate_a_ticket").as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
-    cy.wait("@generateTicket").as("request");
-    cy.get("@request").its("request.body.quantity").should("eq", "2");
-    cy.get("@request").its("response.statusCode").should("eq", 401);
     cy.location("pathname").should("eq", "/login");
   });
 
@@ -46,17 +43,18 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit'").click();
-    cy.intercept("POST", "/v1/generate_a_ticket", {
-      statusCode: 404,
+    cy.intercept("POST", "/create-checkout", {
+      statusCode: 401,
       body: ["TEST01"],
     }).as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
     cy.get(".v-card-title").should("contain", "failed");
   });
 
-  it("Buying ticket with login (successful)", () => {
+  it("Buying ticket with login (until checkout)", () => {
     cy.intercept("GET", "/v1/get_cities").as("getCities");
     cy.intercept("GET", "/v1/get_stations_by_city*").as("getStations");
 
@@ -73,13 +71,12 @@ describe("Home Page", () => {
     cy.get("input[name='destCity']").type("Marosvásárhely{enter}");
     cy.wait("@getStations");
     cy.get("input[name='destStation']").type("Aleea Carpati 2{enter}");
+    cy.get("input[name='date']").type("2025-06-13");
     cy.get("input[name='time']").type("10:00");
     cy.get("button[type='submit']").click();
-    cy.intercept("POST", "/v1/generate_a_ticket", {
-      statusCode: 200,
-      body: ["TEST01"],
-    }).as("generateTicket");
+    cy.intercept("POST", "/create-checkout").as("generateTicket");
     cy.get("div.flex-wrap:nth-child(1)").find("button").click();
-    cy.get(".v-card-title").should("contain", "successful");
+    cy.url().should("include", "/checkout");
+    // Cannot test a cross-origin iframe (Stripe)
   });
 });

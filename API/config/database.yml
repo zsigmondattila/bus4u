@@ -13,10 +13,11 @@ test:
 
 development:
   <<: *default
-  host: <%= Rails.application.credentials.dig(:db_host) %>
-  database: <%= Rails.application.credentials.dig(:db_database) %>
-  username: <%= Rails.application.credentials.dig(:db_username) %>
-  password: <%= Rails.application.credentials.dig(:db_password) %>
+  host: localhost
+  port: 5432
+  database: bus4u_dev
+  username: bus4u_user
+  password: titok
 
 production:
   <<: *default

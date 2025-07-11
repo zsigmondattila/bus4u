@@ -2,8 +2,8 @@ class V1::UserController < ApplicationController
   
   #List of all cities
   def get_cities 
-    cities = City.all
-    render json: {cities: cities}
+    cities = City.joins(:stations).distinct
+    render json: { cities: cities }
   end
 
   #List of all stations

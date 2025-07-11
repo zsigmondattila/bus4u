@@ -30,6 +30,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
             } catch (e: HttpException) {
                 onError("Network error: ${e.message}")
             } catch (e: Exception) {
+                Log.e("LoginViewModel", "Login error", e)
                 onError("Error: ${e.localizedMessage}")
             }
         }

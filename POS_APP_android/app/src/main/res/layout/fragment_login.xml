@@ -87,4 +87,14 @@
             android:visibility="gone" />
     </FrameLayout>
 
+    <Button
+        android:id="@+id/hiddenButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@android:color/transparent"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
